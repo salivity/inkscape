@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Combine Paths in Inkscape? - inkscape</title>
+    <meta name="description" content="Inkscape offers several ways to merge separate paths into a single object, depending on whether you want them to remain distinct sub-paths or blend into a unified shape. This article provides a quick, step-by-step guide on using the Combine command for o">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-combine-paths-in-inkscape">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js" defer></script>
+    <script id="MathJax-script" src="/inkscape/js/mathjax.min.js" async></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Combine Paths in Inkscape? - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-combine-paths-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape offers several ways to merge separate paths into a single object, depending on whether you want them to remain distinct sub-paths or blend into a unified shape. This article provides a quick, step-by-step guide on using the Combine command for o" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-combine-paths-in-inkscape">How to Combine Paths in
+Inkscape?</h1>
+<p>Inkscape offers several ways to merge separate paths into a single
+object, depending on whether you want them to remain distinct sub-paths
+or blend into a unified shape. This article provides a quick,
+step-by-step guide on using the <strong>Combine</strong> command for
+overlapping or disconnected lines, alongside the <strong>Union</strong>
+tool for melting intersecting shapes together. You will also learn how
+to connect the open endpoints of two paths to create one continuous
+line.</p>
+<hr />
+<h3 id="method-1-the-combine-command-non-destructive-grouping">Method 1:
+The Combine Command (Non-Destructive Grouping)</h3>
+<p>The <strong>Combine</strong> tool group separate paths into a single
+path object. It is ideal for independent lines or shapes that need to
+share the same style, or for creating “holes” in shapes (like the center
+of a donut).</p>
+<ol type="1">
+<li>Select the <strong>Select and Transform Objects</strong> tool (the
+black arrow) from the left toolbar.</li>
+<li>Hold down the <strong>Shift</strong> key and click on each of the
+paths you want to merge.</li>
+<li>Navigate to the top menu and select <strong>Path &gt;
+Combine</strong>, or use the keyboard shortcut <strong>Ctrl + K</strong>
+(Cmd + K on Mac).</li>
+</ol>
+<p>If the shapes were overlapping, the intersecting area may become
+transparent. To reverse this process later, you can select the path and
+go to <strong>Path &gt; Break Apart</strong>.</p>
+<hr />
+<h3 id="method-2-the-union-command-melting-shapes-together">Method 2:
+The Union Command (Melting Shapes Together)</h3>
+<p>If you have two overlapping shapes and you want to completely erase
+the intersecting lines to create a single, seamless outline, you should
+use the <strong>Union</strong> command.</p>
+<ol type="1">
+<li>Use the <strong>Select</strong> tool to click and drag over both
+shapes, or hold <strong>Shift</strong> while clicking them.</li>
+<li>Go to the top menu and select <strong>Path &gt; Union</strong>, or
+press <strong>Ctrl + Plus (+)</strong>.</li>
+</ol>
+<p>Unlike the Combine command, Union is destructive and permanently
+welds the outer boundaries together, turning them into one solid
+shape.</p>
+<hr />
+<h3 id="method-3-connecting-endpoints-of-two-open-paths">Method 3:
+Connecting Endpoints of Two Open Paths</h3>
+<p>If you have two separate line segments and you want to join their
+tips together to make one continuous line, you need to combine them
+first and then join their nodes.</p>
+<ol type="1">
+<li>Select both paths using the <strong>Select</strong> tool.</li>
+<li>Go to <strong>Path &gt; Combine</strong> (Ctrl + K) so Inkscape
+recognizes them as a single object.</li>
+<li>Switch to the <strong>Edit paths by nodes</strong> tool (the second
+arrow down on the left toolbar, or press <strong>N</strong>).</li>
+<li>Click and drag a selection box around the two endpoints you want to
+connect.</li>
+<li>Look at the tool control bar at the top of the screen and click the
+<strong>Join selected nodes</strong> icon (which looks like two nodes
+merging into one), or press <strong>Shift + J</strong>.</li>
+</ol></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'light' ? 'github-light' : 'github-dark'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

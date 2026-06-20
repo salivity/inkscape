@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Does Inkscape's 'Relative to' Menu Do? - inkscape</title>
+    <meta name="description" content="The 'Relative to' drop-down menu in Inkscape's Align and Distribute dialogue dictates the anchor point or reference object used to reposition your selected elements. Instead of just aligning items to an arbitrary point, this setting allows you to choose">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/what-does-inkscape-s-relative-to-menu-do">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js" defer></script>
+    <script id="MathJax-script" src="/inkscape/js/mathjax.min.js" async></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Does Inkscape's 'Relative to' Menu Do? - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/what-does-inkscape-s-relative-to-menu-do" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The 'Relative to' drop-down menu in Inkscape's Align and Distribute dialogue dictates the anchor point or reference object used to reposition your selected elements. Instead of just aligning items to an arbitrary point, this setting allows you to choose" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="what-does-inkscapes-relative-to-menu-do">What Does Inkscape’s
+‘Relative to’ Menu Do?</h1>
+<p>The ‘Relative to’ drop-down menu in Inkscape’s Align and Distribute
+dialogue dictates the anchor point or reference object used to
+reposition your selected elements. Instead of just aligning items to an
+arbitrary point, this setting allows you to choose whether objects align
+to the largest item, the smallest item, the selection area itself, the
+entire page, or even the first or last object you selected. Mastering
+this single setting is the key to precise, predictable layout control
+within your vector design projects.</p>
+<h2 id="understanding-the-anchor-targets">Understanding the Anchor
+Targets</h2>
+<p>When you select multiple objects and click an alignment button (like
+“Align left edges”), Inkscape needs to know which object should stay put
+and which objects should move. The ‘Relative to’ menu provides several
+distinct targets to control this behavior:</p>
+<ul>
+<li><strong>First selected:</strong> Aligns all subsequently selected
+objects relative to the very first object you clicked.</li>
+<li><strong>Last selected:</strong> Aligns all previously selected
+objects relative to the final object you added to your selection. This
+is often the default behavior and is highly intuitive for quick
+adjustments.</li>
+<li><strong>Biggest object:</strong> Identifies the item with the
+largest bounding box area in your selection and uses it as the
+stationary anchor.</li>
+<li><strong>Smallest object:</strong> Uses the item with the smallest
+bounding box area as the anchor.</li>
+<li><strong>Page:</strong> Ignores the relative positions of the objects
+to one another and aligns them to the boundaries of the defined Inkscape
+document page.</li>
+<li><strong>Drawing:</strong> Aligns the selected objects relative to
+the bounding box of all the artwork present in the entire document.</li>
+<li><strong>Selection area:</strong> Treats the collective bounding box
+of your current selection as the boundary, moving objects to the edges
+or center of that temporary collective area.</li>
+</ul>
+<h2 id="practical-workflow-examples">Practical Workflow Examples</h2>
+<p>Choosing the right anchor completely changes how the alignment
+buttons behave during your design process.</p>
+<p>If you are creating a website banner and want to center a button
+precisely in the middle of the canvas, you would set the menu to
+<strong>Page</strong> and click the “Center on horizontal axis” and
+“Center on vertical axis” buttons.</p>
+<p>Alternatively, if you have a row of icons that you want to line up
+perfectly with a specific background rectangle, you would select the
+icons, select the rectangle last, set the menu to <strong>Last
+selected</strong>, and align them to the center. The background
+rectangle will remain perfectly in place while the icons shift to match
+it.</p></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'light' ? 'github-light' : 'github-dark'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

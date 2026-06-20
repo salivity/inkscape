@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Flow Text into a Shape in Inkscape - inkscape</title>
+    <meta name="description" content="This article provides a quick overview and a step-by-step guide on how to flow regular text into custom shapes or frames using Inkscape. You will learn the exact tool commands, how to adjust the padding between the text and the shape's boundary, and how">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-flow-text-into-a-shape-in-inkscape">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js" defer></script>
+    <script id="MathJax-script" src="/inkscape/js/mathjax.min.js" async></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Flow Text into a Shape in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-flow-text-into-a-shape-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a quick overview and a step-by-step guide on how to flow regular text into custom shapes or frames using Inkscape. You will learn the exact tool commands, how to adjust the padding between the text and the shape's boundary, and how" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-flow-text-into-a-shape-in-inkscape">How to Flow Text into
+a Shape in Inkscape</h1>
+<p>This article provides a quick overview and a step-by-step guide on
+how to flow regular text into custom shapes or frames using Inkscape.
+You will learn the exact tool commands, how to adjust the padding
+between the text and the shape’s boundary, and how to handle the shape’s
+visibility after the text has been wrapped. Whether you are designing a
+poster, a layout, or a unique graphic, mastering this technique allows
+you to break free from standard rectangular text blocks and create
+visually engaging designs.</p>
+<h3 id="step-by-step-guide-to-flowing-text">Step-by-Step Guide to
+Flowing Text</h3>
+<p>Inkscape makes it incredibly easy to bind a text element to the
+geometry of any path or shape. Follow these steps to achieve the
+effect:</p>
+<ol type="1">
+<li><strong>Create your shape:</strong> Use the shape tools (like the
+Ellipse or Rectangle tool) or the Pen tool (<span
+class="math inline">\(B\)</span>) to draw the frame you want your text
+to fill.</li>
+<li><strong>Create your text:</strong> Click on the Text tool (<span
+class="math inline">\(T\)</span>), click on the canvas, and type or
+paste your paragraph. Keep it as a standard text object.</li>
+<li><strong>Select both objects:</strong> Hold <code>Shift</code> and
+click both the text object and the shape so they are simultaneously
+selected.</li>
+<li><strong>Apply the flow command:</strong> Go to the top menu and
+navigate to <strong>Text &gt; Flow into Frame</strong> (or press
+<code>Alt + W</code>).</li>
+</ol>
+<p>Your text will instantly wrap itself to fit neatly inside the
+boundaries of the shape.</p>
+<h3 id="adjusting-the-padding-and-margin">Adjusting the Padding and
+Margin</h3>
+<p>By default, the text might sit flush against the very edge of your
+shape, which can sometimes look cramped. To give your text some
+breathing room, you can adjust the padding:</p>
+<ul>
+<li>Select the text inside the frame.</li>
+<li>Open the <strong>Text and Font</strong> sidebar
+(<code>Ctrl + Shift + T</code>).</li>
+<li>Switch to the <strong>Features</strong> or <strong>Layout</strong>
+tab (depending on your Inkscape version) to adjust the inline margins,
+or use the <strong>Shapes</strong> tool settings in the tool control bar
+at the top to increase the padding value.</li>
+</ul>
+<h3 id="managing-shape-visibility">Managing Shape Visibility</h3>
+<p>Once the text is wrapped, you might want the container shape to
+become invisible so only the shaped text remains.</p>
+<ul>
+<li><strong>To hide the shape:</strong> Select the shape directly (you
+can hold <code>Ctrl</code> and click it to select it inside the group if
+necessary). Open the <strong>Fill and Stroke</strong> menu
+(<code>Ctrl + Shift + F</code>) and set both the Fill and Stroke paint
+to “No paint” (the <span class="math inline">\(X\)</span> icon).</li>
+<li><strong>Do not delete the shape:</strong> If you delete the shape
+entirely, the text will lose its frame and revert back to a single,
+normal line of text.</li>
+</ul></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'light' ? 'github-light' : 'github-dark'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

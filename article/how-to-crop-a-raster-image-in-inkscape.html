@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Crop a Raster Image in Inkscape? - inkscape</title>
+    <meta name="description" content="Inkscape handles raster images (like PNGs or JPEGs) differently than dedicated photo editors, using a technique called clipping to crop visuals non-destructively. This quick guide covers how to import an image, use the rectangle tool to define your crop">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-crop-a-raster-image-in-inkscape">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js" defer></script>
+    <script id="MathJax-script" src="/inkscape/js/mathjax.min.js" async></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Crop a Raster Image in Inkscape? - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-crop-a-raster-image-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape handles raster images (like PNGs or JPEGs) differently than dedicated photo editors, using a technique called clipping to crop visuals non-destructively. This quick guide covers how to import an image, use the rectangle tool to define your crop" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-crop-a-raster-image-in-inkscape">How to Crop a Raster
+Image in Inkscape?</h1>
+<p>Inkscape handles raster images (like PNGs or JPEGs) differently than
+dedicated photo editors, using a technique called clipping to crop
+visuals non-destructively. This quick guide covers how to import an
+image, use the rectangle tool to define your crop area, and apply a clip
+to hide unwanted parts. You will also learn how to adjust or undo your
+crop at any point during your design process.</p>
+<h2 id="step-1-import-your-raster-image">Step 1: Import Your Raster
+Image</h2>
+<p>Before you can crop an image, you need to bring it into your Inkscape
+workspace.</p>
+<ul>
+<li>Go to <strong>File &gt; Import</strong> in the top menu.</li>
+<li>Select the JPEG or PNG file from your computer and click
+<strong>Open</strong>.</li>
+<li>In the dialog box that appears, choose <strong>Embed</strong> (this
+saves the image inside the Inkscape file) and click
+<strong>OK</strong>.</li>
+</ul>
+<h2 id="step-2-draw-your-crop-shape">Step 2: Draw Your Crop Shape</h2>
+<p>Inkscape uses vector shapes to act as a “cookie cutter” over your
+image.</p>
+<ul>
+<li>Select the <strong>Rectangle Tool</strong> (or press <code>R</code>
+on your keyboard).</li>
+<li>Click and drag directly over your imported image to draw a shape
+over the exact area you want to keep.</li>
+<li><em>Tip: Reduce the opacity of your shape in the Fill and Stroke
+menu if you need to see the image underneath for precise
+positioning.</em></li>
+</ul>
+<h2 id="step-3-apply-the-clip-to-crop">Step 3: Apply the Clip to
+Crop</h2>
+<p>Once your shape is positioned perfectly over the area you want to
+keep, you are ready to apply the crop.</p>
+<ul>
+<li>Switch to the <strong>Select Tool</strong> (press <code>S</code> or
+click the black arrow icon).</li>
+<li>Hold down the <code>Shift</code> key and click both the
+<strong>raster image</strong> and the <strong>drawn shape</strong> so
+they are both selected at the same time.</li>
+<li>Go to the top menu and select <strong>Object &gt; Clip &gt; Set
+Clip</strong>.</li>
+</ul>
+<p>The image outside of your drawn shape will instantly disappear,
+leaving you with your cropped raster image.</p>
+<h2 id="how-to-edit-or-undo-your-crop">How to Edit or Undo Your
+Crop</h2>
+<p>Because Inkscape uses non-destructive clipping, the pixels outside
+your crop box are not permanently deleted. You can modify your crop at
+any time.</p>
+<ul>
+<li><strong>To undo the crop:</strong> Select the cropped image, go to
+<strong>Object &gt; Clip &gt; Release Clip</strong>. This separates your
+original image and the vector shape again.</li>
+<li><strong>To adjust the crop area:</strong> Select the cropped image
+and press <code>N</code> to activate the <strong>Node Tool</strong>.
+This allows you to drag the corners of your original crop shape to
+resize or reshape the visible area without releasing the clip.</li>
+</ul></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'light' ? 'github-light' : 'github-dark'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

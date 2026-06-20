@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Vectorize Images with Inkscape Trace Bitmap? - inkscape</title>
+    <meta name="description" content="Converting a raster image—like a PNG or JPEG—into a scalable vector graphic (SVG) is a fundamental skill for digital designers, and Inkscape makes this process incredibly efficient with its built-in Trace Bitmap tool. This article provides a step-by-">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-vectorize-images-with-inkscape-trace-bitmap">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js" defer></script>
+    <script id="MathJax-script" src="/inkscape/js/mathjax.min.js" async></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Vectorize Images with Inkscape Trace Bitmap? - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-vectorize-images-with-inkscape-trace-bitmap" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting a raster image—like a PNG or JPEG—into a scalable vector graphic (SVG) is a fundamental skill for digital designers, and Inkscape makes this process incredibly efficient with its built-in Trace Bitmap tool. This article provides a step-by-" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-vectorize-images-with-inkscape-trace-bitmap">How to
+Vectorize Images with Inkscape Trace Bitmap?</h1>
+<p>Converting a raster image—like a PNG or JPEG—into a scalable vector
+graphic (SVG) is a fundamental skill for digital designers, and Inkscape
+makes this process incredibly efficient with its built-in <strong>Trace
+Bitmap</strong> tool. This article provides a step-by-step guide on how
+to import a pixel-based image, utilize the Trace Bitmap interface,
+choose the right tracing mode for your project, and clean up the final
+vector output. Whether you are converting a hand-drawn sketch or a
+multi-colored logo, you will learn how to achieve clean, crisp paths
+with ease.</p>
+<h2 id="step-1-import-your-raster-image">Step 1: Import Your Raster
+Image</h2>
+<p>Before you can trace anything, you need to bring your raster graphic
+into the Inkscape workspace.</p>
+<ul>
+<li>Open Inkscape and create a new document.</li>
+<li>Go to <strong>File &gt; Import</strong> (or press
+<code>Ctrl + I</code> on Windows/Linux, <code>Cmd + I</code> on
+Mac).</li>
+<li>Select your target JPEG or PNG file and click
+<strong>Open</strong>.</li>
+<li>A dialog box will appear asking whether to embed or link the image.
+Choose <strong>Embed</strong> to ensure the image stays inside your
+document, then click <strong>OK</strong>.</li>
+</ul>
+<h2 id="step-2-open-the-trace-bitmap-tool">Step 2: Open the Trace Bitmap
+Tool</h2>
+<p>With your image successfully imported, you need to activate the
+tracing engine.</p>
+<ul>
+<li>Click on the imported image using the <strong>Select Tool</strong>
+(the black arrow) so that it is actively highlighted.</li>
+<li>Navigate to the top menu and select <strong>Path &gt; Trace
+Bitmap…</strong> (or use the shortcut
+<code>Shift + Alt + B</code>).</li>
+<li>The Trace Bitmap settings panel will open on the right side of your
+screen.</li>
+</ul>
+<h2 id="step-3-choose-your-tracing-mode">Step 3: Choose Your Tracing
+Mode</h2>
+<p>The Trace Bitmap panel offers several ways to analyze and convert
+your image. Depending on your source artwork, you will want to choose
+between single scans or multiple scans.</p>
+<h3 id="single-scan-creates-a-single-vector-path">Single Scan (Creates a
+Single Vector Path)</h3>
+<p>This option is ideal for black-and-white logos, silhouettes, and ink
+sketches.</p>
+<ul>
+<li><strong>Brightness Cutoff:</strong> Uses the light and dark values
+of the pixels to determine where to draw paths. You can adjust the
+threshold slider to make the vector thicker or thinner.</li>
+<li><strong>Edge Detection:</strong> Locates the boundaries where colors
+change drastically, creating an outline-style vector.</li>
+<li><strong>Autotrace:</strong> An alternative engine that attempts to
+map out organic shapes, which can be useful for complex, single-color
+shapes.</li>
+</ul>
+<h3 id="multiple-scans-creates-grouped-layered-vectors">Multiple Scans
+(Creates Grouped Layered Vectors)</h3>
+<p>This option is best suited for color graphics, logos with gradients,
+or images with multiple shades.</p>
+<ul>
+<li><strong>Brightness Steps:</strong> Separates the image into a
+specific number of grayscale layers based on brightness.</li>
+<li><strong>Colors:</strong> Separates the image into distinct color
+layers based on the number of scans you define.</li>
+<li><strong>Grays:</strong> Similar to the color mode, but produces a
+smooth grayscale result.</li>
+</ul>
+<blockquote>
+<p><strong>Tip:</strong> Always check the <strong>Live Preview</strong>
+box at the bottom of the Trace Bitmap panel. This allows you to see
+exactly how your settings will affect the final vector before you commit
+to the trace.</p>
+</blockquote>
+<h2 id="step-4-execute-and-refine-the-trace">Step 4: Execute and Refine
+the Trace</h2>
+<p>Once you have adjusted your thresholds and selected the appropriate
+mode, you are ready to generate the paths.</p>
+<ul>
+<li>Click the <strong>Apply</strong> button at the bottom of the panel.
+Inkscape will generate a vector duplicate and place it directly on top
+of your original raster image.</li>
+<li>Use the <strong>Select Tool</strong> to click and drag the new
+vector layer to the side so you can see both the original and the new
+version.</li>
+<li>To clean up unnecessary points on your new vector, select the vector
+and press <code>Ctrl + L</code> (Simplify). This reduces the number of
+nodes, making the paths smoother and easier to edit.</li>
+<li>Delete the original raster image from your canvas if you no longer
+need it, and save your work as an Inkscape SVG file.</li>
+</ul></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'light' ? 'github-light' : 'github-dark'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>
