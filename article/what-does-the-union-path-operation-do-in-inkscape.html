@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Does the Union Path Operation Do in Inkscape? - inkscape</title>
+    <meta name="description" content="The Union path operation in Inkscape is a powerful vector tool used to combine two or more overlapping shapes into a single, continuous path. This operation merges the selected objects by dissolving their intersecting boundaries and retaining only the ou">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/what-does-the-union-path-operation-do-in-inkscape">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Does the Union Path Operation Do in Inkscape? - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/what-does-the-union-path-operation-do-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Union path operation in Inkscape is a powerful vector tool used to combine two or more overlapping shapes into a single, continuous path. This operation merges the selected objects by dissolving their intersecting boundaries and retaining only the ou" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="what-does-the-union-path-operation-do-in-inkscape">What Does the
+Union Path Operation Do in Inkscape?</h1>
+<p>The Union path operation in Inkscape is a powerful vector tool used
+to combine two or more overlapping shapes into a single, continuous
+path. This operation merges the selected objects by dissolving their
+intersecting boundaries and retaining only the outermost outline. It is
+a fundamental feature for creating complex custom shapes, cleaning up
+overlapping graphics, and preparing designs for external applications
+like laser cutting or vinyl plotting.</p>
+<h2 id="how-the-union-tool-works">How the Union Tool Works</h2>
+<p>When you select multiple overlapping paths and apply the Union
+command, Inkscape calculates the total area covered by all the shapes
+combined. The software then removes any internal lines where the shapes
+overlap, leaving you with one unified object.</p>
+<ul>
+<li><strong>Before Union:</strong> You have multiple independent shapes,
+each with its own outline, fill, and stroke.</li>
+<li><strong>After Union:</strong> The individual boundaries disappear,
+creating a single shape that shares a uniform fill and stroke
+style.</li>
+</ul>
+<p>If the objects you are combining do not touch or overlap, the Union
+operation will still group them together into a single “compound path.”
+This means they will behave as a single object when moved or styled,
+even though they remain visually separate.</p>
+<h2 id="style-and-color-behavior">Style and Color Behavior</h2>
+<p>When combining multiple shapes that have different colors, gradients,
+or stroke styles, Inkscape needs to decide which style to apply to the
+final merged shape. The rules are straightforward:</p>
+<ul>
+<li><strong>Z-Order Rule:</strong> The final unified shape will inherit
+the fill, stroke, and opacity of the <strong>lowest object</strong> in
+the layer stack (the shape furthest to the back).</li>
+<li><strong>Attributes:</strong> Any unique attributes of the upper
+shapes, such as specific gradients or transparent properties, will be
+overwritten by the properties of that bottommost shape.</li>
+</ul>
+<h2 id="common-use-cases">Common Use Cases</h2>
+<p>The Union tool is a staple in the workflow of graphic designers,
+illustrators, and makers. Some of the most common scenarios for using it
+include:</p>
+<ul>
+<li><strong>Creating Complex Silhouettes:</strong> Designing intricate
+icons or logos by fusing simple geometric shapes like circles,
+rectangles, and polygons.</li>
+<li><strong>Connecting Text for Cutting:</strong> Converting text to
+paths and unioning script fonts so the overlapping letters form a
+single, unbroken piece, which is essential for CNC routing and vinyl
+cutting.</li>
+<li><strong>Cleaning Up Vectors:</strong> Merging overlapping brush
+strokes or paths generated by the Calligraphy tool to reduce file
+complexity and node count.</li>
+</ul>
+<h2 id="how-to-use-union-in-inkscape">How to Use Union in Inkscape</h2>
+<p>To execute a Union operation, you can follow these quick steps:</p>
+<ol type="1">
+<li>Use the <strong>Select tool (S)</strong> to choose two or more
+overlapping shapes.</li>
+<li>Navigate to the top menu and click on <strong>Path</strong>.</li>
+<li>Select <strong>Union</strong> from the dropdown menu (or use the
+keyboard shortcut <strong>Ctrl + Plus [+]</strong>).</li>
+</ol></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,602 @@
+[
+  [
+    100,
+    "How to Optimize SVG for Web in Inkscape?",
+    "Optimizing SVG files for the web ensures faster loading times, reduced bandwidth usage, and cleaner code for developers. When exporting graphics from Inkscape, the software includes a large amount of editor-specific metadata, hidden layers, and redundant",
+    false
+  ],
+  [
+    99,
+    "How to Measure Distance in Inkscape",
+    "This guide provides a straightforward walkthrough on how to use the Measure tool in Inkscape to accurately find the distance and angles between objects in your vector designs. Whether you are aligning shapes for a technical layout or checking spacing for",
+    false
+  ],
+  [
+    98,
+    "How to Remove a Filter from an Inkscape Object?",
+    "Applying filters in Inkscape is a fantastic way to add textures, glows, and blurs to your vector artwork, but you may occasionally need to strip these effects away to restore your original shapes. This article provides a quick, step-by-step guide on how",
+    false
+  ],
+  [
+    97,
+    "How to Apply a Drop Shadow in Inkscape?",
+    "Applying a drop shadow filter to an object in Inkscape is a quick way to add depth, dimension, and a professional look to your vector designs. This article provides a step-by-step guide on how to use Inkscape's built-in Drop Shadow filter, adjust its set",
+    false
+  ],
+  [
+    96,
+    "How to Randomly Duplicate Objects in Inkscape",
+    "The Spray tool in Inkscape is a powerful feature that allows you to quickly disperse multiple copies of an object or path across your canvas. By adjusting specific settings in the tool's control bar, you can introduce random variations in rotation, scale",
+    false
+  ],
+  [
+    95,
+    "How to Use Inkscape Tweak Tool for Paths?",
+    "The Tweak tool in Inkscape is a powerful feature that allows you to sculpt, distort, and modify vector paths fluidly, mimicking a brush-like or clay-modeling experience. Unlike the Node tool, which requires precise manipulation of individual control poin",
+    false
+  ],
+  [
+    94,
+    "What is Inkscape's Generate from Path extension?",
+    "The Generate from Path extension in Inkscape is a powerful suite of automation tools designed to generate new vector shapes, patterns, and complex geometry based on existing paths. Instead of drawing intricate designs by hand, users can leverage these to",
+    false
+  ],
+  [
+    93,
+    "How to Install Inkscape Extensions?",
+    "Installing third-party extensions in Inkscape allows you to add powerful new features, automate repetitive tasks, and expand the software's design capabilities. This quick guide covers how to locate your Inkscape extensions folder, download compatible fi",
+    false
+  ],
+  [
+    92,
+    "How to Export a Full Drawing as a PDF in Inkscape?",
+    "Exporting your entire vector artwork into a portable document format (PDF) using Inkscape is a straightforward process, but ensuring that the entire canvas—and only the intended canvas—is captured requires selecting the right settings. This guide pro",
+    false
+  ],
+  [
+    91,
+    "How to Export Selection as PNG in Inkscape?",
+    "Exporting a specific selection as a PNG file in Inkscape is a straightforward process that allows you to isolate and save individual objects or groups without exporting the entire canvas. By utilizing the dedicated Export dialog, you can ensure that only",
+    false
+  ],
+  [
+    90,
+    "Extracting Embedded Images From Inkscape SVG",
+    "This article provides a straightforward guide on how to extract and save raster images (like PNGs or JPEGs) that have been embedded inside an Inkscape SVG file. Whether you need to recover an original photo or export a graphic asset, you will learn the q",
+    false
+  ],
+  [
+    89,
+    "How to Crop a Raster Image in Inkscape?",
+    "Inkscape handles raster images (like PNGs or JPEGs) differently than dedicated photo editors, using a technique called clipping to crop visuals non-destructively. This quick guide covers how to import an image, use the rectangle tool to define your crop",
+    false
+  ],
+  [
+    88,
+    "How to Embed an Image in Inkscape?",
+    "When you import an image into Inkscape, the software defaults to linking the file to keep the document size small, which can cause the image to go missing if the original file is moved or deleted. To prevent broken links and ensure your project is comple",
+    false
+  ],
+  [
+    87,
+    "How to Import Images into Inkscape?",
+    "Importing raster images like PNG or JPG files into Inkscape is a straightforward process that allows you to incorporate external graphics into your vector designs. Whether you are looking to trace a sketch, use a photo as a background, or incorporate exi",
+    false
+  ],
+  [
+    86,
+    "How to Create a Transparency Fade in Inkscape",
+    "Applying a transparency fade to an object or image in Inkscape is a powerful way to blend elements smoothly into your canvas background or other graphics. This effect is achieved using a layer mask, where a grayscale gradient dictates the opacity of the",
+    false
+  ],
+  [
+    85,
+    "Difference Between Clipping and Masking in Inkscape?",
+    "Understanding the difference between clipping and masking in Inkscape is essential for creating complex vector artwork, managing transparency, and hiding unwanted parts of an object. While both techniques are used to confine the visibility of an object o",
+    false
+  ],
+  [
+    84,
+    "How to Release a Clip in Inkscape",
+    "This article provides a quick, step-by-step guide on how to undo or release a clipping path previously applied to an object or image in Inkscape. You will learn the standard menu commands, keyboard shortcuts, and how to manage the remaining vector paths",
+    false
+  ],
+  [
+    83,
+    "How to Clip an Image in Inkscape?",
+    "Clipping is a powerful, non-destructive technique in Inkscape used to hide unwanted parts of an image or vector object by placing a shape over it. The software only displays the portion of the image that falls inside the boundaries of that shape, effecti",
+    false
+  ],
+  [
+    82,
+    "Single Scan vs Multiple Scan Tracing in Inkscape?",
+    "When converting a raster image into a vector graphic in Inkscape using the Trace Bitmap tool, the primary decision you must make is choosing between Single Scan and Multiple Scan modes. Single scan tracing generates a single, unified vector path that cap",
+    false
+  ],
+  [
+    81,
+    "How to Vectorize Images with Inkscape Trace Bitmap?",
+    "Converting a raster image—like a PNG or JPEG—into a scalable vector graphic (SVG) is a fundamental skill for digital designers, and Inkscape makes this process incredibly efficient with its built-in Trace Bitmap tool. This article provides a step-by-",
+    false
+  ],
+  [
+    80,
+    "How to Align to Last Selected in Inkscape",
+    "This article provides a quick, step-by-step guide on how to align multiple objects relative to the last selected item in Inkscape. You will learn how to locate the Align and Distribute menu, configure the \"Relative to\" setting, and execute the alignment.",
+    false
+  ],
+  [
+    79,
+    "How to Create and Use Custom Guidelines in Inkscape?",
+    "Custom guidelines are essential tools in Inkscape that allow you to align objects, maintain consistent spacing, and structure your vector artwork with precision. This article provides a straightforward guide on how to create guidelines from rulers, gener",
+    false
+  ],
+  [
+    78,
+    "How to Set Up a Snapping Grid in Inkscape?",
+    "Setting up a grid for objects to snap to in Inkscape is a fundamental technique for ensuring geometric precision, consistent alignment, and clean layouts in your vector designs. This article provides a straightforward, step-by-step guide on how to enable",
+    false
+  ],
+  [
+    77,
+    "How to Configure Snapping in Inkscape?",
+    "Snapping is a fundamental feature in Inkscape that allows you to align nodes, paths, and shapes precisely with other objects, grids, or guides. By understanding how to toggle the snapping system on and off, use the Snapping Popover menu, and customize ad",
+    false
+  ],
+  [
+    76,
+    "How to Snap Objects to Page Borders in Inkscape?",
+    "Snapping objects to the page border in Inkscape is a fundamental technique for ensuring precise alignments and professional layouts. This guide provides a straightforward walkthrough on how to enable the snapping system, configure the specific settings r",
+    false
+  ],
+  [
+    75,
+    "How to Toggle Global Snapping in Inkscape",
+    "This article provides a quick overview and step-by-step guide on how to enable or disable global snapping in Inkscape. Snapping is a crucial feature that allows objects, paths, and nodes to align precisely with grids, guides, and each other. Depending on",
+    false
+  ],
+  [
+    74,
+    "What Does Inkscape's 'Relative to' Menu Do?",
+    "The 'Relative to' drop-down menu in Inkscape's Align and Distribute dialogue dictates the anchor point or reference object used to reposition your selected elements. Instead of just aligning items to an arbitrary point, this setting allows you to choose",
+    false
+  ],
+  [
+    73,
+    "How to Equal Spacing Objects in Inkscape?",
+    "Distributing multiple objects so they have equal spacing in Inkscape is a straightforward process managed through the Align and Distribute panel. By selecting your objects and choosing the appropriate horizontal or vertical distribution options, you can",
+    false
+  ],
+  [
+    72,
+    "Aligning Multiple Objects to Horizontal Centers in Inkscape",
+    "This article provides a quick, step-by-step guide on how to precisely align multiple objects to their horizontal centers in Inkscape. You will learn how to locate the Align and Distribute panel, select the correct reference point for your alignment, and",
+    false
+  ],
+  [
+    71,
+    "How to Open Align and Distribute in Inkscape?",
+    "This article provides a quick overview and step-by-step instructions on how to locate and open the Align and Distribute dialogue in Inkscape. Whether you prefer using top menu navigation, quick keyboard shortcuts, or command palettes, this guide covers e",
+    false
+  ],
+  [
+    70,
+    "Difference Between Layers and Groups in Inkscape?",
+    "When working in Inkscape, organizing your vector artwork efficiently relies on understanding the distinct roles of layers and groups. While both features allow you to bundle multiple objects together, they serve entirely different purposes in your workfl",
+    false
+  ],
+  [
+    69,
+    "How to Bring Objects Forward in Inkscape",
+    "Changing the stacking order of objects in Inkscape allows you to control which elements appear on top of others, a crucial skill for managing complex vector designs. This article provides a quick overview of the z-order controls in Inkscape, explaining h",
+    false
+  ],
+  [
+    68,
+    "How to Send an Object to the Back in Inkscape?",
+    "Changing the stacking order of objects is a fundamental skill in Inkscape that allows you to control which elements appear on top of or behind others. This article provides a quick, step-by-step guide on how to send an object completely to the back of yo",
+    false
+  ],
+  [
+    67,
+    "How to Edit Objects Inside Inkscape Groups",
+    "When working on complex vector designs in Inkscape, elements are frequently grouped together to keep the canvas organized. However, needing to alter a single piece of a group can become tedious if you constantly have to ungroup and regroup your layers. T",
+    false
+  ],
+  [
+    66,
+    "How to Ungroup Objects in Inkscape",
+    "This article provides a quick overview and step-by-step guide on how to separate previously grouped objects in Inkscape. Whether you are working with a complex vector illustration or a simple layout, learning how to ungroup elements allows you to modify,",
+    false
+  ],
+  [
+    65,
+    "How to Group Objects in Inkscape?",
+    "Grouping multiple objects in Inkscape is a fundamental skill that allows you to combine separate shapes, paths, or text into a single unit, making it easier to move, scale, and edit them simultaneously without losing their relative positioning. This quic",
+    false
+  ],
+  [
+    64,
+    "How to Move an Object to Another Layer in Inkscape?",
+    "Managing layers effectively is crucial for organizing complex vector designs in Inkscape. This guide provides a straightforward, step-by-step walkthrough on how to move an object from one layer to another using both keyboard shortcuts and the Layers menu",
+    false
+  ],
+  [
+    63,
+    "How to Hide a Layer Temporarily in Inkscape?",
+    "Hiding a layer temporarily in Inkscape is a quick and essential workflow technique that allows you to declutter your canvas, focus on specific design elements, and speed up software performance. By using the dedicated Layers and Objects dialog or the sta",
+    false
+  ],
+  [
+    62,
+    "How to Lock Layers in Inkscape?",
+    "Locking a layer in Inkscape is a fundamental skill for keeping your digital artwork organized and protecting completed elements from accidental modifications. This quick guide covers the most direct methods to lock and unlock layers using the Layers and",
+    false
+  ],
+  [
+    61,
+    "How Do You Create a New Layer in Inkscape?",
+    "Layers are essential for organizing complex vector artwork, allowing you to isolate, lock, and hide specific elements of your design. This guide provides a straightforward walkthrough on how to create, manage, and utilize new layers in Inkscape. You will",
+    false
+  ],
+  [
+    60,
+    "How to Remove Text from Path in Inkscape",
+    "When you attach text to a path in Inkscape, the text bends and flows along the shape of that line. If you later decide you want to separate them, Inkscape provides a built-in feature to instantly detach the text while preserving your original wording. Th",
+    false
+  ],
+  [
+    59,
+    "How to Spell Check in Inkscape?",
+    "This article provides a quick overview and step-by-step guide on how to use the built-in spell check feature in Inkscape. You will learn how to locate the spell check tool, configure its language settings, and efficiently review your vector graphics docu",
+    false
+  ],
+  [
+    58,
+    "How to Change Line Spacing in Inkscape?",
+    "Adjusting the vertical distance between lines of text—known as line spacing or leading—is a fundamental skill for creating clean layouts in Inkscape. This article provides a straightforward, step-by-step guide on how to modify line spacing for both r",
+    false
+  ],
+  [
+    57,
+    "How to Adjust Letter Kerning in Inkscape?",
+    "Adjusting the spacing between individual letters, known as kerning, is a fundamental skill for creating professional typography and custom logos in Inkscape. While the software automatically handles standard letter spacing, manual kerning allows you to f",
+    false
+  ],
+  [
+    56,
+    "Why Convert Text to Paths in Inkscape?",
+    "Converting text to paths before sharing an Inkscape file ensures that your typography looks exactly as intended on any device, regardless of whether the recipient has your specific fonts installed. When you leave text as an editable font object, Inkscape",
+    false
+  ],
+  [
+    55,
+    "How to Convert Text to Path in Inkscape?",
+    "Converting text into paths in Inkscape is a fundamental skill for graphic designers, allowing you to manipulate individual letter nodes, apply advanced vector effects, and ensure your typography displays correctly on any device without relying on install",
+    false
+  ],
+  [
+    54,
+    "How to Flow Text into a Shape in Inkscape",
+    "This article provides a quick overview and a step-by-step guide on how to flow regular text into custom shapes or frames using Inkscape. You will learn the exact tool commands, how to adjust the padding between the text and the shape's boundary, and how",
+    false
+  ],
+  [
+    53,
+    "How to curve text in Inkscape?",
+    "Putting text on a curved path in Inkscape is a straightforward process that allows you to create dynamic typography for logos, badges, and digital illustrations. By using the built-in \"Put on Path\" feature, you can bind any standard text string to a vect",
+    false
+  ],
+  [
+    52,
+    "How to Change Font Family in Inkscape?",
+    "Changing the font family of selected text in Inkscape is a straightforward process that can be accomplished using either the Text and Font sidebar or the Tool Control Bar. This guide provides a quick, step-by-step walkthrough for both methods, ensuring y",
+    false
+  ],
+  [
+    51,
+    "How to Create a Text Object in Inkscape?",
+    "This article provides a straightforward guide on how to create, edit, and manipulate text objects in Inkscape, a powerful open-source vector graphics editor. You will learn how to use the Text tool to generate both single-line regular text and multi-line",
+    false
+  ],
+  [
+    50,
+    "How to Change Opacity in Inkscape?",
+    "Changing the opacity or transparency of an object in Inkscape is a fundamental skill that allows you to create depth, shading, and complex visual effects in your vector designs. This article provides a quick, step-by-step guide on how to adjust global op",
+    false
+  ],
+  [
+    49,
+    "How to Use the Dropper Tool in Inkscape?",
+    "The Dropper tool in Inkscape allows users to quickly sample and apply colors from any object or image within their workspace. By selecting a target object, activating the Dropper tool, and clicking on the desired source color, you can instantly match hue",
+    false
+  ],
+  [
+    48,
+    "How to Add a Color Stop to an Inkscape Gradient?",
+    "Adding a new color stop to an existing gradient in Inkscape allows you to create more complex, multi-colored transitions in your vector artwork. This article provides a straightforward, step-by-step guide on how to inject new color nodes into both linear",
+    false
+  ],
+  [
+    47,
+    "How to Apply a Radial Gradient in Inkscape?",
+    "Applying a radial gradient to an object in Inkscape is a straightforward process that adds depth and realistic lighting to your vector designs. This article provides a step-by-step guide on how to create a shape, select the Gradient Tool, apply a circula",
+    false
+  ],
+  [
+    46,
+    "How to Apply a Linear Gradient in Inkscape?",
+    "Applying a linear gradient in Inkscape allows you to create smooth transitions between two or more colors across an object, adding depth and dimension to your vector vector artwork. This guide provides a straightforward, step-by-step walkthrough on how t",
+    false
+  ],
+  [
+    45,
+    "How to Remove Stroke from Object in Inkscape?",
+    "Removing the stroke or outline from an object in Inkscape is a fundamental step when creating clean, borderless vector designs. Whether you are working with shapes, paths, or text converted to paths, completely stripping the stroke requires altering the",
+    false
+  ],
+  [
+    44,
+    "How to Remove Fill From an Object in Inkscape?",
+    "Removing the fill from an object in Inkscape is a fundamental skill that allows you to create transparent shapes, precise outlines, and complex vector designs. Whether you are dealing with a simple geometric shape or a complex path, Inkscape provides mul",
+    false
+  ],
+  [
+    43,
+    "How to Change Stroke Thickness in Inkscape",
+    "Adjusting the thickness, or width, of a stroke in Inkscape is a fundamental skill for creating clean vector graphics. This guide provides a quick, step-by-step walkthrough on how to locate and use the Fill and Stroke dialog, modify outline weights using",
+    false
+  ],
+  [
+    42,
+    "How to Change Stroke Color in Inkscape",
+    "Changing the stroke (outline) color of an object in Inkscape is a fundamental skill for vector designing, achievable through multiple quick methods. This guide covers how to modify stroke colors using the bottom color palette, the dedicated Fill and Stro",
+    false
+  ],
+  [
+    41,
+    "How to Change Fill Color in Inkscape",
+    "Changing the fill color of an object in Inkscape is a fundamental skill for creating vector graphics. This guide provides a quick overview of the primary methods to modify an object's internal color, including using the Fill and Stroke dialog, the bottom",
+    false
+  ],
+  [
+    40,
+    "How to Outset or Expand a Path in Inkscape?",
+    "Expanding the outer boundaries of a vector object is a fundamental technique for creating offsets, thick borders, and stickers in vector design. In Inkscape, this process is known as Outsetting, which scales a path outward perpendicularly to its outline",
+    false
+  ],
+  [
+    39,
+    "How to Inset or Shrink a Path Globally in Inkscape?",
+    "This article provides a quick overview and step-by-step guide on how to uniformly inset or shrink paths across your entire vector artwork in Inkscape. Whether you are adjusting a single complex object or applying a global change across multiple paths sim",
+    false
+  ],
+  [
+    38,
+    "What Does Cut Path Do in Inkscape?",
+    "The Cut Path operation in Inkscape is a powerful vector tool used to slice the stroke of a bottom path using the shape of a top path. Unlike other boolean operations that slice solid shapes, Cut Path specifically targets the outlines (strokes) of objects",
+    false
+  ],
+  [
+    37,
+    "How to Use Division in Inkscape to Slice Objects?",
+    "The Division path operation in Inkscape is a powerful vector tool used to slice, cut, or split a bottom object into separate pieces using the path of a top object. This article provides a step-by-step guide on how to prepare your shapes, apply the Divisi",
+    false
+  ],
+  [
+    36,
+    "How Does Inkscape Exclusion Path Operation Work?",
+    "The Exclusion path operation in Inkscape is a powerful vector boolean tool used to combine multiple shapes by modifying their overlapping areas. When you apply this command to two or more overlapping objects, Inkscape removes the regions where an even nu",
+    false
+  ],
+  [
+    35,
+    "What is the Inkscape Intersection Path Operation?",
+    "The Intersection path operation in Inkscape is a powerful vector editing tool used to retain only the overlapping regions of two or more selected paths. When you apply this command, Inkscape deletes all non-overlapping areas of the selected objects and m",
+    false
+  ],
+  [
+    34,
+    "How to Use Difference Path Operation in Inkscape?",
+    "The Difference path operation in Inkscape is a powerful vector tool used to cut one shape out of another, functioning much like a digital cookie cutter. This technique requires exactly two overlapping paths, where the topmost object carves its shape into",
+    false
+  ],
+  [
+    33,
+    "What Does the Union Path Operation Do in Inkscape?",
+    "The Union path operation in Inkscape is a powerful vector tool used to combine two or more overlapping shapes into a single, continuous path. This operation merges the selected objects by dissolving their intersecting boundaries and retaining only the ou",
+    false
+  ],
+  [
+    32,
+    "How to Break Apart a Path in Inkscape?",
+    "Breaking apart a combined path in Inkscape is a fundamental skill for vector designers, allowing you to separate a single compound object into its individual, independent shapes. This article provides a straightforward guide on how to use the \"Break Apar",
+    false
+  ],
+  [
+    31,
+    "How to Combine Paths in Inkscape?",
+    "Inkscape offers several ways to merge separate paths into a single object, depending on whether you want them to remain distinct sub-paths or blend into a unified shape. This article provides a quick, step-by-step guide on using the Combine command for o",
+    false
+  ],
+  [
+    30,
+    "How to Break a Path at a Node in Inkscape?",
+    "Breaking a path at a specific selected node in Inkscape allows you to split a single continuous line or shape into independent segments. This process involves using the Node Tool, selecting the target node, and applying the \"Break path at selected nodes\"",
+    false
+  ],
+  [
+    29,
+    "How to Draw Smooth Curves in Inkscape with the Pen Tool?",
+    "Mastering the Bézier pen tool in Inkscape is the key to creating clean, professional vector graphics. While it may feel unpredictable at first, drawing smooth curves is a straightforward process once you understand how anchor points and control handles",
+    false
+  ],
+  [
+    28,
+    "How to Draw Straight Lines with Inkscape Pen Tool?",
+    "This article provides a quick, step-by-step guide on how to use the Bézier pen tool in Inkscape to draw perfectly straight horizontal, vertical, or angled lines. You will learn the essential keyboard shortcuts and mouse clicks needed to control line pre",
+    false
+  ],
+  [
+    27,
+    "How to Curve a Line Segment in Inkscape?",
+    "Inkscape allows users to easily transform straight lines between nodes into smooth curves using the Node Tool. By switching to path-editing mode, you can either directly drag a segment to bend it or use the node manipulation handles for precise geometric",
+    false
+  ],
+  [
+    26,
+    "How to Make a Line Straight in Inkscape?",
+    "Inkscape is a powerful vector graphics editor, but standard drawing tools like the Bezier curves can sometimes leave path segments unintentionally curved. This article provides a quick, step-by-step guide on how to force a segment between two nodes to be",
+    false
+  ],
+  [
+    25,
+    "Cusp Node vs Smooth Node in Inkscape",
+    "This article provides a direct comparison between cusp nodes and smooth nodes in Inkscape, explaining how each impacts the behavior of paths and vector lines. By understanding the distinct roles of these two node types, graphic designers and digital arti",
+    false
+  ],
+  [
+    24,
+    "How to Delete a Node from a Path in Inkscape?",
+    "Deleting a node from a path in Inkscape is a fundamental skill for vector editing, allowing you to reshape objects, simplify complex paths, and clean up your digital artwork. This article provides a straightforward, step-by-step guide on how to remove in",
+    false
+  ],
+  [
+    23,
+    "How to Add a Node to a Path in Inkscape?",
+    "Adding a new node to an existing path in Inkscape allows you to create more complex shapes and precisely control your vector artwork. This process is essential for modifying lines, curves, and shapes after they have been drawn. By utilizing the Node Tool",
+    false
+  ],
+  [
+    22,
+    "What is the Node Tool used for in Inkscape?",
+    "The Node tool in Inkscape is a fundamental vector editing feature used to select, manipulate, and reshape the individual paths and anchor points that make up a digital drawing. While the Select tool allows you to move, scale, and rotate an entire object",
+    false
+  ],
+  [
+    21,
+    "How to Convert Shape to Path in Inkscape?",
+    "Converting a standard shape into a path in Inkscape is a fundamental step for advanced vector editing, allowing you to manipulate individual nodes and create custom geometry. This article provides a straightforward, step-by-step guide on how to transform",
+    false
+  ],
+  [
+    20,
+    "How to Skew an Object in Inkscape?",
+    "Skewing an object in Inkscape is a straightforward process that allows you to tilt or shear a shape along its horizontal or vertical axis. This article provides a quick, step-by-step guide on how to use the Select and Transform tool to skew any path, tex",
+    false
+  ],
+  [
+    19,
+    "How to Flip Shapes in Inkscape?",
+    "Flipping shapes horizontally or vertically in Inkscape is a fundamental skill that allows you to quickly mirror objects, create symmetrical designs, or change the direction of an element. This can be accomplished instantly using dedicated keyboard shortc",
+    false
+  ],
+  [
+    18,
+    "How to Rotate a Shape in Inkscape?",
+    "Rotating shapes by precise angles is a fundamental skill in Inkscape, essential for creating accurate vector graphics, logos, and technical illustrations. While freehand rotation is useful for quick adjustments, Inkscape provides robust tools for inputti",
+    false
+  ],
+  [
+    17,
+    "How to Resize a Shape Proportionally in Inkscape?",
+    "Resizing shapes proportionally in Inkscape is a fundamental skill that ensures your graphics maintain their original aspect ratio without stretching or distorting. Whether you prefer using a quick keyboard shortcut, modifying settings in the tool control",
+    false
+  ],
+  [
+    16,
+    "How to Use the 3D Box Tool in Inkscape",
+    "The 3D Box tool in Inkscape is a powerful feature that allows designers to create three-dimensional boxes with accurate perspective drawing. This article provides a comprehensive guide on how to locate the tool, draw a basic 3D box, and manipulate its va",
+    false
+  ],
+  [
+    15,
+    "How to Draw a Spiral in Inkscape?",
+    "Inkscape’s built-in Spiral tool allows users to create precise geometric spirals with just a few clicks. This article provides a straightforward guide on how to locate the tool, draw a spiral on your canvas, and adjust its properties—such as the numb",
+    false
+  ],
+  [
+    14,
+    "How to Change Star Points in Inkscape",
+    "Changing the number of points on a star in Inkscape is a quick and straightforward process that can be done both during creation and after the shape has already been drawn. By utilizing the Stars and Polygons tool along with its dedicated tool control ba",
+    false
+  ],
+  [
+    13,
+    "What is the Inkscape Star and Polygon Tool?",
+    "The Star and Polygon tool in Inkscape is a powerful vector creation feature used to generate precise geometric shapes, ranging from simple triangles and hexagons to complex stars and spirograph-like designs. By adjusting specific parameters such as corne",
+    false
+  ],
+  [
+    12,
+    "How to Create Rounded Corners in Inkscape?",
+    "Creating rectangles with rounded corners in Inkscape is a fundamental skill that helps you build modern, sleek vector designs. This article provides a quick overview of the two primary methods to achieve this effect: using the Rectangle Tool’s built-in",
+    false
+  ],
+  [
+    11,
+    "How do you draw a perfect circle in Inkscape?",
+    "This article provides a straightforward, step-by-step guide on how to draw a perfectly round circle using the Ellipse tool in Inkscape. Whether you are a beginner learning the interface or a designer looking for a quick workflow refresher, you will learn",
+    false
+  ],
+  [
+    10,
+    "How Do I Change Page Size in Inkscape?",
+    "This article provides a quick and straightforward guide on how to modify document properties in Inkscape, focusing specifically on adjusting your page size. Whether you need to switch to a standard print format or set up a custom canvas for a unique digi",
+    false
+  ],
+  [
+    9,
+    "Difference between Save and Save As in Inkscape?",
+    "This article provides a clear overview of the fundamental differences between the \"Save\" and \"Save As\" commands in Inkscape. We will explore how the \"Save\" function updates your current working document, while the \"Save As\" function allows you to create",
+    false
+  ],
+  [
+    8,
+    "How Do I Save a Document in Inkscape?",
+    "This article provides a straightforward guide on saving your artwork and projects in Inkscape. We will cover the standard saving process, how to use the 'Save As' feature for different file formats, and the steps for saving a copy to protect your origina",
+    false
+  ],
+  [
+    7,
+    "How Do You Open a New Document in Inkscape?",
+    "This article provides a straightforward guide on how to open a new document in Inkscape. Whether you are starting a fresh vector graphics project from scratch or need to open a template with specific dimensions, we will cover the quick keyboard shortcuts",
+    false
+  ],
+  [
+    6,
+    "What does the Inkscape Tool Controls bar do?",
+    "This article provides a brief overview of the Tool Controls bar in Inkscape, explaining its dynamic nature and its vital role in modifying tool settings. You will learn how this interface element adapts to your current workflow, offering quick access to",
+    false
+  ],
+  [
+    5,
+    "How Do You Zoom in and Out in Inkscape?",
+    "Navigating your canvas efficiently is a fundamental skill when working with vector graphics. This article provides a quick and comprehensive guide on the various methods you can use to zoom in and out of your document in Inkscape. We will cover everythin",
+    false
+  ],
+  [
+    4,
+    "How Do You Pan Around the Canvas in Inkscape?",
+    "This article provides a comprehensive guide on how to efficiently navigate your workspace in Inkscape by panning across the canvas. We will explore various methods to move your view, including using the middle mouse button, the spacebar, scroll wheel com",
+    false
+  ],
+  [
+    3,
+    "Inkscape vs Illustrator: What Are the Main Differences?",
+    "Choosing the right vector graphics software depends heavily on your budget, operating system, and professional requirements. This article provides a direct comparison between Inkscape, a powerful open-source program, and Adobe Illustrator, the long-stand",
+    false
+  ],
+  [
+    2,
+    "How do I install Inkscape on Windows?",
+    "This article provides a straightforward, step-by-step guide on how to download and install Inkscape on a Windows computer. We will cover navigating to the official website, selecting the correct installer for your system, running the setup wizard, and su",
+    false
+  ],
+  [
+    1,
+    "What is the Primary File Format Used by Inkscape?",
+    "This article provides a quick overview of the default file format utilized by Inkscape, the free and open-source vector graphics editor. We will explore the Scalable Vector Graphics (SVG) standard, explain why it serves as the foundation for Inkscape's d",
+    false
+  ]
+]

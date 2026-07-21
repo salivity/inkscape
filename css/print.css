@@ -1,0 +1,30 @@
+/**
+ * Optimize the layout when printing article from the website
+ */
+@page {
+    margin: 2cm;
+}
+
+main{
+    color: #000 !important;
+    background-color: #FFF !important;
+    print-color-adjust: exact;
+}
+
+header{
+    justify-content: center !important;
+    border-bottom: none !important;
+}
+
+footer{
+    border-top: none !important;
+}
+
+#comments-container{
+    display: none !important;
+}
+
+/* Hide the navigational items for print */
+nav{
+    display: none !important;
+}
