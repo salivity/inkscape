@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Inkscape Calculates Convex Hulls - inkscape</title>
+    <meta name="description" content="This article explains how Inkscape determines the convex hull for a collection of vector objects, detailing the process of transforming arbitrary vector paths into discrete geometric points, applying coordinate transformations, and executing 2D convex hu">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-inkscape-calculates-convex-hulls">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Inkscape Calculates Convex Hulls - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-inkscape-calculates-convex-hulls" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how Inkscape determines the convex hull for a collection of vector objects, detailing the process of transforming arbitrary vector paths into discrete geometric points, applying coordinate transformations, and executing 2D convex hu" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-inkscape-calculates-convex-hulls">How Inkscape Calculates
+Convex Hulls</h1>
+<p>This article explains how Inkscape determines the convex hull for a
+collection of vector objects, detailing the process of transforming
+arbitrary vector paths into discrete geometric points, applying
+coordinate transformations, and executing 2D convex hull algorithms
+using its underlying geometric engine, <code>lib2geom</code>.</p>
+<h3 id="point-extraction-from-vector-objects">Point Extraction from
+Vector Objects</h3>
+<p>Vector objects in Inkscape are primarily composed of cubic and
+quadratic Bézier curves, straight line segments, and basic geometric
+primitives (rectangles, circles, stars). Because a convex hull algorithm
+requires discrete coordinates rather than continuous mathematical
+equations, Inkscape first extracts representative boundary points from
+each object.</p>
+<p>Due to the convex hull property of Bézier curves, any curve segment
+is strictly contained within the convex hull of its control points.
+Inkscape leverages this by gathering:</p>
+<ul>
+<li>The endpoints (nodes) of all subpaths.</li>
+<li>The off-curve control points (handles) of Bézier curves.</li>
+<li>For tighter approximations where control cages would overestimate
+the boundary, points sampled at curve extrema (points of zero derivative
+along the X and Y axes) or points derived from adaptive path
+flattening.</li>
+</ul>
+<h3 id="coordinate-space-normalization">Coordinate Space
+Normalization</h3>
+<p>When multiple vector objects or groups are selected, they often have
+independent transformation matrices (translations, rotations, shears,
+and scales). Before computing a unified boundary, Inkscape applies each
+object's accumulated transform matrix to its extracted points. This
+projects every coordinate into a common, global document coordinate
+space.</p>
+<h3 id="algorithmic-computation-via-lib2geom">Algorithmic Computation
+via lib2geom</h3>
+<p>Inkscape delegates low-level geometric calculations to
+<code>lib2geom</code>, its dedicated computational geometry library. To
+compute the 2D convex hull of the aggregated point set, the library
+typically implements Andrew’s Monotone Chain algorithm (a variant of the
+Graham Scan):</p>
+<ol type="1">
+<li><strong>Sorting:</strong> The complete set of candidate points is
+sorted lexicographically, primarily by their X-coordinates and
+secondarily by their Y-coordinates.</li>
+<li><strong>Hull Construction:</strong> The algorithm iterates through
+the sorted points to build two separate polygonal chains:
+<ul>
+<li><strong>Lower Hull:</strong> Points are evaluated sequentially. If
+adding a new point causes a clockwise turn (determined using the sign of
+the 2D cross product of vectors between consecutive points), the
+preceding point is popped until a counterclockwise turn is
+restored.</li>
+<li><strong>Upper Hull:</strong> The process repeats in reverse order
+across the sorted list to build the upper boundary.</li>
+</ul></li>
+<li><strong>Merging:</strong> The lower and upper chains are combined,
+omitting redundant endpoints, yielding an ordered polygon of vertices in
+<span class="math inline">\(O(N \log N)\)</span> time complexity, where
+<span class="math inline">\(N\)</span> is the total number of candidate
+points.</li>
+</ol>
+<h3 id="generating-the-resulting-path">Generating the Resulting
+Path</h3>
+<p>Once the minimal bounding set of vertices is determined, Inkscape
+constructs a new closed SVG <code>&lt;path&gt;</code> element. The
+ordered vertices are joined with linear segments (<code>L</code>
+commands in SVG syntax), placed onto the active layer, and styled
+according to the active tool settings or default path parameters.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomize Objects in Inkscape Using Transform - inkscape</title>
+    <meta name="description" content="Creating organic layouts, dynamic textures, and scattered patterns in Inkscape often requires introducing variance into repetitive vectors. This guide demonstrates how to adjust and randomize object positions, sizes, and rotations using Inkscape's Transf">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/randomize-objects-in-inkscape-using-transform">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Randomize Objects in Inkscape Using Transform - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/randomize-objects-in-inkscape-using-transform" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating organic layouts, dynamic textures, and scattered patterns in Inkscape often requires introducing variance into repetitive vectors. This guide demonstrates how to adjust and randomize object positions, sizes, and rotations using Inkscape's Transf" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="randomize-objects-in-inkscape-using-transform">Randomize Objects
+in Inkscape Using Transform</h1>
+<p>Creating organic layouts, dynamic textures, and scattered patterns in
+Inkscape often requires introducing variance into repetitive vectors.
+This guide demonstrates how to adjust and randomize object positions,
+sizes, and rotations using Inkscape's Transform dialog along with
+built-in arrangement features to achieve a natural, non-uniform
+distribution across your canvas.</p>
+<h3 id="accessing-the-transform-dialog">Accessing the Transform
+Dialog</h3>
+<ol type="1">
+<li>Select all the objects on your canvas that you want to modify.</li>
+<li>Open the Transform dialog by navigating to <strong>Object &gt;
+Transform</strong> in the top menu or by pressing <strong>Shift + Ctrl +
+M</strong>.</li>
+<li>The panel displays five tabs: <strong>Move</strong>,
+<strong>Scale</strong>, <strong>Rotate</strong>, <strong>Skew</strong>,
+and <strong>Matrix</strong>.</li>
+</ol>
+<h3 id="randomizing-object-sizes-scale">Randomizing Object Sizes
+(Scale)</h3>
+<p>To scale multiple items individually rather than resizing the entire
+selection as a single bounding box:</p>
+<ol type="1">
+<li>Click on the <strong>Scale</strong> tab in the Transform
+dialog.</li>
+<li>Choose your preferred units (such as <code>%</code> or
+<code>px</code>).</li>
+<li>Enter your scaling values for Width (<strong>W</strong>) and Height
+(<strong>H</strong>).</li>
+<li>Check the box labeled <strong>Apply to each object
+separately</strong>.</li>
+<li>Check <strong>Scale proportionally</strong> to prevent distortion,
+if desired.</li>
+<li>Click <strong>Apply</strong>. Repeat the process with different
+values or selections to introduce variation across your elements.</li>
+</ol>
+<h3 id="randomizing-object-rotations-rotate">Randomizing Object
+Rotations (Rotate)</h3>
+<ol type="1">
+<li>Navigate to the <strong>Rotate</strong> tab.</li>
+<li>Enter a rotation value in degrees (e.g., <code>15°</code> or
+<code>45°</code>).</li>
+<li>Enable the <strong>Apply to each object separately</strong> option
+to ensure each object spins around its own center point instead of the
+shared selection center.</li>
+<li>Click <strong>Apply</strong>. You can alternate between clockwise
+and counter-clockwise buttons, applying the transform in increments to
+vary orientation across distinct subsets of objects.</li>
+</ol>
+<h3 id="randomizing-positions-move">Randomizing Positions (Move)</h3>
+<p>While the <strong>Move</strong> tab allows relative positional shifts
+with <strong>Apply to each object separately</strong> checked, true
+pseudo-random dispersion is best achieved using the complementary
+<strong>Align and Distribute</strong> tool:</p>
+<ol type="1">
+<li>Keep your objects selected and open the panel via <strong>Object
+&gt; Align and Distribute</strong> (<strong>Shift + Ctrl +
+A</strong>).</li>
+<li>Scroll to the <strong>Rearrange</strong> section at the bottom.</li>
+<li>Click the <strong>Randomize centers in both dimensions</strong>
+button repeatedly until the objects are scattered to your liking.</li>
+<li>Return to the <strong>Transform</strong> dialog's
+<strong>Move</strong> tab to apply directional shifts in specific
+increments if needed.</li>
+</ol>
+<h3 id="using-the-dedicated-randomizer-extension">Using the Dedicated
+Randomizer Extension</h3>
+<p>For instant, one-click randomization of position, size, and rotation
+simultaneously:</p>
+<ol type="1">
+<li>Select your target objects.</li>
+<li>Go to <strong>Extensions &gt; Modify Path &gt; Jitter Nodes</strong>
+or <strong>Extensions &gt; Arrange &gt; Restack</strong>.</li>
+<li>Alternatively, navigate to <strong>Object &gt; Transform</strong>
+after running the <strong>Extensions &gt; Arrange</strong> tools to
+fine-tune individual transforms across the randomized group.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

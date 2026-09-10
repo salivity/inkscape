@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Sprite Sheets with Distinct ViewBoxes in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to generate inline SVG sprite sheets in Inkscape using <symbol> definitions with independent viewBox attributes. You will learn how to design your icons, convert them into reusable symbols within the editor, verify their individua">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/svg-sprite-sheets-with-distinct-viewboxes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SVG Sprite Sheets with Distinct ViewBoxes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/svg-sprite-sheets-with-distinct-viewboxes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate inline SVG sprite sheets in Inkscape using <symbol> definitions with independent viewBox attributes. You will learn how to design your icons, convert them into reusable symbols within the editor, verify their individua" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="svg-sprite-sheets-with-distinct-viewboxes-in-inkscape">SVG
+Sprite Sheets with Distinct ViewBoxes in Inkscape</h1>
+<p>This guide explains how to generate inline SVG sprite sheets in
+Inkscape using <code>&lt;symbol&gt;</code> definitions with independent
+<code>viewBox</code> attributes. You will learn how to design your
+icons, convert them into reusable symbols within the editor, verify
+their individual coordinate boundaries, and export clean,
+production-ready SVG code for modern web development.</p>
+<h3 id="1-design-and-group-your-artwork">1. Design and Group Your
+Artwork</h3>
+<ol type="1">
+<li>Open Inkscape and create or import the vector icons you want to
+include in your sprite sheet.</li>
+<li>Ensure each distinct graphic is self-contained. Select all paths
+comprising an individual icon and press <code>Ctrl + G</code> (or
+<code>Cmd + G</code> on macOS) to group them.</li>
+<li>Open the <strong>Align and Distribute</strong> panel
+(<code>Shift + Ctrl + A</code>) and normalize your icon positions or
+dimensions if needed (for example, standardizing them inside 24x24 or
+32x32 pixel squares), though distinct shapes and aspect ratios are fully
+supported.</li>
+</ol>
+<h3 id="2-convert-groups-into-symbols">2. Convert Groups into
+Symbols</h3>
+<ol type="1">
+<li>Open the <strong>Symbols</strong> dialog by navigating to
+<strong>Object &gt; Symbols</strong> (or press
+<code>Shift + Ctrl + Y</code>).</li>
+<li>Select your grouped graphic on the canvas.</li>
+<li>In the Symbols panel, click the <strong>Add Symbol from current
+document</strong> icon (the plus sign at the bottom).</li>
+<li>Repeat this process for every icon you wish to include in the sprite
+sheet.</li>
+</ol>
+<p>When Inkscape creates a symbol, it moves the vector content into a
+<code>&lt;symbol&gt;</code> element inside the <code>&lt;defs&gt;</code>
+section of the SVG file.</p>
+<h3 id="3-configure-unique-ids-and-viewboxes-in-the-xml-editor">3.
+Configure Unique IDs and ViewBoxes in the XML Editor</h3>
+<p>Inkscape allows deep inspection and manual attribute configuration
+via its built-in XML Editor.</p>
+<ol type="1">
+<li>Open the <strong>XML Editor</strong> via <strong>Edit &gt; XML
+Editor</strong> (or press <code>Shift + Ctrl + X</code>).</li>
+<li>Expand the root <code>&lt;svg:svg&gt;</code> element, then locate
+and expand the <code>&lt;svg:defs&gt;</code> element.</li>
+<li>Select each <code>&lt;svg:symbol&gt;</code> element to review its
+attributes in the right-hand pane:
+<ul>
+<li><strong>Set the <code>id</code> Attribute:</strong> Click the
+<code>id</code> field and rename it to a semantic label (e.g.,
+<code>id="icon-arrow"</code>, <code>id="icon-check"</code>). This
+identifier is what web browsers will reference via
+<code>&lt;use href="#id"&gt;</code>.</li>
+<li><strong>Verify the <code>viewBox</code> Attribute:</strong> Inkscape
+automatically generates a <code>viewBox</code> attribute for symbols
+derived from objects. Confirm that the <code>viewBox</code> reflects the
+local dimensions of that specific artwork (e.g.,
+<code>viewBox="0 0 24 24"</code> or
+<code>viewBox="0 0 48 32"</code>).</li>
+<li><strong>Normalize Offsets:</strong> If your icon has unexpected
+offsets, ensure any wrapping <code>&lt;g&gt;</code> tags inside the
+<code>&lt;symbol&gt;</code> do not have unwanted
+<code>transform="matrix(...)"</code> or
+<code>transform="translate(...)"</code> properties throwing off your
+coordinate zero-point. If needed, manually adjust the
+<code>viewBox</code> min-x, min-y, width, and height values directly in
+this panel.</li>
+</ul></li>
+</ol>
+<h3 id="4-export-the-sprite-sheet">4. Export the Sprite Sheet</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>Choose <strong>Optimized SVG (*.svg)</strong> from the file format
+dropdown.</li>
+<li>In the export settings dialog:
+<ul>
+<li>Enable <strong>Remove unused defs</strong> (ensure your symbols
+remain referenced or uncheck this if your symbols are not currently
+placed on the visible canvas).</li>
+<li>Enable <strong>Convert styles to XML attributes</strong> for easier
+CSS manipulation.</li>
+<li>Strip editor metadata to keep the file size minimal.</li>
+</ul></li>
+<li>Save the file.</li>
+</ol>
+<h3 id="5-using-the-sprite-sheet-inline-in-html">5. Using the Sprite
+Sheet Inline in HTML</h3>
+<p>Open the saved SVG file in a code editor. You will see an SVG wrapper
+containing your defined symbols:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">svg</span><span class="ot"> xmlns</span><span class="op">=</span><span class="st">&quot;http://www.w3.org/2000/svg&quot;</span><span class="ot"> style</span><span class="op">=</span><span class="st">&quot;display: none;&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">symbol</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;icon-chevron&quot;</span><span class="ot"> viewBox</span><span class="op">=</span><span class="st">&quot;0 0 16 16&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">path</span><span class="ot"> d</span><span class="op">=</span><span class="st">&quot;M4 6l4 4 4-4&quot;</span><span class="ot"> fill</span><span class="op">=</span><span class="st">&quot;none&quot;</span><span class="ot"> stroke</span><span class="op">=</span><span class="st">&quot;currentColor&quot;</span><span class="ot"> stroke-width</span><span class="op">=</span><span class="st">&quot;2&quot;</span><span class="dt">/&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">symbol</span><span class="dt">&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">symbol</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;icon-badge&quot;</span><span class="ot"> viewBox</span><span class="op">=</span><span class="st">&quot;0 0 32 20&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">rect</span><span class="ot"> width</span><span class="op">=</span><span class="st">&quot;32&quot;</span><span class="ot"> height</span><span class="op">=</span><span class="st">&quot;20&quot;</span><span class="ot"> rx</span><span class="op">=</span><span class="st">&quot;4&quot;</span><span class="ot"> fill</span><span class="op">=</span><span class="st">&quot;currentColor&quot;</span><span class="dt">/&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">symbol</span><span class="dt">&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">svg</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>Paste this block directly after the opening <code>&lt;body&gt;</code>
+tag of your HTML document. You can now instantiate any symbol anywhere
+on the page with automatic scaling according to its distinct
+<code>viewBox</code>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">svg</span><span class="ot"> width</span><span class="op">=</span><span class="st">&quot;16&quot;</span><span class="ot"> height</span><span class="op">=</span><span class="st">&quot;16&quot;</span><span class="ot"> aria-hidden</span><span class="op">=</span><span class="st">&quot;true&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">use</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;#icon-chevron&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">use</span><span class="dt">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">svg</span><span class="dt">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">svg</span><span class="ot"> width</span><span class="op">=</span><span class="st">&quot;32&quot;</span><span class="ot"> height</span><span class="op">=</span><span class="st">&quot;20&quot;</span><span class="ot"> aria-hidden</span><span class="op">=</span><span class="st">&quot;true&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">use</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;#icon-badge&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">use</span><span class="dt">&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">svg</span><span class="dt">&gt;</span></span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

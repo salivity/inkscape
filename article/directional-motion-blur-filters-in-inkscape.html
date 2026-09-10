@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directional Motion Blur Filters in Inkscape - inkscape</title>
+    <meta name="description" content="This article explains how directional motion blur is created in Inkscape, identifying the SVG filter primitives responsible for the effect and demonstrating how they control blur along specific vector angles. You will learn the specific roles of the <feC">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/directional-motion-blur-filters-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Directional Motion Blur Filters in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/directional-motion-blur-filters-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how directional motion blur is created in Inkscape, identifying the SVG filter primitives responsible for the effect and demonstrating how they control blur along specific vector angles. You will learn the specific roles of the <feC" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="directional-motion-blur-filters-in-inkscape">Directional Motion
+Blur Filters in Inkscape</h1>
+<p>This article explains how directional motion blur is created in
+Inkscape, identifying the SVG filter primitives responsible for the
+effect and demonstrating how they control blur along specific vector
+angles. You will learn the specific roles of the
+<code>&lt;feConvolveMatrix&gt;</code> and
+<code>&lt;feGaussianBlur&gt;</code> primitives, how Inkscape handles
+directional blur calculations, and how to apply these effects directly
+using Inkscape's built-in Filter Editor.</p>
+<h2 id="the-filter-primitives-for-directional-blur">The Filter
+Primitives for Directional Blur</h2>
+<p>In Inkscape and the SVG specification, directional motion blur along
+an arbitrary vector angle is primarily achieved using
+<strong><code>&lt;feConvolveMatrix&gt;</code></strong>, or alternatively
+via <strong><code>&lt;feGaussianBlur&gt;</code></strong> with
+axis-aligned vector parameters combined with object transformation.</p>
+<h3 id="1-feconvolvematrix-arbitrary-vector-angles">1.
+<code>feConvolveMatrix</code> (Arbitrary Vector Angles)</h3>
+<p>The <code>&lt;feConvolveMatrix&gt;</code> primitive enables true
+directional motion blur along custom vector angles directly within the
+filter definition. It works by applying a convolution matrix kernel to
+the input image.</p>
+<p>To create a directional motion blur:</p>
+<ul>
+<li>A square matrix (such as <span
+class="math inline">\(3\times3\)</span>, <span
+class="math inline">\(5\times5\)</span>, or <span
+class="math inline">\(7\times7\)</span>) is defined using the
+<code>order</code> attribute.</li>
+<li>The <code>kernelMatrix</code> attribute receives a sequence of
+values where non-zero weights are arranged in a straight line along the
+target angle vector (for example, diagonally across the matrix).</li>
+<li>When rendered, pixels are sampled and averaged only along that
+linear path, producing a streak or directional blur effect oriented
+precisely along that vector without needing to rotate the underlying
+object.</li>
+</ul>
+<h3 id="2-fegaussianblur-axis-aligned-vectors">2.
+<code>feGaussianBlur</code> (Axis-Aligned Vectors)</h3>
+<p>The standard <code>&lt;feGaussianBlur&gt;</code> primitive provides
+directional blur strictly along orthogonal axes (horizontal and
+vertical). It uses the <code>stdDeviation</code> attribute, which
+accepts one or two numbers:</p>
+<ul>
+<li>Setting <code>stdDeviation="X 0"</code> creates a purely horizontal
+motion blur (0° or 180°).</li>
+<li>Setting <code>stdDeviation="0 Y"</code> creates a purely vertical
+motion blur (90° or 270°).</li>
+</ul>
+<p>To achieve arbitrary vector angles using
+<code>&lt;feGaussianBlur&gt;</code>, Inkscape requires a geometric
+rotation of the source object or group, applying the single-axis
+Gaussian blur, and then counter-rotating the result, or utilizing
+pre-configured motion blur presets from the <strong>Filters &gt; Blurs
+&gt; Motion Blur</strong> menu.</p>
+<h2
+id="applying-directional-motion-blur-via-inkscapes-filter-editor">Applying
+Directional Motion Blur via Inkscape’s Filter Editor</h2>
+<ol type="1">
+<li>Open the <strong>Filter Editor</strong> panel under <strong>Filters
+&gt; Filter Editor</strong>.</li>
+<li>Create a new filter by clicking <strong>New</strong>.</li>
+<li>In the effect primitive dropdown, select <strong>Convolve
+Matrix</strong> (or <strong>Gaussian Blur</strong> for 1D axis streaks)
+and click <strong>Add Primitive</strong>.</li>
+<li>With <strong>Convolve Matrix</strong> selected:
+<ul>
+<li>Set the matrix size (e.g., <code>Order: 5 5</code>).</li>
+<li>In the <code>Kernel</code> field, enter coefficients arranged along
+the desired vector line (e.g.,
+<code>1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0  0 0 0 0 1</code> for a
+45-degree diagonal blur).</li>
+<li>Set the divisor equal to the sum of your kernel values to preserve
+overall brightness.</li>
+</ul></li>
+<li>Check the box next to your filter while your target vector or raster
+object is selected on the canvas to apply the directional blur.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

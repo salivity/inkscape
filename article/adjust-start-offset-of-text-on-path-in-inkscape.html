@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjust Start Offset of Text on Path in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to precisely position text along a curve in Inkscape by editing the startOffset attribute inside the XML Editor. While Inkscape allows you to move text using spaces or kerning tools, adjusting the XML attribute directly provides e">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/adjust-start-offset-of-text-on-path-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Adjust Start Offset of Text on Path in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/adjust-start-offset-of-text-on-path-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to precisely position text along a curve in Inkscape by editing the startOffset attribute inside the XML Editor. While Inkscape allows you to move text using spaces or kerning tools, adjusting the XML attribute directly provides e" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="adjust-start-offset-of-text-on-path-in-inkscape">Adjust Start
+Offset of Text on Path in Inkscape</h1>
+<p>This guide explains how to precisely position text along a curve in
+Inkscape by editing the <code>startOffset</code> attribute inside the
+XML Editor. While Inkscape allows you to move text using spaces or
+kerning tools, adjusting the XML attribute directly provides exact,
+non-destructive control over where your text begins along a path.</p>
+<h3 id="1-select-the-text-on-path">1. Select the Text on Path</h3>
+<p>Open your document and select the text that has already been linked
+to a path using the <strong>Text &gt; Put on Path</strong> command.</p>
+<h3 id="2-open-the-xml-editor">2. Open the XML Editor</h3>
+<p>Open the XML Editor using one of the following methods:</p>
+<ul>
+<li>Go to the top menu and select <strong>Edit &gt; XML
+Editor</strong>.</li>
+<li>Press the keyboard shortcut: <strong>Ctrl + Shift + X</strong>
+(Windows/Linux) or <strong>Cmd + Shift + X</strong> (macOS).</li>
+</ul>
+<h3 id="3-locate-the-textpath-element">3. Locate the
+<code>textPath</code> Element</h3>
+<ol type="1">
+<li>In the XML tree panel on the left side of the XML Editor, locate the
+currently selected <code>&lt;svg:text&gt;</code> element.</li>
+<li>Click the arrow or plus icon next to <code>&lt;svg:text&gt;</code>
+to expand its child nodes.</li>
+<li>Select the <code>&lt;svg:textPath&gt;</code> element beneath
+it.</li>
+</ol>
+<h3 id="4-adjust-or-add-the-startoffset-attribute">4. Adjust or Add the
+<code>startOffset</code> Attribute</h3>
+<p>Once <code>&lt;svg:textPath&gt;</code> is selected:</p>
+<ol type="1">
+<li>Check the attributes list in the right-hand panel of the XML Editor
+for an attribute named <strong>startOffset</strong>.</li>
+<li><strong>If it exists:</strong> Click on <code>startOffset</code>. In
+the lower-right text field, change its value.</li>
+<li><strong>If it does not exist:</strong> Click the empty input field
+above the attribute list, type <code>startOffset</code>, and enter your
+desired value in the larger box below it.</li>
+</ol>
+<h3 id="5-apply-the-value">5. Apply the Value</h3>
+<p>Click the <strong>Set</strong> button (or press <strong>Ctrl +
+Enter</strong>) to apply the change to the canvas.</p>
+<h3 id="supported-value-formats">Supported Value Formats</h3>
+<ul>
+<li><strong>Percentages:</strong> Using percentages is the easiest way
+to position text relative to the path's total length. For example,
+setting the value to <code>50%</code> places the start of the text
+exactly halfway along the path.</li>
+<li><strong>Absolute Measurements:</strong> You can enter explicit
+measurements such as <code>20px</code>, <code>10mm</code>, or
+<code>1in</code> to shift the text by a fixed distance from the starting
+node of the path.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape to GIMP XCF with Layers - inkscape</title>
+    <meta name="description" content="Exporting vector designs from Inkscape directly to GIMP's native XCF format while preserving your layer stack allows you to transition smoothly from vector illustration to raster editing. This guide covers how to organize your artwork, access Inkscape's">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-to-gimp-xcf-with-layers">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape to GIMP XCF with Layers - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-to-gimp-xcf-with-layers" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting vector designs from Inkscape directly to GIMP's native XCF format while preserving your layer stack allows you to transition smoothly from vector illustration to raster editing. This guide covers how to organize your artwork, access Inkscape's" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-to-gimp-xcf-with-layers">Export Inkscape to GIMP
+XCF with Layers</h1>
+<p>Exporting vector designs from Inkscape directly to GIMP's native XCF
+format while preserving your layer stack allows you to transition
+smoothly from vector illustration to raster editing. This guide covers
+how to organize your artwork, access Inkscape's built-in XCF export
+utility, and configure your export settings so that each vector layer is
+rasterized into an individual, editable layer inside GIMP.</p>
+<h3 id="step-1-organize-your-artwork-into-layers">Step 1: Organize Your
+Artwork into Layers</h3>
+<p>Inkscape only exports elements as separate GIMP layers if they are
+placed in distinct layers within Inkscape. Sub-groups or unassigned
+objects on a single layer will be flattened together during export.</p>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel by navigating to
+<strong>Layer &gt; Layers and Objects</strong> (or pressing
+<code>Ctrl + Shift + L</code>).</li>
+<li>Create dedicated layers for each component you want separated in
+GIMP (e.g., Background, Lineart, Shading).</li>
+<li>Move your vector paths, shapes, and groups into their respective
+layers.</li>
+<li>Rename each layer descriptively; these names will carry over
+directly into GIMP.</li>
+</ol>
+<h3 id="step-2-use-the-save-as-dialog">Step 2: Use the Save As
+Dialog</h3>
+<p>Inkscape includes an internal script capable of converting vector
+layers directly into a GIMP XCF file.</p>
+<ol type="1">
+<li>Click <strong>File</strong> in the top menu and choose <strong>Save
+As...</strong> or <strong>Save a Copy...</strong>
+(<code>Ctrl + Shift + S</code>).</li>
+<li>In the file browser, click the <strong>Save as type</strong>
+dropdown menu.</li>
+<li>Scroll through the list and select <strong>GIMP XCF 32-bit
+(*.xcf)</strong>.</li>
+<li>Choose your destination directory, enter your desired file name, and
+click <strong>Save</strong>.</li>
+</ol>
+<h3 id="step-3-configure-the-xcf-export-options">Step 3: Configure the
+XCF Export Options</h3>
+<p>Once you click save, an export dialog box will appear with specific
+settings for the conversion process:</p>
+<ul>
+<li><strong>Save hidden layers:</strong> Toggle this option depending on
+whether you want hidden Inkscape layers included in the final GIMP
+file.</li>
+<li><strong>Save background:</strong> Check this to preserve the
+background defined in your Document Properties. If you need a
+transparent canvas, leave this unchecked.</li>
+<li><strong>Resolution (DPI):</strong> Set the DPI for rasterization.
+Vector shapes must be converted to pixels when entering GIMP. A value of
+<strong>300 DPI</strong> is recommended for high-resolution print work,
+while <strong>96 DPI</strong> or <strong>72 DPI</strong> is standard for
+web and screen use.</li>
+</ul>
+<p>Click <strong>OK</strong> to process the export. Inkscape will
+generate the <code>.xcf</code> file.</p>
+<h3 id="step-4-open-and-verify-in-gimp">Step 4: Open and Verify in
+GIMP</h3>
+<ol type="1">
+<li>Launch GIMP and open the newly created <code>.xcf</code> file via
+<strong>File &gt; Open</strong>.</li>
+<li>Check the <strong>Layers</strong> panel
+(<code>Ctrl + L</code>).</li>
+<li>Each Inkscape layer should now appear as an individual raster layer
+maintaining its original name, position, transparency, and blend
+order.</li>
+</ol>
+<h3 id="alternative-method-layered-psd-export">Alternative Method:
+Layered PSD Export</h3>
+<p>If the direct XCF option is absent in your specific build of
+Inkscape:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Export...</strong> and set the format to
+<strong>Photoshop PSD (*.psd)</strong>.</li>
+<li>Ensure the export option is set to retain layers.</li>
+<li>Open the resulting <code>.psd</code> file in GIMP, then navigate to
+<strong>File &gt; Save As...</strong> to save it natively as a layered
+<code>.xcf</code>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

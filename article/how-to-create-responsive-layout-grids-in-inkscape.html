@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Responsive Layout Grids in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to design responsive layout grids for website design using Inkscape. You will learn how to configure document canvases for multiple device breakpoints, generate standard 12-column and modular grid systems using native tools, lever">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-responsive-layout-grids-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Responsive Layout Grids in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-responsive-layout-grids-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to design responsive layout grids for website design using Inkscape. You will learn how to configure document canvases for multiple device breakpoints, generate standard 12-column and modular grid systems using native tools, lever" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-responsive-layout-grids-in-inkscape">How to Create
+Responsive Layout Grids in Inkscape</h1>
+<p>This guide explains how to design responsive layout grids for website
+design using Inkscape. You will learn how to configure document canvases
+for multiple device breakpoints, generate standard 12-column and modular
+grid systems using native tools, leverage snapping for precision, and
+manage multi-screen responsive workflows effectively.</p>
+<h3 id="1-set-up-document-breakpoints-with-multi-page-support">1. Set Up
+Document Breakpoints with Multi-Page Support</h3>
+<p>Responsive web design requires testing layouts across different
+viewport widths. Inkscape's Page Tool allows you to create multiple
+viewports (artboards) side by side in a single file.</p>
+<ol type="1">
+<li>Open a new document in Inkscape.</li>
+<li>Select the <strong>Create and Edit Pages</strong> tool from the
+toolbar (or press <code>Shift + P</code>).</li>
+<li>Set your primary desktop artboard width and height (e.g.,
+<code>1440px</code> by <code>900px</code>).</li>
+<li>Click <strong>Create new page</strong> in the top tool control bar
+to add standard responsive breakpoints:
+<ul>
+<li><strong>Tablet:</strong> <code>768px</code> width</li>
+<li><strong>Mobile:</strong> <code>375px</code> width</li>
+</ul></li>
+<li>Arrange the pages horizontally to visualize the responsive
+progression of your layout.</li>
+</ol>
+<h3 id="2-generate-a-column-grid-using-guides">2. Generate a Column Grid
+Using Guides</h3>
+<p>A standard 12-column grid provides flexibility for aligning content
+across different screen sizes. You can create precise columns and
+gutters using the Guide Creator.</p>
+<ol type="1">
+<li>Go to <strong>Extensions &gt; Render &gt; Grids &gt; Guide
+Creator...</strong></li>
+<li>In the settings window:
+<ul>
+<li>Select the <strong>Columns</strong> tab.</li>
+<li>Set <strong>Number of columns</strong> to <code>12</code> (for
+desktop/tablet) or <code>4</code> (for mobile).</li>
+<li>Define your <strong>Gutter width</strong> (e.g., <code>24px</code>
+or <code>16px</code>).</li>
+<li>Set left and right <strong>Margins</strong> to center the grid
+within the viewport.</li>
+</ul></li>
+<li>Click <strong>Apply</strong> to generate aligned guide markers
+across your canvas.</li>
+</ol>
+<h3 id="3-create-a-visual-reusable-grid-overlay">3. Create a Visual
+Reusable Grid Overlay</h3>
+<p>To make the grid easier to toggle on and off, create a vector shape
+overlay on a dedicated layer.</p>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li>Create a new layer named <code>Grid - Desktop</code> and place it at
+the top of the stack.</li>
+<li>Using the <strong>Rectangle Tool</strong> (<code>R</code>), draw
+rectangles representing your column widths between the guide
+gutters.</li>
+<li>Set the fill color to a semi-transparent red or blue (e.g.,
+<code>rgba(255, 0, 0, 0.1)</code>) and remove strokes.</li>
+<li>Duplicate the rectangle across all 12 columns.</li>
+<li>Group the columns (<code>Ctrl + G</code>) and lock the layer to
+prevent accidental edits. Repeat this process for tablet and mobile
+layers.</li>
+</ol>
+<h3 id="4-enable-snapping-for-pixel-perfect-alignment">4. Enable
+Snapping for Pixel-Perfect Alignment</h3>
+<p>Proper snapping ensures your UI components automatically lock to the
+grid boundaries.</p>
+<ol type="1">
+<li>Toggle <strong>Snapping</strong> on in the top-right corner of the
+interface (or press <code>%</code>).</li>
+<li>Expand the snapping control menu and enable:
+<ul>
+<li><strong>Snap to guides</strong></li>
+<li><strong>Snap to bounding boxes</strong> (specifically edges and
+corners)</li>
+<li><strong>Snap to page borders</strong></li>
+</ul></li>
+<li>Drag UI cards, text blocks, and navigation elements across your
+predefined column spans (e.g., 4 columns for a 3-card desktop row; 12
+columns for a single mobile card).</li>
+</ol>
+<h3 id="5-adapt-components-for-responsive-breakpoints">5. Adapt
+Components for Responsive Breakpoints</h3>
+<p>Once your grid overlays are in place, arrange your UI elements
+according to responsive design patterns:</p>
+<ul>
+<li><strong>Desktop (12 Columns):</strong> Distribute complex
+multi-column navigation, multi-column feature blocks, and sidebars
+across the grid.</li>
+<li><strong>Tablet (8 or 12 Columns):</strong> Collapse horizontal menus
+into compact buttons, shift sidebars below primary content, and reduce
+card counts from 3–4 per row to 2 per row.</li>
+<li><strong>Mobile (4 Columns):</strong> Stack all components vertically
+to span the full 4-column width, ensuring touch-friendly targets and
+readable typography without horizontal overflow.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

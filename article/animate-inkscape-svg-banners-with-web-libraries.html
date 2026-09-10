@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animate Inkscape SVG Banners with Web Libraries - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to build responsive, lightweight, animated vector web banners by designing assets in Inkscape and bringing them to life with modern JavaScript animation libraries. You will learn the end-to-end workflow: structuring your vecto">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/animate-inkscape-svg-banners-with-web-libraries">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Animate Inkscape SVG Banners with Web Libraries - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/animate-inkscape-svg-banners-with-web-libraries" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to build responsive, lightweight, animated vector web banners by designing assets in Inkscape and bringing them to life with modern JavaScript animation libraries. You will learn the end-to-end workflow: structuring your vecto" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="animate-inkscape-svg-banners-with-web-libraries">Animate
+Inkscape SVG Banners with Web Libraries</h1>
+<p>This guide demonstrates how to build responsive, lightweight,
+animated vector web banners by designing assets in Inkscape and bringing
+them to life with modern JavaScript animation libraries. You will learn
+the end-to-end workflow: structuring your vector artwork, exporting
+clean code, embedding SVGs into web pages, and sequencing animations
+using tools like GSAP and Anime.js.</p>
+<h2 id="1-design-and-structure-assets-in-inkscape">1. Design and
+Structure Assets in Inkscape</h2>
+<p>A smooth animation workflow depends on clean vector structure inside
+Inkscape.</p>
+<ul>
+<li><strong>Set Canvas Dimensions:</strong> Define your banner's exact
+dimensions (e.g., 300x250, 728x90) via <strong>File &gt; Document
+Properties</strong>.</li>
+<li><strong>Group Logical Elements:</strong> Group paths that should
+animate together (e.g., character limbs, background elements,
+call-to-action buttons) using <code>Ctrl + G</code>.</li>
+<li><strong>Assign Meaningful IDs:</strong> Open the <strong>Object
+Properties</strong> panel (<code>Shift + Ctrl + O</code>). Assign clear,
+unique IDs or labels to the groups and paths you plan to manipulate with
+code (e.g., <code>#cta-button</code>, <code>#headline</code>,
+<code>#background-shape</code>).</li>
+<li><strong>Handle Typography:</strong> Convert non-standard fonts to
+paths via <strong>Path &gt; Object to Path</strong> to ensure consistent
+rendering across all devices, or leave live text elements if SEO and
+dynamic text replacement are required.</li>
+</ul>
+<h2 id="2-export-and-optimize-the-svg-code">2. Export and Optimize the
+SVG Code</h2>
+<p>Inkscape includes proprietary metadata by default. Cleaning the file
+prevents rendering issues and reduces payload size.</p>
+<ol type="1">
+<li>In Inkscape, go to <strong>File &gt; Save As...</strong> and select
+<strong>Optimized SVG (*.svg)</strong>.</li>
+<li>Ensure options to remove unneeded metadata and editor data are
+checked, but keep ID attributes intact.</li>
+<li>For additional file size reduction, pass the SVG through an
+optimizer like SVGOMG. Ensure the setting to "Preserve IDs" remains
+enabled so your animation targets are not stripped out.</li>
+</ol>
+<h2 id="3-embed-the-svg-inline">3. Embed the SVG Inline</h2>
+<p>To animate individual paths and groups with JavaScript libraries, the
+SVG must be injected directly into the HTML Document Object Model (DOM)
+rather than loaded via an <code>&lt;img&gt;</code> tag or CSS
+background.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;banner-container&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">svg</span><span class="ot"> viewBox</span><span class="op">=</span><span class="st">&quot;0 0 300 250&quot;</span><span class="ot"> width</span><span class="op">=</span><span class="st">&quot;300&quot;</span><span class="ot"> height</span><span class="op">=</span><span class="st">&quot;250&quot;</span><span class="ot"> xmlns</span><span class="op">=</span><span class="st">&quot;http://www.w3.org/2000/svg&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">rect</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;bg&quot;</span><span class="ot"> width</span><span class="op">=</span><span class="st">&quot;300&quot;</span><span class="ot"> height</span><span class="op">=</span><span class="st">&quot;250&quot;</span><span class="ot"> fill</span><span class="op">=</span><span class="st">&quot;#1e293b&quot;</span><span class="dt">/&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">g</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;hero-graphic&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">circle</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;accent-circle&quot;</span><span class="ot"> cx</span><span class="op">=</span><span class="st">&quot;150&quot;</span><span class="ot"> cy</span><span class="op">=</span><span class="st">&quot;100&quot;</span><span class="ot"> r</span><span class="op">=</span><span class="st">&quot;40&quot;</span><span class="ot"> fill</span><span class="op">=</span><span class="st">&quot;#38bdf8&quot;</span><span class="dt">/&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">g</span><span class="dt">&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">text</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;headline&quot;</span><span class="ot"> x</span><span class="op">=</span><span class="st">&quot;150&quot;</span><span class="ot"> y</span><span class="op">=</span><span class="st">&quot;170&quot;</span><span class="ot"> text-anchor</span><span class="op">=</span><span class="st">&quot;middle&quot;</span><span class="ot"> fill</span><span class="op">=</span><span class="st">&quot;#ffffff&quot;</span><span class="dt">&gt;</span>Special Offer<span class="dt">&lt;/</span><span class="kw">text</span><span class="dt">&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">g</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;cta-button&quot;</span><span class="ot"> cursor</span><span class="op">=</span><span class="st">&quot;pointer&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">rect</span><span class="ot"> x</span><span class="op">=</span><span class="st">&quot;100&quot;</span><span class="ot"> y</span><span class="op">=</span><span class="st">&quot;190&quot;</span><span class="ot"> width</span><span class="op">=</span><span class="st">&quot;100&quot;</span><span class="ot"> height</span><span class="op">=</span><span class="st">&quot;35&quot;</span><span class="ot"> rx</span><span class="op">=</span><span class="st">&quot;5&quot;</span><span class="ot"> fill</span><span class="op">=</span><span class="st">&quot;#f59e0b&quot;</span><span class="dt">/&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">text</span><span class="ot"> x</span><span class="op">=</span><span class="st">&quot;150&quot;</span><span class="ot"> y</span><span class="op">=</span><span class="st">&quot;213&quot;</span><span class="ot"> text-anchor</span><span class="op">=</span><span class="st">&quot;middle&quot;</span><span class="ot"> fill</span><span class="op">=</span><span class="st">&quot;#ffffff&quot;</span><span class="dt">&gt;</span>Learn More<span class="dt">&lt;/</span><span class="kw">text</span><span class="dt">&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">g</span><span class="dt">&gt;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">svg</span><span class="dt">&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div>
+<h2 id="4-animate-with-javascript-libraries">4. Animate with JavaScript
+Libraries</h2>
+<p>JavaScript animation engines provide precise timeline control,
+easing, and cross-browser consistency for vector manipulation.</p>
+<h3 id="using-gsap-greensock-animation-platform">Using GSAP (GreenSock
+Animation Platform)</h3>
+<p>GSAP is the industry standard for banner ads due to its robust
+timeline sequencing:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Load GSAP via CDN or npm package</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> tl <span class="op">=</span> gsap<span class="op">.</span><span class="fu">timeline</span>({ <span class="dt">defaults</span><span class="op">:</span> { <span class="dt">ease</span><span class="op">:</span> <span class="st">&quot;power2.out&quot;</span> } })<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>tl<span class="op">.</span><span class="fu">from</span>(<span class="st">&quot;#bg&quot;</span><span class="op">,</span> { <span class="dt">opacity</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">duration</span><span class="op">:</span> <span class="fl">0.5</span> })</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">from</span>(<span class="st">&quot;#accent-circle&quot;</span><span class="op">,</span> { <span class="dt">scale</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">transformOrigin</span><span class="op">:</span> <span class="st">&quot;center center&quot;</span><span class="op">,</span> <span class="dt">duration</span><span class="op">:</span> <span class="fl">0.6</span> }<span class="op">,</span> <span class="st">&quot;-=0.2&quot;</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">from</span>(<span class="st">&quot;#headline&quot;</span><span class="op">,</span> { <span class="dt">y</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">duration</span><span class="op">:</span> <span class="fl">0.4</span> }<span class="op">,</span> <span class="st">&quot;-=0.1&quot;</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">from</span>(<span class="st">&quot;#cta-button&quot;</span><span class="op">,</span> { <span class="dt">scale</span><span class="op">:</span> <span class="fl">0.8</span><span class="op">,</span> <span class="dt">opacity</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">transformOrigin</span><span class="op">:</span> <span class="st">&quot;center center&quot;</span><span class="op">,</span> <span class="dt">duration</span><span class="op">:</span> <span class="fl">0.4</span> }<span class="op">,</span> <span class="st">&quot;-=0.1&quot;</span>)<span class="op">;</span></span></code></pre></div>
+<h3 id="using-animejs">Using Anime.js</h3>
+<p>Anime.js offers a lightweight alternative with powerful path-drawing
+and morphing capabilities:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Sequenced animation with Anime.js timeline</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> bannerTimeline <span class="op">=</span> anime<span class="op">.</span><span class="fu">timeline</span>({</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">easing</span><span class="op">:</span> <span class="st">&#39;easeOutExpo&#39;</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">duration</span><span class="op">:</span> <span class="dv">750</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>bannerTimeline</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">add</span>({</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">targets</span><span class="op">:</span> <span class="st">&#39;#accent-circle&#39;</span><span class="op">,</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">scale</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">transformOrigin</span><span class="op">:</span> <span class="st">&#39;50% 50%&#39;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">add</span>({</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="dt">targets</span><span class="op">:</span> <span class="st">&#39;#headline&#39;</span><span class="op">,</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">translateY</span><span class="op">:</span> [<span class="dv">20</span><span class="op">,</span> <span class="dv">0</span>]<span class="op">,</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">opacity</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span> <span class="st">&#39;-=400&#39;</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">add</span>({</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">targets</span><span class="op">:</span> <span class="st">&#39;#cta-button&#39;</span><span class="op">,</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">scale</span><span class="op">:</span> [<span class="fl">0.8</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">opacity</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>]</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span> <span class="st">&#39;-=300&#39;</span>)<span class="op">;</span></span></code></pre></div>
+<h2 id="5-technical-best-practices">5. Technical Best Practices</h2>
+<ul>
+<li><strong>Always Set a <code>viewBox</code>:</strong> Use the
+<code>viewBox</code> attribute on the root <code>&lt;svg&gt;</code>
+element to allow fluid scaling across high-DPI displays and responsive
+layouts.</li>
+<li><strong>Define <code>transform-origin</code> Explicitly:</strong>
+SVG elements do not share the same default transform-origin behavior as
+standard HTML elements. Specify <code>transform-origin: center</code> or
+define coordinates directly in your JS library.</li>
+<li><strong>Limit Heavy Filters:</strong> Avoid stacking Gaussian blurs
+or complex drop shadows inside Inkscape, as animating filtered vectors
+can cause CPU/GPU bottlenecks on lower-end devices.</li>
+<li><strong>Implement a ClickTag:</strong> For standard ad networks,
+wrap the banner logic with an event listener that routes clicks to the
+destination URL while pausing or concluding the animation sequence.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

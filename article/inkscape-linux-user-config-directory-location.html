@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Linux User Config Directory Location - inkscape</title>
+    <meta name="description" content="Finding the Inkscape user configuration directory on Linux depends primarily on how the software was installed. This guide provides the exact file paths for standard native installations, Flatpaks, and Snaps, as well as the method to view the location di">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-linux-user-config-directory-location">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Linux User Config Directory Location - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-linux-user-config-directory-location" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Finding the Inkscape user configuration directory on Linux depends primarily on how the software was installed. This guide provides the exact file paths for standard native installations, Flatpaks, and Snaps, as well as the method to view the location di" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-linux-user-config-directory-location">Inkscape Linux
+User Config Directory Location</h1>
+<p>Finding the Inkscape user configuration directory on Linux depends
+primarily on how the software was installed. This guide provides the
+exact file paths for standard native installations, Flatpaks, and Snaps,
+as well as the method to view the location directly from within the
+Inkscape interface.</p>
+<h3 id="standard-native-installation-apt-dnf-pacman-ppa">Standard Native
+Installation (APT, DNF, Pacman, PPA)</h3>
+<p>For most standard installations managed via your Linux distribution's
+native package manager, Inkscape follows the XDG Base Directory
+specification. The configuration folder is located at:</p>
+<pre class="text"><code>~/.config/inkscape/</code></pre>
+<p>If the <code>$XDG_CONFIG_HOME</code> environment variable is
+customized on your system, the path is
+<code>$XDG_CONFIG_HOME/inkscape/</code>.</p>
+<h3 id="flatpak-installation">Flatpak Installation</h3>
+<p>If Inkscape was installed via Flatpak (Flathub), the sandbox
+environment isolates configuration files to the following path:</p>
+<pre class="text"><code>~/.var/app/org.inkscape.Inkscape/config/inkscape/</code></pre>
+<h3 id="snap-installation">Snap Installation</h3>
+<p>If you installed Inkscape as a Snap package, the configuration
+directory is kept inside the user's snap directory:</p>
+<pre class="text"><code>~/snap/inkscape/current/.config/inkscape/</code></pre>
+<h3 id="finding-the-path-via-inkscape-gui">Finding the Path via Inkscape
+GUI</h3>
+<p>To quickly verify the exact path your active installation is
+using:</p>
+<ol type="1">
+<li>Open Inkscape.</li>
+<li>Navigate to <strong>Edit</strong> &gt; <strong>Preferences</strong>
+(or press <code>Ctrl</code> + <code>Shift</code> + <code>P</code>).</li>
+<li>In the left sidebar, click on <strong>System</strong>.</li>
+<li>Look for the <strong>User config</strong> entry in the main pane,
+which displays the precise directory path along with an
+<strong>Open</strong> button to launch it in your file manager.</li>
+</ol>
+<h3 id="contents-of-the-configuration-directory">Contents of the
+Configuration Directory</h3>
+<p>This directory contains user-specific customizations, including:</p>
+<ul>
+<li><code>preferences.xml</code>: General application settings and tool
+configurations.</li>
+<li><code>keys/</code>: Custom keyboard shortcut files.</li>
+<li><code>templates/</code>: Custom default document templates.</li>
+<li><code>extensions/</code>: User-installed third-party plugins and
+scripts.</li>
+<li><code>palettes/</code>: Custom color palettes.</li>
+<li><code>symbols/</code>: Custom symbol libraries.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

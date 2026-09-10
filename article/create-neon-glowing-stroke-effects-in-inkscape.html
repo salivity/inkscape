@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Neon Glowing Stroke Effects in Inkscape - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to create a realistic neon glowing stroke effect in Inkscape using layered paths, Gaussian blur, and blend modes. By building a white-hot inner core surrounded by progressively blurred, vibrant color strokes, and combining the">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-neon-glowing-stroke-effects-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Neon Glowing Stroke Effects in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-neon-glowing-stroke-effects-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to create a realistic neon glowing stroke effect in Inkscape using layered paths, Gaussian blur, and blend modes. By building a white-hot inner core surrounded by progressively blurred, vibrant color strokes, and combining the" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-neon-glowing-stroke-effects-in-inkscape">Create Neon
+Glowing Stroke Effects in Inkscape</h1>
+<p>This guide demonstrates how to create a realistic neon glowing stroke
+effect in Inkscape using layered paths, Gaussian blur, and blend modes.
+By building a white-hot inner core surrounded by progressively blurred,
+vibrant color strokes, and combining them with light-enhancing blend
+modes, you can easily turn any path or text into an illuminated neon
+sign.</p>
+<h2 id="1-set-up-a-dark-background">1. Set Up a Dark Background</h2>
+<p>Neon effects require a dark backdrop to achieve maximum contrast and
+vibrancy:</p>
+<ol type="1">
+<li>Select the <strong>Rectangle tool</strong> (<code>R</code>) and draw
+a box covering your canvas.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>Set the <strong>Fill</strong> to a deep dark color, such as dark
+navy (<code>#0b0d17</code>) or near-black (<code>#111111</code>).</li>
+<li>Lock the background layer or object to prevent accidental
+movement.</li>
+</ol>
+<h2 id="2-create-the-base-path-or-text">2. Create the Base Path or
+Text</h2>
+<ol type="1">
+<li>Select the <strong>Pen tool (Bezier curves)</strong>
+(<code>B</code>) or the <strong>Text tool</strong>
+(<code>T</code>).</li>
+<li>Draw your path or type your text. If using text, ensure you use a
+clean, rounded, or script-style font resembling neon tubing.</li>
+<li>If using text, convert it to paths by selecting <strong>Path &gt;
+Object to Path</strong> (<code>Ctrl + Shift + C</code>), then ungroup it
+using <strong>Object &gt; Ungroup</strong>
+(<code>Ctrl + Shift + G</code>).</li>
+<li>Set the <strong>Fill</strong> to <em>None</em> and apply a
+<strong>Stroke</strong> color using a bright, saturated hue (such as
+cyan, magenta, or lime green).</li>
+</ol>
+<h2 id="3-build-the-neon-layers">3. Build the Neon Layers</h2>
+<p>A convincing neon effect consists of at least three layers: a wide
+ambient glow, an intense inner glow, and a bright core.</p>
+<ol type="1">
+<li><p><strong>The Wide Outer Glow:</strong></p>
+<ul>
+<li>Select your stroke and duplicate it (<code>Ctrl + D</code>).</li>
+<li>In the <strong>Fill and Stroke</strong> panel, go to the
+<strong>Stroke style</strong> tab and set the stroke width to a thick
+value (e.g., 16 px to 24 px).</li>
+<li>In the <strong>Stroke paint</strong> tab, keep the vibrant neon
+color.</li>
+<li>Under the bottom of the panel, increase the <strong>Blur</strong>
+(Gaussian blur) to around <strong>15% – 25%</strong>.</li>
+</ul></li>
+<li><p><strong>The Mid-Intensity Glow:</strong></p>
+<ul>
+<li>Duplicate the path again (<code>Ctrl + D</code>).</li>
+<li>Set the stroke width to a medium size (e.g., 8 px to 12 px).</li>
+<li>Keep the same vibrant color.</li>
+<li>Set the <strong>Blur</strong> slider to approximately <strong>5% –
+10%</strong>.</li>
+</ul></li>
+<li><p><strong>The Hot White Core:</strong></p>
+<ul>
+<li>Duplicate the path one more time (<code>Ctrl + D</code>).</li>
+<li>Set the stroke width to a thinner size (e.g., 2 px to 4 px).</li>
+<li>Change the stroke color to pure white (<code>#FFFFFF</code>) or a
+very pale tint of your neon color.</li>
+<li>Set the <strong>Blur</strong> to <strong>0% – 1%</strong> to keep
+the core crisp and bright.</li>
+</ul></li>
+</ol>
+<h2 id="4-apply-blending-modes-for-extra-luminance">4. Apply Blending
+Modes for Extra Luminance</h2>
+<p>To make the light feel additive and realistic when strokes overlap or
+interact with background elements:</p>
+<ol type="1">
+<li>Select all the glow layers (excluding the dark background) and group
+them together (<code>Ctrl + G</code>).</li>
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li>Select the group or individual glow objects, and in the
+<strong>Blend mode</strong> dropdown located in the <strong>Fill and
+Stroke</strong> panel or <strong>Layers</strong> panel, change the mode
+from <em>Normal</em> to <strong>Screen</strong> or
+<strong>Lighten</strong>.</li>
+<li>The <em>Screen</em> mode mathematically blends the light values,
+producing an intense, shining intersection wherever glow areas
+cross.</li>
+</ol>
+<h2 id="5-fine-tuning">5. Fine-Tuning</h2>
+<ul>
+<li><strong>Adjusting Color:</strong> Change the stroke color of the mid
+and outer glow layers simultaneously to test different neon gas
+colors.</li>
+<li><strong>Rounded Terminals:</strong> In the <strong>Stroke
+style</strong> tab, set <strong>Cap</strong> and <strong>Join</strong>
+to <strong>Round</strong> on all strokes for authentic rounded neon tube
+ends.</li>
+<li><strong>Opacity:</strong> If the glow looks overly solid, reduce the
+<strong>Opacity</strong> of the outermost glow layer to 60%–80%.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

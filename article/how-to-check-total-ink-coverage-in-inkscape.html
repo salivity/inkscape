@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Check Total Ink Coverage in Inkscape - inkscape</title>
+    <meta name="description" content="Total Ink Coverage (TIC), also known as Total Area Coverage (TAC), measures the combined percentage of Cyan, Magenta, Yellow, and Black inks applied to a printed page. Exceeding a commercial printer's recommended TIC limit—commonly between 240% and 320">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-check-total-ink-coverage-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Check Total Ink Coverage in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-check-total-ink-coverage-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Total Ink Coverage (TIC), also known as Total Area Coverage (TAC), measures the combined percentage of Cyan, Magenta, Yellow, and Black inks applied to a printed page. Exceeding a commercial printer's recommended TIC limit—commonly between 240% and 320" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-check-total-ink-coverage-in-inkscape">How to Check Total
+Ink Coverage in Inkscape</h1>
+<p>Total Ink Coverage (TIC), also known as Total Area Coverage (TAC),
+measures the combined percentage of Cyan, Magenta, Yellow, and Black
+inks applied to a printed page. Exceeding a commercial printer's
+recommended TIC limit—commonly between 240% and 320%—leads to ink
+saturation, slow drying times, paper cockling, and set-off smudges.
+Because Inkscape does not have a native real-time ink density inspection
+tool, managing TIC requires configuring color profiles, manually
+auditing ink values for key elements, and verifying the exported print
+file using external preflight software.</p>
+<h2 id="configure-inkscape-for-cmyk-soft-proofing">Configure Inkscape
+for CMYK Soft-Proofing</h2>
+<p>Before designing or checking values, set up Inkscape to work with the
+color profile specified by your print provider:</p>
+<ol type="1">
+<li>Open <strong>Edit &gt; Preferences</strong>
+(<code>Ctrl + Shift + P</code>).</li>
+<li>Navigate to the <strong>Color management</strong> tab.</li>
+<li>In the <strong>Proofing profile</strong> field, select the target
+CMYK ICC profile provided by your printer (such as <em>FOGRA39</em>,
+<em>FOGRA51</em>, or <em>GRACoL</em>).</li>
+<li>Set the <strong>Display profile</strong> to your monitor's
+profile.</li>
+<li>Close the preferences window and enable soft-proofing via
+<strong>View &gt; Display mode &gt; Color-managed display</strong> or by
+toggling the soft-proof button in the bottom right corner of the status
+bar.</li>
+</ol>
+<p>Soft-proofing ensures that rich blacks and dark tones are visually
+rendered close to how the CMYK inks will appear when printed, helping
+you spot overly saturated areas.</p>
+<h2 id="calculate-ink-values-manually">Calculate Ink Values
+Manually</h2>
+<p>For individual vector objects, shapes, and text, check and adjust the
+ink percentages directly inside Inkscape:</p>
+<ol type="1">
+<li>Select the object in question.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>Switch to the <strong>CMYK</strong> color slider tab.</li>
+<li>Calculate the TIC by adding the four values together: <span
+class="math display">\[\text{TIC} = \text{C}\% + \text{M}\% + \text{Y}\%
++ \text{K}\%\]</span></li>
+<li>If the sum exceeds your printer's maximum allowed limit (e.g., <span
+class="math inline">\(60\% \text{ C} + 60\% \text{ M} + 60\% \text{ Y} +
+100\% \text{ K} = 280\%\)</span>), reduce the individual values.</li>
+</ol>
+<p>For rich blacks, avoid using "Registration Black" (<span
+class="math inline">\(100/100/100/100 = 400\%\)</span>). Instead, use
+balanced combinations such as <span class="math inline">\(60\% \text{
+C}\)</span>, <span class="math inline">\(40\% \text{ M}\)</span>, <span
+class="math inline">\(30\% \text{ Y}\)</span>, and <span
+class="math inline">\(100\% \text{ K}\)</span> (Total: <span
+class="math inline">\(230\%\)</span>).</p>
+<h2 id="export-the-document">Export the Document</h2>
+<p>When your design is ready, export your file to a print-ready vector
+format:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong> or <strong>File &gt;
+Export</strong>.</li>
+<li>Choose <strong>Portable Document Format (*.pdf)</strong>.</li>
+<li>In the PDF export dialogue, set the output resolution (DPI) to at
+least <strong>300 DPI</strong>.</li>
+<li>Check <strong>Rasterize filter effects</strong> to ensure drop
+shadows, blurs, and transparencies are flattened correctly.</li>
+<li>Set the output to match the target standard (such as PDF/X-1a or
+PDF/X-4 if handled via extensions or external conversion).</li>
+</ol>
+<h2 id="verify-total-ink-coverage-in-the-exported-file">Verify Total Ink
+Coverage in the Exported File</h2>
+<p>Because Inkscape cannot generate a coverage heatmap across all
+elements and rasterized effects, use a dedicated preflight inspection
+tool on the exported PDF.</p>
+<h3 id="method-1-adobe-acrobat-pro-output-preview">Method 1: Adobe
+Acrobat Pro Output Preview</h3>
+<ol type="1">
+<li>Open the exported PDF in Adobe Acrobat Pro.</li>
+<li>Navigate to <strong>Tools &gt; Print Production &gt; Output
+Preview</strong>.</li>
+<li>In the <strong>Preview</strong> dropdown, choose
+<strong>Separations</strong>.</li>
+<li>Check the <strong>Total Area Coverage</strong> box at the bottom of
+the panel.</li>
+<li>Enter your printer's maximum threshold percentage (e.g.,
+<code>300%</code>).</li>
+<li>Acrobat will highlight any part of the page exceeding that threshold
+in bright neon colors.</li>
+</ol>
+<h3 id="method-2-scribus-open-source-preflight">Method 2: Scribus
+(Open-Source Preflight)</h3>
+<ol type="1">
+<li>Launch Scribus and open or import the exported PDF via <strong>File
+&gt; Import &gt; Vector File</strong>.</li>
+<li>Open the <strong>Preflight Verifier</strong> window (<strong>Windows
+&gt; Preflight Verifier</strong>).</li>
+<li>Choose the print profile matching your target standard.</li>
+<li>If configured in the document setup, Scribus flags objects and
+layers where the combined CMYK density surpasses the allowed limit.</li>
+</ol>
+<h2 id="fixing-exceeded-limits">Fixing Exceeded Limits</h2>
+<p>If your preflight inspection reveals areas exceeding the TIC
+threshold:</p>
+<ul>
+<li><strong>Vector elements:</strong> Return to Inkscape, locate the
+highlighted shapes, and decrease the Cyan, Magenta, or Yellow components
+while keeping the Black channel dominant.</li>
+<li><strong>Embedded raster images:</strong> Process photos or complex
+raster artwork in an image editor (such as GIMP or Adobe Photoshop) by
+converting the image to the specific CMYK profile using an absolute or
+relative colorimetric rendering intent, or by applying a Curves
+adjustment to clamp the maximum ink levels before re-importing into
+Inkscape.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

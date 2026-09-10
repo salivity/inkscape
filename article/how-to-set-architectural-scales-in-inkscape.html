@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Architectural Scales in Inkscape - inkscape</title>
+    <meta name="description" content="Setting custom scale factors such as 1:50 or 1:100 in Inkscape allows you to create accurate architectural floor plans, elevations, and technical diagrams directly within a vector workspace. This guide outlines how to configure your document scale in Doc">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-set-architectural-scales-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Set Architectural Scales in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-set-architectural-scales-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Setting custom scale factors such as 1:50 or 1:100 in Inkscape allows you to create accurate architectural floor plans, elevations, and technical diagrams directly within a vector workspace. This guide outlines how to configure your document scale in Doc" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-set-architectural-scales-in-inkscape">How to Set
+Architectural Scales in Inkscape</h1>
+<p>Setting custom scale factors such as 1:50 or 1:100 in Inkscape allows
+you to create accurate architectural floor plans, elevations, and
+technical diagrams directly within a vector workspace. This guide
+outlines how to configure your document scale in Document Properties,
+calibrate the Measurement Tool for real-world dimensions, set up scaled
+snapping grids, and verify your drawing dimensions for accurate export
+and printing.</p>
+<h2 id="1-configure-the-document-scale">1. Configure the Document
+Scale</h2>
+<p>Inkscape defines scale as the relationship between user units
+(internal SVG coordinates) and display units (real-world printed units
+such as millimeters or inches).</p>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>File &gt; Document
+Properties</strong> (or press <code>Ctrl + Shift + D</code>).</li>
+<li>In the <strong>Page</strong> tab, set <strong>Display units</strong>
+to your preferred physical measurement, such as <code>mm</code> or
+<code>cm</code>.</li>
+<li>Locate the <strong>Scale</strong> section in the same tab:
+<ul>
+<li><strong>For a 1:100 Scale (Metric):</strong> If your target display
+unit is millimeters (<code>mm</code>) and you want 1 mm on paper to
+equal 100 mm in reality, set <strong>Scale x</strong> to
+<code>0.01</code> (or <code>1.0</code> if drawing 1:1 to standard sheet
+sizes and scaling output). If drawing directly in real-world meters
+where 1 meter equals 10 mm on paper (1:100), adjust the scale factor so
+1 user unit matches your working increment.</li>
+<li><strong>For a 1:50 Scale (Metric):</strong> Set <strong>Scale
+x</strong> to <code>0.02</code> (where 1 mm on the page represents 50 mm
+in real space).</li>
+</ul></li>
+<li>Close the Document Properties dialog to apply the scale globally to
+the canvas.</li>
+</ol>
+<h2 id="2-calibrate-the-measurement-tool">2. Calibrate the Measurement
+Tool</h2>
+<p>The Measurement Tool allows you to inspect distances on your canvas
+and display them in real-world architectural values.</p>
+<ol type="1">
+<li>Select the <strong>Measurement Tool</strong> from the left toolbar
+(or press <code>M</code>).</li>
+<li>Look at the tool controls bar at the top of the window:
+<ul>
+<li>Set <strong>Units</strong> to <code>m</code> (meters) or
+<code>mm</code> (millimeters).</li>
+<li>Adjust the <strong>Scale %</strong> field:
+<ul>
+<li>For <strong>1:100</strong>, set the scale to <code>10000%</code> (or
+enter <code>100</code> depending on your base document unit).</li>
+<li>For <strong>1:50</strong>, set the scale to <code>5000%</code> (or
+<code>50</code>).</li>
+</ul></li>
+</ul></li>
+<li>Click and drag across any object or line on your canvas to measure
+distances directly in full-scale architectural dimensions.</li>
+</ol>
+<h2 id="3-set-up-an-architectural-grid">3. Set Up an Architectural
+Grid</h2>
+<p>Using an architectural grid ensures objects snap to exact structural
+increments (e.g., wall thicknesses, column grids, or module widths).</p>
+<ol type="1">
+<li>Open <strong>File &gt; Document Properties</strong> and switch to
+the <strong>Grids</strong> tab.</li>
+<li>Select <strong>Rectangular grid</strong> from the dropdown and click
+<strong>New</strong>.</li>
+<li>Set <strong>Grid units</strong> to <code>mm</code> or
+<code>m</code>.</li>
+<li>Define your spacing based on your scale:
+<ul>
+<li><strong>1:100 Scale:</strong> Set <strong>Spacing X</strong> and
+<strong>Spacing Y</strong> to <code>10 mm</code> (representing 1 meter
+in real-world space).</li>
+<li><strong>1:50 Scale:</strong> Set <strong>Spacing X</strong> and
+<strong>Spacing Y</strong> to <code>20 mm</code> (representing 1 meter
+in real-world space).</li>
+</ul></li>
+<li>Set <strong>Major grid line every</strong> to <code>5</code> or
+<code>10</code> to visually group modular intervals.</li>
+</ol>
+<h2 id="4-add-dimension-lines">4. Add Dimension Lines</h2>
+<p>To annotate dimensions directly on the drawing:</p>
+<ol type="1">
+<li>Select the path or wall segment you want to label.</li>
+<li>Go to <strong>Extensions &gt; Visualize Path &gt;
+Dimensions</strong>.</li>
+<li>In the dialog, choose your desired dimension format, offset
+distance, and unit representation.</li>
+<li>Set the <strong>Scaling factor</strong> to match your drawing scale
+(<code>50</code> for 1:50, <code>100</code> for 1:100) so the generated
+text displays the true real-world dimension.</li>
+<li>Click <strong>Apply</strong>.</li>
+</ol>
+<h2 id="5-exporting-at-the-correct-ratio">5. Exporting at the Correct
+Ratio</h2>
+<p>When exporting your drawing to PDF for printing:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong> and select
+<strong>Portable Document Format (*.pdf)</strong>.</li>
+<li>Ensure <strong>Page size</strong> matches your target paper size
+(e.g., A3, A2, A1).</li>
+<li>Print the resulting PDF at <strong>100% scale</strong> (Actual Size
+/ Do Not Scale) in your PDF viewer to maintain exact 1:50 or 1:100
+proportions on paper.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

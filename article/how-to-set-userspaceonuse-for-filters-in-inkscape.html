@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set userSpaceOnUse for Filters in Inkscape - inkscape</title>
+    <meta name="description" content="By default, Inkscape applies SVG filter effects using the objectBoundingBox coordinate system, which calculates dimensions and positions relative to the individual object. Changing this setting to userSpaceOnUse binds the filter coordinates directly to t">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-set-userspaceonuse-for-filters-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Set userSpaceOnUse for Filters in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-set-userspaceonuse-for-filters-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="By default, Inkscape applies SVG filter effects using the objectBoundingBox coordinate system, which calculates dimensions and positions relative to the individual object. Changing this setting to userSpaceOnUse binds the filter coordinates directly to t" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-set-userspaceonuse-for-filters-in-inkscape">How to Set
+userSpaceOnUse for Filters in Inkscape</h1>
+<p>By default, Inkscape applies SVG filter effects using the
+<code>objectBoundingBox</code> coordinate system, which calculates
+dimensions and positions relative to the individual object. Changing
+this setting to <code>userSpaceOnUse</code> binds the filter coordinates
+directly to the document's absolute coordinate system, ensuring
+consistent effect scaling and positioning regardless of the target
+object's size. This guide demonstrates how to configure filter effects
+to use <code>userSpaceOnUse</code> in Inkscape using both the XML Editor
+and the Filter Editor.</p>
+<h3 id="why-switch-to-userspaceonuse">Why Switch to userSpaceOnUse?</h3>
+<p>The default <code>objectBoundingBox</code> mode scales coordinates
+based on the width and height of the selected object. While useful for
+simple drop shadows or bevels, it can cause distortions when applied to
+objects of different aspect ratios. The <code>userSpaceOnUse</code> mode
+fixes the filter effects to global canvas units (pixels, millimeters,
+etc.), which is essential for seamless tiling textures, global lighting,
+and uniform blur sizes across multiple elements.</p>
+<hr />
+<h3 id="method-1-using-the-xml-editor-recommended">Method 1: Using the
+XML Editor (Recommended)</h3>
+<p>The most direct and reliable method to set coordinate units is
+through Inkscape's built-in XML Editor.</p>
+<ol type="1">
+<li><strong>Select the Filtered Object:</strong> Click on the object
+that has the filter applied.</li>
+<li><strong>Open the XML Editor:</strong> Go to <strong>Edit &gt; XML
+Editor</strong> or press <code>Ctrl + Shift + X</code>
+(<code>Cmd + Shift + X</code> on macOS).</li>
+<li><strong>Locate the Filter Definition:</strong>
+<ul>
+<li>In the XML tree, expand the <code>&lt;svg:defs&gt;</code> node.</li>
+<li>Look for the <code>&lt;svg:filter&gt;</code> element associated with
+your object. (You can confirm the filter ID by checking the
+<code>style</code> attribute on your selected object, which will contain
+<code>filter:url(#filterXXXX)</code>).</li>
+</ul></li>
+<li><strong>Modify or Add the <code>filterUnits</code>
+Attribute:</strong>
+<ul>
+<li>Click on the target <code>&lt;svg:filter&gt;</code> node in the
+tree.</li>
+<li>In the right-hand panel, check if <code>filterUnits</code> already
+exists in the attribute list.</li>
+<li>If it exists, click it, change its value in the lower text field to
+<code>userSpaceOnUse</code>, and click <strong>Set</strong>.</li>
+<li>If it does not exist, type <code>filterUnits</code> in the attribute
+name field, enter <code>userSpaceOnUse</code> in the value field, and
+click <strong>Set</strong>.</li>
+</ul></li>
+<li><strong>Modify or Add <code>primitiveUnits</code>
+(Optional):</strong>
+<ul>
+<li>If you also want individual filter primitives (such as blur radiuses
+or offset distances) to use canvas coordinates rather than object
+percentages, add or update the <code>primitiveUnits</code> attribute on
+the same <code>&lt;svg:filter&gt;</code> node.</li>
+<li>Enter <code>primitiveUnits</code> as the attribute name and set its
+value to <code>userSpaceOnUse</code>.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="method-2-adjusting-coordinates-via-the-filter-editor">Method 2:
+Adjusting Coordinates via the Filter Editor</h3>
+<p>You can adjust filter boundaries and coordinate behaviors through the
+Filter Editor interface.</p>
+<ol type="1">
+<li><strong>Open the Filter Editor:</strong> Navigate to <strong>Filters
+&gt; Filter Editor...</strong> from the top menu.</li>
+<li><strong>Select the Active Filter:</strong> In the list of filters,
+select the filter applied to your object.</li>
+<li><strong>Access Filter General Settings:</strong>
+<ul>
+<li>Click on the <strong>Filter General Settings</strong> tab located at
+the bottom of the Filter Editor dock.</li>
+</ul></li>
+<li><strong>Adjust Region Units:</strong>
+<ul>
+<li>Locate the bounding box parameters: <strong>X</strong>,
+<strong>Y</strong>, <strong>Width</strong>, and
+<strong>Height</strong>.</li>
+<li>Switch the coordinate drop-down fields or units from percentage
+values (relative to the object) to absolute unit measurements (such as
+<code>px</code>, <code>mm</code>, or <code>pt</code>).</li>
+<li>When absolute units are assigned to the filter region, Inkscape
+automatically adapts the underlying SVG code to calculate coordinates
+against the user space rather than scaling proportionally with the
+object's bounding box.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

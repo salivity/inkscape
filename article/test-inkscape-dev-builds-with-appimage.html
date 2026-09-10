@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Inkscape Dev Builds with AppImage - inkscape</title>
+    <meta name="description" content="Testing development builds of Inkscape allows you to experiment with cutting-edge tools and preview upcoming features before their official release. By leveraging the Linux AppImage format alongside an isolated profile environment, you can safely run ble">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/test-inkscape-dev-builds-with-appimage">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Test Inkscape Dev Builds with AppImage - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/test-inkscape-dev-builds-with-appimage" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Testing development builds of Inkscape allows you to experiment with cutting-edge tools and preview upcoming features before their official release. By leveraging the Linux AppImage format alongside an isolated profile environment, you can safely run ble" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="test-inkscape-dev-builds-with-appimage">Test Inkscape Dev Builds
+with AppImage</h1>
+<p>Testing development builds of Inkscape allows you to experiment with
+cutting-edge tools and preview upcoming features before their official
+release. By leveraging the Linux AppImage format alongside an isolated
+profile environment, you can safely run bleeding-edge development builds
+without overwriting, corrupting, or sharing settings with your existing
+stable Inkscape installation.</p>
+<h3 id="step-1-download-the-development-appimage">Step 1: Download the
+Development AppImage</h3>
+<p>Visit the official Inkscape website's development download section or
+the automated development build repository. Look for the Linux release
+package ending in <code>.AppImage</code>. Save the downloaded file to an
+isolated directory of your choice, such as
+<code>~/Inkscape-Testing/</code>.</p>
+<h3 id="step-2-make-the-file-executable">Step 2: Make the File
+Executable</h3>
+<p>Before the AppImage can run, you must grant it execution permissions.
+Open your terminal, navigate to your download directory, and run the
+following command (replace the filename with your actual downloaded file
+name):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x Inkscape-dev.AppImage</span></code></pre></div>
+<p>Alternatively, right-click the file in your desktop file manager,
+open <strong>Properties</strong>, navigate to the
+<strong>Permissions</strong> tab, and enable <strong>Allow executing
+file as program</strong>.</p>
+<h3 id="step-3-isolate-the-configuration-directory">Step 3: Isolate the
+Configuration Directory</h3>
+<p>By default, an AppImage reads and writes user configuration files in
+your system's global config directory (<code>~/.config/inkscape</code>).
+If both the development build and stable build access this directory,
+modern development settings can corrupt your stable preferences,
+extensions, and custom shortcuts.</p>
+<p>To run the development build in complete isolation, use one of the
+two following approaches:</p>
+<h4 id="method-a-use-appimage-portable-mode-recommended">Method A: Use
+AppImage Portable Mode (Recommended)</h4>
+<p>AppImage features a native portable mode. If a folder with the same
+name as the AppImage plus <code>.home</code> or <code>.config</code> is
+placed in the same directory, the AppImage redirects its data paths
+locally.</p>
+<p>Create a config folder matching your AppImage name:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> Inkscape-dev.AppImage.config</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> Inkscape-dev.AppImage.home</span></code></pre></div>
+<p>When you launch the AppImage, all cache files, configuration
+preferences, and temporary user data will be stored strictly inside
+these folders instead of touching your main user environment.</p>
+<h4 id="method-b-define-inkscape_profile_dir">Method B: Define
+<code>INKSCAPE_PROFILE_DIR</code></h4>
+<p>Alternatively, you can manually redirect Inkscape's user profile path
+directly from the command line by passing the
+<code>INKSCAPE_PROFILE_DIR</code> environment variable:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">INKSCAPE_PROFILE_DIR</span><span class="op">=</span>~/Inkscape-Testing/test-profile <span class="ex">./Inkscape-dev.AppImage</span></span></code></pre></div>
+<p>This instructs the application to save preferences, palette changes,
+extensions, and crash recovery logs strictly to
+<code>~/Inkscape-Testing/test-profile</code>.</p>
+<h3 id="step-4-run-the-build">Step 4: Run the Build</h3>
+<p>Launch the AppImage directly from your terminal or double-click it in
+your file browser:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./Inkscape-dev.AppImage</span></span></code></pre></div>
+<p>To confirm that your settings are decoupled, check <strong>Edit &gt;
+Preferences &gt; System</strong> inside the development build. Verify
+that the <strong>User profile</strong> path matches your isolated
+directory rather than your primary system configuration path.</p>
+<h3 id="step-5-clean-up">Step 5: Clean Up</h3>
+<p>Because the AppImage and its configurations exist entirely within the
+designated folder, testing leaves no residual files across your
+operating system. Once you have finished testing, simply delete the
+downloaded <code>.AppImage</code> file and the associated
+<code>.home</code>, <code>.config</code>, or profile directory. Your
+stable Inkscape install remains untouched.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

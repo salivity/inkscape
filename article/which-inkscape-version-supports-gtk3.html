@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Which Inkscape Version Supports GTK3? - inkscape</title>
+    <meta name="description" content="Native GTK3 support was officially introduced to Inkscape with the landmark release of Inkscape 1.0 in May 2020. This article outlines the transition from the legacy GTK2 toolkit to GTK3, detailing the specific version that introduced the change, the dev">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/which-inkscape-version-supports-gtk3">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Which Inkscape Version Supports GTK3? - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/which-inkscape-version-supports-gtk3" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Native GTK3 support was officially introduced to Inkscape with the landmark release of Inkscape 1.0 in May 2020. This article outlines the transition from the legacy GTK2 toolkit to GTK3, detailing the specific version that introduced the change, the dev" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="which-inkscape-version-supports-gtk3">Which Inkscape Version
+Supports GTK3?</h1>
+<p>Native GTK3 support was officially introduced to Inkscape with the
+landmark release of Inkscape 1.0 in May 2020. This article outlines the
+transition from the legacy GTK2 toolkit to GTK3, detailing the specific
+version that introduced the change, the development history behind the
+migration, and the major graphical and performance benefits it brought
+to the vector graphics editor.</p>
+<h3 id="the-milestone-inkscape-10">The Milestone: Inkscape 1.0</h3>
+<p>Inkscape 1.0 marked the official, stable transition to native GTK3
+(specifically GTK+ 3 via gtkmm3). While preview builds and development
+branches experimented with the toolkit for several years prior, version
+1.0 was the first production-ready release built entirely on the GTK3
+framework. This upgrade replaced the aging GTK2 codebase that had
+powered the application since its inception.</p>
+<h3 id="key-improvements-introduced-with-gtk3">Key Improvements
+Introduced with GTK3</h3>
+<p>Migrating to GTK3 was a multi-year development effort that served as
+the primary prerequisite for launching version 1.0. The migration
+delivered several critical technical and visual enhancements:</p>
+<ul>
+<li><strong>Native HiDPI Screen Support:</strong> GTK3 allowed Inkscape
+to scale correctly on high-resolution 4K and 5K monitors without blurry
+icons or interface scaling glitches.</li>
+<li><strong>Canvas Manipulation:</strong> The updated toolkit enabled
+smoother rendering, native canvas rotation, and canvas mirroring.</li>
+<li><strong>Modern Theming and Dark Mode:</strong> Users gained access
+to modern GTK themes, custom icon sets, and an official dark mode
+interface out of the box.</li>
+<li><strong>Wayland Compatibility:</strong> On Linux systems, GTK3
+provided native support for the Wayland display server protocol,
+bypassing the need for XWayland emulation.</li>
+<li><strong>Improved macOS Integration:</strong> The transition
+facilitated a much better native application package for macOS,
+eliminating reliance on the legacy X11 window server.</li>
+</ul>
+<h3 id="summary">Summary</h3>
+<p>If you require native GTK3 integration for modern desktop
+compatibility, high-DPI scaling, or Wayland support, you must use
+<strong>Inkscape 1.0 or any subsequent release</strong>. All versions
+prior to 1.0 (such as Inkscape 0.92.x) relied on GTK2.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

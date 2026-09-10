@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Modular Vehicle Parts in Inkscape for 2D Games - inkscape</title>
+    <meta name="description" content="Creating modular vehicle parts in Inkscape requires a structured workflow focused on standardized dimensions, precise anchor points, and consistent visual styling. By establishing a unified grid and designated connection nodes, you can design interchange">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/design-modular-vehicle-parts-in-inkscape-for-2d-games">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Modular Vehicle Parts in Inkscape for 2D Games - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/design-modular-vehicle-parts-in-inkscape-for-2d-games" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating modular vehicle parts in Inkscape requires a structured workflow focused on standardized dimensions, precise anchor points, and consistent visual styling. By establishing a unified grid and designated connection nodes, you can design interchange" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="design-modular-vehicle-parts-in-inkscape-for-2d-games">Design
+Modular Vehicle Parts in Inkscape for 2D Games</h1>
+<p>Creating modular vehicle parts in Inkscape requires a structured
+workflow focused on standardized dimensions, precise anchor points, and
+consistent visual styling. By establishing a unified grid and designated
+connection nodes, you can design interchangeable components—such as
+chassis, wheels, engines, and weapons—that snap together seamlessly in
+physics engines like Box2D, Godot, or Unity. This guide covers how to
+set up your workspace, construct base components, align physics joints,
+and export clean assets ready for 2D game development.</p>
+<h3 id="set-up-a-standardized-grid-and-document-template">Set Up a
+Standardized Grid and Document Template</h3>
+<p>Physics engines rely on consistent scale to calculate mass, torque,
+and collision dynamics accurately. Begin by opening Inkscape and
+defining a base measurement system.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Document Properties</strong>.</li>
+<li>Under the <strong>Display</strong> tab, set the display units to
+pixels (<code>px</code>).</li>
+<li>Switch to the <strong>Grids</strong> tab and create a new
+<strong>Rectangular Grid</strong>. Set the <strong>Spacing X</strong>
+and <strong>Spacing Y</strong> to a consistent power-of-two value, such
+as <code>16px</code> or <code>32px</code>.</li>
+<li>Enable snapping on the right toolbar: ensure <strong>Snap to
+Grids</strong> and <strong>Snap to Cusp Nodes</strong> are active.</li>
+</ol>
+<p>By designing every module on the same grid, parts will inherently
+align without requiring manual adjustments in code.</p>
+<h3 id="establish-connection-hardpoints-and-pivot-points">Establish
+Connection Hardpoints and Pivot Points</h3>
+<p>Modular systems function through "hardpoints"—locations where two
+parts attach via physics joints (such as revolute joints for wheels or
+fixed joints for armor).</p>
+<p>Create a dedicated layer named <code>Reference_Points</code> in the
+Layers panel:</p>
+<ul>
+<li>Use a bright, contrasting color (such as magenta) to place a
+<code>2x2px</code> circle or crosshair marking the attachment points
+(e.g., axle positions, weapon mounts, coupling nodes).</li>
+<li>Place a distinct marker at the intended center of mass for the
+chassis.</li>
+<li>Keep this reference layer visible during design, but toggle its
+visibility off before exporting the final game graphics.</li>
+</ul>
+<p>Record the pixel coordinates of these markers relative to the part's
+canvas origin; these coordinates will serve as the joint anchors in your
+game engine.</p>
+<h3 id="construct-the-core-modular-components">Construct the Core
+Modular Components</h3>
+<p>Break the vehicle down into discrete, functional categories.</p>
+<h4 id="the-chassis">The Chassis</h4>
+<p>The chassis is the central hub. Draw the main body using the
+<strong>Pen (Bezier) Tool</strong> (<code>B</code>) or basic shapes
+merged with boolean operations (<strong>Path &gt; Union</strong>,
+<strong>Path &gt; Difference</strong>). Ensure that mounting sockets are
+flat or distinctly notched along the grid to receive add-ons without
+overlapping geometry clipping awkwardly.</p>
+<h4 id="wheels-and-suspension-mounts">Wheels and Suspension Mounts</h4>
+<p>Draw wheels as perfect circles using the <strong>Ellipse
+Tool</strong> (<code>E</code>) while holding <code>Ctrl</code>. Keep the
+visual center aligned precisely with the grid intersection. When
+designing wheel hubs or suspension arms, design them as separate modules
+so the physics engine can rotate the wheel while keeping the arm
+attached to the chassis.</p>
+<h4 id="add-ons-and-weapons">Add-ons and Weapons</h4>
+<p>Design weapons, thrusters, and armor plates to fit into the sockets
+defined on your chassis. Give all add-on bases a standardized width and
+depth that matches the chassis hardpoints to guarantee
+cross-compatibility between light and heavy components.</p>
+<h3 id="maintain-visual-hierarchy-and-shading">Maintain Visual Hierarchy
+and Shading</h3>
+<p>For parts to feel like a cohesive vehicle regardless of how the
+player combines them, visual lighting and linework must match across all
+assets:</p>
+<ul>
+<li><strong>Stroke Width:</strong> Use a uniform stroke width (e.g.,
+<code>2px</code> or <code>4px</code> with rounded caps and joins) across
+every asset.</li>
+<li><strong>Light Source Direction:</strong> Lock your shading to a
+single, global light source (typically top-left). Avoid baking dynamic
+shadows cast from one part onto another into the vector artwork, as
+modular parts change position dynamically.</li>
+<li><strong>Color Palette:</strong> Use a limited palette. Define global
+swatches in Inkscape so that updating a primary metallic tone updates
+across all modules automatically.</li>
+</ul>
+<h3 id="clean-paths-and-grouping">Clean Paths and Grouping</h3>
+<p>Messy vector geometry creates unexpected visual artifacts and bloats
+file sizes:</p>
+<ol type="1">
+<li>Select your finished shapes and run <strong>Path &gt;
+Simplify</strong> (<code>Ctrl + L</code>) if paths have redundant nodes,
+but ensure silhouettes remain crisp.</li>
+<li>Group related elements of a single part together using
+<code>Ctrl + G</code>.</li>
+<li>Give each module a clear object ID via the <strong>Object
+Properties</strong> panel (e.g., <code>chassis_light_01</code>,
+<code>wheel_offroad_medium</code>).</li>
+</ol>
+<h3 id="export-assets-for-the-physics-engine">Export Assets for the
+Physics Engine</h3>
+<p>To export parts with correct bounding boxes:</p>
+<ol type="1">
+<li>Hide the <code>Reference_Points</code> layer.</li>
+<li>Select an individual module.</li>
+<li>Open the <strong>Export</strong> dialog
+(<code>Shift + Ctrl + E</code>).</li>
+<li>Choose the <strong>Selection</strong> export mode so the bounding
+box hugs the individual part, or export the part centered within a
+uniform square frame (e.g., <code>128x128px</code>) if your game engine
+uses static sprite sheet packing.</li>
+<li>Export as an optimized SVG for vector-based renderers, or export as
+a PNG at <code>1x</code> (and higher DPI multipliers for high-resolution
+displays). Ensure the background remains transparent.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

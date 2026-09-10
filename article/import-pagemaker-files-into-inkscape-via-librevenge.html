@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import PageMaker Files into Inkscape via librevenge - inkscape</title>
+    <meta name="description" content="This guide explains how to import vector artwork from legacy Adobe PageMaker files into Inkscape using librevenge-based import filters. By leveraging libpagemaker—an open-source parsing library built on top of the librevenge document interface framewor">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/import-pagemaker-files-into-inkscape-via-librevenge">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Import PageMaker Files into Inkscape via librevenge - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/import-pagemaker-files-into-inkscape-via-librevenge" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to import vector artwork from legacy Adobe PageMaker files into Inkscape using librevenge-based import filters. By leveraging libpagemaker—an open-source parsing library built on top of the librevenge document interface framewor" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="import-pagemaker-files-into-inkscape-via-librevenge">Import
+PageMaker Files into Inkscape via librevenge</h1>
+<p>This guide explains how to import vector artwork from legacy Adobe
+PageMaker files into Inkscape using <code>librevenge</code>-based import
+filters. By leveraging <code>libpagemaker</code>—an open-source parsing
+library built on top of the <code>librevenge</code> document interface
+framework—Inkscape can interpret proprietary PageMaker binary data,
+convert internal vector commands into modern SVG paths, and allow full
+editing of legacy artwork.</p>
+<h3 id="how-librevenge-and-libpagemaker-work">How librevenge and
+libpagemaker Work</h3>
+<p>Adobe PageMaker stores vector paths, text, and layout information in
+proprietary binary formats such as <code>.pmd</code>, <code>.p65</code>,
+and <code>.pm6</code>. Inkscape cannot read these raw streams natively.
+Instead, it relies on <code>libpagemaker</code>, a library built
+specifically on <code>librevenge</code>.</p>
+<p><code>librevenge</code> serves as a translation layer that handles
+low-level streams, generators, and vector primitives. When a PageMaker
+file is opened, <code>libpagemaker</code> reverse-engineers the file
+structure and passes drawing calls (such as bezier curves, polygons, and
+line properties) through <code>librevenge</code> interfaces directly to
+Inkscape, which renders them as standard SVG elements.</p>
+<h3 id="direct-import-in-inkscape">Direct Import in Inkscape</h3>
+<p>Most modern distributions of Inkscape on Windows, macOS, and Linux
+come pre-compiled with <code>libpagemaker</code> and
+<code>librevenge</code> support enabled by default.</p>
+<ol type="1">
+<li>Launch <strong>Inkscape</strong>.</li>
+<li>Go to <strong>File &gt; Open</strong> (or <strong>File &gt;
+Import</strong> if you want to add the artwork into an existing
+canvas).</li>
+<li>In the file selection dialog, set the file type filter to
+<strong>All Files</strong> or locate **Adobe PageMaker (*.pmd, <em>.p65,
+<em>.pm6)</em></em> in the dropdown menu.</li>
+<li>Select your PageMaker document and click <strong>Open</strong>.</li>
+<li>Inkscape invokes the <code>librevenge</code> stream filter to parse
+the document and render the vector artwork directly onto the
+canvas.</li>
+</ol>
+<h3 id="cleaning-up-imported-vectors">Cleaning Up Imported Vectors</h3>
+<p>Because PageMaker files often bundle layout grids, text boxes, and
+multiple page elements into a single file, imported vector graphics may
+require isolation:</p>
+<ol type="1">
+<li>Select the imported artwork on the canvas.</li>
+<li>Press <strong>Ctrl + Shift + G</strong> (Windows/Linux) or
+<strong>Cmd + Shift + G</strong> (macOS) repeatedly to ungroup the
+nested groups created during the translation process.</li>
+<li>Switch to the <strong>Node Tool (N)</strong> to verify that vector
+paths, shapes, and control points translated cleanly.</li>
+<li>Delete unwanted background boxes, margins, or master page artifacts
+that may have been imported alongside your vector drawing.</li>
+<li>Save the resulting asset in standard SVG format via <strong>File
+&gt; Save As</strong>.</li>
+</ol>
+<h3 id="alternative-cli-method-using-pmd2svg">Alternative CLI Method
+Using pmd2svg</h3>
+<p>If your version of Inkscape lacks the compiled
+<code>libpagemaker</code> filter or fails to open a particularly complex
+layout, you can convert the file using the standalone command-line
+utilities provided by the library.</p>
+<ol type="1">
+<li>Install the <code>libpagemaker</code> tools using your operating
+system package manager (e.g.,
+<code>sudo apt install libpagemaker-tools</code> on Debian/Ubuntu, or
+via Homebrew on macOS).</li>
+<li>Run the <code>pmd2svg</code> utility in your terminal:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pmd2svg</span> input_file.pmd <span class="op">&gt;</span> output_file.svg</span></code></pre></div></li>
+<li>Open the newly generated <code>output_file.svg</code> directly
+inside Inkscape to inspect and manipulate your vector paths.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

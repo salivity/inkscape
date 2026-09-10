@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Arrowheads on Leader Lines in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to customize arrowhead styles on dimension leader lines in Inkscape using standard stroke properties and marker settings. You will learn how to select built-in arrowhead styles, adjust their size and orientation, apply them to dim">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/customize-arrowheads-on-leader-lines-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Customize Arrowheads on Leader Lines in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/customize-arrowheads-on-leader-lines-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to customize arrowhead styles on dimension leader lines in Inkscape using standard stroke properties and marker settings. You will learn how to select built-in arrowhead styles, adjust their size and orientation, apply them to dim" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="customize-arrowheads-on-leader-lines-in-inkscape">Customize
+Arrowheads on Leader Lines in Inkscape</h1>
+<p>This guide explains how to customize arrowhead styles on dimension
+leader lines in Inkscape using standard stroke properties and marker
+settings. You will learn how to select built-in arrowhead styles, adjust
+their size and orientation, apply them to dimension lines, and convert
+custom vector shapes into unique marker designs.</p>
+<h3 id="selecting-built-in-arrowheads">Selecting Built-in
+Arrowheads</h3>
+<p>Inkscape applies arrowheads through path markers located in the
+stroke settings.</p>
+<ol type="1">
+<li>Select your leader line using the <strong>Select Tool</strong>
+(<code>S</code>) or draw a new line using the <strong>Draw Bezier Curves
+tool</strong> (<code>B</code>).</li>
+<li>Open the <strong>Fill and Stroke</strong> panel by pressing
+<code>Ctrl + Shift + F</code> (or <code>Cmd + Shift + F</code> on
+macOS).</li>
+<li>Switch to the <strong>Stroke style</strong> tab.</li>
+<li>Locate the <strong>Markers</strong> section, which contains three
+dropdown menus: <strong>Start Marker</strong>, <strong>Mid
+Marker</strong>, and <strong>End Marker</strong>.</li>
+<li>Click the dropdown corresponding to the end of your leader line
+where you want the arrowhead.</li>
+<li>Browse the list and select a standard arrowhead (such as
+<code>Arrow2</code>, <code>Stealth</code>, or
+<code>Dimension Viewer</code>).</li>
+</ol>
+<h3 id="adjusting-arrowhead-size-and-angle">Adjusting Arrowhead Size and
+Angle</h3>
+<p>Inkscape allows you to adjust the proportions and position of markers
+independently of the line's stroke width.</p>
+<ol type="1">
+<li>Under the <strong>Markers</strong> section in the <strong>Stroke
+style</strong> tab, locate the editing controls below the marker
+dropdowns.</li>
+<li><strong>Scale with stroke:</strong> Uncheck this option if you want
+the arrowhead size to remain static regardless of line thickness.</li>
+<li><strong>Scale X and Y:</strong> Adjust the size multipliers to
+increase or decrease the arrowhead dimensions.</li>
+<li><strong>Offset:</strong> Change the offset value to shift the
+arrowhead closer to or further along the path endpoint.</li>
+<li><strong>Angle:</strong> Choose whether the marker auto-aligns with
+the path direction or stays at a fixed angle.</li>
+</ol>
+<h3 id="creating-a-custom-arrowhead-style">Creating a Custom Arrowhead
+Style</h3>
+<p>If the predefined markers do not meet your technical drafting
+standards, you can convert any vector shape into a marker.</p>
+<ol type="1">
+<li>Draw the desired arrowhead geometry on your canvas using the shape
+or Bezier tools.</li>
+<li>Select the shape.</li>
+<li>Go to the menu bar and click <strong>Object</strong> &gt;
+<strong>Objects to Marker</strong>.</li>
+<li>The custom shape disappears from the canvas and is added to the
+active document's marker library.</li>
+<li>Select your dimension leader line, return to the <strong>Fill and
+Stroke</strong> panel, and select your newly created marker from the
+start or end marker dropdown.</li>
+</ol>
+<h3 id="applying-arrowheads-to-dimensioning-extensions">Applying
+Arrowheads to Dimensioning Extensions</h3>
+<p>If you use Inkscape’s automatic dimensioning feature:</p>
+<ol type="1">
+<li>Navigate to <strong>Extensions</strong> &gt; <strong>Visualise
+Path</strong> &gt; <strong>Dimensions</strong>.</li>
+<li>Set your offsets, text options, and line formats.</li>
+<li>Once generated, ungroup the output (<code>Ctrl + Shift + G</code> or
+<code>Cmd + Shift + G</code>) to access the leader path directly.</li>
+<li>Apply the custom marker settings via the <strong>Fill and
+Stroke</strong> dialog to update the automatically generated
+arrowheads.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

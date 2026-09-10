@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape SVG for Next.js JSX - inkscape</title>
+    <meta name="description" content="Exporting graphics from Inkscape for inline use in Next.js requires transforming standard, metadata-heavy SVG markup into valid, camelCased JSX. This guide walks through configuring Inkscape's export settings to produce clean vector code, converting SVG">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-svg-for-next-js-jsx">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape SVG for Next.js JSX - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-svg-for-next-js-jsx" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting graphics from Inkscape for inline use in Next.js requires transforming standard, metadata-heavy SVG markup into valid, camelCased JSX. This guide walks through configuring Inkscape's export settings to produce clean vector code, converting SVG" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-svg-for-nextjs-jsx">Export Inkscape SVG for
+Next.js JSX</h1>
+<p>Exporting graphics from Inkscape for inline use in Next.js requires
+transforming standard, metadata-heavy SVG markup into valid, camelCased
+JSX. This guide walks through configuring Inkscape's export settings to
+produce clean vector code, converting SVG attributes into
+React-compatible syntax, and embedding the resulting component directly
+into a Next.js application without rendering or runtime errors.</p>
+<h3 id="step-1-export-as-optimized-svg-in-inkscape">Step 1: Export as
+Optimized SVG in Inkscape</h3>
+<p>Inkscape saves files by default with proprietary editor metadata and
+namespaces (such as <code>sodipodi</code> and <code>inkscape</code>)
+that will cause syntax errors in React.</p>
+<ol type="1">
+<li>Open your vector file in Inkscape.</li>
+<li>Navigate to <strong>File</strong> &gt; <strong>Save As...</strong>
+(or press <code>Ctrl+Shift+S</code> / <code>Cmd+Shift+S</code>).</li>
+<li>In the file format dropdown, select <strong>Optimized SVG
+(*.svg)</strong> instead of "Inkscape SVG".</li>
+<li>Choose your destination and click <strong>Save</strong>.</li>
+<li>In the <strong>Optimized SVG Output</strong> configuration dialog:
+<ul>
+<li>Under <strong>SVG Output</strong>, check <strong>Remove
+metadata</strong>, <strong>Remove comments</strong>, and <strong>Format
+with indenting</strong>.</li>
+<li>Under <strong>SVG Processing</strong>, check <strong>Remove unused
+IDs</strong> and <strong>Shorten color values</strong>.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to generate the sanitized SVG file.</li>
+</ol>
+<h3 id="step-2-convert-svg-syntax-to-jsx">Step 2: Convert SVG Syntax to
+JSX</h3>
+<p>Standard SVG uses HTML/XML attribute conventions like kebab-case
+(e.g., <code>stroke-width</code>, <code>fill-rule</code>) and the
+<code>class</code> attribute. React requires camelCase attributes
+(<code>strokeWidth</code>, <code>fillRule</code>) and
+<code>className</code>.</p>
+<p>You can convert the exported SVG to JSX using one of the following
+methods:</p>
+<h4 id="method-a-using-svgr-recommended">Method A: Using SVGR
+(Recommended)</h4>
+<p>SVGR automatically parses SVG elements and produces compliant
+React/Next.js code. Run it via <code>npx</code> in your terminal:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> @svgr/cli path/to/exported-file.svg</span></code></pre></div>
+<p>Alternatively, copy the raw XML code from the exported file and paste
+it into an online SVGR converter to instantly view the generated
+JSX.</p>
+<h4 id="method-b-manual-code-adjustment">Method B: Manual Code
+Adjustment</h4>
+<p>If updating manually, open the <code>.svg</code> file in your code
+editor and apply these replacements:</p>
+<ul>
+<li>Replace <code>class=</code> with <code>className=</code>.</li>
+<li>Convert kebab-case attributes to camelCase:
+<ul>
+<li><code>stroke-width</code> → <code>strokeWidth</code></li>
+<li><code>stroke-linecap</code> → <code>strokeLinecap</code></li>
+<li><code>stroke-linejoin</code> → <code>strokeLinejoin</code></li>
+<li><code>fill-rule</code> → <code>fillRule</code></li>
+<li><code>clip-rule</code> → <code>clipRule</code></li>
+</ul></li>
+<li>Convert any inline <code>style="..."</code> strings into JavaScript
+style objects: <code>style={{ propertyName: "value" }}</code>.</li>
+<li>Remove redundant namespace attributes on the root
+<code>&lt;svg&gt;</code> tag, such as <code>xmlns:xlink</code> or
+<code>xml:space</code>.</li>
+</ul>
+<h3 id="step-3-implement-as-an-inline-nextjs-component">Step 3:
+Implement as an Inline Next.js Component</h3>
+<p>Wrap the sanitized SVG in a standard React functional component. Make
+the component modular by allowing it to receive standard SVG attributes
+as props.</p>
+<p>Create a new component file, such as
+<code>components/VectorIcon.jsx</code>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="kw">function</span> <span class="fu">VectorIcon</span>({ className <span class="op">=</span> <span class="st">&quot;&quot;</span><span class="op">,</span> <span class="op">...</span>props }) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;svg</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      <span class="ot">viewBox</span><span class="op">=</span><span class="st">&quot;0 0 100 100&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      <span class="ot">fill</span><span class="op">=</span><span class="st">&quot;none&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="ot">xmlns</span><span class="op">=</span><span class="st">&quot;http://www.w3.org/2000/svg&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      <span class="ot">className</span><span class="op">=</span><span class="va">{</span>className<span class="va">}</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="va">{</span><span class="op">...</span>props<span class="va">}</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;circle</span> <span class="ot">cx</span><span class="op">=</span><span class="st">&quot;50&quot;</span> <span class="ot">cy</span><span class="op">=</span><span class="st">&quot;50&quot;</span> <span class="ot">r</span><span class="op">=</span><span class="st">&quot;40&quot;</span> <span class="ot">stroke</span><span class="op">=</span><span class="st">&quot;currentColor&quot;</span> <span class="ot">strokeWidth</span><span class="op">=</span><span class="st">&quot;4&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      <span class="kw">&lt;path</span> <span class="ot">d</span><span class="op">=</span><span class="st">&quot;M30 50L45 65L70 35&quot;</span> <span class="ot">stroke</span><span class="op">=</span><span class="st">&quot;currentColor&quot;</span> <span class="ot">strokeWidth</span><span class="op">=</span><span class="st">&quot;4&quot;</span> <span class="ot">strokeLinecap</span><span class="op">=</span><span class="st">&quot;round&quot;</span> <span class="ot">strokeLinejoin</span><span class="op">=</span><span class="st">&quot;round&quot;</span> <span class="kw">/&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/svg&gt;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="step-4-import-and-render">Step 4: Import and Render</h3>
+<p>Import the inline SVG component into any Next.js page or
+Server/Client Component:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode jsx"><code class="sourceCode javascriptreact"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> VectorIcon <span class="im">from</span> <span class="st">&quot;@/components/VectorIcon&quot;</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="kw">function</span> <span class="fu">Page</span>() {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> (</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;main</span> <span class="ot">className</span><span class="op">=</span><span class="st">&quot;flex items-center justify-center min-h-screen&quot;</span><span class="kw">&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">&lt;VectorIcon</span> <span class="ot">className</span><span class="op">=</span><span class="st">&quot;w-12 h-12 text-blue-600&quot;</span> <span class="fu">/&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">&lt;/main&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Using <code>currentColor</code> for <code>fill</code> or
+<code>stroke</code> ensures the SVG inherits styling directly from CSS
+utility classes, providing complete control over dimensions and colors
+directly inside Next.js.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

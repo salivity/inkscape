@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Inkscape Calculates Bezier Arc Length - inkscape</title>
+    <meta name="description" content="Inkscape determines the arc length of an arbitrary Bézier segment through its core computational geometry engine, lib2geom, using numerical integration via Gauss-Legendre quadrature combined with adaptive subdivision. Because the arc length of cubic and">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-inkscape-calculates-bezier-arc-length">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Inkscape Calculates Bezier Arc Length - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-inkscape-calculates-bezier-arc-length" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape determines the arc length of an arbitrary Bézier segment through its core computational geometry engine, lib2geom, using numerical integration via Gauss-Legendre quadrature combined with adaptive subdivision. Because the arc length of cubic and" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-inkscape-calculates-bezier-arc-length">How Inkscape
+Calculates Bezier Arc Length</h1>
+<p>Inkscape determines the arc length of an arbitrary Bézier segment
+through its core computational geometry engine,
+<strong>lib2geom</strong>, using numerical integration via
+<strong>Gauss-Legendre quadrature</strong> combined with
+<strong>adaptive subdivision</strong>. Because the arc length of cubic
+and higher-degree Bézier curves cannot be computed using closed-form
+analytical equations, Inkscape calculates the derivative of the curve
+and numerically integrates its magnitude (velocity) across the
+parametric interval to achieve high precision and performance.</p>
+<h3 id="the-mathematical-problem">The Mathematical Problem</h3>
+<p>A parametric 2D Bézier curve is defined by coordinate functions <span
+class="math inline">\(x(t)\)</span> and <span
+class="math inline">\(y(t)\)</span> over the interval <span
+class="math inline">\(t \in [0, 1]\)</span>. The arc length <span
+class="math inline">\(L\)</span> of this curve is given by the standard
+line integral:</p>
+<p><span class="math display">\[L = \int_{0}^{1}
+\sqrt{\left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2} \,
+dt\]</span></p>
+<p>For linear segments, this simplifies to Euclidean distance. For
+quadratic curves, an analytical solution involving logarithms and square
+roots exists. However, for cubic Bézier curves—the standard curve type
+used in Inkscape and SVG—the integrand contains the square root of a
+quartic polynomial, which produces an incomplete elliptic integral of
+the second kind. Because closed-form solutions are computationally
+impractical or nonexistent for arbitrary degrees, Inkscape must rely on
+approximation algorithms.</p>
+<h3 id="numerical-integration-gauss-legendre-quadrature">Numerical
+Integration: Gauss-Legendre Quadrature</h3>
+<p>Inkscape offloads 2D geometric tasks to <strong>lib2geom</strong>, a
+C++ library tailored for path manipulation. To compute path length,
+lib2geom evaluates the derivative of the Bézier curve, <span
+class="math inline">\(C&#39;(t) = (x&#39;(t), y&#39;(t))\)</span>, which
+is itself a Bézier curve of degree <span class="math inline">\(n -
+1\)</span>. The speed function <span class="math inline">\(\|C&#39;(t)\|
+= \sqrt{x&#39;(t)^2 + y&#39;(t)^2}\)</span> is then integrated.</p>
+<p>The primary method employed is <strong>Gauss-Legendre
+quadrature</strong>. This numerical integration technique approximates
+the definite integral by evaluating the integrand at predetermined,
+optimally spaced points (Gauss nodes) and multiplying them by
+corresponding weights:</p>
+<p><span class="math display">\[L \approx \sum_{i=1}^{n} w_i \left\|
+C&#39;(t_i) \right\|\]</span></p>
+<p>Gauss-Legendre quadrature is favored over uniform sampling rules
+(such as Simpson's rule or the Trapezoidal rule) because an <span
+class="math inline">\(n\)</span>-point Gaussian quadrature yields an
+exact result for polynomials of degree <span class="math inline">\(2n -
+1\)</span> or less. Although the square root prevents the integrand from
+being a true polynomial, the smoothness of Bézier curves makes
+Gauss-Legendre quadrature converge rapidly with relatively few function
+evaluations.</p>
+<h3 id="adaptive-subdivision-and-error-control">Adaptive Subdivision and
+Error Control</h3>
+<p>When evaluating long segments, high-degree curves, or curves with
+sharp turns and inflection points, standard fixed-order quadrature can
+produce precision errors. In these scenarios, lib2geom applies
+<strong>adaptive subdivision</strong>:</p>
+<ol type="1">
+<li><strong>Flatness and Bounds Testing:</strong> The curve's control
+polygon provides upper and lower bounds. The chord length (the direct
+distance between endpoints) serves as the minimum possible length, while
+the sum of the control polygon edges serves as the maximum possible
+length.</li>
+<li><strong>Recursive Splitting:</strong> If the curve exhibits high
+curvature or if the error tolerance between approximations exceeds a
+specified threshold, the algorithm splits the curve at its midpoint
+(<span class="math inline">\(t = 0.5\)</span>) using <strong>de
+Casteljau's algorithm</strong>.</li>
+<li><strong>Local Quadrature:</strong> The numerical quadrature is
+applied independently to each subsegment, and the partial lengths are
+summed.</li>
+</ol>
+<p>This hybrid approach allows Inkscape to balance computational speed
+with sub-pixel visual accuracy, providing near-instantaneous length
+measurements during interactive path editing, stroking, and dashing
+operations.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

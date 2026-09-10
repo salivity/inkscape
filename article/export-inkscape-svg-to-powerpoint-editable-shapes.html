@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape SVG to PowerPoint Editable Shapes - inkscape</title>
+    <meta name="description" content="Transforming vector graphics from Inkscape into fully editable Microsoft PowerPoint shapes allows you to recolor, resize, and edit individual path nodes directly within your slides. This guide explains how to prepare your artwork in Inkscape, save it in">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-svg-to-powerpoint-editable-shapes">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape SVG to PowerPoint Editable Shapes - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-svg-to-powerpoint-editable-shapes" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transforming vector graphics from Inkscape into fully editable Microsoft PowerPoint shapes allows you to recolor, resize, and edit individual path nodes directly within your slides. This guide explains how to prepare your artwork in Inkscape, save it in" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-svg-to-powerpoint-editable-shapes">Export
+Inkscape SVG to PowerPoint Editable Shapes</h1>
+<p>Transforming vector graphics from Inkscape into fully editable
+Microsoft PowerPoint shapes allows you to recolor, resize, and edit
+individual path nodes directly within your slides. This guide explains
+how to prepare your artwork in Inkscape, save it in the correct format,
+and convert it into native Microsoft Office Shapes within
+PowerPoint.</p>
+<h2 id="step-1-prepare-the-graphic-in-inkscape">Step 1: Prepare the
+Graphic in Inkscape</h2>
+<p>Before exporting, ensure all elements are compatible with
+PowerPoint’s shape interpreter:</p>
+<ol type="1">
+<li><strong>Convert Text to Paths</strong>: Select any text elements and
+go to <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>). Unconverted fonts may render
+incorrectly or revert to standard system fonts in PowerPoint.</li>
+<li><strong>Convert Strokes to Paths (Optional)</strong>: If you use
+custom stroke styles or outlines that must scale uniformly, select them
+and click <strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>).</li>
+<li><strong>Ungroup Hidden Containers</strong>: Select all elements and
+ungroup deeply nested layers by pressing <code>Ctrl + Shift + G</code>
+repeatedly until no complex hierarchies remain.</li>
+<li><strong>Clean the Document</strong>: Go to <strong>File &gt; Clean
+Up Document</strong> to remove unused definitions, gradients, and
+markers.</li>
+</ol>
+<h2 id="step-2-save-as-plain-svg">Step 2: Save as Plain SVG</h2>
+<p>While modern versions of PowerPoint can read standard Inkscape SVGs,
+saving as a clean, standardized SVG prevents parsing errors.</p>
+<ol type="1">
+<li>Click <strong>File &gt; Save As...</strong></li>
+<li>In the file type dropdown, select <strong>Plain SVG (*.svg)</strong>
+instead of "Inkscape SVG".</li>
+<li>Name your file and click <strong>Save</strong>.</li>
+</ol>
+<h2 id="step-3-insert-and-convert-in-powerpoint">Step 3: Insert and
+Convert in PowerPoint</h2>
+<p>Modern versions of Microsoft PowerPoint (Microsoft 365, Office 2019,
+and Office 2021) have built-in support for converting vector files into
+Office Shapes.</p>
+<ol type="1">
+<li>Open your presentation and navigate to the desired slide.</li>
+<li>Go to <strong>Insert &gt; Pictures &gt; This Device...</strong> and
+select your saved Plain SVG file.</li>
+<li>With the inserted graphic selected, navigate to the <strong>Graphics
+Format</strong> tab on the ribbon.</li>
+<li>Click <strong>Convert to Shape</strong> (located in the Change
+group). Alternatively, right-click the graphic and select
+<strong>Convert to Shape</strong>.</li>
+<li>PowerPoint will convert the SVG into a grouped set of native
+Microsoft Office Drawing Objects.</li>
+</ol>
+<h2 id="step-4-edit-the-elements">Step 4: Edit the Elements</h2>
+<p>Once converted, the graphic functions like any standard shape drawn
+directly in PowerPoint:</p>
+<ul>
+<li><strong>Ungroup Elements</strong>: Press
+<code>Ctrl + Shift + G</code> to break the converted object into
+individual sub-shapes.</li>
+<li><strong>Recolor</strong>: Select individual shapes and use
+<strong>Shape Format &gt; Shape Fill</strong> and <strong>Shape
+Outline</strong>.</li>
+<li><strong>Edit Points</strong>: Right-click any converted path and
+select <strong>Edit Points</strong> to modify the vector control points
+and bezier curves directly on the slide.</li>
+</ul>
+<h2
+id="alternative-method-exporting-via-emf-for-legacy-powerpoint">Alternative
+Method: Exporting via EMF (For Legacy PowerPoint)</h2>
+<p>If you are using an older version of PowerPoint that lacks native SVG
+conversion:</p>
+<ol type="1">
+<li>In Inkscape, go to <strong>File &gt; Save As...</strong></li>
+<li>Select <strong>Enhanced Metafile (*.emf)</strong> as the file format
+and save.</li>
+<li>In PowerPoint, insert the <code>.emf</code> file via <strong>Insert
+&gt; Pictures</strong>.</li>
+<li>Right-click the image and select <strong>Group &gt; Ungroup</strong>
+(or press <code>Ctrl + Shift + G</code>).</li>
+<li>A prompt will appear asking: <em>"This is an imported picture, not a
+group. Do you want to convert it to a Microsoft Office drawing
+object?"</em> Click <strong>Yes</strong>.</li>
+<li>Ungroup the graphic a second time (<code>Ctrl + Shift + G</code>) to
+access all individual vector paths.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

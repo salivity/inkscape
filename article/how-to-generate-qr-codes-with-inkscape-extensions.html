@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Generate QR Codes with Inkscape Extensions - inkscape</title>
+    <meta name="description" content="Inkscape provides a built-in extension that allows users to quickly generate clean, scalable, vector-based QR codes pointing to custom URLs. This guide walks through the complete process of locating the barcode generation tool, entering your custom link,">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-generate-qr-codes-with-inkscape-extensions">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Generate QR Codes with Inkscape Extensions - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-generate-qr-codes-with-inkscape-extensions" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape provides a built-in extension that allows users to quickly generate clean, scalable, vector-based QR codes pointing to custom URLs. This guide walks through the complete process of locating the barcode generation tool, entering your custom link," />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-generate-qr-codes-with-inkscape-extensions">How to
+Generate QR Codes with Inkscape Extensions</h1>
+<p>Inkscape provides a built-in extension that allows users to quickly
+generate clean, scalable, vector-based QR codes pointing to custom URLs.
+This guide walks through the complete process of locating the barcode
+generation tool, entering your custom link, configuring error correction
+parameters, and customizing the final vector graphic for print or
+digital media.</p>
+<h2 id="step-1-open-the-qr-code-extension">Step 1: Open the QR Code
+Extension</h2>
+<ol type="1">
+<li>Launch Inkscape and open a new or existing document.</li>
+<li>Navigate to the top menu bar and click
+<strong>Extensions</strong>.</li>
+<li>Hover over <strong>Render</strong>, then select
+<strong>Barcode</strong>.</li>
+<li>Click on <strong>QR Code...</strong> to open the generation dialog
+window.</li>
+</ol>
+<h2 id="step-2-input-your-custom-url-and-configure-settings">Step 2:
+Input Your Custom URL and Configure Settings</h2>
+<p>Inside the QR Code dialog, you can define the data and the structural
+properties of your code:</p>
+<ul>
+<li><strong>Text:</strong> Paste or type your full custom URL into this
+field (for example, <code>https://www.example.com</code>). Ensure the
+protocol (<code>http://</code> or <code>https://</code>) is included so
+scanning devices recognize it immediately as a web link.</li>
+<li><strong>Error Correction Level:</strong> Choose between four
+standard levels:
+<ul>
+<li><strong>L (Low - 7%):</strong> Best for clean, uncluttered codes
+where data loss is unlikely.</li>
+<li><strong>M (Medium - 15%):</strong> The default balance between size
+and reliability.</li>
+<li><strong>Q (Quartile - 25%):</strong> Useful if you intend to overlay
+small logos or design elements.</li>
+<li><strong>H (High - 30%):</strong> Maximum redundancy, best for rugged
+environments or heavily modified designs.</li>
+</ul></li>
+<li><strong>Character Encoding:</strong> Keep this set to
+<strong>Default (UTF-8)</strong> or Latin-1 for standard URLs.</li>
+<li><strong>Module Size (px):</strong> Sets the base pixel size for each
+square unit (module) of the QR code.</li>
+</ul>
+<h2 id="step-3-preview-and-generate">Step 3: Preview and Generate</h2>
+<ol type="1">
+<li>Check the <strong>Live preview</strong> box in the bottom-left
+corner of the dialog to see how the generated QR code looks on your
+canvas in real time.</li>
+<li>If you are satisfied with the appearance and sizing, click
+<strong>Apply</strong>.</li>
+<li>Click <strong>Close</strong> to exit the dialog.</li>
+</ol>
+<h2 id="step-4-customize-the-vector-graphic">Step 4: Customize the
+Vector Graphic</h2>
+<p>Because Inkscape generates QR codes as pure vector objects (paths
+grouped together), you can edit them directly:</p>
+<ul>
+<li><strong>Resizing:</strong> Select the QR code with the
+<strong>Selection Tool (S)</strong>, hold <code>Ctrl</code> to maintain
+proportions, and drag any corner handle to scale the code without losing
+sharpness.</li>
+<li><strong>Changing Colors:</strong> Select the QR code and pick a new
+color from the palette at the bottom. Ensure there is high contrast
+between the modules and the background color so mobile cameras can read
+it reliably.</li>
+<li><strong>Adding a Logo:</strong> If you used <strong>Q</strong> or
+<strong>H</strong> error correction, you can place a small vector logo
+in the center of the QR code without rendering the link unreadable.</li>
+</ul>
+<h2 id="step-5-test-the-code">Step 5: Test the Code</h2>
+<p>Always scan the newly generated QR code directly from your Inkscape
+canvas or after exporting it using a smartphone camera to verify that
+the custom URL opens properly before sending the design to
+production.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

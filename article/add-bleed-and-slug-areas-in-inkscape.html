@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Bleed and Slug Areas in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to set up slug and bleed areas outside your artwork boundaries in Inkscape for professional print production. Because Inkscape does not feature a dedicated one-click "slug" option like traditional desktop publishing software, you">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/add-bleed-and-slug-areas-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Add Bleed and Slug Areas in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/add-bleed-and-slug-areas-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to set up slug and bleed areas outside your artwork boundaries in Inkscape for professional print production. Because Inkscape does not feature a dedicated one-click "slug" option like traditional desktop publishing software, you" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="add-bleed-and-slug-areas-in-inkscape">Add Bleed and Slug Areas
+in Inkscape</h1>
+<p>This guide explains how to set up slug and bleed areas outside your
+artwork boundaries in Inkscape for professional print production.
+Because Inkscape does not feature a dedicated one-click "slug" option
+like traditional desktop publishing software, you will learn how to
+expand your document canvas, establish guide boundaries for trim and
+bleed, use native print mark extensions, and place printer notes
+accurately for export.</p>
+<h3 id="1-calculate-your-total-dimensions">1. Calculate Your Total
+Dimensions</h3>
+<p>A slug area sits outside the bleed boundary and holds production
+information such as job names, color bars, dates, and registration
+marks. To prepare your document, calculate the total canvas size by
+adding both bleed and slug values to your final trim dimensions.</p>
+<ul>
+<li><strong>Trim Size:</strong> The final cut size of the document.</li>
+<li><strong>Bleed Area:</strong> Typically 0.125 inches (3 mm) beyond
+the trim line on all sides.</li>
+<li><strong>Slug Area:</strong> Typically an additional 0.5 to 1 inch
+(12 to 25 mm) beyond the bleed line.</li>
+</ul>
+<p>Add your trim dimensions, bleed margins (x2 for opposing sides), and
+slug margins (x2) together to determine the overall page size
+required.</p>
+<h3 id="2-set-up-the-page-canvas">2. Set Up the Page Canvas</h3>
+<ol type="1">
+<li>Open your project in Inkscape.</li>
+<li>Go to <strong>File &gt; Document Properties</strong> (or press
+<code>Ctrl+Shift+D</code> / <code>Cmd+Shift+D</code>).</li>
+<li>Under the <strong>Page</strong> tab, locate <strong>Custom
+size</strong>.</li>
+<li>Set the <strong>Units</strong> to your preferred print measurement
+(inches or millimeters).</li>
+<li>Enter the total calculated width and height (Trim + Bleed +
+Slug).</li>
+</ol>
+<h3 id="3-create-boundary-guides">3. Create Boundary Guides</h3>
+<p>Define your trim and bleed lines within the enlarged canvas to
+prevent artwork from shifting incorrectly.</p>
+<ol type="1">
+<li>Go to <strong>View &gt; Guides</strong> and ensure guides are
+visible.</li>
+<li>Drag guides from the top and left rulers onto the canvas.</li>
+<li>Double-click each guide to set its exact coordinate:
+<ul>
+<li><strong>Trim Guides:</strong> Place guides corresponding to the
+inner boundary where the document will ultimately be cut.</li>
+<li><strong>Bleed Guides:</strong> Place guides outside the trim guides
+at your specified bleed distance (e.g., 3 mm outside the trim).</li>
+</ul></li>
+<li>The remaining margin between the bleed guides and the edge of the
+canvas acts as your dedicated slug area.</li>
+</ol>
+<h3 id="4-generate-automatic-printer-marks">4. Generate Automatic
+Printer Marks</h3>
+<p>Inkscape includes a built-in tool to render standard prepress
+markings automatically.</p>
+<ol type="1">
+<li>Navigate to <strong>Extensions &gt; Render &gt; Layout &gt; Printing
+Marks...</strong></li>
+<li>In the dialog box, configure your parameters:
+<ul>
+<li>Enable <strong>Crop Marks</strong> (set offset to match your
+bleed).</li>
+<li>Enable <strong>Bleed Marks</strong>.</li>
+<li>Enable <strong>Registration Marks</strong>.</li>
+<li>Enable <strong>Page Information</strong> to automatically print the
+file name, date, and time in the slug area.</li>
+</ul></li>
+<li>Click <strong>Apply</strong> to generate the marks on a new
+layer.</li>
+</ol>
+<h3 id="5-add-custom-printer-notes-in-the-slug-zone">5. Add Custom
+Printer Notes in the Slug Zone</h3>
+<ol type="1">
+<li>Open the <strong>Layers</strong> panel (<code>Ctrl+Shift+L</code> /
+<code>Cmd+Shift+L</code>).</li>
+<li>Create a new layer named "Slug Notes" to keep print metadata
+separate from production artwork.</li>
+<li>Select the <strong>Text Tool</strong> (<code>T</code>) and click
+inside the margin area outside the bleed guides.</li>
+<li>Input required technical details such as:
+<ul>
+<li>Job name and revision number.</li>
+<li>Spot color names (e.g., Pantone references) or CMYK breakdowns.</li>
+<li>Folding, perforation, or binding instructions.</li>
+<li>Target press profile or stock information.</li>
+</ul></li>
+</ol>
+<h3 id="6-export-the-print-ready-file">6. Export the Print-Ready
+File</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong> or <strong>File &gt;
+Export...</strong></li>
+<li>Choose <strong>Portable Document Format (*.pdf)</strong> as the
+export format.</li>
+<li>In the PDF export options, ensure the export area is set to the full
+<strong>Page</strong> so that the slug, bleed, and printer marks are all
+preserved in the final output file.</li>
+<li>Set the resolution to 300 DPI or higher according to your commercial
+printer's specifications.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

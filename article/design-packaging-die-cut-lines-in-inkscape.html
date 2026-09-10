@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Packaging Die-Cut Lines in Inkscape - inkscape</title>
+    <meta name="description" content="Designing custom packaging die-cut lines in Inkscape requires setting up precise structural vector paths that clearly distinguish between outer cut boundaries, interior folds or creases, and safety margins. This guide outlines the complete workflow for c">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/design-packaging-die-cut-lines-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Packaging Die-Cut Lines in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/design-packaging-die-cut-lines-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing custom packaging die-cut lines in Inkscape requires setting up precise structural vector paths that clearly distinguish between outer cut boundaries, interior folds or creases, and safety margins. This guide outlines the complete workflow for c" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="design-packaging-die-cut-lines-in-inkscape">Design Packaging
+Die-Cut Lines in Inkscape</h1>
+<p>Designing custom packaging die-cut lines in Inkscape requires setting
+up precise structural vector paths that clearly distinguish between
+outer cut boundaries, interior folds or creases, and safety margins.
+This guide outlines the complete workflow for creating a professional
+dieline, including configuring your document units, using precision
+snapping tools to construct panels, styling stroke paths with standard
+color coding for cuts and creases, and exporting production-ready files
+for commercial printers or digital cutting plotters.</p>
+<h3 id="step-1-set-up-document-properties-and-layers">Step 1: Set Up
+Document Properties and Layers</h3>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>File &gt; Document
+Properties</strong> (or press <code>Ctrl + Shift + D</code>).</li>
+<li>Set the <strong>Display units</strong> and <strong>Custom size
+units</strong> to your production standard, typically <code>mm</code> or
+<code>in</code>.</li>
+<li>Set your page dimensions to comfortably fit the unfolded flat
+packaging footprint plus bleed margins.</li>
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li>Create three distinct layers to maintain separation between
+components:
+<ul>
+<li><strong>Artwork:</strong> For graphics, background colors, and
+typography.</li>
+<li><strong>Crease Lines:</strong> For folds, scores, and
+perforations.</li>
+<li><strong>Die-Cut Lines:</strong> For the outer boundary and
+cutouts.</li>
+</ul></li>
+</ol>
+<p>Lock the layers you are not actively modifying to prevent accidental
+movement.</p>
+<h3 id="step-2-configure-snapping-for-precision">Step 2: Configure
+Snapping for Precision</h3>
+<p>Packaging tolerances require exact alignment:</p>
+<ol type="1">
+<li>Enable the <strong>Snap</strong> control bar located on the right or
+top toolbar.</li>
+<li>Enable snapping to <strong>Bounding Boxes</strong>,
+<strong>Nodes</strong>, <strong>Cusps</strong>, and <strong>Path
+Intersections</strong>.</li>
+<li>Enable grid snapping under <strong>Document Properties &gt;
+Grids</strong> if you are working with standardized panel
+increments.</li>
+</ol>
+<h3 id="step-3-draw-the-structural-panels">Step 3: Draw the Structural
+Panels</h3>
+<ol type="1">
+<li>Select the <strong>Rectangle Tool</strong> (<code>R</code>).</li>
+<li>Draw the primary panels of the packaging (e.g., front, base, back,
+and sides) using exact width and height values entered in the top
+toolbar controls.</li>
+<li>Align adjacent panels using the <strong>Align and
+Distribute</strong> panel (<code>Ctrl + Shift + A</code>) with
+<strong>Relative to:</strong> set to <code>First selected</code> or
+<code>Last selected</code>.</li>
+<li>Select all drawn panels and go to <strong>Path &gt; Object to
+Path</strong> (<code>Shift + Ctrl + C</code>) to convert the parametric
+shapes into editable vector paths.</li>
+<li>Use the <strong>Draw Freehand Lines</strong> or <strong>Bezier
+Tool</strong> (<code>B</code>) to construct glue tabs and tuck-in flaps.
+Standard tuck flaps generally require a 15- to 45-degree chamfer at the
+corners to allow smooth closure.</li>
+</ol>
+<h3 id="step-4-define-and-style-die-cut-lines">Step 4: Define and Style
+Die-Cut Lines</h3>
+<p>Commercial packaging workflows use standardized colors to signal
+automated cutting systems:</p>
+<ol type="1">
+<li>Select the outer perimeter paths of your template and move them to
+the <strong>Die-Cut Lines</strong> layer.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>In the <strong>Fill</strong> tab, choose <strong>No
+paint</strong>.</li>
+<li>In the <strong>Stroke paint</strong> tab, set the line color to
+<strong>100% Magenta</strong> (<code>#FF00FF</code>), the industry
+standard for through-cuts.</li>
+<li>In the <strong>Stroke style</strong> tab, set the line width to a
+hairline thickness, typically <code>0.25 pt</code> or
+<code>0.1 mm</code>. Ensure the <strong>Dashes</strong> setting is set
+to a solid, continuous line.</li>
+</ol>
+<h3 id="step-5-add-and-annotate-crease-lines">Step 5: Add and Annotate
+Crease Lines</h3>
+<p>Creases represent score lines where the material will fold rather
+than separate:</p>
+<ol type="1">
+<li>Draw paths along every internal fold line on the <strong>Crease
+Lines</strong> layer using the <strong>Bezier Tool</strong>
+(<code>B</code>).</li>
+<li>In the <strong>Stroke paint</strong> tab, set the crease color to a
+contrasting tone, traditionally <strong>100% Cyan</strong>
+(<code>#00FFFF</code>) or <strong>100% Green</strong>
+(<code>#00FF00</code>).</li>
+<li>In the <strong>Stroke style</strong> tab, change the
+<strong>Dashes</strong> property from a solid line to a dashed pattern
+(such as <code>2.0, 2.0</code>). This provides visual clarity on proofs
+that the line represents a score rather than a cut.</li>
+<li>If working with corrugated board, add directional notes using the
+<strong>Text Tool</strong> (<code>T</code>) outside the design boundary
+specifying the fluting direction (e.g., "Flute Direction:
+Vertical").</li>
+</ol>
+<h3 id="step-6-add-bleeds-and-annotations">Step 6: Add Bleeds and
+Annotations</h3>
+<ol type="1">
+<li>Switch to the <strong>Artwork</strong> layer.</li>
+<li>Extend all background graphics and colors at least <code>3 mm</code>
+(or <code>0.125 in</code>) past the magenta die-cut line to prevent
+white unprinted edges caused by shifting during cutting.</li>
+<li>Create an <strong>Annotations</strong> layer outside the active
+dieline area to include job notes, such as:
+<ul>
+<li><strong>Magenta Path:</strong> Through-Cut (100%)</li>
+<li><strong>Cyan/Dashed Path:</strong> Crease / Score</li>
+<li><strong>Material Spec:</strong> Caliper / board grade</li>
+<li><strong>Dimensions:</strong> Finished folded size (L x W x D)</li>
+</ul></li>
+</ol>
+<h3 id="step-7-export-for-production">Step 7: Export for Production</h3>
+<ol type="1">
+<li>Verify that all overlapping lines are combined or aligned properly
+using the <strong>Edit paths by nodes</strong> tool
+(<code>N</code>).</li>
+<li>Go to <strong>File &gt; Save As...</strong> and choose
+<strong>Portable Document Format (*.pdf)</strong>.</li>
+<li>In the PDF export options:
+<ul>
+<li>Choose <strong>PDF version 1.5</strong> or higher to preserve layer
+information.</li>
+<li>Ensure text output options are set to <strong>Convert text to
+paths</strong> if the printer does not have your technical fonts
+installed.</li>
+</ul></li>
+<li>Alternatively, if outputting directly to a digital flatbed cutter
+(like a Zünd or Kongsberg), select <strong>File &gt; Save As...</strong>
+and choose <strong>Desktop Cutting Plotter (AutoCAD DXF R14)
+(*.dxf)</strong> or standard SVG, ensuring your stroke colors remain
+unflattened.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

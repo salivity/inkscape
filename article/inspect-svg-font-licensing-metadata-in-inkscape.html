@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspect SVG Font Licensing Metadata in Inkscape - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to locate and inspect font licensing metadata embedded inside an imported Scalable Vector Graphics (SVG) document using Inkscape. SVG files often contain font references, embedded SVG fonts, or embedded Base64-encoded web font">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inspect-svg-font-licensing-metadata-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inspect SVG Font Licensing Metadata in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inspect-svg-font-licensing-metadata-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to locate and inspect font licensing metadata embedded inside an imported Scalable Vector Graphics (SVG) document using Inkscape. SVG files often contain font references, embedded SVG fonts, or embedded Base64-encoded web font" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inspect-svg-font-licensing-metadata-in-inkscape">Inspect SVG
+Font Licensing Metadata in Inkscape</h1>
+<p>This guide demonstrates how to locate and inspect font licensing
+metadata embedded inside an imported Scalable Vector Graphics (SVG)
+document using Inkscape. SVG files often contain font references,
+embedded SVG fonts, or embedded Base64-encoded web fonts, which
+typically include copyright notices, license URLs, and usage
+restrictions. By utilizing Inkscape’s XML Editor and Document Metadata
+tools, you can examine these underlying declarations to ensure
+compliance with font usage terms.</p>
+<h3 id="1-check-document-level-licensing-metadata">1. Check
+Document-Level Licensing Metadata</h3>
+<p>When fonts or assets are authored and exported into an SVG, licensing
+information is frequently placed into the document’s global Dublin Core
+metadata block.</p>
+<ol type="1">
+<li>Open your SVG file in Inkscape
+(<code>File &gt; Open...</code>).</li>
+<li>Go to <strong>File &gt; Document Properties...</strong> (or press
+<code>Ctrl + Shift + D</code> / <code>Cmd + Shift + D</code>).</li>
+<li>Click on the <strong>Metadata</strong> tab.</li>
+<li>Review the fields:
+<ul>
+<li><strong>Rights / License</strong>: Lists specific licenses (such as
+SIL Open Font License, Creative Commons, or proprietary commercial
+agreements).</li>
+<li><strong>Creator / Publisher</strong>: Names the font foundry,
+designer, or software that generated the file.</li>
+<li><strong>Description</strong>: Often stores inline EULA summaries or
+font attribution notices.</li>
+</ul></li>
+</ol>
+<h3 id="2-inspect-font-nodes-and-css-via-the-xml-editor">2. Inspect Font
+Nodes and CSS via the XML Editor</h3>
+<p>Most technical font metadata, especially for embedded SVG fonts or
+embedded web fonts, is stored directly inside the XML tree.</p>
+<ol type="1">
+<li>Open the XML Editor by navigating to <strong>Edit &gt; XML
+Editor...</strong> (or press <code>Ctrl + Shift + X</code> /
+<code>Cmd + Shift + X</code>).</li>
+<li>Expand the root <code>&lt;svg:svg&gt;</code> node.</li>
+<li>Locate and expand the <code>&lt;svg:defs&gt;</code> element. Font
+data and styling are typically held here:
+<ul>
+<li><strong><code>&lt;svg:font&gt;</code> or
+<code>&lt;svg:font-face&gt;</code> elements</strong>: Expand these
+nodes. Select <code>&lt;svg:font-face&gt;</code> and look at the
+attributes in the right-hand panel. Attribute values like
+<code>font-family</code>, <code>unicode-range</code>, or custom vendor
+attributes often carry versioning and copyright markers. Check child
+nodes for <code>&lt;svg:metadata&gt;</code> or
+<code>&lt;svg:description&gt;</code>.</li>
+<li><strong><code>&lt;svg:style&gt;</code> elements</strong>: If the
+font is embedded via CSS (<code>@font-face</code>), select the
+<code>&lt;svg:style&gt;</code> node. In the right panel, inspect the CSS
+text. Font creators frequently include commented license headers
+immediately preceding <code>@font-face { ... }</code> or within the base
+declaration.</li>
+</ul></li>
+</ol>
+<h3 id="3-review-dublin-core-metadata-nodes-in-xml">3. Review Dublin
+Core Metadata Nodes in XML</h3>
+<p>If the Document Properties dialog does not show license details, raw
+metadata tags may still exist in the XML structure:</p>
+<ol type="1">
+<li>In the XML Editor, expand the <code>&lt;svg:metadata&gt;</code>
+node.</li>
+<li>Expand <code>&lt;rdf:RDF&gt;</code> followed by
+<code>&lt;cc:Work&gt;</code> or
+<code>&lt;rdf:Description&gt;</code>.</li>
+<li>Look for explicit licensing elements:
+<ul>
+<li><code>&lt;dc:rights&gt;</code>: Holds direct copyright
+statements.</li>
+<li><code>&lt;cc:license rdf:resource="..." /&gt;</code>: Points to the
+official URL of the license governing the file and embedded assets.</li>
+<li><code>&lt;dc:relation&gt;</code>: Sometimes links directly to the
+original font repository or EULA page.</li>
+</ul></li>
+</ol>
+<h3 id="4-handling-base64-embedded-fonts">4. Handling Base64-Embedded
+Fonts</h3>
+<p>If the SVG embeds font binaries directly using
+<code>data:application/font-woff;base64,...</code> or
+<code>data:font/ttf;base64,...</code> within an embedded stylesheet:</p>
+<ol type="1">
+<li>Locate the <code>&lt;svg:style&gt;</code> node inside the XML
+Editor.</li>
+<li>Highlight the <code>raw</code> text containing the Base64
+string.</li>
+<li>Check the plain text comments immediately above or below the Base64
+block, where font export tools typically inject attribution and license
+notices.</li>
+<li>If no text comment exists, the license table resides inside the
+binary font data itself (the <code>name</code> table of
+OpenType/TrueType data), requiring the Base64 string to be extracted and
+analyzed with a specialized font inspection tool outside Inkscape.</li>
+</ol>
+<h3 id="important-caveat-outlined-text">Important Caveat: Outlined
+Text</h3>
+<p>If the text in the SVG was converted to paths (represented as
+<code>&lt;svg:path&gt;</code> elements rather than
+<code>&lt;svg:text&gt;</code>), the original font software has been
+removed from the file. Path-based text retains no embedded font
+licensing tables, metadata, or font software restrictions, though the
+artwork itself remains subject to the overall vector illustration's
+copyright.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

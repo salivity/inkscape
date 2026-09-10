@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Spot Colors to Process in Inkscape - inkscape</title>
+    <meta name="description" content="Converting spot colors to standard process colors (such as CMYK or RGB) in Inkscape is essential when preparing artwork for full-color commercial printing or digital distribution. This guide provides a straightforward walkthrough on how to identify spot">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/convert-spot-colors-to-process-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Convert Spot Colors to Process in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/convert-spot-colors-to-process-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting spot colors to standard process colors (such as CMYK or RGB) in Inkscape is essential when preparing artwork for full-color commercial printing or digital distribution. This guide provides a straightforward walkthrough on how to identify spot" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="convert-spot-colors-to-process-in-inkscape">Convert Spot Colors
+to Process in Inkscape</h1>
+<p>Converting spot colors to standard process colors (such as CMYK or
+RGB) in Inkscape is essential when preparing artwork for full-color
+commercial printing or digital distribution. This guide provides a
+straightforward walkthrough on how to identify spot or custom swatch
+colors, convert them to process color models using Inkscape’s native
+tools, and export your vector designs accurately for process-based
+workflows.</p>
+<h3 id="method-1-convert-colors-using-the-fill-and-stroke-dialog">Method
+1: Convert Colors Using the Fill and Stroke Dialog</h3>
+<p>The most direct way to change a spot color into a process color on
+individual or grouped elements is through the Fill and Stroke panel:</p>
+<ol type="1">
+<li><strong>Select the Object:</strong> Use the <strong>Selector
+Tool</strong> (<code>S</code> or <code>F1</code>) to click on the object
+containing the spot color.</li>
+<li><strong>Open Fill and Stroke:</strong> Press
+<code>Shift + Ctrl + F</code> (Windows/Linux) or
+<code>Shift + Cmd + F</code> (macOS) to open the <strong>Fill and
+Stroke</strong> panel on the right.</li>
+<li><strong>Navigate to the Color Tabs:</strong> At the top of the
+<strong>Fill</strong> (or <strong>Stroke paint</strong>) tab, you will
+see several color space options represented by tabs:
+<strong>RGB</strong>, <strong>HSL</strong>, <strong>HSV</strong>,
+<strong>CMYK</strong>, <strong>Wheel</strong>, and <strong>CMS</strong>
+(Color Management System).</li>
+<li><strong>Switch to a Process Mode:</strong>
+<ul>
+<li>For standard 4-color offset print, select the <strong>CMYK</strong>
+tab. Inkscape will calculate the equivalent process percentage values
+(Cyan, Magenta, Yellow, and Key/Black).</li>
+<li>For digital formats, select the <strong>RGB</strong> or
+<strong>HSL</strong> tab.</li>
+</ul></li>
+<li><strong>Adjust Values (Optional):</strong> Fine-tune the color
+sliders if you want exact, rounded process values instead of automatic
+conversions.</li>
+</ol>
+<h3 id="method-2-global-replacement-using-find-and-replace">Method 2:
+Global Replacement Using Find and Replace</h3>
+<p>If your design contains multiple instances of a spot color across
+different layers:</p>
+<ol type="1">
+<li><strong>Select a Target Object:</strong> Click on an element using
+the spot color you wish to convert.</li>
+<li><strong>Copy the Color Code:</strong> In the <strong>Fill and
+Stroke</strong> panel, copy the Hex value (<code>RGBA</code>
+field).</li>
+<li><strong>Open Find/Replace:</strong> Press <code>Ctrl + F</code> (or
+<code>Cmd + F</code>) to open the <strong>Find/Replace</strong>
+dialog.</li>
+<li><strong>Locate Matching Colors:</strong> Paste the Hex code into the
+<strong>Find</strong> field under the <strong>Properties</strong> tab
+and click <strong>Find</strong> to select all elements sharing that
+color.</li>
+<li><strong>Apply Process Color:</strong> With all matching elements
+selected, go back to the <strong>Fill and Stroke</strong> panel, switch
+to the <strong>CMYK</strong> or <strong>RGB</strong> tab, and enter your
+desired process color values.</li>
+</ol>
+<h3 id="method-3-preparing-and-exporting-process-cmyk-for-print">Method
+3: Preparing and Exporting Process CMYK for Print</h3>
+<p>Because Inkscape natively renders in an sRGB color space, final
+conversion to process CMYK often occurs during file export:</p>
+<ol type="1">
+<li><strong>Configure Color Management:</strong> Go to <strong>Edit &gt;
+Preferences &gt; Color Management</strong> and set your display and
+proofing profile to a standard CMYK profile (such as <em>U.S. Web Coated
+(SWOP) v2</em> or <em>FOGRA39</em>).</li>
+<li><strong>Export as PDF:</strong> Go to <strong>File &gt; Save
+As...</strong> and select <strong>Portable Document Format
+(*.pdf)</strong>.</li>
+<li><strong>Set Output Intent:</strong> In the PDF export dialog, set
+the output to respect your document's color profile to ensure that all
+converted fills, strokes, and gradients are processed as standard
+4-color process plates rather than separated spot plates.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

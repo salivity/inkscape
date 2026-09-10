@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape Vectors to Blender Grease Pencil - inkscape</title>
+    <meta name="description" content="This guide explains how to export vector contours from Inkscape and import them into Blender as native Grease Pencil objects. By following this workflow, you can leverage Inkscape's precision vector drawing tools to design assets, import the Scalable Vec">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-blender-grease-pencil">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape Vectors to Blender Grease Pencil - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-blender-grease-pencil" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to export vector contours from Inkscape and import them into Blender as native Grease Pencil objects. By following this workflow, you can leverage Inkscape's precision vector drawing tools to design assets, import the Scalable Vec" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-vectors-to-blender-grease-pencil">Export
+Inkscape Vectors to Blender Grease Pencil</h1>
+<p>This guide explains how to export vector contours from Inkscape and
+import them into Blender as native Grease Pencil objects. By following
+this workflow, you can leverage Inkscape's precision vector drawing
+tools to design assets, import the Scalable Vector Graphics (SVG) data
+into Blender, and convert the resulting curve data into editable Grease
+Pencil strokes ready for 2D animation.</p>
+<h3 id="step-1-prepare-and-export-your-artwork-in-inkscape">Step 1:
+Prepare and Export Your Artwork in Inkscape</h3>
+<p>Before exporting, your artwork must be composed strictly of vector
+paths rather than raw shapes, text, or groups.</p>
+<ol type="1">
+<li><strong>Ungroup Elements:</strong> Select everything
+(<code>Ctrl + A</code>) and ungroup your elements
+(<code>Ctrl + Shift + G</code>) repeatedly until no groups remain.</li>
+<li><strong>Convert Shapes and Text to Paths:</strong> Select all
+elements and navigate to <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>). Blender requires true path data to
+generate curves.</li>
+<li><strong>Handle Strokes:</strong> If you want your lines to be
+treated as single-line Grease Pencil strokes, leave them as open or
+closed path strokes. If you want outlines converted to filled shapes,
+use <strong>Path &gt; Stroke to Path</strong>.</li>
+<li><strong>Export to SVG:</strong> Go to <strong>File &gt; Save
+As...</strong>, choose <strong>Plain SVG</strong> (instead of Inkscape
+SVG to strip out unnecessary software-specific metadata), and save your
+file.</li>
+</ol>
+<h3 id="step-2-import-the-svg-into-blender">Step 2: Import the SVG into
+Blender</h3>
+<p>Blender natively supports SVG importing through its built-in curve
+engine.</p>
+<ol type="1">
+<li>Open Blender and select a standard workspace or the 2D Animation
+workspace.</li>
+<li>Go to <strong>File &gt; Import &gt; Scalable Vector Graphics
+(.svg)</strong>.</li>
+<li>Navigate to your saved file and click <strong>Import
+SVG</strong>.</li>
+<li><strong>Locate and Scale the Curves:</strong> Imported SVGs
+typically appear at the 3D cursor at a very small scale. Select the
+imported curve collection in the Outliner, press <code>S</code>, drag
+your mouse to scale the artwork up, and press
+<code>Ctrl + A &gt; Apply All Transforms</code>.</li>
+<li><strong>Join Paths (Optional):</strong> Inkscape exports each path
+as an individual curve object. If you want your art in a single object,
+select all the imported curve objects and press <code>Ctrl + J</code> to
+join them.</li>
+</ol>
+<h3 id="step-3-convert-curves-to-grease-pencil">Step 3: Convert Curves
+to Grease Pencil</h3>
+<p>Once your vectors are in Blender as curve objects, they can be
+instantly converted into Grease Pencil data.</p>
+<ol type="1">
+<li>Select your curve object in the viewport or Outliner.</li>
+<li>Right-click the object in the 3D Viewport (or go to the
+<strong>Object</strong> menu in the top bar).</li>
+<li>Select <strong>Convert To &gt; Grease Pencil</strong>.</li>
+</ol>
+<p>Blender will create a new Grease Pencil object matching your vector
+contours. The original curve object will remain in your scene; you can
+hide or delete it.</p>
+<h3 id="step-4-configure-for-animation">Step 4: Configure for
+Animation</h3>
+<p>After conversion, the artwork operates as native Grease Pencil
+geometry.</p>
+<ol type="1">
+<li><strong>Adjust Stroke Thickness:</strong> Select the new Grease
+Pencil object, navigate to the <strong>Object Data Properties</strong>
+(green squiggle icon) in the Properties panel, and adjust the stroke
+thickness or stroke offset.</li>
+<li><strong>Clean Up Nodes:</strong> Enter <strong>Edit Mode</strong>
+(<code>Tab</code>). Grease Pencil automatically generates points along
+the imported lines. Use the <strong>Stroke &gt; Simplify</strong> tool
+to reduce dense point clusters if the imported paths are too heavy.</li>
+<li><strong>Materials:</strong> The converter assigns default materials
+based on the SVG colors. You can edit these under the <strong>Material
+Properties</strong> tab to change stroke colors, fill colors, or
+blending modes.</li>
+<li><strong>Animate:</strong> Switch to <strong>Draw Mode</strong> or
+<strong>Sculpt Mode</strong> to edit lines, utilize the <strong>Dope
+Sheet</strong> set to Grease Pencil mode, and start keyframing your
+drawing on the timeline.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Choropleth Maps in Inkscape - inkscape</title>
+    <meta name="description" content="This guide outlines the complete process of creating data-driven choropleth maps using Inkscape, the free vector graphics editor. You will learn how to acquire an editable vector base map, structure your data classification, establish an effective color">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-choropleth-maps-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Choropleth Maps in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-choropleth-maps-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide outlines the complete process of creating data-driven choropleth maps using Inkscape, the free vector graphics editor. You will learn how to acquire an editable vector base map, structure your data classification, establish an effective color" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-choropleth-maps-in-inkscape">How to Create
+Choropleth Maps in Inkscape</h1>
+<p>This guide outlines the complete process of creating data-driven
+choropleth maps using Inkscape, the free vector graphics editor. You
+will learn how to acquire an editable vector base map, structure your
+data classification, establish an effective color ramp, and efficiently
+select and color individual country vector paths to produce clean,
+professional thematic maps.</p>
+<h3 id="1-acquire-a-blank-vector-map">1. Acquire a Blank Vector Map</h3>
+<p>To color countries individually, you need an SVG file where each
+country is an independent path or object.</p>
+<ul>
+<li>Download a blank SVG world or regional map (e.g., from Wikimedia
+Commons, Natural Earth Data, or simplemaps.com).</li>
+<li>Ensure the file uses standard ISO country codes (such as "US", "FR",
+"DE") as path IDs, which makes finding specific territories
+significantly easier.</li>
+</ul>
+<h3 id="2-prepare-the-file-in-inkscape">2. Prepare the File in
+Inkscape</h3>
+<ol type="1">
+<li>Open your downloaded SVG in Inkscape via <strong>File &gt;
+Open</strong>.</li>
+<li>Select the map and check if it is locked inside groups. Press
+<strong>Ctrl + Shift + G</strong> (or <strong>Cmd + Shift + G</strong>
+on macOS) repeatedly to ungroup elements until individual countries can
+be clicked separately.</li>
+<li>Open the <strong>Fill and Stroke</strong> dialog (<strong>Ctrl +
+Shift + F</strong>).</li>
+<li>Open the <strong>Layers and Objects</strong> panel (<strong>Object
+&gt; Layers and Objects</strong>) to view the hierarchy of your
+paths.</li>
+</ol>
+<h3 id="3-establish-a-data-scale-and-color-palette">3. Establish a Data
+Scale and Color Palette</h3>
+<p>Before applying colors, organize your numerical data into 3 to 7
+distinct bins or classes (e.g., Low, Medium, High).</p>
+<ol type="1">
+<li>Select a scientifically tested color progression (such as palettes
+from ColorBrewer) suitable for sequential or diverging data.</li>
+<li>Using the <strong>Rectangle tool (R)</strong>, draw a series of
+small squares next to your map canvas to serve as a visual palette.</li>
+<li>Fill each square with one of your classification colors from lowest
+to highest value.</li>
+</ol>
+<h3 id="4-apply-colors-to-country-paths">4. Apply Colors to Country
+Paths</h3>
+<h4
+id="method-a-direct-eyedropper-application-best-for-few-countries">Method
+A: Direct Eyedropper Application (Best for few countries)</h4>
+<ol type="1">
+<li>Select the <strong>Dropper tool</strong> by pressing
+<strong>D</strong>.</li>
+<li>Click the country you want to color on the map.</li>
+<li>While holding the appropriate modifier or switching quickly to the
+<strong>Selector tool (S)</strong>, select the country, then use the
+Dropper tool to click on your reference palette square.</li>
+</ol>
+<h4
+id="method-b-batch-selection-by-data-class-best-for-full-maps">Method B:
+Batch Selection by Data Class (Best for full maps)</h4>
+<ol type="1">
+<li>Switch to the <strong>Selector tool (S)</strong>.</li>
+<li>Hold <strong>Shift</strong> and click on all countries that fall
+into your first data category.</li>
+<li>With all of those countries selected, click the corresponding color
+swatch in your bottom palette bar or use the Dropper tool on your
+reference square to fill them simultaneously.</li>
+<li>Repeat this process for each subsequent data category.</li>
+</ol>
+<h4 id="method-c-finding-countries-via-the-xml-editor">Method C: Finding
+Countries via the XML Editor</h4>
+<p>If tiny island nations or enclaves are difficult to click:</p>
+<ol type="1">
+<li>Open the XML Editor (<strong>Edit &gt; XML Editor</strong> or
+<strong>Ctrl + Shift + X</strong>).</li>
+<li>Use the search field to find the country by its ISO code (e.g.,
+<code>id="LU"</code> for Luxembourg).</li>
+<li>Select the node in the XML tree; the corresponding shape will be
+selected on the canvas.</li>
+<li>Assign the color via the <strong>Fill and Stroke</strong>
+panel.</li>
+</ol>
+<h3 id="5-standardize-country-borders-strokes">5. Standardize Country
+Borders (Strokes)</h3>
+<p>Consistent boundary styling keeps the thematic map legible:</p>
+<ol type="1">
+<li>Select all countries on the canvas (<strong>Ctrl + A</strong>).</li>
+<li>Go to the <strong>Stroke paint</strong> tab in the <strong>Fill and
+Stroke</strong> panel.</li>
+<li>Set the stroke to a flat color—typically white
+(<code>#FFFFFF</code>) for dark fills or a neutral dark gray
+(<code>#444444</code>) for light fills.</li>
+<li>Go to the <strong>Stroke style</strong> tab and assign a uniform
+border width (e.g., <code>0.5 px</code> to <code>1 px</code>).</li>
+</ol>
+<h3 id="6-build-the-legend-and-export">6. Build the Legend and
+Export</h3>
+<ol type="1">
+<li>Move your reference palette squares into an empty corner of the
+canvas to act as the map legend.</li>
+<li>Use the <strong>Text tool (T)</strong> to add numerical labels and
+data ranges beside each color block.</li>
+<li>Add a title, data source, and date.</li>
+<li>Go to <strong>File &gt; Export</strong>, set your export area to
+<strong>Page</strong> or <strong>Custom</strong>, choose your desired
+resolution (300 DPI is standard for print, 96 DPI for web), and export
+the file as PNG, PDF, or optimized SVG.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

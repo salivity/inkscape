@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import WMF and EMF Files in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape natively supports importing both Windows Metafile (.wmf) and Enhanced Metafile (.emf) formats, enabling users to edit, scale, and convert legacy Windows graphics into modern vector files. This guide details the standard methods for bringing thes">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-import-wmf-and-emf-files-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import WMF and EMF Files in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-import-wmf-and-emf-files-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape natively supports importing both Windows Metafile (.wmf) and Enhanced Metafile (.emf) formats, enabling users to edit, scale, and convert legacy Windows graphics into modern vector files. This guide details the standard methods for bringing thes" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-wmf-and-emf-files-in-inkscape">How to Import WMF
+and EMF Files in Inkscape</h1>
+<p>Inkscape natively supports importing both Windows Metafile (.wmf) and
+Enhanced Metafile (.emf) formats, enabling users to edit, scale, and
+convert legacy Windows graphics into modern vector files. This guide
+details the standard methods for bringing these files into your Inkscape
+workspace, ungrouping their vector components for editing, and
+addressing potential formatting discrepancies during the import
+process.</p>
+<h3 id="method-1-using-the-import-menu">Method 1: Using the Import
+Menu</h3>
+<ol type="1">
+<li>Launch Inkscape and open an existing project or create a new
+document.</li>
+<li>Click on <strong>File</strong> in the top menu and select
+<strong>Import...</strong> (or press <strong>Ctrl + I</strong> on
+Windows/Linux, <strong>Cmd + I</strong> on macOS).</li>
+<li>In the file browser dialog, navigate to the folder containing your
+<code>.wmf</code> or <code>.emf</code> file.</li>
+<li>Set the file format dropdown to <strong>All supported
+formats</strong> or specifically choose <strong>Windows Metafiles
+(*.wmf)</strong> or <strong>Enhanced Metafiles (*.emf)</strong>.</li>
+<li>Select the file and click <strong>Open</strong>.</li>
+<li>The vector graphic will appear directly on your current canvas.</li>
+</ol>
+<h3 id="method-2-drag-and-drop">Method 2: Drag and Drop</h3>
+<ol type="1">
+<li>Open your Inkscape canvas.</li>
+<li>Locate the <code>.wmf</code> or <code>.emf</code> file in your
+operating system's file manager (File Explorer on Windows, Finder on
+macOS, or your file manager on Linux).</li>
+<li>Click and drag the file directly onto the active Inkscape canvas and
+release it.</li>
+</ol>
+<h3 id="editing-imported-wmf-and-emf-files">Editing Imported WMF and EMF
+Files</h3>
+<p>Once imported, Inkscape converts the proprietary metafile data into
+standard SVG vectors:</p>
+<ul>
+<li><strong>Ungrouping Elements:</strong> Metafiles are typically
+imported as a single grouped object. To edit individual paths, select
+the graphic and go to <strong>Object &gt; Ungroup</strong> (or press
+<strong>Ctrl + Shift + G</strong> / <strong>Cmd + Shift + G</strong>).
+You may need to apply this multiple times depending on the nesting level
+of the original file.</li>
+<li><strong>Managing Text:</strong> Embedded text from older WMF/EMF
+files may import as converted vector paths rather than editable text
+objects. If fonts do not render correctly, ensure the original font used
+in the metafile is installed on your local operating system.</li>
+<li><strong>Handling Complex Fills:</strong> Certain legacy Windows GDI
+features, such as advanced clipping masks or pattern fills, might import
+as raster (bitmap) images or simplified flat colors. Inspect paths using
+the <strong>Edit paths by nodes</strong> tool (<strong>N</strong>) to
+ensure geometry integrity.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

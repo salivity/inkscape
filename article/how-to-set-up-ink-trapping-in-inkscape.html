@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Up Ink Trapping in Inkscape - inkscape</title>
+    <meta name="description" content="Ink trapping prevents unsightly white gaps caused by plate misregistration during commercial offset or screen printing by overlapping adjacent colors. This guide details how to manually create both "spread" (expanding a lighter foreground color into a da">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-set-up-ink-trapping-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Set Up Ink Trapping in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-set-up-ink-trapping-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Ink trapping prevents unsightly white gaps caused by plate misregistration during commercial offset or screen printing by overlapping adjacent colors. This guide details how to manually create both "spread" (expanding a lighter foreground color into a da" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-set-up-ink-trapping-in-inkscape">How to Set Up Ink
+Trapping in Inkscape</h1>
+<p>Ink trapping prevents unsightly white gaps caused by plate
+misregistration during commercial offset or screen printing by
+overlapping adjacent colors. This guide details how to manually create
+both "spread" (expanding a lighter foreground color into a darker
+background) and "choke" (expanding a lighter background under a darker
+foreground) values in Inkscape. By adjusting step preferences and using
+native path offset tools, you can ensure precise, press-ready vector
+traps.</p>
+<h3 id="step-1-configure-offset-precision-in-preferences">Step 1:
+Configure Offset Precision in Preferences</h3>
+<p>Inkscape does not have an automated trapping engine, so you must
+define precise increment values for path expansion.</p>
+<ol type="1">
+<li>Go to <strong>Edit &gt; Preferences</strong> (or press
+<code>Ctrl + Shift + P</code>).</li>
+<li>In the left panel, navigate to <strong>Behavior &gt;
+Steps</strong>.</li>
+<li>Locate the <strong>Inset/Outset by</strong> field.</li>
+<li>Set your unit to points (<code>pt</code>) or millimeters
+(<code>mm</code>). Commercial printing typically requires a trap value
+between <code>0.25 pt</code> and <code>0.5 pt</code> (approximately
+<code>0.08 mm</code> to <code>0.18 mm</code>). Check with your print
+shop for their recommended specification.</li>
+<li>Close the Preferences window.</li>
+</ol>
+<h3
+id="step-2-creating-a-spread-trap-lighter-object-on-darker-background">Step
+2: Creating a Spread Trap (Lighter Object on Darker Background)</h3>
+<p>Use a spread when the foreground object is lighter than the
+background it rests upon. The lighter foreground color must expand
+slightly into the darker background.</p>
+<ol type="1">
+<li>Select the foreground path with the <strong>Selector Tool</strong>
+(<code>S</code>).</li>
+<li>Duplicate the path in place by pressing <code>Ctrl + D</code>.</li>
+<li>With the duplicate selected, navigate to <strong>Path &gt;
+Outset</strong> (or press <code>Ctrl + )</code>). Inkscape will expand
+the path boundary by the exact increment configured in your
+preferences.</li>
+<li>Send the expanded path directly behind the original object by
+pressing <strong>Lower Selection One Step</strong>
+(<code>Page Down</code>).</li>
+<li>Ensure the expanded duplicate keeps the same color as the lighter
+foreground path. The expanded shape will now overlap the darker
+background beneath it.</li>
+</ol>
+<h3
+id="step-3-creating-a-choke-trap-darker-object-on-lighter-background">Step
+3: Creating a Choke Trap (Darker Object on Lighter Background)</h3>
+<p>Use a choke when the foreground object is darker than the surrounding
+background. The lighter background color must expand inward under the
+edge of the darker foreground.</p>
+<ol type="1">
+<li>Select the background path that touches the dark foreground
+object.</li>
+<li>Duplicate the darker foreground path by pressing
+<code>Ctrl + D</code>.</li>
+<li>Select the duplicated foreground path and apply an inset: go to
+<strong>Path &gt; Inset</strong> (or press <code>Ctrl + (</code>). This
+shrinks the path boundary inward by the specified trap amount.</li>
+<li>Select both the background path and this inset duplicate.</li>
+<li>Go to <strong>Path &gt; Difference</strong> (or press
+<code>Ctrl + -</code>) to cut the shrunken shape out of the background,
+or simply recolor the duplicate to match the lighter background color
+and position it directly below the original dark foreground path
+(<code>Page Down</code>).</li>
+</ol>
+<h3 id="alternative-the-stroke-trapping-method">Alternative: The Stroke
+Trapping Method</h3>
+<p>For regular geometric shapes, you can create a trap directly via
+strokes without duplicating paths:</p>
+<ol type="1">
+<li>Select the lighter object.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>Switch to the <strong>Stroke paint</strong> tab and set it to match
+the object’s fill color.</li>
+<li>In the <strong>Stroke style</strong> tab, set the stroke width to
+twice your target trap value (for example, use <code>0.5 pt</code> to
+achieve a <code>0.25 pt</code> trap on each side).</li>
+<li>In the <strong>Order</strong> row within the <strong>Stroke
+style</strong> tab, choose the option that renders the fill over the
+stroke (the icon showing the stroke behind the fill). This prevents the
+trap from reducing the perceived interior size of your original
+artwork.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

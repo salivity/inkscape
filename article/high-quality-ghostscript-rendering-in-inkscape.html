@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High-Quality Ghostscript Rendering in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to configure Ghostscript to achieve crisp, high-fidelity PostScript (PS) and Encapsulated PostScript (EPS) rendering in Inkscape. Because Inkscape delegates the parsing and rasterization of PostScript files to Ghostscript, configu">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/high-quality-ghostscript-rendering-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="High-Quality Ghostscript Rendering in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/high-quality-ghostscript-rendering-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to configure Ghostscript to achieve crisp, high-fidelity PostScript (PS) and Encapsulated PostScript (EPS) rendering in Inkscape. Because Inkscape delegates the parsing and rasterization of PostScript files to Ghostscript, configu" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="high-quality-ghostscript-rendering-in-inkscape">High-Quality
+Ghostscript Rendering in Inkscape</h1>
+<p>This guide explains how to configure Ghostscript to achieve crisp,
+high-fidelity PostScript (PS) and Encapsulated PostScript (EPS)
+rendering in Inkscape. Because Inkscape delegates the parsing and
+rasterization of PostScript files to Ghostscript, configuring
+environment variables, antialiasing flags, and import resolution
+settings is essential for preventing jagged edges, low-resolution
+artifacts, and color inaccuracies.</p>
+<h3 id="1-install-matching-architecture-and-set-system-path">1. Install
+Matching Architecture and Set System PATH</h3>
+<p>Inkscape requires a matching Ghostscript build (64-bit Ghostscript
+for 64-bit Inkscape) to process files natively.</p>
+<ol type="1">
+<li>Install the latest version of Ghostscript.</li>
+<li>Add the Ghostscript <code>bin</code> and <code>lib</code>
+directories to your operating system's PATH environment variable:
+<ul>
+<li><strong>Windows:</strong> Add
+<code>C:\Program Files\gs\gs[version]\bin</code> and
+<code>C:\Program Files\gs\gs[version]\lib</code>.</li>
+<li><strong>macOS/Linux:</strong> Ensure <code>gs</code> is available in
+<code>/usr/local/bin</code> or <code>/usr/bin</code>.</li>
+</ul></li>
+<li>Restart Inkscape to allow it to detect the <code>gs</code> binary
+automatically.</li>
+</ol>
+<h3 id="2-configure-high-resolution-import-settings">2. Configure
+High-Resolution Import Settings</h3>
+<p>When importing an EPS or PS file into Inkscape, an import dialog
+appears prompting for rasterization and rendering parameters.</p>
+<ul>
+<li><strong>Set Rendering Resolution (DPI):</strong> Increase the
+default DPI from 72 or 96 to <strong>300 DPI</strong> for standard print
+quality, or <strong>600 DPI</strong> for fine line art. This dictates
+the rasterization density for gradient meshes and complex PostScript
+shading that cannot be directly translated into SVG paths.</li>
+<li><strong>Determine Page Layout:</strong> Select the "Determine page
+size from" option as <strong>BoundingBox</strong> to ensure the canvas
+strictly frames the vector artwork without clipping margins.</li>
+</ul>
+<h3 id="3-enable-text-and-graphics-antialiasing">3. Enable Text and
+Graphics Antialiasing</h3>
+<p>Ghostscript uses alpha bits to smooth vector edges and typography. By
+default, some import filters run Ghostscript without maximum
+antialiasing. You can ensure optimal smoothing by verifying or modifying
+the parameters passed to Ghostscript:</p>
+<ul>
+<li><code>-dTextAlphaBits=4</code>: Enables 4-bit antialiasing for text,
+producing smooth, readable typography.</li>
+<li><code>-dGraphicsAlphaBits=4</code>: Enables 4-bit antialiasing for
+geometric vector lines and shapes.</li>
+<li><code>-dDOINTERPOLATE</code>: Smooths low-resolution raster images
+embedded within the PostScript file.</li>
+</ul>
+<p>If you are modifying Inkscape’s internal import scripts (located
+within Inkscape's <code>share/inkscape/extensions/</code> directory,
+specifically <code>eps_input.py</code> or <code>ps_input.py</code>),
+ensure these flags are appended to the <code>gs</code> command-line
+execution string.</p>
+<h3 id="4-configure-font-paths-for-accurate-typography">4. Configure
+Font Paths for Accurate Typography</h3>
+<p>If an imported PostScript file contains non-embedded fonts,
+Ghostscript will fall back to default substitute fonts, often causing
+layout shifting and degraded appearance.</p>
+<ol type="1">
+<li>Locate the Ghostscript font directory or configure the
+<code>GS_FONTPATH</code> environment variable.</li>
+<li>Point <code>GS_FONTPATH</code> to your system font directory (e.g.,
+<code>C:\Windows\Fonts</code> on Windows or
+<code>/usr/share/fonts</code> on Linux).</li>
+<li>Ghostscript will now directly reference your installed OpenType and
+TrueType fonts during rendering, preventing unwanted font
+substitution.</li>
+</ol>
+<h3 id="5-color-management-and-pdf-intermediary-conversion">5. Color
+Management and PDF Intermediary Conversion</h3>
+<p>For optimal color and vector integrity, use the <code>cairo</code> or
+<code>pdf2ps</code> rendering pipelines inside Ghostscript:</p>
+<ul>
+<li>Set the output device to <code>pdfwrite</code> instead of
+raster-based formats when converting legacy PostScript files to editable
+vectors:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gs</span> <span class="at">-dNOPAUSE</span> <span class="at">-dBATCH</span> <span class="at">-sDEVICE</span><span class="op">=</span>pdfwrite <span class="at">-dPDFSETTINGS</span><span class="op">=</span>/prepress <span class="at">-dCompatibilityLevel</span><span class="op">=</span>1.5 <span class="at">-sOutputFile</span><span class="op">=</span>output.pdf input.eps</span></code></pre></div></li>
+<li>Importing the resulting PDF into Inkscape using the
+<strong>Cairo/Internal import</strong> engine preserves native vector
+elements, embedded ICC profiles, and transparency far better than raw
+EPS interpretation.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

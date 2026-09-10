@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Print Registration Marks in Inkscape - inkscape</title>
+    <meta name="description" content="Registration marks are essential alignment targets used in multi-color printing to ensure that every individual color plate or screen lines up perfectly on the final output. In Inkscape, you can generate standard printing marks automatically using built-">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-print-registration-marks-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Print Registration Marks in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-print-registration-marks-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Registration marks are essential alignment targets used in multi-color printing to ensure that every individual color plate or screen lines up perfectly on the final output. In Inkscape, you can generate standard printing marks automatically using built-" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-print-registration-marks-in-inkscape">Create Print
+Registration Marks in Inkscape</h1>
+<p>Registration marks are essential alignment targets used in
+multi-color printing to ensure that every individual color plate or
+screen lines up perfectly on the final output. In Inkscape, you can
+generate standard printing marks automatically using built-in extensions
+or manually design custom registration marks and duplicate them across
+your color separation layers. This guide provides a straightforward,
+step-by-step process for creating, placing, and exporting color
+separation registration marks for print presses.</p>
+<h2 id="method-1-using-the-built-in-printing-marks-extension">Method 1:
+Using the Built-In Printing Marks Extension</h2>
+<p>Inkscape includes a native extension designed to automatically apply
+standard registration marks, crop marks, and color bars around your
+document bounding box.</p>
+<ol type="1">
+<li><strong>Set Up Document Dimensions:</strong> Open your file and go
+to <strong>File &gt; Document Properties</strong>
+(<code>Ctrl + Shift + D</code>). Ensure your page dimensions match your
+finished trim size.</li>
+<li><strong>Open the Extension:</strong> Navigate to <strong>Extensions
+&gt; Render &gt; Layout &gt; Printing Marks</strong>.</li>
+<li><strong>Configure Settings:</strong>
+<ul>
+<li>Go to the <strong>Marks</strong> tab and check the
+<strong>Registration Marks</strong> box. You can uncheck Crop Marks or
+Color Bars if you only require registration targets.</li>
+<li>Go to the <strong>Positioning</strong> tab to define the
+<strong>Offset</strong> (distance between the page border and the mark)
+and ensure the marks fall within your press sheet's bleed/slug
+area.</li>
+</ul></li>
+<li><strong>Apply:</strong> Click <strong>Apply</strong>. Inkscape will
+generate precision target marks centered at the top, bottom, left, and
+right of the page border on a dedicated layer.</li>
+</ol>
+<h2 id="method-2-creating-custom-registration-marks-manually">Method 2:
+Creating Custom Registration Marks Manually</h2>
+<p>If you need a custom style, size, or placement, you can draw your own
+vector targets quickly.</p>
+<ol type="1">
+<li><strong>Draw the Circle:</strong> Select the <strong>Circles and
+Ellipses</strong> tool (<code>E</code>). Hold <code>Ctrl + Shift</code>
+to draw a perfect circle. In the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>), set the Fill to <strong>None</strong>
+and the Stroke to a thin width (e.g., <code>0.25 pt</code> or
+<code>0.1 mm</code>).</li>
+<li><strong>Draw the Crosshair:</strong> Select the <strong>Pen (Bezier
+Curves)</strong> tool (<code>B</code>). Hold <code>Ctrl</code> to draw
+one straight horizontal line and one straight vertical line extending
+slightly past the circle's edges.</li>
+<li><strong>Align the Elements:</strong> Select both lines and the
+circle. Open the <strong>Align and Distribute</strong> panel
+(<code>Ctrl + Shift + A</code>), set <em>Relative to</em> to
+<strong>Selection Area</strong>, and click both <strong>Center on
+vertical axis</strong> and <strong>Center on horizontal
+axis</strong>.</li>
+<li><strong>Group the Mark:</strong> Select all components of the target
+and press <code>Ctrl + G</code> to group them into a single object.</li>
+<li><strong>Position the Marks:</strong> Place instances of the mark in
+the margins outside the trim area—typically centered along the top,
+bottom, left, and right edges, or at the four outer corners.</li>
+</ol>
+<h2 id="handling-colors-for-multi-plate-separations">Handling Colors for
+Multi-Plate Separations</h2>
+<p>For a print press to align plates properly, registration marks must
+appear in the exact same coordinates on every individual color plate
+(separation).</p>
+<ul>
+<li><strong>Layer-Based Separations:</strong> If you create separations
+manually by assigning colors (e.g., Cyan, Magenta, Yellow, Black, or
+Spot Colors) to separate Inkscape layers, copy your registration marks
+(<code>Ctrl + C</code>) and paste them in place (<strong>Edit &gt; Paste
+in Place</strong> or <code>Ctrl + Alt + V</code>) onto every single
+separation layer.</li>
+<li><strong>Color Assignment:</strong> On monochrome separation outputs,
+color the registration marks 100% solid Black on each layer.</li>
+<li><strong>True Registration Color (CMYK 100/100/100/100):</strong> If
+outputting via software that supports "All Plates" registration, set the
+stroke of the marks to a CMYK value of 100% Cyan, 100% Magenta, 100%
+Yellow, and 100% Black so it prints across all separations
+automatically.</li>
+</ul>
+<h2 id="preparing-the-file-for-export">Preparing the File for
+Export</h2>
+<ol type="1">
+<li>Expand the document boundaries in <strong>File &gt; Document
+Properties</strong> so the page canvas includes the margins holding your
+registration marks.</li>
+<li>Ensure all text is converted to paths via <strong>Path &gt; Object
+to Path</strong> (<code>Ctrl + Shift + C</code>) to prevent font
+substitution.</li>
+<li>Export each color layer individually as a high-resolution PDF or EPS
+file by hiding the other layers and using <strong>File &gt; Save
+As</strong> or the <strong>Export</strong> panel
+(<code>Ctrl + Shift + E</code>).</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

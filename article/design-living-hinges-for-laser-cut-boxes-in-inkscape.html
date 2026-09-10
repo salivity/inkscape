@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Living Hinges for Laser-Cut Boxes in Inkscape - inkscape</title>
+    <meta name="description" content="Designing living hinges allows you to bend rigid plywood around curved corners to create sleek, functional laser-cut boxes. This guide provides a straightforward method for creating flexible lattice patterns directly within Inkscape using dedicated exten">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/design-living-hinges-for-laser-cut-boxes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Living Hinges for Laser-Cut Boxes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/design-living-hinges-for-laser-cut-boxes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing living hinges allows you to bend rigid plywood around curved corners to create sleek, functional laser-cut boxes. This guide provides a straightforward method for creating flexible lattice patterns directly within Inkscape using dedicated exten" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="design-living-hinges-for-laser-cut-boxes-in-inkscape">Design
+Living Hinges for Laser-Cut Boxes in Inkscape</h1>
+<p>Designing living hinges allows you to bend rigid plywood around
+curved corners to create sleek, functional laser-cut boxes. This guide
+provides a straightforward method for creating flexible lattice patterns
+directly within Inkscape using dedicated extensions. You will learn how
+to choose and install the right extension, calculate bend allowances,
+configure cut parameters for your material thickness, and seamlessly
+integrate the hinge into your box layout.</p>
+<h3 id="1-install-an-inkscape-living-hinge-extension">1. Install an
+Inkscape Living Hinge Extension</h3>
+<p>While you can draw cut patterns manually, using an extension
+automates the spacing and alignment:</p>
+<ol type="1">
+<li>Download a living hinge extension, such as the <strong>Inkscape
+Living Hinge Generator</strong> (or use integrated box generators like
+<strong>Boxes.py</strong>, which include living hinge options).</li>
+<li>Extract the downloaded <code>.inx</code> and <code>.py</code> files
+into your Inkscape user extensions directory:
+<ul>
+<li><strong>Windows:</strong>
+<code>%APPDATA%\inkscape\extensions\</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/extensions/</code></li>
+<li><strong>Linux:</strong>
+<code>~/.config/inkscape/extensions/</code></li>
+</ul></li>
+<li>Restart Inkscape. The tool will appear under <strong>Extensions &gt;
+Laser / Laser Tools &gt; Living Hinge</strong>.</li>
+</ol>
+<h3 id="2-calculate-the-hinge-dimensions">2. Calculate the Hinge
+Dimensions</h3>
+<p>Before generating the cuts, determine the size of the hinge area
+based on your box design:</p>
+<ul>
+<li><strong>Hinge Width:</strong> Corresponds to the height or width of
+the box where the bend occurs.</li>
+<li><strong>Hinge Length (Bend Allowance):</strong> The distance needed
+to complete the curve. For a standard 90-degree bend with an inner
+radius <span class="math inline">\(R\)</span> and material thickness
+<span class="math inline">\(T\)</span>, use the formula: <span
+class="math display">\[\text{Length} = \frac{\pi \times (R +
+\frac{T}{2})}{2}\]</span></li>
+<li><strong>Wood Grain Orientation:</strong> Ensure the hinge bends
+<em>across</em> the face grain of the plywood rather than along it.
+Bending parallel to the grain often snaps the wood veneers.</li>
+</ul>
+<h3 id="3-generate-the-hinge-pattern">3. Generate the Hinge Pattern</h3>
+<ol type="1">
+<li>Draw a reference rectangle using the <strong>Rectangle tool
+(R)</strong> matching the calculated length and width of the bend
+area.</li>
+<li>Select the rectangle and open <strong>Extensions &gt; Laser Tools
+&gt; Living Hinge</strong>.</li>
+<li>Configure the hinge pattern parameters:
+<ul>
+<li><strong>Cut Length:</strong> The length of individual cut segments
+(typically 10–15 mm for 3mm plywood).</li>
+<li><strong>Gap Length:</strong> The uncut bridge between lines
+(typically 1.0–1.5 mm).</li>
+<li><strong>Separation (Pitch):</strong> The distance between parallel
+cut rows (typically 1.2–2.0 mm for 3mm plywood). Smaller spacing yields
+tighter bends but reduces overall strength.</li>
+</ul></li>
+<li>Click <strong>Apply</strong>. The extension replaces the rectangle
+with alternating parallel cut lines.</li>
+</ol>
+<h3 id="4-integrate-the-hinge-into-the-box-layout">4. Integrate the
+Hinge into the Box Layout</h3>
+<ol type="1">
+<li>Align the generated hinge between the solid flat panels of your box
+wrapper piece using the <strong>Align and Distribute</strong> panel
+(<code>Shift + Ctrl + A</code>).</li>
+<li>Ensure the hinge cut lines remain separated from the outer perimeter
+path to prevent the laser from slicing the hinge off the main body.</li>
+<li>Group the hinge paths (<code>Ctrl + G</code>) with the enclosing box
+piece, or use <strong>Path &gt; Combine</strong> (<code>Ctrl + K</code>)
+to keep all internal cut lines within a single layer.</li>
+</ol>
+<h3 id="5-finalize-cut-settings-for-the-laser">5. Finalize Cut Settings
+for the Laser</h3>
+<ol type="1">
+<li>Set the stroke width of all hinge cut lines to your laser software's
+hairline requirement (typically <code>0.001 in</code> or
+<code>0.02 mm</code>).</li>
+<li>Assign a distinct stroke color (such as blue) to the hinge cuts,
+separate from the outer cut perimeter (such as red).</li>
+<li>In your laser control software, set the cutting order so the living
+hinge lines cut <strong>before</strong> the outer perimeter of the box.
+This prevents the workpiece from shifting while the delicate lattice
+cuts are being processed.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

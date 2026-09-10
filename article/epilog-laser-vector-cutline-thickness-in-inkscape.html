@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epilog Laser Vector Cutline Thickness in Inkscape - inkscape</title>
+    <meta name="description" content="Setting up vector cutlines in Inkscape for an Epilog laser requires a precise stroke width so the print driver interprets paths as cuts rather than raster engravings. This guide covers the exact millimeter stroke thickness recognized by Epilog laser driv">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/epilog-laser-vector-cutline-thickness-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Epilog Laser Vector Cutline Thickness in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/epilog-laser-vector-cutline-thickness-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Setting up vector cutlines in Inkscape for an Epilog laser requires a precise stroke width so the print driver interprets paths as cuts rather than raster engravings. This guide covers the exact millimeter stroke thickness recognized by Epilog laser driv" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="epilog-laser-vector-cutline-thickness-in-inkscape">Epilog Laser
+Vector Cutline Thickness in Inkscape</h1>
+<p>Setting up vector cutlines in Inkscape for an Epilog laser requires a
+precise stroke width so the print driver interprets paths as cuts rather
+than raster engravings. This guide covers the exact millimeter stroke
+thickness recognized by Epilog laser drivers, why this specific value is
+required, and how to properly configure your stroke settings in Inkscape
+for clean, accurate vector cuts.</p>
+<h2 id="the-exact-vector-stroke-thickness">The Exact Vector Stroke
+Thickness</h2>
+<p>To be recognized as a vector cutline by an Epilog laser driver, the
+stroke width must be set to <strong>0.0254 mm</strong> (the metric
+equivalent of 0.001 inches).</p>
+<p>Epilog drivers distinguish between vector cutting and raster
+engraving based entirely on line width:</p>
+<ul>
+<li><strong>0.0254 mm (0.001 in) or smaller:</strong> Processed as a
+vector cut (the laser follows the path continuously).</li>
+<li><strong>Greater than 0.0254 mm:</strong> Processed as a raster
+engraving (the laser fires left-to-right to etch the shape).</li>
+</ul>
+<p>While many graphic design programs offer a default "Hairline"
+setting, Inkscape does not include a dedicated hairline option. Instead,
+you must manually type the numeric dimension into the stroke style
+controls.</p>
+<h2 id="how-to-set-the-cutline-in-inkscape">How to Set the Cutline in
+Inkscape</h2>
+<ol type="1">
+<li>Select the object or path you intend to cut.</li>
+<li>Open the <strong>Fill and Stroke</strong> menu by pressing
+<code>Ctrl + Shift + F</code> (or <code>Cmd + Shift + F</code> on
+macOS).</li>
+<li>Under the <strong>Fill</strong> tab, ensure fill is set to
+<strong>No paint</strong> (unless the interior is meant to be
+raster-engraved).</li>
+<li>Under the <strong>Stroke paint</strong> tab, select <strong>Flat
+color</strong> and set the alpha channel (opacity) to 100%.</li>
+<li>Under the <strong>Stroke style</strong> tab:
+<ul>
+<li>Change the measurement unit dropdown to <strong>mm</strong>.</li>
+<li>Enter <strong>0.0254</strong> in the <strong>Width</strong> field
+(entering <code>0.025</code> is also accepted by the driver).</li>
+</ul></li>
+</ol>
+<h2 id="important-considerations">Important Considerations</h2>
+<ul>
+<li><strong>On-Screen Visibility:</strong> A 0.0254 mm stroke appears
+extremely faint or nearly invisible when zoomed out in Inkscape. To
+verify paths without altering their true width, use <strong>View &gt;
+Display mode &gt; Outline</strong>.</li>
+<li><strong>Color Mapping:</strong> Although stroke thickness determines
+whether a line is a vector cut, Epilog drivers also support color
+mapping (e.g., using pure RGB Red <code>255, 0, 0</code> for cutting and
+RGB Blue for vector scoring). Ensure your stroke color matches the
+specific job parameters assigned in your Epilog driver settings.</li>
+<li><strong>Transforms and Scaling:</strong> If you resize an object
+after defining the line width, ensure that the "Scale stroke width by
+the same proportion" toggle on Inkscape's top toolbar is disabled, or
+re-verify that the stroke remains set to 0.0254 mm prior to
+printing.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

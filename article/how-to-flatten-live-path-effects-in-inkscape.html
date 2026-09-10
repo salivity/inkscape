@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Flatten Live Path Effects in Inkscape - inkscape</title>
+    <meta name="description" content="Live Path Effects (LPE) in Inkscape allow for dynamic, non-destructive vector design, but certain workflows require these effects to be permanently baked into standard vector geometry. Flattening or finalizing an LPE converts the algorithmic modifiers in">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-flatten-live-path-effects-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Flatten Live Path Effects in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-flatten-live-path-effects-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Live Path Effects (LPE) in Inkscape allow for dynamic, non-destructive vector design, but certain workflows require these effects to be permanently baked into standard vector geometry. Flattening or finalizing an LPE converts the algorithmic modifiers in" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-flatten-live-path-effects-in-inkscape">How to Flatten
+Live Path Effects in Inkscape</h1>
+<p>Live Path Effects (LPE) in Inkscape allow for dynamic,
+non-destructive vector design, but certain workflows require these
+effects to be permanently baked into standard vector geometry.
+Flattening or finalizing an LPE converts the algorithmic modifiers into
+permanent nodes and segments, ensuring maximum compatibility with other
+vector software, plotters, and laser cutters. This guide covers the
+standard method to convert Live Path Effects into standard paths in
+Inkscape.</p>
+<h2 id="the-standard-method-object-to-path">The Standard Method: Object
+to Path</h2>
+<p>The primary and most efficient way to finalize any Live Path Effect
+in Inkscape is by converting the object to a standard path.</p>
+<ol type="1">
+<li><strong>Select the Object:</strong> Use the <strong>Select
+Tool</strong> (<code>S</code> or <code>F1</code>) and click on the
+object that contains the Live Path Effect you want to flatten.</li>
+<li><strong>Apply the Command:</strong> Navigate to the top menu bar and
+select <strong>Path</strong> &gt; <strong>Object to Path</strong>, or
+use the keyboard shortcut:
+<ul>
+<li><strong>Windows/Linux:</strong> <code>Shift + Ctrl + C</code></li>
+<li><strong>macOS:</strong> <code>Shift + Cmd + C</code></li>
+</ul></li>
+</ol>
+<p>Once clicked, Inkscape calculates the resulting geometry from the
+active effect and replaces the original source path and LPE modifier
+with standard vector nodes.</p>
+<h2 id="batch-flattening-multiple-effects">Batch Flattening Multiple
+Effects</h2>
+<p>If your document contains multiple objects using Live Path Effects,
+you can finalize them simultaneously:</p>
+<ol type="1">
+<li>Select all target objects by clicking and dragging over them with
+the <strong>Select Tool</strong>, or press <code>Ctrl + A</code>
+(<code>Cmd + A</code> on macOS) to select everything on the canvas.</li>
+<li>Go to <strong>Path</strong> &gt; <strong>Object to Path</strong>
+(<code>Shift + Ctrl + C</code>).</li>
+<li>Inkscape will process all selected objects, baking their effects
+into standard paths at once.</li>
+</ol>
+<h2 id="how-to-verify-the-effect-is-flattened">How to Verify the Effect
+Is Flattened</h2>
+<p>To ensure the Live Path Effect has been successfully finalized:</p>
+<ul>
+<li><strong>Inspect Nodes:</strong> Switch to the <strong>Node
+Tool</strong> (<code>N</code> or <code>F2</code>) and click the object.
+You should see edit points across the entire rendered shape rather than
+just the original base path.</li>
+<li><strong>Check the Path Effects Panel:</strong> Open the panel via
+<strong>Path</strong> &gt; <strong>Path Effects</strong>
+(<code>Ctrl + &amp;</code>). When you select the object, the panel list
+should be empty, confirming that the dynamic effect has been removed and
+the resulting shape is now pure vector data.</li>
+</ul>
+<h2 id="when-should-you-flatten-live-path-effects">When Should You
+Flatten Live Path Effects?</h2>
+<ul>
+<li><strong>Exporting for Third-Party Software:</strong> Non-Inkscape
+vector programs (like Adobe Illustrator or CorelDRAW) may not properly
+render Inkscape's proprietary LPE data.</li>
+<li><strong>Cutting and CNC Workflows:</strong> Plotters, vinyl cutters,
+and CNC/laser machines require raw node coordinates to calculate cut
+paths.</li>
+<li><strong>Manual Node Adjustments:</strong> When you need to manually
+tweak or delete specific nodes generated by an effect, finalizing the
+path gives you direct access to the entire structure.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

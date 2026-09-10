@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overprint Black Text in Inkscape to Stop Haloing - inkscape</title>
+    <meta name="description" content="This guide explains how to prevent white gaps or "haloing" around black text caused by press misregistration when designing in Inkscape. You will learn how print misregistration occurs, how to configure black text to overprint underlying backgrounds usin">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/overprint-black-text-in-inkscape-to-stop-haloing">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Overprint Black Text in Inkscape to Stop Haloing - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/overprint-black-text-in-inkscape-to-stop-haloing" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to prevent white gaps or "haloing" around black text caused by press misregistration when designing in Inkscape. You will learn how print misregistration occurs, how to configure black text to overprint underlying backgrounds usin" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="overprint-black-text-in-inkscape-to-stop-haloing">Overprint
+Black Text in Inkscape to Stop Haloing</h1>
+<p>This guide explains how to prevent white gaps or "haloing" around
+black text caused by press misregistration when designing in Inkscape.
+You will learn how print misregistration occurs, how to configure black
+text to overprint underlying backgrounds using native blend modes, how
+to properly define 100% black color values, and how to export your final
+artwork to achieve reliable commercial print results.</p>
+<h3 id="understanding-haloing-and-overprinting">Understanding Haloing
+and Overprinting</h3>
+<p>In offset and digital printing, colored plates (Cyan, Magenta,
+Yellow, Black) are applied sequentially to paper. By default, design
+software uses "knockout," which cuts a hole out of the background colors
+directly beneath the text so the inks do not mix. If the printing press
+shifts even a fraction of a millimeter, the knockout hole misaligns with
+the black text plate, creating an unsightly white border known as a
+halo.</p>
+<p>Overprinting instructs the printer to apply the black ink directly on
+top of the underlying colored inks without knocking out the background,
+completely eliminating registration gaps.</p>
+<h3 id="method-1-using-the-multiply-blend-mode">Method 1: Using the
+Multiply Blend Mode</h3>
+<p>Because Inkscape is an SVG editor and the SVG standard historically
+lacks a dedicated print-engine "overprint" flag, the standard vector
+technique to achieve overprint in Inkscape is setting the blend mode to
+<strong>Multiply</strong>.</p>
+<ol type="1">
+<li>Select your text object using the <strong>Selector tool</strong>
+(<code>S</code>).</li>
+<li>Open the <strong>Fill and Stroke</strong> panel by pressing
+<code>Shift + Ctrl + F</code>.</li>
+<li>In the Fill tab, verify that your text fill color is solid.</li>
+<li>Look at the bottom of the <strong>Fill and Stroke</strong> or
+<strong>Layers and Objects</strong> panel for the <strong>Blend
+mode</strong> dropdown.</li>
+<li>Change the blend mode from <strong>Normal</strong> to
+<strong>Multiply</strong>.</li>
+</ol>
+<p>When set to Multiply, the RIP (Raster Image Processor) and modern PDF
+print engines will calculate the black text as an overlay onto the
+background artwork instead of knocking out the underlying colors.</p>
+<h3 id="method-2-defining-true-black-0c-0m-0y-100k">Method 2: Defining
+True Black (0C 0M 0Y 100K)</h3>
+<p>Overprinting should only be applied to standard 100% Black (K), not
+"Rich Black" (a mix of C, M, Y, and K), as Rich Black will muddy
+underlying colors and defeat the purpose of single-plate text
+printing.</p>
+<ol type="1">
+<li>Select your text object.</li>
+<li>In the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>), select the <strong>CMS</strong> tab
+(Color Management System) or the <strong>Wheel/RGB</strong> tab.</li>
+<li>Ensure color management is active in your document (<strong>File
+&gt; Document Properties &gt; Color</strong>).</li>
+<li>If using a linked CMYK profile, set:
+<ul>
+<li><strong>Cyan (C):</strong> 0%</li>
+<li><strong>Magenta (M):</strong> 0%</li>
+<li><strong>Yellow (Y):</strong> 0%</li>
+<li><strong>Key/Black (K):</strong> 100%</li>
+</ul></li>
+<li>If working strictly in sRGB space prior to RIP separation, ensure
+the hex value is <code>#000000</code>, but inform your commercial
+printer so their pre-press workflow maps pure RGB black to 100% K
+overprint.</li>
+</ol>
+<h3 id="method-3-pdf-export-configuration">Method 3: PDF Export
+Configuration</h3>
+<p>To preserve your Multiply blend attributes without flattening your
+text into low-resolution pixels, configure your PDF export
+carefully:</p>
+<ol type="1">
+<li>Navigate to <strong>File &gt; Save a Copy...</strong></li>
+<li>Choose <strong>Portable Document Format (*.pdf)</strong> from the
+file type menu and click <strong>Save</strong>.</li>
+<li>In the PDF export dialogue:
+<ul>
+<li>Set <strong>PDF version</strong> to <strong>PDF 1.5</strong> or
+higher (PDF 1.4+ supports live transparency and blend modes without
+forced rasterization).</li>
+<li>Ensure <strong>Rasterize filter effects</strong> is either unchecked
+or set to a high resolution (such as <strong>300 dpi</strong> or
+<strong>600 dpi</strong>) if rasterization occurs.</li>
+<li>Check <strong>Convert texts to paths</strong> only if you are
+concerned about font embedding; otherwise, leave it unchecked to keep
+text sharp.</li>
+</ul></li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="pre-press-verification">Pre-Press Verification</h3>
+<p>Before sending the file to the press, open the exported PDF in Adobe
+Acrobat Pro or a prepress viewer:</p>
+<ul>
+<li>Open <strong>Print Production &gt; Output Preview</strong>.</li>
+<li>Uncheck the <strong>Process Black</strong> plate.</li>
+<li>If overprinting is functioning correctly, the colored background
+behind your text will remain solid and continuous, without any white
+knockout text silhouettes visible beneath the black plate.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

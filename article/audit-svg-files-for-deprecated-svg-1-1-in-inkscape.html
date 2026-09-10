@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit SVG Files for Deprecated SVG 1.1 in Inkscape - inkscape</title>
+    <meta name="description" content="Auditing SVG files for deprecated SVG 1.1 attributes is essential to ensure cross-browser compatibility, modern rendering performance, and clean code prior to web deployment. Modern web standards favor SVG 2 specifications, deprecating legacy items such">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/audit-svg-files-for-deprecated-svg-1-1-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Audit SVG Files for Deprecated SVG 1.1 in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/audit-svg-files-for-deprecated-svg-1-1-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Auditing SVG files for deprecated SVG 1.1 attributes is essential to ensure cross-browser compatibility, modern rendering performance, and clean code prior to web deployment. Modern web standards favor SVG 2 specifications, deprecating legacy items such" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="audit-svg-files-for-deprecated-svg-11-in-inkscape">Audit SVG
+Files for Deprecated SVG 1.1 in Inkscape</h1>
+<p>Auditing SVG files for deprecated SVG 1.1 attributes is essential to
+ensure cross-browser compatibility, modern rendering performance, and
+clean code prior to web deployment. Modern web standards favor SVG 2
+specifications, deprecating legacy items such as
+<code>baseProfile</code>, <code>enable-background</code>, font-related
+tags, and outdated namespace links like <code>xlink:href</code>.
+Inkscape provides native inspection and optimization tools—including the
+internal XML Editor, Find/Replace functions, and the Optimized SVG
+exporter—that allow designers and developers to locate, modify, and
+strip these obsolete attributes directly within the application.</p>
+<h3 id="identify-deprecated-svg-11-targets">Identify Deprecated SVG 1.1
+Targets</h3>
+<p>Before starting the audit, identify the common legacy attributes and
+elements that should be removed or updated:</p>
+<ul>
+<li><strong>Deprecated Attributes:</strong> <code>baseProfile</code>,
+<code>version="1.1"</code>, <code>enable-background</code>,
+<code>xml:base</code>, and presentation attributes used in place of
+modern CSS rules.</li>
+<li><strong>Legacy Namespaces:</strong> <code>xlink:href</code>
+(replaced by standard <code>href</code> in modern SVG
+implementations).</li>
+<li><strong>Obsolete Elements:</strong> <code>&lt;font&gt;</code>,
+<code>&lt;glyph&gt;</code>, <code>&lt;missing-glyph&gt;</code>, and
+<code>&lt;altGlyph&gt;</code> (replaced by standard WOFF2 web fonts and
+CSS).</li>
+<li><strong>Proprietary Metadata:</strong> <code>sodipodi:*</code> and
+<code>inkscape:*</code> tags, which are non-standard Inkscape-specific
+namespaces that should not reach production environments.</li>
+</ul>
+<h3 id="audit-elements-using-the-xml-editor">Audit Elements Using the
+XML Editor</h3>
+<p>Inkscape includes a built-in XML tree viewer that exposes the exact
+source structure of your graphic.</p>
+<ol type="1">
+<li>Open your SVG file in Inkscape.</li>
+<li>Press <strong>Ctrl + Shift + X</strong> (or <strong>Cmd + Shift +
+X</strong> on macOS), or navigate to <strong>Edit &gt; XML
+Editor</strong>.</li>
+<li>Select the root <code>&lt;svg&gt;</code> node at the top of the
+tree.</li>
+<li>Inspect the right-hand panel listing all attributes assigned to the
+root element. Look for:
+<ul>
+<li><code>baseProfile="full"</code> or <code>baseProfile="basic"</code>:
+Click the attribute and click the <strong>Delete attribute</strong> icon
+(red minus sign).</li>
+<li><code>version="1.1"</code>: Delete this attribute, as modern SVGs no
+longer require explicit versioning declarations.</li>
+</ul></li>
+<li>Expand structural nodes (such as <code>&lt;g&gt;</code>,
+<code>&lt;defs&gt;</code>, and individual path elements). Check for
+legacy presentation attributes such as <code>clip</code>,
+<code>overflow</code>, or inline styling properties that conflict with
+external stylesheets.</li>
+</ol>
+<h3 id="search-and-replace-obsolete-attributes">Search and Replace
+Obsolete Attributes</h3>
+<p>To quickly scan large documents without expanding every node
+manually, utilize Inkscape’s internal search feature.</p>
+<ol type="1">
+<li>Press <strong>Ctrl + F</strong> (or go to <strong>Edit &gt;
+Find/Replace</strong>).</li>
+<li>Set the search scope to <strong>All</strong> or <strong>Current
+layer</strong>.</li>
+<li>In the search fields, switch the criteria to search by
+<strong>Attribute</strong> or <strong>Raw XML</strong>.</li>
+<li>Enter target strings such as <code>xlink:href</code> or
+<code>enable-background</code>.</li>
+<li>Review each match found by Inkscape and manually update or delete
+the attribute in the XML Editor or Object Properties panel.</li>
+</ol>
+<h3 id="purge-unused-definitions">Purge Unused Definitions</h3>
+<p>Legacy files often contain unused filters, masks, and style
+definitions that retain outdated attributes.</p>
+<ol type="1">
+<li>Navigate to <strong>File &gt; Clean Up Document</strong>.</li>
+<li>Inkscape automatically parses the <code>&lt;defs&gt;</code> section
+and removes unreferenced gradients, patterns, markers, and color
+profiles that may contain deprecated 1.1 formatting.</li>
+</ol>
+<h3 id="export-via-optimized-svg">Export via Optimized SVG</h3>
+<p>Inkscape integrates Scour, an SVG optimization engine, directly into
+its export pipeline. This provides an automated pass to strip remaining
+SVG 1.1 holdovers.</p>
+<ol type="1">
+<li>Navigate to <strong>File &gt; Save As...</strong> (or <strong>Ctrl +
+Shift + S</strong>).</li>
+<li>Choose <strong>Optimized SVG (*.svg)</strong> from the file format
+dropdown.</li>
+<li>In the configuration dialog, configure the following audit-focused
+settings:
+<ul>
+<li><strong>SVG Output tab:</strong> Check <strong>Remove
+metadata</strong>, <strong>Remove unused namespaces</strong>, and ensure
+SVG 2/modern web options are favored.</li>
+<li><strong>ID Attributes tab:</strong> Check <strong>Remove unused
+IDs</strong> to strip unnecessary identifiers generated during the SVG
+1.1 era.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to save the production-ready file.</li>
+</ol>
+<h3 id="post-audit-verification">Post-Audit Verification</h3>
+<p>Open the exported SVG in a code editor to confirm all changes:</p>
+<ol type="1">
+<li>Ensure the <code>&lt;svg&gt;</code> root tag contains only modern
+attributes such as <code>xmlns="http://www.w3.org/2000/svg"</code>,
+<code>viewBox</code>, and sizing parameters.</li>
+<li>Confirm the absence of <code>http://www.w3.org/1999/xlink</code>
+declarations.</li>
+<li>Verify that <code>&lt;use&gt;</code> tags utilize standard
+<code>href="#id"</code> instead of <code>xlink:href="#id"</code>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

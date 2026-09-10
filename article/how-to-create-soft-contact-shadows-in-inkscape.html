@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Soft Contact Shadows in Inkscape - inkscape</title>
+    <meta name="description" content="Creating believable, grounded character illustrations requires subtle depth cues, most notably contact shadows beneath the character's feet. This guide provides a straightforward method for using Inkscape’s ellipse and gradient tools to paint realistic">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-soft-contact-shadows-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Soft Contact Shadows in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-soft-contact-shadows-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating believable, grounded character illustrations requires subtle depth cues, most notably contact shadows beneath the character's feet. This guide provides a straightforward method for using Inkscape’s ellipse and gradient tools to paint realistic" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-soft-contact-shadows-in-inkscape">How to Create
+Soft Contact Shadows in Inkscape</h1>
+<p>Creating believable, grounded character illustrations requires subtle
+depth cues, most notably contact shadows beneath the character's feet.
+This guide provides a straightforward method for using Inkscape’s
+ellipse and gradient tools to paint realistic, soft-edged contact
+shadows. By utilizing elliptical (radial) gradients, proper stop
+transparency, and multi-layered grounding, you can achieve smooth vector
+falloff without relying heavily on performance-heavy raster blurs.</p>
+<h3 id="1-establish-the-shadow-base">1. Establish the Shadow Base</h3>
+<p>Select the <strong>Circles and Ellipses Tool</strong> (keyboard
+shortcut <strong>E</strong>). Draw a flat, horizontal ellipse directly
+beneath the character’s foot on the ground plane. Switch to the
+<strong>Select Tool</strong> (<strong>S</strong>) to scale, rotate, and
+position the ellipse so it aligns accurately with the perspective of the
+character's stance.</p>
+<h3 id="2-apply-a-radial-gradient">2. Apply a Radial Gradient</h3>
+<p>Open the <strong>Fill and Stroke</strong> panel by pressing
+<strong>Shift + Ctrl + F</strong>. In the <strong>Fill</strong> tab,
+click the <strong>Radial Gradient</strong> icon. By default, Inkscape
+places a circular gradient originating from the center of your ellipse,
+which automatically conforms to the shape's proportions, creating an
+elliptical gradient.</p>
+<h3 id="3-adjust-gradient-stops-and-transparency">3. Adjust Gradient
+Stops and Transparency</h3>
+<p>Activate the <strong>Gradient Tool</strong> (<strong>G</strong>) to
+display the gradient handles on the canvas.</p>
+<ul>
+<li>Click the <strong>center stop</strong> handle. Set its color to
+match the environment’s shadow tone (typically a deep, desaturated blue,
+purple, or warm dark grey rather than pure black) and set its
+<strong>Alpha (A)</strong> to 100%.</li>
+<li>Click the <strong>outer stop</strong> handle (at the edge of the
+ellipse). Set this stop to the exact same color value as the center, but
+reduce its <strong>Alpha (A)</strong> to 0%. Matching the color prevents
+an unnatural grey fringe along the transparent edge.</li>
+</ul>
+<h3 id="4-align-and-shape-the-gradient">4. Align and Shape the
+Gradient</h3>
+<p>Using the <strong>Gradient Tool</strong> (<strong>G</strong>),
+manipulate the central handle and the two perpendicular outer
+handles:</p>
+<ul>
+<li>Drag the center handle directly beneath the point of heaviest
+contact (such as the heel or the ball of the foot).</li>
+<li>Drag the side handles inward or outward to control the sharpness of
+the light falloff. Align the handles with the direction of the scene's
+primary light source to stretch the shadow realistically.</li>
+</ul>
+<h3 id="5-build-two-layer-shadow-depth">5. Build Two-Layer Shadow
+Depth</h3>
+<p>A single gradient often looks too uniform. Realistic contact shadows
+consist of two components:</p>
+<ol type="1">
+<li><strong>The Ambient Occlusion (Core):</strong> Duplicate the ellipse
+(<strong>Ctrl + D</strong>). Scale it down so it sits tightly directly
+under the sole of the shoe. Keep this layer darker and more
+condensed.</li>
+<li><strong>The Cast Falloff (Penumbra):</strong> Take the lower, larger
+ellipse and reduce its overall object opacity to around 40%–60% using
+the slider at the bottom of the <strong>Fill and Stroke</strong>
+panel.</li>
+</ol>
+<h3 id="6-set-blending-to-multiply">6. Set Blending to Multiply</h3>
+<p>Select both shadow shapes, group them (<strong>Ctrl + G</strong>),
+and lower them behind the character’s foot layer using the <strong>Lower
+to Bottom</strong> command (<strong>End</strong>) or by organizing them
+into a designated "Shadows" sublayer. In the <strong>Layers and
+Objects</strong> panel, change the shadow layer or group blend mode to
+<strong>Multiply</strong> so the shadow interacts naturally with the
+ground texture or background color beneath it.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

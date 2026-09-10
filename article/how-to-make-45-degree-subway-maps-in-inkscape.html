@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make 45-Degree Subway Maps in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to design schematic, vector-based transit maps in Inkscape using standardized 45-degree and 90-degree angles. By configuring angle constraints, setting up an efficient snapping grid, applying path effects for rounded corners, and">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-make-45-degree-subway-maps-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Make 45-Degree Subway Maps in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-make-45-degree-subway-maps-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to design schematic, vector-based transit maps in Inkscape using standardized 45-degree and 90-degree angles. By configuring angle constraints, setting up an efficient snapping grid, applying path effects for rounded corners, and" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-make-45-degree-subway-maps-in-inkscape">How to Make
+45-Degree Subway Maps in Inkscape</h1>
+<p>This guide explains how to design schematic, vector-based transit
+maps in Inkscape using standardized 45-degree and 90-degree angles. By
+configuring angle constraints, setting up an efficient snapping grid,
+applying path effects for rounded corners, and creating modular station
+markers, you can produce clean, professional schematic transit diagrams
+modeled after classic metro navigation systems.</p>
+<h3 id="1-configure-document-properties-and-grid">1. Configure Document
+Properties and Grid</h3>
+<p>A consistent grid ensures uniform spacing between parallel lines and
+stations:</p>
+<ol type="1">
+<li>Open Inkscape and create a new document.</li>
+<li>Go to <strong>File &gt; Document Properties</strong> (or press
+<code>Shift + Ctrl + D</code>).</li>
+<li>Under the <strong>Grids</strong> tab, select <strong>Rectangular
+grid</strong> and click <strong>New</strong>.</li>
+<li>Set <strong>Spacing X</strong> and <strong>Spacing Y</strong> to
+identical values (such as <code>10 px</code> or <code>20 px</code>). A
+1:1 ratio guarantees that diagonal movements across grid intersections
+align precisely to 45 degrees.</li>
+<li>In the <strong>Snap</strong> toolbar (typically on the right edge of
+the interface), enable snapping, enable <strong>Snap to Grids</strong>,
+and turn on <strong>Snap to paths</strong> and <strong>Snap to path
+intersections</strong>.</li>
+</ol>
+<h3 id="2-set-up-angle-constraints-for-the-bézier-tool">2. Set Up Angle
+Constraints for the Bézier Tool</h3>
+<p>Inkscape allows you to restrict line segments to precise degree
+increments:</p>
+<ol type="1">
+<li>Open <strong>Edit &gt; Preferences</strong> (or press
+<code>Shift + Ctrl + P</code>).</li>
+<li>Navigate to <strong>Interface &gt; Steps</strong>.</li>
+<li>Locate <strong>Rotation snaps every [X] degrees</strong> and set it
+to <code>15.0 degrees</code> (the default value) or
+<code>45.0 degrees</code>. Because 45 is a multiple of 15, holding
+<code>Ctrl</code> while drawing naturally snaps to 0°, 45°, and
+90°.</li>
+</ol>
+<h3 id="3-draw-the-transit-lines">3. Draw the Transit Lines</h3>
+<ol type="1">
+<li>Select the <strong>Draw Bézier curves and straight lines</strong>
+tool by pressing <code>B</code>.</li>
+<li>In the top tool control bar, ensure the mode is set to
+<strong>Create regular Bézier path</strong> and shape is set to
+<strong>None</strong>.</li>
+<li>Click on the canvas to place the starting node.</li>
+<li>Hold down the <strong>Ctrl</strong> key as you move the cursor to
+lock the segment to 0°, 45°, or 90° angles.</li>
+<li>Click on grid intersections to place subsequent nodes, maintaining
+45-degree diagonals or orthogonal lines.</li>
+<li>Press <strong>Enter</strong> or right-click to end the path.</li>
+</ol>
+<h3 id="4-style-lines-and-standardize-thickness">4. Style Lines and
+Standardize Thickness</h3>
+<p>Transit maps rely on distinct, uniform stroke widths to indicate
+routes:</p>
+<ol type="1">
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>).</li>
+<li>Set <strong>Fill</strong> to none.</li>
+<li>Under the <strong>Stroke paint</strong> tab, choose a flat color for
+your line.</li>
+<li>Under the <strong>Stroke style</strong> tab:
+<ul>
+<li>Set a fixed <strong>Width</strong> (e.g., <code>8 px</code> or
+<code>12 px</code>). Apply this exact width to all main lines.</li>
+<li>Set <strong>Cap</strong> to <strong>Round cap</strong> or
+<strong>Butt cap</strong>.</li>
+<li>Set <strong>Join</strong> to <strong>Round join</strong> for soft
+bends, or keep it as <strong>Miter join</strong> if using manual corner
+rounding.</li>
+</ul></li>
+</ol>
+<h3 id="5-round-line-corners-using-path-effects">5. Round Line Corners
+Using Path Effects</h3>
+<p>Schematic transit maps feature smooth curves between angle
+transitions:</p>
+<ol type="1">
+<li>Select the transit line path.</li>
+<li>Go to <strong>Path &gt; Path Effects...</strong>.</li>
+<li>Click the <strong>+</strong> (Add Path Effect) button and select
+<strong>Corners (Fillet/Chamfer)</strong>.</li>
+<li>Set the <strong>Method</strong> to <strong>Fillet</strong> and input
+a fixed radius (e.g., <code>15 px</code> or <code>20 px</code>) across
+your entire transit system.</li>
+<li>To apply the curve directly on the canvas, choose the <strong>Edit
+paths by nodes</strong> tool (<code>N</code>), click the green control
+handles near the corners, and drag to curve them uniformly.</li>
+</ol>
+<h3 id="6-create-modular-station-markers">6. Create Modular Station
+Markers</h3>
+<p>Stations must be aligned to the grid and line vectors:</p>
+<ul>
+<li><strong>Regular Stations:</strong> Select the <strong>Circle/Ellipse
+tool</strong> (<code>F5</code>), hold <code>Ctrl + Shift</code> to draw
+a perfect circle, and make its diameter slightly wider than the line
+width (e.g., <code>12 px</code> circle on an <code>8 px</code> line).
+Give it a white fill with a black or line-colored stroke.</li>
+<li><strong>Interchange Stations:</strong> Use a rounded rectangle or
+combine multiple circles into a "capsule" shape using <strong>Path &gt;
+Union</strong>.</li>
+<li><strong>Snapping Markers:</strong> Use the <strong>Select and
+transform objects</strong> tool (<code>S</code>) to drag stations onto
+the lines. With <strong>Snap to paths</strong> or <strong>Snap to
+nodes</strong> active, station centers will snap directly to the transit
+route.</li>
+</ul>
+<h3 id="7-manage-parallel-lines">7. Manage Parallel Lines</h3>
+<p>When running multiple lines along the same corridor:</p>
+<ol type="1">
+<li>Duplicate the initial path using <code>Ctrl + D</code>.</li>
+<li>Move the duplicated path parallel to the original by using the arrow
+keys with a fixed nudge distance, or manually drag it along the grid
+points.</li>
+<li>If shifting along 45-degree paths, move the line an equal number of
+steps on both the X and Y axes to preserve spacing.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

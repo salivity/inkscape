@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preserve Linked SVG External Symbols in Inkscape - inkscape</title>
+    <meta name="description" content="Moving Inkscape SVG files containing external linked symbols to another computer often results in broken links and missing assets due to machine-specific directory paths. This guide explains how to prevent missing symbols when transferring files between">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/preserve-linked-svg-external-symbols-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Preserve Linked SVG External Symbols in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/preserve-linked-svg-external-symbols-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Moving Inkscape SVG files containing external linked symbols to another computer often results in broken links and missing assets due to machine-specific directory paths. This guide explains how to prevent missing symbols when transferring files between" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="preserve-linked-svg-external-symbols-in-inkscape">Preserve
+Linked SVG External Symbols in Inkscape</h1>
+<p>Moving Inkscape SVG files containing external linked symbols to
+another computer often results in broken links and missing assets due to
+machine-specific directory paths. This guide explains how to prevent
+missing symbols when transferring files between systems by configuring
+relative path references, maintaining consistent folder hierarchies, or
+embedding symbols directly into the SVG document.</p>
+<h3 id="use-relative-paths-instead-of-absolute-paths">Use Relative Paths
+Instead of Absolute Paths</h3>
+<p>By default, operating systems resolve linked files using absolute
+paths (such as <code>C:\Users\Username\Documents\...</code> on Windows
+or <code>/home/username/...</code> on Linux). When transferred to
+another machine, Inkscape cannot locate these files.</p>
+<p>To ensure paths remain portable:</p>
+<ol type="1">
+<li>Open <strong>Edit &gt; Preferences</strong> (or press
+<code>Shift + Ctrl + P</code>).</li>
+<li>Navigate to <strong>Imported Images</strong> in the left
+sidebar.</li>
+<li>Under <strong>Image import type</strong>, select
+<strong>Link</strong>.</li>
+<li>Set the path storage preference to <strong>Relative</strong> instead
+of <strong>Absolute</strong>.</li>
+</ol>
+<p>When linking symbols, Inkscape will now record the location relative
+to the working document rather than using your computer's root drive
+structure.</p>
+<h3 id="maintain-a-unified-project-folder-structure">Maintain a Unified
+Project Folder Structure</h3>
+<p>Because relative paths rely on the spatial relationship between
+files, linked symbol libraries must move together with the parent
+file.</p>
+<ol type="1">
+<li>Create a root project folder for your work.</li>
+<li>Store your primary working SVG files in the root folder or a
+dedicated subfolder.</li>
+<li>Place all external symbol SVGs inside a dedicated subfolder, such as
+<code>./symbols/</code> or <code>./assets/</code>.</li>
+<li>Link the symbols into your master SVG document only after they are
+positioned inside this project folder.</li>
+<li>When transferring files between systems, compress and transfer the
+entire root directory rather than individual SVG files. As long as the
+internal folder structure remains identical, Inkscape will automatically
+resolve the links.</li>
+</ol>
+<h3 id="verify-and-edit-paths-in-the-xml-editor">Verify and Edit Paths
+in the XML Editor</h3>
+<p>If a linked symbol breaks after moving to another system, you can
+inspect and fix the path directly in the SVG structure without
+recreating the element:</p>
+<ol type="1">
+<li>Open the file in Inkscape and open the <strong>XML Editor</strong>
+(<strong>Edit &gt; XML Editor</strong> or
+<code>Shift + Ctrl + X</code>).</li>
+<li>Locate the <code>&lt;use&gt;</code> or <code>&lt;image&gt;</code>
+tag representing the linked symbol.</li>
+<li>Inspect the <code>xlink:href</code> or <code>href</code>
+attribute.</li>
+<li>If the value begins with an absolute path (e.g.,
+<code>file:///C:/...</code>), delete the absolute portion and change it
+to the relative path (e.g., <code>symbols/library.svg#symbol-id</code>
+or <code>library.svg#symbol-id</code>).</li>
+<li>Click <strong>Set</strong> to apply the changes.</li>
+</ol>
+<h3 id="embed-symbols-into-the-document">Embed Symbols into the
+Document</h3>
+<p>If you do not strictly require external updates to propagate to the
+file, embedding the symbols eliminates external dependency issues
+entirely.</p>
+<ol type="1">
+<li>Open the external SVG containing your source symbols.</li>
+<li>Select the symbol, copy it, and paste it directly into your
+destination document.</li>
+<li>Open the <strong>Symbols</strong> dialog (<strong>Object &gt;
+Symbols</strong> or <code>Shift + Ctrl + Y</code>).</li>
+<li>Select <strong>Current document</strong> from the drop-down menu.
+The symbol will now be stored in the file's internal
+<code>&lt;defs&gt;</code> section.</li>
+<li>Save the file. The SVG is now fully self-contained and will render
+correctly on any system without requiring accompanying asset files.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

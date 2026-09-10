@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Layer Opacity Affects Objects in Inkscape - inkscape</title>
+    <meta name="description" content="In Inkscape, changing the opacity of a parent layer multiplies against the opacity of any child objects inside it, rather than overriding them. This article explains how this compounding transparency mechanism works mathematically, how Inkscape treats la">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-layer-opacity-affects-objects-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Layer Opacity Affects Objects in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-layer-opacity-affects-objects-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In Inkscape, changing the opacity of a parent layer multiplies against the opacity of any child objects inside it, rather than overriding them. This article explains how this compounding transparency mechanism works mathematically, how Inkscape treats la" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-layer-opacity-affects-objects-in-inkscape">How Layer Opacity
+Affects Objects in Inkscape</h1>
+<p>In Inkscape, changing the opacity of a parent layer multiplies
+against the opacity of any child objects inside it, rather than
+overriding them. This article explains how this compounding transparency
+mechanism works mathematically, how Inkscape treats layers under the SVG
+specification, and how to manage both settings effectively in your
+design workflow.</p>
+<hr />
+<h3 id="the-multiplicative-transparency-rule">The Multiplicative
+Transparency Rule</h3>
+<p>When you reduce the opacity of a parent layer, Inkscape calculates
+the final visible opacity of any object inside that layer using a
+multiplicative formula:</p>
+<p><span class="math display">\[\text{Effective Opacity} = \text{Layer
+Opacity} \times \text{Object Opacity}\]</span></p>
+<p>For example:</p>
+<ul>
+<li>If a parent layer is set to <strong>50% opacity</strong> (0.50) and
+a child shape is set to <strong>100% opacity</strong> (1.00), the shape
+renders at <strong>50% visible opacity</strong> (<span
+class="math inline">\(0.50 \times 1.00 = 0.50\)</span>).</li>
+<li>If the child shape itself is also set to <strong>50%
+opacity</strong> (0.50), the shape renders at <strong>25% visible
+opacity</strong> (<span class="math inline">\(0.50 \times 0.50 =
+0.25\)</span>).</li>
+</ul>
+<p>A child object can never appear more opaque than its parent layer.
+Even if an object is set to 100% opacity, lowering the layer to 0% makes
+the entire layer and all nested contents completely invisible.</p>
+<h3 id="independent-value-retention">Independent Value Retention</h3>
+<p>Adjusting a parent layer’s opacity does not rewrite or alter the
+child object's independent opacity value.</p>
+<ul>
+<li>The child's opacity slider in the <strong>Fill and Stroke</strong>
+panel (<code>Shift + Ctrl + F</code>) remains unchanged.</li>
+<li>If you move the child object to another layer that has 100% opacity,
+the object immediately regains its individual opacity setting without
+requiring manual readjustment.</li>
+</ul>
+<h3 id="technical-implementation-in-svg">Technical Implementation in
+SVG</h3>
+<p>In Inkscape, layers are fundamentally SVG group elements
+(<code>&lt;g&gt;</code>) containing specific metadata
+(<code>inkscape:groupmode="layer"</code>).</p>
+<p>When you lower layer opacity:</p>
+<ol type="1">
+<li>Inkscape renders all child objects into a temporary off-screen
+buffer using their individual fills, strokes, and opacities.</li>
+<li>The entire composited buffer is then blended onto the canvas below
+it using the <code>opacity</code> attribute assigned to the parent
+<code>&lt;g&gt;</code> tag.</li>
+</ol>
+<p>Because the layer blends as a unified group, overlapping
+semi-transparent objects within the same layer interact with each other
+first, and the resulting composite is then faded by the parent layer's
+opacity.</p>
+<h3 id="color-alpha-vs-object-opacity-vs-layer-opacity">Color Alpha vs.
+Object Opacity vs. Layer Opacity</h3>
+<p>Inkscape offers three tiers of transparency that cascade in the
+following order:</p>
+<ol type="1">
+<li><strong>Fill and Stroke Alpha (A):</strong> Controls the
+transparency of the individual fill or outline color of a specific
+object.</li>
+<li><strong>Object Opacity (O):</strong> Controls the overall
+transparency of the entire object (fill and stroke combined).</li>
+<li><strong>Layer Opacity:</strong> Controls the transparency of all
+objects grouped within that layer.</li>
+</ol>
+<p>All three values compound together. If an object's fill alpha is 50%,
+object opacity is 50%, and the parent layer opacity is 50%, the rendered
+fill displays at an effective opacity of 12.5% (<span
+class="math inline">\(0.50 \times 0.50 \times 0.50 =
+0.125\)</span>).</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

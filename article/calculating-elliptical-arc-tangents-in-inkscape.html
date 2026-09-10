@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculating Elliptical Arc Tangents in Inkscape - inkscape</title>
+    <meta name="description" content="This article explains the mathematical and algorithmic process Inkscape uses to calculate the tangent vector at any point along an elliptical arc. Inkscape delegates this task to its internal 2D computational geometry engine, lib2geom, which converts SVG">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/calculating-elliptical-arc-tangents-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Calculating Elliptical Arc Tangents in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/calculating-elliptical-arc-tangents-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the mathematical and algorithmic process Inkscape uses to calculate the tangent vector at any point along an elliptical arc. Inkscape delegates this task to its internal 2D computational geometry engine, lib2geom, which converts SVG" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="calculating-elliptical-arc-tangents-in-inkscape">Calculating
+Elliptical Arc Tangents in Inkscape</h1>
+<p>This article explains the mathematical and algorithmic process
+Inkscape uses to calculate the tangent vector at any point along an
+elliptical arc. Inkscape delegates this task to its internal 2D
+computational geometry engine, <strong>lib2geom</strong>, which converts
+SVG arc descriptions into a center-based parametric representation,
+computes the first derivative of the curve equation with respect to the
+arc parameter, applies affine transformations, and normalizes the
+resulting vector.</p>
+<h3 id="1-converting-endpoint-to-center-parameterization">1. Converting
+Endpoint to Center Parameterization</h3>
+<p>The SVG specification defines elliptical arcs using endpoint
+parameterization: the starting point <span class="math inline">\((x_1,
+y_1)\)</span>, endpoint <span class="math inline">\((x_2, y_2)\)</span>,
+radii <span class="math inline">\((r_x, r_y)\)</span>, x-axis rotation
+angle <span class="math inline">\(\phi\)</span>, large-arc flag <span
+class="math inline">\(f_A\)</span>, and sweep flag <span
+class="math inline">\(f_S\)</span>.</p>
+<p>To calculate derivatives efficiently, Inkscape converts these values
+into center parameterization:</p>
+<ul>
+<li>Ellipse center <span class="math inline">\((c_x, c_y)\)</span></li>
+<li>Radii <span class="math inline">\(r_x\)</span> and <span
+class="math inline">\(r_y\)</span> (corrected for scale if the endpoints
+cannot be bridged by the specified radii)</li>
+<li>Rotation angle <span class="math inline">\(\phi\)</span></li>
+<li>Initial angle <span class="math inline">\(\theta_1\)</span> and
+angular span <span class="math inline">\(\Delta\theta\)</span></li>
+</ul>
+<p>Through this conversion, any point along the arc is mapped to a
+parameter <span class="math inline">\(t \in [0, 1]\)</span>, where the
+current angular position is <span class="math inline">\(\theta(t) =
+\theta_1 + t \cdot \Delta\theta\)</span>.</p>
+<h3 id="2-parametric-formulation-of-the-arc">2. Parametric Formulation
+of the Arc</h3>
+<p>A point <span class="math inline">\(P(t)\)</span> on the unrotated,
+centered ellipse is given by:</p>
+<p><span class="math display">\[p(t) = \begin{pmatrix} r_x
+\cos(\theta(t)) \\ r_y \sin(\theta(t)) \end{pmatrix}\]</span></p>
+<p>Accounting for the ellipse's rotation <span
+class="math inline">\(\phi\)</span> and translation to <span
+class="math inline">\((c_x, c_y)\)</span>, the full curve equation
+is:</p>
+<p><span class="math display">\[P(t) = \begin{pmatrix} c_x \\ c_y
+\end{pmatrix} + R(\phi) \cdot p(t)\]</span></p>
+<p>where <span class="math inline">\(R(\phi)\)</span> is the 2D rotation
+matrix:</p>
+<p><span class="math display">\[R(\phi) = \begin{pmatrix} \cos\phi &amp;
+-\sin\phi \\ \sin\phi &amp; \cos\phi \end{pmatrix}\]</span></p>
+<h3 id="3-evaluating-the-first-derivative">3. Evaluating the First
+Derivative</h3>
+<p>The tangent vector corresponds to the instantaneous direction of
+motion along the curve, which is the first derivative of <span
+class="math inline">\(P(t)\)</span> with respect to <span
+class="math inline">\(t\)</span>:</p>
+<p><span class="math display">\[\mathbf{T}_{\text{raw}}(t) =
+\frac{dP}{dt} = R(\phi) \cdot \frac{d}{dt} \begin{pmatrix} r_x
+\cos(\theta(t)) \\ r_y \sin(\theta(t)) \end{pmatrix}\]</span></p>
+<p>Applying the chain rule with <span
+class="math inline">\(\frac{d\theta}{dt} = \Delta\theta\)</span>:</p>
+<p><span class="math display">\[\frac{d}{dt} p(t) = \Delta\theta
+\begin{pmatrix} -r_x \sin(\theta(t)) \\ r_y \cos(\theta(t))
+\end{pmatrix}\]</span></p>
+<p>Multiplying by the rotation matrix yields the unnormalized tangent
+vector:</p>
+<p><span class="math display">\[\mathbf{T}_{\text{raw}}(t) =
+\Delta\theta \begin{pmatrix} -r_x \cos\phi \sin(\theta(t)) - r_y
+\sin\phi \cos(\theta(t)) \\ -r_x \sin\phi \sin(\theta(t)) + r_y \cos\phi
+\cos(\theta(t)) \end{pmatrix}\]</span></p>
+<p>The sign of <span class="math inline">\(\Delta\theta\)</span>
+directly preserves the traversal direction established by the SVG
+<code>sweep-flag</code>.</p>
+<h3 id="4-normalization-and-transformation-handling">4. Normalization
+and Transformation Handling</h3>
+<p>To obtain a directional unit tangent vector <span
+class="math inline">\(\hat{\mathbf{T}}(t)\)</span>, Inkscape divides the
+raw derivative vector by its Euclidean norm:</p>
+<p><span class="math display">\[\hat{\mathbf{T}}(t) =
+\frac{\mathbf{T}_{\text{raw}}(t)}{\|\mathbf{T}_{\text{raw}}(t)\|}\]</span></p>
+<p>If the arc belongs to an object with inherited SVG transform matrices
+(such as non-uniform scaling or skewing), Inkscape transforms the vector
+by the linear portion of the cumulative transformation matrix and
+normalizes it again to produce the final screen-space or world-space
+tangent.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

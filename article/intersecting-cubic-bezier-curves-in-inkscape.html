@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intersecting Cubic Bezier Curves in Inkscape - inkscape</title>
+    <meta name="description" content="Calculating the exact intersection points of two overlapping cubic Bézier curves is a fundamental challenge in vector graphics. Inkscape solves this using its underlying computational geometry engine, lib2geom, which avoids fragile pure-algebraic method">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/intersecting-cubic-bezier-curves-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Intersecting Cubic Bezier Curves in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/intersecting-cubic-bezier-curves-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Calculating the exact intersection points of two overlapping cubic Bézier curves is a fundamental challenge in vector graphics. Inkscape solves this using its underlying computational geometry engine, lib2geom, which avoids fragile pure-algebraic method" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="intersecting-cubic-bezier-curves-in-inkscape">Intersecting Cubic
+Bezier Curves in Inkscape</h1>
+<p>Calculating the exact intersection points of two overlapping cubic
+Bézier curves is a fundamental challenge in vector graphics. Inkscape
+solves this using its underlying computational geometry engine,
+<strong>lib2geom</strong>, which avoids fragile pure-algebraic methods
+in favor of a robust hybrid numerical pipeline. This article breaks down
+how Inkscape handles curve intersection through hierarchical bounding
+box rejection, Bézier clipping via de Casteljau subdivision, and
+multi-dimensional Newton-Raphson root refinement to achieve
+floating-point precision.</p>
+<h3 id="the-underlying-mathematical-challenge">The Underlying
+Mathematical Challenge</h3>
+<p>A cubic Bézier curve is defined parametrically by four control
+points:</p>
+<p><span class="math display">\[C(t) = (1-t)^3 P_0 + 3(1-t)^2 t P_1 +
+3(1-t) t^2 P_2 + t^3 P_3 \quad \text{for } t \in [0, 1]\]</span></p>
+<p>Finding where two curves, <span class="math inline">\(C_1(u)\)</span>
+and <span class="math inline">\(C_2(v)\)</span>, intersect means solving
+for parameter values <span class="math inline">\((u, v)\)</span> such
+that:</p>
+<p><span class="math display">\[C_1(u) - C_2(v) = 0\]</span></p>
+<p>Analytically converting one parametric cubic into an implicit
+algebraic equation (<span class="math inline">\(F(x, y) = 0\)</span>)
+produces a polynomial of degree 3. Substituting the parametric equations
+of the second curve into this implicit equation yields a single
+univariate polynomial of degree <span class="math inline">\(3 \times 3 =
+9\)</span>. Solving a 9th-degree polynomial algebraically is
+analytically impossible via radicals and computationally unstable due to
+numerical precision loss and catastrophic cancellation. Consequently,
+Inkscape relies on geometric and numerical algorithms.</p>
+<h3 id="the-core-engine-lib2geom">The Core Engine: lib2geom</h3>
+<p>Inkscape delegates geometric computations to
+<strong>lib2geom</strong>, an open-source C++ geometry library designed
+specifically for vector graphic manipulation. Lib2geom implements a
+three-stage pipeline to compute intersections:</p>
+<ol type="1">
+<li><strong>Bounding Box and Convex Hull Pruning</strong></li>
+<li><strong>Bézier Clipping and Domain Subdivision</strong></li>
+<li><strong>Local Numerical Refinement</strong></li>
+</ol>
+<hr />
+<h3 id="step-1-spatial-partitioning-and-convex-hull-culling">Step 1:
+Spatial Partitioning and Convex Hull Culling</h3>
+<p>Before performing deep mathematical operations, lib2geom rapidly
+eliminates curve segments that cannot possibly intersect.</p>
+<p>Bézier curves possess the <strong>convex hull property</strong>,
+which states that the entire curve lies strictly within the convex
+polygon formed by its four control points. Inkscape uses this property
+in stages:</p>
+<ol type="1">
+<li><strong>Axis-Aligned Bounding Boxes (AABB):</strong> Quick interval
+checks determine if the overall bounding boxes overlap. If they do not,
+the curves cannot intersect, and the check aborts immediately.</li>
+<li><strong>Convex Hull Intersection Tests:</strong> If the AABBs
+overlap, the library tests the tighter convex hulls using the Separating
+Axis Theorem (SAT). If a separating line exists between the two convex
+hulls, calculation ends.</li>
+</ol>
+<h3 id="step-2-bézier-clipping-and-de-casteljau-subdivision">Step 2:
+Bézier Clipping and de Casteljau Subdivision</h3>
+<p>When bounding regions overlap, lib2geom uses a technique known as
+<strong>Bézier Clipping</strong> (originally introduced by Sederberg and
+Nishita) combined with de Casteljau’s subdivision algorithm.</p>
+<ol type="1">
+<li><strong>Defining the Distance Function:</strong> A baseline is
+constructed between the endpoints of the first curve, <span
+class="math inline">\(C_1(0)\)</span> and <span
+class="math inline">\(C_1(1)\)</span>. The second curve, <span
+class="math inline">\(C_2\)</span>, is projected into a 1D coordinate
+frame measuring perpendicular distance from this line.</li>
+<li><strong>Interval Reduction:</strong> Because this distance function
+is also a cubic polynomial, its convex hull can be mapped against the
+zero-distance line. The points where this hull crosses zero define a
+reduced parameter range <span class="math inline">\([v_{\min},
+v_{\max}]\)</span> outside of which no intersection can exist.</li>
+<li><strong>Subdivision:</strong> If the parameter interval cannot be
+cleanly reduced by clipping alone, Inkscape splits the curve into two
+halves using <strong>de Casteljau's algorithm</strong> at <span
+class="math inline">\(t = 0.5\)</span>. This creates a tree of
+sub-curves, each tested recursively until the segment lengths drop below
+a predefined tolerance threshold.</li>
+</ol>
+<h3 id="step-3-newton-raphson-polish-to-exact-precision">Step 3:
+Newton-Raphson Polish to Exact Precision</h3>
+<p>Once subdivision isolates a candidate intersection into an extremely
+tight parameter window, Inkscape switches to a local bivariate
+<strong>Newton-Raphson iteration</strong> to reach full machine
+precision:</p>
+<p><span class="math display">\[\mathbf{F}(u, v) = C_1(u) - C_2(v) =
+\begin{bmatrix} X_1(u) - X_2(v) \\ Y_1(u) - Y_2(v) \end{bmatrix} =
+\mathbf{0}\]</span></p>
+<p>Starting from the midpoint of the subdivided interval <span
+class="math inline">\((u_0, v_0)\)</span>, the algorithm updates the
+estimates iteratively:</p>
+<p><span class="math display">\[\begin{bmatrix} u_{k+1} \\ v_{k+1}
+\end{bmatrix} = \begin{bmatrix} u_k \\ v_k \end{bmatrix} - J^{-1}
+\mathbf{F}(u_k, v_k)\]</span></p>
+<p>where <span class="math inline">\(J\)</span> is the Jacobian matrix
+of first-order derivatives:</p>
+<p><span class="math display">\[J = \begin{bmatrix} X&#39;_1(u) &amp;
+-X&#39;_2(v) \\ Y&#39;_1(u) &amp; -Y&#39;_2(v)
+\end{bmatrix}\]</span></p>
+<p>Because the derivatives of cubic Bézier curves are easily calculated
+quadratic Bézier curves, each iteration executes rapidly and exhibits
+quadratic convergence, resolving the exact coordinates within 3 to 5
+iterations.</p>
+<h3 id="handling-degenerate-cases">Handling Degenerate Cases</h3>
+<p>Inkscape’s engine includes explicit handlers for edge cases:</p>
+<ul>
+<li><strong>Tangential Contacts:</strong> When curves touch without
+crossing, the Jacobian determinant approaches zero. Lib2geom detects
+this condition and solves the roots by examining higher-order
+derivatives or checking sign changes across the local curvature.</li>
+<li><strong>Overlapping Segments (Infinite Intersections):</strong> If
+two curves share an entire arc, subdivision would theoretically recurse
+infinitely. Inkscape detects collinear control points and identical
+parameterizations early, collapsing the infinite set into the segment's
+bounding endpoints.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

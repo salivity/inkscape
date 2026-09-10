@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating Vector Circuit Diagrams in Inkscape - inkscape</title>
+    <meta name="description" content="Creating vector circuit diagrams and schematic overlays in Inkscape allows engineers, educators, and technical writers to produce sharp, scalable, and publication-ready electrical schematics. This guide covers how to configure the workspace for precise s">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/creating-vector-circuit-diagrams-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Creating Vector Circuit Diagrams in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/creating-vector-circuit-diagrams-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating vector circuit diagrams and schematic overlays in Inkscape allows engineers, educators, and technical writers to produce sharp, scalable, and publication-ready electrical schematics. This guide covers how to configure the workspace for precise s" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="creating-vector-circuit-diagrams-in-inkscape">Creating Vector
+Circuit Diagrams in Inkscape</h1>
+<p>Creating vector circuit diagrams and schematic overlays in Inkscape
+allows engineers, educators, and technical writers to produce sharp,
+scalable, and publication-ready electrical schematics. This guide covers
+how to configure the workspace for precise schematic layout, construct
+standard electronic symbols, route clean orthogonal wire connections,
+and build translucent vector overlays directly over PCB photos or
+mechanical drawings.</p>
+<h3 id="1-configure-the-grid-and-snapping">1. Configure the Grid and
+Snapping</h3>
+<p>Precise alignment is critical for clean circuit diagrams.</p>
+<ul>
+<li><strong>Set Up a Modular Grid:</strong> Go to
+<code>File &gt; Document Properties</code> (or press
+<code>Shift + Ctrl + D</code>), switch to the <strong>Grids</strong>
+tab, create a new <strong>Rectangular Grid</strong>, and set the grid
+spacing (e.g., 5 mm or 10 px).</li>
+<li><strong>Enable Snapping:</strong> Toggle the global snapping control
+on (top right or <code>%</code> key). Ensure that <strong>Snap to
+Grid</strong>, <strong>Snap to Nodes</strong>, and <strong>Snap to Cusp
+Nodes</strong> are active so wire paths automatically lock onto
+component terminals.</li>
+</ul>
+<h3 id="2-create-reusable-component-symbols">2. Create Reusable
+Component Symbols</h3>
+<p>Build standard components (resistors, capacitors, transistors, ground
+markers) using basic vector shapes.</p>
+<ul>
+<li><strong>Draw Components:</strong> Use the
+<strong>Rectangle</strong>, <strong>Circle</strong>, and <strong>Pen
+(Bezier)</strong> tools to draw standard IEEE or IEC symbols.</li>
+<li><strong>Combine and Standardize:</strong> Group the elements of a
+symbol together (<code>Ctrl + G</code>). Ensure terminal lead ends fall
+precisely on grid intersections.</li>
+<li><strong>Save to Symbols Library:</strong> Open the Symbols panel via
+<code>Object &gt; Symbols</code> (<code>Shift + Ctrl + Y</code>). You
+can create a local library or simply copy and paste standard components
+across your workspace.</li>
+</ul>
+<h3 id="3-route-wire-connections">3. Route Wire Connections</h3>
+<p>Wiring in schematics consists strictly of horizontal and vertical
+straight lines.</p>
+<ul>
+<li><strong>Orthogonal Routing:</strong> Select the <strong>Draw Bezier
+curves and straight lines</strong> tool (<code>B</code> or
+<code>Shift + F6</code>). Hold <code>Ctrl</code> while clicking to
+constrain lines to strict 15-degree increments
+(horizontal/vertical).</li>
+<li><strong>Standardize Stroke Width:</strong> Select all wire paths,
+open <code>Object &gt; Fill and Stroke</code>
+(<code>Shift + Ctrl + F</code>), and set a uniform stroke width (e.g.,
+1.5 px or 0.5 mm) with flat caps and miter joins.</li>
+<li><strong>Add Connection Nodes:</strong> Place small, solid filled
+circles at T-junctions to indicate electrical connection points.</li>
+</ul>
+<h3 id="4-add-text-annotations">4. Add Text Annotations</h3>
+<ul>
+<li>Use the <strong>Text Tool</strong> (<code>T</code>) to add reference
+designators (e.g., <span class="math inline">\(R_1\)</span>, <span
+class="math inline">\(C_1\)</span>) and component values (e.g., <span
+class="math inline">\(10\text{k}\Omega\)</span>, <span
+class="math inline">\(100\text{nF}\)</span>).</li>
+<li>Use the <strong>Align and Distribute</strong> panel
+(<code>Shift + Ctrl + A</code>) to keep labels uniformly distanced from
+components.</li>
+</ul>
+<h3 id="5-build-schematic-overlays-on-hardware">5. Build Schematic
+Overlays on Hardware</h3>
+<p>Schematic overlays visually match vector circuits with physical
+hardware, such as a breadboard, microcontroller, or custom PCB
+layout.</p>
+<ol type="1">
+<li><strong>Import the Base Image:</strong> Go to
+<code>File &gt; Import</code> and place a high-resolution photo or
+render of your PCB or breadboard into the document.</li>
+<li><strong>Set Up Layers:</strong> Open
+<code>Layer &gt; Layers and Objects</code>
+(<code>Shift + Ctrl + L</code>). Rename the bottom layer to "Base Image"
+and lock it. Create a new layer on top named "Schematic Overlay".</li>
+<li><strong>Trace and Highlight:</strong> On the overlay layer, draw
+highlighted vector traces, pinout callouts, and component overlays
+directly aligned with the underlying hardware features.</li>
+<li><strong>Adjust Visibility and Color:</strong> Use high-contrast
+colors (e.g., neon blue, bright orange) for vector lines against dark
+PCB backgrounds. Adjust the layer or object opacity slider in the
+<strong>Fill and Stroke</strong> panel to create translucent reference
+regions.</li>
+</ol>
+<h3 id="6-export-the-finished-vector">6. Export the Finished Vector</h3>
+<ul>
+<li><strong>For Documents and Print:</strong> Save as standard
+<strong>Inkscape SVG</strong> (<code>Ctrl + S</code>) to preserve full
+editability, or export as <strong>PDF</strong>
+(<code>File &gt; Save a Copy... &gt; Portable Document Format (*.pdf)</code>)
+to preserve vector scalability in LaTeX and technical publications.</li>
+<li><strong>For Web or Presentations:</strong> Go to
+<code>File &gt; Export</code> (<code>Shift + Ctrl + E</code>), select
+your desired export area (Page or Selection), set the resolution
+(typically 300 DPI), and export as a transparent
+<strong>PNG</strong>.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

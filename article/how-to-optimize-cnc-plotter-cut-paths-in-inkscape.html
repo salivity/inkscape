@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Optimize CNC Plotter Cut Paths in Inkscape - inkscape</title>
+    <meta name="description" content="Optimizing the cutting order for CNC plotters, laser cutters, and knife plotters significantly reduces job duration and machine wear by minimizing unnecessary "rapid" or non-cutting travel between shapes. By default, vector graphics software exports cut">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-optimize-cnc-plotter-cut-paths-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Optimize CNC Plotter Cut Paths in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-optimize-cnc-plotter-cut-paths-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Optimizing the cutting order for CNC plotters, laser cutters, and knife plotters significantly reduces job duration and machine wear by minimizing unnecessary "rapid" or non-cutting travel between shapes. By default, vector graphics software exports cut" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-optimize-cnc-plotter-cut-paths-in-inkscape">How to
+Optimize CNC Plotter Cut Paths in Inkscape</h1>
+<p>Optimizing the cutting order for CNC plotters, laser cutters, and
+knife plotters significantly reduces job duration and machine wear by
+minimizing unnecessary "rapid" or non-cutting travel between shapes. By
+default, vector graphics software exports cut sequences based on the
+order shapes were created, often resulting in erratic machine movements
+across the bed. This guide outlines how to prepare your vector artwork,
+utilize path-sorting extensions within Inkscape, and configure cutting
+paths to ensure the shortest possible travel route.</p>
+<h3 id="prepare-the-artwork-for-optimization">Prepare the Artwork for
+Optimization</h3>
+<p>Before running an optimization extension, clean the vector data to
+eliminate nested structures that prevent automated reordering:</p>
+<ol type="1">
+<li><strong>Convert Objects to Paths:</strong> Select all elements and
+navigate to <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>). This converts text, rectangles, and
+ellipses into raw vector nodes.</li>
+<li><strong>Ungroup All Elements:</strong> Select everything and
+repeatedly press <strong>Object &gt; Ungroup</strong>
+(<code>Ctrl + Shift + G</code>) until no groups remain in the status bar
+at the bottom. Extensions evaluate individual path elements, and
+grouping forces the software to prioritize group hierarchies over
+spatial proximity.</li>
+<li><strong>Split Combined Paths (If Necessary):</strong> If multiple
+distinct shapes are merged into a single path, navigate to <strong>Path
+&gt; Break Apart</strong> (<code>Ctrl + Shift + K</code>) so the
+optimizer can sequence each loop independently.</li>
+</ol>
+<h3 id="use-the-gcodetools-extension-to-order-paths">Use the Gcodetools
+Extension to Order Paths</h3>
+<p>The built-in <strong>Gcodetools</strong> extension provides an
+integrated tool for generating toolpaths with travel optimization:</p>
+<ol type="1">
+<li>Navigate to <strong>Extensions &gt; Gcodetools &gt; Path to
+Gcode</strong>.</li>
+<li>Under the <strong>Preferences</strong> tab, select a sorting method
+under the cutting options. Choosing algorithms like "Nearest" or
+"Shortest path" calculates the distance between the end point of the
+previous cut and the start point of the next.</li>
+<li>Apply the settings. Gcodetools re-evaluates the Z-order (the layer
+stack) of each path to create an optimized sequence, minimizing rapid
+traverse moves across the workpiece.</li>
+</ol>
+<h3 id="use-dedicated-path-sorting-extensions">Use Dedicated Path
+Sorting Extensions</h3>
+<p>Third-party extensions, such as the <strong>EggBot / AxiDraw</strong>
+utilities or dedicated <strong>Travelling Salesperson Problem
+(TSP)</strong> path sorters, provide advanced ordering algorithms:</p>
+<ol type="1">
+<li><strong>Install the Extension:</strong> Place the <code>.inx</code>
+and <code>.py</code> files into your Inkscape extensions directory
+(<code>Preferences &gt; System &gt; User extensions</code>).</li>
+<li><strong>Select Paths:</strong> Select all paths on the canvas.</li>
+<li><strong>Run the Reordering Tool:</strong> Open <strong>Extensions
+&gt; Generate from Path</strong> (or the respective vendor menu) and
+choose the sorting utility (e.g., <strong>Reorder Paths for
+Plotting</strong> or <strong>Sort Paths</strong>).</li>
+<li><strong>Choose Optimization Logic:</strong>
+<ul>
+<li><strong>Greedy / Nearest Neighbor:</strong> Fast and effective for
+simple geometries; it selects the closest available unvisited path.</li>
+<li><strong>TSP (Genetic or Simulated Annealing):</strong> Best for
+complex, dense designs; it evaluates the entire layout to find the
+globally shortest travel path.</li>
+</ul></li>
+<li>Apply the tool. The extension physically rearranges the objects in
+Inkscape’s XML tree so that the plotter software reads them
+sequentially.</li>
+</ol>
+<h3 id="optimize-start-points-and-cut-direction">Optimize Start Points
+and Cut Direction</h3>
+<p>Travel time is also dictated by where a cut begins and ends along a
+closed path:</p>
+<ol type="1">
+<li>Open <strong>Extensions &gt; Visualize Path &gt; Show Path
+Direction</strong> to display arrows on your vectors indicating start
+nodes and travel directions.</li>
+<li>Using the <strong>Node Tool</strong> (<code>N</code>), select the
+node on a closed shape closest to the expected entry point of the
+machine head.</li>
+<li>In the Node tool controls at the top, click <strong>Break path at
+selected nodes</strong>, then immediately click <strong>Join selected
+endnodes with a new segment</strong>. This redefines the start/end point
+of the closed loop to that specific location, preventing the machine
+from traversing across the shape merely to reach an arbitrary start
+point.</li>
+</ol>
+<h3 id="verify-the-optimized-toolpath">Verify the Optimized
+Toolpath</h3>
+<p>To confirm the travel sequence before sending the job to the
+machine:</p>
+<ol type="1">
+<li>Open the <strong>Objects and Layers</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li>Verify that paths are organized sequentially from bottom to top,
+which corresponds to the default machine execution order.</li>
+<li>If using an export extension (such as Inkscape to G-code or HPGL),
+run a simulation using a G-code previewer (such as CAMotics) or the
+built-in live preview in plotting controllers to ensure rapid travel
+lines are minimized.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Element Transforms with inkex.transforms - inkscape</title>
+    <meta name="description" content="This guide explains how to use Inkscape's inkex.transforms module to parse, calculate, compose, and apply affine transformations to SVG elements. You will learn how to extract an element's current transform matrix, generate new transformation matrices, c">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/calculate-element-transforms-with-inkex-transforms">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Calculate Element Transforms with inkex.transforms - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/calculate-element-transforms-with-inkex-transforms" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use Inkscape's inkex.transforms module to parse, calculate, compose, and apply affine transformations to SVG elements. You will learn how to extract an element's current transform matrix, generate new transformation matrices, c" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="calculate-element-transforms-with-inkextransforms">Calculate
+Element Transforms with inkex.transforms</h1>
+<p>This guide explains how to use Inkscape's
+<code>inkex.transforms</code> module to parse, calculate, compose, and
+apply affine transformations to SVG elements. You will learn how to
+extract an element's current transform matrix, generate new
+transformation matrices, combine them sequentially, and apply the
+resulting calculations directly to element attributes or specific point
+coordinates.</p>
+<h3 id="understanding-the-transform-class">Understanding the
+<code>Transform</code> Class</h3>
+<p>The core of element transformation in Inkscape's Python extension
+system is the <code>Transform</code> class within the
+<code>inkex.transforms</code> module. A transformation is represented as
+a 3x3 affine transformation matrix, which can handle translation,
+scaling, rotation, and shearing.</p>
+<p>To begin working with transformations, import the class:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex.transforms <span class="im">import</span> Transform</span></code></pre></div>
+<h3 id="accessing-an-elements-transform">Accessing an Element's
+Transform</h3>
+<p>Every SVG element node in <code>inkex</code> provides a
+<code>transform</code> property, which directly interacts with the SVG
+<code>transform</code> attribute:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns an inkex.transforms.Transform object</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>current_transform <span class="op">=</span> element.transform</span></code></pre></div>
+<p>If an element has no defined transformation,
+<code>element.transform</code> returns an identity matrix
+(<code>Transform()</code>).</p>
+<h3 id="creating-new-transformations">Creating New Transformations</h3>
+<p>You can instantiate specific transformations using keyword arguments
+or transformation strings:</p>
+<ul>
+<li><strong>Translation</strong>:
+<code>t_translate = Transform(translate=(dx, dy))</code></li>
+<li><strong>Scale</strong>:
+<code>t_scale = Transform(scale=(sx, sy))</code></li>
+<li><strong>Rotation</strong>:
+<code>t_rotate = Transform(rotate=angle_in_degrees)</code> or centered
+around a point:
+<code>Transform(rotate=(angle_in_degrees, cx, cy))</code></li>
+<li><strong>String representation</strong>:
+<code>t_from_str = Transform("translate(10, 20) rotate(45)")</code></li>
+</ul>
+<h3 id="composing-and-calculating-transformations">Composing and
+Calculating Transformations</h3>
+<p>Affine transformations are combined using matrix multiplication. In
+modern Python extensions for Inkscape, use the matrix multiplication
+operator (<code>@</code>) or standard multiplication
+(<code>*</code>):</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create independent transforms</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>translation <span class="op">=</span> Transform(translate<span class="op">=</span>(<span class="dv">50</span>, <span class="dv">100</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>rotation <span class="op">=</span> Transform(rotate<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the combined transform (order matters)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># This rotates the element first, then translates it:</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>combined_transform <span class="op">=</span> translation <span class="op">@</span> rotation</span></code></pre></div>
+<p>To append or prepend transformations to an existing element:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply an additional transformation after the existing one</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>element.transform <span class="op">=</span> Transform(translate<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">0</span>)) <span class="op">@</span> element.transform</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or update in-place</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>element.transform <span class="op">@=</span> Transform(scale<span class="op">=</span><span class="fl">1.5</span>)</span></code></pre></div>
+<h3 id="calculating-cumulative-document-transforms">Calculating
+Cumulative Document Transforms</h3>
+<p>An element's local <code>transform</code> attribute only reflects
+transformations applied directly to that element. If its parent groups
+also have transformations, you must compute the cumulative (effective)
+transform to find its absolute canvas position:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Computes the full transform chain from the root down to this element</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>absolute_transform <span class="op">=</span> element.composed_transform()</span></code></pre></div>
+<h3 id="transforming-points-and-coordinates">Transforming Points and
+Coordinates</h3>
+<p>You can calculate the resulting position of a coordinate without
+altering the SVG element itself by using
+<code>apply_to_point()</code>:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>original_point <span class="op">=</span> (<span class="dv">100</span>, <span class="dv">150</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>transform <span class="op">=</span> Transform(translate<span class="op">=</span>(<span class="dv">20</span>, <span class="op">-</span><span class="dv">30</span>)) <span class="op">@</span> Transform(rotate<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate transformed coordinates</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>new_x, new_y <span class="op">=</span> transform.apply_to_point(original_point)</span></code></pre></div>
+<h3 id="inverting-transforms">Inverting Transforms</h3>
+<p>To reverse an element's transformation or map canvas coordinates back
+into local element space, calculate the inverse matrix:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the inverse transform</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>inverse_transform <span class="op">=</span> <span class="op">-</span>element.transform</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Map a canvas point back to local element space</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>local_point <span class="op">=</span> (<span class="op">-</span>element.composed_transform()).apply_to_point((canvas_x, canvas_y))</span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

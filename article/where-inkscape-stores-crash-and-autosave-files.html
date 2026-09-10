@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where Inkscape Stores Crash and Autosave Files - inkscape</title>
+    <meta name="description" content="When Inkscape encounters an unexpected error and crashes, it attempts to create an emergency backup of your unsaved work. This guide outlines the exact default storage locations for emergency saves and periodic autosaves across Windows, macOS, and Linux,">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/where-inkscape-stores-crash-and-autosave-files">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Where Inkscape Stores Crash and Autosave Files - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/where-inkscape-stores-crash-and-autosave-files" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When Inkscape encounters an unexpected error and crashes, it attempts to create an emergency backup of your unsaved work. This guide outlines the exact default storage locations for emergency saves and periodic autosaves across Windows, macOS, and Linux," />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="where-inkscape-stores-crash-and-autosave-files">Where Inkscape
+Stores Crash and Autosave Files</h1>
+<p>When Inkscape encounters an unexpected error and crashes, it attempts
+to create an emergency backup of your unsaved work. This guide outlines
+the exact default storage locations for emergency saves and periodic
+autosaves across Windows, macOS, and Linux, along with instructions on
+how to locate your recovery files and verify your autosave settings.</p>
+<h2 id="default-emergency-save-locations">Default Emergency Save
+Locations</h2>
+<p>When an unexpected crash occurs, Inkscape attempts an emergency
+document save. By default, it places the emergency file directly into
+your user home directory rather than a temporary cache folder.</p>
+<h3 id="windows">Windows</h3>
+<ul>
+<li><strong>Path:</strong>
+<code>C:\Users\&lt;YourUsername&gt;\</code></li>
+<li>Note: Open File Explorer, click on your main user folder (or press
+<code>Windows Key + R</code>, type <code>%USERPROFILE%</code>, and press
+Enter).</li>
+</ul>
+<h3 id="macos">macOS</h3>
+<ul>
+<li><strong>Path:</strong> <code>/Users/&lt;YourUsername&gt;/</code>
+(User Home Directory)</li>
+<li>Note: Open Finder and navigate to your Home folder
+(<code>Shift + Cmd + H</code>).</li>
+</ul>
+<h3 id="linux">Linux</h3>
+<ul>
+<li><strong>Path:</strong> <code>/home/&lt;YourUsername&gt;/</code> (or
+<code>~</code>)</li>
+<li>Note: Check your primary user directory.</li>
+</ul>
+<h2 id="emergency-file-naming-convention">Emergency File Naming
+Convention</h2>
+<p>Emergency files are saved in the standard SVG format. Inkscape names
+the recovered file using the original document name (or "New document"
+if unnamed) appended with a timestamp:</p>
+<ul>
+<li><code>filename.YYYY_MM_DD_HH_MM_SS_#.svg</code></li>
+<li>Example: <code>drawing.2024_03_15_14_30_22_0.svg</code></li>
+</ul>
+<p>To locate the file quickly, open your user folder and sort the files
+by <strong>Date Modified</strong> in descending order.</p>
+<h2 id="checking-the-standard-autosave-directory">Checking the Standard
+Autosave Directory</h2>
+<p>If an emergency crash save was not generated, the file may still
+exist in your regular autosave directory if autosave was enabled prior
+to the crash.</p>
+<ol type="1">
+<li>Open Inkscape.</li>
+<li>Go to <strong>Edit</strong> &gt; <strong>Preferences</strong> (or
+press <code>Ctrl + Shift + P</code> on Windows/Linux,
+<code>Cmd + ,</code> on macOS).</li>
+<li>In the left sidebar, expand <strong>Input/Output</strong> and select
+<strong>Autosave</strong>.</li>
+<li>Check the <strong>Autosave directory</strong> field to see the exact
+folder path where background saves are stored.</li>
+<li>If the field is blank, Inkscape uses your default user directory or
+system temporary folder.</li>
+</ol>
+<h2 id="best-practices-for-file-recovery">Best Practices for File
+Recovery</h2>
+<ul>
+<li><strong>Enable Autosave:</strong> In <strong>Preferences &gt;
+Input/Output &gt; Autosave</strong>, ensure <strong>Enable
+autosave</strong> is checked and set an interval (e.g., 5 to 10
+minutes).</li>
+<li><strong>Search by Extension:</strong> If the file is not in your
+home folder, run a system search for <code>*.svg</code> files modified
+within the last hour.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

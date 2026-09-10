@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import Visio VSDX Files into Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to open and edit Microsoft Visio (.vsdx) files directly within Inkscape. Thanks to Inkscape's built-in support powered by the libvisio library, you can seamlessly import proprietary Visio vector diagrams, convert them into native">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-import-visio-vsdx-files-into-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import Visio VSDX Files into Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-import-visio-vsdx-files-into-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to open and edit Microsoft Visio (.vsdx) files directly within Inkscape. Thanks to Inkscape's built-in support powered by the libvisio library, you can seamlessly import proprietary Visio vector diagrams, convert them into native" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-visio-vsdx-files-into-inkscape">How to Import
+Visio VSDX Files into Inkscape</h1>
+<p>This guide explains how to open and edit Microsoft Visio (.vsdx)
+files directly within Inkscape. Thanks to Inkscape's built-in support
+powered by the <code>libvisio</code> library, you can seamlessly import
+proprietary Visio vector diagrams, convert them into native Scalable
+Vector Graphics (SVG), and edit individual paths, text elements, and
+shapes without requiring Microsoft Office.</p>
+<h2 id="method-1-direct-import-via-inkscape">Method 1: Direct Import via
+Inkscape</h2>
+<p>Inkscape natively supports reading <code>.vsdx</code> and older
+<code>.vsd</code> files. Follow these steps to open your diagram
+directly:</p>
+<ol type="1">
+<li>Launch <strong>Inkscape</strong>.</li>
+<li>Click on <strong>File</strong> in the top menu and select
+<strong>Open</strong> (to open as a new document) or
+<strong>Import</strong> (to add the diagram into your current
+canvas).</li>
+<li>In the file browser dialog, navigate to the folder containing your
+Visio file.</li>
+<li>Set the file format dropdown menu to <strong>All Files</strong> or
+<strong>Microsoft Visio Diagram (*.vsd, *.vsdx)</strong>.</li>
+<li>Select your <code>.vsdx</code> file and click
+<strong>Open</strong>.</li>
+<li>If the document contains multiple pages, Inkscape will prompt you to
+select the specific page you want to import. Choose your desired page
+and click <strong>OK</strong>.</li>
+</ol>
+<p>Once loaded, the Visio diagram is converted into Inkscape vector
+objects, ready for editing.</p>
+<h2 id="method-2-export-as-svg-from-microsoft-visio">Method 2: Export as
+SVG from Microsoft Visio</h2>
+<p>If you have access to Microsoft Visio and want the highest fidelity
+with minimal font or rendering discrepancies, export the file directly
+to SVG:</p>
+<ol type="1">
+<li>Open the diagram in <strong>Microsoft Visio</strong>.</li>
+<li>Go to <strong>File &gt; Save As</strong>.</li>
+<li>Choose your destination folder.</li>
+<li>In the <strong>Save as type</strong> dropdown menu, select
+<strong>Scalable Vector Graphics (*.svg)</strong>.</li>
+<li>Click <strong>Save</strong>.</li>
+<li>Open the newly created <code>.svg</code> file directly in
+Inkscape.</li>
+</ol>
+<h2 id="method-3-convert-via-pdf-fallback-method">Method 3: Convert via
+PDF (Fallback Method)</h2>
+<p>If a <code>.vsdx</code> file fails to import correctly due to
+unsupported proprietary formatting, converting it through a PDF provides
+an exact visual match:</p>
+<ol type="1">
+<li>In Microsoft Visio (or a free online Visio viewer), save or print
+the diagram as a <strong>PDF</strong>.</li>
+<li>Open Inkscape and navigate to <strong>File &gt; Open</strong>.</li>
+<li>Select the exported PDF file.</li>
+<li>In the PDF Import Settings dialog, select <strong>Poppler/Cairo
+import</strong> for precise visual rendering or <strong>Internal
+import</strong> to keep text editable.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h2 id="working-with-imported-visio-elements">Working with Imported
+Visio Elements</h2>
+<p>After importing your <code>.vsdx</code> file into Inkscape, use these
+tips to edit the diagram effectively:</p>
+<ul>
+<li><strong>Ungroup Elements:</strong> Visio diagrams often import as
+deeply nested groups. Select the imported graphic and press
+<code>Ctrl + Shift + G</code> (or <code>Cmd + Shift + G</code> on macOS)
+repeatedly to separate connectors, text blocks, and shapes.</li>
+<li><strong>Resolve Missing Fonts:</strong> If Visio used proprietary
+Microsoft fonts (such as Calibri or Segoe UI) that are missing from your
+operating system, select the text fields and assign installed system
+fonts using the <strong>Text and Font</strong> tool
+(<code>Ctrl + Shift + T</code>).</li>
+<li><strong>Clean Up Shapes:</strong> Visio connectors and dynamic
+shapes may import as combined paths. Use <strong>Path &gt; Break
+Apart</strong> or the <strong>Node Tool</strong> (<code>N</code>) to
+modify individual path nodes.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

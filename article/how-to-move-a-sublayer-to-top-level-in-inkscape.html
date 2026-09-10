@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Move a Sublayer to Top Level in Inkscape - inkscape</title>
+    <meta name="description" content="In Inkscape, organizing artwork often involves creating nested sublayers inside parent layers. If you need to restructure your document hierarchy, you can easily promote a nested sublayer to an independent, top-level layer directly within the Layers and">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-move-a-sublayer-to-top-level-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Move a Sublayer to Top Level in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-move-a-sublayer-to-top-level-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In Inkscape, organizing artwork often involves creating nested sublayers inside parent layers. If you need to restructure your document hierarchy, you can easily promote a nested sublayer to an independent, top-level layer directly within the Layers and" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-move-a-sublayer-to-top-level-in-inkscape">How to Move a
+Sublayer to Top Level in Inkscape</h1>
+<p>In Inkscape, organizing artwork often involves creating nested
+sublayers inside parent layers. If you need to restructure your document
+hierarchy, you can easily promote a nested sublayer to an independent,
+top-level layer directly within the Layers and Objects panel. This guide
+explains how to drag and drop your sublayer to the root level or move it
+manually using standard Inkscape tools.</p>
+<h3 id="method-1-using-the-layers-and-objects-panel-recommended">Method
+1: Using the Layers and Objects Panel (Recommended)</h3>
+<p>In modern versions of Inkscape (version 1.2 and newer), the
+<strong>Layers and Objects</strong> dialog provides a drag-and-drop
+interface for layer hierarchy management.</p>
+<ol type="1">
+<li><strong>Open the Layers Panel</strong>: Go to the top menu and
+select <strong>Layer &gt; Layers and Objects...</strong>, or press the
+keyboard shortcut <strong>Ctrl + Shift + L</strong> (or <strong>Cmd +
+Shift + L</strong> on macOS).</li>
+<li><strong>Locate the Sublayer</strong>: In the panel, click the arrow
+next to the parent layer to expand it and reveal the sublayer you wish
+to move.</li>
+<li><strong>Drag the Sublayer</strong>: Click and hold the sublayer you
+want to promote.</li>
+<li><strong>Drop at the Root Level</strong>: Drag the sublayer upward or
+downward toward the edge of the parent layer. Look closely at the drop
+indicator line:
+<ul>
+<li>If the line is <strong>indented</strong>, releasing the mouse will
+keep the layer nested inside another layer or group.</li>
+<li>If the line extends all the way to the <strong>left edge</strong> of
+the list, it indicates a root-level position.</li>
+</ul></li>
+<li><strong>Release the Mouse</strong>: Drop the layer when the
+indicator line extends fully to the left margin. The sublayer is now an
+independent, top-level layer.</li>
+</ol>
+<h3 id="method-2-cut-and-paste-in-place">Method 2: Cut and Paste in
+Place</h3>
+<p>If you encounter issues with drag-and-drop positioning, you can move
+the content manually using clipboard commands.</p>
+<ol type="1">
+<li><strong>Select the Sublayer Contents</strong>: Click on the sublayer
+in the <strong>Layers and Objects</strong> panel, then select all
+elements inside it (<strong>Ctrl + A</strong>).</li>
+<li><strong>Cut the Elements</strong>: Press <strong>Ctrl + X</strong>
+to cut the objects to your clipboard.</li>
+<li><strong>Create a New Top-Level Layer</strong>: Go to <strong>Layer
+&gt; Add Layer...</strong> (or press <strong>Ctrl + Shift + N</strong>).
+Set the placement to <strong>Above current</strong> or <strong>Below
+current</strong>, ensure it is not set as a sublayer, and click
+<strong>Add</strong>.</li>
+<li><strong>Paste in Place</strong>: Select the newly created top-level
+layer, then press <strong>Ctrl + Alt + V</strong> (or <strong>Cmd + Alt
++ V</strong> on macOS) to paste the objects in their exact original
+coordinates.</li>
+<li><strong>Delete the Empty Sublayer</strong>: Return to the
+<strong>Layers and Objects</strong> panel, right-click the old, empty
+sublayer, and select <strong>Delete</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make Sunburst Charts in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to generate scalable vector sunburst charts for hierarchical data visualization using Inkscape. Because Inkscape does not feature a dedicated one-click sunburst tool, you will learn how to structure your hierarchical values into p">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-make-sunburst-charts-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Make Sunburst Charts in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-make-sunburst-charts-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate scalable vector sunburst charts for hierarchical data visualization using Inkscape. Because Inkscape does not feature a dedicated one-click sunburst tool, you will learn how to structure your hierarchical values into p" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-make-sunburst-charts-in-inkscape">How to Make Sunburst
+Charts in Inkscape</h1>
+<p>This guide explains how to generate scalable vector sunburst charts
+for hierarchical data visualization using Inkscape. Because Inkscape
+does not feature a dedicated one-click sunburst tool, you will learn how
+to structure your hierarchical values into proportional angles, build
+concentric layers using the circle and arc tools, slice them into
+distinct path segments, and style the resulting vector visualization for
+high-resolution output.</p>
+<h2 id="1-prepare-your-data-and-proportions">1. Prepare Your Data and
+Proportions</h2>
+<p>A sunburst chart visualizes hierarchical trees using concentric
+rings: the center circle represents the root or main categories, and
+each outward ring breaks down into subcategories.</p>
+<ol type="1">
+<li>Calculate the percentage of the whole for each category and
+subcategory.</li>
+<li>Convert these percentages into degrees by multiplying each
+proportion by 360.</li>
+<li>Keep track of cumulative start and end angles for each segment so
+that child categories align precisely with their parent category
+arcs.</li>
+</ol>
+<h2 id="2-set-up-snapping-and-guides">2. Set Up Snapping and Guides</h2>
+<p>Accurate segment placement requires strict circular alignment:</p>
+<ol type="1">
+<li>Open <strong>Document Properties</strong>
+(<code>Shift + Ctrl + D</code>) and ensure your display units are set to
+pixels or millimeters.</li>
+<li>Enable snapping from the top-right toolbar.</li>
+<li>Ensure <strong>Snap to Object Centers</strong> and <strong>Snap to
+Nodes, Paths, and Handles</strong> are active.</li>
+<li>Drag a horizontal and vertical guide from the rulers to intersect at
+your intended chart center.</li>
+</ol>
+<h2 id="3-create-concentric-rings">3. Create Concentric Rings</h2>
+<p>Use stroked circles to define the levels of your hierarchy:</p>
+<ol type="1">
+<li>Select the <strong>Circles and Ellipses</strong> tool
+(<code>E</code>).</li>
+<li>Hold <code>Ctrl + Shift</code>, click on the guide intersection, and
+drag outward to create a uniform circle centered on your guides.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + Y</code>).</li>
+<li>Set <strong>Fill</strong> to "No paint" and set <strong>Stroke
+paint</strong> to a flat color.</li>
+<li>In <strong>Stroke style</strong>, set the stroke width to the
+desired thickness for that hierarchy level (e.g., 40 px).</li>
+<li>Duplicate the circle (<code>Ctrl + D</code>), hold
+<code>Ctrl + Shift</code>, and resize it to create the next outer ring.
+Repeat this for each level of your hierarchy.</li>
+</ol>
+<h2 id="4-segment-the-rings">4. Segment the Rings</h2>
+<p>To turn continuous rings into individual data cells, divide them into
+precise angular segments.</p>
+<h3 id="method-a-using-precise-arc-values">Method A: Using Precise Arc
+Values</h3>
+<ol type="1">
+<li>Select one of your stroked circles.</li>
+<li>Switch to the <strong>Circles and Ellipses</strong> tool
+(<code>E</code>). The toolbar will show <strong>Start</strong> and
+<strong>End</strong> angle inputs.</li>
+<li>Enter your calculated starting and ending degree values for each
+segment.</li>
+<li>Convert the stroked segment into an editable path by selecting
+<strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>).</li>
+<li>Duplicate the original circle to repeat this process for adjacent
+segments.</li>
+</ol>
+<h3 id="method-b-slicing-with-radial-lines">Method B: Slicing with
+Radial Lines</h3>
+<ol type="1">
+<li>Use the <strong>Draw Freehand Lines</strong> or <strong>Bezier
+Curves</strong> tool (<code>B</code>) to draw a straight line from the
+center outward past the outermost ring.</li>
+<li>Open the <strong>Transform</strong> panel
+(<code>Shift + Ctrl + M</code>) and go to the <strong>Rotate</strong>
+tab.</li>
+<li>Set the angle to your calculated interval and click
+<strong>Apply</strong> while duplicating the line
+(<code>Ctrl + D</code>) for each boundary.</li>
+<li>Convert all concentric rings into paths: select them and choose
+<strong>Path &gt; Stroke to Path</strong>.</li>
+<li>Select a radial line and an underlying ring segment, then select
+<strong>Path &gt; Cut Path</strong> (<code>Ctrl + Alt + /</code>) to
+slice the ring at the line boundary. Repeat across segments.</li>
+</ol>
+<h2 id="5-color-and-organize-the-hierarchy">5. Color and Organize the
+Hierarchy</h2>
+<ol type="1">
+<li>Select each path segment and assign colors based on your data
+taxonomy.</li>
+<li>Keep parent categories unified with a base hue, and assign varying
+tints or shades of that hue to their respective child segments in the
+outer rings.</li>
+<li>Add a slight stroke (1–2 px) in the background color to create clean
+margins between segments.</li>
+<li>Group each hierarchy level or logical category using <strong>Object
+&gt; Group</strong> (<code>Ctrl + G</code>) to keep the SVG layer
+structure clean.</li>
+</ol>
+<h2 id="6-add-radial-labels">6. Add Radial Labels</h2>
+<ol type="1">
+<li>Select the <strong>Text</strong> tool (<code>T</code>) and type the
+label for a segment.</li>
+<li>Draw an invisible guide circle centered in the middle of the target
+ring layer.</li>
+<li>Select both the text object and the guide circle, then choose
+<strong>Text &gt; Put on Path</strong>.</li>
+<li>Rotate the guide circle to position the label squarely within its
+corresponding segment.</li>
+<li>Alternatively, place straight labels inside larger segments and
+rotate them via <strong>Object &gt; Transform &gt; Rotate</strong> to
+match the segment’s median angle.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

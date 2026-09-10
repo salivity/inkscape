@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintain Mitered Corners with Inkscape Offset LPE - inkscape</title>
+    <meta name="description" content="This guide explains how to prevent sharp corners from beveling or rounding when using the Offset Live Path Effect (LPE) in Inkscape at large offset distances. By default, extreme offsets often truncate sharp angles due to miter limit thresholds. Adjustin">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/maintain-mitered-corners-with-inkscape-offset-lpe">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Maintain Mitered Corners with Inkscape Offset LPE - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/maintain-mitered-corners-with-inkscape-offset-lpe" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to prevent sharp corners from beveling or rounding when using the Offset Live Path Effect (LPE) in Inkscape at large offset distances. By default, extreme offsets often truncate sharp angles due to miter limit thresholds. Adjustin" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="maintain-mitered-corners-with-inkscape-offset-lpe">Maintain
+Mitered Corners with Inkscape Offset LPE</h1>
+<p>This guide explains how to prevent sharp corners from beveling or
+rounding when using the Offset Live Path Effect (LPE) in Inkscape at
+large offset distances. By default, extreme offsets often truncate sharp
+angles due to miter limit thresholds. Adjusting the join type and
+scaling the miter limit directly within the Path Effects panel allows
+you to preserve crisp, pointed mitered edges regardless of how far the
+path is expanded.</p>
+<h3 id="apply-the-offset-path-effect">Apply the Offset Path Effect</h3>
+<ol type="1">
+<li>Select the vector path you want to expand.</li>
+<li>Open the Path Effects dialog by navigating to <strong>Path &gt; Path
+Effects</strong>.</li>
+<li>Click the <strong>Add Path Effect</strong> button (the
+<code>+</code> icon) and select <strong>Offset</strong> from the
+list.</li>
+</ol>
+<h3 id="set-the-join-type-to-miter">Set the Join Type to Miter</h3>
+<p>In the Path Effects panel under the Offset settings:</p>
+<ol type="1">
+<li>Locate the <strong>Join</strong> parameter.</li>
+<li>Change the dropdown menu to <strong>Miter</strong>.</li>
+</ol>
+<p>This specifies that intersecting edges should extend until they meet
+at a sharp point rather than rounding off or flattening.</p>
+<h3 id="increase-the-miter-limit">Increase the Miter Limit</h3>
+<p>At extreme offset distances, the distance between the inner corner
+and the outer tip increases significantly. Inkscape automatically bevels
+corners when this distance exceeds the <strong>Miter limit</strong>
+value to prevent excessively long spikes.</p>
+<ol type="1">
+<li>Locate the <strong>Miter limit</strong> field within the Offset LPE
+parameters.</li>
+<li>The default value is typically set to <code>4.00</code>. Increase
+this value significantly (for example, to <code>20.00</code>,
+<code>50.00</code>, or higher) depending on the sharpness of your angles
+and the magnitude of your offset.</li>
+<li>Observe the canvas as you increase the number. Once the miter limit
+is high enough to accommodate the acute angle multiplied by the offset
+distance, the corner will snap from a flat bevel back to a sharp
+point.</li>
+</ol>
+<h3 id="troubleshooting-acute-angles">Troubleshooting Acute Angles</h3>
+<p>For extremely sharp, acute angles (under 15 degrees), the miter point
+can project extremely far outward. If the corner still appears cut off
+at high offset distances:</p>
+<ul>
+<li>Enter an arbitrarily high miter limit, such as
+<code>100.00</code>.</li>
+<li>Ensure that the original path does not contain duplicate or
+overlapping coincident nodes at the corner, as redundant nodes can
+confuse the path calculation and force a round or beveled cap.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

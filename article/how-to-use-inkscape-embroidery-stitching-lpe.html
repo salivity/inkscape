@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Inkscape Embroidery Stitching LPE - inkscape</title>
+    <meta name="description" content="This guide provides a comprehensive walkthrough on using Inkscape’s native Embroidery Stitching Live Path Effect (LPE) to simulate realistic thread rendering. You will learn how to prepare your vector objects, apply and configure the stitch parameters,">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-use-inkscape-embroidery-stitching-lpe">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use Inkscape Embroidery Stitching LPE - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-use-inkscape-embroidery-stitching-lpe" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a comprehensive walkthrough on using Inkscape’s native Embroidery Stitching Live Path Effect (LPE) to simulate realistic thread rendering. You will learn how to prepare your vector objects, apply and configure the stitch parameters," />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-inkscape-embroidery-stitching-lpe">How to Use
+Inkscape Embroidery Stitching LPE</h1>
+<p>This guide provides a comprehensive walkthrough on using Inkscape’s
+native Embroidery Stitching Live Path Effect (LPE) to simulate realistic
+thread rendering. You will learn how to prepare your vector objects,
+apply and configure the stitch parameters, and use styling techniques to
+give standard vector lines the texture, depth, and appearance of
+physical embroidery without needing external plugins.</p>
+<h3 id="1-prepare-your-artwork">1. Prepare Your Artwork</h3>
+<p>The Embroidery Stitching LPE operates on vector paths.</p>
+<ol type="1">
+<li>Draw your design using the <strong>Pen (Bezier) Tool</strong> or
+create basic shapes using the shape tools.</li>
+<li>If you are using pre-made shapes (rectangles, circles) or text,
+convert them to standard paths by selecting the object and navigating to
+<strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>).</li>
+<li>For best results with line fills or satin-style borders, ensure
+paths are single open lines or clean outlines. If your object has a
+fill, remove the fill and keep only the stroke via the <strong>Fill and
+Stroke</strong> panel (<code>Shift + Ctrl + F</code>).</li>
+</ol>
+<h3 id="2-apply-the-embroidery-stitching-live-path-effect">2. Apply the
+Embroidery Stitching Live Path Effect</h3>
+<ol type="1">
+<li>Select the path you want to turn into thread.</li>
+<li>Open the Path Effects dialog by going to <strong>Path &gt; Path
+Effects</strong>.</li>
+<li>In the Path Effects panel, click the <strong>Add Path
+Effect</strong> button (the <code>+</code> icon).</li>
+<li>Search for or scroll to find <strong>Embroidery Stitching</strong>
+and click it to apply it to your selected path.</li>
+</ol>
+<h3 id="3-adjust-the-stitch-parameters">3. Adjust the Stitch
+Parameters</h3>
+<p>Once applied, the Embroidery Stitching parameters will appear in the
+Path Effects panel. Adjust these controls to simulate different
+embroidery techniques:</p>
+<ul>
+<li><strong>Stitch Length:</strong> Controls the length of individual
+thread segments along the path. Shorter lengths produce tighter, denser
+stitches, while longer lengths simulate loose, decorative running
+stitches.</li>
+<li><strong>Stitch Width / Amplitude:</strong> Determines the spread of
+the stitch perpendicular to the path. Increasing this creates a zigzag
+or satin stitch effect, ideal for borders and thick lettering.</li>
+<li><strong>Density / Step:</strong> Dictates how closely packed the
+stitches are to one another. Higher density gives a solid, filled thread
+appearance, whereas lower density mimics hand-stitched details.</li>
+<li><strong>Randomize / Variation:</strong> Adds subtle irregularities
+to the stitch placement and length. Machine embroidery has slight
+imperfections, and hand-embroidery has many; adding a small amount of
+randomization breaks the unnatural computer-generated uniformity.</li>
+</ul>
+<h3 id="4-style-the-path-for-realistic-thread-texture">4. Style the Path
+for Realistic Thread Texture</h3>
+<p>To make the generated vector lines look like authentic thread, refine
+the stroke appearance:</p>
+<ol type="1">
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>) and navigate to the <strong>Stroke
+style</strong> tab.</li>
+<li>Set the <strong>Cap</strong> to <strong>Round Cap</strong> and
+<strong>Join</strong> to <strong>Round Join</strong>. This prevents
+stitches from looking like sharp, flat wire and gives thread ends a
+natural, soft curve.</li>
+<li>Adjust the <strong>Width</strong> of the stroke to match the weight
+of standard embroidery thread (typically between 0.5 mm and 1.5 mm
+depending on your document scale).</li>
+<li>In the <strong>Stroke paint</strong> tab, choose a thread color.
+Slightly desaturated colors often appear more natural than pure primary
+colors.</li>
+</ol>
+<h3 id="5-add-3d-depth-and-highlights">5. Add 3D Depth and
+Highlights</h3>
+<p>Physical thread sits raised above fabric, casting subtle shadows and
+catching light.</p>
+<ol type="1">
+<li><strong>Duplicate for Underlay:</strong> Duplicate your stitched
+path (<code>Ctrl + D</code>), move it slightly downward and to the
+right, lower its opacity, and set the color to a darker shade or black
+to act as a drop shadow.</li>
+<li><strong>Built-in Filters:</strong> Select your stitched object and
+go to <strong>Filters &gt; Bumps &gt; Bump</strong> or <strong>Filters
+&gt; Morphology &gt; Matte Ridge</strong> to add a subtle embossed
+effect directly to the stroke, simulating the cylindrical highlight of
+twisted thread.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

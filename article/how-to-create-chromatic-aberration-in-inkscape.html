@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Chromatic Aberration in Inkscape - inkscape</title>
+    <meta name="description" content="Chromatic aberration, often called an RGB split or color fringe glitch, simulates optical lens distortion by separating the color channels of an image or text. In Inkscape, you can achieve this striking effect entirely with vector objects by duplicating">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-chromatic-aberration-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Chromatic Aberration in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-chromatic-aberration-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Chromatic aberration, often called an RGB split or color fringe glitch, simulates optical lens distortion by separating the color channels of an image or text. In Inkscape, you can achieve this striking effect entirely with vector objects by duplicating" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-chromatic-aberration-in-inkscape">How to Create
+Chromatic Aberration in Inkscape</h1>
+<p>Chromatic aberration, often called an RGB split or color fringe
+glitch, simulates optical lens distortion by separating the color
+channels of an image or text. In Inkscape, you can achieve this striking
+effect entirely with vector objects by duplicating your base design,
+assigning pure additive or subtractive colors to each duplicate,
+applying specific layer blend modes, and physically offsetting their
+positions.</p>
+<h3 id="step-1-prepare-your-base-artwork">Step 1: Prepare Your Base
+Artwork</h3>
+<ol type="1">
+<li>Open Inkscape and create or import the vector element (text, icon,
+or path) you want to stylize.</li>
+<li>If working with text, convert it to a path by going to <strong>Path
+&gt; Object to Path</strong>, then ungroup it (<strong>Object &gt;
+Ungroup</strong>) and unite the letters (<strong>Path &gt;
+Union</strong>). This ensures your graphic behaves as a single
+element.</li>
+</ol>
+<h3 id="step-2-choose-the-background-and-color-method">Step 2: Choose
+the Background and Color Method</h3>
+<p>The color model you use depends on the background color of your
+canvas:</p>
+<ul>
+<li><strong>Dark Backgrounds (Additive RGB):</strong> Use Pure Red
+(<code>#FF0000</code>), Pure Green (<code>#00FF00</code>), and Pure Blue
+(<code>#0000FF</code>) with the <strong>Screen</strong> blend mode. When
+stacked directly on top of each other, they produce pure white.</li>
+<li><strong>Light Backgrounds (Subtractive CMY):</strong> Use Cyan
+(<code>#00FFFF</code>), Magenta (<code>#FF00FF</code>), and Yellow
+(<code>#FFFF00</code>) with the <strong>Multiply</strong> blend mode.
+When stacked, they produce pure black.</li>
+</ul>
+<h3 id="step-3-duplicate-and-color-the-channels">Step 3: Duplicate and
+Color the Channels</h3>
+<ol type="1">
+<li>Select your unified path and duplicate it twice by pressing
+<strong>Ctrl + D</strong> two times, giving you three identical objects
+directly on top of each other.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel (<strong>Ctrl +
+Shift + F</strong>).</li>
+<li>Select each duplicate sequentially in the <strong>Layers and
+Objects</strong> panel:
+<ul>
+<li>Color the bottom object Red (<code>#FF0000</code>).</li>
+<li>Color the middle object Green (<code>#00FF00</code>).</li>
+<li>Color the top object Blue (<code>#0000FF</code>).</li>
+</ul></li>
+</ol>
+<h3 id="step-4-apply-blend-modes">Step 4: Apply Blend Modes</h3>
+<ol type="1">
+<li>Select the top (Blue) object. In the <strong>Fill and
+Stroke</strong> panel, locate the <strong>Blend mode</strong> dropdown
+menu at the bottom and change it from <em>Normal</em> to
+<strong>Screen</strong>.</li>
+<li>Select the middle (Green) object and change its blend mode to
+<strong>Screen</strong>.</li>
+<li>Select the bottom (Red) object and change its blend mode to
+<strong>Screen</strong> as well.</li>
+<li>If your background is black, the perfectly aligned shapes will now
+appear solid white where they overlap.</li>
+</ol>
+<h3 id="step-5-offset-the-color-channels">Step 5: Offset the Color
+Channels</h3>
+<ol type="1">
+<li>Select the top (Blue) shape. Using the arrow keys on your keyboard,
+nudge it slightly to the right (and optionally down).</li>
+<li>Select the bottom (Red) shape and nudge it in the opposite direction
+(left and optionally up) by the same distance.</li>
+<li>Leave the middle (Green) shape in its original position to serve as
+the anchor.</li>
+<li>As the shapes move apart, the overlapping center remains white,
+while the edges display cyan, magenta, red, and blue fringing.</li>
+</ol>
+<h3 id="step-6-fine-tune-the-effect">Step 6: Fine-Tune the Effect</h3>
+<ul>
+<li><strong>Subtlety:</strong> Keep nudges between 1 to 5 pixels for a
+realistic lens distortion, or increase the distance for a pronounced
+glitch aesthetic.</li>
+<li><strong>Blur:</strong> In the <strong>Fill and Stroke</strong>
+panel, add a 0.5% to 1.5% <strong>Blur</strong> to the offset channels
+to soften the fringes and mimic genuine optical lens diffusion.</li>
+<li><strong>Grouping:</strong> Once satisfied, select all three shapes
+and press <strong>Ctrl + G</strong> to group them, allowing you to move
+and scale the finished effect as a single asset.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

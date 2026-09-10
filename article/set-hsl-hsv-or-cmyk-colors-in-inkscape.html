@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set HSL, HSV, or CMYK Colors in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape provides native support for multiple color spaces, allowing designers to precisely define object colors using HSL, HSV, or CMYK values directly. By utilizing the built-in Fill and Stroke dialog, you can switch color models instantly, input exact">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/set-hsl-hsv-or-cmyk-colors-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Set HSL, HSV, or CMYK Colors in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/set-hsl-hsv-or-cmyk-colors-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape provides native support for multiple color spaces, allowing designers to precisely define object colors using HSL, HSV, or CMYK values directly. By utilizing the built-in Fill and Stroke dialog, you can switch color models instantly, input exact" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="set-hsl-hsv-or-cmyk-colors-in-inkscape">Set HSL, HSV, or CMYK
+Colors in Inkscape</h1>
+<p>Inkscape provides native support for multiple color spaces, allowing
+designers to precisely define object colors using HSL, HSV, or CMYK
+values directly. By utilizing the built-in Fill and Stroke dialog, you
+can switch color models instantly, input exact numerical values, and
+ensure your vector artwork matches specific digital or print color
+requirements.</p>
+<h3 id="step-1-open-the-fill-and-stroke-panel">Step 1: Open the Fill and
+Stroke Panel</h3>
+<ol type="1">
+<li>Select the object or path you want to modify using the
+<strong>Select tool</strong> (<code>S</code> or <code>F1</code>).</li>
+<li>Open the <strong>Fill and Stroke</strong> panel by pressing
+<code>Ctrl + Shift + F</code> (Windows/Linux) or
+<code>Cmd + Shift + F</code> (macOS), or by navigating to <strong>Object
+&gt; Fill and Stroke</strong> in the top menu.</li>
+</ol>
+<h3 id="step-2-choose-the-target-property">Step 2: Choose the Target
+Property</h3>
+<p>At the top of the Fill and Stroke panel, choose whether you are
+applying color to the interior of the shape or its outline:</p>
+<ul>
+<li>Select the <strong>Fill</strong> tab to change the inner color.</li>
+<li>Select the <strong>Stroke paint</strong> tab to change the outline
+color.</li>
+<li>Ensure the <strong>Flat color</strong> icon (the solid square next
+to the "No paint" <code>X</code> icon) is active.</li>
+</ul>
+<h3 id="step-3-switch-to-your-desired-color-model">Step 3: Switch to
+Your Desired Color Model</h3>
+<p>Below the paint type options, Inkscape displays several color space
+tabs: <strong>RGB</strong>, <strong>HSL</strong>, <strong>HSV</strong>,
+<strong>CMYK</strong>, <strong>Wheel</strong>, and <strong>CMS</strong>.
+Click on the tab corresponding to the color format you want to use:</p>
+<ul>
+<li><p><strong>HSL (Hue, Saturation, Lightness):</strong></p>
+<ul>
+<li><strong>H (0–360):</strong> Represents the color angle on the color
+wheel.</li>
+<li><strong>S (0–100):</strong> Sets the intensity or purity of the
+color.</li>
+<li><strong>L (0–100):</strong> Sets the brightness, from black (0) to
+white (100).</li>
+<li><strong>A (0–100):</strong> Controls the Alpha (opacity)
+channel.</li>
+</ul></li>
+<li><p><strong>HSV (Hue, Saturation, Value):</strong></p>
+<ul>
+<li><strong>H (0–360):</strong> Defines the color hue.</li>
+<li><strong>S (0–100):</strong> Defines the saturation level.</li>
+<li><strong>V (0–100):</strong> Defines the value/brightness (0 is
+completely dark; 100 is maximum brightness).</li>
+<li><strong>A (0–100):</strong> Controls the Alpha (opacity)
+channel.</li>
+</ul></li>
+<li><p><strong>CMYK (Cyan, Magenta, Yellow, Key/Black):</strong></p>
+<ul>
+<li><strong>C (0–100):</strong> Cyan percentage.</li>
+<li><strong>M (0–100):</strong> Magenta percentage.</li>
+<li><strong>Y (0–100):</strong> Yellow percentage.</li>
+<li><strong>K (0–100):</strong> Black percentage.</li>
+<li><strong>A (0–100):</strong> Controls the Alpha (opacity)
+channel.</li>
+</ul></li>
+</ul>
+<h3 id="step-4-enter-direct-values">Step 4: Enter Direct Values</h3>
+<ol type="1">
+<li>Double-click the numerical input box next to any slider (H, S, L, V,
+C, M, Y, or K).</li>
+<li>Type the exact numeric value.</li>
+<li>Press <code>Enter</code> to apply the value immediately to the
+selected object.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

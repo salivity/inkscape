@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scale Parent Without Scaling Children in Inkscape - inkscape</title>
+    <meta name="description" content="In Inkscape, scaling a parent group automatically scales all nested child objects by default because transformation matrices apply to the entire group hierarchy. While Inkscape does not feature an automated layout constraints panel like some UI design so">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/scale-parent-without-scaling-children-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Scale Parent Without Scaling Children in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/scale-parent-without-scaling-children-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In Inkscape, scaling a parent group automatically scales all nested child objects by default because transformation matrices apply to the entire group hierarchy. While Inkscape does not feature an automated layout constraints panel like some UI design so" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="scale-parent-without-scaling-children-in-inkscape">Scale Parent
+Without Scaling Children in Inkscape</h1>
+<p>In Inkscape, scaling a parent group automatically scales all nested
+child objects by default because transformation matrices apply to the
+entire group hierarchy. While Inkscape does not feature an automated
+layout constraints panel like some UI design software, you can prevent
+child elements from transforming by using targeted in-group selection,
+manipulating container nodes directly, or using detached clones.</p>
+<h3 id="method-1-direct-child-selection-ctrl--click">Method 1: Direct
+Child Selection (Ctrl + Click)</h3>
+<p>The fastest way to resize a parent container without affecting the
+nested elements is to bypass group-level scaling:</p>
+<ol type="1">
+<li>Select the <strong>Select and Transform objects</strong> tool
+(<code>S</code> or <code>F1</code>).</li>
+<li>Hold <code>Ctrl</code> and left-click directly on the parent
+background or container object to select it individually within the
+group.</li>
+<li>Use the selection handles or the width (<code>W</code>) and height
+(<code>H</code>) fields in the top toolbar to resize the container.</li>
+</ol>
+<p>The container will resize while keeping all other child elements at
+their original scale and preserving the overall group structure.</p>
+<h3 id="method-2-the-node-tool-path-editing">Method 2: The Node Tool
+(Path Editing)</h3>
+<p>If the parent container is a path rather than a predefined shape,
+modifying its nodes ensures nested objects remain completely
+unaffected:</p>
+<ol type="1">
+<li>Select the <strong>Edit paths by nodes</strong> tool (<code>N</code>
+or <code>F2</code>).</li>
+<li>Click on the parent container object (double-click into the group if
+necessary).</li>
+<li>Click and drag a selection box around the nodes on the side you want
+to expand or contract.</li>
+<li>Use the arrow keys or drag the selected nodes to resize the
+container boundaries.</li>
+</ol>
+<p>Because you are editing the geometry of the specific path rather than
+applying a scale transformation to the group, the child objects will
+remain stationary and untransformed.</p>
+<h3 id="method-3-ungrouping-temporarily">Method 3: Ungrouping
+Temporarily</h3>
+<p>If you must use standard transformation handles on complex multi-part
+containers:</p>
+<ol type="1">
+<li>Select the group and press <code>Ctrl + Shift + G</code> to
+ungroup.</li>
+<li>Hold <code>Shift</code> and click the child objects you want to
+exclude from the transformation to deselect them.</li>
+<li>Scale the remaining container objects to your desired
+dimensions.</li>
+<li>Shift-select the child objects again and press <code>Ctrl + G</code>
+to restore the group.</li>
+</ol>
+<h3 id="method-4-using-clones-for-independent-scale">Method 4: Using
+Clones for Independent Scale</h3>
+<p>For recurring components where a container must drive position but
+not size:</p>
+<ol type="1">
+<li>Keep the child objects outside of the parent container group.</li>
+<li>Create a clone of the parent container using
+<code>Alt + D</code>.</li>
+<li>Position the children over the clone.</li>
+<li>Group the clone and the children together, but apply your dimension
+edits only to the original parent shape. The clone will mirror the shape
+changes without forcing scale transforms onto sibling elements in the
+secondary group.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

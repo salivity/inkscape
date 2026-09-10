@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Custom Filter Input Nodes in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to add and connect custom filter input nodes using the Filter Editor dialog in Inkscape. By routing inputs such as the source graphic, background image, or previous primitive outputs into specific filter effects, you can create ad">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/add-custom-filter-input-nodes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Add Custom Filter Input Nodes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/add-custom-filter-input-nodes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to add and connect custom filter input nodes using the Filter Editor dialog in Inkscape. By routing inputs such as the source graphic, background image, or previous primitive outputs into specific filter effects, you can create ad" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="add-custom-filter-input-nodes-in-inkscape">Add Custom Filter
+Input Nodes in Inkscape</h1>
+<p>This guide explains how to add and connect custom filter input nodes
+using the Filter Editor dialog in Inkscape. By routing inputs such as
+the source graphic, background image, or previous primitive outputs into
+specific filter effects, you can create advanced, multi-layered SVG
+filter effects directly on the canvas.</p>
+<h3 id="1-open-the-filter-editor-dialog">1. Open the Filter Editor
+Dialog</h3>
+<p>To access the interface:</p>
+<ol type="1">
+<li>Open your document in Inkscape.</li>
+<li>Go to the top menu bar and select <strong>Filters &gt; Filter
+Editor</strong>.</li>
+<li>A docked panel named <strong>Filter Editor</strong> will appear in
+your workspace.</li>
+</ol>
+<h3 id="2-create-and-assign-a-filter">2. Create and Assign a Filter</h3>
+<p>Before adding input nodes, you must have an active filter applied to
+a target object:</p>
+<ol type="1">
+<li>Select an object on your canvas.</li>
+<li>In the Filter Editor panel, click the <strong>New</strong> button at
+the bottom of the filter list.</li>
+<li>Check the box next to the newly created filter to assign it to your
+selected object.</li>
+</ol>
+<h3 id="3-add-filter-primitives">3. Add Filter Primitives</h3>
+<p>Filter input nodes belong to individual effect components called
+"primitives" (such as Gaussian Blur, Composite, Blend, or Offset):</p>
+<ol type="1">
+<li>In the drop-down menu at the bottom of the Filter Editor, choose the
+primitive you want to use (for example, <strong>Composite</strong> or
+<strong>Blend</strong>).</li>
+<li>Click <strong>Add Primitive</strong>. The effect appears in the
+primitive list in the center column.</li>
+</ol>
+<h3 id="4-locate-the-input-connection-nodes">4. Locate the Input
+Connection Nodes</h3>
+<p>In the Filter Editor, the connection area is located between the
+standard inputs column (on the left) and the primitive list:</p>
+<ul>
+<li><strong>Standard Source Nodes (Left Column):</strong> These
+represent global inputs:
+<ul>
+<li><strong>Source Graphic:</strong> The original color and opacity of
+the selected object.</li>
+<li><strong>Source Alpha:</strong> Only the opacity mask of the selected
+object.</li>
+<li><strong>Background Image:</strong> The canvas content beneath the
+object.</li>
+<li><strong>Background Alpha:</strong> The opacity mask of the
+underlying canvas content.</li>
+<li><strong>Fill Paint / Stroke Paint:</strong> The solid color,
+gradient, or pattern assigned to the object's fill or stroke.</li>
+</ul></li>
+<li><strong>Primitive Input Nodes (Connection Rows):</strong> Each
+primitive in your list has one or more input connection points displayed
+as small triangular handles extending to the left. Single-input effects
+like Gaussian Blur have one node, while dual-input effects like
+Composite have two.</li>
+</ul>
+<h3 id="5-connect-and-route-custom-input-nodes">5. Connect and Route
+Custom Input Nodes</h3>
+<p>To route an input into a specific primitive:</p>
+<ol type="1">
+<li>Click and hold the triangular input handle on the left side of your
+target primitive.</li>
+<li>Drag the connection line toward the desired input source:
+<ul>
+<li><strong>Connect to a Global Source:</strong> Drag the line all the
+way to one of the standard inputs in the far-left column (e.g.,
+<strong>Source Graphic</strong> or <strong>Background
+Image</strong>).</li>
+<li><strong>Connect to Another Primitive:</strong> Drag the line to the
+output of an existing primitive higher in the list to chain multiple
+effects together.</li>
+</ul></li>
+<li>Release the mouse button to secure the connection.</li>
+</ol>
+<h3 id="6-managing-multi-input-primitives">6. Managing Multi-Input
+Primitives</h3>
+<p>For primitives like <strong>Composite</strong> or
+<strong>Blend</strong>, which require two distinct inputs (Input 1 and
+Input 2):</p>
+<ol type="1">
+<li>Drag the top triangular handle to your primary visual source (e.g.,
+the output of an Offset or Blur primitive).</li>
+<li>Drag the bottom triangular handle to your secondary source (e.g.,
+the original <strong>Source Graphic</strong>).</li>
+<li>Select the primitive to adjust its parameters in the lower settings
+pane (e.g., switching the Composite operator to <em>Over</em>,
+<em>In</em>, <em>Out</em>, or <em>Arithmetic</em>).</li>
+</ol>
+<p>To disconnect or reroute any node, click and drag the triangular
+handle away from its current connection and release it onto a different
+source.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blend Textures in Inkscape Using feComposite Arithmetic - inkscape</title>
+    <meta name="description" content="This article provides a direct guide on using the SVG feComposite filter primitive with the Arithmetic operator inside Inkscape to seamlessly blend vector textures onto shapes. By leveraging mathematical coefficients to combine input graphics, this techn">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/blend-textures-in-inkscape-using-fecomposite-arithmetic">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Blend Textures in Inkscape Using feComposite Arithmetic - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/blend-textures-in-inkscape-using-fecomposite-arithmetic" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a direct guide on using the SVG feComposite filter primitive with the Arithmetic operator inside Inkscape to seamlessly blend vector textures onto shapes. By leveraging mathematical coefficients to combine input graphics, this techn" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="blend-textures-in-inkscape-using-fecomposite-arithmetic">Blend
+Textures in Inkscape Using feComposite Arithmetic</h1>
+<p>This article provides a direct guide on using the SVG
+<code>feComposite</code> filter primitive with the Arithmetic operator
+inside Inkscape to seamlessly blend vector textures onto shapes. By
+leveraging mathematical coefficients to combine input graphics, this
+technique allows you to create custom overlays, distress effects, and
+complex shading without rasterizing your artwork or relying solely on
+standard layer blend modes.</p>
+<h3
+id="understanding-the-arithmetic-operator-in-fecomposite">Understanding
+the Arithmetic Operator in feComposite</h3>
+<p>The <code>feComposite</code> primitive combines two input images
+(<code>in</code> and <code>in2</code>) on a per-pixel basis. When set to
+the <strong>Arithmetic</strong> operator, it calculates the output color
+using the following formula:</p>
+<p><code>result = k1 * in1 * in2 + k2 * in1 + k3 * in2 + k4</code></p>
+<ul>
+<li><strong>in1 (Input 1):</strong> Typically your vector texture
+overlay.</li>
+<li><strong>in2 (Input 2):</strong> Typically the base shape or object
+being textured.</li>
+<li><strong>k1:</strong> Multiplies the two inputs together (similar to
+Multiply blend mode).</li>
+<li><strong>k2:</strong> Controls the visibility and intensity of
+<code>in1</code> alone.</li>
+<li><strong>k3:</strong> Controls the visibility and intensity of
+<code>in2</code> alone.</li>
+<li><strong>k4:</strong> An offset value added to all pixels (often kept
+at 0 to avoid washing out blacks).</li>
+</ul>
+<h3 id="step-by-step-guide-to-blending-textures">Step-by-Step Guide to
+Blending Textures</h3>
+<h4 id="1-prepare-your-artwork">1. Prepare Your Artwork</h4>
+<ol type="1">
+<li>Create or import your base object (e.g., a colored shape or
+character illustration).</li>
+<li>Place your vector texture (e.g., grain, hatching, or grunge paths)
+directly on top of the base object.</li>
+<li>Group the base object and the texture together by selecting both and
+pressing <code>Ctrl + G</code>.</li>
+</ol>
+<h4 id="2-open-the-filter-editor">2. Open the Filter Editor</h4>
+<ol type="1">
+<li>Go to the menu and select <strong>Filters &gt; Filter
+Editor</strong>.</li>
+<li>Click the <strong>New</strong> button in the Filter Editor panel to
+create a new custom filter.</li>
+<li>Rename the filter to something descriptive, such as "Vector Texture
+Blend".</li>
+</ol>
+<h4 id="3-add-and-route-the-fecomposite-primitive">3. Add and Route the
+feComposite Primitive</h4>
+<ol type="1">
+<li>In the drop-down menu at the bottom of the Filter Editor, select
+<strong>Composite</strong> and click <strong>Add
+Primitive</strong>.</li>
+<li>In the graphical routing area of the Filter Editor, you will see the
+<code>Composite</code> node with two connection triangles on its left
+side:
+<ul>
+<li>Connect the top triangle (<code>in</code>) to <strong>Source
+Graphic</strong> (which represents the top element/texture).</li>
+<li>Connect the bottom triangle (<code>in2</code>) to <strong>Background
+Image</strong> or use a secondary primitive (such as
+<code>Source Graphic</code> routed through a graphic split) depending on
+whether the objects are grouped or stacked.</li>
+<li>If working with a single group, an easier routing approach is to add
+an <code>Image</code> primitive or duplicate inputs using an
+<code>Offset</code> or <code>Tile</code> primitive to assign specific
+vector elements to each input. Alternatively, apply the filter directly
+to the top texture layer and set <code>in2</code> to <strong>Background
+Image</strong> (ensure "Enable Background Image" is supported or enabled
+in Document Properties).</li>
+</ul></li>
+</ol>
+<h4 id="4-configure-the-arithmetic-settings">4. Configure the Arithmetic
+Settings</h4>
+<ol type="1">
+<li>Select the <code>Composite</code> primitive in the list to reveal
+its properties at the bottom of the panel.</li>
+<li>Change the <strong>Operator</strong> dropdown from <code>Over</code>
+to <strong>Arithmetic</strong>.</li>
+<li>Adjust the <code>k</code> values based on your desired visual
+outcome:
+<ul>
+<li><strong>Subtle Dark Texture (Multiply-like):</strong> Set
+<code>k1 = 1</code>, <code>k2 = 0</code>, <code>k3 = 0</code>,
+<code>k4 = 0</code>.</li>
+<li><strong>Highlight/Bleach Texture (Add-like):</strong> Set
+<code>k1 = 0</code>, <code>k2 = 0.5</code>, <code>k3 = 1</code>,
+<code>k4 = 0</code>.</li>
+<li><strong>Soft Overlay Blend:</strong> Set <code>k1 = 0.5</code>,
+<code>k2 = 0.5</code>, <code>k3 = 0.5</code>, <code>k4 = 0</code>.</li>
+<li><strong>Thresholded Distress:</strong> Increase <code>k1</code>
+above 1.0 and use negative values for <code>k4</code> (e.g.,
+<code>k4 = -0.1</code>) to cut through the base shape sharply.</li>
+</ul></li>
+</ol>
+<h4 id="5-apply-the-filter">5. Apply the Filter</h4>
+<ol type="1">
+<li>Select the target object or group on the canvas.</li>
+<li>Check the box next to your new filter in the Filter Editor list to
+apply it.</li>
+<li>Continue tweaking the numeric values in the Effect Parameters tab
+until the vector texture integrates smoothly with the base design.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designing Modular 2D Paper Doll Clothes in Inkscape - inkscape</title>
+    <meta name="description" content="This guide outlines the process of designing modular 2D paper-doll clothing sets that seamlessly align with a shared skeletal rig using Inkscape. You will learn how to establish a standardized base mannequin, map joint pivot points, organize modular clot">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/designing-modular-2d-paper-doll-clothes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Designing Modular 2D Paper Doll Clothes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/designing-modular-2d-paper-doll-clothes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide outlines the process of designing modular 2D paper-doll clothing sets that seamlessly align with a shared skeletal rig using Inkscape. You will learn how to establish a standardized base mannequin, map joint pivot points, organize modular clot" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="designing-modular-2d-paper-doll-clothes-in-inkscape">Designing
+Modular 2D Paper Doll Clothes in Inkscape</h1>
+<p>This guide outlines the process of designing modular 2D paper-doll
+clothing sets that seamlessly align with a shared skeletal rig using
+Inkscape. You will learn how to establish a standardized base mannequin,
+map joint pivot points, organize modular clothing layers, accommodate
+joint rotation through overlapping geometry, and export properly aligned
+assets ready for game engines or animation software.</p>
+<h3 id="establish-the-master-template-and-pivot-points">Establish the
+Master Template and Pivot Points</h3>
+<p>Begin by placing your base character model on a locked layer named
+<code>Base_Mannequin</code>. This character serves as the global
+anatomical guide for all future clothing sets. On a separate guide
+layer, mark the exact center of rotation for every joint (shoulders,
+elbows, wrists, hips, knees, and ankles) using small vector crosses or
+circular nodes. Inkscape’s <strong>Snap to Guides</strong> and
+<strong>Snap to Nodes</strong> features should be enabled. These pivot
+coordinates ensure that when separate clothing pieces are bound to bone
+pivots in external animation software, the fabric stretches and rotates
+precisely where the underlying body bends.</p>
+<h3 id="structure-the-layer-hierarchy">Structure the Layer
+Hierarchy</h3>
+<p>Create a dedicated, uniform layer structure for clothing items to
+match the skeletal hierarchy of the rig. Group garments by anatomical
+segments rather than single items:</p>
+<ul>
+<li><code>Headwear</code></li>
+<li><code>Torso_Outer</code> / <code>Torso_Inner</code></li>
+<li><code>Arm_Upper_L</code> / <code>Arm_Lower_L</code></li>
+<li><code>Arm_Upper_R</code> / <code>Arm_Lower_R</code></li>
+<li><code>Pelvis</code></li>
+<li><code>Leg_Upper_L</code> / <code>Leg_Lower_L</code></li>
+<li><code>Leg_Upper_R</code> / <code>Leg_Lower_R</code></li>
+</ul>
+<p>Splitting single garments like jackets or long pants into these
+sub-components is essential for paper-doll systems. A jacket, for
+instance, must be broken down into a torso segment and individual sleeve
+segments so the character’s limbs can move independently without
+breaking the visual structure.</p>
+<h3 id="draw-with-rotational-overlap">Draw With Rotational Overlap</h3>
+<p>When designing clothing pieces over the base template, draw each limb
+segment with rounded endcaps that contour concentric circles centered on
+the joint pivots. Because paper-doll rigs rotate rigid 2D sprites,
+joints will separate or display empty gaps if clothing cuts off flat at
+the joint boundary. By rounding the elbows, knees, and shoulders past
+the joint line, the overlapping circular geometry preserves a
+continuous, unbroken outline throughout the limb's full range of
+motion.</p>
+<h3 id="maintain-seam-and-silhouette-consistency">Maintain Seam and
+Silhouette Consistency</h3>
+<p>To ensure clothing items from different sets can mix and match
+without graphical conflicts, standardize your seam lines and
+thicknesses. Use Inkscape’s <strong>Stroke Style</strong> panel to
+enforce uniform stroke widths across all sets. Keep waistbands, collars,
+and hems aligned to identical guide markers across all asset variants so
+that combining a shirt from one set with trousers from another does not
+result in skin-peeking or awkward layering overlaps.</p>
+<h3 id="preserve-global-coordinates-for-export">Preserve Global
+Coordinates for Export</h3>
+<p>Never crop or re-center individual clothing items around their own
+bounding boxes. For modular systems to align automatically upon import
+into an engine, every exported piece must retain its spatial
+relationship to the master rig:</p>
+<ol type="1">
+<li>Create a fixed-size, transparent bounding box (e.g., 2048x2048 px)
+that encompasses the entire character frame.</li>
+<li>Group each clothing element with this invisible boundary or use
+Inkscape’s <strong>Export</strong> panel set to <strong>Page</strong>
+coordinates instead of <strong>Selection</strong>.</li>
+<li>Alternatively, export each individual piece with its pivot point
+marked by an invisible vector pixel so the game engine can detect the
+exact local origin.</li>
+</ol>
+<p>By keeping the canvas dimensions and origin identical across all
+exports, every clothing item will automatically snap into its correct
+position on the character rig without manual realignment.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

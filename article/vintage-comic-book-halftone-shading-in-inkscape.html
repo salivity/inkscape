@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Comic Book Halftone Shading in Inkscape - inkscape</title>
+    <meta name="description" content="Creating authentic vintage comic book halftone dot shading in Inkscape adds a classic retro aesthetic to your vector illustrations. This guide explains how to generate customizable, fully scalable halftone patterns using Inkscape's powerful Create Tiled">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/vintage-comic-book-halftone-shading-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vintage Comic Book Halftone Shading in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/vintage-comic-book-halftone-shading-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating authentic vintage comic book halftone dot shading in Inkscape adds a classic retro aesthetic to your vector illustrations. This guide explains how to generate customizable, fully scalable halftone patterns using Inkscape's powerful Create Tiled" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="vintage-comic-book-halftone-shading-in-inkscape">Vintage Comic
+Book Halftone Shading in Inkscape</h1>
+<p>Creating authentic vintage comic book halftone dot shading in
+Inkscape adds a classic retro aesthetic to your vector illustrations.
+This guide explains how to generate customizable, fully scalable
+halftone patterns using Inkscape's powerful <strong>Create Tiled
+Clones</strong> tool and its built-in trace engine, as well as how to
+apply built-in halftone filter effects for quick results.</p>
+<hr />
+<h3
+id="method-1-vector-halftone-dots-using-tiled-clones-recommended">Method
+1: Vector Halftone Dots Using Tiled Clones (Recommended)</h3>
+<p>This method creates real vector dots that scale dynamically based on
+the brightness of an underlying gradient.</p>
+<h4 id="step-1-create-the-shading-gradient">Step 1: Create the Shading
+Gradient</h4>
+<ol type="1">
+<li>Draw the shape you want to shade using the <strong>Pen (B)</strong>
+or <strong>Rectangle (R)</strong> tool.</li>
+<li>Select the shape and open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>).</li>
+<li>Apply a linear or radial gradient ranging from pure black to pure
+white. Black represents where the largest dots will appear, and white
+represents where dots will disappear.</li>
+</ol>
+<h4 id="step-2-create-the-base-dot">Step 2: Create the Base Dot</h4>
+<ol type="1">
+<li>Select the <strong>Circle/Ellipse (E)</strong> tool.</li>
+<li>Draw a small, perfect circle next to your gradient (hold
+<code>Ctrl</code> while dragging).</li>
+<li>Set the fill color of the circle to your desired ink color (e.g.,
+black or dark cyan) and remove any stroke.</li>
+</ol>
+<h4 id="step-3-configure-the-tiled-clones-tool">Step 3: Configure the
+Tiled Clones Tool</h4>
+<ol type="1">
+<li>Select your small circle.</li>
+<li>Go to <strong>Edit &gt; Clone &gt; Create Tiled Clones...</strong>
+to open the panel.</li>
+<li>In the <strong>Symmetry</strong> tab, set the arrangement to
+<strong>P1: simple translation</strong>.</li>
+<li>In the <strong>Shift</strong> tab:
+<ul>
+<li>Set <strong>Shift X &gt; Per column</strong> to <code>10%</code> to
+<code>20%</code> (or stagger alternate rows by setting <strong>Shift X
+&gt; Per row</strong> to <code>50%</code> for a classic offset
+grid).</li>
+</ul></li>
+<li>In the <strong>Trace</strong> tab (the essential step):
+<ul>
+<li>Check <strong>Trace the background under the clones</strong>.</li>
+<li>Under <strong>1. Identify all parts...</strong>, select
+<strong>Brightness</strong>.</li>
+<li>Under <strong>2. Apply to the clones' properties...</strong>, select
+<strong>Size</strong>.</li>
+<li>Set the overall scale values to adjust dot responsiveness.</li>
+</ul></li>
+</ol>
+<h4 id="step-4-generate-the-halftone-pattern">Step 4: Generate the
+Halftone Pattern</h4>
+<ol type="1">
+<li>Place your base dot at the top-left corner of the gradient
+shape.</li>
+<li>In the <strong>Create Tiled Clones</strong> panel, specify the
+number of <strong>Rows</strong> and <strong>Columns</strong> (e.g., 40 x
+40) or define the total width and height of the grid area.</li>
+<li>Click <strong>Create</strong>.</li>
+<li>Once the grid is generated, move or delete the underlying gradient
+layer.</li>
+</ol>
+<hr />
+<h3 id="method-2-applying-the-halftone-raster-filter">Method 2: Applying
+the Halftone Raster Filter</h3>
+<p>If you need a quick texture overlay without generating individual
+vector objects:</p>
+<ol type="1">
+<li>Select the object or group you want to apply the effect to.</li>
+<li>Go to the top menu and navigate to <strong>Filters &gt; Distort &gt;
+Halftone</strong> (or <strong>Filters &gt; Bumps &gt; Halftone
+Dots</strong> depending on your Inkscape version).</li>
+<li>In the pop-up settings window, adjust:
+<ul>
+<li><strong>Dot Size</strong>: Controls the maximum radius of the
+halftone dots.</li>
+<li><strong>Frequency</strong>: Adjusts the grid density.</li>
+<li><strong>Angle</strong>: Sets the screen angle (classic comic books
+traditionally use 45° for black inks).</li>
+</ul></li>
+<li>Click <strong>Apply</strong>.</li>
+</ol>
+<hr />
+<h3 id="tips-for-an-authentic-vintage-comic-look">Tips for an Authentic
+Vintage Comic Look</h3>
+<ul>
+<li><strong>Use CMYK Screen Angles:</strong> Vintage printers offset
+color plates to prevent moiré patterns. Rotate your clone grids by
+standard angles: Cyan at 15°, Magenta at 75°, Yellow at 0°, and Black at
+45°.</li>
+<li><strong>Color Palette:</strong> Restrict colors to muted primary and
+secondary tones reminiscent of vintage newsprint (faded cyan, warm
+magenta, and off-white backgrounds).</li>
+<li><strong>Paper Texture:</strong> Place a solid off-white/cream
+rectangle with a slight blend mode (such as <em>Multiply</em>)
+underneath your artwork to simulate aged pulp paper.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

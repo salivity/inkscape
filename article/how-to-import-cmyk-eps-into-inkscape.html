@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import CMYK EPS into Inkscape - inkscape</title>
+    <meta name="description" content="Importing CMYK-defined vector EPS files into Inkscape requires specific preparation because Inkscape natively operates in an RGB color space and relies on third-party interpreters to parse PostScript data. By installing Ghostscript to handle EPS renderin">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-import-cmyk-eps-into-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import CMYK EPS into Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-import-cmyk-eps-into-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Importing CMYK-defined vector EPS files into Inkscape requires specific preparation because Inkscape natively operates in an RGB color space and relies on third-party interpreters to parse PostScript data. By installing Ghostscript to handle EPS renderin" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-cmyk-eps-into-inkscape">How to Import CMYK EPS
+into Inkscape</h1>
+<p>Importing CMYK-defined vector EPS files into Inkscape requires
+specific preparation because Inkscape natively operates in an RGB color
+space and relies on third-party interpreters to parse PostScript data.
+By installing Ghostscript to handle EPS rendering and configuring
+Inkscape’s color management system with appropriate CMYK ICC profiles,
+you can import vector EPS artwork, preserve editable paths, and manage
+CMYK color data accurately.</p>
+<h2 id="1-install-ghostscript">1. Install Ghostscript</h2>
+<p>Inkscape does not have a native EPS decoder. It requires Ghostscript
+to translate Encapsulated PostScript (EPS) code into vector objects.</p>
+<ol type="1">
+<li>Download and install the 64-bit or 32-bit version of Ghostscript
+matching your Inkscape installation architecture.</li>
+<li>Add Ghostscript's <code>bin</code> and <code>lib</code> directories
+to your operating system's system PATH environment variable (common on
+Windows).</li>
+<li>Restart Inkscape to allow the software to detect the Ghostscript
+installation.</li>
+</ol>
+<h2 id="2-configure-inkscape-color-management">2. Configure Inkscape
+Color Management</h2>
+<p>Because Inkscape renders documents internally using the sRGB color
+space, you must configure color management to prevent CMYK color values
+from distorting upon import.</p>
+<ol type="1">
+<li>Obtain a standard CMYK ICC profile (such as <em>Coated FOGRA39</em>
+or <em>US Web Coated SWOP v2</em>).</li>
+<li>Install the profile to your operating system's color directory.</li>
+<li>In Inkscape, navigate to <strong>Edit &gt; Preferences &gt; Color
+management</strong>.</li>
+<li>Set the <strong>Display profile</strong> to your monitor's
+profile.</li>
+<li>Set the <strong>Device profile</strong> to your installed CMYK ICC
+profile.</li>
+<li>Enable <strong>Retrieve profile from display</strong> or select the
+CMYK profile under the soft-proofing options.</li>
+</ol>
+<h2 id="3-direct-import-method">3. Direct Import Method</h2>
+<p>Once Ghostscript is linked:</p>
+<ol type="1">
+<li>Open Inkscape.</li>
+<li>Go to <strong>File &gt; Open</strong> or <strong>File &gt;
+Import</strong>.</li>
+<li>Set the file format filter to <strong>Encapsulated PostScript
+(*.eps)</strong>.</li>
+<li>Select your CMYK EPS file and click <strong>Open</strong>.</li>
+<li>When the PostScript/PDF import settings dialog appears, choose
+<strong>Internal import</strong>.</li>
+<li>Ensure <strong>Precision of paths</strong> is set appropriately and
+click <strong>OK</strong>.</li>
+</ol>
+<p>The EPS vectors will import onto the canvas as grouped editable
+paths.</p>
+<h2 id="4-alternative-convert-eps-to-pdf-prior-to-import">4.
+Alternative: Convert EPS to PDF Prior to Import</h2>
+<p>Direct EPS import via Ghostscript can occasionally convert CMYK
+definitions into standard sRGB values automatically. To maintain maximum
+color precision, convert the EPS to a PDF before bringing it into
+Inkscape:</p>
+<ol type="1">
+<li>Use Ghostscript via command line to convert the EPS to PDF while
+retaining CMYK definitions:
+<code>gs -dSAFER -dBATCH -dNOPAUSE -sDEVICE=pdfwrite -sColorConversionStrategy=LeaveColorUnchanged -dAutoFilterColorImages=false -sOutputFile=output.pdf input.eps</code></li>
+<li>In Inkscape, go to <strong>File &gt; Open</strong> and select the
+newly generated PDF.</li>
+<li>In the PDF Import Settings, select <strong>Internal import</strong>
+to retain vector structures.</li>
+</ol>
+<h2 id="5-verifying-cmyk-values-in-inkscape">5. Verifying CMYK Values in
+Inkscape</h2>
+<ol type="1">
+<li>Select an imported vector object.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel (<strong>Shift +
+Ctrl + F</strong>).</li>
+<li>Switch the color selector tab to <strong>CMS</strong> (Color
+Management System).</li>
+<li>Select the configured CMYK ICC profile to view and manipulate the
+specific Cyan, Magenta, Yellow, and Key (Black) percentages directly on
+the vector paths.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Geometric Fractals in Inkscape Extensions - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to programmatically generate geometric fractals inside an Inkscape extension using Python and the inkex library. You will learn the structural requirements of an Inkscape extension, how to define user controls via an XML descr">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-geometric-fractals-in-inkscape-extensions">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Geometric Fractals in Inkscape Extensions - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-geometric-fractals-in-inkscape-extensions" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to programmatically generate geometric fractals inside an Inkscape extension using Python and the inkex library. You will learn the structural requirements of an Inkscape extension, how to define user controls via an XML descr" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-geometric-fractals-in-inkscape-extensions">Create
+Geometric Fractals in Inkscape Extensions</h1>
+<p>This guide demonstrates how to programmatically generate geometric
+fractals inside an Inkscape extension using Python and the
+<code>inkex</code> library. You will learn the structural requirements
+of an Inkscape extension, how to define user controls via an XML
+description file, and how to implement a recursive mathematical
+algorithm—such as the Sierpinski Triangle—to directly render vector
+geometry onto the Inkscape canvas.</p>
+<h3 id="inkscape-extension-architecture">Inkscape Extension
+Architecture</h3>
+<p>An Inkscape extension requires two primary files placed in the
+Inkscape user extensions directory:</p>
+<ol type="1">
+<li><strong>An <code>.inx</code> file</strong>: An XML-based definition
+file that specifies the extension name, menu location, and
+user-configurable inputs (such as recursion depth or sizing).</li>
+<li><strong>A <code>.py</code> file</strong>: A Python script that
+utilizes the <code>inkex</code> library to parse parameters, compute
+fractal geometry, and generate SVG elements.</li>
+</ol>
+<h3 id="step-1-create-the-extension-definition-file">Step 1: Create the
+Extension Definition File</h3>
+<p>Create a file named <code>fractal_generator.inx</code>. This file
+places the tool into Inkscape's <strong>Extensions &gt; Render</strong>
+menu and exposes a numerical input for recursion depth:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span> <span class="ot">version=</span><span class="st">&quot;1.0&quot;</span> <span class="ot">encoding=</span><span class="st">&quot;UTF-8&quot;</span><span class="fu">?&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">inkscape-extension</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.inkscape.org/namespaces/inkscape&quot;</span>&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">name</span>&gt;Geometric Fractal Generator&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">id</span>&gt;org.inkscape.render.geometric_fractal&lt;/<span class="kw">id</span>&gt;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">param</span> <span class="ot">name=</span><span class="st">&quot;depth&quot;</span> <span class="ot">type=</span><span class="st">&quot;int&quot;</span> <span class="ot">min=</span><span class="st">&quot;1&quot;</span> <span class="ot">max=</span><span class="st">&quot;8&quot;</span> <span class="ot">gui-text=</span><span class="st">&quot;Recursion Depth:&quot;</span>&gt;4&lt;/<span class="kw">param</span>&gt;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">param</span> <span class="ot">name=</span><span class="st">&quot;size&quot;</span> <span class="ot">type=</span><span class="st">&quot;float&quot;</span> <span class="ot">min=</span><span class="st">&quot;10.0&quot;</span> <span class="ot">max=</span><span class="st">&quot;1000.0&quot;</span> <span class="ot">gui-text=</span><span class="st">&quot;Initial Size (px):&quot;</span>&gt;300.0&lt;/<span class="kw">param</span>&gt;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">effect</span>&gt;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">object-type</span>&gt;all&lt;/<span class="kw">object-type</span>&gt;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">submenu</span> <span class="ot">name=</span><span class="st">&quot;Render&quot;</span>/&gt;</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">effect</span>&gt;</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">script</span>&gt;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">command</span> <span class="ot">location=</span><span class="st">&quot;inx&quot;</span> <span class="ot">interpreter=</span><span class="st">&quot;python&quot;</span>&gt;fractal_generator.py&lt;/<span class="kw">command</span>&gt;</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">script</span>&gt;</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">inkscape-extension</span>&gt;</span></code></pre></div>
+<h3 id="step-2-implement-the-python-script">Step 2: Implement the Python
+Script</h3>
+<p>Create <code>fractal_generator.py</code> in the same directory. The
+script subclasses <code>inkex.GenerateExtension</code> (or
+<code>inkex.EffectExtension</code>) and uses recursion to calculate
+coordinates for geometric shapes, subsequently creating SVG path
+elements.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex <span class="im">import</span> PathElement</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FractalGenerator(inkex.GenerateExtension):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add_arguments(<span class="va">self</span>, pars):</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        pars.add_argument(<span class="st">&quot;--depth&quot;</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">4</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Recursion depth&quot;</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        pars.add_argument(<span class="st">&quot;--size&quot;</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>, default<span class="op">=</span><span class="fl">300.0</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Initial size&quot;</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> generate(<span class="va">self</span>):</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        depth <span class="op">=</span> <span class="va">self</span>.options.depth</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        size <span class="op">=</span> <span class="va">self</span>.options.size</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Center starting coordinates on the canvas</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        cx, cy <span class="op">=</span> <span class="va">self</span>.svg.namedview.center</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        height <span class="op">=</span> size <span class="op">*</span> (math.sqrt(<span class="dv">3</span>) <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Define vertices of the initial equilateral triangle</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        p1 <span class="op">=</span> (cx, cy <span class="op">-</span> (<span class="dv">2</span> <span class="op">/</span> <span class="dv">3</span>) <span class="op">*</span> height)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        p2 <span class="op">=</span> (cx <span class="op">-</span> size <span class="op">/</span> <span class="dv">2</span>, cy <span class="op">+</span> (<span class="dv">1</span> <span class="op">/</span> <span class="dv">3</span>) <span class="op">*</span> height)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        p3 <span class="op">=</span> (cx <span class="op">+</span> size <span class="op">/</span> <span class="dv">2</span>, cy <span class="op">+</span> (<span class="dv">1</span> <span class="op">/</span> <span class="dv">3</span>) <span class="op">*</span> height)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Group element to contain all generated triangles</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        group <span class="op">=</span> inkex.Group()</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        group.<span class="bu">set</span>(<span class="st">&#39;id&#39;</span>, <span class="va">self</span>.svg.get_unique_id(<span class="st">&#39;fractal_&#39;</span>))</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.draw_sierpinski(group, p1, p2, p3, depth)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> group</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> draw_sierpinski(<span class="va">self</span>, container, p1, p2, p3, depth):</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> depth <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Base case: generate SVG polygon path</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>            d <span class="op">=</span> <span class="ss">f&quot;M </span><span class="sc">{</span>p1[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">,</span><span class="sc">{</span>p1[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> L </span><span class="sc">{</span>p2[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">,</span><span class="sc">{</span>p2[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> L </span><span class="sc">{</span>p3[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">,</span><span class="sc">{</span>p3[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> Z&quot;</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>            elem <span class="op">=</span> PathElement()</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>            elem.<span class="bu">set</span>(<span class="st">&#39;d&#39;</span>, d)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>            elem.style <span class="op">=</span> {</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>                <span class="st">&#39;fill&#39;</span>: <span class="st">&#39;none&#39;</span>,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>                <span class="st">&#39;stroke&#39;</span>: <span class="st">&#39;#000000&#39;</span>,</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>                <span class="st">&#39;stroke-width&#39;</span>: <span class="st">&#39;1.0&#39;</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>            }</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>            container.append(elem)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Calculate midpoints of all three edges</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>            mid12 <span class="op">=</span> ((p1[<span class="dv">0</span>] <span class="op">+</span> p2[<span class="dv">0</span>]) <span class="op">/</span> <span class="dv">2</span>, (p1[<span class="dv">1</span>] <span class="op">+</span> p2[<span class="dv">1</span>]) <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>            mid23 <span class="op">=</span> ((p2[<span class="dv">0</span>] <span class="op">+</span> p3[<span class="dv">0</span>]) <span class="op">/</span> <span class="dv">2</span>, (p2[<span class="dv">1</span>] <span class="op">+</span> p3[<span class="dv">1</span>]) <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>            mid31 <span class="op">=</span> ((p3[<span class="dv">0</span>] <span class="op">+</span> p1[<span class="dv">0</span>]) <span class="op">/</span> <span class="dv">2</span>, (p3[<span class="dv">1</span>] <span class="op">+</span> p1[<span class="dv">1</span>]) <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Recurse on three sub-triangles</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.draw_sierpinski(container, p1, mid12, mid31, depth <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.draw_sierpinski(container, mid12, p2, mid23, depth <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.draw_sierpinski(container, mid31, mid23, p3, depth <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    FractalGenerator().run()</span></code></pre></div>
+<h3 id="core-implementation-principles">Core Implementation
+Principles</h3>
+<ul>
+<li><strong>Algorithm Selection</strong>: Deterministic geometric
+fractals (e.g., Sierpinski Triangles, Koch Snowflakes, Dragon Curves)
+are constructed via recursive self-similarity. Ensure your algorithm
+includes a clear base case to prevent stack overflows.</li>
+<li><strong>Path Generation</strong>: Construct valid SVG path commands
+using standard path syntax (<code>M</code> for move-to, <code>L</code>
+for line-to, <code>Z</code> for closepath) or use
+<code>inkex.paths.Path</code> for complex multi-segment curves.</li>
+<li><strong>Styling</strong>: Styles are applied as CSS attribute
+dictionaries on elements (e.g.,
+<code>elem.style = {'stroke': '#000', 'fill': 'none'}</code>).</li>
+<li><strong>Coordinate Space</strong>: Access the canvas view attributes
+using <code>self.svg.namedview</code> to ensure objects are rendered in
+the visible viewport rather than outside boundaries.</li>
+</ul>
+<h3 id="deploying-the-extension">Deploying the Extension</h3>
+<ol type="1">
+<li>Locate your Inkscape user extensions directory:
+<ul>
+<li><strong>Linux</strong>:
+<code>~/.config/inkscape/extensions/</code></li>
+<li><strong>macOS</strong>:
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/extensions/</code></li>
+<li><strong>Windows</strong>:
+<code>%APPDATA%\inkscape\extensions\</code></li>
+</ul></li>
+<li>Copy both <code>fractal_generator.inx</code> and
+<code>fractal_generator.py</code> into that directory.</li>
+<li>Restart Inkscape.</li>
+<li>Navigate to <strong>Extensions &gt; Render &gt; Geometric Fractal
+Generator</strong> to run the tool.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

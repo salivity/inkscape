@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjust Tangential Offset in Inkscape Pattern Along Path - inkscape</title>
+    <meta name="description" content="Adjusting the tangential offset of objects linked through the Pattern Along Path Live Path Effect (LPE) in Inkscape allows you to slide your pattern precisely along the length of a trajectory without altering the underlying geometry. This guide explains">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/adjust-tangential-offset-in-inkscape-pattern-along-path">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Adjust Tangential Offset in Inkscape Pattern Along Path - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/adjust-tangential-offset-in-inkscape-pattern-along-path" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Adjusting the tangential offset of objects linked through the Pattern Along Path Live Path Effect (LPE) in Inkscape allows you to slide your pattern precisely along the length of a trajectory without altering the underlying geometry. This guide explains" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="adjust-tangential-offset-in-inkscape-pattern-along-path">Adjust
+Tangential Offset in Inkscape Pattern Along Path</h1>
+<p>Adjusting the tangential offset of objects linked through the Pattern
+Along Path Live Path Effect (LPE) in Inkscape allows you to slide your
+pattern precisely along the length of a trajectory without altering the
+underlying geometry. This guide explains how to locate the Pattern Along
+Path controls, modify the tangential offset setting to reposition
+repeated or single elements, and properly align your vector designs.</p>
+<h3 id="accessing-the-path-effects-panel">Accessing the Path Effects
+Panel</h3>
+<p>To modify any parameters applied via Live Path Effects, you must
+first open the dedicated effects dialog:</p>
+<ol type="1">
+<li>Select the path containing the Pattern Along Path effect using the
+<strong>Select Tool</strong> (<code>S</code>) or the <strong>Node
+Tool</strong> (<code>N</code>).</li>
+<li>Go to the top menu and click <strong>Path</strong> &gt; <strong>Path
+Effects</strong> (or press the shortcut <code>Ctrl</code> +
+<code>Shift</code> + <code>7</code>).</li>
+<li>In the Path Effects dock that appears on the right side of the
+workspace, verify that <strong>Pattern Along Path</strong> is listed and
+active.</li>
+</ol>
+<h3 id="adjusting-the-tangential-offset">Adjusting the Tangential
+Offset</h3>
+<p>Once the Path Effects panel is open, locate the offset controls to
+slide the pattern along the trajectory:</p>
+<ol type="1">
+<li>In the <strong>Pattern Along Path</strong> settings list, find the
+<strong>Tangential offset</strong> input field.</li>
+<li>Enter a numerical value or use the up and down stepper arrows to
+shift the position of the linked pattern:
+<ul>
+<li><strong>Positive values</strong> shift the pattern forward along the
+path direction (from the starting node toward the ending node).</li>
+<li><strong>Negative values</strong> shift the pattern backward toward
+or beyond the starting node.</li>
+</ul></li>
+<li>Press <code>Enter</code> to apply the changes immediately.</li>
+</ol>
+<h3 id="working-with-pattern-copies-and-repetitions">Working with
+Pattern Copies and Repetitions</h3>
+<p>The behavior of the tangential offset depends slightly on the
+<strong>Pattern copies</strong> mode you have selected:</p>
+<ul>
+<li><strong>Single / Single, stretched:</strong> Adjusting the
+tangential offset acts as a linear slide, moving the single instance
+along the curve. This is ideal for centering an icon or marker along a
+line.</li>
+<li><strong>Repeated / Repeated, stretched:</strong> Adjusting the
+offset shifts the phase of the entire repeated chain. This allows you to
+control where the first repeated element starts or align seams on closed
+loops.</li>
+</ul>
+<h3 id="reversing-path-direction">Reversing Path Direction</h3>
+<p>If increasing the tangential offset moves your object in the opposite
+direction of what you intended, the underlying path’s direction is
+inverted. To fix this without resetting your offset:</p>
+<ol type="1">
+<li>Select the base path.</li>
+<li>Navigate to <strong>Path</strong> &gt; <strong>Reverse</strong> (or
+press <code>Shift</code> + <code>R</code>).</li>
+<li>The pattern will now flow and offset in the opposite direction.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

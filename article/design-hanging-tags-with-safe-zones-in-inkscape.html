@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Hanging Tags with Safe Zones in Inkscape - inkscape</title>
+    <meta name="description" content="Creating print-ready vector hanging tags requires precise dimensions, bleed margins, punch hole markers, and safe zones to ensure your artwork cuts and finishes cleanly. This guide walks you through the step-by-step process of building a production-ready">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/design-hanging-tags-with-safe-zones-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Hanging Tags with Safe Zones in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/design-hanging-tags-with-safe-zones-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating print-ready vector hanging tags requires precise dimensions, bleed margins, punch hole markers, and safe zones to ensure your artwork cuts and finishes cleanly. This guide walks you through the step-by-step process of building a production-ready" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="design-hanging-tags-with-safe-zones-in-inkscape">Design Hanging
+Tags with Safe Zones in Inkscape</h1>
+<p>Creating print-ready vector hanging tags requires precise dimensions,
+bleed margins, punch hole markers, and safe zones to ensure your artwork
+cuts and finishes cleanly. This guide walks you through the step-by-step
+process of building a production-ready hanging tag in Inkscape, covering
+document setup, establishing structural margins, positioning the punch
+hole, and organizing layers for export.</p>
+<h3 id="1-configure-the-document-and-canvas">1. Configure the Document
+and Canvas</h3>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>File &gt; Document
+Properties</strong> (or press <code>Ctrl+Shift+D</code>).</li>
+<li>Under the <strong>Display</strong> tab, change the <strong>Display
+units</strong> to your production measurement, such as inches
+(<code>in</code>) or millimeters (<code>mm</code>).</li>
+<li>Set your target tag size in the <strong>Page Size</strong> section
+(for example, 2.0 in width by 3.5 in height).</li>
+<li>Add a bleed margin under the <strong>Bleed</strong> settings.
+Standard bleed is typically <code>0.125 in</code> (3 mm) on all four
+sides.</li>
+</ol>
+<h3 id="2-draw-the-tag-outline-die-cut-line">2. Draw the Tag Outline
+(Die-Cut Line)</h3>
+<ol type="1">
+<li>Select the <strong>Rectangle tool</strong> (<code>R</code>) and draw
+a rectangle matching your exact finished tag dimensions (e.g., 2.0 × 3.5
+in).</li>
+<li>Use the <strong>Align and Distribute</strong> panel
+(<code>Ctrl+Shift+A</code>) to center the rectangle relative to the
+page.</li>
+<li>If you want rounded corners, adjust the horizontal and vertical
+corner radius values (<strong>Rx</strong> and <strong>Ry</strong>) in
+the top toolbar.</li>
+<li>Set the fill to <strong>None</strong> and give the stroke a distinct
+color, such as 100% Magenta, with a stroke width of <code>0.25 pt</code>
+or <code>0.5 pt</code> to represent the cut line.</li>
+</ol>
+<h3 id="3-establish-the-safe-zone">3. Establish the Safe Zone</h3>
+<p>The safe zone prevents critical elements like logos and text from
+being trimmed off during production variations.</p>
+<ol type="1">
+<li>Select your tag outline and duplicate it (<code>Ctrl+D</code>).</li>
+<li>Open <strong>Path &gt; Inset</strong> or adjust the dimensions
+manually via the toolbar by subtracting <code>0.25 in</code> (or 6 mm)
+from both the width and the height to create a <code>0.125 in</code>
+internal margin.</li>
+<li>Change this stroke color to green or cyan, and set the stroke style
+to dashed in the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl+Shift+F</code>).</li>
+<li>This inner boundary represents your safe zone; all essential artwork
+and text must remain inside it.</li>
+</ol>
+<h3 id="4-create-the-punch-hole-marker-and-hole-safe-zone">4. Create the
+Punch Hole Marker and Hole Safe Zone</h3>
+<ol type="1">
+<li>Select the <strong>Circles and Ellipses tool</strong>
+(<code>E</code>). Hold <code>Ctrl</code> while dragging to create a
+perfect circle.</li>
+<li>Standard tag punch holes are typically <code>0.1875 in</code> (3/16
+inch) or <code>0.125 in</code> (1/8 inch) in diameter. Set the width and
+height accordingly in the toolbar.</li>
+<li>Align the circle horizontally to the center of the page using the
+<strong>Align and Distribute</strong> panel.</li>
+<li>Position the circle vertically near the top edge, typically leaving
+at least <code>0.25 in</code> of clearance between the top edge of the
+tag and the top of the hole.</li>
+<li>Duplicate the circle (<code>Ctrl+D</code>) to create the hole's safe
+zone. Increase its width and height by <code>0.25 in</code> (e.g., a
+<code>0.1875 in</code> hole gets a <code>0.4375 in</code>
+boundary).</li>
+<li>Make this larger circle dashed to indicate that background elements
+must not place critical text or details within this cut clearance
+area.</li>
+</ol>
+<h3 id="5-organize-technical-and-artwork-layers">5. Organize Technical
+and Artwork Layers</h3>
+<p>Keep production lines separate from your design to avoid accidental
+flattening or unwanted lines in the final print.</p>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl+Shift+L</code>).</li>
+<li>Create three distinct layers:
+<ul>
+<li><strong>Die Lines / Cut Lines:</strong> Contains the outer tag shape
+and the punch hole marker.</li>
+<li><strong>Guides &amp; Safe Zones:</strong> Contains the inner margin
+lines and the punch hole clearance circle.</li>
+<li><strong>Artwork:</strong> Contains background colors, patterns,
+logos, and typography.</li>
+</ul></li>
+<li>Extend any background colors or patterns past the cut line all the
+way to the outer bleed line.</li>
+</ol>
+<h3 id="6-export-the-print-ready-file">6. Export the Print-Ready
+File</h3>
+<ol type="1">
+<li>Hide or delete the <strong>Guides &amp; Safe Zones</strong> layer so
+that safe-zone indicator lines do not appear in the print output.</li>
+<li>Confirm with your print provider whether the <strong>Die
+Lines</strong> should be kept on a separate layer, colored as a spot
+color, or saved in an independent file.</li>
+<li>Go to <strong>File &gt; Save As...</strong> and select
+<strong>Portable Document Format (*.pdf)</strong>.</li>
+<li>In the PDF export dialogue, ensure vector elements are preserved,
+set the rasterization DPI to 300 or higher for any raster effects, and
+click <strong>OK</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

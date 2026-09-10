@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Fix and Relink Broken Images in Inkscape - inkscape</title>
+    <meta name="description" content="When working with linked external raster images in Inkscape, moving, renaming, or deleting the source files results in broken links represented by a red "X" or a placeholder box. This guide explains how to quickly identify missing image paths within your">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-fix-and-relink-broken-images-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Fix and Relink Broken Images in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-fix-and-relink-broken-images-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When working with linked external raster images in Inkscape, moving, renaming, or deleting the source files results in broken links represented by a red "X" or a placeholder box. This guide explains how to quickly identify missing image paths within your" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-fix-and-relink-broken-images-in-inkscape">How to Fix and
+Relink Broken Images in Inkscape</h1>
+<p>When working with linked external raster images in Inkscape, moving,
+renaming, or deleting the source files results in broken links
+represented by a red "X" or a placeholder box. This guide explains how
+to quickly identify missing image paths within your Inkscape project,
+update the broken file links to restore your graphics, and embed the
+assets directly to prevent future link breakage.</p>
+<h3 id="identifying-broken-images">Identifying Broken Images</h3>
+<p>When an image path is broken, Inkscape displays an empty bounding box
+with a red "X" and the missing file's original name or path. If you have
+a large document with multiple assets, locating them manually on the
+canvas can be difficult.</p>
+<p>To find all linked images in your project:</p>
+<ol type="1">
+<li>Open the <strong>XML Editor</strong> by pressing
+<code>Shift + Ctrl + X</code> or navigating to <strong>Edit &gt; XML
+Editor</strong>.</li>
+<li>Expand the document tree and search for
+<code>&lt;svg:image&gt;</code> nodes.</li>
+<li>Select an image node to highlight it on the canvas and view its
+attributes in the right-hand pane.</li>
+<li>Check the <code>xlink:href</code> or <code>href</code> attribute to
+see the exact file path Inkscape is looking for.</li>
+</ol>
+<h3 id="relinking-the-missing-image">Relinking the Missing Image</h3>
+<p>Once you have identified the missing image, you can update its file
+path directly without needing to reposition or resize a new import.</p>
+<h4 id="method-1-using-the-xml-editor">Method 1: Using the XML
+Editor</h4>
+<ol type="1">
+<li>Select the broken image placeholder on your canvas.</li>
+<li>In the <strong>XML Editor</strong> (<code>Shift + Ctrl + X</code>),
+the corresponding <code>&lt;svg:image&gt;</code> node will be selected
+automatically.</li>
+<li>In the attribute panel on the right, click on
+<code>xlink:href</code> (or <code>href</code> in newer SVG
+specifications).</li>
+<li>In the text field below the attribute list, replace the broken path
+with the new absolute or relative path of the image file on your system
+(e.g., <code>file:///C:/Users/Name/Pictures/image.png</code> or
+<code>images/photo.png</code>).</li>
+<li>Click <strong>Set</strong> (or press <code>Ctrl + Enter</code>) to
+apply the change. The image will immediately render on the canvas.</li>
+</ol>
+<h4 id="method-2-replacing-the-image-via-file-import">Method 2:
+Replacing the Image via File Import</h4>
+<p>If updating the path manually is inconvenient:</p>
+<ol type="1">
+<li>Note the dimensions and position of the broken placeholder in the
+tool controls bar.</li>
+<li>Import the correct image by going to <strong>File &gt;
+Import</strong> (<code>Ctrl + I</code>).</li>
+<li>Select <strong>Link</strong> when prompted by the import
+dialog.</li>
+<li>Position the new image over the old placeholder and delete the
+broken object.</li>
+</ol>
+<h3 id="preventing-broken-links-by-embedding-images">Preventing Broken
+Links by Embedding Images</h3>
+<p>To ensure that your SVG file remains intact when shared across
+different computers or moved to other directories, you can permanently
+embed the linked images into the document.</p>
+<ol type="1">
+<li><strong>Embed a Single Image:</strong> Right-click the relinked
+image on the canvas and select <strong>Embed Image</strong>.</li>
+<li><strong>Embed All Images at Once:</strong> Go to <strong>Extensions
+&gt; Images &gt; Embed Images...</strong>, select your preferred
+settings, and click <strong>Apply</strong>. Inkscape will convert all
+linked external files into base64-encoded data stored directly inside
+the SVG file.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

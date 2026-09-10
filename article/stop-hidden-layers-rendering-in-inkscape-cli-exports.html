@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Hidden Layers Rendering in Inkscape CLI Exports - inkscape</title>
+    <meta name="description" content="When performing batch exports from the command line in Inkscape, unwanted or hidden layers often appear in the exported files unless the rendering scope is explicitly restricted. The primary command-line setting that prevents hidden or background layers">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/stop-hidden-layers-rendering-in-inkscape-cli-exports">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Stop Hidden Layers Rendering in Inkscape CLI Exports - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/stop-hidden-layers-rendering-in-inkscape-cli-exports" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When performing batch exports from the command line in Inkscape, unwanted or hidden layers often appear in the exported files unless the rendering scope is explicitly restricted. The primary command-line setting that prevents hidden or background layers" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="stop-hidden-layers-rendering-in-inkscape-cli-exports">Stop
+Hidden Layers Rendering in Inkscape CLI Exports</h1>
+<p>When performing batch exports from the command line in Inkscape,
+unwanted or hidden layers often appear in the exported files unless the
+rendering scope is explicitly restricted. The primary command-line
+setting that prevents hidden or background layers from appearing during
+targeted exports is the <code>--export-id-only</code> option (shorthand
+<code>-j</code>). This article explains how this setting functions, how
+Inkscape interprets layer visibility during automation, and how to
+structure CLI commands to guarantee only intended elements are
+rendered.</p>
+<h2 id="the---export-id-only--j-flag">The <code>--export-id-only</code>
+(<code>-j</code>) Flag</h2>
+<p>By default, when you export a specific object or layer using the
+<code>--export-id</code> option, Inkscape calculates the bounding box of
+that element and renders everything within that area—including visible
+background layers, overlapping artwork, and elements that share the
+canvas coordinates.</p>
+<p>To isolate the targeted layer or object and prevent any other layers
+from rendering, you must include:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">--export-id-only</span></span></code></pre></div>
+<p>or its short form:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">-j</span></span></code></pre></div>
+<p>When <code>--export-id-only</code> is active, Inkscape hides every
+object and layer not explicitly specified in the
+<code>--export-id</code> argument, ensuring that hidden layers,
+backgrounds, and non-targeted content are excluded from the output.</p>
+<h2 id="handling-native-layer-visibility-displaynone">Handling Native
+Layer Visibility (<code>display:none</code>)</h2>
+<p>Inkscape stores layers internally as SVG groups
+(<code>&lt;g&gt;</code>) with specialized attributes. A layer's
+visibility is controlled by the CSS <code>display</code> property:</p>
+<ul>
+<li><strong>Hidden layers</strong> are marked with
+<code>style="display:none"</code>.</li>
+<li><strong>Visible layers</strong> are marked with
+<code>style="display:inline"</code> or lack a display restriction.</li>
+</ul>
+<p>When performing full-document exports (such as exporting the entire
+page using <code>--export-area-page</code>), Inkscape natively respects
+the <code>display:none</code> style and skips hidden layers. However,
+issues arise when using batch scripts or object-targeted exports:</p>
+<ol type="1">
+<li><strong>Targeting by ID directly:</strong> If you target an ID that
+is inside a hidden layer, or if you target a hidden layer itself,
+Inkscape may force-render that object unless the document hierarchy
+suppresses it.</li>
+<li><strong>Compound rendering:</strong> Without
+<code>--export-id-only</code>, any layer stacked within the exported
+bounds will be drawn into the final raster or vector file.</li>
+</ol>
+<h2 id="example-cli-commands">Example CLI Commands</h2>
+<h3 id="exporting-a-specific-layer-without-other-content">Exporting a
+Specific Layer Without Other Content</h3>
+<p>To batch export a layer named <code>Layer1</code> while ensuring no
+other layers or overlapping elements appear:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--export-id</span><span class="op">=</span>Layer1 <span class="at">--export-id-only</span> <span class="at">--export-filename</span><span class="op">=</span>Layer1.png</span></code></pre></div>
+<h3 id="using-modern-inkscape-actions-for-batch-processing">Using Modern
+Inkscape Actions for Batch Processing</h3>
+<p>In Inkscape 1.2 and later, you can also use the
+<code>--actions</code> interface to query and toggle visibility prior to
+export:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--actions</span><span class="op">=</span><span class="st">&quot;select-by-id:Layer1; export-id-only; export-do&quot;</span> <span class="at">--export-filename</span><span class="op">=</span>output.png</span></code></pre></div>
+<p>Using <code>--export-id-only</code> remains the standard and most
+reliable method to suppress hidden or unwanted layers across all
+command-line workflows in Inkscape.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

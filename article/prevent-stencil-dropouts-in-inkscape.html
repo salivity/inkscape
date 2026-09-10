@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevent Stencil Dropouts in Inkscape - inkscape</title>
+    <meta name="description" content="When designing spray paint stencils, enclosed areas within letters and graphics—known as "islands"—will completely fall out once cut unless they are anchored to the surrounding material with connecting tabs called "bridges." This guide outlines how t">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/prevent-stencil-dropouts-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Prevent Stencil Dropouts in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/prevent-stencil-dropouts-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When designing spray paint stencils, enclosed areas within letters and graphics—known as "islands"—will completely fall out once cut unless they are anchored to the surrounding material with connecting tabs called "bridges." This guide outlines how t" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="prevent-stencil-dropouts-in-inkscape">Prevent Stencil Dropouts
+in Inkscape</h1>
+<p>When designing spray paint stencils, enclosed areas within letters
+and graphics—known as "islands"—will completely fall out once cut unless
+they are anchored to the surrounding material with connecting tabs
+called "bridges." This guide outlines how to use Inkscape's vector path
+tools and Boolean operations to create bridges, configure your cutting
+lines, and ensure your stencil retains its structure whether cut by
+hand, laser, or a vinyl plotter.</p>
+<h3 id="step-1-convert-elements-to-vector-paths">Step 1: Convert
+Elements to Vector Paths</h3>
+<p>Before manipulating cutting lines, all text, strokes, and shapes must
+be converted into standard vector paths.</p>
+<ol type="1">
+<li>Select your text or graphic using the <strong>Select Tool</strong>
+(<code>S</code>).</li>
+<li>Go to <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>).</li>
+<li>If working with grouped text, ungroup the elements by selecting
+<strong>Object &gt; Ungroup</strong>
+(<code>Shift + Ctrl + G</code>).</li>
+<li>Combine the paths into a single compound path by selecting all parts
+and clicking <strong>Path &gt; Combine</strong>
+(<code>Ctrl + K</code>).</li>
+</ol>
+<h3 id="step-2-identify-stencil-islands">Step 2: Identify Stencil
+Islands</h3>
+<p>Examine your design for fully enclosed negative spaces that will
+separate from the main sheet. Common examples include:</p>
+<ul>
+<li>Characters with internal counters: A, B, D, O, P, Q, R, 0, 4, 6, 8,
+9.</li>
+<li>Complex graphics with nested contours, such as isolated eyes,
+circular borders, or interior shading.</li>
+</ul>
+<p>Each of these floating sections requires at least one bridge
+(preferably two or more for larger areas to add structural
+stability).</p>
+<h3 id="step-3-create-the-bridge-shapes">Step 3: Create the Bridge
+Shapes</h3>
+<p>Bridges are cut out of your design using temporary shapes that
+interrupt the cutting line.</p>
+<ol type="1">
+<li>Select the <strong>Rectangle Tool</strong> (<code>R</code>).</li>
+<li>Draw a narrow rectangle across the border of the island, connecting
+the interior floating piece to the outer stencil body.</li>
+<li>Adjust the width of the rectangle based on your material thickness
+and cutting method:
+<ul>
+<li><strong>Mylar/Cardstock (Plotter/Laser):</strong> 1.5 mm to 3 mm
+width.</li>
+<li><strong>Hand-cutting with a craft knife:</strong> 3 mm to 5 mm width
+for added durability.</li>
+</ul></li>
+<li>Rotate and position the rectangle over the boundary using the
+<strong>Select Tool</strong> until it bridges the gap naturally without
+distorting the visual readability of the design.</li>
+</ol>
+<h3 id="step-4-cut-the-bridges-using-boolean-operations">Step 4: Cut the
+Bridges Using Boolean Operations</h3>
+<p>Once your bridge rectangles are positioned, subtract them from the
+stencil path to create gaps in the cutting line.</p>
+<ol type="1">
+<li>If using multiple bridge rectangles, select all rectangles and
+combine them into a single path by choosing <strong>Path &gt;
+Union</strong> (<code>Ctrl + +</code>).</li>
+<li>Select the unified bridge path, then hold <code>Shift</code> and
+select your main stencil graphic.</li>
+<li>Go to <strong>Path &gt; Difference</strong>
+(<code>Ctrl + -</code>).</li>
+</ol>
+<p>The overlapping sections will be removed instantly, breaking the
+continuous cut line and leaving solid connecting tabs that prevent the
+island from dropping out.</p>
+<h3 id="step-5-clean-up-and-verify-the-cut-path">Step 5: Clean Up and
+Verify the Cut Path</h3>
+<p>Before sending the file to your cutter, verify that all paths are
+closed and no stray nodes exist.</p>
+<ol type="1">
+<li>Switch to the <strong>Node Tool</strong> (<code>N</code>) and click
+on the modified regions to ensure nodes are cleanly aligned.</li>
+<li>Toggle outline mode by navigating to <strong>View &gt; Display Mode
+&gt; Outline</strong> to inspect the precise lines your machine will
+follow.</li>
+<li>Confirm that all islands are physically connected to the main
+stencil frame.</li>
+<li>Save your final file in the appropriate format (such as
+<code>.SVG</code> for Cricut/Silhouette or <code>.DXF</code> for laser
+software).</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

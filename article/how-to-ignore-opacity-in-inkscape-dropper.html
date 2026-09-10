@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Ignore Opacity in Inkscape Dropper - inkscape</title>
+    <meta name="description" content="When sampling colors in Inkscape, the Dropper tool can either calculate transparency values or sample the visible color as an opaque value. This guide explains how to configure the Dropper tool settings and use keyboard shortcuts so the tool ignores opac">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-ignore-opacity-in-inkscape-dropper">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Ignore Opacity in Inkscape Dropper - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-ignore-opacity-in-inkscape-dropper" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When sampling colors in Inkscape, the Dropper tool can either calculate transparency values or sample the visible color as an opaque value. This guide explains how to configure the Dropper tool settings and use keyboard shortcuts so the tool ignores opac" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-ignore-opacity-in-inkscape-dropper">How to Ignore Opacity
+in Inkscape Dropper</h1>
+<p>When sampling colors in Inkscape, the Dropper tool can either
+calculate transparency values or sample the visible color as an opaque
+value. This guide explains how to configure the Dropper tool settings
+and use keyboard shortcuts so the tool ignores opacity levels and
+applies solid color values directly to your selected objects.</p>
+<h3 id="1-select-the-target-object">1. Select the Target Object</h3>
+<p>Before sampling a color, choose the object whose fill or stroke you
+want to change using the <strong>Select tool</strong> (<code>S</code> or
+<code>F1</code>).</p>
+<h3 id="2-activate-the-dropper-tool">2. Activate the Dropper Tool</h3>
+<p>Switch to the Dropper tool by clicking its pipette icon in the
+toolbox or pressing <code>D</code> (or <code>F7</code>) on your
+keyboard.</p>
+<h3 id="3-toggle-the-opacity-setting-in-tool-controls">3. Toggle the
+Opacity Setting in Tool Controls</h3>
+<p>Look at the <strong>Tool Controls Bar</strong> directly above the
+canvas workspace:</p>
+<ul>
+<li>Locate the <strong>Pick</strong> section, which contains an icon
+representing opacity/alpha (resembling an eye or a checkerboard
+pattern).</li>
+<li><strong>To ignore opacity:</strong> Ensure the <strong>Pick alpha /
+Pick opacity</strong> button is disabled (untoggled).</li>
+</ul>
+<p>When this setting is disabled, the Dropper tool ignores layer,
+object, and canvas transparency. It samples the exact RGB composite
+color visible on your screen and applies it at 100% opacity to your
+selected object.</p>
+<h3 id="4-use-the-keyboard-shortcut-for-on-the-fly-sampling">4. Use the
+Keyboard Shortcut for On-the-Fly Sampling</h3>
+<p>If you frequently switch between sampling true color values and
+capturing alpha channels, you do not need to click the toolbar toggle
+every time:</p>
+<ul>
+<li><strong>Click:</strong> Samples color using the current toolbar
+setting.</li>
+<li><strong>Alt + Click:</strong> Inverts the current opacity setting
+for that click. If opacity sampling is turned on, holding
+<code>Alt</code> ignores opacity and samples the color as fully
+opaque.</li>
+<li><strong>Shift + Click:</strong> Applies the sampled color to the
+object's stroke rather than its fill.</li>
+</ul>
+<h3 id="5-check-document-background-transparency">5. Check Document
+Background Transparency</h3>
+<p>If you are sampling over an empty part of the canvas and receiving
+unexpected transparency:</p>
+<ol type="1">
+<li>Open <strong>Document Properties</strong> by pressing
+<code>Ctrl + Shift + D</code>.</li>
+<li>Under the <strong>Display</strong> or <strong>Page</strong> tab,
+locate <strong>Background color</strong>.</li>
+<li>Ensure the alpha channel slider (<strong>A</strong>) is set to
+<code>255</code> if you want a solid white canvas rather than a
+transparent checkerboard background.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

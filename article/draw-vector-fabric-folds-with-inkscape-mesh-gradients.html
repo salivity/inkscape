@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Vector Fabric Folds with Inkscape Mesh Gradients - inkscape</title>
+    <meta name="description" content="This guide explains how to render realistic vector fabric folds and lustrous silk drapery in Inkscape using the Mesh Gradient tool. You will learn how to draft the underlying structural contours of draped cloth, map a curved mesh grid along lines of tens">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/draw-vector-fabric-folds-with-inkscape-mesh-gradients">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Draw Vector Fabric Folds with Inkscape Mesh Gradients - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/draw-vector-fabric-folds-with-inkscape-mesh-gradients" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to render realistic vector fabric folds and lustrous silk drapery in Inkscape using the Mesh Gradient tool. You will learn how to draft the underlying structural contours of draped cloth, map a curved mesh grid along lines of tens" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="draw-vector-fabric-folds-with-inkscape-mesh-gradients">Draw
+Vector Fabric Folds with Inkscape Mesh Gradients</h1>
+<p>This guide explains how to render realistic vector fabric folds and
+lustrous silk drapery in Inkscape using the Mesh Gradient tool. You will
+learn how to draft the underlying structural contours of draped cloth,
+map a curved mesh grid along lines of tension, and manipulate color
+values and specularity across mesh nodes to simulate the distinct,
+high-contrast sheen of silk.</p>
+<h3 id="1-plan-the-flow-and-tension-points">1. Plan the Flow and Tension
+Points</h3>
+<p>Realistic drapery relies on physics. Before drawing, determine your
+anchor points (where the fabric hangs or is pinned) and your force
+directions (gravity, wind, or pull).</p>
+<ul>
+<li><strong>Pipe Folds:</strong> Occur when fabric hangs freely from a
+compressed edge, forming semi-cylindrical columns.</li>
+<li><strong>Swag/Catenary Folds:</strong> Form curves hanging between
+two suspension points.</li>
+<li><strong>Spiral/Zigzag Folds:</strong> Form when tubular fabric
+buckles around a limb or cylinder.</li>
+</ul>
+<p>Silk is lightweight with low friction and tight fiber weave. It bends
+sharply, creates smaller, more frequent folds than heavy wool or denim,
+and exhibits sharp, contrasting highlights alongside deep
+reflections.</p>
+<h3 id="2-draw-the-base-shape">2. Draw the Base Shape</h3>
+<ol type="1">
+<li>Select the <strong>Draw Bézier Curves and Straight Lines</strong>
+tool (<code>B</code>).</li>
+<li>Draw the overall outer silhouette of your draped fabric piece. Close
+the path.</li>
+<li>Keep your paths clean: avoid unnecessary nodes so the geometry
+remains predictable.</li>
+<li>Fill the shape with a rich midtone color representing your silk's
+base hue (e.g., deep ruby red, navy, or emerald).</li>
+</ol>
+<h3 id="3-initialize-the-mesh-gradient">3. Initialize the Mesh
+Gradient</h3>
+<ol type="1">
+<li>Select the base shape.</li>
+<li>Activate the <strong>Mesh Tool</strong> (<code>Ctrl</code> +
+<code>F2</code> or find the gradient mesh icon on the left
+toolbar).</li>
+<li>In the tool controls bar at the top:
+<ul>
+<li>Set the geometry to <strong>Coons patch</strong>.</li>
+<li>Set the initial grid density (e.g., 4 rows and 4 columns). Keep it
+minimal initially; you can add more subdivisions later.</li>
+</ul></li>
+<li>Click and drag across the shape to generate the initial mesh
+grid.</li>
+</ol>
+<h3 id="4-sculpt-the-mesh-to-follow-fold-geometry">4. Sculpt the Mesh to
+Follow Fold Geometry</h3>
+<p>A default mesh generates as a flat rectangular grid. Fabric requires
+the internal grid lines to curve along the natural lines of tension.</p>
+<ol type="1">
+<li>Switch to the <strong>Node Tool</strong> (<code>N</code>) or keep
+the <strong>Mesh Tool</strong> active to access mesh nodes.</li>
+<li>Select edge nodes and snap or position them along the perimeter
+bends of your fabric path.</li>
+<li>Move internal mesh lines so they curve along the ridges (peaks) and
+troughs (valleys) of the folds.</li>
+<li>Adjust the Bezier handles of the mesh lines. The grid lines should
+flow like wireframes over a 3D surface, bending around peaks and
+receding into folds.</li>
+</ol>
+<h3 id="5-color-the-nodes-for-silk-sheen">5. Color the Nodes for Silk
+Sheen</h3>
+<p>Silk has an anisotropic, specular sheen. Unlike matte cotton, which
+transitions softly through a diffuse light falloff, silk alternates
+rapidly between deep shadows and bright, concentrated highlights.</p>
+<ol type="1">
+<li><strong>Valleys (Crevices):</strong> Select the nodes running along
+the inward folds. Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift</code> + <code>Ctrl</code> + <code>F</code>). Apply a
+darker, more saturated version of your base color. Near deep internal
+folds, shift slightly toward a cooler ambient hue.</li>
+<li><strong>Ridges (Peaks):</strong> Select the nodes running along the
+outermost curvature of the folds facing the light source. Color these
+with a high-value, desaturated tint—often close to white or pale gold,
+depending on the light source.</li>
+<li><strong>Midtones:</strong> Nodes between ridges and troughs should
+retain the original midtone to preserve the true local color of the
+fabric.</li>
+<li><strong>Specular Edge Sheen:</strong> Silk often catches bright rim
+lighting at the apex of thin folds. Place two mesh lines close together;
+assign one a deep midtone and the adjacent one a near-white highlight to
+create an abrupt, glossy transition.</li>
+</ol>
+<h3 id="6-subdivide-for-complex-micro-folds">6. Subdivide for Complex
+Micro-Folds</h3>
+<ol type="1">
+<li>To add secondary creases without disturbing the global shape,
+double-click on an existing mesh segment with the <strong>Mesh
+Tool</strong>.</li>
+<li>This inserts a new mesh line perpendicular to the clicked
+segment.</li>
+<li>Push the new nodes into smaller ripples or tension wrinkles,
+particularly near anchor points or gathered seams.</li>
+<li>Color the newly created nodes to refine local lighting.</li>
+</ol>
+<h3 id="7-add-shadows-and-finishing-overlays">7. Add Shadows and
+Finishing Overlays</h3>
+<ol type="1">
+<li>For overlapping folds where one piece of cloth drops over another,
+draw an independent path beneath the overlapping edge.</li>
+<li>Apply a linear or radial gradient transitioning from a dark shadow
+tone to full transparency (<code>Alpha: 0</code>) to act as a drop
+shadow (ambient occlusion).</li>
+<li>Group the mesh object and its auxiliary shadow shapes
+(<code>Ctrl</code> + <code>G</code>) to maintain clean document
+organization.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create and Edit Linked Offsets in Inkscape - inkscape</title>
+    <meta name="description" content="In Inkscape, linked offsets allow you to generate dynamic, scalable contours around an object that automatically update whenever the original shape is modified. This guide explains how to create a linked offset from an existing path and how to edit the u">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-and-edit-linked-offsets-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create and Edit Linked Offsets in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-and-edit-linked-offsets-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In Inkscape, linked offsets allow you to generate dynamic, scalable contours around an object that automatically update whenever the original shape is modified. This guide explains how to create a linked offset from an existing path and how to edit the u" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-and-edit-linked-offsets-in-inkscape">How to Create
+and Edit Linked Offsets in Inkscape</h1>
+<p>In Inkscape, linked offsets allow you to generate dynamic, scalable
+contours around an object that automatically update whenever the
+original shape is modified. This guide explains how to create a linked
+offset from an existing path and how to edit the underlying source
+geometry to maintain responsive vector illustrations.</p>
+<h2 id="creating-a-linked-offset">Creating a Linked Offset</h2>
+<ol type="1">
+<li><strong>Select or Convert to Path:</strong> Click the object you
+want to offset using the <strong>Select Tool</strong> (<code>S</code>).
+If the object is a basic shape or text, convert it to a path by
+navigating to <strong>Path &gt; Object to Path</strong> (or press
+<code>Shift + Ctrl + C</code>).</li>
+<li><strong>Generate the Offset:</strong> With the path selected, go to
+the top menu and choose <strong>Path &gt; Linked Offset</strong> (or
+press <code>Ctrl + Alt + J</code>).</li>
+<li><strong>Adjust the Distance:</strong> Inkscape automatically
+switches to the <strong>Node Tool</strong> (<code>N</code>) and places a
+single control handle at the top of the shape. Click and drag this
+handle outward to expand the offset or inward to contract it.</li>
+<li><strong>Style the Offset:</strong> The linked offset acts as an
+independent object regarding styling. Use the <strong>Fill and
+Stroke</strong> panel (<code>Shift + Ctrl + F</code>) to change its
+color, opacity, or stroke properties without affecting the original
+shape.</li>
+</ol>
+<h2 id="editing-the-source-geometry">Editing the Source Geometry</h2>
+<p>Because the offset is dynamically linked, modifying the original
+shape automatically updates the offset path.</p>
+<ol type="1">
+<li><strong>Select the Node Tool:</strong> Press <code>N</code> or
+select the <strong>Edit paths by nodes</strong> icon from the left
+toolbar.</li>
+<li><strong>Select the Original Path:</strong> Click directly on the
+original source path beneath or inside the offset. If the offset is
+covering the original shape, lower the offset by pressing
+<code>Page Down</code> or select the source path via the <strong>Layers
+and Objects</strong> panel (<code>Shift + Ctrl + L</code>).</li>
+<li><strong>Modify the Nodes:</strong> Click and drag existing nodes,
+adjust node handles, or double-click the path to add new nodes. As you
+reshape the source object, the linked offset will immediately
+recalculate and reflect the changes in real-time.</li>
+</ol>
+<h2 id="managing-linked-offsets">Managing Linked Offsets</h2>
+<ul>
+<li><strong>Multiple Offsets:</strong> You can create multiple linked
+offsets from the exact same source path to create layered sticker
+borders or nested contour effects.</li>
+<li><strong>Unlinking:</strong> If you want to stop the offset from
+updating with the source geometry, select the linked offset and go to
+<strong>Path &gt; Object to Path</strong>. This converts the dynamic
+offset into a standard, static vector path.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

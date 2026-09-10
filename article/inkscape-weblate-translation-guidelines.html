@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Weblate Translation Guidelines - inkscape</title>
+    <meta name="description" content="This guide provides an overview of the essential rules, technical requirements, and quality standards volunteer translators must follow when localizing Inkscape strings on the Weblate platform. Translating Inkscape requires more than linguistic fluency;">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-weblate-translation-guidelines">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Weblate Translation Guidelines - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-weblate-translation-guidelines" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides an overview of the essential rules, technical requirements, and quality standards volunteer translators must follow when localizing Inkscape strings on the Weblate platform. Translating Inkscape requires more than linguistic fluency;" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-weblate-translation-guidelines">Inkscape Weblate
+Translation Guidelines</h1>
+<p>This guide provides an overview of the essential rules, technical
+requirements, and quality standards volunteer translators must follow
+when localizing Inkscape strings on the Weblate platform. Translating
+Inkscape requires more than linguistic fluency; it demands strict
+adherence to software-specific syntax, interface layout considerations,
+established glossaries, and community coordination to ensure a cohesive
+user experience across all supported languages.</p>
+<h3 id="1-preserve-variables-placeholders-and-code-syntax">1. Preserve
+Variables, Placeholders, and Code Syntax</h3>
+<p>Inkscape uses various placeholders and format specifiers to insert
+dynamic content at runtime. Translators must never translate, modify, or
+remove these elements:</p>
+<ul>
+<li><strong>Format Specifiers:</strong> Keep tokens like
+<code>%s</code>, <code>%d</code>, <code>%1$s</code>, or <code>{0}</code>
+exactly as they appear in the source text. Rearranging their order is
+permissible only when supported by indexed specifiers (e.g.,
+<code>%1$s</code> and <code>%2$s</code>) to match target language
+grammar.</li>
+<li><strong>Markup and HTML/XML Tags:</strong> Preserve tags such as
+<code>&lt;b&gt;</code>, <code>&lt;/b&gt;</code>, <code>&lt;i&gt;</code>,
+or <code>&lt;filename&gt;</code> unchanged.</li>
+<li><strong>Escape Characters:</strong> Maintain special characters such
+as <code>\n</code> (newline) and <code>\t</code> (tab) precisely where
+required.</li>
+</ul>
+<h3 id="2-manage-access-keys-and-accelerators">2. Manage Access Keys and
+Accelerators</h3>
+<p>Inkscape’s user interface relies on access keys (keyboard mnemonics)
+for menu navigation, denoted by an underscore (<code>_</code>) directly
+preceding the designated letter:</p>
+<ul>
+<li><strong>Include the Accelerator:</strong> If the source string
+contains an underscore (e.g., <code>_File</code>), the translated string
+must also contain an underscore (e.g., <code>_Datei</code> in
+German).</li>
+<li><strong>Avoid Collisions:</strong> Ensure that two items within the
+same menu or dialogue do not share the same access key letter.</li>
+<li><strong>Non-Latin Scripts:</strong> For languages that do not use
+Latin scripts, it is customary to append the Latin accelerator in
+parentheses at the end of the label, such as
+<code>Файл (_F)</code>.</li>
+</ul>
+<h3 id="3-maintain-consistent-terminology">3. Maintain Consistent
+Terminology</h3>
+<p>Inkscape features specialized tools and concepts unique to vector
+graphics. Translators must:</p>
+<ul>
+<li><strong>Consult the Glossary:</strong> Utilize the glossary feature
+directly integrated into the Weblate interface to maintain uniform
+terminology (such as "Path", "Node", "Canvas", "Stroke", and
+"Fill").</li>
+<li><strong>Align with the Operating System:</strong> When translating
+standard UI elements (e.g., "Preferences", "Save As", "Cancel"), follow
+the standard conventions of mainstream desktop environments (GNOME,
+macOS, Windows) for the target language.</li>
+</ul>
+<h3 id="4-respect-punctuation-and-typographical-conventions">4. Respect
+Punctuation and Typographical Conventions</h3>
+<p>Do not automatically mirror English typography if it violates the
+standard rules of the target locale:</p>
+<ul>
+<li><strong>Ellipses:</strong> Use the proper ellipsis character
+(<code>…</code>) or three dots (<code>...</code>) exactly as indicated
+by the source string. An ellipsis in UI items generally indicates that a
+dialogue will open.</li>
+<li><strong>Quotation Marks:</strong> Convert straight quotes
+(<code>""</code>) into locale-appropriate quotation marks (such as
+<code>« »</code> in French or <code>„ “</code> in German) unless the
+string represents raw code, regular expressions, or attribute
+values.</li>
+<li><strong>Spacing:</strong> Observe rules regarding non-breaking
+spaces before punctuation marks (e.g., before colons or semicolons in
+French).</li>
+</ul>
+<h3 id="5-handle-plural-forms-correctly">5. Handle Plural Forms
+Correctly</h3>
+<p>When localizing strings with variable counts, Weblate presents
+gettext plural forms specific to your language:</p>
+<ul>
+<li>Provide appropriate translations for every grammatical plural
+category required by the target language (e.g., <code>One</code>,
+<code>Few</code>, <code>Many</code>, <code>Other</code>).</li>
+<li>Do not assume a singular/plural binary if your language uses a
+different numbering system.</li>
+</ul>
+<h3 id="6-resolve-weblate-quality-checks-and-warnings">6. Resolve
+Weblate Quality Checks and Warnings</h3>
+<p>Weblate runs automated validation checks on every submitted string.
+Translators must:</p>
+<ul>
+<li>Review and resolve red and orange check alerts before marking
+strings as completed.</li>
+<li>Correct common errors flagged by the system, such as missing
+trailing spaces, mismatched trailing colons, or unescaped
+characters.</li>
+<li>If a warning is a false positive due to target language grammatical
+rules, use the "Ignore" option rather than forcing an incorrect
+translation.</li>
+</ul>
+<h3 id="7-avoid-unedited-machine-translation">7. Avoid Unedited Machine
+Translation</h3>
+<p>While Weblate provides machine translation suggestions:</p>
+<ul>
+<li>Submitting raw, unedited machine-generated translations is strictly
+prohibited.</li>
+<li>Always review, adapt, and refine automated suggestions to ensure
+natural syntax, context accuracy, and proper technical phrasing.</li>
+</ul>
+<h3 id="8-communicate-with-language-teams-and-developers">8. Communicate
+with Language Teams and Developers</h3>
+<ul>
+<li><strong>String Comments:</strong> Use Weblate’s built-in comment
+system to ask questions about context, report ambiguities, or notify
+developers of typos in the English source text.</li>
+<li><strong>Language Coordinators:</strong> Defer to existing language
+team leads for established language-specific style guides and
+conventions.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Draw Third-Angle Projections in Inkscape - inkscape</title>
+    <meta name="description" content="Drawing orthographic third-angle projection layouts in Inkscape involves configuring a precise 2D grid, establishing projection guidelines, and systematically drafting the front, top, and right-side views of a 3D object. Third-angle projection positions">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-draw-third-angle-projections-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Draw Third-Angle Projections in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-draw-third-angle-projections-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Drawing orthographic third-angle projection layouts in Inkscape involves configuring a precise 2D grid, establishing projection guidelines, and systematically drafting the front, top, and right-side views of a 3D object. Third-angle projection positions" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-draw-third-angle-projections-in-inkscape">How to Draw
+Third-Angle Projections in Inkscape</h1>
+<p>Drawing orthographic third-angle projection layouts in Inkscape
+involves configuring a precise 2D grid, establishing projection
+guidelines, and systematically drafting the front, top, and right-side
+views of a 3D object. Third-angle projection positions the top view
+directly above the front view and the right-side view directly to the
+right. By utilizing Inkscape’s snapping tools, layers, stroke dash
+patterns, and the 45-degree miter line method, you can produce clean,
+standardized technical drawings without full CAD software.</p>
+<h3 id="1-configure-the-document-and-grid">1. Configure the Document and
+Grid</h3>
+<ol type="1">
+<li>Open <strong>Document Properties</strong>
+(<code>Shift + Ctrl + D</code>).</li>
+<li>Set the display units to your preferred engineering unit, such as
+millimeters (<code>mm</code>) or inches (<code>in</code>).</li>
+<li>Navigate to the <strong>Grids</strong> tab and create a <strong>New
+Rectangular Grid</strong>.</li>
+<li>Set the <strong>Spacing X</strong> and <strong>Spacing Y</strong>
+according to your part's scale (e.g., <code>1 mm</code> or
+<code>5 mm</code>).</li>
+<li>Enable <strong>Snapping</strong> on the right toolbar. Ensure snaps
+are enabled for paths, nodes, intersections, and grid intersections to
+guarantee geometric accuracy.</li>
+</ol>
+<h3 id="2-set-up-layers-for-technical-standards">2. Set Up Layers for
+Technical Standards</h3>
+<p>Open the <strong>Layers and Objects</strong> panel
+(<code>Shift + Ctrl + L</code>) and create four dedicated layers to
+maintain standard engineering line weights:</p>
+<ul>
+<li><strong>Visible Lines</strong>: For solid external and visible
+internal edges.</li>
+<li><strong>Hidden Lines</strong>: For features concealed behind solid
+faces.</li>
+<li><strong>Center Lines</strong>: For axes of symmetry, hole centers,
+and cylindrical features.</li>
+<li><strong>Construction</strong>: For projection lines and layout
+alignments.</li>
+</ul>
+<h3 id="3-draft-the-front-principal-view">3. Draft the Front (Principal)
+View</h3>
+<ol type="1">
+<li>Select the <strong>Visible Lines</strong> layer.</li>
+<li>Choose the <strong>Draw Bezier curves and straight lines</strong>
+tool (<code>B</code>) or the <strong>Rectangle</strong> tool
+(<code>R</code>).</li>
+<li>Draw the main outline of the front view based on your part's
+dimensions.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>). In the <strong>Stroke style</strong>
+tab, set a heavy stroke width (typically <code>0.5 mm</code> or
+<code>0.7 mm</code>) with a solid line to represent object edges.</li>
+</ol>
+<h3 id="4-create-projection-lines">4. Create Projection Lines</h3>
+<ol type="1">
+<li>Switch to the <strong>Construction</strong> layer.</li>
+<li>In <strong>Stroke style</strong>, set a fine stroke width (e.g.,
+<code>0.1 mm</code>) and select a contrasting color (such as cyan or
+light gray).</li>
+<li>Draw vertical projection lines upwards from each vertical edge and
+feature of the front view.</li>
+<li>Draw horizontal projection lines extending to the right from each
+horizontal edge and feature.</li>
+<li>In the empty quadrant between the top and right views (the
+upper-right corner relative to the front view), draw a construction line
+at a <strong>45-degree angle</strong>. This serves as the miter line for
+transferring depth dimensions between the top and right views.</li>
+</ol>
+<h3 id="5-construct-the-top-view">5. Construct the Top View</h3>
+<ol type="1">
+<li>Switch to the <strong>Visible Lines</strong> layer.</li>
+<li>Position the top view directly above the front view, constrained by
+the vertical projection lines.</li>
+<li>Draw the outline and visible features corresponding to the object's
+width and depth.</li>
+<li>Extend horizontal projection lines from the right edges of the top
+view over to the 45-degree miter line, then drop them vertically down to
+define the depth boundaries of the right-side view.</li>
+</ol>
+<h3 id="6-construct-the-right-side-view">6. Construct the Right-Side
+View</h3>
+<ol type="1">
+<li>Draw the right-side view directly to the right of the front view,
+bounded vertically by the horizontal projections from the front view and
+bounded horizontally by the dropped projections from the miter
+line.</li>
+<li>Verify that all widths, heights, and depths match their
+corresponding counterparts across views using the
+<strong>Measure</strong> tool (<code>M</code>).</li>
+</ol>
+<h3 id="7-add-hidden-and-center-lines">7. Add Hidden and Center
+Lines</h3>
+<ol type="1">
+<li>Select the <strong>Hidden Lines</strong> layer.</li>
+<li>Draw internal features (such as blind holes or rear steps). Set the
+stroke width to a medium-thin weight (e.g., <code>0.25 mm</code>) and
+choose a standard dashed pattern from the <strong>Dashes</strong>
+dropdown in the <strong>Fill and Stroke</strong> panel.</li>
+<li>Select the <strong>Center Lines</strong> layer.</li>
+<li>Draw center lines through circular holes and axes of revolution,
+extending slightly beyond the perimeter of the features. Select a
+long-dash/short-dash pattern in the stroke settings.</li>
+</ol>
+<h3 id="8-finalize-the-layout">8. Finalize the Layout</h3>
+<ol type="1">
+<li>Hide the <strong>Construction</strong> layer by clicking the eye
+icon in the Layers panel.</li>
+<li>Use the <strong>Text</strong> tool (<code>T</code>) to label each
+view: <strong>FRONT VIEW</strong>, <strong>TOP VIEW</strong>, and
+<strong>RIGHT VIEW</strong>.</li>
+<li>Draw or paste the standardized third-angle projection
+symbol—consisting of a truncated cone and centerlines—in your drawing
+title block to denote the projection standard.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

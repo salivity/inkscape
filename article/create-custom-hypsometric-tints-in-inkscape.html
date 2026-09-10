@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Custom Hypsometric Tints in Inkscape - inkscape</title>
+    <meta name="description" content="Hypsometric tinting is the cartographic practice of applying color bands to topographic maps to visually depict elevation above sea level. This article explains how to build, customize, and apply multi-stop hypsometric color ramps in Inkscape using vecto">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-custom-hypsometric-tints-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Custom Hypsometric Tints in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-custom-hypsometric-tints-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Hypsometric tinting is the cartographic practice of applying color bands to topographic maps to visually depict elevation above sea level. This article explains how to build, customize, and apply multi-stop hypsometric color ramps in Inkscape using vecto" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-custom-hypsometric-tints-in-inkscape">Create Custom
+Hypsometric Tints in Inkscape</h1>
+<p>Hypsometric tinting is the cartographic practice of applying color
+bands to topographic maps to visually depict elevation above sea level.
+This article explains how to build, customize, and apply multi-stop
+hypsometric color ramps in Inkscape using vector gradient tools, custom
+stops, and palette management to enhance contour maps and digital
+elevation models.</p>
+<h3 id="1-establish-the-elevation-color-sequence">1. Establish the
+Elevation Color Sequence</h3>
+<p>Before creating the ramp in Inkscape, determine your elevation
+hierarchy and select a color progression. Traditional cartographic
+hypsometric ramps follow natural terrain transitions:</p>
+<ul>
+<li><strong>Lowlands / Depressions:</strong> Deep greens to light
+greens.</li>
+<li><strong>Low Plateaus / Foothills:</strong> Yellow-greens to warm
+yellows.</li>
+<li><strong>Mid-Elevations / Mountains:</strong> Buffs, oranges, and
+warm browns.</li>
+<li><strong>High Alpine / Peaks:</strong> Cool grays, slate, and pure
+white.</li>
+</ul>
+<p>Ensure the values maintain high contrast against your hillshade or
+contour linework.</p>
+<h3 id="2-create-the-base-gradient-object">2. Create the Base Gradient
+Object</h3>
+<ol type="1">
+<li>Open Inkscape and select the <strong>Rectangle Tool</strong>
+(<code>R</code>).</li>
+<li>Draw a tall, narrow rectangle on the canvas to serve as the master
+ramp template.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>).</li>
+<li>Under the <strong>Fill</strong> tab, click the <strong>Linear
+Gradient</strong> icon. Inkscape will apply a default two-stop gradient
+across the shape.</li>
+</ol>
+<h3 id="3-insert-and-configure-intermediate-stops">3. Insert and
+Configure Intermediate Stops</h3>
+<p>To represent distinct elevation levels, you must divide the gradient
+into multiple color stops.</p>
+<ol type="1">
+<li>Select the <strong>Create and Edit Gradients Tool</strong>
+(<code>G</code>).</li>
+<li>Click on the gradient line running through your rectangle. Handles
+will appear at both ends.</li>
+<li>Double-click anywhere along the line to add a new gradient stop. Add
+as many stops as you have elevation intervals.</li>
+<li>Drag each stop along the line to match your target elevation
+proportions (e.g., placing lowland colors closer together if the terrain
+rises steeply).</li>
+<li>Click on an individual stop handle to select it, then choose your
+intended tint from the <strong>Fill and Stroke</strong> color wheel or
+paste a specific hex code.</li>
+<li>Repeat this process for each elevation tier from sea level (bottom)
+to summit (top).</li>
+</ol>
+<h3 id="4-convert-continuous-gradients-to-stepped-bands-optional">4.
+Convert Continuous Gradients to Stepped Bands (Optional)</h3>
+<p>If your topographic map uses discrete contour levels rather than
+continuous shading:</p>
+<ol type="1">
+<li>Duplicate stops at identical positions along the gradient line.</li>
+<li>Position two stops with different colors immediately adjacent to
+each other. This creates a hard edge between elevation zones instead of
+a smooth blend.</li>
+<li>Alternatively, draw separate vector shapes for each elevation band,
+apply the corresponding color to each, and group them vertically.</li>
+</ol>
+<h3 id="5-save-and-export-the-tint-ramp">5. Save and Export the Tint
+Ramp</h3>
+<p>To reuse the custom hypsometric ramp across different cartographic
+projects:</p>
+<ol type="1">
+<li>Open the <strong>Swatches</strong> panel
+(<code>Shift + Ctrl + W</code>).</li>
+<li>With the gradient selected, click the <strong>Add Gradient to
+Swatches</strong> option.</li>
+<li>To export the palette for external GIS software or future Inkscape
+documents, go to <strong>Extensions &gt; Export &gt; Export
+Swatches</strong> or save the gradient definition within an Inkscape
+template file in your user templates directory.</li>
+</ol>
+<h3 id="6-apply-the-ramp-to-topographic-layers">6. Apply the Ramp to
+Topographic Layers</h3>
+<ul>
+<li><strong>For Vector Polygons:</strong> Import your vectorized
+elevation contours. Select all elevation layers and use the
+<strong>Extensions &gt; Generate from Path &gt; Interpolate
+Attribute</strong> tool, or manually sample colors from your custom ramp
+using the <strong>Dropper Tool</strong> (<code>D</code>).</li>
+<li><strong>For Raster Underlays:</strong> If you are coloring a
+grayscale hillshade or DEM, place the raster layer directly beneath your
+gradient, set the gradient layer's blend mode to
+<strong>Multiply</strong> or <strong>Overlay</strong> in the
+<strong>Layers and Objects</strong> panel, and adjust opacity to achieve
+proper terrain depth.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

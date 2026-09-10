@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Stained Glass Patterns Using Inkscape Path Offsets - inkscape</title>
+    <meta name="description" content="Designing custom stained-glass patterns requires precise margins to account for the physical width of the lead came or copper foil holding the glass pieces together. In Inkscape, path offsetting tools allow you to quickly convert single-line sketches int">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/design-stained-glass-patterns-using-inkscape-path-offsets">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Stained Glass Patterns Using Inkscape Path Offsets - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/design-stained-glass-patterns-using-inkscape-path-offsets" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing custom stained-glass patterns requires precise margins to account for the physical width of the lead came or copper foil holding the glass pieces together. In Inkscape, path offsetting tools allow you to quickly convert single-line sketches int" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1
+id="design-stained-glass-patterns-using-inkscape-path-offsets">Design
+Stained Glass Patterns Using Inkscape Path Offsets</h1>
+<p>Designing custom stained-glass patterns requires precise margins to
+account for the physical width of the lead came or copper foil holding
+the glass pieces together. In Inkscape, path offsetting tools allow you
+to quickly convert single-line sketches into production-ready glass
+patterns with accurate gaps. This tutorial walks through setting up your
+vector lines, defining leading widths, generating individual glass
+pieces, and using path insetting to account for the internal core of the
+lead came.</p>
+<h3 id="step-1-draw-the-base-pattern">Step 1: Draw the Base Pattern</h3>
+<p>Begin by drawing your design using the <strong>Pen (Bézier
+Curves)</strong> tool (<code>B</code>). Focus only on the flow of the
+design lines without worrying about thickness. Ensure every line
+intersects properly with neighboring lines or borders to form fully
+enclosed cells. Use <strong>Snapping</strong> (<code>%</code>), enabling
+snapping to paths and intersections, so your lines meet cleanly at
+shared nodes.</p>
+<h3 id="step-2-define-the-visual-lead-width">Step 2: Define the Visual
+Lead Width</h3>
+<p>Select all lines by pressing <code>Ctrl + A</code>. Open the
+<strong>Fill and Stroke</strong> panel (<code>Ctrl + Shift + F</code>)
+and navigate to the <strong>Stroke style</strong> tab. Set the stroke
+width to the exact visible width of the lead came or foil you plan to
+use (typically between 3 mm and 6 mm for lead came, or 1 mm for foil).
+Set the <strong>Cap</strong> to round or flat, and choose a
+<strong>Round Join</strong> to ensure joints merge smoothly without
+sharp spikes.</p>
+<h3 id="step-3-convert-strokes-into-a-unified-leading-matrix">Step 3:
+Convert Strokes into a Unified Leading Matrix</h3>
+<p>Once your line widths match your physical materials:</p>
+<ol type="1">
+<li>Select all stroked paths.</li>
+<li>Navigate to <strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>). This converts your stroke outlines into
+filled vector shapes.</li>
+<li>With all converted paths still selected, go to <strong>Path &gt;
+Union</strong> (<code>Ctrl + +</code>). This merges all intersecting
+lines into a single, seamless leading mesh.</li>
+</ol>
+<h3 id="step-4-generate-individual-glass-segments">Step 4: Generate
+Individual Glass Segments</h3>
+<p>To cut the physical glass, you need the geometry for each individual
+pane inside the leading:</p>
+<ol type="1">
+<li>Select the <strong>Fill Bounded Areas</strong> (Paint Bucket) tool
+(<code>U</code>).</li>
+<li>Set the threshold low and grow/shrink to <code>0 px</code>.</li>
+<li>Click inside each empty space framed by your unified leading mesh.
+Inkscape will generate a new, distinct closed path for every pane of
+glass.</li>
+</ol>
+<h3 id="step-5-offset-glass-pieces-for-the-lead-came-core">Step 5:
+Offset Glass Pieces for the Lead Came Core</h3>
+<p>Lead came has an internal channel barrier called the "heart," which
+sits inside the visible came. The cut glass pieces must be smaller than
+the openings so they fit inside these channels:</p>
+<ol type="1">
+<li>Select all the individual pane paths created in Step 4.</li>
+<li>In <strong>Edit &gt; Preferences &gt; Behavior &gt; Steps</strong>,
+set the <strong>Inset/Outset by</strong> value to half the thickness of
+your lead came's heart (commonly 0.5 mm to 1 mm).</li>
+<li>Select your glass panes and apply <strong>Path &gt; Inset</strong>
+(<code>Ctrl + (</code>).</li>
+<li>Alternatively, select individual pieces and choose <strong>Path &gt;
+Dynamic Offset</strong> (<code>Ctrl + J</code>) to adjust the gap
+interactively using the top control handle.</li>
+</ol>
+<h3 id="step-6-finalize-and-export">Step 6: Finalize and Export</h3>
+<p>Color-code your glass shapes using the <strong>Fill</strong> panel to
+plan your glass selections and grain directions. You now have two
+distinct layers: the lead frame layout for your building board, and the
+inset glass shapes ready for export to a vinyl cutter, laser cutter, or
+paper printer for traditional glass cutting shears.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

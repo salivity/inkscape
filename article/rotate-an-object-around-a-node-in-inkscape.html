@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotate an Object Around a Node in Inkscape - inkscape</title>
+    <meta name="description" content="Rotating an object around a specific point rather than its default center is essential for precise vector illustration in Inkscape. By adjusting the object's rotation center crosshair and utilizing Inkscape's snapping tools, you can easily anchor an obje">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/rotate-an-object-around-a-node-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Rotate an Object Around a Node in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/rotate-an-object-around-a-node-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Rotating an object around a specific point rather than its default center is essential for precise vector illustration in Inkscape. By adjusting the object's rotation center crosshair and utilizing Inkscape's snapping tools, you can easily anchor an obje" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="rotate-an-object-around-a-node-in-inkscape">Rotate an Object
+Around a Node in Inkscape</h1>
+<p>Rotating an object around a specific point rather than its default
+center is essential for precise vector illustration in Inkscape. By
+adjusting the object's rotation center crosshair and utilizing
+Inkscape's snapping tools, you can easily anchor an object to any
+arbitrary node—whether on the object itself or another path—and rotate
+it with precision. This guide covers the exact steps required to
+configure your snapping settings, align the rotation center to a node,
+and perform the rotation.</p>
+<h3 id="step-1-enable-snapping-for-nodes-and-rotation-centers">Step 1:
+Enable Snapping for Nodes and Rotation Centers</h3>
+<p>To ensure the pivot point aligns perfectly with your chosen node,
+configure Inkscape’s snapping settings:</p>
+<ol type="1">
+<li>Turn on the global snapping toggle by pressing <code>%</code> or
+clicking the magnet icon in the top-right corner.</li>
+<li>Open the snapping popover menu (the small arrow next to the magnet
+icon).</li>
+<li>Under the <strong>Nodes</strong> section, ensure that
+<strong>Node</strong> or <strong>Cusp node</strong> snapping is
+enabled.</li>
+<li>Under the <strong>Misc</strong> or <strong>Advanced</strong>
+section, enable <strong>Item's rotation center</strong>.</li>
+</ol>
+<h3 id="step-2-reveal-the-rotation-center-crosshair">Step 2: Reveal the
+Rotation Center Crosshair</h3>
+<ol type="1">
+<li>Select the <strong>Select and transform objects</strong> tool from
+the left toolbar (shortcut: <code>S</code> or <code>F1</code>).</li>
+<li>Click the object you want to rotate. This displays the standard
+scale handles (straight arrows).</li>
+<li>Click the object a second time. The handles will switch to curved
+rotation arrows, and a small plus-shaped crosshair (<code>+</code>) will
+appear at the geometric center of the object. This crosshair is the
+object's rotation center.</li>
+</ol>
+<h3 id="step-3-move-the-rotation-center-to-the-node">Step 3: Move the
+Rotation Center to the Node</h3>
+<ol type="1">
+<li>Hover your cursor directly over the center crosshair until the
+cursor turns into a hand icon.</li>
+<li>Click and drag the crosshair toward the target node.</li>
+<li>Hover over the node until a snap indicator pop-up appears (such as
+"Rotation center to cusp node" or "Rotation center to smooth
+node").</li>
+<li>Release the mouse button. The rotation center is now locked directly
+onto the node.</li>
+</ol>
+<h3 id="step-4-rotate-the-object">Step 4: Rotate the Object</h3>
+<ol type="1">
+<li>Click and drag any of the curved corner arrows around the object.
+The object will now pivot strictly around the selected node.</li>
+<li>Hold down <code>Ctrl</code> while dragging to constrain the rotation
+to fixed 15-degree increments.</li>
+<li>For exact degree input, press <code>Shift + Ctrl + M</code> to open
+the <strong>Transform</strong> panel, switch to the
+<strong>Rotate</strong> tab, enter your desired angle, and click
+<strong>Apply</strong>.</li>
+</ol>
+<h3 id="how-to-reset-the-rotation-center">How to Reset the Rotation
+Center</h3>
+<p>If you need to return the pivot point to the object's original
+geometric center:</p>
+<ol type="1">
+<li>Click the object twice to make the rotation crosshair visible.</li>
+<li>Hold <code>Shift</code> and click directly on the crosshair. It will
+automatically snap back to the center of the bounding box.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

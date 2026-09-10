@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Translate the Inkscape User Interface - inkscape</title>
+    <meta name="description" content="Translating the Inkscape user interface allows users worldwide to access the open-source vector graphics editor in their native languages. Inkscape uses the standard GNU gettext localization framework, relying on Portable Object (.po) files to map Englis">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-translate-the-inkscape-user-interface">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Translate the Inkscape User Interface - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-translate-the-inkscape-user-interface" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Translating the Inkscape user interface allows users worldwide to access the open-source vector graphics editor in their native languages. Inkscape uses the standard GNU gettext localization framework, relying on Portable Object (.po) files to map Englis" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-translate-the-inkscape-user-interface">How to Translate
+the Inkscape User Interface</h1>
+<p>Translating the Inkscape user interface allows users worldwide to
+access the open-source vector graphics editor in their native languages.
+Inkscape uses the standard GNU gettext localization framework, relying
+on Portable Object (<code>.po</code>) files to map English interface
+strings to localized languages. This guide provides a straightforward
+overview of how to obtain translation files, edit strings using
+dedicated localization tools, test your changes locally within Inkscape,
+and submit your contributions to the project.</p>
+<h2 id="required-tools-and-accounts">Required Tools and Accounts</h2>
+<p>Before you begin translating, you need the appropriate software and
+platform access:</p>
+<ul>
+<li><strong>PO File Editor:</strong> Download an editor such as Poedit,
+Gtranslator, or Lokalize. Poedit is widely recommended for its
+simplicity and built-in validation checks.</li>
+<li><strong>Inkscape GitLab Account:</strong> Create an account on the
+Inkscape GitLab instance (gitlab.com/inkscape/inkscape) to download
+updated templates and submit your work via Merge Requests.</li>
+<li><strong>Inkscape Installation:</strong> Install a recent version of
+Inkscape to preview your translated interface in real time.</li>
+</ul>
+<h2 id="obtaining-the-translation-template">Obtaining the Translation
+Template</h2>
+<p>Inkscape's interface text is generated from the source code into a
+Portable Object Template (<code>.pot</code>) file, which is then used to
+create or update language-specific <code>.po</code> files.</p>
+<ol type="1">
+<li>Navigate to the Inkscape source repository on GitLab.</li>
+<li>Go to the <code>po/</code> directory in the repository tree.</li>
+<li>Locate your language file named with your target locale code (for
+example, <code>fr.po</code> for French, <code>es.po</code> for Spanish,
+or <code>de.po</code> for German).</li>
+<li>If your language does not exist, download <code>inkscape.pot</code>
+to create a new <code>.po</code> file named with your target language
+code (e.g., <code>pt_BR.po</code> for Brazilian Portuguese).</li>
+</ol>
+<h2 id="editing-translation-strings">Editing Translation Strings</h2>
+<ol type="1">
+<li>Open your language's <code>.po</code> file in Poedit or your chosen
+translation editor.</li>
+<li>Review the interface strings:
+<ul>
+<li><strong>Source Text (<code>msgid</code>):</strong> The original
+English string from the software.</li>
+<li><strong>Translation (<code>msgstr</code>):</strong> Your localized
+translation of the text.</li>
+</ul></li>
+<li><strong>Preserve Special Formatting and Placeholders:</strong>
+<ul>
+<li>Keep formatting variables (such as <code>%s</code>, <code>%d</code>,
+or <code>{0}</code>) exactly as they appear in the original string.</li>
+<li>Preserve shortcut indicators (such as underscores <code>_</code>
+used for mnemonic keyboard navigation, e.g., <code>_File</code> becoming
+<code>_Fichier</code>).</li>
+</ul></li>
+<li>Save your <code>.po</code> file. When you save in Poedit, it
+automatically generates a compiled <code>.mo</code> (Machine Object)
+file used by the application runtime.</li>
+</ol>
+<h2 id="testing-the-translation-locally">Testing the Translation
+Locally</h2>
+<p>To verify how the translated text looks within the interface:</p>
+<ol type="1">
+<li>Locate your local Inkscape installation directory.</li>
+<li>Navigate to the locale folder:
+<ul>
+<li><strong>Linux:</strong>
+<code>/usr/share/locale/&lt;language_code&gt;/LC_MESSAGES/</code></li>
+<li><strong>Windows:</strong>
+<code>C:\Program Files\Inkscape\share\locale\&lt;language_code&gt;\LC_MESSAGES\</code></li>
+<li><strong>macOS:</strong> Inside the application bundle at
+<code>Inkscape.app/Contents/Resources/share/locale/&lt;language_code&gt;/LC_MESSAGES/</code></li>
+</ul></li>
+<li>Replace the existing <code>inkscape.mo</code> file with the
+<code>.mo</code> file you generated from your updated translation.</li>
+<li>Launch Inkscape configured in your target language to inspect UI
+elements, menus, tooltips, and dialogs for text truncation or context
+errors.</li>
+</ol>
+<h2 id="submitting-your-translation">Submitting Your Translation</h2>
+<p>Once your translations are complete and verified:</p>
+<ol type="1">
+<li>Fork the official Inkscape repository on GitLab.</li>
+<li>Commit your updated <code>.po</code> file to a new branch in your
+fork under the <code>po/</code> directory.</li>
+<li>Open a Merge Request (MR) against the <code>master</code> branch of
+the main Inkscape repository.</li>
+<li>Title the Merge Request clearly (e.g.,
+<code>Update [Language Name] translation</code>) and submit it for
+review by the localization team coordinators.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

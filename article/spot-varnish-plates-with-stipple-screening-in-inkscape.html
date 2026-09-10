@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spot Varnish Plates with Stipple Screening in Inkscape - inkscape</title>
+    <meta name="description" content="This guide outlines the process of creating production-ready spot varnish plates using fine stipple screening entirely within Inkscape. You will learn how to isolate your design elements onto a dedicated spot plate layer, convert tonal values into a vect">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/spot-varnish-plates-with-stipple-screening-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Spot Varnish Plates with Stipple Screening in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/spot-varnish-plates-with-stipple-screening-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide outlines the process of creating production-ready spot varnish plates using fine stipple screening entirely within Inkscape. You will learn how to isolate your design elements onto a dedicated spot plate layer, convert tonal values into a vect" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="spot-varnish-plates-with-stipple-screening-in-inkscape">Spot
+Varnish Plates with Stipple Screening in Inkscape</h1>
+<p>This guide outlines the process of creating production-ready spot
+varnish plates using fine stipple screening entirely within Inkscape.
+You will learn how to isolate your design elements onto a dedicated spot
+plate layer, convert tonal values into a vector stipple pattern using
+tiled clones, and export the final 1-bit or spot-color artwork to ensure
+sharp reproduction on the press.</p>
+<h3 id="1-set-up-a-dedicated-spot-varnish-layer">1. Set Up a Dedicated
+Spot Varnish Layer</h3>
+<p>Open your document and access the Layers panel
+(<code>Ctrl+Shift+L</code>). Create a new layer and name it "Spot
+Varnish." Copy the specific artwork or tonal areas that will receive the
+varnish and paste them in place (<code>Ctrl+Alt+V</code>) onto this new
+layer. Lock or hide the underlying design layers to prevent accidental
+edits while working on the separation.</p>
+<h3 id="2-create-the-base-tone-map">2. Create the Base Tone Map</h3>
+<p>Stipple screening relies on underlying grayscale values to determine
+dot placement or size:</p>
+<ul>
+<li>Select the objects on your "Spot Varnish" layer.</li>
+<li>Set their fill to a grayscale gradient or continuous tone using the
+Fill and Stroke panel (<code>Ctrl+Shift+F</code>).</li>
+<li>Pure black (#000000) will represent maximum varnish density, while
+pure white (#FFFFFF) will represent no varnish. Smooth intermediate
+grays will translate into the fine stipple distribution.</li>
+</ul>
+<h3 id="3-generate-the-fine-stipple-effect">3. Generate the Fine Stipple
+Effect</h3>
+<p>To produce a vector-based stipple screen that plates cleanly without
+raster interpolation, use the Tiled Clones tool:</p>
+<ol type="1">
+<li>Draw a tiny circle to serve as your base stipple dot (e.g., 0.1 mm
+to 0.3 mm depending on the plate resolution and press capability). Give
+it a solid black fill and no stroke.</li>
+<li>Select the base dot, then open <strong>Edit &gt; Clone &gt; Create
+Tiled Clones</strong>.</li>
+<li>Under the <strong>Symmetry</strong> tab, choose <strong>P1: simple
+translation</strong>.</li>
+<li>In the <strong>Shift</strong> tab, apply slight random shifts to
+both X and Y (around 10% to 20%) to create an organic, non-linear
+stipple distribution instead of a rigid grid.</li>
+<li>In the <strong>Trace</strong> tab:
+<ul>
+<li>Check <strong>Trace the value under the clones</strong>.</li>
+<li>Choose <strong>1. Presence</strong> to control dot distribution or
+<strong>Size</strong> to adjust the individual dot diameters based on
+tone.</li>
+<li>Pick <strong>Color</strong> or <strong>Brightness</strong> as the
+input.</li>
+</ul></li>
+<li>Set the number of rows and columns to cover the dimensions of your
+artwork bounding box.</li>
+<li>Click <strong>Create</strong>. Inkscape will sample the underlying
+grayscale artwork and generate the stippled pattern.</li>
+<li>Delete or hide the underlying grayscale reference object once the
+dots are generated, leaving only the stipple pattern.</li>
+</ol>
+<h3 id="4-unify-the-stipple-elements">4. Unify the Stipple Elements</h3>
+<p>To ensure the output RIP (Raster Image Processor) interprets the
+plate correctly without rendering artifacts:</p>
+<ul>
+<li>Select all generated clone dots.</li>
+<li>Unlink them by navigating to <strong>Edit &gt; Clone &gt; Unlink
+Clone</strong>.</li>
+<li>Combine them into a single compound path by selecting <strong>Path
+&gt; Combine</strong> (<code>Ctrl+K</code>).</li>
+<li>Ensure the combined path fill is set to 100% Key (CMYK: 0, 0, 0,
+100) or an assigned custom spot swatch, depending on your print vendor's
+pre-press requirements.</li>
+</ul>
+<h3 id="5-export-for-plate-production">5. Export for Plate
+Production</h3>
+<p>Plate makers require high-contrast, non-aliased separations:</p>
+<ul>
+<li>Delete the base artwork or turn off visibility for all layers except
+the "Spot Varnish" layer.</li>
+<li>Check that document dimensions match your master cut and trim sizes,
+and include standard crop and registration marks if required by the
+printer.</li>
+<li>Go to <strong>File &gt; Save As</strong> and select <strong>Portable
+Document Format (*.pdf)</strong>.</li>
+<li>In the PDF export dialogue, set the output resolution to at least
+1200 DPI (to preserve vector fidelity for fine dots), ensure text is
+converted to paths, and save the separation.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Inspect Linked Assets in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to use Inkscape's Document Resources dialog to locate, inspect, and manage all linked and embedded assets within your vector projects. You will learn how to open the dialog, identify external dependencies such as linked raster ima">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-inspect-linked-assets-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Inspect Linked Assets in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-inspect-linked-assets-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use Inkscape's Document Resources dialog to locate, inspect, and manage all linked and embedded assets within your vector projects. You will learn how to open the dialog, identify external dependencies such as linked raster ima" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-inspect-linked-assets-in-inkscape">How to Inspect Linked
+Assets in Inkscape</h1>
+<p>This guide explains how to use Inkscape's Document Resources dialog
+to locate, inspect, and manage all linked and embedded assets within
+your vector projects. You will learn how to open the dialog, identify
+external dependencies such as linked raster images and fonts, and check
+for missing file paths to ensure your SVG files are portable and
+error-free.</p>
+<h2 id="accessing-the-document-resources-dialog">Accessing the Document
+Resources Dialog</h2>
+<p>To open the Document Resources panel in Inkscape:</p>
+<ol type="1">
+<li>Open your project in Inkscape.</li>
+<li>Navigate to the top menu bar and click <strong>File</strong>.</li>
+<li>Select <strong>Document Resources...</strong> from the dropdown
+menu.</li>
+</ol>
+<p>A dedicated dialog dock will appear on your screen, cataloging all
+assets referenced by the current document.</p>
+<h2 id="navigating-the-asset-categories">Navigating the Asset
+Categories</h2>
+<p>The Document Resources dialog organizes components into distinct
+categories for easy inspection:</p>
+<ul>
+<li><strong>Images:</strong> Displays all bitmap graphics (PNG, JPEG,
+etc.) used in the document, distinguishing between linked external files
+and embedded data.</li>
+<li><strong>Fonts:</strong> Lists all typefaces applied to text objects
+throughout the document, showing whether the required fonts are
+installed locally.</li>
+<li><strong>External Files / Linked SVG:</strong> Shows other external
+vector files or sub-resources referenced via SVG links.</li>
+<li><strong>Patterns and Markers:</strong> Catalogs reusable visual
+assets defined in the document's <code>&lt;defs&gt;</code> section.</li>
+</ul>
+<h2 id="inspecting-linked-assets-and-file-paths">Inspecting Linked
+Assets and File Paths</h2>
+<p>To inspect specific linked assets:</p>
+<ol type="1">
+<li>Click on the <strong>Images</strong> section in the dialog.</li>
+<li>Select an image from the list to view its properties in the details
+pane.</li>
+<li>Review the <strong>Location/URI</strong> field to verify the exact
+file path pointing to the linked asset.</li>
+<li>Check the asset status:
+<ul>
+<li><strong>Valid Link:</strong> The absolute or relative file path
+points to an existing file on your storage drive.</li>
+<li><strong>Broken Link:</strong> Highlighted or flagged when the source
+file has been moved, renamed, or deleted.</li>
+</ul></li>
+</ol>
+<h2 id="managing-linked-assets">Managing Linked Assets</h2>
+<p>Once you have inspected your linked assets, the dialog allows you to
+perform several maintenance actions:</p>
+<ul>
+<li><strong>Locate on Canvas:</strong> Double-click any asset in the
+list to automatically center and select the corresponding object on the
+drawing canvas.</li>
+<li><strong>Embed Linked Images:</strong> Select a linked image and
+choose the embed option to save the image data directly inside the SVG
+file, preventing future broken link issues when sharing the file.</li>
+<li><strong>Relink Missing Files:</strong> Update the URI path to point
+to the correct folder location if a linked asset was moved.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

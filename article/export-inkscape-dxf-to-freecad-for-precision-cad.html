@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape DXF to FreeCAD for Precision CAD - inkscape</title>
+    <meta name="description" content="Exporting 2D vector silhouettes from Inkscape into FreeCAD allows designers and engineers to transform artistic vector graphics into dimensionally accurate, 3D-printable or machinable CAD models. This guide outlines the complete workflow for preparing pa">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-dxf-to-freecad-for-precision-cad">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape DXF to FreeCAD for Precision CAD - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-dxf-to-freecad-for-precision-cad" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting 2D vector silhouettes from Inkscape into FreeCAD allows designers and engineers to transform artistic vector graphics into dimensionally accurate, 3D-printable or machinable CAD models. This guide outlines the complete workflow for preparing pa" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-dxf-to-freecad-for-precision-cad">Export
+Inkscape DXF to FreeCAD for Precision CAD</h1>
+<p>Exporting 2D vector silhouettes from Inkscape into FreeCAD allows
+designers and engineers to transform artistic vector graphics into
+dimensionally accurate, 3D-printable or machinable CAD models. This
+guide outlines the complete workflow for preparing path geometries in
+Inkscape, exporting them cleanly as DXF files with true real-world
+scaling, importing the vector data into FreeCAD, and converting the
+resulting 2D wireframes into fully editable sketches for 3D operations
+like extrusions and pockets.</p>
+<h3 id="1-prepare-vector-geometry-in-inkscape">1. Prepare Vector
+Geometry in Inkscape</h3>
+<p>To ensure FreeCAD interprets your Inkscape silhouette correctly, the
+geometry must consist of clean, closed vector paths rather than strokes,
+groups, or bitmap traces.</p>
+<ol type="1">
+<li><strong>Ungroup All Objects:</strong> Select everything
+(<code>Ctrl + A</code>) and ungroup (<code>Ctrl + Shift + G</code>)
+repeatedly until no groups remain in the status bar.</li>
+<li><strong>Convert Strokes and Objects to Paths:</strong>
+<ul>
+<li>Select your shape and go to <strong>Path &gt; Object to
+Path</strong> (<code>Shift + Ctrl + C</code>).</li>
+<li>If your silhouette uses outline strokes, convert them via
+<strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>).</li>
+</ul></li>
+<li><strong>Combine Shapes into Closed Loops:</strong>
+<ul>
+<li>Use <strong>Path &gt; Union</strong> (<code>Ctrl + +</code>) or
+<strong>Path &gt; Combine</strong> (<code>Ctrl + K</code>) to merge
+overlapping elements.</li>
+<li>Switch to the <strong>Edit paths by nodes</strong> tool
+(<code>N</code>) and verify that all silhouette outlines are closed
+loops with no self-intersecting segments or stray open nodes.</li>
+</ul></li>
+<li><strong>Set Explicit Document Units:</strong>
+<ul>
+<li>Open <strong>File &gt; Document Properties</strong>
+(<code>Ctrl + Shift + D</code>).</li>
+<li>Set <strong>Display units</strong> to your target engineering unit
+(e.g., <code>mm</code> or <code>in</code>).</li>
+<li>Set the <strong>Page size</strong> to match your design bounds and
+position the silhouette at <code>X: 0, Y: 0</code> for consistent CAD
+origin alignment.</li>
+</ul></li>
+</ol>
+<h3 id="2-export-as-dxf-from-inkscape">2. Export as DXF from
+Inkscape</h3>
+<ol type="1">
+<li>Navigate to <strong>File &gt; Save As...</strong> or <strong>File
+&gt; Export As...</strong>.</li>
+<li>Select <strong>AutoCAD DXF R14 (*.dxf)</strong> or <strong>Desktop
+Cutting Plotter (AutoCAD DXF R14) (*.dxf)</strong> from the format
+dropdown.</li>
+<li>In the export configuration dialog:
+<ul>
+<li><strong>Base unit:</strong> Select the exact unit used in your
+document (e.g., <code>mm</code>).</li>
+<li><strong>Character Encoding:</strong> Choose <code>UTF-8</code> or
+<code>Latin 1</code>.</li>
+<li><strong>Layer export options:</strong> Check <strong>Export all
+layers</strong> or target the specific layer containing your
+silhouette.</li>
+<li><strong>Polyline export:</strong> Enable polyline conversion if
+prompted, as polylines import cleanly into CAD environments.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to save the file.</li>
+</ol>
+<h3 id="3-import-the-dxf-into-freecad">3. Import the DXF into
+FreeCAD</h3>
+<ol type="1">
+<li>Open FreeCAD and create a new document (<code>Ctrl + N</code>).</li>
+<li>Verify FreeCAD import settings under <strong>Edit &gt; Preferences
+&gt; Import-Export &gt; DXF</strong>:
+<ul>
+<li>Ensure the <strong>Draft module DXF importer</strong> is
+selected.</li>
+<li>Check <strong>Create sketch</strong> or <strong>Create Draft
+objects</strong> based on your preferred workflow.</li>
+<li>Confirm the default input scale matches the export unit (e.g.,
+millimeters).</li>
+</ul></li>
+<li>Go to <strong>File &gt; Import</strong> and select your exported
+<code>.dxf</code> file.</li>
+<li>Choose <strong>Draft Import</strong> if prompted.</li>
+</ol>
+<h3 id="4-convert-dxf-vectors-into-solid-3d-geometry">4. Convert DXF
+Vectors into Solid 3D Geometry</h3>
+<ol type="1">
+<li>Switch to the <strong>Draft Workbench</strong>.</li>
+<li>Select the imported 2D DXF entities in the tree view.</li>
+<li>Click the <strong>Draft to Sketch</strong> tool to convert the
+vector geometry directly into a FreeCAD sketch.</li>
+<li>Switch to the <strong>Part Design Workbench</strong>:
+<ul>
+<li>Create a new <strong>Body</strong>.</li>
+<li>Move the generated sketch into the newly created Body.</li>
+<li>Double-click the sketch to enter edit mode, inspect the silhouette
+for missing constraints or unclosed vertices, and add dimensional
+constraints if needed.</li>
+<li>Exit the sketch and click <strong>Pad</strong> to extrude the
+silhouette into a precise 3D solid.</li>
+</ul></li>
+<li>Alternatively, switch to the <strong>Part Workbench</strong> and use
+the <strong>Extrude</strong> tool directly on the imported wires or
+sketch.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

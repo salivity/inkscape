@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export G-Code for Laser Diodes in Inkscape - inkscape</title>
+    <meta name="description" content="Exporting vector contours to G-code for diode laser cutters in Inkscape involves converting standard shapes into clean vector paths, setting up machine coordinates, and utilizing G-code generator extensions. This guide outlines the exact steps to convert">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-g-code-for-laser-diodes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export G-Code for Laser Diodes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-g-code-for-laser-diodes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting vector contours to G-code for diode laser cutters in Inkscape involves converting standard shapes into clean vector paths, setting up machine coordinates, and utilizing G-code generator extensions. This guide outlines the exact steps to convert" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-g-code-for-laser-diodes-in-inkscape">Export G-Code for
+Laser Diodes in Inkscape</h1>
+<p>Exporting vector contours to G-code for diode laser cutters in
+Inkscape involves converting standard shapes into clean vector paths,
+setting up machine coordinates, and utilizing G-code generator
+extensions. This guide outlines the exact steps to convert native vector
+artwork into G-code (typically <code>.gcode</code> or <code>.nc</code>
+files) compatible with GRBL-based diode lasers using Inkscape's built-in
+Gcodetools extension.</p>
+<h3 id="step-1-set-document-properties-and-coordinates">Step 1: Set
+Document Properties and Coordinates</h3>
+<p>Diode laser cutters typically use the bottom-left corner as the
+origin point <code>(0, 0)</code> in GRBL workspace coordinates.</p>
+<ol type="1">
+<li>Open <strong>File &gt; Document Properties</strong>
+(<code>Ctrl + Shift + D</code>).</li>
+<li>Set the <strong>Display units</strong> to <code>mm</code>.</li>
+<li>Under the <strong>Page</strong> tab, set the custom size to match
+your laser's usable working bed (e.g., 400 mm x 400 mm).</li>
+<li>Ensure the origin marker is configured to the bottom-left corner to
+match standard GRBL machine coordinates.</li>
+</ol>
+<h3 id="step-2-convert-vectors-to-continuous-paths">Step 2: Convert
+Vectors to Continuous Paths</h3>
+<p>G-code generators cannot interpret native shapes (rectangles,
+circles), text, or grouped objects without converting them to vector
+paths first.</p>
+<ol type="1">
+<li>Ungroup all elements by selecting everything (<code>Ctrl + A</code>)
+and pressing <code>Ctrl + Shift + G</code> repeatedly until all groups
+are dissolved.</li>
+<li>Convert all objects to paths by navigating to <strong>Path &gt;
+Object to Path</strong> (<code>Ctrl + Shift + C</code>).</li>
+<li>If using dynamic offsets or strokes that define cutting outlines,
+select the objects and go to <strong>Path &gt; Stroke to
+Path</strong>.</li>
+<li>Combine overlapping cut paths if necessary using <strong>Path &gt;
+Union</strong> or <strong>Path &gt; Combine</strong> to prevent the
+laser from tracing the same line multiple times.</li>
+</ol>
+<h3 id="step-3-add-orientation-points">Step 3: Add Orientation
+Points</h3>
+<p>Inkscape needs reference markers to translate screen coordinates into
+machine travel dimensions.</p>
+<ol type="1">
+<li>Go to <strong>Extensions &gt; Gcodetools &gt; Orientation
+points...</strong></li>
+<li>Select <strong>2-points mode</strong>.</li>
+<li>Set the <strong>Z surface</strong> to <code>0.0</code>, <strong>Z
+depth</strong> to <code>0.0</code> (diode lasers typically do not
+control physical Z-axis movement during cutting), and
+<strong>Units</strong> to <code>mm</code>.</li>
+<li>Click <strong>Apply</strong>. Inkscape will place coordinate
+markings at the bottom-left corner of the canvas.</li>
+</ol>
+<h3 id="step-4-configure-the-tool-library-for-laser-parameters">Step 4:
+Configure the Tool Library for Laser Parameters</h3>
+<p>Diode lasers use the spindle speed parameter (<code>S</code>) to
+regulate laser power (e.g., <code>S0</code> for off, <code>S1000</code>
+for 100% power on typical GRBL setups) and feed rate (<code>F</code>) to
+control cutting speed.</p>
+<ol type="1">
+<li>Go to <strong>Extensions &gt; Gcodetools &gt; Tools
+library...</strong></li>
+<li>Choose <strong>Cylinder</strong> from the tool type list and click
+<strong>Apply</strong>.</li>
+<li>A green rectangular box containing text will appear on the canvas.
+Select the <strong>Text Tool</strong> (<code>F8</code>) to edit the
+parameters inside this box:
+<ul>
+<li><strong>feed</strong>: Set to your desired cutting speed in mm/min
+(e.g., <code>300</code> to <code>1000</code> depending on
+material).</li>
+<li><strong>penetration feed</strong>: Set equal to your feed rate.</li>
+<li><strong>spindle rpm</strong>: Set to your maximum laser power value
+(e.g., <code>1000</code> for full diode output in GRBL).</li>
+<li><strong>depth step</strong>: Set equal to your material thickness or
+target single-pass depth.</li>
+</ul></li>
+</ol>
+<h3 id="step-5-generate-and-export-the-g-code">Step 5: Generate and
+Export the G-Code</h3>
+<p>Once the paths and parameters are configured, generate the machine
+code.</p>
+<ol type="1">
+<li>Select the paths you wish to cut.</li>
+<li>Navigate to <strong>Extensions &gt; Gcodetools &gt; Path to
+Gcode...</strong></li>
+<li>Switch to the <strong>Preferences</strong> tab:
+<ul>
+<li>Enter the destination directory path in the
+<strong>Directory</strong> field.</li>
+<li>Enter a target name in the <strong>File</strong> field (e.g.,
+<code>cut_contour.gcode</code> or <code>cut_contour.nc</code>).</li>
+<li>Set <strong>Z safe height</strong> to <code>0.0</code> to avoid
+unnecessary pause cycles.</li>
+</ul></li>
+<li>Switch back to the <strong>Path to Gcode</strong> tab and click
+<strong>Apply</strong>.</li>
+</ol>
+<p>Inkscape will calculate the vectors and write the file directly to
+your specified folder. Load the generated <code>.gcode</code> or
+<code>.nc</code> file into a laser control sender (such as LaserGRBL or
+LightBurn) to preview the toolpath and initiate the cut.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

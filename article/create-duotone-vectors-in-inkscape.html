@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Duotone Vectors in Inkscape - inkscape</title>
+    <meta name="description" content="This guide provides a straightforward tutorial on creating two-tone (duotone) vector illustrations using Inkscape. You will learn how to convert source images or existing graphics into dynamic, high-contrast vector art by isolating shadow and highlight v">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-duotone-vectors-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Duotone Vectors in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-duotone-vectors-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a straightforward tutorial on creating two-tone (duotone) vector illustrations using Inkscape. You will learn how to convert source images or existing graphics into dynamic, high-contrast vector art by isolating shadow and highlight v" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-duotone-vectors-in-inkscape">Create Duotone Vectors in
+Inkscape</h1>
+<p>This guide provides a straightforward tutorial on creating two-tone
+(duotone) vector illustrations using Inkscape. You will learn how to
+convert source images or existing graphics into dynamic, high-contrast
+vector art by isolating shadow and highlight values, applying vector
+path operations, and styling your design using a limited two-color
+palette.</p>
+<h2 id="method-1-converting-a-photo-into-a-duotone-vector">Method 1:
+Converting a Photo into a Duotone Vector</h2>
+<p>Converting a raster image into a stylized duotone graphic is the
+fastest way to achieve this aesthetic.</p>
+<h3 id="1-import-and-prepare-your-image">1. Import and Prepare Your
+Image</h3>
+<ol type="1">
+<li>Open Inkscape and go to <strong>File &gt; Import</strong> to load
+your source image.</li>
+<li>Select the image and go to <strong>Filters &gt; Color &gt;
+Grayscale</strong> (or adjust saturation) to better evaluate light and
+shadow values.</li>
+</ol>
+<h3 id="2-trace-the-bitmap">2. Trace the Bitmap</h3>
+<ol type="1">
+<li>Select the image and open the tracing tool via <strong>Path &gt;
+Trace Bitmap</strong>.</li>
+<li>Under the <strong>Single scan</strong> tab, select
+<strong>Brightness cutoff</strong>.</li>
+<li>Adjust the <strong>Threshold</strong> slider until the preview
+captures the distinct contrast you want for your foreground
+shadows.</li>
+<li>Click <strong>Apply</strong>. Inkscape will generate a
+black-and-white vector path over your original image.</li>
+<li>Delete or move the original bitmap image out of the canvas.</li>
+</ol>
+<h3 id="3-create-the-background-and-set-duotone-colors">3. Create the
+Background and Set Duotone Colors</h3>
+<ol type="1">
+<li>Select the <strong>Rectangle tool (R)</strong> and draw a box that
+completely covers your canvas or design boundary.</li>
+<li>Send the rectangle to the bottom layer by pressing the <strong>Page
+Down</strong> key or clicking <strong>Object &gt; Lower to
+Bottom</strong>.</li>
+<li>Pick your background color (the light or primary tone) from the
+color palette at the bottom.</li>
+<li>Select the traced vector path on top and pick your contrasting
+foreground color (the shadow or accent tone).</li>
+</ol>
+<hr />
+<h2
+id="method-2-creating-duotone-art-from-existing-vector-shapes">Method 2:
+Creating Duotone Art from Existing Vector Shapes</h2>
+<p>If you are working with an existing multi-colored vector
+illustration, follow these steps to reduce it to a two-tone design.</p>
+<h3 id="1-separate-artwork-into-two-light-values">1. Separate Artwork
+into Two Light Values</h3>
+<ol type="1">
+<li>Ungroup your artwork completely using <strong>Ctrl + Shift +
+G</strong> (or <strong>Cmd + Shift + G</strong> on macOS).</li>
+<li>Categorize all elements into either "Highlights" (light tone) or
+"Shadows" (dark tone).</li>
+</ol>
+<h3 id="2-combine-paths-by-value">2. Combine Paths by Value</h3>
+<ol type="1">
+<li>Select all the shapes designated as shadows and merge them into a
+single path by navigating to <strong>Path &gt; Union</strong> (Ctrl +
++).</li>
+<li>Select all the shapes designated as highlights and combine them
+using <strong>Path &gt; Union</strong>.</li>
+</ol>
+<h3 id="3-apply-the-two-color-palette">3. Apply the Two-Color
+Palette</h3>
+<ol type="1">
+<li>Select the combined shadow path and apply your darker palette color
+using the <strong>Fill and Stroke</strong> panel (<strong>Ctrl + Shift +
+F</strong>).</li>
+<li>Select the combined highlight path (or background shape) and apply
+your lighter palette color.</li>
+</ol>
+<hr />
+<h2 id="tips-for-refining-duotone-illustrations">Tips for Refining
+Duotone Illustrations</h2>
+<ul>
+<li><strong>Use High-Contrast Color Combinations:</strong> Popular
+pairings include navy blue and bright orange, deep purple and neon
+yellow, or dark cyan and warm white.</li>
+<li><strong>Add Midtone Accents with Halftones:</strong> If you need a
+perceived third tone without adding an extra color, use the
+<strong>Circle tool</strong> to create a dot matrix/halftone pattern
+using the foreground color over the background.</li>
+<li><strong>Clean Up Stray Nodes:</strong> Use the <strong>Node Tool
+(N)</strong> to delete unnecessary artifacts generated during the
+<em>Trace Bitmap</em> process to keep your final vector file lightweight
+and sharp.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

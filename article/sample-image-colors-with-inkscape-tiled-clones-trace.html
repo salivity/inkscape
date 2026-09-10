@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Image Colors with Inkscape Tiled Clones Trace - inkscape</title>
+    <meta name="description" content="This guide explains how to use the Trace tab within Inkscape's Create Tiled Clones tool to sample colors from an underlying image. By mapping a source image to a grid of vector shapes, you can easily generate pixelated graphics, vector mosaics, and halft">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/sample-image-colors-with-inkscape-tiled-clones-trace">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sample Image Colors with Inkscape Tiled Clones Trace - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/sample-image-colors-with-inkscape-tiled-clones-trace" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use the Trace tab within Inkscape's Create Tiled Clones tool to sample colors from an underlying image. By mapping a source image to a grid of vector shapes, you can easily generate pixelated graphics, vector mosaics, and halft" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="sample-image-colors-with-inkscape-tiled-clones-trace">Sample
+Image Colors with Inkscape Tiled Clones Trace</h1>
+<p>This guide explains how to use the Trace tab within Inkscape's Create
+Tiled Clones tool to sample colors from an underlying image. By mapping
+a source image to a grid of vector shapes, you can easily generate
+pixelated graphics, vector mosaics, and halftone color effects.</p>
+<h3 id="1-import-and-position-your-image">1. Import and Position Your
+Image</h3>
+<p>Place the target image (bitmap or vector) onto your canvas. This
+image acts as the color source that the clones will sample. Ensure the
+image is positioned directly beneath where you plan to generate your
+clones.</p>
+<h3 id="2-create-the-source-shape">2. Create the Source Shape</h3>
+<p>Draw the single vector shape that will be repeated across the grid,
+such as a small circle or square. Position this shape over the top-left
+corner of the underlying image.</p>
+<h3 id="3-unset-the-fill-color-of-the-source-shape">3. Unset the Fill
+Color of the Source Shape</h3>
+<p>For clones to take on sampled colors, the original object must not
+have a fixed fill color:</p>
+<ol type="1">
+<li>Select the shape you just created.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>).</li>
+<li>Under the <strong>Fill</strong> tab, click the <strong>Unset
+paint</strong> icon (the question mark <code>?</code>). The shape will
+appear black or transparent, allowing the clone engine to dynamically
+assign color values to each clone.</li>
+</ol>
+<h3 id="4-open-the-tiled-clones-tool">4. Open the Tiled Clones Tool</h3>
+<p>With the source shape selected, navigate to the menu and choose
+<strong>Edit &gt; Clone &gt; Create Tiled Clones...</strong> to open the
+tool panel.</p>
+<h3 id="5-set-grid-dimensions">5. Set Grid Dimensions</h3>
+<p>In the <strong>Create Tiled Clones</strong> dialog:</p>
+<ol type="1">
+<li>Go to the <strong>Symmetry</strong> tab and keep the default
+<code>P1: simple translation</code>.</li>
+<li>At the bottom of the dialog, set the grid size by defining the
+number of <strong>Rows</strong> and <strong>Columns</strong> needed to
+cover the area of the background image.</li>
+</ol>
+<h3 id="6-configure-the-trace-tab">6. Configure the Trace Tab</h3>
+<p>Switch to the <strong>Trace</strong> tab inside the dialog and apply
+the following settings:</p>
+<ol type="1">
+<li>Check the box labeled <strong>Trace the background under the
+clones</strong>.</li>
+<li>Under <strong>1. Specify what to pick</strong>, select
+<strong>Color</strong>.</li>
+<li>Under <strong>2. Apply the value to the clones'</strong>, check the
+<strong>Color</strong> option.</li>
+<li>Under <strong>3. Make the picked value determine the
+clones'</strong>, you can leave the options unchecked unless you also
+want to vary size, opacity, or rotation based on brightness.</li>
+</ol>
+<h3 id="7-generate-the-clones">7. Generate the Clones</h3>
+<p>Click the <strong>Create</strong> button at the bottom of the dialog.
+Inkscape will read the color values of the image directly beneath each
+grid point and generate a cloned pattern matching the source image's
+colors. If the layout is misaligned, click <strong>Remove</strong>,
+adjust your rows, columns, or shape spacing, and click
+<strong>Create</strong> again.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

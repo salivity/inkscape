@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Distorted Text When Importing SVG in Inkscape - inkscape</title>
+    <meta name="description" content="Opening SVG files created in third-party software like Adobe Illustrator, Figma, CorelDRAW, or Canva in Inkscape often leads to distorted text, overlapping glyphs, misplaced characters, or incorrect fonts. This guide outlines the most effective solutions">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/fix-distorted-text-when-importing-svg-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Fix Distorted Text When Importing SVG in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/fix-distorted-text-when-importing-svg-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Opening SVG files created in third-party software like Adobe Illustrator, Figma, CorelDRAW, or Canva in Inkscape often leads to distorted text, overlapping glyphs, misplaced characters, or incorrect fonts. This guide outlines the most effective solutions" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="fix-distorted-text-when-importing-svg-in-inkscape">Fix Distorted
+Text When Importing SVG in Inkscape</h1>
+<p>Opening SVG files created in third-party software like Adobe
+Illustrator, Figma, CorelDRAW, or Canva in Inkscape often leads to
+distorted text, overlapping glyphs, misplaced characters, or incorrect
+fonts. This guide outlines the most effective solutions to resolve these
+SVG text rendering issues, covering source export adjustments, font
+reconciliation, flowed text corrections, and XML attribute cleanups.</p>
+<h3 id="1-convert-text-to-paths-in-the-source-software">1. Convert Text
+to Paths in the Source Software</h3>
+<p>If you do not need the text to remain editable in Inkscape,
+converting text into vector paths (outlines) before exporting guarantees
+that the typography renders identically across all vector editors:</p>
+<ul>
+<li><strong>Adobe Illustrator:</strong> Select the text and press
+<code>Ctrl + Shift + O</code> (Windows) or <code>Cmd + Shift + O</code>
+(macOS), or choose <strong>Type &gt; Create Outlines</strong>.</li>
+<li><strong>Figma:</strong> Right-click the text layer and select
+<strong>Outline Stroke</strong> (<code>Ctrl + Shift + O</code> /
+<code>Cmd + Shift + O</code>).</li>
+<li><strong>CorelDRAW:</strong> Select the text and choose
+<strong>Object &gt; Convert to Curves</strong>
+(<code>Ctrl + Q</code>).</li>
+</ul>
+<p>After outlining, export the file as a standard SVG and open it in
+Inkscape.</p>
+<h3 id="2-install-and-match-missing-fonts">2. Install and Match Missing
+Fonts</h3>
+<p>When text must remain editable, text distortion usually happens
+because Inkscape cannot locate the exact font family, weight, or style
+used in the source program:</p>
+<ol type="1">
+<li>Identify the exact font used in the original document.</li>
+<li>Install the corresponding TrueType (<code>.ttf</code>) or OpenType
+(<code>.otf</code>) font file directly onto your operating system.</li>
+<li>Restart Inkscape completely to ensure the new font cache is
+loaded.</li>
+<li>Open the SVG, select the distorted text, open the <strong>Text and
+Font</strong> dialog (<code>Ctrl + Shift + T</code>), select the correct
+font family, and click <strong>Apply</strong>.</li>
+</ol>
+<h3 id="3-convert-flowed-text-to-regular-text">3. Convert Flowed Text to
+Regular Text</h3>
+<p>Older versions of Inkscape rely on a non-standard
+<code>&lt;flowRoot&gt;</code> specification, while newer versions use
+SVG 2.0 flowed text. When third-party editors generate multi-line text
+blocks with custom wrapping, Inkscape may bunch all words into a single
+point:</p>
+<ol type="1">
+<li>Select the affected text block in Inkscape.</li>
+<li>Navigate to the top menu and select <strong>Text &gt; Convert to
+Text</strong>.</li>
+<li>If the text disappears or wraps incorrectly, choose <strong>Text
+&gt; Unflow</strong> or manually re-break lines using
+<code>Enter</code>.</li>
+</ol>
+<h3 id="4-remove-hardcoded-transforms-and-manual-kerning">4. Remove
+Hardcoded Transforms and Manual Kerning</h3>
+<p>Third-party exporters frequently assign absolute coordinate arrays
+(<code>x</code>, <code>y</code>, <code>dx</code>, <code>dy</code>) or
+matrix transformations to each individual character, causing severe
+overlap or spacing gaps in Inkscape.</p>
+<ol type="1">
+<li>Select the distorted text object.</li>
+<li>Open the XML Editor by pressing <code>Ctrl + Shift + X</code>.</li>
+<li>Locate the active <code>&lt;text&gt;</code> or
+<code>&lt;tspan&gt;</code> element in the XML tree.</li>
+<li>In the right-hand attribute pane, look for <code>dx</code>,
+<code>dy</code>, <code>rotate</code>, or <code>transform</code>
+attributes.</li>
+<li>Select these attributes and click the <strong>Delete
+Attribute</strong> icon (the red 'X' icon at the top of the pane).</li>
+<li>Alternatively, select the text using the <strong>Text Tool</strong>
+(<code>T</code>), highlight all text with <code>Ctrl + A</code>, and
+press <code>Alt + Right/Left Arrow</code> to reset the letter
+spacing.</li>
+</ol>
+<h3 id="5-export-as-plain-svg-or-pdf-as-an-alternative">5. Export as
+Plain SVG or PDF as an Alternative</h3>
+<p>If the source program offers multiple export profiles:</p>
+<ul>
+<li>Choose <strong>Plain SVG</strong> or <strong>SVG 1.1</strong>
+instead of proprietary formats (like Illustrator SVG with preserved
+Illustrator editing capabilities).</li>
+<li>Alternatively, export the document as a high-resolution
+<strong>PDF</strong> from the source program, then import the PDF into
+Inkscape using the <strong>Poppler/Cairo</strong> import engine with the
+option to import text as editable text or paths.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

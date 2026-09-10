@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Vector Relief Maps in Inkscape for CNC - inkscape</title>
+    <meta name="description" content="This guide details how to transform grayscale digital elevation data into layered vector contours using Inkscape for 3D wood CNC carving. By importing heightmaps, utilizing multi-scan brightness tracing, simplifying vector paths, and exporting them to CA">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/generate-vector-relief-maps-in-inkscape-for-cnc">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Generate Vector Relief Maps in Inkscape for CNC - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/generate-vector-relief-maps-in-inkscape-for-cnc" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide details how to transform grayscale digital elevation data into layered vector contours using Inkscape for 3D wood CNC carving. By importing heightmaps, utilizing multi-scan brightness tracing, simplifying vector paths, and exporting them to CA" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="generate-vector-relief-maps-in-inkscape-for-cnc">Generate Vector
+Relief Maps in Inkscape for CNC</h1>
+<p>This guide details how to transform grayscale digital elevation data
+into layered vector contours using Inkscape for 3D wood CNC carving. By
+importing heightmaps, utilizing multi-scan brightness tracing,
+simplifying vector paths, and exporting them to CAM software, you can
+create clean, stepped topographical relief files optimized for efficient
+pocketing toolpaths in timber.</p>
+<h3 id="1-acquire-a-grayscale-heightmap">1. Acquire a Grayscale
+Heightmap</h3>
+<p>CNC relief carving requires height-based elevation data. Source a
+grayscale Digital Elevation Model (DEM) from platforms like
+OpenTopography, USGS EarthExplorer, or online heightmap generators. In
+these images, absolute white represents the highest elevation, pure
+black represents the lowest terrain or sea level, and shades of gray
+represent the elevations in between. Save your map as a high-resolution
+PNG or TIFF to maintain smooth gradient transitions.</p>
+<h3 id="2-prepare-the-canvas-in-inkscape">2. Prepare the Canvas in
+Inkscape</h3>
+<ol type="1">
+<li>Open Inkscape and access <strong>File &gt; Document
+Properties</strong> (<code>Ctrl + Shift + D</code>).</li>
+<li>Set your display units to millimeters or inches, matching the exact
+physical dimensions of your wood stock.</li>
+<li>Go to <strong>File &gt; Import</strong> (<code>Ctrl + I</code>) and
+load your grayscale heightmap.</li>
+<li>Scale and align the image to fit your defined carving area, locking
+the aspect ratio to prevent geographical distortion.</li>
+</ol>
+<h3 id="3-trace-elevation-contours">3. Trace Elevation Contours</h3>
+<p>To convert the continuous grayscale raster into stepped vectors, use
+Inkscape’s bitmap tracing engine:</p>
+<ol type="1">
+<li>Select the heightmap image.</li>
+<li>Navigate to <strong>Path &gt; Trace Bitmap</strong>
+(<code>Shift + Alt + B</code>).</li>
+<li>In the Trace Bitmap panel, select the <strong>Multicolor</strong>
+tab and choose <strong>Brightness steps</strong>.</li>
+<li>Set the <strong>Scans</strong> count to your intended number of
+carving layers. For example, 10 scans on a 20 mm thick board allows for
+2 mm depth increments per contour.</li>
+<li>Check <strong>Stack</strong> to create solid nested polygons rather
+than thin bands, which simplifies pocket toolpaths in CAM software.</li>
+<li>Check <strong>Remove background</strong> to eliminate flat borders
+around the map.</li>
+<li>Click <strong>Apply</strong>. Inkscape will generate a grouped set
+of vector paths directly over your raster image.</li>
+</ol>
+<h3 id="4-clean-and-optimize-the-vectors">4. Clean and Optimize the
+Vectors</h3>
+<p>Raw traced contours often contain stray nodes and micro-islands that
+cause toolpath errors or prolonged CNC machining times:</p>
+<ol type="1">
+<li>Select the newly created vector group and press
+<code>Ctrl + Shift + G</code> to ungroup the individual elevation
+levels.</li>
+<li>Delete the original raster heightmap from the background to reduce
+file size.</li>
+<li>Select all paths and open <strong>Path &gt; Simplify</strong>
+(<code>Ctrl + L</code>) to reduce node density without altering key
+geographic features.</li>
+<li>Inspect the paths with the <strong>Node Tool</strong>
+(<code>N</code>). Manually select and delete any microscopic artifacts
+that are smaller than the diameter of your smallest CNC end mill.</li>
+</ol>
+<h3 id="5-organize-layers-for-depth-assignment">5. Organize Layers for
+Depth Assignment</h3>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li>Rename each traced path according to its cut depth (e.g.,
+<code>Level_01_Base</code>, <code>Level_02_Mid</code>,
+<code>Level_03_Peak</code>).</li>
+<li>Set the fill to empty and the stroke to a visible solid color for
+clear visibility, or assign a distinct color to each layer to help your
+CAM program automate depth assignment.</li>
+</ol>
+<h3 id="6-export-for-cam">6. Export for CAM</h3>
+<ol type="1">
+<li>Verify that all objects are standard paths by selecting everything
+and clicking <strong>Path &gt; Object to Path</strong>
+(<code>Ctrl + Shift + C</code>).</li>
+<li>Save your file as an <strong>Inkscape SVG</strong> or <strong>Plain
+SVG</strong>. If your CAM software requires CAD formats (such as Vectric
+VCarve, Carbide Create, or Fusion 360), go to <strong>File &gt; Save
+As</strong> and select <strong>Desktop Cutting Plotter (AutoCAD DXF
+R14)</strong>.</li>
+<li>In your CAM software, assign stepped 2D/2.5D pocket toolpaths to
+each layer, programming the cut depths sequentially from the widest base
+layer down to the highest topographical peaks.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

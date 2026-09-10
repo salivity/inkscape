@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Map Coastline Hatching in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to create classic, hand-drawn style fantasy coastline hatching using the Path Offset tools in Inkscape. By generating concentric offset rings around your landmasses and styling their stroke properties, you can quickly achieve the">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/fantasy-map-coastline-hatching-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Fantasy Map Coastline Hatching in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/fantasy-map-coastline-hatching-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to create classic, hand-drawn style fantasy coastline hatching using the Path Offset tools in Inkscape. By generating concentric offset rings around your landmasses and styling their stroke properties, you can quickly achieve the" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="fantasy-map-coastline-hatching-in-inkscape">Fantasy Map
+Coastline Hatching in Inkscape</h1>
+<p>This guide explains how to create classic, hand-drawn style fantasy
+coastline hatching using the Path Offset tools in Inkscape. By
+generating concentric offset rings around your landmasses and styling
+their stroke properties, you can quickly achieve the popular
+cartographic ribbon effect that defines water edges on vintage and
+fantasy maps.</p>
+<h3 id="step-1-prepare-your-landmass">Step 1: Prepare Your Landmass</h3>
+<ol type="1">
+<li>Draw your continent or island shapes using the <strong>Draw Freehand
+Lines tool (Pencil tool, <code>P</code>)</strong> or the <strong>Draw
+Bezier Curves tool (Pen tool, <code>B</code>)</strong>.</li>
+<li>Ensure your landmasses are closed paths. If you have drawn multiple
+separate islands, select them all and combine them into a single path by
+going to <strong>Path &gt; Union</strong> (or pressing
+<code>Ctrl + +</code>).</li>
+<li>Set your landmass fill to your desired parchment or land color and
+set the stroke to a dark, solid color representing your shoreline.</li>
+</ol>
+<h3 id="step-2-use-the-path-offset-tool">Step 2: Use the Path Offset
+Tool</h3>
+<p>Inkscape offers multiple ways to offset paths. The <strong>Path
+Effect Offset</strong> is the most precise and non-destructive method
+for map borders:</p>
+<ol type="1">
+<li>Select your unified landmass path.</li>
+<li>Duplicate it by pressing <code>Ctrl + D</code>.</li>
+<li>Open the Path Effects dialog by selecting <strong>Path &gt; Path
+Effects</strong>.</li>
+<li>Click the <strong>Add Path Effect (+)</strong> button and choose
+<strong>Offset</strong>.</li>
+<li>Set the <strong>Join</strong> style to <strong>Round</strong> to
+prevent sharp, distorted spikes from jutting out of jagged
+coastlines.</li>
+<li>In the Path Effects panel, increase the <strong>Offset</strong>
+value (e.g., <code>2.0 mm</code> or <code>5.0 px</code>) to push the
+duplicated path outward into the water.</li>
+</ol>
+<p><em>Alternative Shortcut:</em> You can also use <strong>Path &gt;
+Dynamic Offset</strong> (<code>Ctrl + J</code>) and drag the single
+handle on the path outward using the <strong>Node tool
+(<code>N</code>)</strong>.</p>
+<h3 id="step-3-create-concentric-coastal-rings">Step 3: Create
+Concentric Coastal Rings</h3>
+<p>Coastline hatching traditionally features several tiers of lines
+rippling outward from the shore:</p>
+<ol type="1">
+<li>Duplicate the newly offset path (<code>Ctrl + D</code>).</li>
+<li>In the <strong>Path Effects</strong> panel, increase the offset
+distance further (for example, double the previous value, moving from
+<code>2.0 mm</code> to <code>4.0 mm</code>).</li>
+<li>Repeat this process 3 to 5 times, increasing the offset distance
+with each duplicate until you achieve your desired coastal breadth.</li>
+</ol>
+<h3 id="step-4-style-the-hatching-lines">Step 4: Style the Hatching
+Lines</h3>
+<p>To mimic authentic historical maps, coastal lines should appear
+lighter and thinner as they move further away from the land:</p>
+<ol type="1">
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>).</li>
+<li>Remove any fill from your offset paths so only the strokes
+remain.</li>
+<li>Select the innermost offset ring (closest to shore). Set its stroke
+width slightly thinner than your main coastline (e.g.,
+<code>1.0 px</code>).</li>
+<li>Select the subsequent rings moving outward. Progressively reduce
+their <strong>Stroke width</strong> (e.g., <code>0.75 px</code>,
+<code>0.5 px</code>, <code>0.25 px</code>) and decrease their
+<strong>Opacity</strong> (e.g., 80%, 60%, 40%).</li>
+<li>Optional: Change the outermost lines to a subtle dashed or dotted
+stroke in the <strong>Stroke style</strong> tab to simulate fading
+waves.</li>
+</ol>
+<h3 id="step-5-final-cleanup">Step 5: Final Cleanup</h3>
+<ol type="1">
+<li>If overlapping rings create unwanted intersections between nearby
+islands, select the offset line, go to <strong>Path &gt; Object to
+Path</strong> to bake the offset, and use the <strong>Node tool
+(<code>N</code>)</strong> to delete or smooth out internal overlapping
+nodes.</li>
+<li>Group all coastal offset paths by selecting them and pressing
+<code>Ctrl + G</code>, then move the group below your main landmass
+layer by pressing <code>Page Down</code>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

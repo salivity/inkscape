@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Install Inkscape AppImage on Linux - inkscape</title>
+    <meta name="description" content="This guide provides a straightforward walkthrough on how to set up and run Inkscape on any Linux distribution using the AppImage format. You will learn how to download the official AppImage file, grant it the necessary execution permissions, and launch t">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-install-inkscape-appimage-on-linux">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Install Inkscape AppImage on Linux - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-install-inkscape-appimage-on-linux" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a straightforward walkthrough on how to set up and run Inkscape on any Linux distribution using the AppImage format. You will learn how to download the official AppImage file, grant it the necessary execution permissions, and launch t" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-install-inkscape-appimage-on-linux">How to Install
+Inkscape AppImage on Linux</h1>
+<p>This guide provides a straightforward walkthrough on how to set up
+and run Inkscape on any Linux distribution using the AppImage format.
+You will learn how to download the official AppImage file, grant it the
+necessary execution permissions, and launch the application directly
+without altering system files or requiring root privileges.</p>
+<h3 id="step-1-download-the-inkscape-appimage">Step 1: Download the
+Inkscape AppImage</h3>
+<ol type="1">
+<li>Open your web browser and navigate to the official Inkscape
+website.</li>
+<li>Go to the download section and select the <strong>Linux</strong>
+platform.</li>
+<li>Choose the <strong>AppImage</strong> format to download the
+<code>.AppImage</code> file to your local computer (usually saved in
+your <code>Downloads</code> directory).</li>
+</ol>
+<h3 id="step-2-make-the-appimage-executable">Step 2: Make the AppImage
+Executable</h3>
+<p>Before you can run the AppImage, you must grant it executable
+permissions. You can do this using either the graphical interface or the
+command line.</p>
+<h4 id="method-a-using-the-graphical-user-interface-gui">Method A: Using
+the Graphical User Interface (GUI)</h4>
+<ol type="1">
+<li>Open your file manager and navigate to the folder containing the
+downloaded <code>.AppImage</code> file.</li>
+<li>Right-click the Inkscape file and select
+<strong>Properties</strong>.</li>
+<li>Go to the <strong>Permissions</strong> tab.</li>
+<li>Check the box labeled <strong>Allow executing file as
+program</strong> (or set Access to "Read and Write / Executable"
+depending on your desktop environment).</li>
+<li>Close the Properties window.</li>
+</ol>
+<h4 id="method-b-using-the-terminal">Method B: Using the Terminal</h4>
+<ol type="1">
+<li>Open your terminal.</li>
+<li>Navigate to the directory where the file is stored:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/Downloads</span></code></pre></div></li>
+<li>Run the following command to make the file executable (replace
+<code>filename.AppImage</code> with the exact name of the file you
+downloaded):
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x Inkscape<span class="pp">*</span>.AppImage</span></code></pre></div></li>
+</ol>
+<h3 id="step-3-run-inkscape">Step 3: Run Inkscape</h3>
+<p>Once permissions are set, you can launch Inkscape immediately:</p>
+<ul>
+<li><strong>From the GUI:</strong> Double-click the
+<code>.AppImage</code> file in your file manager.</li>
+<li><strong>From the Terminal:</strong> Run the application directly
+with the command:
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./Inkscape*.AppImage</span></span></code></pre></div></li>
+</ul>
+<h3 id="optional-desktop-integration">Optional: Desktop Integration</h3>
+<p>If you want Inkscape to appear in your application menu, you can use
+a utility like <strong>AppImageLauncher</strong> or manually move the
+file to a dedicated directory such as <code>~/Applications</code> and
+create a custom <code>.desktop</code> shortcut.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

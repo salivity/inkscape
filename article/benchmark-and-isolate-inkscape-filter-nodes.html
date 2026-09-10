@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benchmark and Isolate Inkscape Filter Nodes - inkscape</title>
+    <meta name="description" content="Complex SVG filters in Inkscape often introduce significant rendering latency, making it necessary to identify which specific primitives are consuming the most system resources. This guide explains how to systematically isolate individual filter primitiv">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/benchmark-and-isolate-inkscape-filter-nodes">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Benchmark and Isolate Inkscape Filter Nodes - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/benchmark-and-isolate-inkscape-filter-nodes" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Complex SVG filters in Inkscape often introduce significant rendering latency, making it necessary to identify which specific primitives are consuming the most system resources. This guide explains how to systematically isolate individual filter primitiv" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="benchmark-and-isolate-inkscape-filter-nodes">Benchmark and
+Isolate Inkscape Filter Nodes</h1>
+<p>Complex SVG filters in Inkscape often introduce significant rendering
+latency, making it necessary to identify which specific primitives are
+consuming the most system resources. This guide explains how to
+systematically isolate individual filter primitives within Inkscape’s
+Filter Editor and benchmark their performance to optimize your SVG
+rendering pipeline.</p>
+<h2 id="accessing-the-filter-editor">Accessing the Filter Editor</h2>
+<p>Open the Filter Editor dialog by navigating to <strong>Filters &gt;
+Filter Editor</strong>. Select the object carrying the filter you wish
+to inspect. In the dialog, the active filter will be highlighted in the
+left pane, while the right pane displays the pipeline of individual
+filter primitives (such as Gaussian Blur, Turbulence, or Composite)
+along with their input and output connections.</p>
+<h2 id="isolating-individual-filter-nodes">Isolating Individual Filter
+Nodes</h2>
+<p>Inkscape renders a filter by processing primitives sequentially or as
+a directed tree. Isolating a node requires redirecting the data flow so
+that only the node in question (or the chain up to that node) renders to
+the canvas.</p>
+<ol type="1">
+<li><strong>Reroute the Pipeline:</strong> Click on the connection lines
+entering and exiting the target primitive. To bypass downstream nodes,
+disconnect subsequent primitives or reconnect the target primitive's
+output directly to the end of the chain.</li>
+<li><strong>Use Passthrough Nodes:</strong> If you need to observe a
+node in the middle of a complex blend without destroying your layout,
+insert a temporary <code>Composite</code> or <code>Merge</code>
+primitive, route your target node’s output directly into it, and connect
+it to the primary visual output.</li>
+<li><strong>Toggle Primitive Effects:</strong> While Inkscape lacks a
+direct "mute" button for individual primitives, you can neutralize a
+node’s impact temporarily without deleting it:
+<ul>
+<li>Set <code>feGaussianBlur</code> standard deviation to
+<code>0</code>.</li>
+<li>Set <code>feColorMatrix</code> to an identity matrix.</li>
+<li>Disconnect the second input of an <code>feComposite</code> node to
+halt multi-stream calculations.</li>
+</ul></li>
+</ol>
+<h2 id="benchmarking-filter-node-performance">Benchmarking Filter Node
+Performance</h2>
+<p>Because Inkscape does not provide an integrated, millisecond-level
+execution timer for internal filter trees, benchmarking is conducted
+through systematic canvas updates or headless command-line
+rendering.</p>
+<h3 id="method-1-the-headless-export-benchmark-most-accurate">Method 1:
+The Headless Export Benchmark (Most Accurate)</h3>
+<p>Command-line exports provide precise execution times free from GUI
+drawing overhead:</p>
+<ol type="1">
+<li>Save an isolated version of your document where only the target
+filter node is active.</li>
+<li>Run the export command through a terminal timer (such as
+<code>Measure-Command</code> in PowerShell or <code>time</code> in
+Linux/macOS):
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">time</span> inkscape input.svg <span class="at">--export-filename</span><span class="op">=</span>test.png <span class="at">--export-dpi</span><span class="op">=</span>300</span></code></pre></div></li>
+<li>Record the execution time.</li>
+<li>Modify the file to enable the next primitive in the chain, repeat
+the command, and measure the difference in elapsed time. The delta
+between runs represents the computational cost of that specific
+primitive.</li>
+</ol>
+<h3 id="method-2-interactive-viewport-benchmarking">Method 2:
+Interactive Viewport Benchmarking</h3>
+<p>For interactive lag testing directly within Inkscape:</p>
+<ol type="1">
+<li>Open your operating system's performance monitor (such as Task
+Manager on Windows, Activity Monitor on macOS, or <code>htop</code> on
+Linux) to track Inkscape’s CPU and GPU utilization.</li>
+<li>Zoom in to a fixed magnification level (e.g., 200%) covering the
+filtered object.</li>
+<li>Force redraws by panning the canvas or pressing <strong>Ctrl +
+R</strong> to force a viewport update.</li>
+<li>Observe the CPU usage spike duration. High-overhead nodes will cause
+sustained thread utilization and viewport stutter during pan and zoom
+operations.</li>
+</ol>
+<h2 id="common-high-cost-nodes-to-watch">Common High-Cost Nodes to
+Watch</h2>
+<p>When isolating bottlenecks, focus first on these notoriously
+resource-intensive primitives:</p>
+<ul>
+<li><strong>feTurbulence:</strong> Generates procedural Perlin noise
+mathematically on the CPU; increasing frequency drastically scales
+calculation time.</li>
+<li><strong>feGaussianBlur:</strong> Computation scales with both the
+radius size and the object's pixel bounds.</li>
+<li><strong>feConvolveMatrix:</strong> Processes pixel matrices, which
+multiplies processing time significantly based on kernel size.</li>
+<li><strong>feDisplacementMap:</strong> Requires mapping values across
+two separate image inputs on a per-pixel basis.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

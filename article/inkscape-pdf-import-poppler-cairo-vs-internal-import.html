@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape PDF Import: Poppler/Cairo vs Internal Import - inkscape</title>
+    <meta name="description" content="When opening or importing a PDF document into Inkscape, users are presented with a choice between two distinct rendering engines: the Internal import engine and the Poppler/Cairo import engine. This article explains how to select these engines during imp">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-pdf-import-poppler-cairo-vs-internal-import">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape PDF Import: Poppler/Cairo vs Internal Import - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-pdf-import-poppler-cairo-vs-internal-import" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When opening or importing a PDF document into Inkscape, users are presented with a choice between two distinct rendering engines: the Internal import engine and the Poppler/Cairo import engine. This article explains how to select these engines during imp" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-pdf-import-popplercairo-vs-internal-import">Inkscape
+PDF Import: Poppler/Cairo vs Internal Import</h1>
+<p>When opening or importing a PDF document into Inkscape, users are
+presented with a choice between two distinct rendering engines: the
+Internal import engine and the Poppler/Cairo import engine. This article
+explains how to select these engines during import, details how each
+engine processes vector shapes and text, and provides clear guidelines
+on choosing the right method based on whether you need visual fidelity
+or full vector editability.</p>
+<h2 id="accessing-the-pdf-import-settings">Accessing the PDF Import
+Settings</h2>
+<p>To choose between the import engines in Inkscape:</p>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>File &gt; Open</strong> or
+<strong>File &gt; Import</strong>.</li>
+<li>Select your PDF file and click <strong>Open</strong>.</li>
+<li>A dialog box titled <strong>PDF Import Settings</strong> will
+appear.</li>
+<li>At the top of the dialog, select either <strong>Internal
+import</strong> or <strong>Poppler/Cairo import</strong> from the
+dropdown menu or radio buttons.</li>
+<li>Adjust your page range and rendering settings, then click
+<strong>OK</strong>.</li>
+</ol>
+<hr />
+<h2 id="internal-pdf-import">Internal PDF Import</h2>
+<p>The Internal import engine is Inkscape’s native importer designed
+specifically for vector graphic manipulation.</p>
+<h3 id="key-characteristics">Key Characteristics:</h3>
+<ul>
+<li><strong>Editable Text:</strong> If the required fonts are installed
+on your operating system, text remains recognized as standard text
+objects, allowing you to edit the wording, font family, size, and
+styling.</li>
+<li><strong>Direct Vector Paths:</strong> Shapes, strokes, and fills are
+directly converted into native SVG vector paths for straightforward
+manipulation using node tools.</li>
+<li><strong>Precision and Clean Structure:</strong> It produces clean
+SVG groups without adding unnecessary clipping paths or raster masks
+when possible.</li>
+</ul>
+<h3 id="limitations">Limitations:</h3>
+<ul>
+<li><strong>Font Dependency:</strong> If the PDF uses embedded fonts
+that are not installed on your local system, Inkscape will substitute
+them with default system fonts, which can alter the layout.</li>
+<li><strong>Complex Effects:</strong> Advanced PDF features, such as
+specific transparency blend modes, complex gradient meshes, or
+proprietary clipping paths, might not render accurately.</li>
+</ul>
+<hr />
+<h2 id="popplercairo-pdf-import">Poppler/Cairo PDF Import</h2>
+<p>The Poppler/Cairo import engine relies on the external Poppler PDF
+rendering library and the Cairo 2D graphics library.</p>
+<h3 id="key-characteristics-1">Key Characteristics:</h3>
+<ul>
+<li><strong>High Visual Accuracy:</strong> It renders the document
+nearly identically to standard PDF viewers, accurately preserving
+complex blend modes, clipping masks, and soft masks.</li>
+<li><strong>Text Converted to Paths:</strong> It automatically converts
+embedded fonts and text elements into vector paths (outlines), ensuring
+that the visual typography remains intact even if you do not have the
+fonts installed.</li>
+<li><strong>Fallback for Corrupt or Complex Files:</strong> It
+successfully opens complex PDFs that cause the internal importer to
+produce rendering errors or crash.</li>
+</ul>
+<h3 id="limitations-1">Limitations:</h3>
+<ul>
+<li><strong>Non-Editable Text:</strong> Because text is converted to
+geometric outlines, you cannot edit words, correct typos, or change font
+styles directly.</li>
+<li><strong>Complex Object Grouping:</strong> Vector paths are often
+heavily nested inside multiple layers of clip paths and groups, making
+standard node editing and color adjustments more tedious.</li>
+</ul>
+<hr />
+<h2 id="when-to-use-each-method">When to Use Each Method</h2>
+<ul>
+<li><p><strong>Choose Internal Import if:</strong></p>
+<ul>
+<li>You need to edit or rewrite text within the PDF.</li>
+<li>You plan to modify individual vector shapes, curves, and
+colors.</li>
+<li>You have all necessary fonts installed locally.</li>
+<li>You want a clean, simple SVG structure for web or design use.</li>
+</ul></li>
+<li><p><strong>Choose Poppler/Cairo Import if:</strong></p>
+<ul>
+<li>You only need an exact visual reproduction of the PDF for tracing or
+layout reference.</li>
+<li>You do not have the embedded fonts installed on your machine.</li>
+<li>The PDF contains advanced visual effects that fail to render
+properly using the internal engine.</li>
+<li>You do not require text-editing capabilities.</li>
+</ul></li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

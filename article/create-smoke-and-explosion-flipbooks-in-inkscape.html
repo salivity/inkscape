@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Smoke and Explosion Flipbooks in Inkscape - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to design frame-by-frame animated smoke and explosion flipbooks directly inside Inkscape by leveraging its native multi-page document system. You will learn how to configure uniform sequential artboards, construct scalable vec">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-smoke-and-explosion-flipbooks-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Smoke and Explosion Flipbooks in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-smoke-and-explosion-flipbooks-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to design frame-by-frame animated smoke and explosion flipbooks directly inside Inkscape by leveraging its native multi-page document system. You will learn how to configure uniform sequential artboards, construct scalable vec" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-smoke-and-explosion-flipbooks-in-inkscape">Create Smoke
+and Explosion Flipbooks in Inkscape</h1>
+<p>This guide demonstrates how to design frame-by-frame animated smoke
+and explosion flipbooks directly inside Inkscape by leveraging its
+native multi-page document system. You will learn how to configure
+uniform sequential artboards, construct scalable vector assets for
+organic particle bursts, deform states sequentially across frames using
+path operations, and batch export your finished flipbook for game
+engines, sprite sheets, or traditional animation sequences.</p>
+<h3 id="1-configure-the-multi-page-canvas">1. Configure the Multi-Page
+Canvas</h3>
+<p>Modern versions of Inkscape feature a native Pages tool that acts as
+sequential animation cels.</p>
+<ol type="1">
+<li>Create a new document in Inkscape.</li>
+<li>Select the <strong>Create and Edit Document Pages</strong> tool
+(<code>Shift + P</code>) from the left toolbar.</li>
+<li>In the top tool controls bar, set your frame dimensions (for
+example, standard sprite sizes like <code>128 x 128 px</code> or
+<code>256 x 256 px</code>).</li>
+<li>Click <strong>Create a new page</strong> repeatedly or drag across
+to generate a linear sequence of pages (e.g., an 8-frame or 16-frame
+sequence). Align them horizontally with a consistent margin to clearly
+visualize the animation timeline from left to right.</li>
+</ol>
+<h3 id="2-design-the-initial-burst-frame-1-to-frame-3">2. Design the
+Initial Burst (Frame 1 to Frame 3)</h3>
+<p>Explosions and smoke sequences rely on rapid expansion followed by
+gradual dissipation.</p>
+<ol type="1">
+<li><strong>Ignition/Origin (Page 1):</strong> Navigate to the first
+page. Use the <strong>Circle tool</strong> (<code>E</code>) or
+<strong>Star tool</strong> (<code>Shift + F9</code>) to draw a small,
+bright core. Fill it with an intense color such as white or light
+yellow.</li>
+<li><strong>Flash Expansion (Page 2):</strong> Select the object, copy
+it (<code>Ctrl + C</code>), select the second page, and paste it in
+place (<code>Ctrl + Alt + V</code>). Scale it outward
+(<code>Shift + Ctrl</code> while dragging a corner handle). Add smaller
+surrounding shapes using the <strong>Circle tool</strong> to represent
+emerging blast pockets. Select all shapes and merge them using
+<strong>Path &gt; Union</strong> (<code>Ctrl + +</code>). Shift the
+color toward bright orange.</li>
+<li><strong>Peak Blast (Page 3):</strong> Paste onto Page 3 and expand
+further. Add secondary blast bubbles overlapping the perimeter. Convert
+strokes to paths and union them to maintain a solid, cartoony
+silhouette.</li>
+</ol>
+<h3 id="3-transition-into-expanding-smoke-frames-4-to-6">3. Transition
+into Expanding Smoke (Frames 4 to 6)</h3>
+<p>After the initial blast, the fiery explosion must transition into
+billowing, turbulent smoke.</p>
+<ol type="1">
+<li><strong>Color Shift:</strong> On Page 4, change the fill color from
+orange to a deep charcoal gray or earthy brown. Add an inner ring or
+secondary lighter gray shape to give depth to the smoke clouds.</li>
+<li><strong>Organic Deformation:</strong> Use the <strong>Edit Paths by
+Nodes</strong> tool (<code>N</code>) or the <strong>Tweak tool</strong>
+(<code>Shift + W</code>, set to <em>Push parts of paths</em>) to distort
+the outer boundary. Create irregular, puffy lobes rather than uniform
+circles.</li>
+<li><strong>Separation and Holes:</strong> On Pages 5 and 6, punch
+negative space into the center to simulate the cloud tearing itself
+apart. Draw small overlapping shapes where the burst thins, select both
+the main body and the small shapes, and apply <strong>Path &gt;
+Difference</strong> (<code>Ctrl + -</code>).</li>
+</ol>
+<h3 id="4-dissipation-and-particle-drift-final-frames">4. Dissipation
+and Particle Drift (Final Frames)</h3>
+<p>The final phase involves smoke plumes breaking into distinct
+fragments and fading out.</p>
+<ol type="1">
+<li><strong>Splitting into Debris:</strong> Break the central mass into
+3–5 distinct smaller clouds floating upward and outward. Use the node
+editor to break paths apart, or draw new diminishing droplets.</li>
+<li><strong>Scale Reduction:</strong> Progressively shrink individual
+smoke chunks from frame to frame as they drift along their vector
+paths.</li>
+<li><strong>Opacity Falloff:</strong> Lower the layer or object opacity
+using the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>). Progressively step down the opacity
+(e.g., 75% on Frame 6, 40% on Frame 7, 15% on Frame 8) until the asset
+vanishes completely.</li>
+</ol>
+<h3 id="5-review-and-export-sequential-frames">5. Review and Export
+Sequential Frames</h3>
+<ol type="1">
+<li>Open the <strong>Export</strong> dialog
+(<code>Ctrl + Shift + E</code>).</li>
+<li>Switch to the <strong>Batch Export</strong> tab at the top of the
+panel.</li>
+<li>Select the <strong>Pages</strong> option. This directs Inkscape to
+export every artboard as an individual, numbered PNG image (e.g.,
+<code>page-1.png</code>, <code>page-2.png</code>, etc.).</li>
+<li>Set your export DPI or pixel resolution to match your target output
+size.</li>
+<li>Click <strong>Export</strong> to generate the image sequence, which
+can be compiled into a sprite sheet or loaded directly into animation
+software.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

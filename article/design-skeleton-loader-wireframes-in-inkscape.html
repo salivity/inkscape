@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Skeleton Loader Wireframes in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to design vector skeleton screen wireframes in Inkscape and create a shimmering gradient animation to represent a modern loading state. You will learn how to draft placeholder components, configure directional multi-stop gradients">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/design-skeleton-loader-wireframes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Skeleton Loader Wireframes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/design-skeleton-loader-wireframes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to design vector skeleton screen wireframes in Inkscape and create a shimmering gradient animation to represent a modern loading state. You will learn how to draft placeholder components, configure directional multi-stop gradients" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="design-skeleton-loader-wireframes-in-inkscape">Design Skeleton
+Loader Wireframes in Inkscape</h1>
+<p>This guide explains how to design vector skeleton screen wireframes
+in Inkscape and create a shimmering gradient animation to represent a
+modern loading state. You will learn how to draft placeholder
+components, configure directional multi-stop gradients that emulate
+shimmer effects, and prep the vector assets for animated SVG or CSS
+output.</p>
+<h3 id="1-set-up-the-component-layout">1. Set Up the Component
+Layout</h3>
+<p>Begin by defining the container and the placeholder components that
+represent your loading interface:</p>
+<ul>
+<li>Create a new document in Inkscape and set up an artboard for your UI
+component (for example, a card measuring 360 × 200 px).</li>
+<li>Use the <strong>Rectangle Tool (R)</strong> to draw the structural
+blocks representing text rows, preview images, and buttons.</li>
+<li>To make the wireframe look contemporary, select the rectangles and
+adjust the <code>Rx</code> and <code>Ry</code> radius handles in the
+tool control bar to create rounded corners (typically 4 px to 8
+px).</li>
+<li>Use the <strong>Circle Tool (E)</strong> while holding
+<code>Ctrl</code> to draw perfect circles for avatar or icon
+placeholders.</li>
+<li>Assign all shapes a neutral, low-contrast background color, such as
+a light gray (<code>#E5E7EB</code> or <code>#ECECEC</code>).</li>
+</ul>
+<h3 id="2-configure-the-shimmer-gradient">2. Configure the Shimmer
+Gradient</h3>
+<p>Skeleton screens simulate light sweeping across shapes using a
+three-stop linear gradient.</p>
+<ul>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl+Shift+F</code>).</li>
+<li>Select all placeholder shapes and group them using
+<code>Ctrl+G</code>, or combine them into a single path using
+<strong>Path &gt; Combine</strong> (<code>Ctrl+K</code>) so they can
+share a continuous gradient.</li>
+<li>Select the <strong>Create and edit gradients tool (G)</strong> and
+set the fill type to <strong>Linear Gradient</strong>.</li>
+<li>Draw a gradient across the elements, dragging from left to right at
+a slight upward angle (roughly 15 to 20 degrees).</li>
+<li>Define three gradient stops:
+<ul>
+<li><strong>Stop 1 (Start):</strong> Base gray (e.g.,
+<code>#E5E7EB</code>, 100% opacity).</li>
+<li><strong>Stop 2 (Middle):</strong> Lighter highlight gray (e.g.,
+<code>#F3F4F6</code> or pure white <code>#FFFFFF</code> at 40–60%
+opacity).</li>
+<li><strong>Stop 3 (End):</strong> Base gray (identical to Stop 1).</li>
+</ul></li>
+<li>Adjust the middle stop so it acts as a narrow band of light passing
+through the center of your wireframe shapes.</li>
+</ul>
+<h3 id="3-animate-the-gradient">3. Animate the Gradient</h3>
+<p>Inkscape creates standards-compliant SVG code, which makes animating
+the gradient possible directly through SVG attributes or by exporting
+frame states.</p>
+<h4 id="method-a-code-based-animation-svg-native">Method A: Code-Based
+Animation (SVG Native)</h4>
+<ol type="1">
+<li>Save your document as an <strong>Optimized SVG</strong>
+(<code>File &gt; Save As</code>).</li>
+<li>Open the <code>.svg</code> file in a text editor.</li>
+<li>Locate the <code>&lt;linearGradient&gt;</code> tag in the
+<code>&lt;defs&gt;</code> section.</li>
+<li>Add an SVG SMIL <code>&lt;animate&gt;</code> tag inside the
+<code>&lt;linearGradient&gt;</code> to shift the <code>x1</code> and
+<code>x2</code> positions:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">animate</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="ot">attributeName=</span><span class="st">&quot;x1&quot;</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="ot">from=</span><span class="st">&quot;-100%&quot;</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="ot">to=</span><span class="st">&quot;200%&quot;</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="ot">dur=</span><span class="st">&quot;1.5s&quot;</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="ot">repeatCount=</span><span class="st">&quot;indefinite&quot;</span> /&gt;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">animate</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="ot">attributeName=</span><span class="st">&quot;x2&quot;</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="ot">from=</span><span class="st">&quot;0%&quot;</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="ot">to=</span><span class="st">&quot;300%&quot;</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="ot">dur=</span><span class="st">&quot;1.5s&quot;</span> </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="ot">repeatCount=</span><span class="st">&quot;indefinite&quot;</span> /&gt;</span></code></pre></div>
+<p>This causes the highlight band to continuously sweep across the
+elements.</p>
+<h4 id="method-b-visual-frame-by-frame-animation-in-app">Method B:
+Visual Frame-by-Frame Animation (In-App)</h4>
+<ol type="1">
+<li>Duplicate your wireframe group across multiple layers to represent
+animation phases.</li>
+<li>On each layer, use the <strong>Gradient Tool (G)</strong> to
+manually shift the gradient handles from left to right across the
+canvas.</li>
+<li>Export each layer sequentially via <strong>File &gt; Export</strong>
+as a PNG sequence.</li>
+<li>Assemble the frames into an animated GIF or APNG using an external
+sequencer for client presentations.</li>
+</ol>
+<h3 id="4-export-the-finished-vector-asset">4. Export the Finished
+Vector Asset</h3>
+<p>Clean up your document before handoff:</p>
+<ul>
+<li>Remove any unused layers, swatches, or guides.</li>
+<li>Use <strong>Edit &gt; Clean Up Document</strong> to purge
+unreferenced gradient definitions.</li>
+<li>Export as <strong>Plain SVG</strong> for UI developers, allowing
+them to bind CSS keyframe animations directly to your vector shapes via
+classes.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

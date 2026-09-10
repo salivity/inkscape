@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Crash Report: What to Include in a Backtrace - inkscape</title>
+    <meta name="description" content="When reporting an Inkscape crash or freeze to developers, submitting a comprehensive debug backtrace is critical to identifying and fixing the underlying software bug. A useful report requires more than just the raw stack trace; it must supply complete c">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-crash-report-what-to-include-in-a-backtrace">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Crash Report: What to Include in a Backtrace - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-crash-report-what-to-include-in-a-backtrace" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When reporting an Inkscape crash or freeze to developers, submitting a comprehensive debug backtrace is critical to identifying and fixing the underlying software bug. A useful report requires more than just the raw stack trace; it must supply complete c" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-crash-report-what-to-include-in-a-backtrace">Inkscape
+Crash Report: What to Include in a Backtrace</h1>
+<p>When reporting an Inkscape crash or freeze to developers, submitting
+a comprehensive debug backtrace is critical to identifying and fixing
+the underlying software bug. A useful report requires more than just the
+raw stack trace; it must supply complete context, including the specific
+Inkscape build, operating system environment, full debugging symbols,
+and precise steps to reproduce the issue. Providing this complete
+information enables developers to locate the exact line of code
+responsible for the failure without unnecessary back-and-forth
+communication.</p>
+<h2 id="1-the-full-stack-backtrace">1. The Full Stack Backtrace</h2>
+<p>The backtrace is the core technical component of the report. It
+details the active function calls at the moment the crash occurred.</p>
+<ul>
+<li><strong>Complete Call Stack:</strong> Provide the entire backtrace,
+not just the top few lines. When using GDB (GNU Debugger), generate this
+using the <code>bt full</code> command rather than just <code>bt</code>.
+This captures local variable states within each stack frame.</li>
+<li><strong>Debug Symbols (Debugging Information):</strong> A backtrace
+consisting of memory addresses or lines filled with <code>?? ()</code>
+is rarely useful. Ensure debug symbols are installed. On Linux, this
+typically involves installing packages like <code>inkscape-dbgsym</code>
+or <code>inkscape-dbg</code>. On Windows or macOS, ensure you are
+testing with a development build that includes debugging
+information.</li>
+<li><strong>All Threads:</strong> Crashes often occur across multiple
+threads. A multi-threaded backtrace, captured in GDB via
+<code>thread apply all bt full</code>, shows the state of every running
+thread at the time of failure.</li>
+</ul>
+<h2 id="2-inkscape-version-and-build-details">2. Inkscape Version and
+Build Details</h2>
+<p>Inkscape undergoes frequent updates and is distributed across
+multiple packaging formats. Clearly identify the specific binary in
+use.</p>
+<ul>
+<li><strong>Exact Version String:</strong> Run
+<code>inkscape --version</code> in your terminal and include the
+complete output, which contains the release version and the exact Git
+commit hash (e.g.,
+<code>Inkscape 1.3.2 (091e20ef0f, 2023-11-25)</code>).</li>
+<li><strong>Installation Method:</strong> Specify how Inkscape was
+installed. State whether you are using a native distribution package
+(e.g., APT, DNF, Pacman), Flatpak, Snap, AppImage, macOS DMG, or Windows
+installer (MSI/exe).</li>
+</ul>
+<h2 id="3-operating-system-and-environment">3. Operating System and
+Environment</h2>
+<p>System-level discrepancies often dictate how libraries interact with
+Inkscape.</p>
+<ul>
+<li><strong>Operating System:</strong> Name and version (e.g., Ubuntu
+22.04 LTS, Windows 11 23H2, macOS Sonoma 14.4).</li>
+<li><strong>Architecture:</strong> Specify your CPU architecture (e.g.,
+x86_64, ARM64/Apple Silicon).</li>
+<li><strong>Display Server (Linux):</strong> Indicate whether the crash
+occurs under Wayland or X11.</li>
+<li><strong>Desktop Environment / Window Manager:</strong> Note if you
+are using GNOME, KDE Plasma, XFCE, or a tiling window manager.</li>
+<li><strong>Relevant Hardware:</strong> Note graphics card models and
+drivers (e.g., NVIDIA proprietary drivers vs. Mesa), especially if the
+issue involves hardware acceleration, canvas rendering, or display
+scaling.</li>
+</ul>
+<h2 id="4-console-and-terminal-output">4. Console and Terminal
+Output</h2>
+<p>Inkscape often writes diagnostic information, warnings, and non-fatal
+assertions to standard output and standard error before a crash
+occurs.</p>
+<ul>
+<li>Launch Inkscape directly from a terminal window.</li>
+<li>Copy and paste the terminal log from the moment of launch through
+the crash. Look for GTK warnings, GLib critical errors, or Python
+extension exceptions.</li>
+</ul>
+<h2 id="5-steps-to-reproduce">5. Steps to Reproduce</h2>
+<p>A backtrace explains where the crash happened, but reproduction steps
+explain how to trigger it.</p>
+<ul>
+<li><strong>Step-by-Step Instructions:</strong> Provide an ordered list
+of exact actions (e.g., "1. Select the Pen tool. 2. Click once on the
+canvas. 3. Press Shift+Ctrl+F.").</li>
+<li><strong>Input Method Details:</strong> Mention if specific hardware
+was used during the crash, such as a graphics tablet, stylus, or
+multi-touch trackpad.</li>
+<li><strong>Minimal Reproduction Case:</strong> Simplify the steps as
+much as possible, isolating the single action that triggers the
+fault.</li>
+</ul>
+<h2 id="6-minimal-test-file-svg">6. Minimal Test File (SVG)</h2>
+<p>If the crash is related to a specific document or file operation,
+attach the affected file.</p>
+<ul>
+<li><strong>Isolate the Fault:</strong> Do not submit massive production
+files. Strip the document down to the minimal number of nodes, layers,
+or filters necessary to trigger the bug.</li>
+<li><strong>Embedded Assets:</strong> If the crash involves raster
+images or external fonts, ensure they are embedded or clearly identified
+in the report.</li>
+</ul>
+<h2 id="7-inkscape-configuration-state">7. Inkscape Configuration
+State</h2>
+<p>Occasionally, corrupted preferences or third-party extensions cause
+crashes.</p>
+<ul>
+<li>Note whether the crash still occurs when using a clean preferences
+file (temporarily renaming or moving <code>preferences.xml</code>).</li>
+<li>List any active third-party extensions, custom themes, or modified
+keyboard shortcut layouts.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

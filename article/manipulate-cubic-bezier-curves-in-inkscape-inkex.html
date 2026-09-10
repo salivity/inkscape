@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulate Cubic Bezier Curves in Inkscape inkex - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to parse, inspect, and manipulate cubic Bezier curves in Inkscape using Python and the inkex.paths module. You will learn how to load raw path data, isolate cubic Bezier segments (Curve commands), adjust their control and end">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/manipulate-cubic-bezier-curves-in-inkscape-inkex">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Manipulate Cubic Bezier Curves in Inkscape inkex - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/manipulate-cubic-bezier-curves-in-inkscape-inkex" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to parse, inspect, and manipulate cubic Bezier curves in Inkscape using Python and the inkex.paths module. You will learn how to load raw path data, isolate cubic Bezier segments (Curve commands), adjust their control and end" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="manipulate-cubic-bezier-curves-in-inkscape-inkex">Manipulate
+Cubic Bezier Curves in Inkscape inkex</h1>
+<p>This guide demonstrates how to parse, inspect, and manipulate cubic
+Bezier curves in Inkscape using Python and the <code>inkex.paths</code>
+module. You will learn how to load raw path data, isolate cubic Bezier
+segments (<code>Curve</code> commands), adjust their control and end
+points programmatically, and write the updated geometry back to SVG
+elements.</p>
+<h3
+id="understanding-cubic-bezier-representation-in-inkex">Understanding
+Cubic Bezier Representation in inkex</h3>
+<p>In Inkscape's <code>inkex</code> extension framework, SVG path data
+is abstracted through the <code>inkex.Path</code> class. An SVG cubic
+Bezier curve is typically represented by the <code>C</code> (absolute)
+or <code>c</code> (relative) command. Within <code>inkex.paths</code>,
+these commands map to the <code>Curve</code> class.</p>
+<p>A <code>Curve</code> command stores coordinates for two control
+points and one terminal endpoint:</p>
+<ul>
+<li><code>(x2, y2)</code>: The first control point (handles the tangent
+leaving the previous node).</li>
+<li><code>(x3, y3)</code>: The second control point (handles the tangent
+approaching the end node).</li>
+<li><code>(x4, y4)</code>: The endpoint of the segment.</li>
+</ul>
+<p>The initial point of the curve is defined by the end point of the
+preceding segment in the path.</p>
+<h3 id="parsing-paths-and-isolating-cubic-curves">Parsing Paths and
+Isolating Cubic Curves</h3>
+<p>To manipulate cubic Bezier curves safely, first convert relative
+coordinates to absolute coordinates using <code>.to_absolute()</code>.
+This standardizes the math across all segments.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex.paths <span class="im">import</span> Curve</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example SVG path data containing a cubic Bezier curve</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>path_d <span class="op">=</span> <span class="st">&quot;M 10 10 C 20 20, 40 20, 50 10&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Parse the string into an inkex.Path object</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> inkex.Path(path_d).to_absolute()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate through the segments</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> command <span class="kw">in</span> path:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(command, Curve):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;First Control Point: (</span><span class="sc">{</span>command<span class="sc">.</span>x2<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>command<span class="sc">.</span>y2<span class="sc">}</span><span class="ss">)&quot;</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;Second Control Point: (</span><span class="sc">{</span>command<span class="sc">.</span>x3<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>command<span class="sc">.</span>y3<span class="sc">}</span><span class="ss">)&quot;</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;Endpoint: (</span><span class="sc">{</span>command<span class="sc">.</span>x4<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>command<span class="sc">.</span>y4<span class="sc">}</span><span class="ss">)&quot;</span>)</span></code></pre></div>
+<p>When working directly inside an Inkscape extension context, path data
+can be extracted directly from an SVG element:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>element <span class="op">=</span> <span class="va">self</span>.svg.selection.first()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> element.path.to_absolute()</span></code></pre></div>
+<h3 id="manipulating-bezier-coordinates">Manipulating Bezier
+Coordinates</h3>
+<p>Once isolated, the attributes of a <code>Curve</code> object can be
+modified directly. For example, to shift the control points or adjust
+curvature dynamically:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> command <span class="kw">in</span> path:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(command, Curve):</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Translate the first control point vertically</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        command.y2 <span class="op">+=</span> <span class="fl">15.0</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Translate the second control point horizontally</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        command.x3 <span class="op">-=</span> <span class="fl">5.0</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Reposition the segment&#39;s endpoint</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        command.x4 <span class="op">=</span> <span class="fl">60.0</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        command.y4 <span class="op">=</span> <span class="fl">15.0</span></span></code></pre></div>
+<h3 id="transforming-via-cubicsuperpath">Transforming via
+CubicSuperPath</h3>
+<p>For complex geometric calculations—such as curve splitting, degree
+elevation, or subpath-level operations—<code>inkex</code> provides
+<code>CubicSuperPath</code>. This utility converts paths into lists of
+Bezier handles
+<code>[[[handle_in], [point], [handle_out]], ...]</code>.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex.bezier <span class="im">import</span> CubicSuperPath</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the path to a CubicSuperPath structure</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>superpath <span class="op">=</span> CubicSuperPath(path)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># superpath is a list of subpaths</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> subpath <span class="kw">in</span> superpath:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> node <span class="kw">in</span> subpath:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        handle_in, point, handle_out <span class="op">=</span> node</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Shift handle_in x-coordinate</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        handle_in[<span class="dv">0</span>] <span class="op">+=</span> <span class="fl">2.0</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Shift anchor point y-coordinate</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        point[<span class="dv">1</span>] <span class="op">+=</span> <span class="fl">5.0</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert back to an inkex.Path</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> inkex.Path(superpath)</span></code></pre></div>
+<h3 id="serializing-and-applying-changes">Serializing and Applying
+Changes</h3>
+<p>After modifying the coordinates, assign the updated path back to the
+element or convert it back into an SVG string attribute:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the updated path back to an SVG element</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>element.path <span class="op">=</span> path</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternatively, obtain the string representation for raw SVG generation</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>element.<span class="bu">set</span>(<span class="st">&#39;d&#39;</span>, <span class="bu">str</span>(path))</span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

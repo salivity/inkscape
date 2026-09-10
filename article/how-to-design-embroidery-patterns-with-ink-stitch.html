@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Design Embroidery Patterns with Ink/Stitch - inkscape</title>
+    <meta name="description" content="Designing embroidery patterns with the free, open-source Ink/Stitch extension transforms the vector graphics software Inkscape into a full-featured digitizing suite. This guide outlines the entire digitizing workflow, from setting up your document and cr">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-design-embroidery-patterns-with-ink-stitch">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Design Embroidery Patterns with Ink/Stitch - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-design-embroidery-patterns-with-ink-stitch" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing embroidery patterns with the free, open-source Ink/Stitch extension transforms the vector graphics software Inkscape into a full-featured digitizing suite. This guide outlines the entire digitizing workflow, from setting up your document and cr" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-design-embroidery-patterns-with-inkstitch">How to Design
+Embroidery Patterns with Ink/Stitch</h1>
+<p>Designing embroidery patterns with the free, open-source Ink/Stitch
+extension transforms the vector graphics software Inkscape into a
+full-featured digitizing suite. This guide outlines the entire
+digitizing workflow, from setting up your document and creating
+compatible vector artwork to configuring specific stitch types—such as
+running, satin, and fill stitches—running stitch simulations, and
+exporting the final design into machine-readable embroidery formats like
+PES or DST.</p>
+<h2 id="1-document-setup-and-hoop-sizing">1. Document Setup and Hoop
+Sizing</h2>
+<p>Before creating artwork, set up the workspace to match your physical
+embroidery hoop:</p>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>File &gt; Document
+Properties</strong>.</li>
+<li>Change the display units to <strong>mm</strong> or
+<strong>in</strong> (standard for embroidery).</li>
+<li>Set the custom page width and height to match your specific
+embroidery hoop dimensions.</li>
+<li>Keep all artwork within these page boundaries to avoid design
+clipping.</li>
+</ol>
+<h2 id="2-preparing-vector-artwork">2. Preparing Vector Artwork</h2>
+<p>Ink/Stitch converts vector paths into needle movements. Vector
+graphics must be clean and organized:</p>
+<ul>
+<li><strong>Convert Objects to Paths:</strong> Select all shapes or text
+and go to <strong>Path &gt; Object to Path</strong>.</li>
+<li><strong>Ungroup and Simplify:</strong> Ungroup all grouped elements
+(<strong>Object &gt; Ungroup</strong>) and eliminate redundant nodes
+(<strong>Path &gt; Simplify</strong> or using the Node Tool).</li>
+<li><strong>Separate Fill and Stroke:</strong> In Inkscape, an object
+should generally contain <em>either</em> a fill or a stroke, not both.
+Duplicate the object if you need both a filled shape and an
+outline.</li>
+</ul>
+<h2 id="3-configuring-embroidery-stitch-types">3. Configuring Embroidery
+Stitch Types</h2>
+<p>Ink/Stitch uses stroke and fill properties to determine the stitch
+type:</p>
+<h3 id="running-stitch-outlines-and-details">Running Stitch (Outlines
+and Details)</h3>
+<ul>
+<li>Create an open or closed path with a simple stroke color and
+<strong>no fill</strong>.</li>
+<li>Set the stroke style in the Fill and Stroke panel (<strong>Shift +
+Ctrl + F</strong>) to a solid line.</li>
+<li>To create a manual running stitch, use a simple line. To create a
+bean/triple stitch, adjust the stitch repeat value in the Ink/Stitch
+parameter window.</li>
+</ul>
+<h3 id="fill-stitch-tatami">Fill Stitch (Tatami)</h3>
+<ul>
+<li>Create a closed vector path with a solid <strong>fill</strong> and
+<strong>no stroke</strong>.</li>
+<li>Ensure the path does not self-intersect.</li>
+<li>Ink/Stitch automatically calculates the Tatami grid fill, including
+underlay stitches, based on the shape.</li>
+</ul>
+<h3 id="satin-column-borders-and-lettering">Satin Column (Borders and
+Lettering)</h3>
+<ul>
+<li>A satin column requires a single path composed of two sub-paths
+(rails) running in the same direction, connected by cross-lines (rungs)
+if necessary.</li>
+<li>Select two parallel lines and join them into a single path using
+<strong>Path &gt; Combine</strong>.</li>
+<li>In the node editor, ensure the direction of both sub-paths aligns
+from start to finish.</li>
+</ul>
+<h2 id="4-adjusting-parameters">4. Adjusting Parameters</h2>
+<p>Fine-tune your stitch properties using the Ink/Stitch parameter
+editor:</p>
+<ol type="1">
+<li>Select the object or path you want to configure.</li>
+<li>Go to <strong>Extensions &gt; Ink/Stitch &gt; Params</strong>.</li>
+<li>A live preview window will open with configuration options:
+<ul>
+<li><strong>Stitch Length:</strong> Sets the distance between needle
+penetrations.</li>
+<li><strong>Spacing (Density):</strong> Controls the distance between
+rows in fill and satin stitches.</li>
+<li><strong>Angle:</strong> Defines the direction of the fill or satin
+stitch lines.</li>
+<li><strong>Pull Compensation:</strong> Expands the shape slightly
+perpendicular to the stitch angle to counteract fabric pull.</li>
+<li><strong>Underlay:</strong> Adds stabilizing stitches beneath top
+layers to prevent fabric puckering.</li>
+</ul></li>
+<li>Click <strong>Apply and Quit</strong> once settings are dialed
+in.</li>
+</ol>
+<h2 id="5-organizing-stitch-order">5. Organizing Stitch Order</h2>
+<p>Embroidery machines stitch objects based on the layer and object
+stack:</p>
+<ul>
+<li>Open the <strong>Objects and Layers</strong> panel (<strong>Layer
+&gt; Layers and Objects...</strong>).</li>
+<li>Arrange objects from bottom to top; the machine stitches elements at
+the bottom of the list first.</li>
+<li>Group like colors together to minimize thread changes.</li>
+<li>Use <strong>Extensions &gt; Ink/Stitch &gt; Tools: Stroke &gt;
+Auto-Route Running Stitch</strong> to optimize path routing and reduce
+jump stitches.</li>
+</ul>
+<h2 id="6-simulating-and-validating-the-design">6. Simulating and
+Validating the Design</h2>
+<p>Before sending the file to an embroidery machine, run the visual
+validation checks:</p>
+<ol type="1">
+<li><strong>Check for Errors:</strong> Run <strong>Extensions &gt;
+Ink/Stitch &gt; Troubleshoot &gt; Troubleshoot Objects</strong> to
+identify unclosed paths, invalid satin rails, or overlapping nodes.</li>
+<li><strong>Run the Simulator:</strong> Go to <strong>Extensions &gt;
+Ink/Stitch &gt; Visualize and Export &gt; Simulator/Realistic
+Preview</strong>.</li>
+<li>Inspect needle penetration points, stitch order, trims, and jump
+stitches in the visual playback window.</li>
+</ol>
+<h2 id="7-exporting-to-machine-formats">7. Exporting to Machine
+Formats</h2>
+<p>Once validated, save the file into your embroidery machine's
+proprietary format:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save a Copy...</strong> (keep the original
+<code>.svg</code> file for future editing).</li>
+<li>Select your machine's file extension from the drop-down menu (e.g.,
+<code>.pes</code> for Brother/Babylock, <code>.dst</code> for Tajima,
+<code>.jef</code> for Janome, or <code>.exp</code> for
+Bernina/Melco).</li>
+<li>Transfer the exported file to your embroidery machine via USB or
+direct connection.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

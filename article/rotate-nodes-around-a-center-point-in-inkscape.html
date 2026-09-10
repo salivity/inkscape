@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotate Nodes Around a Center Point in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to rotate a specific subset of nodes around a custom pivot point using Inkscape's Node tool. By enabling transform handles directly within node editing mode, you can reveal the rotation center crosshair, move it to any arbitrary l">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/rotate-nodes-around-a-center-point-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Rotate Nodes Around a Center Point in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/rotate-nodes-around-a-center-point-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to rotate a specific subset of nodes around a custom pivot point using Inkscape's Node tool. By enabling transform handles directly within node editing mode, you can reveal the rotation center crosshair, move it to any arbitrary l" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="rotate-nodes-around-a-center-point-in-inkscape">Rotate Nodes
+Around a Center Point in Inkscape</h1>
+<p>This guide explains how to rotate a specific subset of nodes around a
+custom pivot point using Inkscape's Node tool. By enabling transform
+handles directly within node editing mode, you can reveal the rotation
+center crosshair, move it to any arbitrary location on your canvas, and
+precisely rotate only the selected path segments without affecting the
+rest of the object.</p>
+<h3 id="1-enable-node-transform-handles">1. Enable Node Transform
+Handles</h3>
+<ol type="1">
+<li>Select your path and switch to the <strong>Node Tool</strong> by
+pressing <code>N</code> or clicking its icon in the left toolbar.</li>
+<li>Look at the <strong>Tool Controls Bar</strong> running horizontally
+along the top of the workspace.</li>
+<li>Locate and click the <strong>Show transform handles for selected
+nodes</strong> toggle button (its icon looks like a small bounding box
+with directional arrows).</li>
+</ol>
+<h3 id="2-select-the-subset-of-nodes">2. Select the Subset of Nodes</h3>
+<ul>
+<li>Click and drag a selection box around the nodes you want to rotate,
+or hold <code>Shift</code> and click individual nodes to add them to
+your selection.</li>
+<li>Once selected, a rectangular bounding box with scaling handles will
+appear strictly around those chosen nodes.</li>
+</ul>
+<h3 id="3-switch-to-rotation-mode">3. Switch to Rotation Mode</h3>
+<ul>
+<li>Click any one of the currently selected nodes a second time.</li>
+<li>The arrow handles at the corners of the bounding box will change
+from straight scaling arrows to curved rotation arrows.</li>
+<li>A small crosshair (<code>+</code>) will appear in the center of the
+bounding box. This crosshair represents the current pivot point.</li>
+</ul>
+<h3 id="4-move-the-pivot-point-to-an-arbitrary-location">4. Move the
+Pivot Point to an Arbitrary Location</h3>
+<ul>
+<li>Click and drag the central crosshair to wherever you want the center
+of rotation to be.</li>
+<li>You can place this pivot point anywhere: on another node, at an
+empty coordinate on the canvas, or snapped to an intersection or guide
+line (ensure snapping is enabled in the top-right corner if you require
+exact alignment).</li>
+</ul>
+<h3 id="5-rotate-the-selected-nodes">5. Rotate the Selected Nodes</h3>
+<ul>
+<li>Click and drag any of the curved corner handles to rotate the
+selected nodes around your repositioned pivot point.</li>
+<li>To constrain the rotation to fixed 15-degree increments, hold
+<code>Ctrl</code> while dragging the handle.</li>
+<li>Release the mouse button once the nodes reach your desired
+angle.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert SVG to PDF Using Inkscape Command Line - inkscape</title>
+    <meta name="description" content="Converting SVG files to high-quality PDF documents via the command line is an efficient way to automate rendering workflows and process assets in batches. Inkscape includes a robust command-line interface (CLI) that works across Linux, macOS, and Windows">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/convert-svg-to-pdf-using-inkscape-command-line">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Convert SVG to PDF Using Inkscape Command Line - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/convert-svg-to-pdf-using-inkscape-command-line" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting SVG files to high-quality PDF documents via the command line is an efficient way to automate rendering workflows and process assets in batches. Inkscape includes a robust command-line interface (CLI) that works across Linux, macOS, and Windows" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="convert-svg-to-pdf-using-inkscape-command-line">Convert SVG to
+PDF Using Inkscape Command Line</h1>
+<p>Converting SVG files to high-quality PDF documents via the command
+line is an efficient way to automate rendering workflows and process
+assets in batches. Inkscape includes a robust command-line interface
+(CLI) that works across Linux, macOS, and Windows, allowing you to
+transform vector graphics into standardized PDFs without launching the
+graphical user interface.</p>
+<h3 id="basic-svg-to-pdf-conversion-inkscape-10-and-newer">Basic SVG to
+PDF Conversion (Inkscape 1.0 and Newer)</h3>
+<p>For modern versions of Inkscape (1.0+), use the
+<code>--export-filename</code> option to define the output format based
+on the file extension:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--export-filename</span><span class="op">=</span>output.pdf</span></code></pre></div>
+<p>You can also explicitly define the export type using the
+<code>--export-type</code> flag:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--export-type</span><span class="op">=</span><span class="st">&quot;pdf&quot;</span> input.svg</span></code></pre></div>
+<p>This command automatically outputs a file named
+<code>input.pdf</code> in the same directory.</p>
+<hr />
+<h3 id="advanced-export-options">Advanced Export Options</h3>
+<p>Inkscape provides several flags to customize your PDF output:</p>
+<ul>
+<li><p><strong>Export Page Area vs. Drawing Area:</strong></p>
+<ul>
+<li>To export the entire page canvas:
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--export-area-page</span> <span class="at">--export-filename</span><span class="op">=</span>output.pdf</span></code></pre></div></li>
+<li>To crop the PDF strictly to the bounding box of the drawn objects:
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--export-area-drawing</span> <span class="at">--export-filename</span><span class="op">=</span>output.pdf</span></code></pre></div></li>
+</ul></li>
+<li><p><strong>Convert Text to Paths:</strong> To ensure typography
+renders identically on machines without the required fonts installed,
+convert all text elements into vector paths:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--export-text-to-path</span> <span class="at">--export-filename</span><span class="op">=</span>output.pdf</span></code></pre></div></li>
+<li><p><strong>Specify PDF Version:</strong> To target a specific PDF
+standard (e.g., 1.4 or 1.5):</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--export-pdf-version</span><span class="op">=</span>1.5 <span class="at">--export-filename</span><span class="op">=</span>output.pdf</span></code></pre></div></li>
+</ul>
+<hr />
+<h3 id="batch-conversion">Batch Conversion</h3>
+<p>To convert multiple SVG files to PDF in a single command, leverage
+Inkscape's batch capabilities or shell expansion.</p>
+<p><strong>Single Inkscape Process:</strong></p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--export-type</span><span class="op">=</span><span class="st">&quot;pdf&quot;</span> file1.svg file2.svg file3.svg</span></code></pre></div>
+<p><strong>Bash / Linux / macOS Shell Loop:</strong></p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> <span class="pp">*</span>.svg<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">inkscape</span> <span class="st">&quot;</span><span class="va">$file</span><span class="st">&quot;</span> <span class="at">--export-filename</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${file</span><span class="op">%</span>.svg<span class="va">}</span><span class="st">.pdf&quot;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
+<p><strong>Windows PowerShell:</strong></p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Get-ChildItem</span> <span class="op">*.</span><span class="fu">svg</span> <span class="op">|</span> <span class="fu">ForEach-Object</span> <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  inkscape <span class="va">$_</span><span class="op">.</span><span class="fu">FullName</span> <span class="op">--</span>export-filename<span class="op">=(</span><span class="va">$_</span><span class="op">.</span><span class="fu">BaseName</span> <span class="op">+</span> <span class="st">&quot;.pdf&quot;</span><span class="op">)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h3 id="legacy-inkscape-versions-prior-to-10">Legacy Inkscape (Versions
+Prior to 1.0)</h3>
+<p>If you are using Inkscape 0.92 or older, the command syntax uses
+different arguments:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">-z</span> <span class="at">-f</span> input.svg <span class="at">-A</span> output.pdf</span></code></pre></div>
+<ul>
+<li><code>-z</code>: Disables the graphical user interface (GUI).</li>
+<li><code>-f</code>: Specifies the input file.</li>
+<li><code>-A</code>: Specifies the output PDF file.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

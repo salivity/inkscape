@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import EPS in Inkscape on Windows Without Ghostscript - inkscape</title>
+    <meta name="description" content="While Inkscape on Windows typically relies on a full system installation of Ghostscript to interpret and render Encapsulated PostScript (.eps) files, you can bypass the standard installer entirely. By utilizing standalone portable binaries or converting">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/import-eps-in-inkscape-on-windows-without-ghostscript">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Import EPS in Inkscape on Windows Without Ghostscript - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/import-eps-in-inkscape-on-windows-without-ghostscript" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="While Inkscape on Windows typically relies on a full system installation of Ghostscript to interpret and render Encapsulated PostScript (.eps) files, you can bypass the standard installer entirely. By utilizing standalone portable binaries or converting" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="import-eps-in-inkscape-on-windows-without-ghostscript">Import
+EPS in Inkscape on Windows Without Ghostscript</h1>
+<p>While Inkscape on Windows typically relies on a full system
+installation of Ghostscript to interpret and render Encapsulated
+PostScript (.eps) files, you can bypass the standard installer entirely.
+By utilizing standalone portable binaries or converting the files into
+native vector formats through alternative tools, you can successfully
+open and edit EPS files in Inkscape without modifying Windows registry
+keys, altering system-wide environment variables, or requiring
+administrative privileges.</p>
+<h3 id="method-1-use-portable-ghostscript-binaries">Method 1: Use
+Portable Ghostscript Binaries</h3>
+<p>You do not need to run the full Ghostscript installer to give
+Inkscape EPS capabilities. Inkscape checks its own local directory for
+executable helpers before searching the system path.</p>
+<ol type="1">
+<li>Download the portable or archive version (<code>.zip</code>) of
+Ghostscript for Windows (match your system architecture, typically
+64-bit).</li>
+<li>Extract the archive on your computer.</li>
+<li>Locate the <code>bin</code> folder within the extracted files and
+find two key files:
+<ul>
+<li><code>gswin64c.exe</code> (or <code>gswin32c.exe</code> for
+32-bit)</li>
+<li><code>gsdll64.dll</code> (or <code>gsdll32.dll</code> for
+32-bit)</li>
+</ul></li>
+<li>Rename <code>gswin64c.exe</code> to <code>gs.exe</code>.</li>
+<li>Copy both <code>gs.exe</code> and <code>gsdll64.dll</code> into your
+Inkscape <code>bin</code> directory (commonly found at
+<code>C:\Program Files\Inkscape\bin</code> or inside your portable
+Inkscape folder).</li>
+<li>Restart Inkscape. You can now use <strong>File &gt; Open</strong> or
+<strong>File &gt; Import</strong> to load <code>.eps</code> files
+directly.</li>
+</ol>
+<h3 id="method-2-convert-eps-to-pdf-using-libreoffice-draw">Method 2:
+Convert EPS to PDF Using LibreOffice Draw</h3>
+<p>If you already have LibreOffice installed, its native rendering
+engine can process PostScript files without Ghostscript.</p>
+<ol type="1">
+<li>Right-click the <code>.eps</code> file and open it with
+<strong>LibreOffice Draw</strong>.</li>
+<li>Once the vector graphic renders, go to <strong>File &gt; Export As
+&gt; Export as PDF</strong> (or export directly as an SVG).</li>
+<li>In Inkscape, open the exported PDF or SVG file. Inkscape's internal
+Poppler-based PDF engine will import the vector paths, text, and layers
+with high fidelity.</li>
+</ol>
+<h3 id="method-3-convert-eps-via-a-standalone-vector-converter">Method
+3: Convert EPS via a Standalone Vector Converter</h3>
+<p>If you prefer not to add extra binaries to the Inkscape program
+directory, use a dedicated standalone converter such as
+<code>ps2pdf</code> via a portable tool or a secure offline conversion
+utility.</p>
+<p>Because the PDF format is a direct descendant of PostScript,
+converting an EPS file to a PDF preserves all vector geometry, clipping
+paths, and CMYK/RGB color definitions. Once converted, drag and drop the
+<code>.pdf</code> file into Inkscape, select the <strong>Internal
+import</strong> engine in the prompt, and click <strong>OK</strong> to
+begin editing.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

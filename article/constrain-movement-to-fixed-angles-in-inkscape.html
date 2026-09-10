@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constrain Movement to Fixed Angles in Inkscape - inkscape</title>
+    <meta name="description" content="Constraining movement in Inkscape allows you to move objects, adjust nodes, and draw lines along precise horizontal, vertical, or 45-degree angles. This functionality is primarily controlled using the Ctrl modifier key during various operations. This gui">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/constrain-movement-to-fixed-angles-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Constrain Movement to Fixed Angles in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/constrain-movement-to-fixed-angles-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Constraining movement in Inkscape allows you to move objects, adjust nodes, and draw lines along precise horizontal, vertical, or 45-degree angles. This functionality is primarily controlled using the Ctrl modifier key during various operations. This gui" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="constrain-movement-to-fixed-angles-in-inkscape">Constrain
+Movement to Fixed Angles in Inkscape</h1>
+<p>Constraining movement in Inkscape allows you to move objects, adjust
+nodes, and draw lines along precise horizontal, vertical, or 45-degree
+angles. This functionality is primarily controlled using the
+<strong>Ctrl</strong> modifier key during various operations. This guide
+covers how to constrain movement across different tools and how to
+customize the snapping angle increments in your settings.</p>
+<h3 id="constraining-object-movement">Constraining Object Movement</h3>
+<p>To move an existing object strictly horizontally, vertically, or at
+fixed 45-degree intervals:</p>
+<ol type="1">
+<li>Select the <strong>Select and Transform Objects</strong> tool by
+pressing <strong>S</strong> or <strong>F1</strong>.</li>
+<li>Click and begin dragging the object.</li>
+<li>Hold down the <strong>Ctrl</strong> key while dragging.</li>
+<li>Inkscape will lock the movement to preset angle increments
+(defaulting to 15-degree steps, which includes 0°, 45°, and 90°).</li>
+<li>Release the mouse button first, then release the
+<strong>Ctrl</strong> key to apply the placement.</li>
+</ol>
+<h3 id="constraining-node-movement-and-handles">Constraining Node
+Movement and Handles</h3>
+<p>When fine-tuning paths with the Node tool:</p>
+<ol type="1">
+<li>Activate the <strong>Edit paths by nodes</strong> tool by pressing
+<strong>N</strong> or <strong>F2</strong>.</li>
+<li>Click and drag an individual node or a bezier handle.</li>
+<li>Hold <strong>Ctrl</strong> while dragging to restrict the movement
+strictly to the horizontal axis, the vertical axis, or along the
+handle's original direction.</li>
+<li>Release the mouse button before releasing the <strong>Ctrl</strong>
+key.</li>
+</ol>
+<h3 id="drawing-straight-paths-at-fixed-angles">Drawing Straight Paths
+at Fixed Angles</h3>
+<p>To draw straight lines locked to horizontal, vertical, or 45-degree
+angles:</p>
+<ol type="1">
+<li>Select the <strong>Draw Bezier curves and straight lines</strong>
+tool (Pen tool) by pressing <strong>B</strong>.</li>
+<li>Click on the canvas to place the starting point.</li>
+<li>Hold the <strong>Ctrl</strong> key and move your cursor to define
+the direction. The line will snap to fixed angle increments.</li>
+<li>Click to place the next node, and double-click or press
+<strong>Enter</strong> to complete the path.</li>
+</ol>
+<h3 id="customizing-angle-step-increments">Customizing Angle Step
+Increments</h3>
+<p>By default, Inkscape snaps angles at 15-degree intervals, which
+natively includes 45-degree and 90-degree alignments. To change this
+step value:</p>
+<ol type="1">
+<li>Open the preferences dialog by going to <strong>Edit &gt;
+Preferences</strong> or pressing <strong>Ctrl + Shift + P</strong>.</li>
+<li>In the left sidebar, expand <strong>Interface</strong> and select
+<strong>Steps</strong>.</li>
+<li>Locate the <strong>Rotation/snapping angle steps</strong>
+field.</li>
+<li>Enter your desired degree value (e.g., set to <code>45.0</code> if
+you only want snaps at 0°, 45°, and 90°).</li>
+<li>Close the Preferences window to save your changes.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

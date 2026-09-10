@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear RGB Gradient Interpolation in Inkscape - inkscape</title>
+    <meta name="description" content="This article explores the mathematical process Inkscape uses to calculate gradient color interpolation in linear RGB space. When the color-interpolation="linearRGB" SVG attribute is active, Inkscape departs from standard perceptual gamma-corrected blendi">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/linear-rgb-gradient-interpolation-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Linear RGB Gradient Interpolation in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/linear-rgb-gradient-interpolation-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores the mathematical process Inkscape uses to calculate gradient color interpolation in linear RGB space. When the color-interpolation="linearRGB" SVG attribute is active, Inkscape departs from standard perceptual gamma-corrected blendi" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="linear-rgb-gradient-interpolation-in-inkscape">Linear RGB
+Gradient Interpolation in Inkscape</h1>
+<p>This article explores the mathematical process Inkscape uses to
+calculate gradient color interpolation in linear RGB space. When the
+<code>color-interpolation="linearRGB"</code> SVG attribute is active,
+Inkscape departs from standard perceptual gamma-corrected blending to
+preserve physical light energy ratios. To achieve this, Inkscape
+executes a three-stage mathematical pipeline: transforming sRGB values
+to non-gamma-encoded linear intensities, calculating standard weighted
+linear interpolations (LERP) across the gradient line, and transforming
+the resulting linear values back into the non-linear sRGB color space
+for display output.</p>
+<h3 id="1-linearization-de-gamma-transformation">1. Linearization
+(De-Gamma Transformation)</h3>
+<p>Digital colors in Inkscape are natively defined in the non-linear
+sRGB color space, which applies a gamma curve to match human visual
+perception. Before interpolating in linear space, the color stop values
+must be linearized.</p>
+<p>Given a normalized sRGB color component <span
+class="math inline">\(C_{sRGB} \in [0, 1]\)</span>, Inkscape adheres to
+the standard IEC 61966-2-1 piecewise function to derive the linear
+intensity <span class="math inline">\(C_{linear}\)</span>:</p>
+<p><span class="math display">\[C_{linear} = \begin{cases}
+\frac{C_{sRGB}}{12.92}, &amp; \text{if } C_{sRGB} \le 0.04045 \\
+\left( \frac{C_{sRGB} + 0.055}{1.055} \right)^{2.4}, &amp; \text{if }
+C_{sRGB} &gt; 0.04045
+\end{cases}\]</span></p>
+<p>This operation is applied independently to the Red, Green, and Blue
+color channels of each adjacent gradient stop.</p>
+<h3 id="2-linear-interpolation-lerp">2. Linear Interpolation (LERP)</h3>
+<p>Once the color stops are mapped into a linear coordinate space,
+intermediate colors along the gradient vector are calculated using
+standard linear interpolation based on a normalized distance parameter
+<span class="math inline">\(t \in [0, 1]\)</span>.</p>
+<p>For two adjacent stops, <span class="math inline">\(Stop_1\)</span>
+at position <span class="math inline">\(t = 0\)</span> and <span
+class="math inline">\(Stop_2\)</span> at position <span
+class="math inline">\(t = 1\)</span>, the interpolated linear component
+<span class="math inline">\(C_{interp}(t)\)</span> is calculated as:</p>
+<p><span class="math display">\[C_{interp}(t) = (1 - t) \cdot C_{linear,
+1} + t \cdot C_{linear, 2}\]</span></p>
+<h4 id="premultiplied-alpha-handling">Premultiplied Alpha Handling</h4>
+<p>If opacity varies between the color stops, Inkscape computes the
+gradient in premultiplied space to avoid rendering artifacts at
+transparent boundaries. The linear color components are scaled by the
+alpha channel prior to interpolation:</p>
+<p><span class="math display">\[C&#39;_{linear} = C_{linear} \cdot
+\alpha\]</span></p>
+<p><span class="math display">\[\alpha_{interp}(t) = (1 - t) \cdot
+\alpha_1 + t \cdot \alpha_2\]</span></p>
+<p><span class="math display">\[C&#39;_{interp}(t) = (1 - t) \cdot
+C&#39;_{linear, 1} + t \cdot C&#39;_{linear, 2}\]</span></p>
+<p>If the output format requires straight (unpremultiplied) colors, the
+color component is recovered by dividing by the interpolated alpha:</p>
+<p><span class="math display">\[C_{final\_linear}(t) =
+\frac{C&#39;_{interp}(t)}{\alpha_{interp}(t)} \quad (\text{where }
+\alpha_{interp}(t) &gt; 0)\]</span></p>
+<h3 id="3-display-re-encoding-gamma-encoding">3. Display Re-Encoding
+(Gamma Encoding)</h3>
+<p>Modern display hardware expects gamma-compressed inputs. Therefore,
+the interpolated linear values must be converted back to the sRGB color
+space using the inverse transfer function:</p>
+<p><span class="math display">\[C_{sRGB} = \begin{cases}
+12.92 \cdot C_{final\_linear}, &amp; \text{if } C_{final\_linear} \le
+0.0031308 \\
+1.055 \cdot (C_{final\_linear})^{\frac{1}{2.4}} - 0.055, &amp; \text{if
+} C_{final\_linear} &gt; 0.0031308
+\end{cases}\]</span></p>
+<p>The resulting <span class="math inline">\(C_{sRGB}\)</span> values
+are then quantized into standard 8-bit integers (<span
+class="math inline">\([0, 255]\)</span>) for rendering on the screen. By
+performing the interpolation in the linear domain between the de-gamma
+and re-gamma stages, Inkscape eliminates the "dark bands" commonly seen
+in standard sRGB transitions between complementary hues.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

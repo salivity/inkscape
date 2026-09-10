@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Custom Color Palettes in Inkscape - inkscape</title>
+    <meta name="description" content="Mapping a custom color palette onto existing vector artwork in Inkscape allows you to quickly restyle illustrations, test brand variants, or generate harmonious design variations. This guide provides a straightforward, step-by-step process for preparing">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/map-custom-color-palettes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Map Custom Color Palettes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/map-custom-color-palettes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Mapping a custom color palette onto existing vector artwork in Inkscape allows you to quickly restyle illustrations, test brand variants, or generate harmonious design variations. This guide provides a straightforward, step-by-step process for preparing" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="map-custom-color-palettes-in-inkscape">Map Custom Color Palettes
+in Inkscape</h1>
+<p>Mapping a custom color palette onto existing vector artwork in
+Inkscape allows you to quickly restyle illustrations, test brand
+variants, or generate harmonious design variations. This guide provides
+a straightforward, step-by-step process for preparing your vector
+artwork, setting up target color values, and using Inkscape’s native
+color extensions and selection tools to remap colors across complex
+projects.</p>
+<h2 id="1-prepare-your-artwork">1. Prepare Your Artwork</h2>
+<p>Before applying color shifts, ensure your vector elements are ready
+for processing:</p>
+<ol type="1">
+<li><strong>Unlock Layers and Objects:</strong> Ensure that the layers
+or objects containing the artwork you wish to recolor are unlocked in
+the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li><strong>Convert Strokes to Paths (Optional):</strong> If your
+artwork relies heavily on strokes and you want to manage fill and stroke
+colors uniformly, select your elements and go to <strong>Path &gt;
+Stroke to Path</strong> (<code>Ctrl + Alt + C</code>).</li>
+<li><strong>Select Your Target Elements:</strong> Select all the paths,
+shapes, or groups you want to include in the recoloring process.</li>
+</ol>
+<h2 id="2-define-your-custom-palette">2. Define Your Custom Palette</h2>
+<p>Create reference color swatches in your document to streamline color
+mapping:</p>
+<ol type="1">
+<li>Draw a row of small squares outside your canvas area.</li>
+<li>Fill each square with one of the target hex values from your custom
+color palette.</li>
+<li>Keep these swatches visible so you can sample their hex codes
+quickly.</li>
+</ol>
+<h2 id="3-apply-colors-using-the-replace-color-extension">3. Apply
+Colors Using the Replace Color Extension</h2>
+<p>Inkscape includes a dedicated color extension designed to search and
+replace specific color values across multiple objects at once.</p>
+<ol type="1">
+<li>Select the artwork you want to modify.</li>
+<li>Navigate to <strong>Extensions &gt; Color &gt; Replace
+Color...</strong> from the top menu.</li>
+<li>In the dialog box:
+<ul>
+<li><strong>From color:</strong> Enter the hex code of the original
+color present in your artwork.</li>
+<li><strong>To color:</strong> Enter the hex code of the replacement
+color from your custom palette.</li>
+<li><strong>Color threshold:</strong> Adjust the slider if you want to
+replace exact matches (<code>0.0</code>) or include similar tonal shades
+(higher values).</li>
+</ul></li>
+<li>Check the <strong>Live preview</strong> box to inspect the
+replacement on the canvas.</li>
+<li>Click <strong>Apply</strong> to map the new color.</li>
+<li>Repeat the process for each distinct color in your artwork until the
+full palette is remapped.</li>
+</ol>
+<h2 id="4-alternate-method-global-mapping-via-select-same">4. Alternate
+Method: Global Mapping via "Select Same"</h2>
+<p>If your artwork contains dozens of paths sharing the same color, you
+can combine selection commands with Inkscape's palette swatches for
+rapid remapping:</p>
+<ol type="1">
+<li>Select a single path containing the color you want to change.</li>
+<li>Go to <strong>Edit &gt; Select Same &gt; Fill Color</strong> (or
+<strong>Fill and Stroke</strong>). Inkscape will automatically select
+every object in the document that shares that exact color.</li>
+<li>Click the desired replacement color on the <strong>Palette
+Bar</strong> at the bottom of the screen, or select a swatch from the
+<strong>Fill and Stroke</strong> dialog
+(<code>Ctrl + Shift + F</code>).</li>
+<li>Repeat this for the remaining colors until the entire piece reflects
+the new palette.</li>
+</ol>
+<h2 id="5-adjust-overall-harmony-with-color-extensions">5. Adjust
+Overall Harmony with Color Extensions</h2>
+<p>If you want to alter the overall palette without replacing colors one
+by one, use global color manipulation extensions:</p>
+<ul>
+<li><strong>HSL Adjust:</strong> Go to <strong>Extensions &gt; Color
+&gt; HSL Adjust...</strong> to shift hue, saturation, and lightness
+proportionally across all selected colors.</li>
+<li><strong>Color Harmony:</strong> Go to <strong>Extensions &gt; Color
+&gt; Color Harmony...</strong> to apply systematic harmonic shifts
+(e.g., complementary, analogous, or triadic rules) across the selected
+artwork.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

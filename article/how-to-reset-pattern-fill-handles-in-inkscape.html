@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Reset Pattern Fill Handles in Inkscape - inkscape</title>
+    <meta name="description" content="When transforming or scaling shapes containing pattern fills in Inkscape, the manipulation handles often become severely skewed, rotated, or pushed far outside the canvas area. This guide provides direct, step-by-step methods to restore distorted pattern">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-reset-pattern-fill-handles-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Reset Pattern Fill Handles in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-reset-pattern-fill-handles-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When transforming or scaling shapes containing pattern fills in Inkscape, the manipulation handles often become severely skewed, rotated, or pushed far outside the canvas area. This guide provides direct, step-by-step methods to restore distorted pattern" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-reset-pattern-fill-handles-in-inkscape">How to Reset
+Pattern Fill Handles in Inkscape</h1>
+<p>When transforming or scaling shapes containing pattern fills in
+Inkscape, the manipulation handles often become severely skewed,
+rotated, or pushed far outside the canvas area. This guide provides
+direct, step-by-step methods to restore distorted pattern fill handles
+back to their default geometric coordinates and original scale, removing
+unwanted transformations without recreating your artwork.</p>
+<h3
+id="method-1-remove-the-pattern-transformation-via-the-xml-editor">Method
+1: Remove the Pattern Transformation via the XML Editor</h3>
+<p>The most precise way to reset pattern handles to their default origin
+(0,0) and neutral aspect ratio is by stripping the transform matrix
+stored in the SVG code:</p>
+<ol type="1">
+<li>Select the object with the distorted pattern fill using the
+<strong>Select Tool</strong> (<code>S</code>).</li>
+<li>Open the XML Editor by pressing <code>Ctrl + Shift + X</code> (or
+<code>Cmd + Shift + X</code> on macOS).</li>
+<li>In the XML tree, the selected element will automatically be
+highlighted. Expand its node or examine the <code>&lt;defs&gt;</code>
+section to find the referenced <code>&lt;pattern&gt;</code> element, or
+inspect the object itself.</li>
+<li>If the object itself contains a <code>patternTransform</code>
+attribute in the right-hand panel of the XML Editor, click on
+<code>patternTransform</code> and press the <strong>Delete
+attribute</strong> button (the red "X" icon).</li>
+<li>If the transformation is attached to the pattern definition in
+<code>&lt;defs&gt;</code>, locate the corresponding
+<code>&lt;pattern id="pattern..."&gt;</code> node, select
+<code>patternTransform</code>, and delete it.</li>
+<li>The pattern handles will immediately snap back to their default
+position, unrotated and undistorted, aligning with the pattern's
+original dimensions.</li>
+</ol>
+<h3 id="method-2-convert-pattern-to-objects-and-reapply">Method 2:
+Convert Pattern to Objects and Reapply</h3>
+<p>If you prefer using canvas commands rather than editing attributes,
+you can unpack the pattern and generate a clean instance:</p>
+<ol type="1">
+<li>Select the shape containing the distorted pattern.</li>
+<li>Go to the top menu and select <strong>Object &gt; Pattern &gt;
+Pattern to Objects</strong> (or press <code>Alt + I</code>). This
+converts the fill back into raw vector paths positioned on the
+canvas.</li>
+<li>Without modifying the newly generated paths, immediately select
+<strong>Object &gt; Pattern &gt; Objects to Pattern</strong>
+(<code>Alt + I</code>).</li>
+<li>Apply the newly created pattern to your original shape via the
+<strong>Fill and Stroke</strong> panel (<code>Ctrl + Shift + F</code>).
+Because a fresh pattern is generated, its handles (the "X" origin,
+square scale, and circular rotation handles) are reset to the object's
+current bounds with zero distortion.</li>
+</ol>
+<h3 id="method-3-reapply-the-base-pattern">Method 3: Reapply the Base
+Pattern</h3>
+<p>If the pattern is a stock or saved pattern that does not need to
+retain custom internal artwork:</p>
+<ol type="1">
+<li>Open the <strong>Fill and Stroke</strong> dialog
+(<code>Shift + Ctrl + F</code>).</li>
+<li>Switch the fill type temporarily to <strong>Flat Color</strong>,
+then switch it back to <strong>Pattern</strong>.</li>
+<li>Select the original pattern from the drop-down list. Reassigning the
+pattern directly from the palette clears the active transform offset and
+repositions the handles to the top-left coordinate origin of the canvas
+or bounding box.</li>
+</ol>
+<h3 id="preventing-future-pattern-handle-distortion">Preventing Future
+Pattern Handle Distortion</h3>
+<p>To prevent handles from distorting when resizing shapes in the
+future, toggle the pattern transformation setting:</p>
+<ul>
+<li>On the top tool control bar while the <strong>Select Tool</strong>
+is active, locate the four transform lock icons on the right side.</li>
+<li>Ensure the icon labeled <strong>Transform pattern fills (scale,
+rotate, skew)</strong> is toggled off if you want pattern fills to stay
+anchored rather than transforming proportionally with the parent
+path.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Design Custom Map POI Icons in Inkscape - inkscape</title>
+    <meta name="description" content="Designing custom points of interest (POI) map icons in Inkscape involves establishing a pixel-perfect canvas, constructing a legible base container or pin, crafting simplified symbolic glyphs using Boolean path operations, and exporting the final artwork">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-design-custom-map-poi-icons-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Design Custom Map POI Icons in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-design-custom-map-poi-icons-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing custom points of interest (POI) map icons in Inkscape involves establishing a pixel-perfect canvas, constructing a legible base container or pin, crafting simplified symbolic glyphs using Boolean path operations, and exporting the final artwork" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-design-custom-map-poi-icons-in-inkscape">How to Design
+Custom Map POI Icons in Inkscape</h1>
+<p>Designing custom points of interest (POI) map icons in Inkscape
+involves establishing a pixel-perfect canvas, constructing a legible
+base container or pin, crafting simplified symbolic glyphs using Boolean
+path operations, and exporting the final artwork as an optimized SVG. By
+adhering to consistent grid metrics, uniform stroke weights, and minimal
+geometric detail, you can create scalable map symbology that remains
+sharp and recognizable across various zoom levels in GIS platforms like
+QGIS, ArcGIS, or web map engines.</p>
+<h3 id="1-document-setup-and-grid-alignment">1. Document Setup and Grid
+Alignment</h3>
+<p>Map icons must render cleanly at small display sizes, typically
+between 16×16 and 32×32 pixels.</p>
+<ol type="1">
+<li>Open Inkscape and access <strong>File &gt; Document
+Properties</strong> (Shift+Ctrl+D).</li>
+<li>Set the display units to <strong>pixels (px)</strong> and define the
+canvas width and height to your target size (e.g., <strong>24×24
+px</strong> or <strong>32×32 px</strong>).</li>
+<li>Navigate to the <strong>Grids</strong> tab, choose
+<strong>Rectangular grid</strong>, and click <strong>New</strong>.</li>
+<li>Set the grid spacing to <strong>1 px</strong> and enable snapping to
+grids via the Snapping toolbar. This prevents fractional pixel
+placement, which causes blurry rendering on digital maps.</li>
+</ol>
+<h3 id="2-create-the-base-container">2. Create the Base Container</h3>
+<p>Most POI icons sit inside a uniform container, such as a circle,
+rounded square, or traditional map pin.</p>
+<ol type="1">
+<li><strong>Circle/Square Badge:</strong> Select the
+<strong>Circle</strong> tool (E) or <strong>Rectangle</strong> tool (R).
+Hold <code>Ctrl</code> while dragging to create a constrained
+proportional shape (e.g., a 20×20 px circle on a 24×24 px canvas).</li>
+<li><strong>Classic Map Pin:</strong>
+<ul>
+<li>Draw a circle for the upper bulb.</li>
+<li>Use the <strong>Pen/Bézier</strong> tool (B) to draw an inverted
+triangle below the circle.</li>
+<li>Select both shapes, open <strong>Path</strong>, and select
+<strong>Union</strong> (Ctrl++).</li>
+<li>Use the <strong>Node Tool</strong> (N) to smooth the transition
+nodes between the circle and the point.</li>
+</ul></li>
+<li>Center the base container on your canvas using the <strong>Align and
+Distribute</strong> panel (Shift+Ctrl+A), setting "Relative to" to
+<strong>Page</strong>.</li>
+</ol>
+<h3 id="3-build-the-foreground-glyph">3. Build the Foreground Glyph</h3>
+<p>The interior glyph represents the specific location type (e.g.,
+hospital, park, restaurant). Keep shapes extremely simple so they are
+recognizable from a distance.</p>
+<ol type="1">
+<li>Assemble the silhouette using primary shapes (rectangles, ellipses,
+and polygons). For example, a fork and knife can be constructed by
+combining simple rectangles and rounded paths.</li>
+<li>Use Boolean path operations to combine or hollow out shapes:
+<ul>
+<li><strong>Path &gt; Union</strong> to merge adjacent shapes into a
+single outline.</li>
+<li><strong>Path &gt; Difference</strong> to cut a shape out of the
+background.</li>
+<li><strong>Path &gt; Exclusion</strong> to create transparent
+cutouts.</li>
+</ul></li>
+<li>Avoid fine lines, complex textures, or small details that disappear
+at standard map viewing distances.</li>
+</ol>
+<h3 id="4-apply-visual-hierarchy-and-styling">4. Apply Visual Hierarchy
+and Styling</h3>
+<p>Ensure your icon has high contrast against various base map
+backgrounds.</p>
+<ol type="1">
+<li>Open the <strong>Fill and Stroke</strong> panel (Shift+Ctrl+F).</li>
+<li>Apply a solid color fill to the base container. Use standardized
+color coding where appropriate (e.g., blue for services, green for
+recreation, red for medical).</li>
+<li>Set the foreground glyph to a contrasting color (typically white) or
+use <strong>Path &gt; Difference</strong> to punch the glyph out of the
+container completely, creating a transparent negative space.</li>
+<li>If the icon will be overlaid directly on satellite imagery, add an
+outline: assign a contrasting 1 px or 2 px stroke around the outer
+edge.</li>
+</ol>
+<h3 id="5-final-path-optimization-and-svg-export">5. Final Path
+Optimization and SVG Export</h3>
+<p>Map software relies on clean, lightweight vector data to maintain
+performance.</p>
+<ol type="1">
+<li>Select all paths with strokes and choose <strong>Path &gt; Stroke to
+Path</strong> (Ctrl+Alt+C) to prevent line weights from scaling
+inconsistently.</li>
+<li>Select all active elements of the icon and execute <strong>Path &gt;
+Union</strong> to combine them into as few composite paths as
+possible.</li>
+<li>Delete any hidden layers, reference sketches, or unused
+objects.</li>
+<li>Go to <strong>File &gt; Save As...</strong> and select <strong>Plain
+SVG (*.svg)</strong> instead of Inkscape SVG. This strips out
+Inkscape-specific metadata, resulting in smaller file sizes compatible
+with web mapping libraries and desktop GIS applications.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

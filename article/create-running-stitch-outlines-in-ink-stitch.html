@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Running Stitch Outlines in Ink/Stitch - inkscape</title>
+    <meta name="description" content="This guide provides a straightforward walkthrough for generating clean, delicate running stitch outlines using the free Ink/Stitch extension for Inkscape. You will learn how to properly configure vector paths, adjust stitch length and repetition paramete">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-running-stitch-outlines-in-ink-stitch">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Running Stitch Outlines in Ink/Stitch - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-running-stitch-outlines-in-ink-stitch" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a straightforward walkthrough for generating clean, delicate running stitch outlines using the free Ink/Stitch extension for Inkscape. You will learn how to properly configure vector paths, adjust stitch length and repetition paramete" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-running-stitch-outlines-in-inkstitch">Create Running
+Stitch Outlines in Ink/Stitch</h1>
+<p>This guide provides a straightforward walkthrough for generating
+clean, delicate running stitch outlines using the free Ink/Stitch
+extension for Inkscape. You will learn how to properly configure vector
+paths, adjust stitch length and repetition parameters for fine details,
+optimize path routing to prevent unnecessary trims, and preview the
+final design to ensure high-quality machine embroidery results.</p>
+<h3 id="1-draw-and-prepare-the-vector-path">1. Draw and Prepare the
+Vector Path</h3>
+<p>Running stitches in Ink/Stitch are generated directly from open or
+closed vector strokes.</p>
+<ul>
+<li>Select the <strong>Draw Bézier curves tool</strong> (shortcut:
+<code>B</code>) or the <strong>Pencil tool</strong> (shortcut:
+<code>P</code>) to draw the outline for your delicate detail.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl+Shift+F</code> or <code>Cmd+Shift+F</code>).</li>
+<li>In the <strong>Fill</strong> tab, ensure fill is completely disabled
+(click the <strong>X</strong> icon).</li>
+<li>In the <strong>Stroke paint</strong> tab, assign a solid color to
+your line.</li>
+<li>In the <strong>Stroke style</strong> tab, set the line to a
+continuous, solid dash pattern. Inkscape's visual stroke width does not
+dictate the physical thread thickness, but setting it between 0.2 mm and
+0.4 mm helps visualize the path accurately.</li>
+</ul>
+<h3 id="2-configure-running-stitch-parameters">2. Configure Running
+Stitch Parameters</h3>
+<p>Once your path is drawn, you must define the embroidery
+parameters:</p>
+<ul>
+<li>Select your path.</li>
+<li>Go to the top menu and click <strong>Extensions &gt; Ink/Stitch &gt;
+Params</strong>.</li>
+<li>A modal window will open with a live preview of the stitch.
+Ink/Stitch automatically designates a stroke without a fill as a running
+stitch.</li>
+<li>Adjust the <strong>Running stitch length (mm)</strong>. For
+delicate, tight curves, set this between <strong>1.2 mm and 1.8
+mm</strong> so the thread closely follows the contours. For straighter
+sections, a standard length of <strong>2.0 mm to 2.5 mm</strong> is
+recommended to prevent excessive needle penetrations.</li>
+<li>Adjust the <strong>Repeats</strong> setting. A value of
+<code>1</code> produces a single, ultra-fine line. Setting repeats to
+<code>3</code> converts the line into a "Bean stitch" (triple run),
+which adds slight prominence to delicate details without requiring a
+wider satin column.</li>
+<li>Click <strong>Apply and Quit</strong> to save the settings to the
+object.</li>
+</ul>
+<h3 id="3-control-stitch-direction-and-path-flow">3. Control Stitch
+Direction and Path Flow</h3>
+<p>Machine embroidery requires logical entry and exit points to avoid
+fabric distortion and unwanted jump threads.</p>
+<ul>
+<li>Select the <strong>Node tool</strong> (shortcut: <code>N</code>) to
+inspect the direction of your path.</li>
+<li>If you need the needle to start from the opposite end, select the
+path and go to <strong>Path &gt; Reverse</strong>.</li>
+<li>For intricate, multi-line outlines, select all connected strokes and
+navigate to <strong>Extensions &gt; Ink/Stitch &gt; Tools: Stroke &gt;
+Auto-Route Running Stitch</strong>. This automated utility arranges the
+stitching order and duplicates paths where necessary to ensure
+continuous sewing without manual jump trims.</li>
+</ul>
+<h3 id="4-simulate-and-verify-needle-penetrations">4. Simulate and
+Verify Needle Penetrations</h3>
+<p>Before exporting the file to your embroidery machine, verify how the
+needle moves:</p>
+<ul>
+<li>Navigate to <strong>Extensions &gt; Ink/Stitch &gt; Visualize and
+Export &gt; Simulator/Pre-view</strong>.</li>
+<li>Use the playback controls to monitor stitch placement. Ensure the
+stitches do not bunch up into dense clusters along sharp corners, as
+high density can perforate delicate fabrics.</li>
+<li>Once satisfied, save your working file as an Inkscape SVG to
+preserve editable parameters, then go to <strong>File &gt; Save
+As...</strong> and select your machine's native embroidery format (such
+as <code>.DST</code>, <code>.PES</code>, or <code>.JEF</code>).</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

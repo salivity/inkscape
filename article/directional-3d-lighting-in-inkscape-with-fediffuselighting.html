@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directional 3D Lighting in Inkscape with feDiffuseLighting - inkscape</title>
+    <meta name="description" content="This guide explains how to use the feDiffuseLighting filter primitive in Inkscape to transform flat vector graphics into embossed, three-dimensional surfaces using directional light. By mapping an object's alpha transparency to an elevation height map an">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/directional-3d-lighting-in-inkscape-with-fediffuselighting">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Directional 3D Lighting in Inkscape with feDiffuseLighting - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/directional-3d-lighting-in-inkscape-with-fediffuselighting" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use the feDiffuseLighting filter primitive in Inkscape to transform flat vector graphics into embossed, three-dimensional surfaces using directional light. By mapping an object's alpha transparency to an elevation height map an" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1
+id="directional-3d-lighting-in-inkscape-with-fediffuselighting">Directional
+3D Lighting in Inkscape with feDiffuseLighting</h1>
+<p>This guide explains how to use the <code>feDiffuseLighting</code>
+filter primitive in Inkscape to transform flat vector graphics into
+embossed, three-dimensional surfaces using directional light. By mapping
+an object's alpha transparency to an elevation height map and casting
+light with a directional source (<code>feDistantLight</code>), you can
+generate realistic matte shading, bevels, and surface relief. The
+following sections walk through setting up the Filter Editor,
+configuring light angles, adjusting surface height, and compositing the
+final result over your artwork.</p>
+<h3 id="1-open-the-filter-editor-and-create-a-filter">1. Open the Filter
+Editor and Create a Filter</h3>
+<ol type="1">
+<li>Select the vector object you want to shade.</li>
+<li>Navigate to <strong>Filters &gt; Filter Editor...</strong> in the
+main menu to open the Filter Editor panel.</li>
+<li>Click <strong>New</strong> at the bottom of the filter list to
+create an empty filter (e.g., <code>filter1</code>).</li>
+<li>Check the box next to your new filter to assign it to the selected
+object.</li>
+</ol>
+<h3 id="2-add-required-primitives">2. Add Required Primitives</h3>
+<p>To create smooth directional lighting, you need an elevation map, a
+diffuse lighting calculator, a light source, and a compositing step to
+blend the light with your artwork's original color.</p>
+<ol type="1">
+<li><strong>feGaussianBlur (Optional but Recommended):</strong>
+<ul>
+<li>In the <strong>Add Primitive</strong> dropdown, select
+<strong>Gaussian Blur</strong> and click <strong>Add
+Primitive</strong>.</li>
+<li>Connect its input to <code>SourceAlpha</code>. This softens the
+edges of your shape to create a sloped ramp for the light to hit.</li>
+</ul></li>
+<li><strong>feDiffuseLighting:</strong>
+<ul>
+<li>Select <strong>Diffuse Lighting</strong> from the dropdown and click
+<strong>Add Primitive</strong>.</li>
+<li>Connect its input to the output of the <code>feGaussianBlur</code>
+(or directly to <code>SourceAlpha</code> for sharp, hard edges).</li>
+</ul></li>
+<li><strong>feDistantLight:</strong>
+<ul>
+<li>In the Filter Editor, select the <code>feDiffuseLighting</code>
+primitive.</li>
+<li>Expand the light source dropdown below the primitive settings and
+select <strong>Distant Light</strong> (this represents parallel,
+directional rays like sunlight).</li>
+</ul></li>
+<li><strong>feComposite:</strong>
+<ul>
+<li>Add a <strong>Composite</strong> primitive to blend the illumination
+with your original shape.</li>
+<li>Connect one input (<code>Image</code>) to <code>SourceGraphic</code>
+and the other input (<code>Image 2</code>) to the
+<code>Diffuse Lighting</code> output.</li>
+</ul></li>
+</ol>
+<h3 id="3-configure-the-fediffuselighting-attributes">3. Configure the
+feDiffuseLighting Attributes</h3>
+<p>Select the <strong>Diffuse Lighting</strong> primitive in the list to
+reveal its parameters in the lower pane:</p>
+<ul>
+<li><strong>surfaceScale:</strong> Defines the apparent height of your
+3D surface. A higher value creates a deeper, more pronounced bevel or
+bump, while a low value produces subtle relief. Typical values range
+between <code>2</code> and <code>10</code>.</li>
+<li><strong>diffuseConstant:</strong> Controls the reflection
+coefficient (<span class="math inline">\(k_d\)</span>). It determines
+how brightly the surface reflects diffuse light. A value of
+<code>1.0</code> is standard; values above <code>1.0</code> intensify
+the highlight brightness.</li>
+<li><strong>lighting-color:</strong> Sets the color of the light rays.
+For neutral shading, set this to pure white (<code>#ffffff</code>).</li>
+</ul>
+<h3 id="4-set-directional-angles-with-fedistantlight">4. Set Directional
+Angles with feDistantLight</h3>
+<p>Select the nested <strong>Distant Light</strong> under your diffuse
+lighting primitive to adjust the direction of the light rays:</p>
+<ul>
+<li><strong>azimuth:</strong> The directional angle of the light source
+in the XY plane, measured in degrees from 0 to 360.
+<ul>
+<li><code>0°</code> directs light from the right.</li>
+<li><code>90°</code> directs light from the bottom.</li>
+<li><code>180°</code> directs light from the left.</li>
+<li><code>225°</code> or <code>315°</code> are standard conventions for
+top-left or top-right lighting.</li>
+</ul></li>
+<li><strong>elevation:</strong> The angle of the light above the surface
+plane, measured in degrees from 0 to 90.
+<ul>
+<li><code>0°</code> casts grazing, long shadows parallel to the
+surface.</li>
+<li><code>90°</code> positions the light directly overhead, resulting in
+flat, uniform illumination.</li>
+<li><code>30°</code> to <code>50°</code> provides optimal contrast for
+directional relief.</li>
+</ul></li>
+</ul>
+<h3 id="5-composite-the-lighting-with-the-object-color">5. Composite the
+Lighting with the Object Color</h3>
+<p>By default, <code>feDiffuseLighting</code> only outputs an opaque
+grayscale or tinted map of the light rays. To apply this light to your
+shape's original colors:</p>
+<ol type="1">
+<li>Select the <strong>Composite</strong> primitive you added.</li>
+<li>Set the <strong>Operator</strong> dropdown to
+<strong>Arithmetic</strong>.</li>
+<li>Set the coefficients to:
+<ul>
+<li><strong>K1:</strong> <code>1.0</code> (multiplies the light with the
+source graphic color).</li>
+<li><strong>K2:</strong> <code>0.0</code></li>
+<li><strong>K3:</strong> <code>0.0</code></li>
+<li><strong>K4:</strong> <code>0.0</code></li>
+</ul></li>
+<li>Alternatively, select <strong>In</strong> or <strong>Atop</strong>
+if you used a pre-colored light source and wish to mask the light to the
+boundaries of the original graphic.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

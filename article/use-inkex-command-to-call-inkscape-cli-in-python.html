@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use inkex Command to Call Inkscape CLI in Python - inkscape</title>
+    <meta name="description" content="The inkex.command module provides Python wrappers around system processes, enabling developers to programmatically execute the Inkscape command-line interface directly from an extension or standalone script. By using the inkscape() wrapper alongside mode">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/use-inkex-command-to-call-inkscape-cli-in-python">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Use inkex Command to Call Inkscape CLI in Python - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/use-inkex-command-to-call-inkscape-cli-in-python" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The inkex.command module provides Python wrappers around system processes, enabling developers to programmatically execute the Inkscape command-line interface directly from an extension or standalone script. By using the inkscape() wrapper alongside mode" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="use-inkex-command-to-call-inkscape-cli-in-python">Use inkex
+Command to Call Inkscape CLI in Python</h1>
+<p>The <code>inkex.command</code> module provides Python wrappers around
+system processes, enabling developers to programmatically execute the
+Inkscape command-line interface directly from an extension or standalone
+script. By using the <code>inkscape()</code> wrapper alongside modern
+Inkscape action sequences, you can chain nested CLI commands, manipulate
+document nodes, and batch-process files cleanly without manually
+configuring low-level <code>subprocess</code> pipelines.</p>
+<h2 id="prerequisites-and-setup">Prerequisites and Setup</h2>
+<p>To use the helper functions, your script must have access to the
+<code>inkex</code> library, typically provided within Inkscape’s bundled
+Python environment or via <code>pip install inkex</code>.</p>
+<p>Import the <code>inkscape</code> wrapper directly from the command
+module:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex.command</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex.command <span class="im">import</span> inkscape, ProgramRunError</span></code></pre></div>
+<h2 id="calling-chained-actions-via-the-helper">Calling Chained Actions
+via the Helper</h2>
+<p>Inkscape versions 1.0 and newer structure nested CLI workflows
+through the <code>--actions</code> argument. Individual actions are
+chained using semicolons, allowing multiple operations (such as
+selecting elements, running path operations, and exporting) within a
+single CLI call.</p>
+<p>The <code>inkex.command.inkscape</code> function accepts command-line
+flags as keyword arguments or positional parameters:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex.command</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>input_file <span class="op">=</span> <span class="st">&quot;input.svg&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>output_file <span class="op">=</span> <span class="st">&quot;output.png&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define nested/chained CLI actions</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>actions <span class="op">=</span> (</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;select-by-element:path;&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;path-union;&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f&quot;export-filename:</span><span class="sc">{</span>output_file<span class="sc">}</span><span class="ss">;&quot;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;export-do&quot;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Execute the nested CLI sequence</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> inkex.command.inkscape(</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        input_file,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        actions<span class="op">=</span>actions,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        batch_process<span class="op">=</span><span class="va">True</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Command executed successfully.&quot;</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> inkex.command.ProgramRunError <span class="im">as</span> err:</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Inkscape CLI failed with code </span><span class="sc">{</span>err<span class="sc">.</span>returncode<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>err<span class="sc">.</span>stderr<span class="sc">.</span>decode()<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<h2 id="passing-raw-cli-arguments">Passing Raw CLI Arguments</h2>
+<p>If your nested command structure requires custom flags or piping
+standard input directly into the Inkscape process, pass positional
+arguments and use the <code>stdin</code> keyword:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex.command</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>svg_data <span class="op">=</span> <span class="st">&#39;&lt;svg height=&quot;100&quot; width=&quot;100&quot;&gt;&lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;40&quot; fill=&quot;red&quot; /&gt;&lt;/svg&gt;&#39;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Nest commands to transform the input and output SVG to stdout</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>actions <span class="op">=</span> <span class="st">&quot;select-all;object-to-path;export-plain-svg;export-do&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>process_output <span class="op">=</span> inkex.command.inkscape(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;-&quot;</span>,  <span class="co"># Read from stdin</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    actions<span class="op">=</span>actions,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    export_type<span class="op">=</span><span class="st">&quot;svg&quot;</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    pipe_output<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    stdin<span class="op">=</span>svg_data.encode(<span class="st">&quot;utf-8&quot;</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>transformed_svg <span class="op">=</span> process_output.stdout.decode(<span class="st">&quot;utf-8&quot;</span>)</span></code></pre></div>
+<h2 id="key-parameter-reference">Key Parameter Reference</h2>
+<ul>
+<li><strong><code>actions</code></strong>: Maps to
+<code>--actions="..."</code>. Use this to nest sequential commands
+separated by semicolons.</li>
+<li><strong><code>batch_process</code></strong>: Maps to
+<code>--batch-process</code>. Prevents the GUI from launching and closes
+the process once actions complete.</li>
+<li><strong><code>pipe_output</code></strong>: Set to <code>True</code>
+to capture standard output (<code>stdout</code>) instead of sending it
+directly to the terminal.</li>
+<li><strong><code>stdin</code></strong>: Accepts bytes to pipe directly
+into the command line when processing dynamic XML or SVG data without
+saving to disk first.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

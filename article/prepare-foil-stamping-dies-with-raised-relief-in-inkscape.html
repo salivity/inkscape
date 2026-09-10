@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prepare Foil Stamping Dies with Raised Relief in Inkscape - inkscape</title>
+    <meta name="description" content="This guide outlines how to prepare production-ready vector artwork in Inkscape for combination hot-foil stamping and raised-relief (embossing) dies. You will learn how to configure document settings, convert dynamic elements into clean paths, establish l">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/prepare-foil-stamping-dies-with-raised-relief-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Prepare Foil Stamping Dies with Raised Relief in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/prepare-foil-stamping-dies-with-raised-relief-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide outlines how to prepare production-ready vector artwork in Inkscape for combination hot-foil stamping and raised-relief (embossing) dies. You will learn how to configure document settings, convert dynamic elements into clean paths, establish l" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1
+id="prepare-foil-stamping-dies-with-raised-relief-in-inkscape">Prepare
+Foil Stamping Dies with Raised Relief in Inkscape</h1>
+<p>This guide outlines how to prepare production-ready vector artwork in
+Inkscape for combination hot-foil stamping and raised-relief (embossing)
+dies. You will learn how to configure document settings, convert dynamic
+elements into clean paths, establish layer separations for foil and
+relief depths, and adhere to essential mechanical tolerances required
+for precision CNC milling and chemical etching.</p>
+<h3 id="1-set-proper-document-dimensions-and-units">1. Set Proper
+Document Dimensions and Units</h3>
+<p>Create a new document sized to your exact final trim or die-plate
+dimensions. Open <strong>File &gt; Document Properties</strong> and set
+both the <strong>Display units</strong> and <strong>Page size
+units</strong> to millimeters (<code>mm</code>) or inches
+(<code>in</code>). Ensure the scale is set strictly to <code>1.0</code>
+to guarantee the physical dimensions sent to the die-maker match your
+design precisely.</p>
+<h3 id="2-convert-all-fonts-and-strokes-to-outlines">2. Convert All
+Fonts and Strokes to Outlines</h3>
+<p>Die-making machinery cannot process live fonts, text objects, or open
+stroke outlines; it requires closed vector boundaries.</p>
+<ul>
+<li><strong>Convert Text:</strong> Select any text objects and navigate
+to <strong>Path &gt; Object to Path</strong> (Shift+Ctrl+C).</li>
+<li><strong>Convert Strokes:</strong> Select any lines or objects
+utilizing stroke outlines and choose <strong>Path &gt; Stroke to
+Path</strong> (Ctrl+Alt+C).</li>
+<li><strong>Verify Closed Shapes:</strong> Switch to the Node Tool (N)
+and inspect the paths to confirm that every element consists of a closed
+vector contour with solid fills and no active strokes.</li>
+</ul>
+<h3 id="3-clean-and-merge-vector-paths">3. Clean and Merge Vector
+Paths</h3>
+<p>Die-cutting and engraving software can fail if paths overlap or
+contain self-intersecting loops.</p>
+<ul>
+<li>Select overlapping shapes meant to be stamped together and run
+<strong>Path &gt; Union</strong> (Ctrl++).</li>
+<li>Eliminate tiny stray nodes and unwanted points by going to
+<strong>Path &gt; Simplify</strong> sparingly, or manually clean them
+using the Node Tool.</li>
+<li>Check your line integrity by going to <strong>View &gt; Display mode
+&gt; Outline</strong>. This wireframe view reveals hidden lines, stray
+vectors, and interior crossings that must be deleted or merged.</li>
+</ul>
+<h3 id="4-separate-foil-and-relief-artwork-into-dedicated-layers">4.
+Separate Foil and Relief Artwork into Dedicated Layers</h3>
+<p>Combination dies involve two processes: applying foil and raising the
+paper fibers (blind or registered embossing). These actions require
+distinct depth profiles on the physical brass or magnesium die. Open
+<strong>Layer &gt; Layers and Objects</strong> (Shift+Ctrl+L) and
+structure your design into dedicated, aligned layers:</p>
+<ul>
+<li><strong>Layer 1: Foil Area:</strong> Place the artwork that will
+receive the hot-stamping foil here. Use solid 100% black
+(<code>#000000</code>) fills for this geometry.</li>
+<li><strong>Layer 2: Raised Relief (Embossing):</strong> Place the areas
+that will physically push the substrate upward here. For single-level
+flat-top raised areas, use solid 100% black fills. For multi-level or
+sculptured dies requiring varying depths, specify distinct tonal values
+(e.g., 20%, 40%, 60% black) or assign distinct CMYK spot colors mapped
+to specific depths per your die-maker’s technical specifications.</li>
+<li><strong>Layer 3: Die Line / Registration:</strong> Include a 1-point
+stroke outlining the exact trim/cut edge of the sheet to ensure the
+engraver correctly aligns the die relative to the printed sheet.</li>
+</ul>
+<h3 id="5-adhere-to-minimum-tolerances-for-tooling">5. Adhere to Minimum
+Tolerances for Tooling</h3>
+<p>Hot-foil dies require sufficient surface area for heat retention and
+release, while relief dies need adequate clearance to prevent tearing
+the paper stock.</p>
+<ul>
+<li><strong>Minimum Line Weight (Foil):</strong> Keep all standalone
+foil lines at a minimum width of <code>0.2 mm</code>
+(<code>~0.5 pt</code>). Fine serif details narrower than this will cause
+flaking or fail to transfer cleanly.</li>
+<li><strong>Minimum Line Spacing (Foil Trapping):</strong> Ensure
+negative space (reverses) between foil elements is at least
+<code>0.3 mm</code> (<code>~0.8 pt</code>) to prevent the foil from
+filling in during heat activation.</li>
+<li><strong>Relief Bevel Allowance:</strong> Raised elements expand
+slightly on the back of the die to form a bevel. Maintain at least
+<code>0.4 mm</code> to <code>0.5 mm</code> separation between the edge
+of a raised relief area and any adjacent flat graphics to prevent
+shearing the paper.</li>
+</ul>
+<h3 id="6-export-the-final-vector-file">6. Export the Final Vector
+File</h3>
+<p>Ensure no clipping paths, bitmap images, drop shadows, or Gaussian
+blur filters exist in your file.</p>
+<ol type="1">
+<li>Navigate to <strong>File &gt; Save As...</strong></li>
+<li>Choose <strong>Portable Document Format (*.pdf)</strong>.</li>
+<li>In the PDF export dialogue, set the <strong>PDF version</strong> to
+<code>PDF 1.4</code> or <code>PDF 1.5</code> to avoid unsupported
+transparency formats.</li>
+<li>Ensure the option <strong>Convert texts to paths</strong> is checked
+as a safeguard.</li>
+<li>Provide the vendor with the exported PDF along with a mechanical key
+detailing the layer designations, target substrate caliper, and the
+intended relief depth.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

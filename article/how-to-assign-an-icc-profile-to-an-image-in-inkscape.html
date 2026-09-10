@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Assign an ICC Profile to an Image in Inkscape - inkscape</title>
+    <meta name="description" content="Managing color accuracy in Inkscape requires correctly linking color spaces to your imported assets so they render predictably on screen and in print. While vector paths rely on standard RGB or CMYK definitions, raster graphics require dedicated profile">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-assign-an-icc-profile-to-an-image-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Assign an ICC Profile to an Image in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-assign-an-icc-profile-to-an-image-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Managing color accuracy in Inkscape requires correctly linking color spaces to your imported assets so they render predictably on screen and in print. While vector paths rely on standard RGB or CMYK definitions, raster graphics require dedicated profile" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-assign-an-icc-profile-to-an-image-in-inkscape">How to
+Assign an ICC Profile to an Image in Inkscape</h1>
+<p>Managing color accuracy in Inkscape requires correctly linking color
+spaces to your imported assets so they render predictably on screen and
+in print. While vector paths rely on standard RGB or CMYK definitions,
+raster graphics require dedicated profile mappings. This guide explains
+how to enable color management in Inkscape, add target profiles to your
+document, and link an ICC profile directly to a specific placed raster
+image.</p>
+<h3 id="step-1-enable-color-management-in-inkscape-preferences">Step 1:
+Enable Color Management in Inkscape Preferences</h3>
+<p>Before assigning profiles, Inkscape’s LittleCMS color engine must be
+active:</p>
+<ol type="1">
+<li>Go to <strong>Edit &gt; Preferences</strong> (or press
+<code>Shift + Ctrl + P</code>).</li>
+<li>In the left panel, select <strong>Color management</strong>.</li>
+<li>Set your <strong>Display profile</strong> to match your monitor's
+calibrated ICC profile.</li>
+<li>Ensure your preferred color rendering intents and working spaces
+(such as sRGB or a standard CMYK profile like Coated FOGRA39) are
+selected.</li>
+</ol>
+<h3 id="step-2-add-the-icc-profile-to-the-document">Step 2: Add the ICC
+Profile to the Document</h3>
+<p>To make an ICC profile available to individual elements inside your
+SVG, you must register it in the document’s definitions:</p>
+<ol type="1">
+<li>Open <strong>File &gt; Document Properties</strong> (or press
+<code>Shift + Ctrl + D</code>).</li>
+<li>Navigate to the <strong>Color</strong> tab.</li>
+<li>Under <strong>Available Color Profiles</strong>, locate the ICC
+profile you want to apply to your raster image.</li>
+<li>Click <strong>Link</strong> to attach the profile to the active SVG
+document. Inkscape creates an internal reference ID for this profile
+within the SVG <code>&lt;defs&gt;</code> block.</li>
+</ol>
+<h3 id="step-3-place-the-raster-image">Step 3: Place the Raster
+Image</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Import</strong> (<code>Ctrl + I</code>) and
+choose your raster file (such as a PNG, TIFF, or JPEG).</li>
+<li>Choose either <strong>Embed</strong> or <strong>Link</strong> in the
+import dialog and click <strong>OK</strong>.</li>
+<li>Keep the image selected on the canvas.</li>
+</ol>
+<h3 id="step-4-assign-the-profile-using-the-xml-editor">Step 4: Assign
+the Profile Using the XML Editor</h3>
+<p>Because Inkscape lacks a dedicated contextual menu for reassigning
+raster color spaces on the canvas, the assignment is completed via the
+XML Editor:</p>
+<ol type="1">
+<li>Open the XML Editor by pressing <code>Shift + Ctrl + X</code> or
+navigating to <strong>Edit &gt; XML Editor</strong>.</li>
+<li>With your placed image selected on the canvas, the corresponding
+<code>&lt;svg:image&gt;</code> node will automatically be highlighted in
+the XML tree.</li>
+<li>In the right-hand attribute pane, type <code>color-profile</code>
+into the <strong>Name</strong> field.</li>
+<li>In the <strong>Value</strong> field, enter the exact name or
+identifier of the ICC profile linked in Step 2.</li>
+<li>Click <strong>Set</strong> (or press
+<code>Ctrl + Enter</code>).</li>
+</ol>
+<h3 id="alternative-approach-pre-embedding-icc-profiles">Alternative
+Approach: Pre-Embedding ICC Profiles</h3>
+<p>If you frequently work with color-critical raster graphics, embed the
+ICC profile directly into the image file using dedicated image
+manipulation software (such as GIMP or Photoshop) prior to importing it
+into Inkscape. When color management is enabled in Inkscape preferences,
+the rendering engine automatically reads and respects embedded ICC tags
+in TIFF, JPEG, and PNG files without requiring manual XML edits.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

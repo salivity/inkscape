@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Spirograph Patterns with Inkscape Roughen Effect - inkscape</title>
+    <meta name="description" content="This guide explains how to generate complex, interactive Spirograph-like geometric patterns in Inkscape using the Roughen Live Path Effect (LPE). By applying mathematical displacement to a standard geometric path, you can dynamically manipulate frequenci">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/make-spirograph-patterns-with-inkscape-roughen-effect">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Make Spirograph Patterns with Inkscape Roughen Effect - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/make-spirograph-patterns-with-inkscape-roughen-effect" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate complex, interactive Spirograph-like geometric patterns in Inkscape using the Roughen Live Path Effect (LPE). By applying mathematical displacement to a standard geometric path, you can dynamically manipulate frequenci" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="make-spirograph-patterns-with-inkscape-roughen-effect">Make
+Spirograph Patterns with Inkscape Roughen Effect</h1>
+<p>This guide explains how to generate complex, interactive
+Spirograph-like geometric patterns in Inkscape using the Roughen Live
+Path Effect (LPE). By applying mathematical displacement to a standard
+geometric path, you can dynamically manipulate frequencies, node counts,
+and curve tensions to create intricate guilloche and harmonic line art
+in real time.</p>
+<h3 id="1-create-the-base-shape">1. Create the Base Shape</h3>
+<ol type="1">
+<li>Select the <strong>Circles and Arcs tool</strong> (press
+<code>E</code>) or the <strong>Stars and Polygons tool</strong>
+(<code>*</code>).</li>
+<li>Hold <code>Ctrl + Shift</code> and drag on the canvas to draw an
+equilateral base shape, such as a regular circle.</li>
+<li>Remove any fill color by clicking the red "X" in the bottom color
+palette.</li>
+<li>Set a thin stroke by holding <code>Shift</code> and clicking a
+color, then set the stroke width to roughly <code>0.5 px</code> or
+<code>1 px</code> in the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>Convert the object to a vector path by navigating to <strong>Path
+&gt; Object to Path</strong> (<code>Ctrl + Shift + C</code>).</li>
+</ol>
+<h3 id="2-add-more-nodes-to-the-path">2. Add More Nodes to the Path</h3>
+<p>For the Roughen effect to generate tight, repeating geometric waves,
+the underlying path requires a dense distribution of nodes:</p>
+<ol type="1">
+<li>Select the <strong>Node tool</strong> (press <code>N</code>) and
+select all nodes on your shape (<code>Ctrl + A</code>).</li>
+<li>In the top tool controls bar, click the <strong>Insert new nodes
+into selected segments</strong> button several times until the perimeter
+has at least 30 to 60 evenly spaced nodes.</li>
+</ol>
+<h3 id="3-apply-the-roughen-path-effect">3. Apply the Roughen Path
+Effect</h3>
+<ol type="1">
+<li>Open the Path Effects dialog by navigating to <strong>Path &gt; Path
+Effects</strong>.</li>
+<li>With your shape selected, click the <strong>Add Path Effect</strong>
+button (the <code>+</code> icon).</li>
+<li>Search for or locate <strong>Roughen</strong> in the list and click
+it to apply.</li>
+</ol>
+<h3 id="4-configure-the-roughen-parameters-for-geometric-harmonics">4.
+Configure the Roughen Parameters for Geometric Harmonics</h3>
+<p>By default, the Roughen effect adds random jitter. To make it behave
+like a Spirograph:</p>
+<ol type="1">
+<li>In the Path Effects panel under <strong>Roughen</strong>, locate the
+displacement and method options.</li>
+<li>Change the method from random displacement to a structured variation
+by unchecking randomized settings where available, or lowering the
+<strong>Random seed</strong> variability.</li>
+<li>Increase the <strong>Divisions</strong> or <strong>Segments</strong>
+slider to a high value to introduce dense repeating oscillations along
+the perimeter.</li>
+<li>Adjust the <strong>Max displacement</strong> slider carefully. As
+you drag the slider, the uniform nodes will expand and cross through the
+center of the shape, creating overlapping, geometric Spirograph
+loops.</li>
+<li>Toggle between linear segments and smooth Bézier curve interpolation
+to shift from rigid geometric mandalas to fluid, harmonic curves.</li>
+</ol>
+<h3 id="5-interactively-modify-the-pattern">5. Interactively Modify the
+Pattern</h3>
+<ul>
+<li><strong>Edit with the Node Tool:</strong> Press <code>N</code> to
+activate the Node tool. Drag the original nodes or handles of the base
+shape; the Roughen effect will recalculate live, producing continuous
+geometric transformations.</li>
+<li><strong>Scale and Rotate:</strong> Select the shape with the
+<strong>Selector tool</strong> (<code>S</code>). Scaling
+non-proportionally or rotating will warp the harmonic interference
+patterns interactively.</li>
+<li><strong>Layering:</strong> Duplicate the object
+(<code>Ctrl + D</code>), scale it slightly, and adjust the stroke color
+or opacity to create multifaceted, depth-filled vector guilloche
+designs.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create an SVG Font in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape features a built-in SVG Font Editor that allows you to convert vector artwork into functional typographic glyph sets directly within the program. This guide covers the complete workflow for creating an SVG font, from configuring the global font">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-an-svg-font-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create an SVG Font in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-an-svg-font-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape features a built-in SVG Font Editor that allows you to convert vector artwork into functional typographic glyph sets directly within the program. This guide covers the complete workflow for creating an SVG font, from configuring the global font" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-an-svg-font-in-inkscape">How to Create an SVG Font
+in Inkscape</h1>
+<p>Inkscape features a built-in SVG Font Editor that allows you to
+convert vector artwork into functional typographic glyph sets directly
+within the program. This guide covers the complete workflow for creating
+an SVG font, from configuring the global font parameters and designing
+your vector characters to assigning paths as glyphs, setting spacing,
+and exporting the final font file.</p>
+<h3 id="1-open-the-svg-font-editor">1. Open the SVG Font Editor</h3>
+<p>Launch Inkscape and open the font editing tool by navigating to the
+top menu and selecting <strong>Text</strong> &gt; <strong>SVG Font
+Editor</strong>. A docked panel will appear containing three main tabs:
+Global Settings, Glyphs, and Kerning.</p>
+<h3 id="2-create-and-configure-a-new-font">2. Create and Configure a New
+Font</h3>
+<ol type="1">
+<li>In the SVG Font Editor panel, click the <strong>New</strong> button
+under the <strong>Font</strong> column.</li>
+<li>Select your newly created font (named <code>Font 1</code> by
+default) to activate it. Double-click the name to rename it to your
+preferred font family name.</li>
+<li>Switch to the <strong>Global Settings</strong> tab to define the
+metrics:
+<ul>
+<li><strong>Units per em</strong>: Set this to a standard scale,
+typically <code>1000</code> or <code>1024</code>. This defines the
+resolution of your glyph grid.</li>
+<li><strong>Ascent</strong>: Define the height above the baseline (e.g.,
+<code>800</code>).</li>
+<li><strong>Descent</strong>: Define the depth below the baseline (e.g.,
+<code>200</code>).</li>
+</ul></li>
+</ol>
+<h3 id="3-set-up-the-drawing-canvas">3. Set Up the Drawing Canvas</h3>
+<p>To ensure your glyphs match in scale and alignment:</p>
+<ol type="1">
+<li>Open <strong>File</strong> &gt; <strong>Document
+Properties</strong>.</li>
+<li>Set the display units to pixels and make the canvas dimensions match
+your chosen "Units per em" value (e.g., 1000 px by 1000 px).</li>
+<li>Drag horizontal guidelines from the rulers to mark the ascent,
+cap-height, x-height, baseline, and descent based on your global
+settings.</li>
+</ol>
+<h3 id="4-design-the-vector-glyph-paths">4. Design the Vector Glyph
+Paths</h3>
+<ol type="1">
+<li>Draw your character on the canvas using the <strong>Draw Freehand
+Lines</strong> tool, <strong>Draw Bézier Curves</strong> tool, or
+standard geometric shapes.</li>
+<li>Ensure the artwork consists of a single vector path:
+<ul>
+<li>If you used strokes, convert them to fills by selecting the object
+and clicking <strong>Path</strong> &gt; <strong>Stroke to
+Path</strong>.</li>
+<li>If the glyph consists of multiple overlapping shapes, join them via
+<strong>Path</strong> &gt; <strong>Union</strong>.</li>
+<li>If the glyph has counter-spaces (such as the holes in "O", "B", or
+"A"), select the outer and inner paths and choose <strong>Path</strong>
+&gt; <strong>Combine</strong> or <strong>Path</strong> &gt;
+<strong>Difference</strong>.</li>
+</ul></li>
+</ol>
+<h3 id="5-assign-paths-to-glyphs">5. Assign Paths to Glyphs</h3>
+<ol type="1">
+<li>In the SVG Font Editor, click on the <strong>Glyphs</strong>
+tab.</li>
+<li>Click the <strong>Add Glyph</strong> button at the bottom of the
+panel.</li>
+<li>Select the newly added row and configure the fields:
+<ul>
+<li><strong>Glyph name</strong>: Enter a descriptive label (e.g.,
+<code>letter-a</code> or <code>A</code>).</li>
+<li><strong>Matching string</strong>: Enter the exact keyboard character
+that triggers this glyph (e.g., <code>A</code>).</li>
+<li><strong>Advance</strong>: Set the horizontal spacing/width of the
+character slot (typically matching or slightly wider than your path
+width).</li>
+</ul></li>
+<li>Select the drawn vector path on your canvas using the <strong>Select
+and Transform objects</strong> tool.</li>
+<li>In the SVG Font Editor, click <strong>Get curves from
+selection</strong>. A small preview of your character will appear next
+to the glyph entry.</li>
+<li>Repeat this process for every character, digit, and punctuation mark
+you wish to include.</li>
+</ol>
+<h3 id="6-configure-kerning-pairs">6. Configure Kerning Pairs</h3>
+<ol type="1">
+<li>Switch to the <strong>Kerning</strong> tab in the SVG Font
+Editor.</li>
+<li>Click <strong>Add Kerning Pair</strong>.</li>
+<li>Specify the first character in the <strong>First Glyph</strong>
+field and the second in the <strong>Second Glyph</strong> field (for
+example, <code>A</code> and <code>V</code>).</li>
+<li>Adjust the <strong>Kerning value</strong> to add or subtract space
+between the two characters to fix visual gaps.</li>
+</ol>
+<h3 id="7-save-and-convert-the-font">7. Save and Convert the Font</h3>
+<ol type="1">
+<li>Go to <strong>File</strong> &gt; <strong>Save As...</strong> and
+select <strong>Plain SVG</strong> or <strong>Inkscape SVG</strong> to
+store your font definitions in an <code>.svg</code> file.</li>
+<li>Because native SVG font support is deprecated in modern web browsers
+and desktop operating systems, import your saved <code>.svg</code> file
+into font generation tools like FontForge, BirdFont, or an online
+SVG-to-TTF converter to generate usable OpenType (<code>.otf</code>),
+TrueType (<code>.ttf</code>), or Web Open Font (<code>.woff</code>)
+formats.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Make Paper Cut Shadow Boxes in Inkscape - inkscape</title>
+    <meta name="description" content="Creating multi-layered paper cut shadow boxes in Inkscape involves setting up a standardized frame template, designing individual depth layers from background to foreground, uniting artwork with outer borders using Boolean path operations, and exporting">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-make-paper-cut-shadow-boxes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Make Paper Cut Shadow Boxes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-make-paper-cut-shadow-boxes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating multi-layered paper cut shadow boxes in Inkscape involves setting up a standardized frame template, designing individual depth layers from background to foreground, uniting artwork with outer borders using Boolean path operations, and exporting" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-make-paper-cut-shadow-boxes-in-inkscape">How to Make
+Paper Cut Shadow Boxes in Inkscape</h1>
+<p>Creating multi-layered paper cut shadow boxes in Inkscape involves
+setting up a standardized frame template, designing individual depth
+layers from background to foreground, uniting artwork with outer borders
+using Boolean path operations, and exporting the finished files as
+vector cuts for machines like Cricut, Silhouette, or laser cutters.</p>
+<h3 id="step-1-set-up-the-base-frame-template">Step 1: Set Up the Base
+Frame Template</h3>
+<ol type="1">
+<li>Open Inkscape and open <strong>Document Properties</strong>
+(<code>Ctrl + Shift + D</code>). Set your display units to inches or
+millimeters and define the page size to match your physical shadow box
+frame (e.g., 8x8 inches).</li>
+<li>Select the <strong>Rectangle Tool</strong> (<code>R</code>) and draw
+a square matching your exact shadow box dimensions.</li>
+<li>Duplicate this rectangle (<code>Ctrl + D</code>), lock the aspect
+ratio, and resize it slightly smaller (e.g., 7x7 inches) to create an
+inner cut border.</li>
+<li>Select both rectangles, open the <strong>Align and
+Distribute</strong> panel (<code>Ctrl + Shift + A</code>), and center
+them both vertically and horizontally.</li>
+<li>With both rectangles selected, go to <strong>Path &gt;
+Difference</strong> (<code>Ctrl + -</code>). This creates a hollow
+border frame. Keep a duplicate of this base frame saved on a separate
+layer to use for every layer of your design.</li>
+</ol>
+<h3 id="step-2-organize-layers-for-depth">Step 2: Organize Layers for
+Depth</h3>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li>Create 4 to 6 layers, naming them sequentially from
+<code>Layer 1 (Background)</code> to
+<code>Layer N (Foreground)</code>.</li>
+<li>Plan your visual depth:
+<ul>
+<li><strong>Background (Layer 1):</strong> Solid backing, moon, stars,
+or distant mountains.</li>
+<li><strong>Middle Layers (Layers 2–4):</strong> Main scenery, trees,
+buildings, or characters.</li>
+<li><strong>Foreground (Top Layer):</strong> Overhanging branches,
+grass, or ornate decorative borders.</li>
+</ul></li>
+</ol>
+<h3 id="step-3-draw-and-position-artwork">Step 3: Draw and Position
+Artwork</h3>
+<ol type="1">
+<li>Draw your vector elements using the <strong>Draw Bezier Curves
+Tool</strong> (<code>B</code>) or import existing SVG silhouettes.</li>
+<li>Place the elements on their designated layers.</li>
+<li>Ensure every element on a middle or foreground layer physically
+overlaps the outer border frame. Elements that do not touch the outer
+frame or another anchored path will fall out when cut from paper.</li>
+</ol>
+<h3 id="step-4-weld-elements-with-path-operations">Step 4: Weld Elements
+with Path Operations</h3>
+<ol type="1">
+<li>Switch to the layer you want to finalize.</li>
+<li>Paste a copy of the base frame created in Step 1 onto this
+layer.</li>
+<li>Select the outer frame along with all connecting silhouettes on that
+layer.</li>
+<li>Go to <strong>Path &gt; Union</strong> (<code>Ctrl + +</code>). This
+welds the shapes into a single, continuous cuttable path.</li>
+<li>If your design includes internal cutouts (such as windows or
+negative spaces inside an animal silhouette), select the main welded
+shape and the cutout shape, then go to <strong>Path &gt;
+Difference</strong> (<code>Ctrl + -</code>).</li>
+<li>Inspect the path using the <strong>Node Tool</strong>
+(<code>N</code>) to ensure there are no unintended gaps, stray nodes, or
+disconnected floating "islands."</li>
+</ol>
+<h3 id="step-5-test-the-layer-stack-visuals">Step 5: Test the Layer
+Stack Visuals</h3>
+<ol type="1">
+<li>Assign different shades of a single color (from light in the back to
+dark in the front) to each layer using the <strong>Fill and
+Stroke</strong> panel (<code>Ctrl + Shift + F</code>).</li>
+<li>Stack all layers directly on top of each other using the
+<strong>Align and Distribute</strong> panel.</li>
+<li>Toggle layer visibility on and off to ensure each layer contributes
+proper depth without completely obstructing the details behind it.</li>
+</ol>
+<h3 id="step-6-export-for-cutting">Step 6: Export for Cutting</h3>
+<ol type="1">
+<li>Unlock all layers and spread each completed frame side-by-side on
+the canvas, or keep them aligned and export them layer-by-layer.</li>
+<li>Ensure all objects are converted to paths by selecting everything
+and clicking <strong>Path &gt; Object to Path</strong>
+(<code>Ctrl + Shift + C</code>).</li>
+<li>Save your project as an <strong>Inkscape SVG</strong>
+(<code>.svg</code>) for Cricut Design Space or laser software, or export
+as <strong>DXF</strong> for Silhouette Studio Basic Edition.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

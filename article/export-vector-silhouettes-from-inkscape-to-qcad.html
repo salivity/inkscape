@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Vector Silhouettes from Inkscape to QCAD - inkscape</title>
+    <meta name="description" content="Exporting vector silhouettes from Inkscape into QCAD allows architects and draftsmen to incorporate custom entourage—such as people, vegetation, and vehicles—into technical drawings. This guide outlines the complete process of cleaning vector artwork">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-vector-silhouettes-from-inkscape-to-qcad">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Vector Silhouettes from Inkscape to QCAD - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-vector-silhouettes-from-inkscape-to-qcad" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting vector silhouettes from Inkscape into QCAD allows architects and draftsmen to incorporate custom entourage—such as people, vegetation, and vehicles—into technical drawings. This guide outlines the complete process of cleaning vector artwork" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-vector-silhouettes-from-inkscape-to-qcad">Export Vector
+Silhouettes from Inkscape to QCAD</h1>
+<p>Exporting vector silhouettes from Inkscape into QCAD allows
+architects and draftsmen to incorporate custom entourage—such as people,
+vegetation, and vehicles—into technical drawings. This guide outlines
+the complete process of cleaning vector artwork in Inkscape, converting
+paths to a CAD-friendly format, exporting as DXF, and properly scaling
+and organizing the silhouette inside QCAD for 2D architectural
+detailing.</p>
+<h3 id="1-prepare-the-vector-in-inkscape">1. Prepare the Vector in
+Inkscape</h3>
+<p>Before exporting, you must convert the silhouette into clean,
+continuous geometry that CAD software can interpret without visual
+distortion or missing geometry.</p>
+<ul>
+<li><strong>Simplify and Merge Paths:</strong> If your silhouette
+consists of multiple overlapping shapes, select all components and
+navigate to <strong>Path &gt; Union</strong>. This eliminates
+overlapping boundary lines.</li>
+<li><strong>Convert Objects to Paths:</strong> Ensure all elements are
+pure vector paths by selecting everything and clicking <strong>Path &gt;
+Object to Path</strong>.</li>
+<li><strong>Handle Fills and Strokes:</strong> CAD software works
+strictly with lines, not filled vector paths. Select your silhouette,
+set the <strong>Fill</strong> to "None" in the <em>Fill and Stroke</em>
+panel, and assign a solid color to the <strong>Stroke</strong>. This
+prevents double-line exports and ensures a single outline is
+generated.</li>
+<li><strong>Set Document Units:</strong> Go to <strong>File &gt;
+Document Properties</strong> and set the display units to the unit you
+use in your architectural drawings (e.g., millimeters or meters).</li>
+</ul>
+<h3 id="2-export-to-autocad-dxf">2. Export to AutoCAD DXF</h3>
+<p>QCAD natively uses DXF and DWG formats. Inkscape can export directly
+to DXF using built-in filters.</p>
+<ol type="1">
+<li>Click <strong>File &gt; Save As...</strong></li>
+<li>In the file format dropdown, select <strong>AutoCAD DXF R14
+(*.dxf)</strong> or <strong>Desktop Cutting Plotter (AutoCAD DXF R14)
+(*.dxf)</strong>.</li>
+<li>Choose a destination folder and click <strong>Save</strong>.</li>
+<li>In the export settings dialog:
+<ul>
+<li>Set the <strong>Base unit</strong> to match your target drawing
+standard (typically <code>mm</code> or <code>m</code>).</li>
+<li>Check <strong>ROBO-Master</strong> or <strong>LWPOLYLINE</strong> if
+available to ensure paths export as connected continuous polylines
+rather than fragmented line segments.</li>
+<li>Click <strong>OK</strong> to complete the export.</li>
+</ul></li>
+</ol>
+<h3 id="3-import-and-standardize-in-qcad">3. Import and Standardize in
+QCAD</h3>
+<p>Once exported, import the file into QCAD to ensure proper scaling,
+layer assignment, and block creation.</p>
+<ul>
+<li><strong>Open the File:</strong> Launch QCAD, go to <strong>File &gt;
+Open</strong>, and select the saved DXF file.</li>
+<li><strong>Check the Scale:</strong> Silhouettes exported from
+illustration software often require scale adjustments. Use the
+measurement tool (<strong>Info &gt; Distance Point to Point</strong>) to
+measure a known dimension (such as the height of an average person,
+typically 1750 mm). If the scale is incorrect, select the geometry, run
+the <strong>Modify &gt; Scale</strong> command, and adjust it using a
+reference factor.</li>
+<li><strong>Assign to a Dedicated Layer:</strong> Create a specific
+layer (e.g., <code>A-FLOR-ENTR</code> or <code>Det-Silhouettes</code>)
+with your preferred lineweight and color settings, then move the
+silhouette entities onto this layer via the <strong>Property
+Editor</strong>.</li>
+<li><strong>Convert into a Block:</strong> To reuse the silhouette
+repeatedly across different sections and elevations without cluttering
+drawing geometry, select the silhouette and go to <strong>Block &gt;
+Create Block from Selection</strong>. Specify an insertion point
+(typically the bottom-center or the ground line of the silhouette) and
+name the block.</li>
+</ul>
+<p>Your silhouette is now stored as a clean, reusable 2D vector asset
+ready for insertion into any QCAD detailing sheet.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

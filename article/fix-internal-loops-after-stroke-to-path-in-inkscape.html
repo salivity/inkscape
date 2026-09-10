@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Internal Loops After Stroke to Path in Inkscape - inkscape</title>
+    <meta name="description" content="Converting a self-crossing stroke to a path in Inkscape often generates unwanted internal loops and overlapping geometry at the intersection points. This guide provides direct, step-by-step methods to remove these internal artifacts—using the Union ope">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/fix-internal-loops-after-stroke-to-path-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Fix Internal Loops After Stroke to Path in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/fix-internal-loops-after-stroke-to-path-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting a self-crossing stroke to a path in Inkscape often generates unwanted internal loops and overlapping geometry at the intersection points. This guide provides direct, step-by-step methods to remove these internal artifacts—using the Union ope" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="fix-internal-loops-after-stroke-to-path-in-inkscape">Fix
+Internal Loops After Stroke to Path in Inkscape</h1>
+<p>Converting a self-crossing stroke to a path in Inkscape often
+generates unwanted internal loops and overlapping geometry at the
+intersection points. This guide provides direct, step-by-step methods to
+remove these internal artifacts—using the Union operation, the Shape
+Builder tool, or manual node editing—so you are left with a clean,
+single-outline vector shape ready for production, plotting, or laser
+cutting.</p>
+<h2 id="method-1-the-quick-union-fix">Method 1: The Quick Union Fix</h2>
+<p>In most cases, Inkscape can automatically resolve overlapping
+segments using a Boolean operation.</p>
+<ol type="1">
+<li>Select the object containing the internal loops using the
+<strong>Select Tool</strong> (<code>S</code>).</li>
+<li>Go to the top menu and select <strong>Path</strong> &gt;
+<strong>Union</strong> (or press <code>Ctrl</code> +
+<code>+</code>).</li>
+</ol>
+<p>The Union command detects the self-intersecting boundaries, dissolves
+the internal overlapping geometry, and merges the shape into a solid,
+clean outer perimeter.</p>
+<h2 id="method-2-break-apart-and-union-for-persistent-artifacts">Method
+2: Break Apart and Union (For Persistent Artifacts)</h2>
+<p>If a simple Union fails to eliminate tiny hidden subpath loops,
+breaking the path apart first forces Inkscape to re-evaluate every
+closed sub-shape.</p>
+<ol type="1">
+<li>Select the converted path.</li>
+<li>Go to <strong>Path</strong> &gt; <strong>Break Apart</strong> (or
+press <code>Ctrl</code> + <code>Shift</code> + <code>K</code>). The
+shape will split into individual solid pieces, turning any internal
+loops into independent closed paths.</li>
+<li>Keep all pieces selected.</li>
+<li>Go to <strong>Path</strong> &gt; <strong>Union</strong> (or press
+<code>Ctrl</code> + <code>+</code>).</li>
+</ol>
+<p>Inkscape will fuse all adjacent and overlapping shapes together,
+completely absorbing the internal loop fragments into the main body.</p>
+<h2 id="method-3-using-the-shape-builder-tool">Method 3: Using the Shape
+Builder Tool</h2>
+<p>For modern versions of Inkscape (version 1.2 and newer), the Shape
+Builder tool provides visual control over which areas to keep, merge, or
+delete.</p>
+<ol type="1">
+<li>Select the path with the <strong>Select Tool</strong>
+(<code>S</code>).</li>
+<li>Switch to the <strong>Shape Builder Tool</strong> by pressing
+<code>X</code> (or selecting it from the left toolbar).</li>
+<li>Hover over the regions created by the intersection.</li>
+<li>Click and drag a line across the internal loop and the main path
+bodies to merge them into a continuous shape.</li>
+<li>Alternatively, hold <code>Shift</code> and click directly on an
+unwanted internal segment to delete it entirely.</li>
+<li>Click the checkmark icon in the tool controls bar to apply the
+changes.</li>
+</ol>
+<h2 id="method-4-manual-node-cleanup">Method 4: Manual Node Cleanup</h2>
+<p>If the automated tools alter the surrounding geometry or produce
+stray nodes, clean the intersection manually:</p>
+<ol type="1">
+<li>Switch to the <strong>Node Tool</strong> (<code>N</code>) and click
+the path.</li>
+<li>Zoom in on the self-crossing intersection.</li>
+<li>Click and drag to select the extra nodes defining the inside of the
+loop.</li>
+<li>Press <code>Delete</code> or <code>Backspace</code>.</li>
+<li>Adjust the remaining node handles to restore the smoothness of the
+outer curve.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

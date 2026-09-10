@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Live Path Effects from Google Summer of Code - inkscape</title>
+    <meta name="description" content="Inkscape's Live Path Effects (LPE) system revolutionized vector editing by allowing non-destructive, real-time path modifications. A significant portion of this architecture, along with many of its most popular and enduring tools, was originally designed">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-live-path-effects-from-google-summer-of-code">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Live Path Effects from Google Summer of Code - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-live-path-effects-from-google-summer-of-code" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape's Live Path Effects (LPE) system revolutionized vector editing by allowing non-destructive, real-time path modifications. A significant portion of this architecture, along with many of its most popular and enduring tools, was originally designed" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-live-path-effects-from-google-summer-of-code">Inkscape
+Live Path Effects from Google Summer of Code</h1>
+<p>Inkscape's Live Path Effects (LPE) system revolutionized vector
+editing by allowing non-destructive, real-time path modifications. A
+significant portion of this architecture, along with many of its most
+popular and enduring tools, was originally designed and implemented by
+student developers participating in the Google Summer of Code (GSoC)
+program.</p>
+<h3 id="gsoc-2007-foundation-and-initial-effects">GSoC 2007: Foundation
+and Initial Effects</h3>
+<p>The foundation of the Live Path Effects system itself was created
+during GSoC 2007 by developer Johan Engelen. Alongside the underlying
+C++ framework that allowed paths to be processed non-destructively
+before rendering, several original effects were created as
+proof-of-concept and core functionality:</p>
+<ul>
+<li><strong>Pattern Along Path:</strong> Allows users to bend and repeat
+a source vector path or shape along the spine of a target path.</li>
+<li><strong>Bend:</strong> Warps and deforms an entire path along the
+curvature of an interactive middle line.</li>
+<li><strong>Stitch Sub-Paths:</strong> Connects distinct sub-paths with
+a series of generated parallel or interpolated lines.</li>
+<li><strong>Interpolate Sub-Paths:</strong> Dynamically calculates
+intermediate steps between two or more sub-paths.</li>
+<li><strong>Gears:</strong> Generates customizable interlocking
+mechanical gear profiles dynamically based on teeth count and
+pitch.</li>
+<li><strong>Hatches (Rough Hatches):</strong> Fills an enclosed path
+with simulated hand-drawn hatching patterns that react live to shape
+modifications.</li>
+<li><strong>Envelope Deformation:</strong> Deforms a path using four
+bounding boundary paths (top, bottom, left, right).</li>
+<li><strong>Curvature Measurement:</strong> Analyzes and visually
+displays curvature plots and radius lines along a path.</li>
+</ul>
+<h3 id="gsoc-2008-artistic-and-structural-effects">GSoC 2008: Artistic
+and Structural Effects</h3>
+<p>Following the successful debut of the LPE architecture, GSoC 2008
+student Jérémy Le Floc'h expanded the library with both technical and
+artistic effects:</p>
+<ul>
+<li><strong>Knot:</strong> Automatically detects path intersections and
+renders gaps to create the illusion of overlapping, interwoven ribbons
+or Celtic knots.</li>
+<li><strong>Sketch:</strong> Simulates hand-drawn pencil sketches by
+adding strokes, overshoots, and tremors to clean vector geometry.</li>
+<li><strong>Construct Grid:</strong> Automatically divides the bounding
+box of a path into an adjustable 2D grid matrix.</li>
+<li><strong>VonKoch:</strong> Generates recursive fractal geometry along
+path segments based on the classic Koch snowflake algorithm.</li>
+</ul>
+<h3 id="gsoc-2011-stroke-modulation">GSoC 2011: Stroke Modulation</h3>
+<ul>
+<li><strong>PowerStroke:</strong> Developed by Soren Häuser, PowerStroke
+solved one of the most requested features in vector art by providing
+interactive control handles to alter stroke width dynamically at
+multiple points along a single path.</li>
+</ul>
+<h3 id="gsoc-2014-curve-smoothing-modes">GSoC 2014: Curve Smoothing
+Modes</h3>
+<ul>
+<li><strong>Spiro Splines and B-Splines:</strong> Implemented in the
+modern LPE stack by Theodor Popescu, these mathematical path solvers
+allow paths to bend automatically through control nodes using Euler
+spirals (Spiro) or cubic basis splines (B-Splines), eliminating the need
+to adjust individual Bézier handles manually.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

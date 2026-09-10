@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is Spiro Path Mode in Inkscape? - inkscape</title>
+    <meta name="description" content="Spiro path mode is a path creation setting available in Inkscape's Draw Freehand Lines (Pencil) and Draw Bezier Curves (Pen) tools that automatically generates ultra-smooth, flowing curves based on clothoid spirals. Instead of requiring you to manually a">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/what-is-spiro-path-mode-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What is Spiro Path Mode in Inkscape? - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/what-is-spiro-path-mode-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Spiro path mode is a path creation setting available in Inkscape's Draw Freehand Lines (Pencil) and Draw Bezier Curves (Pen) tools that automatically generates ultra-smooth, flowing curves based on clothoid spirals. Instead of requiring you to manually a" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="what-is-spiro-path-mode-in-inkscape">What is Spiro Path Mode in
+Inkscape?</h1>
+<p>Spiro path mode is a path creation setting available in Inkscape's
+Draw Freehand Lines (Pencil) and Draw Bezier Curves (Pen) tools that
+automatically generates ultra-smooth, flowing curves based on clothoid
+spirals. Instead of requiring you to manually adjust Bezier direction
+handles to smooth out transitions, Spiro mode dynamically calculates the
+curve so that curvature changes continuously between nodes, preventing
+harsh kinks and unnatural bumps.</p>
+<h3 id="how-spiro-path-mode-works">How Spiro Path Mode Works</h3>
+<p>When you draw in standard Bezier mode, curves are determined by cubic
+Bezier segments controlled by individual node handles. Spiro path mode
+replaces this behavior with a mathematical model based on Euler spirals
+(clothoids).</p>
+<p>When active, the path automatically routes through the points you
+place with continuous curvature (G2 continuity). This means the curve
+transitions smoothly from straight lines into bends without sudden
+shifts in radius, mirroring the natural physics of bending a flexible
+strip of metal or wood.</p>
+<h3 id="enabling-and-using-the-mode">Enabling and Using the Mode</h3>
+<p>You can find the Spiro option in the <strong>Tool Controls
+Bar</strong> at the top of the canvas when either the <strong>Pen
+(B)</strong> or <strong>Pencil (P)</strong> tool is selected:</p>
+<ol type="1">
+<li>Select the <strong>Pen</strong> or <strong>Pencil</strong>
+tool.</li>
+<li>In the top toolbar under the <strong>Mode</strong> section, click
+the <strong>Create Spiro path</strong> icon (a smooth, swirling
+line).</li>
+<li>Click on the canvas to place your nodes. Inkscape will automatically
+compute the smooth curve connecting them in real-time.</li>
+</ol>
+<h3 id="node-control-and-editing">Node Control and Editing</h3>
+<p>Paths drawn with Spiro mode use the <strong>Node Tool (N)</strong>
+differently than standard paths:</p>
+<ul>
+<li><strong>Smooth Nodes:</strong> Default nodes act as anchor points
+through which the curve glides seamlessly. Moving a single node
+recalculates the entire curve across adjacent segments.</li>
+<li><strong>Cusp/Corner Nodes:</strong> Changing a node to a cusp allows
+you to create sharp angles within an otherwise fluid, curved shape.</li>
+<li><strong>No Manual Handles:</strong> You do not need to drag
+directional handles; the shape is defined purely by node positions and
+node types.</li>
+</ul>
+<h3 id="live-path-effect-integration">Live Path Effect Integration</h3>
+<p>Spiro mode operates non-destructively as a <strong>Live Path Effect
+(LPE)</strong>. Behind the scenes, Inkscape applies the <em>Spiro
+spline</em> effect to a basic polygonal path.</p>
+<p>Because it is an LPE, you can:</p>
+<ul>
+<li>Modify the underlying skeleton path at any time using the Node
+tool.</li>
+<li>Switch the path back to a standard Bezier path via the <strong>Path
+&gt; Path Effects</strong> panel.</li>
+<li>Permanently convert the Spiro curve into a standard Bezier path by
+selecting <strong>Path &gt; Object to Path</strong>.</li>
+</ul>
+<h3 id="best-use-cases">Best Use Cases</h3>
+<ul>
+<li><strong>Typography and Lettering:</strong> Creating balanced,
+sweeping character stems and flourishes.</li>
+<li><strong>Logo Design:</strong> Drawing perfectly proportioned
+geometric and organic curves.</li>
+<li><strong>Line Art and Inking:</strong> Achieving clean, professional
+contour lines without the wobbles of freehand drawing.</li>
+<li><strong>Technical Illustration:</strong> Routing smooth paths,
+tracks, or pipelines where consistent curvature radius is required.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

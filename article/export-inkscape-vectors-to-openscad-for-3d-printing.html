@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape Vectors to OpenSCAD for 3D Printing - inkscape</title>
+    <meta name="description" content="Exporting 2D vector contours from Inkscape to OpenSCAD is a fast and precise way to transform graphic designs into extruded 3D-printable models. This workflow requires preparing closed vector paths in Inkscape, exporting them as standard SVG or DXF files">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-openscad-for-3d-printing">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape Vectors to OpenSCAD for 3D Printing - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-openscad-for-3d-printing" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting 2D vector contours from Inkscape to OpenSCAD is a fast and precise way to transform graphic designs into extruded 3D-printable models. This workflow requires preparing closed vector paths in Inkscape, exporting them as standard SVG or DXF files" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-vectors-to-openscad-for-3d-printing">Export
+Inkscape Vectors to OpenSCAD for 3D Printing</h1>
+<p>Exporting 2D vector contours from Inkscape to OpenSCAD is a fast and
+precise way to transform graphic designs into extruded 3D-printable
+models. This workflow requires preparing closed vector paths in
+Inkscape, exporting them as standard SVG or DXF files, and using
+OpenSCAD’s <code>import()</code> and <code>linear_extrude()</code>
+functions to convert the flat profiles into solid geometries ready for
+slicing and 3D printing.</p>
+<h3 id="step-1-prepare-the-vector-in-inkscape">Step 1: Prepare the
+Vector in Inkscape</h3>
+<p>OpenSCAD requires 2D geometry to consist of clean, closed contours.
+Open your design in Inkscape and prepare the geometry:</p>
+<ol type="1">
+<li><strong>Convert Objects to Paths</strong>: Select all elements in
+your document and navigate to <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>).</li>
+<li><strong>Convert Strokes to Paths</strong>: If your design relies on
+stroke thickness rather than filled shapes, go to <strong>Path &gt;
+Stroke to Path</strong> (<code>Ctrl + Alt + C</code>).</li>
+<li><strong>Combine Shapes</strong>: Use Boolean operations like
+<strong>Path &gt; Union</strong> (<code>Ctrl + +</code>) or <strong>Path
+&gt; Difference</strong> (<code>Ctrl + -</code>) to merge overlapping
+geometry and remove duplicate interior lines.</li>
+<li><strong>Set Units to Millimeters</strong>: Go to <strong>File &gt;
+Document Properties</strong> (<code>Shift + Ctrl + D</code>) and set the
+<strong>Display units</strong> to <code>mm</code>. Align your design
+with the page origin (bottom-left or top-left corner) to ensure
+predictable positioning in OpenSCAD.</li>
+</ol>
+<h3 id="step-2-export-the-file">Step 2: Export the File</h3>
+<p>OpenSCAD supports both SVG and DXF imports. Standard SVG is
+recommended for modern versions of OpenSCAD.</p>
+<ul>
+<li><strong>For SVG (Recommended)</strong>: Go to <strong>File &gt; Save
+As</strong>, choose <strong>Plain SVG (*.svg)</strong>, and save your
+file in your OpenSCAD project folder.</li>
+<li><strong>For DXF</strong>: Go to <strong>File &gt; Save As</strong>,
+select <strong>AutoCAD DXF R14 (*.dxf)</strong>, and check <strong>Use
+LWPOLYLINE type</strong> to ensure paths remain continuous. Set base
+units to millimeters.</li>
+</ul>
+<h3 id="step-3-import-and-extrude-in-openscad">Step 3: Import and
+Extrude in OpenSCAD</h3>
+<p>Create a new script in OpenSCAD and save it in the same directory as
+your exported vector file. Use the <code>import()</code> and
+<code>linear_extrude()</code> modules to give the 2D path thickness:</p>
+<pre class="openscad"><code>// Set extrusion height in millimeters
+extrusion_height = 5;
+
+// Extrude the vector design
+linear_extrude(height = extrusion_height, center = false, convexity = 10) {
+    import(&quot;design.svg&quot;, center = true, dpi = 96);
+}</code></pre>
+<p><em>Note: If using a DXF file, replace <code>"design.svg"</code> with
+<code>"design.dxf"</code> and omit the <code>dpi</code>
+parameter.</em></p>
+<h3 id="step-4-render-and-export-for-3d-printing">Step 4: Render and
+Export for 3D Printing</h3>
+<ol type="1">
+<li>Press <strong>F5</strong> to preview the extruded model in
+OpenSCAD.</li>
+<li>Press <strong>F6</strong> to fully render the 3D geometry
+(Computational Geometry / CGAL).</li>
+<li>Go to <strong>File &gt; Export &gt; Export as STL...</strong> (or
+3MF).</li>
+<li>Load the exported STL file into your slicer software (such as
+PrusaSlicer, Cura, or Bambu Studio) and slice it for 3D printing.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

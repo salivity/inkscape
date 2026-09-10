@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated Jump-Stitch Trimming in Ink/Stitch - inkscape</title>
+    <meta name="description" content="This guide explains how to configure automated jump-stitch trimming commands in Ink/Stitch for Inkscape. By attaching native trim commands to specific embroidery elements or configuring global jump-distance thresholds, you can command compatible embroide">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/automated-jump-stitch-trimming-in-ink-stitch">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Automated Jump-Stitch Trimming in Ink/Stitch - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/automated-jump-stitch-trimming-in-ink-stitch" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to configure automated jump-stitch trimming commands in Ink/Stitch for Inkscape. By attaching native trim commands to specific embroidery elements or configuring global jump-distance thresholds, you can command compatible embroide" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="automated-jump-stitch-trimming-in-inkstitch">Automated
+Jump-Stitch Trimming in Ink/Stitch</h1>
+<p>This guide explains how to configure automated jump-stitch trimming
+commands in Ink/Stitch for Inkscape. By attaching native trim commands
+to specific embroidery elements or configuring global jump-distance
+thresholds, you can command compatible embroidery machines to cut travel
+threads automatically between sections, significantly reducing manual
+cleanup after stitching.</p>
+<h3 id="method-1-attaching-direct-trim-commands-to-objects">Method 1:
+Attaching Direct Trim Commands to Objects</h3>
+<p>Attaching an explicit trim command to an object instructs the
+embroidery machine to cut the thread immediately after completing that
+specific element.</p>
+<ol type="1">
+<li><strong>Select the Object:</strong> In your Inkscape workspace, use
+the <strong>Select tool (S)</strong> to click the path or shape after
+which you want the thread trimmed.</li>
+<li><strong>Open the Commands Menu:</strong> Navigate to the top menu
+and select <strong>Extensions &gt; Ink/Stitch &gt; Commands &gt; Attach
+commands to selected objects...</strong></li>
+<li><strong>Select the Trim Option:</strong> In the dialog window that
+appears, look for the option labeled <strong>Trim thread after this
+object</strong> (or simply <strong>Trim thread</strong> depending on
+your Ink/Stitch version) and check its box.</li>
+<li><strong>Apply:</strong> Click <strong>Apply</strong>, then
+<strong>Close</strong>.</li>
+</ol>
+<p>A visual trim indicator—represented by a small scissors icon or
+marker connected by a dashed line to your object—will appear on your
+canvas. This marker signals the exact point where the trim instruction
+is injected into the stitch sequence. Do not delete this marker; it will
+not be stitched, but it must remain on the canvas to generate the
+machine trim command.</p>
+<h3 id="method-2-automatic-trimming-via-jump-stitch-length">Method 2:
+Automatic Trimming via Jump-Stitch Length</h3>
+<p>If you do not want to place individual commands manually, Ink/Stitch
+can automatically insert trims whenever a jump stitch exceeds a
+specified distance.</p>
+<ol type="1">
+<li><strong>Open Document or Layer Properties:</strong> Select your
+object or entire layer, then navigate to <strong>Extensions &gt;
+Ink/Stitch &gt; Params</strong>.</li>
+<li><strong>Set Jump Distance:</strong> Locate the jump stitch settings
+or travel path configurations. For designs with long distances between
+objects, ensure your export format settings recognize jumps as
+trims.</li>
+<li><strong>Configure Export Settings:</strong> Go to <strong>Extensions
+&gt; Ink/Stitch &gt; Preferences</strong> (or output settings for
+specific formats like DST). Set the minimum jump stitch threshold to
+trigger a trim command. When a travel line exceeds this value,
+Ink/Stitch will automatically convert the jump into a trim event.</li>
+</ol>
+<h3 id="exporting-and-machine-compatibility">Exporting and Machine
+Compatibility</h3>
+<p>For automated trims to function on your embroidery machine:</p>
+<ul>
+<li><strong>File Format Support:</strong> Save your finished file using
+<strong>File &gt; Save As...</strong> or <strong>File &gt; Save a
+Copy...</strong> into a format that supports trim commands, such as
+<strong>.PES</strong>, <strong>.DST</strong>, <strong>.EXP</strong>, or
+<strong>.JEF</strong>. Note that some older machines or basic formats
+may interpret trim signals as multiple jump stitches rather than hard
+cuts.</li>
+<li><strong>Machine Settings:</strong> Ensure that your embroidery
+machine's internal settings have automated thread cutting enabled for
+jump stitches, as hardware toggles can override file instructions.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

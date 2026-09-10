@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Prepare Inkscape SVGs for GSAP - inkscape</title>
+    <meta name="description" content="Preparing Scalable Vector Graphics (SVG) in Inkscape for GreenSock Animation Platform (GSAP) requires structuring your artwork for clean DOM manipulation, predictable transform origins, and minimal code bloat. By establishing semantic naming conventions,">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-prepare-inkscape-svgs-for-gsap">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Prepare Inkscape SVGs for GSAP - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-prepare-inkscape-svgs-for-gsap" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Preparing Scalable Vector Graphics (SVG) in Inkscape for GreenSock Animation Platform (GSAP) requires structuring your artwork for clean DOM manipulation, predictable transform origins, and minimal code bloat. By establishing semantic naming conventions," />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-prepare-inkscape-svgs-for-gsap">How to Prepare Inkscape
+SVGs for GSAP</h1>
+<p>Preparing Scalable Vector Graphics (SVG) in Inkscape for GreenSock
+Animation Platform (GSAP) requires structuring your artwork for clean
+DOM manipulation, predictable transform origins, and minimal code bloat.
+By establishing semantic naming conventions, converting geometric
+objects to standard paths, flattening unwanted transforms, and exporting
+clean code, you ensure that GSAP can target and animate your vector
+assets smoothly without visual bugs or performance bottlenecks.</p>
+<h3 id="1-structure-groups-and-assign-semantic-ids">1. Structure Groups
+and Assign Semantic IDs</h3>
+<p>GSAP selects elements using standard CSS selectors such as IDs and
+classes. Inside Inkscape:</p>
+<ul>
+<li>Open the <strong>Objects</strong> panel
+(<code>Object &gt; Objects...</code>) to view the document tree.</li>
+<li>Group related elements together (<code>Ctrl + G</code>) to create
+parent <code>&lt;g&gt;</code> tags for composite objects you intend to
+animate as a single unit.</li>
+<li>Rename groups and critical shapes using the <strong>Object
+Properties</strong> panel (<code>Shift + Ctrl + O</code>). Set clear,
+unique values in the <strong>ID</strong> field (for example,
+<code>star-icon</code> or <code>gear-wheel</code>). Inkscape writes
+these directly to the SVG element's <code>id</code> attribute.</li>
+</ul>
+<h3 id="2-convert-objects-and-strokes-to-paths">2. Convert Objects and
+Strokes to Paths</h3>
+<p>Native SVG shapes (<code>&lt;rect&gt;</code>,
+<code>&lt;circle&gt;</code>, <code>&lt;polygon&gt;</code>) can behave
+inconsistently across different GSAP plugins, especially when morphing
+or drawing strokes.</p>
+<ul>
+<li>Select all shapes you plan to morph or manipulate dynamically and
+run <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>). This converts primitives into standard
+<code>&lt;path&gt;</code> elements.</li>
+<li>If you plan to animate stroke line drawings using GSAP's
+DrawSVGPlugin, ensure strokes have an explicit width, a stroke color,
+and no fill.</li>
+<li>If you intend to animate an outline that should maintain a constant
+physical thickness when scaled manually, consider running <strong>Path
+&gt; Stroke to Path</strong> (<code>Ctrl + Alt + C</code>).</li>
+</ul>
+<h3 id="3-clear-and-reset-coordinate-transforms">3. Clear and Reset
+Coordinate Transforms</h3>
+<p>Inkscape frequently attaches inline transform attributes (such as
+<code>transform="matrix(...)"</code> or
+<code>transform="translate(...)"</code>) to elements when you move,
+rotate, or scale them. Because GSAP manages its own transform matrix,
+pre-existing SVG transforms can cause jumpy animations or incorrect
+transform origins.</p>
+<ul>
+<li>Ungroup (<code>Ctrl + Shift + G</code>) and regroup
+(<code>Ctrl + G</code>) elements to force Inkscape to recalculate
+coordinates directly into the path data.</li>
+<li>Alternatively, select an object, cut it (<code>Ctrl + X</code>),
+select the root layer or desired parent group, and paste in place
+(<code>Ctrl + Alt + V</code>).</li>
+<li>Set transform origins purposefully in your GSAP code (e.g.,
+<code>transformOrigin: "50% 50%"</code>) rather than relying on the
+SVG's initial export origin.</li>
+</ul>
+<h3 id="4-configure-the-viewbox-and-document-canvas">4. Configure the
+ViewBox and Document Canvas</h3>
+<p>A properly configured <code>viewBox</code> ensures that SVGs scale
+responsively and coordinates remain consistent across different
+viewports.</p>
+<ul>
+<li>Open <strong>File &gt; Document Properties</strong>
+(<code>Shift + Ctrl + D</code>).</li>
+<li>Under the <strong>Page</strong> tab, set the display units to pixels
+(<code>px</code>).</li>
+<li>Expand <strong>Resize page to content...</strong> and click
+<strong>Resize page to drawing or selection</strong> to remove excess
+whitespace around the canvas, or manually define a fixed aspect ratio
+(such as 800x600 px) to anchor coordinate calculations.</li>
+</ul>
+<h3 id="5-export-as-optimized-svg">5. Export as Optimized SVG</h3>
+<p>Inkscape includes proprietary metadata (such as <code>sodipodi</code>
+and <code>inkscape</code> namespaces) that increases file size and
+clutters your HTML DOM.</p>
+<ul>
+<li>Choose <strong>File &gt; Save As...</strong> and select
+<strong>Optimized SVG (*.svg)</strong> from the file format
+dropdown.</li>
+<li>In the optimization dialog:
+<ul>
+<li>Enable <strong>Remove unused defs</strong>.</li>
+<li>Enable <strong>Convert styles to XML attributes</strong> (GSAP
+targets presentation attributes cleanly).</li>
+<li>Check <strong>Remove inkscape/sodipodi elements and
+attributes</strong>.</li>
+<li>Keep <strong>Keep editor data for re-editing</strong>
+unchecked.</li>
+</ul></li>
+<li>If direct export still contains redundant attributes, pass the final
+asset through an external tool such as SVGO before embedding it into
+your project.</li>
+</ul>
+<h3 id="6-implementation-in-gsap">6. Implementation in GSAP</h3>
+<p>Once your clean SVG is embedded directly into your HTML markup,
+target the IDs defined in Inkscape within your GSAP timeline:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gsap<span class="op">.</span><span class="fu">timeline</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">from</span>(<span class="st">&quot;#gear-wheel&quot;</span><span class="op">,</span> { </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">rotation</span><span class="op">:</span> <span class="dv">360</span><span class="op">,</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">transformOrigin</span><span class="op">:</span> <span class="st">&quot;50% 50%&quot;</span><span class="op">,</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">duration</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">repeat</span><span class="op">:</span> <span class="op">-</span><span class="dv">1</span><span class="op">,</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ease</span><span class="op">:</span> <span class="st">&quot;none&quot;</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">.</span><span class="fu">from</span>(<span class="st">&quot;#star-icon&quot;</span><span class="op">,</span> { </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">scale</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">transformOrigin</span><span class="op">:</span> <span class="st">&quot;center center&quot;</span><span class="op">,</span> </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">duration</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">stagger</span><span class="op">:</span> <span class="fl">0.1</span> </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

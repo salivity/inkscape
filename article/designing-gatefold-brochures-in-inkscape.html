@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designing Gatefold Brochures in Inkscape - inkscape</title>
+    <meta name="description" content="Designing a gatefold brochure requires precise measurements to ensure panels fold flat without buckling, a process known as panel compensation. This guide walks through calculating panel widths, configuring multi-page documents in Inkscape, establishing">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/designing-gatefold-brochures-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Designing Gatefold Brochures in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/designing-gatefold-brochures-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing a gatefold brochure requires precise measurements to ensure panels fold flat without buckling, a process known as panel compensation. This guide walks through calculating panel widths, configuring multi-page documents in Inkscape, establishing" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="designing-gatefold-brochures-in-inkscape">Designing Gatefold
+Brochures in Inkscape</h1>
+<p>Designing a gatefold brochure requires precise measurements to ensure
+panels fold flat without buckling, a process known as panel
+compensation. This guide walks through calculating panel widths,
+configuring multi-page documents in Inkscape, establishing accurate fold
+guides, and preparing print-ready files.</p>
+<h3 id="1-calculate-panel-compensation">1. Calculate Panel
+Compensation</h3>
+<p>A standard closed gatefold features two outer panels that fold inward
+to meet in the center, and then the entire sheet folds in half. Because
+paper has physical thickness, panels that tuck inside must be slightly
+narrower than the outer panels.</p>
+<p>For a standard 8-panel double gatefold (four panels per side):</p>
+<ul>
+<li><strong>Outer Panels:</strong> Standard width (e.g., 8.5 inches / 4
+= 2.125" base).</li>
+<li><strong>Tuck-in Panels:</strong> Subtract 1/16 inch to 1/8 inch (1.5
+mm to 3 mm) from the folding width.</li>
+<li><strong>Cover Panels:</strong> Add the subtracted amount to the
+exterior panels so the total sheet width remains standard.</li>
+</ul>
+<p><strong>Example using an 8.5" x 14" flat sheet (Double
+Gatefold):</strong></p>
+<ul>
+<li><strong>Panel 1 (Left Tuck):</strong> 3.4375" (Narrow)</li>
+<li><strong>Panel 2 (Left Center):</strong> 3.5625" (Wide)</li>
+<li><strong>Panel 3 (Right Center):</strong> 3.5625" (Wide)</li>
+<li><strong>Panel 4 (Right Tuck):</strong> 3.4375" (Narrow)</li>
+<li><strong>Total Width:</strong> 14.0"</li>
+</ul>
+<h3 id="2-set-up-the-multi-page-document">2. Set Up the Multi-Page
+Document</h3>
+<p>Inkscape natively supports multi-page layouts, allowing you to design
+the outer spread and inner spread within the same file.</p>
+<ol type="1">
+<li>Open <strong>File &gt; Document Properties</strong>
+(<code>Shift + Ctrl + D</code>).</li>
+<li>Set your display units to <code>Inches</code> or
+<code>Millimeters</code>.</li>
+<li>Set the flat unfolded size (e.g., Width: 14 in, Height: 8.5
+in).</li>
+<li>Select the <strong>Create and Edit Pages</strong> tool from the
+toolbar (or press <code>Shift + P</code>).</li>
+<li>Click <strong>Create a new page</strong> in the top tool control
+bar. Inkscape will generate a second page of identical dimensions
+directly adjacent to the first.
+<ul>
+<li><strong>Page 1</strong> represents the Outside Spread.</li>
+<li><strong>Page 2</strong> represents the Inside Spread.</li>
+</ul></li>
+</ol>
+<h3 id="3-establish-guides-for-panel-folds">3. Establish Guides for
+Panel Folds</h3>
+<p>Because the interior and exterior spreads mirror each other, your
+fold lines must be placed accordingly.</p>
+<h4 id="outside-spread-page-1">Outside Spread (Page 1)</h4>
+<p>Working from left to right:</p>
+<ol type="1">
+<li>Double-click the left ruler to create a vertical guide.</li>
+<li>Set the position for the first fold at <strong>3.4375"</strong>
+(Left Tuck panel).</li>
+<li>Place the second guide at <strong>7.0"</strong> (Center fold:
+3.4375" + 3.5625").</li>
+<li>Place the third guide at <strong>10.5625"</strong> (7.0" +
+3.5625").</li>
+</ol>
+<h4 id="inside-spread-page-2">Inside Spread (Page 2)</h4>
+<p>The orientation is mirrored when viewing the inside of the sheet:</p>
+<ol type="1">
+<li>Place the first fold at <strong>3.4375"</strong> (Right Tuck when
+folded, now on the left).</li>
+<li>Place the second guide at <strong>7.0"</strong> (Center fold).</li>
+<li>Place the third guide at <strong>10.5625"</strong>.</li>
+</ol>
+<h3 id="4-create-safe-margins-and-bleeds">4. Create Safe Margins and
+Bleeds</h3>
+<p>Artwork extending to the edge of the sheet requires a bleed allowance
+(typically 0.125 inches or 3 mm).</p>
+<ol type="1">
+<li>In <strong>Document Properties</strong>, define a bleed margin of
+<code>0.125 in</code> (or <code>3 mm</code>) on all sides.</li>
+<li>On a dedicated locked layer, draw guide rectangles inside each panel
+to serve as a <strong>Safe Zone</strong> (at least 0.125 inches inside
+every fold line and trim edge). This prevents critical text or logos
+from landing directly on a crease.</li>
+</ol>
+<h3 id="5-layout-and-panel-content">5. Layout and Panel Content</h3>
+<p>Group panel elements logically to avoid layout confusion across the
+folds:</p>
+<ul>
+<li><strong>Page 1 (Exterior):</strong>
+<ul>
+<li>Left: Inside Left Flap (folds inward)</li>
+<li>Middle-Left: Back Cover</li>
+<li>Middle-Right: Front Cover</li>
+<li>Right: Inside Right Flap (folds inward)</li>
+</ul></li>
+<li><strong>Page 2 (Interior):</strong>
+<ul>
+<li>Panels 1–4 read continuously from left to right as an expansive
+four-panel spread when the brochure is fully opened.</li>
+</ul></li>
+</ul>
+<p>Use Inkscape's <strong>Layers and Objects</strong> panel
+(<code>Shift + Ctrl + L</code>) to separate background artwork, panel
+guides, and typography for both pages.</p>
+<h3 id="6-export-for-professional-printing">6. Export for Professional
+Printing</h3>
+<ol type="1">
+<li>Ensure all live text is either converted to paths (<strong>Path &gt;
+Object to Path</strong>) or that all used fonts are embedded.</li>
+<li>Go to <strong>File &gt; Save As...</strong> and select
+<strong>Portable Document Format (*.pdf)</strong>.</li>
+<li>In the PDF export dialogue:
+<ul>
+<li>Select <strong>Include bleed margins</strong>.</li>
+<li>Choose <strong>PDF version 1.5</strong> or higher.</li>
+<li>Set resolution to <strong>300 dpi</strong> for rasterized
+effects.</li>
+<li>Ensure <strong>Output page size</strong> is set to include all pages
+in the document.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

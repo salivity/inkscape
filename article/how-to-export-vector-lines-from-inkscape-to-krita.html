@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Export Vector Lines from Inkscape to Krita - inkscape</title>
+    <meta name="description" content="Combining Inkscape’s precision vector tools with Krita’s rich raster brushes gives artists the best of both worlds: crisp line work and dynamic, textured painting. This guide walks you through preparing, exporting, and importing your vector line art">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-export-vector-lines-from-inkscape-to-krita">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Export Vector Lines from Inkscape to Krita - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-export-vector-lines-from-inkscape-to-krita" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Combining Inkscape’s precision vector tools with Krita’s rich raster brushes gives artists the best of both worlds: crisp line work and dynamic, textured painting. This guide walks you through preparing, exporting, and importing your vector line art" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-export-vector-lines-from-inkscape-to-krita">How to Export
+Vector Lines from Inkscape to Krita</h1>
+<p>Combining Inkscape’s precision vector tools with Krita’s rich raster
+brushes gives artists the best of both worlds: crisp line work and
+dynamic, textured painting. This guide walks you through preparing,
+exporting, and importing your vector line art from Inkscape into Krita,
+while preserving line fidelity and setting up an optimized layer
+hierarchy for painting and raster texturing.</p>
+<h2 id="step-1-prepare-your-line-work-in-inkscape">Step 1: Prepare Your
+Line Work in Inkscape</h2>
+<p>Before exporting, ensure your vector linework is clean and scaled
+appropriately.</p>
+<ol type="1">
+<li><strong>Finalize Strokes:</strong> Ensure all strokes are set to
+their final desired thicknesses. If you use variable-width paths, make
+sure path effects are correctly applied.</li>
+<li><strong>Set Page Borders:</strong> Go to <strong>File &gt; Document
+Properties</strong> (<code>Ctrl+Shift+D</code>) and set the page
+dimensions to the final canvas size you plan to paint on in Krita (e.g.,
+A4, 4K, or custom pixel dimensions).</li>
+<li><strong>Align Artwork:</strong> Center your artwork within the page
+boundaries to avoid edge clipping during export.</li>
+</ol>
+<h2 id="step-2-export-from-inkscape-as-a-high-resolution-png">Step 2:
+Export from Inkscape as a High-Resolution PNG</h2>
+<p>While Krita can import SVG files, exporting a high-resolution raster
+image (PNG with transparency) guarantees that all custom stroke
+profiles, path effects, and miters render exactly as designed.</p>
+<ol type="1">
+<li>Open the export dock via <strong>File &gt; Export</strong>
+(<code>Ctrl+Shift+E</code>).</li>
+<li>Set the export area to <strong>Page</strong> so the canvas bounds
+match your intended layout.</li>
+<li>In the export settings, set the <strong>Resolution</strong> to at
+least <strong>300 DPI</strong> (or higher for large prints) to eliminate
+visible pixelation when zooming in to paint.</li>
+<li>Ensure the output format is set to <strong>PNG</strong> to preserve
+transparent backgrounds.</li>
+<li>Click <strong>Export</strong> and choose a designated file
+path.</li>
+</ol>
+<p><em>(Alternative Method: You can save directly as an <strong>Inkscape
+SVG</strong> or <strong>Plain SVG</strong> if you want to import it as
+an editable Vector Layer inside Krita via <strong>Layer &gt;
+Import/Export &gt; Import Layer</strong>.)</em></p>
+<h2 id="step-3-import-and-set-up-layers-in-krita">Step 3: Import and Set
+Up Layers in Krita</h2>
+<p>Once exported, bring your linework into Krita to prepare it for
+painting.</p>
+<ol type="1">
+<li>Open Krita and open your exported PNG using <strong>File &gt;
+Open</strong>, or drag and drop the file directly onto the Krita canvas
+as a new layer.</li>
+<li>If working within an existing project, go to <strong>Layer &gt;
+Import/Export &gt; Add Layer</strong> and select your PNG file.</li>
+<li>Rename this layer to <strong>Line Art</strong>.</li>
+</ol>
+<h2 id="step-4-configure-the-canvas-for-painting-and-texturing">Step 4:
+Configure the Canvas for Painting and Texturing</h2>
+<p>To paint smoothly without damaging your original vector outlines:</p>
+<ol type="1">
+<li><strong>Lock the Line Art Layer:</strong> Click the lock icon next
+to the <strong>Line Art</strong> layer in the Layers Docker. This
+prevents accidental brush strokes on your clean linework.</li>
+<li><strong>Set Blending Mode:</strong> If your exported line art has a
+solid white background instead of transparency, change the layer
+blending mode from <strong>Normal</strong> to <strong>Multiply</strong>.
+If it is already a transparent PNG, leave it set to
+<strong>Normal</strong>.</li>
+<li><strong>Alpha Lock for Inking/Recoloring:</strong> If you want to
+color the lines themselves, enable <strong>Alpha Lock</strong> (the
+checkerboard icon) on the Line Art layer to paint directly over the
+lines without spilling onto the canvas.</li>
+<li><strong>Create Painting Layers Below:</strong> Add new paint layers
+underneath the <strong>Line Art</strong> layer for your flats, base
+colors, shadows, and raster textures.</li>
+<li><strong>Use Referencing Tools:</strong> When using the <strong>Fill
+Tool</strong> or <strong>Colorize Mask Tool</strong>, ensure the source
+is set to <strong>All Layers</strong> or <strong>Reference
+Layer</strong> so your color flats automatically conform to the vector
+contours.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

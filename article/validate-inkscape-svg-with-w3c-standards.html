@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validate Inkscape SVG with W3C Standards - inkscape</title>
+    <meta name="description" content="Validating SVG files created in Inkscape ensures cross-browser compatibility, clean code, and strict adherence to web standards. This guide covers how to properly export your artwork from Inkscape to strip proprietary metadata, verify the resulting file">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/validate-inkscape-svg-with-w3c-standards">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Validate Inkscape SVG with W3C Standards - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/validate-inkscape-svg-with-w3c-standards" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Validating SVG files created in Inkscape ensures cross-browser compatibility, clean code, and strict adherence to web standards. This guide covers how to properly export your artwork from Inkscape to strip proprietary metadata, verify the resulting file" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="validate-inkscape-svg-with-w3c-standards">Validate Inkscape SVG
+with W3C Standards</h1>
+<p>Validating SVG files created in Inkscape ensures cross-browser
+compatibility, clean code, and strict adherence to web standards. This
+guide covers how to properly export your artwork from Inkscape to strip
+proprietary metadata, verify the resulting file using official W3C
+validation tools, and fix common validation errors that commonly arise
+during the design-to-web workflow.</p>
+<h3 id="step-1-export-as-plain-or-optimized-svg">Step 1: Export as Plain
+or Optimized SVG</h3>
+<p>By default, Inkscape saves files in the "Inkscape SVG" format, which
+includes proprietary metadata and custom namespaces (such as
+<code>inkscape:</code> and <code>sodipodi:</code>) intended for editor
+recovery. These non-standard elements often cause validation errors when
+checked against standard W3C schemas.</p>
+<ol type="1">
+<li>Open your document in Inkscape.</li>
+<li>Go to <strong>File &gt; Save As...</strong> or <strong>File &gt;
+Export</strong>.</li>
+<li>In the file format dropdown, select <strong>Plain SVG
+(*.svg)</strong> or <strong>Optimized SVG (*.svg)</strong>.</li>
+<li>If using Optimized SVG, check the options to remove editor data,
+strip metadata, and remove unused namespaces.</li>
+</ol>
+<h3 id="step-2-test-with-the-w3c-markup-validation-service">Step 2: Test
+with the W3C Markup Validation Service</h3>
+<p>The official W3C validator checks XML syntax, namespaces, and
+standard SVG 1.1 or SVG 2 compliance.</p>
+<ol type="1">
+<li>Navigate to the official W3C Markup Validation Service website.</li>
+<li>Select the <strong>Validate by File Upload</strong> or
+<strong>Validate by Direct Input</strong> tab.</li>
+<li>Upload your saved SVG file or paste its raw XML content directly
+into the text field.</li>
+<li>Click <strong>Check</strong>.</li>
+</ol>
+<p>The validator will parse the document tree and display a green
+"Document successfully checked" message or list specific errors and
+warnings with corresponding line numbers.</p>
+<h3 id="step-3-use-command-line-validation-for-automated-workflows">Step
+3: Use Command-Line Validation for Automated Workflows</h3>
+<p>For local or automated build pipelines, you can validate SVG files
+offline using XML parsers and schemas:</p>
+<ul>
+<li><strong>Using <code>xmllint</code>:</strong> Run
+<code>xmllint --noout --schema http://www.w3.org/TR/2002/WD-SVG11-20020108/SVG.xsd yourfile.svg</code>
+to validate your file against the official SVG XML schema.</li>
+<li><strong>Using <code>svg-validator</code>:</strong> Utilize Node.js
+packages like <code>svg-validator</code> or <code>is-svg</code> to run
+checks directly within developer environments.</li>
+</ul>
+<h3 id="step-4-resolve-common-validation-errors">Step 4: Resolve Common
+Validation Errors</h3>
+<p>If the validator flags errors in your Inkscape file, look for the
+following common issues:</p>
+<ul>
+<li><strong>Missing Namespaces:</strong> Ensure the root
+<code>&lt;svg&gt;</code> element contains the standard XML namespace:
+<code>xmlns="http://www.w3.org/2000/svg"</code>. If using
+<code>xlink:href</code>, make sure
+<code>xmlns:xlink="http://www.w3.org/1999/xlink"</code> is
+declared.</li>
+<li><strong>Leftover Proprietary Attributes:</strong> Manually open the
+SVG in a text editor to remove any lingering <code>sodipodi:*</code> or
+<code>inkscape:*</code> attributes.</li>
+<li><strong>Invalid Characters or Entity References:</strong> Ensure
+that special characters inside text nodes are properly escaped (e.g.,
+<code>&amp;amp;</code> instead of <code>&amp;</code>).</li>
+<li><strong>Deprecated Elements:</strong> Replace obsolete SVG tags or
+presentation attributes with modern CSS or SVG 2-compliant
+attributes.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

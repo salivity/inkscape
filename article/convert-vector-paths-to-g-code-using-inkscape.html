@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Vector Paths to G-Code Using Inkscape - inkscape</title>
+    <meta name="description" content="Converting vector paths to G-code in Inkscape allows you to transform 2D designs into machine-readable instructions for CNC milling machines. This guide walks you through the entire workflow: preparing vector objects, establishing physical machine coordi">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/convert-vector-paths-to-g-code-using-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Convert Vector Paths to G-Code Using Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/convert-vector-paths-to-g-code-using-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting vector paths to G-code in Inkscape allows you to transform 2D designs into machine-readable instructions for CNC milling machines. This guide walks you through the entire workflow: preparing vector objects, establishing physical machine coordi" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="convert-vector-paths-to-g-code-using-inkscape">Convert Vector
+Paths to G-Code Using Inkscape</h1>
+<p>Converting vector paths to G-code in Inkscape allows you to transform
+2D designs into machine-readable instructions for CNC milling machines.
+This guide walks you through the entire workflow: preparing vector
+objects, establishing physical machine coordinates with orientation
+points, configuring cutting parameters via the tool library, and
+exporting standard G-code files using Inkscape's built-in Gcodetools
+extension.</p>
+<h2 id="step-1-prepare-the-vector-design">Step 1: Prepare the Vector
+Design</h2>
+<ol type="1">
+<li>Open your design in Inkscape or import your existing vector
+file.</li>
+<li>Select all objects in your design using <strong>Ctrl +
+A</strong>.</li>
+<li>Convert every element to standard vector paths by navigating to
+<strong>Path &gt; Object to Path</strong>.</li>
+<li>If you have overlapping or grouped shapes, ungroup them
+(<strong>Ctrl + Shift + G</strong>) and combine them into a single path
+if necessary (<strong>Path &gt; Combine</strong>).</li>
+<li>Open <strong>File &gt; Document Properties</strong> and set your
+display units to millimeters (<code>mm</code>) or inches
+(<code>in</code>) to match your CNC controller configuration.</li>
+</ol>
+<h2 id="step-2-set-orientation-points">Step 2: Set Orientation
+Points</h2>
+<p>Orientation points tell the G-code generator the physical scale,
+coordinate origin, and cutting depth of your material.</p>
+<ol type="1">
+<li>Navigate to <strong>Extensions &gt; Gcodetools &gt; Orientation
+points...</strong></li>
+<li>In the dialog, set:
+<ul>
+<li><strong>Orientation type</strong>: 2-points mode.</li>
+<li><strong>Z surface</strong>: <code>0.0</code> (the top surface of the
+workpiece).</li>
+<li><strong>Z depth</strong>: The target cutting depth (e.g.,
+<code>-3.0</code> for a 3mm cut depth).</li>
+<li><strong>Units</strong>: Match your document units (<code>mm</code>
+or <code>in</code>).</li>
+</ul></li>
+<li>Click <strong>Apply</strong> and then close the dialog.</li>
+<li>Inkscape will place a coordinate marker on your canvas. By default,
+the <code>(0,0)</code> point appears at the bottom-left corner of the
+document. Move your drawing relative to this origin as needed.</li>
+</ol>
+<h2 id="step-3-configure-the-tool-library">Step 3: Configure the Tool
+Library</h2>
+<ol type="1">
+<li>Go to <strong>Extensions &gt; Gcodetools &gt; Tools
+library...</strong></li>
+<li>Select <strong>Cylinder</strong> (standard end mill for milling) and
+click <strong>Apply</strong>.</li>
+<li>A green rectangle containing tool parameters will appear on your
+canvas.</li>
+<li>Select the <strong>Text Tool (F8)</strong> and manually edit the
+text inside the green box to match your milling bit and machine
+capabilities:
+<ul>
+<li><strong>diameter</strong>: Diameter of your end mill.</li>
+<li><strong>feed</strong>: Cutting feed rate (speed along X and Y
+axes).</li>
+<li><strong>penetration feed</strong>: Plunge rate (speed along the Z
+axis).</li>
+<li><strong>depth step</strong>: Maximum depth per pass.</li>
+<li><strong>spindle rpm</strong>: Target spindle speed.</li>
+</ul></li>
+</ol>
+<h2 id="step-4-generate-the-g-code">Step 4: Generate the G-Code</h2>
+<ol type="1">
+<li>Select the paths you wish to mill.</li>
+<li>Go to <strong>Extensions &gt; Gcodetools &gt; Path to
+G-code...</strong></li>
+<li>Switch to the <strong>Preferences</strong> tab:
+<ul>
+<li><strong>File</strong>: Enter a filename (e.g.,
+<code>output.ngc</code> or <code>design.gcode</code>).</li>
+<li><strong>Directory</strong>: Enter the absolute folder path where the
+file should be saved (e.g., <code>C:\cnc_files</code> on Windows or
+<code>/home/user/cnc</code> on Linux/macOS).</li>
+<li><strong>Z safe height</strong>: Specify clearance height above the
+material during rapid travel (e.g., <code>5.0</code>).</li>
+</ul></li>
+<li>Switch to the <strong>Path to G-code</strong> tab:
+<ul>
+<li><strong>Biarc interpolation tolerance</strong>: Set to
+<code>0.01</code> or <code>0.001</code> for accurate curve
+rendering.</li>
+</ul></li>
+<li>Click <strong>Apply</strong>.</li>
+</ol>
+<p>Inkscape processes the paths and generates the <code>.gcode</code> or
+<code>.ngc</code> file in your designated directory, complete with
+toolpaths and cutting passes divided according to your defined depth
+step. Load this output file into your CNC control software (such as
+Universal Gcode Sender, Candle, or Mach3) to begin machining.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

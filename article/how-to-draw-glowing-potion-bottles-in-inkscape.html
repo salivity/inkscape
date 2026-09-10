@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Draw Glowing Potion Bottles in Inkscape - inkscape</title>
+    <meta name="description" content="This guide provides a step-by-step walkthrough for creating a stylized magic potion bottle in Inkscape, focusing on realistic glass transparency, volumetric glowing liquid, and vibrant emissive lighting. By leveraging vector tools such as gradients, Gaus">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-draw-glowing-potion-bottles-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Draw Glowing Potion Bottles in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-draw-glowing-potion-bottles-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a step-by-step walkthrough for creating a stylized magic potion bottle in Inkscape, focusing on realistic glass transparency, volumetric glowing liquid, and vibrant emissive lighting. By leveraging vector tools such as gradients, Gaus" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-draw-glowing-potion-bottles-in-inkscape">How to Draw
+Glowing Potion Bottles in Inkscape</h1>
+<p>This guide provides a step-by-step walkthrough for creating a
+stylized magic potion bottle in Inkscape, focusing on realistic glass
+transparency, volumetric glowing liquid, and vibrant emissive lighting.
+By leveraging vector tools such as gradients, Gaussian blur, clipping
+masks, and layer blend modes, you will learn how to turn basic geometric
+shapes into an enchanting, luminous game-art asset.</p>
+<h3 id="1-shape-the-bottle-and-cork">1. Shape the Bottle and Cork</h3>
+<p>Start by creating the basic silhouette of the bottle on a dark
+background to make the glow effects stand out.</p>
+<ul>
+<li>Use the <strong>Rectangle Tool (R)</strong> and <strong>Ellipse Tool
+(E)</strong> to block out the neck, rim, and body, or draw half of the
+bottle profile using the <strong>Draw Bezier Curves Tool
+(B)</strong>.</li>
+<li>If drawing half, duplicate it (<code>Ctrl + D</code>), flip it
+horizontally (<code>H</code>), and combine the two halves using
+<strong>Path &gt; Union</strong>, snapping nodes together to ensure
+perfect symmetry.</li>
+<li>Draw the cork using a tapered rectangle at the top opening.</li>
+<li>Set the base bottle shape to a very dark, slightly desaturated color
+(such as deep navy or charcoal) with an opacity of around 20% to 30%.
+This serves as the rear glass wall.</li>
+</ul>
+<h3 id="2-form-the-base-liquid">2. Form the Base Liquid</h3>
+<p>The liquid inside needs to fit the lower portion of the bottle while
+accounting for glass thickness.</p>
+<ul>
+<li>Duplicate the main bottle path (<code>Ctrl + D</code>).</li>
+<li>Draw an overlapping shape that covers the bottom portion where you
+want the liquid to settle, giving the top edge a curved, elliptical
+curve to represent the meniscus.</li>
+<li>Select both the duplicated bottle and this overlapping shape, then
+execute <strong>Path &gt; Intersection</strong>.</li>
+<li>Scale the resulting liquid path down slightly using <strong>Path
+&gt; Inset</strong> (<code>Ctrl + (</code>) to leave space between the
+liquid and the outer glass wall.</li>
+</ul>
+<h3 id="3-create-the-volumetric-liquid-gradient">3. Create the
+Volumetric Liquid Gradient</h3>
+<p>Volumetric depth comes from concentrated color in the center and
+brighter edges, or an intense, glowing core.</p>
+<ul>
+<li>Select the liquid shape and activate the <strong>Gradient Tool
+(G)</strong> to apply a <strong>Radial Gradient</strong>.</li>
+<li>Place the center point of the radial gradient slightly below the
+center of the liquid mass.</li>
+<li>Set the center stop to a bright, vibrant, high-saturation color
+(such as electric cyan, magenta, or lime green).</li>
+<li>Set the outer stop to a darker, richer shade of the same hue to
+simulate depth where the light dissipates through the fluid.</li>
+</ul>
+<h3 id="4-add-the-internal-core-glow">4. Add the Internal Core Glow</h3>
+<p>To make the potion appear truly magical, it must generate light from
+within.</p>
+<ul>
+<li>Duplicate the liquid shape again and shrink it down significantly
+toward the lower center of the liquid.</li>
+<li>Apply a very light, almost white tint of your liquid’s base
+color.</li>
+<li>In the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>), increase the <strong>Blur</strong>
+slider to roughly 10%–15%. This soft-edged, bright element creates the
+illusion of an intense light source emitting from deep inside the
+fluid.</li>
+<li>Add a few small, sharp circles with varying opacities to represent
+rising effervescent bubbles, with their own subtle gradient fills.</li>
+</ul>
+<h3 id="5-render-glass-transparency-and-specular-highlights">5. Render
+Glass Transparency and Specular Highlights</h3>
+<p>Glass is defined entirely by the reflections on its surface and the
+refraction around its edges.</p>
+<ul>
+<li><strong>Rim Highlights:</strong> Duplicate the outer bottle outline,
+remove the fill, and add a thin, light stroke. Set this stroke to a
+<strong>Linear Gradient</strong> that fades from white to fully
+transparent, emphasizing the edges facing your primary light
+source.</li>
+<li><strong>Curved Specular Glare:</strong> Use the Bezier tool to draw
+long, vertical crescent shapes following the curvature of the bottle’s
+side. Fill these with pure white.</li>
+<li>Use the Gradient Tool to make the crescents fade from about 60%
+opacity to 0% opacity.</li>
+<li>Add a sharp, bright oval highlight along the top rim and another
+along the shoulder of the bottle where the glass bends sharply.</li>
+</ul>
+<h3 id="6-add-the-outer-ambient-glow">6. Add the Outer Ambient Glow</h3>
+<p>The light generated by the potion must spill out into the surrounding
+environment and over the bottle's edges.</p>
+<ul>
+<li>Duplicate the original liquid path and send it slightly backward,
+just behind the glass highlights.</li>
+<li>Change the fill to your primary bright potion color.</li>
+<li>Set the <strong>Blur</strong> slider to a high value (between 25%
+and 40%) and reduce its opacity to 40%–50%.</li>
+<li>In the <strong>Layers and Objects</strong> panel, change this
+blurred layer's blend mode to <strong>Screen</strong> or
+<strong>Lighten</strong>.</li>
+<li>Create a wide, soft ellipse beneath the bottle filled with the glow
+color and blurred heavily to cast glowing ambient light onto the surface
+below.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

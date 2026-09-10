@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimize SVG Path Data in Inkscape - inkscape</title>
+    <meta name="description" content="Optimizing SVG path data using relative coordinates is an effective technique to drastically reduce file byte sizes for web delivery and digital assets. This guide explains how relative coordinates save space, how to configure Inkscape's internal setting">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/optimize-svg-path-data-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Optimize SVG Path Data in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/optimize-svg-path-data-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Optimizing SVG path data using relative coordinates is an effective technique to drastically reduce file byte sizes for web delivery and digital assets. This guide explains how relative coordinates save space, how to configure Inkscape's internal setting" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="optimize-svg-path-data-in-inkscape">Optimize SVG Path Data in
+Inkscape</h1>
+<p>Optimizing SVG path data using relative coordinates is an effective
+technique to drastically reduce file byte sizes for web delivery and
+digital assets. This guide explains how relative coordinates save space,
+how to configure Inkscape's internal settings to force relative path
+commands, and how to export production-ready, lightweight SVGs using
+Inkscape’s optimization tools.</p>
+<h3 id="why-relative-coordinates-reduce-file-size">Why Relative
+Coordinates Reduce File Size</h3>
+<p>SVG path data (<code>d</code> attribute) uses single-letter commands
+followed by coordinate pairs. Absolute commands (uppercase, like
+<code>M</code>, <code>L</code>, <code>C</code>) define points based on
+the canvas origin <code>(0, 0)</code>. When drawing complex shapes far
+from the origin, coordinates quickly grow to three, four, or more digits
+(e.g., <code>L 1420 985</code>).</p>
+<p>Relative commands (lowercase, like <code>m</code>, <code>l</code>,
+<code>c</code>) define points based on the preceding point's position.
+Because adjacent points in vectors are typically close together, their
+offsets are small, single- or double-digit numbers, often negative
+(e.g., <code>l 2 -3</code>). Replacing four-digit numbers with one- or
+two-digit numbers across thousands of path nodes yields a significant
+reduction in file size.</p>
+<h3 id="step-1-configure-inkscape-preferences-for-relative-paths">Step
+1: Configure Inkscape Preferences for Relative Paths</h3>
+<p>Inkscape allows you to define how path data is formatted internally
+while you draw and edit:</p>
+<ol type="1">
+<li>Open <strong>Preferences</strong> by pressing
+<code>Ctrl + Shift + P</code> (Windows/Linux) or
+<code>Cmd + Shift + P</code> (macOS).</li>
+<li>In the left-hand menu, navigate to <strong>Input/Output</strong>
+&gt; <strong>SVG output</strong>.</li>
+<li>Locate the <strong>Path data</strong> section.</li>
+<li>Under <strong>Path string format</strong>, select
+<strong>Relative</strong>.</li>
+<li>Set <strong>Numeric precision</strong> to a balanced level
+(typically <code>2</code> or <code>3</code> decimal places). Reducing
+precision truncates unnecessary sub-pixel decimals (e.g.,
+<code>12.34567</code> becomes <code>12.35</code>), shedding additional
+bytes.</li>
+<li>Close the Preferences window.</li>
+</ol>
+<h3 id="step-2-force-existing-paths-to-update">Step 2: Force Existing
+Paths to Update</h3>
+<p>If you are modifying an existing artwork that already uses absolute
+coordinates, trigger a recalculation so Inkscape applies the new
+relative format:</p>
+<ol type="1">
+<li>Select all paths using <code>Ctrl + A</code> (or
+<code>Cmd + A</code>).</li>
+<li>Nudge the entire selection with your arrow keys (e.g., press
+<code>Right Arrow</code>, then <code>Left Arrow</code> to return it to
+the original position).</li>
+<li>This displacement forces Inkscape to rewrite the <code>d</code>
+attribute using the relative preference you set in the previous
+step.</li>
+</ol>
+<h3 id="step-3-bake-transformations-into-paths">Step 3: Bake
+Transformations into Paths</h3>
+<p>Transform attributes (like <code>transform="matrix(...)"</code>) add
+byte overhead and prevent coordinates from being cleanly stored.</p>
+<ol type="1">
+<li>Select all objects.</li>
+<li>Navigate to <strong>Object</strong> &gt; <strong>Ungroup</strong>
+(<code>Ctrl + Shift + G</code>) repeatedly until all nested groups are
+removed.</li>
+<li>If necessary, combine or convert objects to raw paths via
+<strong>Path</strong> &gt; <strong>Object to Path</strong>
+(<code>Shift + Ctrl + C</code>).</li>
+<li>Re-nudging the objects removes leftover transform matrices and
+directly applies the translations into the path's relative coordinate
+list.</li>
+</ol>
+<h3 id="step-4-save-as-optimized-svg">Step 4: Save as Optimized SVG</h3>
+<p>Inkscape includes an integrated Scour-based export filter
+specifically built for reducing SVG size:</p>
+<ol type="1">
+<li>Go to <strong>File</strong> &gt; <strong>Save As...</strong>.</li>
+<li>Select <strong>Optimized SVG (*.svg)</strong> from the file format
+dropdown.</li>
+<li>In the export configuration dialog:
+<ul>
+<li>Open the <strong>SVG Output</strong> tab and enable <strong>Shorten
+color values</strong>.</li>
+<li>Open the <strong>Paths</strong> tab and set your desired numeric
+precision (recommended: <code>2</code> or <code>3</code>).</li>
+<li>Ensure that <strong>Convert coordinates to relative</strong> or
+equivalent path formatting is active.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to save the streamlined file.</li>
+</ol>
+<h3 id="step-5-verify-the-output">Step 5: Verify the Output</h3>
+<p>To verify that the optimization succeeded, open the built-in XML
+Editor in Inkscape (<code>Ctrl + Shift + X</code>):</p>
+<ol type="1">
+<li>Click on any <code>&lt;svg:path&gt;</code> element in the tree.</li>
+<li>Inspect the <code>d</code> attribute in the right pane.</li>
+<li>An optimized relative path will begin with an absolute or relative
+move (<code>M</code> or <code>m</code>), followed predominantly by
+lowercase relative commands (<code>c</code>, <code>l</code>,
+<code>s</code>, <code>q</code>, <code>z</code>) and small numerical
+values.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

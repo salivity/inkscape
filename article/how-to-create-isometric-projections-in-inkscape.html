@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Isometric Projections in Inkscape - inkscape</title>
+    <meta name="description" content="Creating isometric projections in Inkscape allows you to transform flat 2D vector artwork into pseudo-3D objects aligned to a standard 30-degree isometric grid. This guide explains how to convert flat shapes into Top, Left, and Right isometric planes usi">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-isometric-projections-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Isometric Projections in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-isometric-projections-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating isometric projections in Inkscape allows you to transform flat 2D vector artwork into pseudo-3D objects aligned to a standard 30-degree isometric grid. This guide explains how to convert flat shapes into Top, Left, and Right isometric planes usi" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-isometric-projections-in-inkscape">How to Create
+Isometric Projections in Inkscape</h1>
+<p>Creating isometric projections in Inkscape allows you to transform
+flat 2D vector artwork into pseudo-3D objects aligned to a standard
+30-degree isometric grid. This guide explains how to convert flat shapes
+into Top, Left, and Right isometric planes using the Transform tool (via
+the Scale, Skew, Rotate method) and how to streamline your workflow
+using Inkscape's isometric path tools and axonometric grids.</p>
+<hr />
+<h3 id="the-ssr-method-scale-skew-rotate">The SSR Method (Scale, Skew,
+Rotate)</h3>
+<p>The most precise and standard way to project flat 2D shapes into
+isometric space is the SSR method using the <strong>Transform
+Panel</strong> (<code>Object &gt; Transform</code> or
+<code>Shift + Ctrl + M</code>).</p>
+<p>Draw your 2D flat artwork first, duplicate it for each face you need,
+and apply the following parameters in sequence.</p>
+<h4 id="1-creating-the-top-face-plan-view">1. Creating the Top Face
+(Plan View)</h4>
+<ol type="1">
+<li><strong>Scale</strong>: In the <strong>Scale</strong> tab, uncheck
+<em>Scale proportionally</em>, set the units to <code>%</code>, and set
+<strong>Height</strong> to <code>86.603%</code>. Click
+<strong>Apply</strong>.</li>
+<li><strong>Skew</strong>: Go to the <strong>Skew</strong> tab, set the
+units to <code>degrees</code>, and set <strong>Horizontal (X)</strong>
+to <code>-30°</code>. Click <strong>Apply</strong>.</li>
+<li><strong>Rotate</strong>: Go to the <strong>Rotate</strong> tab, set
+the angle to <code>30°</code> counterclockwise (or <code>-30°</code>
+clockwise depending on desired orientation), and click
+<strong>Apply</strong>.</li>
+</ol>
+<h4 id="2-creating-the-left-face-side-view">2. Creating the Left Face
+(Side View)</h4>
+<ol type="1">
+<li><strong>Scale</strong>: In the <strong>Scale</strong> tab, set
+<strong>Height</strong> to <code>86.603%</code>. Click
+<strong>Apply</strong>.</li>
+<li><strong>Skew</strong>: In the <strong>Skew</strong> tab, set
+<strong>Horizontal (X)</strong> to <code>30°</code>. Click
+<strong>Apply</strong>.</li>
+<li><strong>Rotate</strong>: In the <strong>Rotate</strong> tab, set the
+angle to <code>-30°</code> (clockwise). Click
+<strong>Apply</strong>.</li>
+</ol>
+<h4 id="3-creating-the-right-face-front-view">3. Creating the Right Face
+(Front View)</h4>
+<ol type="1">
+<li><strong>Scale</strong>: In the <strong>Scale</strong> tab, set
+<strong>Height</strong> to <code>86.603%</code>. Click
+<strong>Apply</strong>.</li>
+<li><strong>Skew</strong>: In the <strong>Skew</strong> tab, set
+<strong>Horizontal (X)</strong> to <code>-30°</code>. Click
+<strong>Apply</strong>.</li>
+<li><strong>Rotate</strong>: In the <strong>Rotate</strong> tab, set the
+angle to <code>30°</code> (counterclockwise). Click
+<strong>Apply</strong>.</li>
+</ol>
+<hr />
+<h3 id="using-path-effects-and-extensions">Using Path Effects and
+Extensions</h3>
+<p>For dynamic modifications or batch operations, Inkscape provides
+path-based tools and extensions to automate projection.</p>
+<h4 id="using-the-transform-path-effect">Using the Transform Path
+Effect</h4>
+<ol type="1">
+<li>Select your vector path and open the <strong>Path Effects</strong>
+panel (<code>Path &gt; Path Effects</code>).</li>
+<li>Click the <strong>+</strong> icon and select
+<strong>Transform</strong>.</li>
+<li>Apply the scale, skew, and rotation values mathematically within the
+effect settings to keep the transformation non-destructive.</li>
+</ol>
+<h4 id="using-axonometric-grids-for-manual-construction">Using
+Axonometric Grids for Manual Construction</h4>
+<p>To draw and align isometric paths manually without calculating
+transform values:</p>
+<ol type="1">
+<li>Open <strong>Document Properties</strong>
+(<code>File &gt; Document Properties</code> or
+<code>Shift + Ctrl + D</code>).</li>
+<li>Navigate to the <strong>Grids</strong> tab.</li>
+<li>Select <strong>Axonometric Grid</strong> from the dropdown and click
+<strong>New</strong>.</li>
+<li>Set the <strong>Grid spacing Y</strong> to your desired dimension
+and ensure the <strong>Angle X</strong> and <strong>Angle Z</strong> are
+set to <code>30°</code>.</li>
+<li>Enable <strong>Snapping</strong> (<code>%</code> key or the magnet
+icon in the top right) to snap path nodes directly to the grid
+intersections.</li>
+</ol>
+<hr />
+<h3 id="assembling-the-3d-object">Assembling the 3D Object</h3>
+<ol type="1">
+<li>Enable snapping to <strong>Nodes</strong> and <strong>Cusp
+Nodes</strong> in the snap controls panel.</li>
+<li>Drag the projected Top, Left, and Right faces together so their
+corner nodes align.</li>
+<li>Adjust the fill brightness on each plane (lightest on Top, medium on
+Right, darkest on Left) to simulate directional light and achieve
+depth.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

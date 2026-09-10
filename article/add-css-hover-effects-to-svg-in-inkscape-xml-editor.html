@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add CSS Hover Effects to SVG in Inkscape XML Editor - inkscape</title>
+    <meta name="description" content="Creating interactive SVG hover states allows you to add dynamic visual feedback—such as color changes, opacity shifts, and transitions—directly into a vector file without requiring external CSS files or JavaScript. By utilizing the built-in XML Edito">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/add-css-hover-effects-to-svg-in-inkscape-xml-editor">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Add CSS Hover Effects to SVG in Inkscape XML Editor - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/add-css-hover-effects-to-svg-in-inkscape-xml-editor" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating interactive SVG hover states allows you to add dynamic visual feedback—such as color changes, opacity shifts, and transitions—directly into a vector file without requiring external CSS files or JavaScript. By utilizing the built-in XML Edito" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="add-css-hover-effects-to-svg-in-inkscape-xml-editor">Add CSS
+Hover Effects to SVG in Inkscape XML Editor</h1>
+<p>Creating interactive SVG hover states allows you to add dynamic
+visual feedback—such as color changes, opacity shifts, and
+transitions—directly into a vector file without requiring external CSS
+files or JavaScript. By utilizing the built-in XML Editor in Inkscape,
+you can assign CSS classes to vector shapes and embed a dedicated
+<code>&lt;style&gt;</code> element containing standard
+<code>:hover</code> pseudo-class rules. This guide demonstrates how to
+configure your SVG elements, inject the necessary CSS styling within
+Inkscape, and test the interactive results.</p>
+<h3 id="step-1-open-the-xml-editor">Step 1: Open the XML Editor</h3>
+<ol type="1">
+<li>Open your SVG artwork in Inkscape.</li>
+<li>Open the XML Editor by navigating to <strong>Edit &gt; XML
+Editor</strong> or by pressing <strong>Shift + Ctrl + X</strong>.</li>
+<li>The XML tree on the left displays the structural hierarchy of your
+SVG document, including root tags, layers, and visual shapes.</li>
+</ol>
+<h3 id="step-2-assign-a-class-to-the-target-shape">Step 2: Assign a
+Class to the Target Shape</h3>
+<p>Using CSS classes rather than object IDs makes your code easier to
+manage and reuse across multiple elements.</p>
+<ol type="1">
+<li>On the canvas, select the object you want to animate on hover. The
+corresponding node (such as <code>&lt;svg:path&gt;</code> or
+<code>&lt;svg:rect&gt;</code>) will automatically highlight in the XML
+Editor.</li>
+<li>In the right-hand panel of the XML Editor, locate the attribute
+input fields at the bottom.</li>
+<li>In the <strong>Attribute name</strong> field, type
+<code>class</code>.</li>
+<li>In the <strong>Attribute value</strong> field, type your class name
+(for example, <code>interactive-shape</code>).</li>
+<li>Click <strong>Set</strong> (or press <strong>Ctrl + Enter</strong>)
+to add the attribute to the element.</li>
+</ol>
+<h3 id="step-3-embed-a-style-element">Step 3: Embed a
+<code>&lt;style&gt;</code> Element</h3>
+<p>To declare CSS rules, you must add an internal
+<code>&lt;style&gt;</code> element inside the <code>&lt;defs&gt;</code>
+or root <code>&lt;svg:svg&gt;</code> node.</p>
+<ol type="1">
+<li>In the XML tree, select the <code>&lt;svg:svg&gt;</code> node at the
+very top, or the <code>&lt;svg:defs&gt;</code> node if one already
+exists.</li>
+<li>Click the <strong>New element node</strong> icon on the XML Editor
+toolbar.</li>
+<li>In the dialog, enter <code>style</code> and click
+<strong>Create</strong>.</li>
+<li>With the newly created <code>&lt;svg:style&gt;</code> element
+selected, select the text node child or create a new text node by
+clicking the <strong>New text node</strong> icon.</li>
+<li>In the content panel, specify the CSS rules along with the
+<code>type</code> attribute for the style element:
+<ul>
+<li>Set the attribute <code>type</code> to <code>text/css</code> on the
+<code>&lt;svg:style&gt;</code> element.</li>
+</ul></li>
+</ol>
+<h3 id="step-4-write-the-css-hover-rules">Step 4: Write the CSS Hover
+Rules</h3>
+<p>Input your CSS rules inside the text node of your
+<code>&lt;style&gt;</code> element. Include default styling,
+transitions, and the <code>:hover</code> selector.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.interactive-shape</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">fill</span><span class="ch">:</span> <span class="cn">#007acc</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">transition</span><span class="ch">:</span> <span class="dv">fill</span> <span class="dv">0.3</span><span class="dt">s</span> <span class="dv">ease</span><span class="op">,</span> <span class="dv">opacity 0.3</span><span class="dt">s</span> <span class="dv">ease</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">cursor</span><span class="ch">:</span> <span class="dv">pointer</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">.interactive-shape</span><span class="in">:hover</span> {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">fill</span><span class="ch">:</span> <span class="cn">#ff5722</span><span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">opacity</span><span class="ch">:</span> <span class="dv">0.8</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Ensure any conflicting inline styles on the object itself—such as a
+hardcoded <code>style="fill:..."</code> attribute—are removed from the
+element's node in the XML Editor so the CSS class rules take precedence,
+or use the <code>!important</code> rule in your CSS declarations.</p>
+<h3 id="step-5-save-and-test">Step 5: Save and Test</h3>
+<ol type="1">
+<li>Save the file in standard format via <strong>File &gt; Save
+As...</strong> and select <strong>Optimized SVG</strong> or
+<strong>Plain SVG</strong>.</li>
+<li>Because the native Inkscape editing canvas does not continuously
+execute real-time CSS pseudo-class states like <code>:hover</code>, open
+the saved <code>.svg</code> file directly inside any modern web browser
+(such as Chrome, Firefox, or Safari) to preview and test the interactive
+hover behavior.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

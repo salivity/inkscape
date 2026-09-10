@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Hinge Pitch and Spacing in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to accurately adjust the pitch and lattice spacing of a laser-cut living hinge pattern directly within Inkscape. Controlling the pitch (the horizontal distance between adjacent cut lines) and the lattice spacing (the uncut materia">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/living-hinge-pitch-and-spacing-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Living Hinge Pitch and Spacing in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/living-hinge-pitch-and-spacing-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to accurately adjust the pitch and lattice spacing of a laser-cut living hinge pattern directly within Inkscape. Controlling the pitch (the horizontal distance between adjacent cut lines) and the lattice spacing (the uncut materia" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="living-hinge-pitch-and-spacing-in-inkscape">Living Hinge Pitch
+and Spacing in Inkscape</h1>
+<p>This guide explains how to accurately adjust the pitch and lattice
+spacing of a laser-cut living hinge pattern directly within Inkscape.
+Controlling the pitch (the horizontal distance between adjacent cut
+lines) and the lattice spacing (the uncut material bridges along a
+single cut line) determines the flexibility, strength, and minimum bend
+radius of your material. Using Inkscape’s vector tools, grid settings,
+and the Tiled Clones engine, you can generate clean, highly customizable
+hinge patterns optimized for any laser cutter.</p>
+<h2 id="understanding-the-key-variables">Understanding the Key
+Variables</h2>
+<ul>
+<li><strong>Pitch:</strong> The distance between consecutive cut columns
+or rows. A tighter pitch increases flexibility but weakens the material.
+A wider pitch makes the bend stiffer and increases the minimum bend
+radius.</li>
+<li><strong>Lattice Spacing (Bridge/Gap):</strong> The length of uncut
+material left between cut segments on the same line. Larger bridges
+provide structural integrity, while smaller bridges allow greater
+torsional twist and bending freedom.</li>
+<li><strong>Kerf Consideration:</strong> The laser beam width removes
+material (typically 0.1mm to 0.2mm). Factor this into your bridge widths
+so structural connections do not burn away.</li>
+</ul>
+<h2 id="method-1-manual-layout-using-align-and-distribute">Method 1:
+Manual Layout Using Align and Distribute</h2>
+<p>This method provides full visual control for custom, non-repeating
+hinges or simple test swatches.</p>
+<h3 id="1-create-the-base-cut-line">1. Create the Base Cut Line</h3>
+<ol type="1">
+<li>Select the <strong>Draw Freehand Lines</strong> or <strong>Draw
+Bezier Curves</strong> tool (<code>B</code>).</li>
+<li>Hold <code>Ctrl</code> and draw a perfectly straight vertical line
+matching your hinge height.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>).</li>
+<li>Set the <strong>Stroke paint</strong> to a flat color and set
+<strong>Stroke style</strong> width to your laser’s hairline cut setting
+(e.g., <code>0.001 in</code> or <code>0.05 mm</code>).</li>
+</ol>
+<h3 id="2-set-lattice-spacing-the-bridges">2. Set Lattice Spacing (The
+Bridges)</h3>
+<ol type="1">
+<li>Draw individual line segments equal to your desired cut length
+(e.g., 20mm).</li>
+<li>Duplicate the segment (<code>Ctrl + D</code>).</li>
+<li>Position the segments vertically with a defined space between them
+(e.g., a 2mm uncut gap for the bridge).</li>
+<li>Use the <strong>Align and Distribute</strong> panel
+(<code>Shift + Ctrl + A</code>), select all vertical segments in the
+column, and choose <strong>Distribute targets: Distribute vertical
+distance evenly</strong>.</li>
+<li>Select all segments in that column and group them
+(<code>Ctrl + G</code>).</li>
+</ol>
+<h3 id="3-set-the-pitch-horizontal-spacing">3. Set the Pitch (Horizontal
+Spacing)</h3>
+<ol type="1">
+<li>Duplicate your grouped column (<code>Ctrl + D</code>).</li>
+<li>Move the duplicated column horizontally to establish a second cut
+line.</li>
+<li>Offset the second column vertically so that its cut segments center
+on the bridges of the first column. This alternating layout creates the
+standard living hinge weave.</li>
+<li>Select both columns, duplicate them multiple times, and position
+them across the desired hinge width.</li>
+<li>Select all columns, go to <strong>Align and Distribute</strong>, and
+click <strong>Distribute horizontal distance evenly</strong>. Adjust the
+horizontal spacing value directly to set your exact pitch (typically 2mm
+to 5mm depending on material thickness).</li>
+</ol>
+<h2 id="method-2-parametric-generation-using-create-tiled-clones">Method
+2: Parametric Generation Using "Create Tiled Clones"</h2>
+<p>The <strong>Create Tiled Clones</strong> tool is the most accurate
+way to automate alternating hinge lattices with fixed pitch and
+spacing.</p>
+<h3 id="1-build-the-alternating-unit">1. Build the Alternating Unit</h3>
+<ol type="1">
+<li>Draw two vertical line segments representing the primary cut and the
+offset cut:
+<ul>
+<li><strong>Segment A:</strong> A vertical line segment of your chosen
+length.</li>
+<li><strong>Segment B:</strong> Placed parallel to Segment A at your
+desired pitch distance (e.g., 3mm to the right), shifted vertically by
+half the cut length plus half the bridge width.</li>
+</ul></li>
+<li>Group Segment A and Segment B together (<code>Ctrl + G</code>).</li>
+</ol>
+<h3 id="2-apply-tiled-clones-for-fixed-pitch">2. Apply Tiled Clones for
+Fixed Pitch</h3>
+<ol type="1">
+<li>Select the group.</li>
+<li>Navigate to <strong>Edit &gt; Clone &gt; Create Tiled
+Clones...</strong></li>
+<li>In the dialog, go to the <strong>Symmetry</strong> tab and select
+<strong>P1: simple translation</strong>.</li>
+<li>Go to the <strong>Shift</strong> tab:
+<ul>
+<li>Under <strong>Shift X</strong>, set <strong>Per column</strong> to
+<code>100%</code> plus the desired gap percentage, or switch to explicit
+units using the absolute coordinate options.</li>
+<li>Ensure <strong>Shift Y</strong> is set to <code>0%</code>.</li>
+</ul></li>
+<li>Set the number of <strong>Rows</strong> to <code>1</code> and
+<strong>Columns</strong> to the number of cut pairs needed to span your
+hinge zone.</li>
+<li>Click <strong>Create</strong>.</li>
+</ol>
+<h2 id="best-practices-for-material-calibration">Best Practices for
+Material Calibration</h2>
+<ul>
+<li><strong>Plywood (3mm / 1/8"):</strong> Start with a 3mm pitch and a
+1.5mm to 2mm bridge width. Increasing pitch beyond 5mm often causes
+cracking along the wood grain.</li>
+<li><strong>Acrylic (3mm):</strong> Requires wider bridges (at least
+2.5mm to 3mm) and a slightly looser pitch to prevent stress fractures
+from laser heat dissipation.</li>
+<li><strong>Grain Orientation:</strong> Always align the cut lines
+perpendicular to the wood grain. Cutting parallel to the grain results
+in immediate hinge failure.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

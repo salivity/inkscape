@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Pen Numbers for Multi-Color HPGL in Inkscape - inkscape</title>
+    <meta name="description" content="Configuring vector paths with specific pen numbers in Inkscape allows multi-pen plotters to execute multi-color designs seamlessly using native HPGL (Hewlett-Packard Graphics Language) commands. By organizing vectors by layer or stroke properties and exp">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/set-pen-numbers-for-multi-color-hpgl-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Set Pen Numbers for Multi-Color HPGL in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/set-pen-numbers-for-multi-color-hpgl-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Configuring vector paths with specific pen numbers in Inkscape allows multi-pen plotters to execute multi-color designs seamlessly using native HPGL (Hewlett-Packard Graphics Language) commands. By organizing vectors by layer or stroke properties and exp" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="set-pen-numbers-for-multi-color-hpgl-in-inkscape">Set Pen
+Numbers for Multi-Color HPGL in Inkscape</h1>
+<p>Configuring vector paths with specific pen numbers in Inkscape allows
+multi-pen plotters to execute multi-color designs seamlessly using
+native HPGL (Hewlett-Packard Graphics Language) commands. By organizing
+vectors by layer or stroke properties and exporting through the proper
+HPGL settings, Inkscape can insert <code>SP</code> (Select Pen) commands
+directly into the output file, directing your plotter to change pens for
+distinct paths.</p>
+<h3 id="1-prepare-vector-geometry">1. Prepare Vector Geometry</h3>
+<p>Before assigning pen numbers, ensure all design elements are true
+vector paths:</p>
+<ul>
+<li>Select all elements using <code>Ctrl + A</code>.</li>
+<li>Navigate to <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>) to convert text, shapes, and clones into
+raw vector nodes.</li>
+<li>Ungroup nested elements by repeatedly pressing
+<code>Ctrl + Shift + G</code> until the status bar indicates no groups
+remain.</li>
+<li>Ensure strokes have no fill unless you intend to hatch them with an
+extension, as HPGL only traces lines.</li>
+</ul>
+<h3 id="2-organize-paths-by-pen-number-using-layers">2. Organize Paths
+by Pen Number Using Layers</h3>
+<p>The most reliable method to manage multi-color plotting in Inkscape
+is grouping paths into distinct layers corresponding to physical plotter
+carousel positions:</p>
+<ol type="1">
+<li>Open the Layers panel (<strong>Layer &gt; Layers...</strong> or
+<code>Ctrl + Shift + L</code>).</li>
+<li>Create dedicated layers for each pen, naming them sequentially
+(e.g., <code>Pen 1</code>, <code>Pen 2</code>, <code>Pen 3</code>).</li>
+<li>Move matching paths to their respective pen layers:
+<ul>
+<li>Select the paths designated for a specific color.</li>
+<li>Right-click and choose <strong>Move to Layer...</strong>, then
+select the target pen layer.</li>
+</ul></li>
+<li>Assign distinct stroke colors to each layer for visual reference
+while drafting.</li>
+</ol>
+<h3 id="3-configure-the-hpgl-export">3. Configure the HPGL Export</h3>
+<p>Inkscape provides two main methods to output HPGL: direct saving and
+the built-in Plot extension.</p>
+<h4
+id="method-a-using-extensions-recommended-for-hardware-control">Method
+A: Using Extensions (Recommended for Hardware Control)</h4>
+<ol type="1">
+<li>Go to <strong>Extensions &gt; Export &gt; Plot</strong>.</li>
+<li>Under the <strong>Plotter</strong> tab, configure your connection
+settings or port.</li>
+<li>Switch to the <strong>Pen</strong> tab:
+<ul>
+<li>Set <strong>Pen number</strong> to match your starting pen.</li>
+<li>Set the <strong>Number of pens</strong> to match the total pens
+installed in your plotter carousel.</li>
+</ul></li>
+<li>Select the behavior for pen changes. Inkscape will issue an
+<code>SP</code> command (e.g., <code>SP1</code>, <code>SP2</code>)
+whenever the plotter transitions between distinct layers or objects
+ordered by pen configuration.</li>
+<li>Click <strong>Apply</strong> to send the job directly or generate
+the command stream.</li>
+</ol>
+<h4 id="method-b-exporting-via-save-as">Method B: Exporting via Save
+As</h4>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong>
+(<code>Ctrl + Shift + S</code>).</li>
+<li>Select <strong>HP Graphics Language plot file (*.hpgl)</strong> from
+the file type dropdown.</li>
+<li>In the export dialog:
+<ul>
+<li>Check <strong>Enable HPGL Driver</strong>.</li>
+<li>Specify the initial <strong>Pen number</strong>.</li>
+<li>Ensure that sorting/ordering options are enabled if available to
+prevent excessive pen carousel travel.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to save the file.</li>
+</ol>
+<h3 id="4-verify-pen-commands-in-the-output-file">4. Verify Pen Commands
+in the Output File</h3>
+<p>To confirm that the correct pen switches are encoded:</p>
+<ol type="1">
+<li>Open the generated <code>.hpgl</code> file in any plain text editor
+(e.g., Notepad, VS Code).</li>
+<li>Search for the <code>SP</code> (Select Pen) command syntax.</li>
+<li>Look for declarations such as <code>SP1;</code>, <code>SP2;</code>,
+and <code>SP0;</code> (which docks the pen).</li>
+<li>Verify that vector coordinates (<code>PU</code> for Pen Up,
+<code>PD</code> for Pen Down) appear sequentially under their respective
+<code>SP</code> blocks matching your layer structure.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

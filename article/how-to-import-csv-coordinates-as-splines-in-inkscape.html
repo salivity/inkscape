@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import CSV Coordinates as Splines in Inkscape - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to import a CSV list of X and Y coordinates into Inkscape to generate smooth, continuous spline contours. While Inkscape lacks a native one-click CSV importer, you can quickly achieve this by formatting your coordinate data in">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-import-csv-coordinates-as-splines-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import CSV Coordinates as Splines in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-import-csv-coordinates-as-splines-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to import a CSV list of X and Y coordinates into Inkscape to generate smooth, continuous spline contours. While Inkscape lacks a native one-click CSV importer, you can quickly achieve this by formatting your coordinate data in" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-csv-coordinates-as-splines-in-inkscape">How to
+Import CSV Coordinates as Splines in Inkscape</h1>
+<p>This guide demonstrates how to import a CSV list of X and Y
+coordinates into Inkscape to generate smooth, continuous spline
+contours. While Inkscape lacks a native one-click CSV importer, you can
+quickly achieve this by formatting your coordinate data into SVG path
+syntax, inserting it via Inkscape's built-in XML Editor, and applying
+the BSpline path effect to create continuous contours.</p>
+<h3 id="step-1-format-the-csv-data-into-svg-path-syntax">Step 1: Format
+the CSV Data into SVG Path Syntax</h3>
+<p>Inkscape stores vector shapes as SVG <code>&lt;path&gt;</code>
+elements using the <code>d</code> attribute. To make Inkscape understand
+your points, format your coordinate list into an SVG path string.</p>
+<ol type="1">
+<li>Open your CSV file in a spreadsheet program (such as Microsoft Excel
+or Google Sheets) or a text editor. Ensure your X coordinates are in
+Column A and your Y coordinates are in Column B.</li>
+<li>In Column C, generate the SVG path commands using a formula.
+<ul>
+<li>For the first row (the starting point), use:
+<code>="M " &amp; A1 &amp; "," &amp; B1</code></li>
+<li>For all subsequent rows, use:
+<code>="L " &amp; A2 &amp; "," &amp; B2</code></li>
+<li><em>(Optional)</em> If your contour is a closed loop, append
+<code>Z</code> to the final coordinate.</li>
+</ul></li>
+<li>Drag the formula down to cover all coordinates.</li>
+<li>Copy the entire Column C output and paste it into a plain text
+editor to concatenate it into a single text string (e.g.,
+<code>M 10,20 L 15,25 L 20,40...</code>).</li>
+</ol>
+<h3 id="step-2-insert-the-path-into-inkscape">Step 2: Insert the Path
+into Inkscape</h3>
+<ol type="1">
+<li>Open Inkscape and create a new document.</li>
+<li>Open the <strong>XML Editor</strong> by navigating to <strong>Edit
+&gt; XML Editor</strong> or pressing <code>Ctrl + Shift + X</code>.</li>
+<li>In the XML tree on the left, select the active layer (usually
+labeled <code>&lt;svg:g id="layer1"&gt;</code>).</li>
+<li>Click the <strong>New element node</strong> icon at the top of the
+XML Editor, enter <code>svg:path</code> as the node name, and click
+<strong>Create</strong>.</li>
+<li>Select the newly created <code>svg:path</code> node. In the
+right-hand panel, find the <strong>Attribute name</strong> field, type
+<code>d</code>, and paste your concatenated coordinate string into the
+<strong>Attribute value</strong> field.</li>
+<li>Click <strong>Set</strong> (or press
+<code>Ctrl + Enter</code>).</li>
+<li>Add a stroke so the path is visible: set the <code>style</code>
+attribute to <code>stroke:#000000;stroke-width:1;fill:none;</code> and
+click <strong>Set</strong>.</li>
+</ol>
+<p>Your coordinates will now appear on the canvas as a connected
+polyline.</p>
+<h3 id="step-3-convert-the-polyline-to-a-continuous-spline">Step 3:
+Convert the Polyline to a Continuous Spline</h3>
+<ol type="1">
+<li>Select your imported path using the <strong>Selector Tool</strong>
+(<code>S</code>).</li>
+<li>Open the <strong>Path Effects</strong> panel by navigating to
+<strong>Path &gt; Path Effects</strong>.</li>
+<li>Click the <strong>Add Path Effect</strong> button
+(<code>+</code>).</li>
+<li>Search for and select <strong>BSpline</strong> (or <strong>Spiro
+Spline</strong> for mechanical curves).</li>
+<li>The sharp polyline segments will instantly convert into a smooth,
+continuous spline contour governed by your original coordinate
+points.</li>
+<li>To make the curve permanent, select <strong>Path &gt; Object to
+Path</strong> (<code>Ctrl + Shift + C</code>).</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

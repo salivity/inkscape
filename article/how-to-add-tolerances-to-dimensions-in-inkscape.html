@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Add Tolerances to Dimensions in Inkscape - inkscape</title>
+    <meta name="description" content="While Inkscape is a general vector graphics program rather than a dedicated parametric CAD package, you can still produce precise technical drawings by applying mechanical tolerance annotations directly to dimension lines. This guide demonstrates how to">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-add-tolerances-to-dimensions-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Add Tolerances to Dimensions in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-add-tolerances-to-dimensions-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="While Inkscape is a general vector graphics program rather than a dedicated parametric CAD package, you can still produce precise technical drawings by applying mechanical tolerance annotations directly to dimension lines. This guide demonstrates how to" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-add-tolerances-to-dimensions-in-inkscape">How to Add
+Tolerances to Dimensions in Inkscape</h1>
+<p>While Inkscape is a general vector graphics program rather than a
+dedicated parametric CAD package, you can still produce precise
+technical drawings by applying mechanical tolerance annotations directly
+to dimension lines. This guide demonstrates how to generate standard
+dimension lines and configure bilateral, unilateral, stacked, or limit
+tolerances using Inkscape's path extensions and typography controls.</p>
+<h3 id="1-generate-the-base-dimension-line">1. Generate the Base
+Dimension Line</h3>
+<p>Inkscape provides an automated tool for generating dimension lines
+rather than drawing them manually.</p>
+<ol type="1">
+<li>Select the path or object edge you wish to dimension.</li>
+<li>Navigate to <strong>Extensions &gt; Visualize Path &gt;
+Dimensions</strong>.</li>
+<li>Set your parameters:
+<ul>
+<li><strong>Offset</strong>: Distance between the object edge and the
+dimension line.</li>
+<li><strong>Unit</strong>: Choose your measurement standard (e.g.,
+<code>mm</code>, <code>in</code>).</li>
+<li><strong>Text format</strong>: Configure your significant digits and
+format prefix/suffix.</li>
+</ul></li>
+<li>Click <strong>Apply</strong> to generate the dimension line, arrows,
+and default measurement text.</li>
+</ol>
+<h3 id="2-add-symmetrical-tolerances-">2. Add Symmetrical Tolerances
+(±)</h3>
+<p>For standard bilateral tolerances where the upper and lower limits
+are identical (e.g., <code>50 ±0.05</code>):</p>
+<ol type="1">
+<li>Double-click the text object created by the Dimension tool to enter
+text edit mode.</li>
+<li>Place the cursor at the end of the dimension value.</li>
+<li>Insert the plus-minus symbol (<code>±</code>):
+<ul>
+<li><strong>Windows</strong>: Press <code>Alt + 0177</code> on the
+numeric keypad.</li>
+<li><strong>Mac</strong>: Press <code>Option + Shift + =</code>.</li>
+<li><strong>Linux / Universal</strong>: Press
+<code>Ctrl + Shift + U</code>, type <code>00b1</code>, and press
+<code>Enter</code>.</li>
+</ul></li>
+<li>Type your tolerance value (e.g., <code>±0.05</code>).</li>
+<li>(Optional) Highlight the tolerance text and reduce the font size by
+20–30% relative to the nominal dimension size to adhere to standard
+drafting conventions (such as ASME Y14.5).</li>
+</ol>
+<h3 id="3-create-stacked-tolerances-asymmetric--unilateral">3. Create
+Stacked Tolerances (Asymmetric / Unilateral)</h3>
+<p>When upper and lower variations differ (e.g.,
+<code>+0.05 / -0.02</code>), mechanical standards require stacked
+text.</p>
+<h4 id="method-a-multi-line-text-with-adjusted-line-height">Method A:
+Multi-Line Text with Adjusted Line Height</h4>
+<ol type="1">
+<li>Double-click the dimension text and position your cursor where the
+tolerance begins.</li>
+<li>Press <code>Enter</code> to drop to a new line and type the upper
+and lower tolerances (e.g., line 1: <code>+0.05</code>, line 2:
+<code>-0.02</code>).</li>
+<li>Highlight both tolerance values and reduce their font size to
+roughly 60% of the nominal size.</li>
+<li>Open the <strong>Text and Font</strong> panel (<strong>Ctrl + Shift
++ T</strong>).</li>
+<li>Reduce the <strong>Line spacing</strong> value (e.g., to
+<code>0.8</code> or <code>0.9</code>) until the two numbers stack neatly
+without excessive gap.</li>
+<li>Use the <strong>Baseline shift</strong> setting in the top tool
+control bar to center the stacked block vertically against the nominal
+dimension number.</li>
+</ol>
+<h4
+id="method-b-separate-text-blocks-recommended-for-complex-callouts">Method
+B: Separate Text Blocks (Recommended for Complex Callouts)</h4>
+<ol type="1">
+<li>Keep the nominal dimension (e.g., <code>25.00</code>) as one text
+object.</li>
+<li>Select the <strong>Text Tool (T)</strong> and click to create a
+separate text block for the upper limit (<code>+0.05</code>).</li>
+<li>Press <code>Enter</code> and type the lower limit
+(<code>-0.02</code>).</li>
+<li>Set the font size smaller and reduce the line spacing.</li>
+<li>Open the <strong>Align and Distribute</strong> panel (<strong>Ctrl +
+Shift + A</strong>).</li>
+<li>Align the stacked tolerance block vertically centered and
+horizontally adjacent to the nominal dimension.</li>
+</ol>
+<h3 id="4-create-limit-dimensions">4. Create Limit Dimensions</h3>
+<p>Limit tolerancing displays the maximum and minimum allowable sizes
+directly (e.g., high limit above low limit) rather than using a nominal
+value with an offset.</p>
+<ol type="1">
+<li>Double-click the dimension text generated by the extension.</li>
+<li>Replace the single number with the maximum limit on the top line
+(e.g., <code>50.05</code>).</li>
+<li>Press <code>Enter</code> and type the minimum limit on the bottom
+line (e.g., <code>49.95</code>).</li>
+<li>Ensure both numbers share the same font size, align them to the
+center or left, and adjust the line spacing so the text remains readable
+between the witness lines.</li>
+</ol>
+<h3 id="5-group-dimension-elements">5. Group Dimension Elements</h3>
+<p>Because the Dimensioning extension creates separate vector paths for
+arrows, extension lines, and text, changes to the text can cause visual
+misalignments.</p>
+<ol type="1">
+<li>Click and drag to select the dimension line, arrows, and modified
+tolerance text.</li>
+<li>Press <strong>Ctrl + G</strong> (or go to <strong>Object &gt;
+Group</strong>).</li>
+<li>Lock or move the group as a single drafting entity to prevent
+unintentional displacement during the rest of your layout process.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

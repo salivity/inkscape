@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Path Data in Inkscape XML Editor - inkscape</title>
+    <meta name="description" content="This guide provides a straightforward walkthrough on modifying raw SVG path strings directly using Inkscape's built-in XML Editor. By accessing the underlying d attribute of vector paths, you can manually inspect, adjust, copy, or rewrite path commands a">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/edit-path-data-in-inkscape-xml-editor">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Edit Path Data in Inkscape XML Editor - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/edit-path-data-in-inkscape-xml-editor" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a straightforward walkthrough on modifying raw SVG path strings directly using Inkscape's built-in XML Editor. By accessing the underlying d attribute of vector paths, you can manually inspect, adjust, copy, or rewrite path commands a" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="edit-path-data-in-inkscape-xml-editor">Edit Path Data in
+Inkscape XML Editor</h1>
+<p>This guide provides a straightforward walkthrough on modifying raw
+SVG path strings directly using Inkscape's built-in XML Editor. By
+accessing the underlying <code>d</code> attribute of vector paths, you
+can manually inspect, adjust, copy, or rewrite path commands and
+numerical coordinates with precise programmatic control.</p>
+<h2 id="step-1-open-the-xml-editor">Step 1: Open the XML Editor</h2>
+<p>To access the raw SVG document tree in Inkscape:</p>
+<ul>
+<li>Go to the top menu and select <strong>Edit &gt; XML
+Editor...</strong>, or</li>
+<li>Press the keyboard shortcut <strong>Ctrl + Shift + X</strong>
+(Windows/Linux) or <strong>Cmd + Shift + X</strong> (macOS).</li>
+</ul>
+<p>A panel will dock into your workspace displaying the hierarchical XML
+structure of the current document.</p>
+<h2 id="step-2-select-the-target-path">Step 2: Select the Target
+Path</h2>
+<ol type="1">
+<li>Use the standard <strong>Select Tool</strong> (<code>S</code> or
+<code>F1</code>) on the canvas to click the path you want to
+modify.</li>
+<li>The XML Editor will automatically highlight the corresponding
+<code>&lt;svg:path&gt;</code> node in the node tree. Alternatively,
+expand the tree structure in the XML panel manually to find and click
+the specific <code>&lt;svg:path&gt;</code> element.</li>
+</ol>
+<h2 id="step-3-locate-the-path-data-attribute-d">Step 3: Locate the Path
+Data Attribute (<code>d</code>)</h2>
+<p>In the right-hand sub-panel of the XML Editor:</p>
+<ol type="1">
+<li>Look at the table listing the element's attributes (such as
+<code>id</code>, <code>style</code>, and <code>d</code>).</li>
+<li>Click on the <strong><code>d</code></strong> attribute.</li>
+<li>The raw string value of the path will appear in the text input box
+directly below the attribute list.</li>
+</ol>
+<h2 id="step-4-edit-the-raw-path-commands">Step 4: Edit the Raw Path
+Commands</h2>
+<p>You can now edit the coordinate string directly in the text area. SVG
+path syntax relies on command letters followed by numeric
+coordinates:</p>
+<ul>
+<li><strong>M / m</strong>: Move to (<code>M x,y</code> absolute;
+<code>m dx,dy</code> relative)</li>
+<li><strong>L / l</strong>: Line to (<code>L x,y</code> absolute;
+<code>l dx,dy</code> relative)</li>
+<li><strong>H / h</strong>: Horizontal line to (<code>H x</code>
+absolute; <code>h dx</code> relative)</li>
+<li><strong>V / v</strong>: Vertical line to (<code>V y</code> absolute;
+<code>v dy</code> relative)</li>
+<li><strong>C / c</strong>: Cubic Bézier curve
+(<code>C x1,y1, x2,y2, x,y</code>)</li>
+<li><strong>S / s</strong>: Smooth cubic Bézier curve
+(<code>S x2,y2, x,y</code>)</li>
+<li><strong>Q / q</strong>: Quadratic Bézier curve
+(<code>Q x1,y1, x,y</code>)</li>
+<li><strong>T / t</strong>: Smooth quadratic Bézier curve
+(<code>T x,y</code>)</li>
+<li><strong>A / a</strong>: Elliptical arc command
+(<code>A rx ry x-axis-rotation large-arc-flag sweep-flag x y</code>)</li>
+<li><strong>Z / z</strong>: Close path</li>
+</ul>
+<p>Modify the numbers, remove segments, or paste external SVG path
+strings directly into this field.</p>
+<h2 id="step-5-apply-the-changes">Step 5: Apply the Changes</h2>
+<ol type="1">
+<li>After editing the string, click the <strong>Set</strong> button
+located next to the text input box, or press <strong>Ctrl +
+Enter</strong>.</li>
+<li>The canvas will immediately re-render the path using your updated
+coordinate data.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

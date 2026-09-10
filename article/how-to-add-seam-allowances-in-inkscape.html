@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Add Seam Allowances in Inkscape - inkscape</title>
+    <meta name="description" content="Generating accurate seam allowances around irregular garment pattern pieces is an essential step in digital pattern making. Inkscape provides automated vector tools that allow designers to expand complex shapes uniformly without redrawing them by hand. B">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-add-seam-allowances-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Add Seam Allowances in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-add-seam-allowances-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Generating accurate seam allowances around irregular garment pattern pieces is an essential step in digital pattern making. Inkscape provides automated vector tools that allow designers to expand complex shapes uniformly without redrawing them by hand. B" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-add-seam-allowances-in-inkscape">How to Add Seam
+Allowances in Inkscape</h1>
+<p>Generating accurate seam allowances around irregular garment pattern
+pieces is an essential step in digital pattern making. Inkscape provides
+automated vector tools that allow designers to expand complex shapes
+uniformly without redrawing them by hand. By using the Offset Path
+Effect, you can apply precise, numeric seam allowances—such as 1/2 inch
+or 1 centimeter—around even the most intricate curves and angles while
+maintaining the integrity of the original sewing line.</p>
+<h3 id="1-prepare-the-pattern-piece">1. Prepare the Pattern Piece</h3>
+<p>Before applying an allowance, ensure your pattern piece is a single,
+continuous, and closed path.</p>
+<ul>
+<li>Select the pattern piece with the <strong>Selector Tool</strong>
+(S).</li>
+<li>If your pattern consists of separate segments, switch to the
+<strong>Node Tool</strong> (N), select all adjacent endpoints, and click
+<strong>Join selected nodes</strong> in the top toolbar.</li>
+<li>Verify that the piece is closed by going to <strong>Path &gt;
+Combine</strong> if necessary, ensuring there are no stray or unjoined
+vertices.</li>
+</ul>
+<h3 id="2-duplicate-the-sewing-line">2. Duplicate the Sewing Line</h3>
+<p>It is standard practice to preserve the original line as the sewing
+line and create the allowance as the outer cutting line.</p>
+<ul>
+<li>Select the closed pattern piece.</li>
+<li>Press <code>Ctrl + D</code> (or <code>Cmd + D</code> on macOS) to
+duplicate it directly on top of the original.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>), set the stroke to a contrasting color
+or style (e.g., dashed for sewing, solid for cutting), and ensure the
+fill is turned off.</li>
+</ul>
+<h3 id="3-apply-the-offset-path-effect">3. Apply the Offset Path
+Effect</h3>
+<p>Using a Path Effect allows for exact numeric measurements rather than
+manual dragging.</p>
+<ul>
+<li>Select the duplicated pattern path.</li>
+<li>Navigate to <strong>Path &gt; Path Effects</strong> in the top menu
+to open the Path Effects panel.</li>
+<li>Click the <strong>Add Path Effect</strong> button (the
+<code>+</code> icon) and select <strong>Offset</strong>.</li>
+<li>In the effect settings, set your preferred unit (e.g., millimeters,
+inches, or centimeters).</li>
+<li>Enter your desired seam allowance value in the
+<strong>Offset</strong> field (for example, <code>10 mm</code> or
+<code>0.625 in</code>). The path will instantly expand outward around
+the irregular shape.</li>
+</ul>
+<h3 id="4-configure-joins-and-corners">4. Configure Joins and
+Corners</h3>
+<p>Garment patterns often contain a mix of sharp corners (like armholes
+meeting side seams) and smooth curves.</p>
+<ul>
+<li>In the <strong>Offset</strong> effect parameters, locate the
+<strong>Join</strong> setting.</li>
+<li>Choose <strong>Miter</strong> to keep corners sharp and square.</li>
+<li>Adjust the <strong>Miter limit</strong> if corners spike excessively
+on tight angles.</li>
+<li>Alternatively, select <strong>Round</strong> or
+<strong>Bevel</strong> depending on whether your garment construction
+requires rounded or clipped corners at seam junctions.</li>
+</ul>
+<h3 id="5-finalize-the-seam-allowance-path">5. Finalize the Seam
+Allowance Path</h3>
+<p>To make the offset line fully editable for notches, grainlines, or
+exports:</p>
+<ul>
+<li>With the offset path selected, go to <strong>Path &gt; Object to
+Path</strong>.</li>
+<li>This bakes the offset permanently into vector nodes, converting the
+live effect into a standard vector path ready for pattern grading,
+cutting, or plotting.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

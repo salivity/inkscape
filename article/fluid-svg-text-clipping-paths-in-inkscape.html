@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluid SVG Text Clipping Paths in Inkscape - inkscape</title>
+    <meta name="description" content="Creating fluid SVG clipping paths that scale seamlessly with text elements requires combining Inkscape's vector design tools with responsive SVG attributes. This guide explains how to design a clip mask in Inkscape, apply it to text, and configure the co">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/fluid-svg-text-clipping-paths-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Fluid SVG Text Clipping Paths in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/fluid-svg-text-clipping-paths-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating fluid SVG clipping paths that scale seamlessly with text elements requires combining Inkscape's vector design tools with responsive SVG attributes. This guide explains how to design a clip mask in Inkscape, apply it to text, and configure the co" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="fluid-svg-text-clipping-paths-in-inkscape">Fluid SVG Text
+Clipping Paths in Inkscape</h1>
+<p>Creating fluid SVG clipping paths that scale seamlessly with text
+elements requires combining Inkscape's vector design tools with
+responsive SVG attributes. This guide explains how to design a clip mask
+in Inkscape, apply it to text, and configure the code so the resulting
+graphic adapts smoothly to any screen size or container on the web.</p>
+<h3 id="1-create-and-align-the-elements-in-inkscape">1. Create and Align
+the Elements in Inkscape</h3>
+<ol type="1">
+<li>Open Inkscape and select the <strong>Text tool</strong>
+(<code>T</code>). Click the canvas and type your text. Choose a bold,
+heavy typeface so the clipped content remains visible.</li>
+<li>Select the <strong>Pen tool</strong> (<code>B</code>) or any shape
+tool to draw the object or pattern you want to use as the clipping
+mask.</li>
+<li>Position your clipping shape directly over the text where the effect
+should appear.</li>
+<li>If your clipping mask consists of multiple objects, select them all
+and combine them into a single path by navigating to <strong>Path &gt;
+Combine</strong> (or <strong>Path &gt; Union</strong>).</li>
+</ol>
+<h3 id="2-apply-the-clipping-path">2. Apply the Clipping Path</h3>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel (<strong>Layer
+&gt; Layers and Objects</strong>) to confirm object hierarchy. Ensure
+your masking shape is layered above the text element.</li>
+<li>Select both the text element and the masking shape simultaneously
+using the <strong>Select tool</strong> (<code>S</code>) while holding
+<code>Shift</code>.</li>
+<li>Go to <strong>Object &gt; Clip &gt; Set Clip</strong>. The shape
+will now restrict the visibility of the underlying text.</li>
+</ol>
+<h3 id="3-configure-fluid-scaling">3. Configure Fluid Scaling</h3>
+<p>To ensure the SVG scales fluidly across various viewports, you must
+eliminate fixed dimensions and rely on the SVG coordinate system:</p>
+<ol type="1">
+<li>Open the <strong>Document Properties</strong> window (<strong>File
+&gt; Document Properties</strong> or <code>Ctrl+Shift+D</code>).</li>
+<li>Under the <strong>Page</strong> tab, locate <strong>Custom
+size</strong> and click <strong>Resize to content...</strong>, then
+click <strong>Resize to page or selection</strong>. This trims
+unnecessary whitespace and locks the coordinate bounds tightly around
+your design.</li>
+<li>Save your file as an <strong>Optimized SVG</strong> (<strong>File
+&gt; Save As...</strong> and select "Optimized SVG"). In the export
+dialog, ensure options to convert coordinates and remove unneeded
+metadata are checked.</li>
+</ol>
+<h3 id="4-implement-on-the-web">4. Implement on the Web</h3>
+<p>Open the saved <code>.svg</code> file in a code editor and embed it
+inline or reference it via CSS:</p>
+<ul>
+<li><p><strong>Inline SVG (Self-Contained Fluid Text):</strong> Inspect
+the <code>&lt;svg&gt;</code> opening tag. Remove the hardcoded
+<code>width</code> and <code>height</code> attributes, leaving only the
+<code>viewBox="0 0 [width] [height]"</code> attribute intact. In your
+CSS, style the SVG to scale fluidly:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>svg<span class="fu">.fluid-clipped-text</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">width</span><span class="ch">:</span> <span class="dv">100</span><span class="dt">%</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">max-width</span><span class="ch">:</span> <span class="dv">800</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">height</span><span class="ch">:</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">display</span><span class="ch">:</span> <span class="dv">block</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div></li>
+<li><p><strong>Applying to Native HTML Text via CSS
+<code>clip-path</code>:</strong> If you want to apply the
+Inkscape-generated clip path to standard HTML text, wrap the path inside
+a <code>&lt;clipPath&gt;</code> element with relative bounding-box
+coordinates:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">svg</span><span class="ot"> width</span><span class="op">=</span><span class="st">&quot;0&quot;</span><span class="ot"> height</span><span class="op">=</span><span class="st">&quot;0&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">defs</span><span class="dt">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">clipPath</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;text-clip&quot;</span><span class="ot"> clipPathUnits</span><span class="op">=</span><span class="st">&quot;objectBoundingBox&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      <span class="co">&lt;!-- Scale path coordinates between 0 and 1 in Inkscape or via a transform --&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">path</span><span class="ot"> d</span><span class="op">=</span><span class="st">&quot;...&quot;</span><span class="ot"> transform</span><span class="op">=</span><span class="st">&quot;scale(0.001, 0.001)&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">clipPath</span><span class="dt">&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">defs</span><span class="dt">&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">svg</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>Apply it to your HTML text element using CSS:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.scalable-text</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-size</span><span class="ch">:</span> <span class="fu">clamp(</span><span class="dv">2</span><span class="dt">rem</span><span class="op">,</span> <span class="dv">5</span><span class="dt">vw</span><span class="op">,</span> <span class="dv">6</span><span class="dt">rem</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">clip-path</span><span class="ch">:</span> <span class="fu">url(</span><span class="st">#text-clip</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div></li>
+</ul>
+<p>Using standard <code>viewBox</code> scaling for purely graphical SVG
+text or <code>clipPathUnits="objectBoundingBox"</code> for native HTML
+text guarantees the mask adjusts proportionally without distortion
+regardless of screen resolution.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

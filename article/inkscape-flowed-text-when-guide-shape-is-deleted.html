@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Flowed Text When Guide Shape Is Deleted - inkscape</title>
+    <meta name="description" content="In Inkscape, flowing text into a shape binds the text's formatting and boundaries directly to that object's vector path. When you delete the original guide shape from the canvas, the text object is not deleted, but it loses its formatting container. This">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-flowed-text-when-guide-shape-is-deleted">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Flowed Text When Guide Shape Is Deleted - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-flowed-text-when-guide-shape-is-deleted" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In Inkscape, flowing text into a shape binds the text's formatting and boundaries directly to that object's vector path. When you delete the original guide shape from the canvas, the text object is not deleted, but it loses its formatting container. This" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-flowed-text-when-guide-shape-is-deleted">Inkscape
+Flowed Text When Guide Shape Is Deleted</h1>
+<p>In Inkscape, flowing text into a shape binds the text's formatting
+and boundaries directly to that object's vector path. When you delete
+the original guide shape from the canvas, the text object is not
+deleted, but it loses its formatting container. This causes the text to
+either disappear visually from the canvas or revert to a broken
+reference state, even though the text data remains intact inside the
+document's structure.</p>
+<h3 id="the-broken-reference-problem">The Broken Reference Problem</h3>
+<p>When you use the <strong>Text &gt; Flow into Frame</strong> command,
+Inkscape creates an internal link referencing the unique ID of the guide
+shape. The text uses this path to determine line breaks, padding, and
+visible boundaries.</p>
+<p>If you select and delete the guide shape with the <code>Delete</code>
+or <code>Backspace</code> key:</p>
+<ul>
+<li><strong>The text becomes invisible on the canvas:</strong> Because
+the text relies on the shape's geometry to render its layout, losing the
+shape leaves the text with zero defined area. As a result, it vanishes
+from the visual workspace.</li>
+<li><strong>The text element remains in the file:</strong> The actual
+text string is not erased. If you open the <strong>Objects</strong>
+panel (<code>Ctrl + Shift + O</code>) or the <strong>XML Editor</strong>
+(<code>Ctrl + Shift + X</code>), you will still see the text element
+present in the layer hierarchy.</li>
+<li><strong>SVG rendering errors may occur:</strong> In exported SVG
+files or non-Inkscape viewers, the orphaned text block may either fail
+to display or render as an unpredictable, unformatted single line of
+text at coordinate (0,0).</li>
+</ul>
+<h3 id="how-to-recover-or-prevent-hidden-text">How to Recover or Prevent
+Hidden Text</h3>
+<p>If you accidentally delete the guide shape, you can restore or
+normalize your text using several straightforward methods:</p>
+<ol type="1">
+<li><strong>Undo the Deletion:</strong> Press <code>Ctrl + Z</code>
+immediately to restore the guide shape and re-establish the visual
+flow.</li>
+<li><strong>Unflow Before Deleting:</strong> To safely remove a frame
+without losing your text, select the flowed text and choose <strong>Text
+&gt; Unflow</strong> (<code>Alt + W</code>). This detaches the text from
+the shape and converts it into a standard regular text object placed at
+the top-left of where the frame was. You can then delete the shape
+without issue.</li>
+<li><strong>Select via Objects Panel:</strong> If the shape is already
+gone and you cannot undo, locate the invisible text object in the
+<strong>Objects</strong> panel. Select it, create a new shape on the
+canvas, select both, and choose <strong>Text &gt; Flow into
+Frame</strong> to re-link the orphaned text to the new path.
+Alternatively, run <strong>Text &gt; Unflow</strong> on the selected
+invisible object to force it to render as regular text again.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flip Multiple Shapes on Centerline in Inkscape - inkscape</title>
+    <meta name="description" content="Flipping multiple shapes across their shared geometric centerline in Inkscape requires ensuring your bounding box calculation is set to geometric coordinates and using the selection flip tools. By either operating directly on the multi-selection or tempo">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/flip-multiple-shapes-on-centerline-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Flip Multiple Shapes on Centerline in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/flip-multiple-shapes-on-centerline-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Flipping multiple shapes across their shared geometric centerline in Inkscape requires ensuring your bounding box calculation is set to geometric coordinates and using the selection flip tools. By either operating directly on the multi-selection or tempo" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="flip-multiple-shapes-on-centerline-in-inkscape">Flip Multiple
+Shapes on Centerline in Inkscape</h1>
+<p>Flipping multiple shapes across their shared geometric centerline in
+Inkscape requires ensuring your bounding box calculation is set to
+geometric coordinates and using the selection flip tools. By either
+operating directly on the multi-selection or temporarily grouping the
+elements, Inkscape mirrors the entire collection across the common
+center point rather than reflecting each shape individually.</p>
+<h3 id="step-1-set-the-bounding-box-to-geometric">Step 1: Set the
+Bounding Box to Geometric</h3>
+<p>Inkscape calculates the center of objects using either a "Visual"
+bounding box (which includes stroke width) or a "Geometric" bounding box
+(which only accounts for the actual node paths). To flip precisely along
+the geometric centerline:</p>
+<ol type="1">
+<li>Go to <strong>Edit &gt; Preferences</strong> (or press
+<code>Ctrl + Shift + P</code>).</li>
+<li>In the left sidebar, click on <strong>Tools</strong>.</li>
+<li>Under <strong>Bounding box to use</strong>, select <strong>Geometric
+bounding box</strong>.</li>
+<li>Close the Preferences window.</li>
+</ol>
+<h3 id="step-2-select-the-shapes">Step 2: Select the Shapes</h3>
+<ol type="1">
+<li>Activate the <strong>Select and Transform Objects</strong> tool by
+pressing <code>S</code> or <code>F1</code>.</li>
+<li>Select all the shapes you want to flip by holding <code>Shift</code>
+and clicking each shape, or by clicking and dragging a selection box
+around all of them.</li>
+</ol>
+<h3 id="step-3-flip-across-the-collective-centerline">Step 3: Flip
+Across the Collective Centerline</h3>
+<p>By default, Inkscape flips multiple selected objects around the
+common center of the combined selection box:</p>
+<ul>
+<li><strong>To flip horizontally</strong> (across the collective
+vertical centerline): Press <code>H</code> on your keyboard, or click
+the <strong>Flip selected objects horizontally</strong> button on the
+top Tool Controls bar, or go to <strong>Object &gt; Flip
+Horizontal</strong>.</li>
+<li><strong>To flip vertically</strong> (across the collective
+horizontal centerline): Press <code>V</code> on your keyboard, or click
+the <strong>Flip selected objects vertically</strong> button on the top
+Tool Controls bar, or go to <strong>Object &gt; Flip
+Vertical</strong>.</li>
+</ul>
+<h3 id="alternative-grouping-before-flipping">Alternative: Grouping
+Before Flipping</h3>
+<p>If you want to guarantee that complex paths, clones, or grouped
+subgroups maintain their relative distances without accidental
+drift:</p>
+<ol type="1">
+<li>Select all the shapes.</li>
+<li>Group them together by pressing <code>Ctrl + G</code> (or
+<strong>Object &gt; Group</strong>). This creates a single compound
+boundary with a distinct geometric center.</li>
+<li>Press <code>H</code> to flip horizontally or <code>V</code> to flip
+vertically.</li>
+<li>Ungroup the shapes by pressing <code>Ctrl + Shift + G</code> (or
+<strong>Object &gt; Ungroup</strong>) to return them to independent
+paths.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

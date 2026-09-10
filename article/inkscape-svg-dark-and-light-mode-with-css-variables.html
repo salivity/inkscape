@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape SVG Dark and Light Mode with CSS Variables - inkscape</title>
+    <meta name="description" content="This guide explains how to configure an Inkscape SVG to automatically adapt between light and dark modes using CSS custom properties (variables) and the prefers-color-scheme media query. By modifying Inkscape's default inline styling into a clean, variab">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-svg-dark-and-light-mode-with-css-variables">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape SVG Dark and Light Mode with CSS Variables - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-svg-dark-and-light-mode-with-css-variables" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to configure an Inkscape SVG to automatically adapt between light and dark modes using CSS custom properties (variables) and the prefers-color-scheme media query. By modifying Inkscape's default inline styling into a clean, variab" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-svg-dark-and-light-mode-with-css-variables">Inkscape
+SVG Dark and Light Mode with CSS Variables</h1>
+<p>This guide explains how to configure an Inkscape SVG to automatically
+adapt between light and dark modes using CSS custom properties
+(variables) and the <code>prefers-color-scheme</code> media query. By
+modifying Inkscape's default inline styling into a clean,
+variable-driven CSS structure, you can maintain a single vector file
+that shifts seamlessly across system appearance themes or custom class
+toggles on the web.</p>
+<h2 id="1-prepare-the-artwork-in-inkscape">1. Prepare the Artwork in
+Inkscape</h2>
+<p>By default, Inkscape exports geometry with hardcoded inline
+presentation attributes (such as <code>style="fill:#000000;..."</code>
+or <code>fill="#000000"</code>). To make these elements responsive to
+CSS, group or label them logically:</p>
+<ol type="1">
+<li>Open your artwork in Inkscape.</li>
+<li>Select an element or group that should change color based on the
+theme.</li>
+<li>Open the <strong>Object Properties</strong> panel (<strong>Shift +
+Ctrl + O</strong>).</li>
+<li>Assign a descriptive <strong>Class</strong> name to the target
+element (for example, <code>theme-fill</code> or
+<code>theme-stroke</code>).</li>
+<li>Save the file as an <strong>Optimized SVG</strong> or standard
+<strong>Inkscape SVG</strong>.</li>
+</ol>
+<h2 id="2-open-and-clean-the-svg-markup">2. Open and Clean the SVG
+Markup</h2>
+<p>Open the exported <code>.svg</code> file in a text or code editor.
+Inkscape often embeds inline presentation styles directly onto element
+tags, which have higher specificity than external CSS variables.</p>
+<p>Locate the target elements and remove their hardcoded color
+properties:</p>
+<ul>
+<li><strong>Before:</strong>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">path</span> <span class="ot">class=</span><span class="st">&quot;theme-fill&quot;</span> <span class="ot">style=</span><span class="st">&quot;fill:#1a1a1a;stroke:none;&quot;</span> <span class="ot">d=</span><span class="st">&quot;...&quot;</span> /&gt;</span></code></pre></div></li>
+<li><strong>After:</strong>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">path</span> <span class="ot">class=</span><span class="st">&quot;theme-fill&quot;</span> <span class="ot">d=</span><span class="st">&quot;...&quot;</span> /&gt;</span></code></pre></div></li>
+</ul>
+<p>Ensure any hardcoded <code>fill</code> or <code>stroke</code> values
+that must be dynamic are removed from the inline <code>style</code>
+attribute.</p>
+<h2 id="3-inject-css-variables-and-media-queries">3. Inject CSS
+Variables and Media Queries</h2>
+<p>Inside the <code>&lt;svg&gt;</code> container, directly beneath the
+opening <code>&lt;svg ...&gt;</code> tag, insert an embedded
+<code>&lt;style&gt;</code> block. Define your default light theme
+variables alongside a <code>@media (prefers-color-scheme: dark)</code>
+query to redefine those variables when the user switches to dark
+mode.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">svg</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="ot">viewBox=</span><span class="st">&quot;0 0 100 100&quot;</span>&gt;</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">style</span>&gt;</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    :root {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      --bg-color: #ffffff;</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      --primary-color: #1f2937;</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      --accent-color: #3b82f6;</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    @media (prefers-color-scheme: dark) {</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      :root {</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        --bg-color: #111827;</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        --primary-color: #f9fafb;</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        --accent-color: #60a5fa;</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    .theme-bg {</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>      fill: var(--bg-color);</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    .theme-fill {</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>      fill: var(--primary-color);</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    .theme-stroke {</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>      stroke: var(--accent-color);</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">style</span>&gt;</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">&lt;!-- Vector Elements --&gt;</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">rect</span> <span class="ot">class=</span><span class="st">&quot;theme-bg&quot;</span> <span class="ot">width=</span><span class="st">&quot;100&quot;</span> <span class="ot">height=</span><span class="st">&quot;100&quot;</span> /&gt;</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">circle</span> <span class="ot">class=</span><span class="st">&quot;theme-stroke&quot;</span> <span class="ot">cx=</span><span class="st">&quot;50&quot;</span> <span class="ot">cy=</span><span class="st">&quot;50&quot;</span> <span class="ot">r=</span><span class="st">&quot;40&quot;</span> <span class="ot">fill=</span><span class="st">&quot;none&quot;</span> <span class="ot">stroke-width=</span><span class="st">&quot;4&quot;</span> /&gt;</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">path</span> <span class="ot">class=</span><span class="st">&quot;theme-fill&quot;</span> <span class="ot">d=</span><span class="st">&quot;M30 30 h40 v40 h-40 Z&quot;</span> /&gt;</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">svg</span>&gt;</span></code></pre></div>
+<h2 id="4-supporting-manual-theme-switching">4. Supporting Manual Theme
+Switching</h2>
+<p>If your website toggles themes using a root class (such as
+<code>.dark</code> on the <code>&lt;html&gt;</code> or
+<code>&lt;body&gt;</code> element) rather than system-level
+preferences:</p>
+<ol type="1">
+<li><strong>Inline SVG Embedding:</strong> Embed the
+<code>&lt;svg&gt;</code> directly into your HTML document rather than
+using an <code>&lt;img&gt;</code> tag. This allows the SVG to inherit
+CSS variables defined in your global website stylesheet.</li>
+<li><strong>Global CSS Mapping:</strong>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">:root</span> {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">--primary-color</span><span class="ch">:</span> <span class="cn">#1f2937</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>html<span class="fu">.dark</span> {</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="va">--primary-color</span><span class="ch">:</span> <span class="cn">#f9fafb</span><span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">/* Target the SVG class directly */</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">.theme-fill</span> {</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">fill</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--primary-color</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div></li>
+</ol>
+<h2 id="5-deployment-considerations">5. Deployment Considerations</h2>
+<ul>
+<li><strong>Avoid <code>&lt;img&gt;</code> tags for external
+CSS:</strong> Browsers isolate SVGs loaded via
+<code>&lt;img src="graphic.svg"&gt;</code> into a separate browsing
+context. External webpage stylesheets cannot access the internals of an
+<code>&lt;img&gt;</code>. For isolated SVGs, the
+<code>@media (prefers-color-scheme: dark)</code> block must live
+<em>inside</em> the SVG itself.</li>
+<li><strong>Direct Embedding:</strong> To allow external JavaScript and
+CSS classes to dynamically alter your Inkscape SVG variables, embed the
+SVG using inline <code>&lt;svg&gt;</code> tags or an
+<code>&lt;object type="image/svg+xml" data="..."&gt;</code>
+element.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

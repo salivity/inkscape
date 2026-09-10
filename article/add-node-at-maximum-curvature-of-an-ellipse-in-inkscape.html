@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Node at Maximum Curvature of an Ellipse in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to place a node precisely at the point of maximum curvature on an elliptical segment in Inkscape. On any ellipse, the maximum curvature occurs at the vertices along the semi-major axis, where the curve bends most sharply. You can">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/add-node-at-maximum-curvature-of-an-ellipse-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Add Node at Maximum Curvature of an Ellipse in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/add-node-at-maximum-curvature-of-an-ellipse-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to place a node precisely at the point of maximum curvature on an elliptical segment in Inkscape. On any ellipse, the maximum curvature occurs at the vertices along the semi-major axis, where the curve bends most sharply. You can" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="add-node-at-maximum-curvature-of-an-ellipse-in-inkscape">Add
+Node at Maximum Curvature of an Ellipse in Inkscape</h1>
+<p>This guide explains how to place a node precisely at the point of
+maximum curvature on an elliptical segment in Inkscape. On any ellipse,
+the maximum curvature occurs at the vertices along the semi-major axis,
+where the curve bends most sharply. You can locate and insert a node at
+this exact location using native parametric conversion, Inkscape’s
+geometric snapping tools, or guide-based alignment.</p>
+<h3 id="method-1-using-object-to-path-for-native-ellipse-objects">Method
+1: Using Object to Path (For Native Ellipse Objects)</h3>
+<p>If the elliptical segment was created using Inkscape's
+<strong>Circles and Ellipses tool (<code>F5</code> or
+<code>E</code>)</strong>, Inkscape inherently tracks the major and minor
+axes mathematically.</p>
+<ol type="1">
+<li>Select the ellipse or elliptical arc with the <strong>Select tool
+(<code>S</code>)</strong>.</li>
+<li>Navigate to the top menu and select <strong>Path &gt; Object to
+Path</strong> (or press <code>Ctrl + Shift + C</code>).</li>
+<li>Switch to the <strong>Node tool (<code>N</code>)</strong>.</li>
+<li>Inkscape automatically generates four nodes at the exact extremities
+of the ellipse: two at the vertices of the semi-major axis (the points
+of maximum curvature) and two at the co-vertices of the semi-minor axis
+(the points of minimum curvature).</li>
+</ol>
+<hr />
+<h3
+id="method-2-using-curve-extremum-snapping-for-arbitrary-path-segments">Method
+2: Using Curve Extremum Snapping (For Arbitrary Path Segments)</h3>
+<p>If the elliptical arc has already been converted to an arbitrary
+Bézier path and its major axis is aligned horizontally or vertically,
+you can use Inkscape's quadrant/extremum snapping.</p>
+<ol type="1">
+<li>Open the <strong>Snap controls</strong> bar (located at the top
+right of the workspace).</li>
+<li>Enable snapping globally by toggling <strong>Enable Snapping
+(<code>%</code>)</strong>.</li>
+<li>Under the snapping options, enable:
+<ul>
+<li><strong>Snap to paths</strong></li>
+<li><strong>Snap to path extreme points</strong> (or "Snap to quadrant
+points of ellipses")</li>
+</ul></li>
+<li>Select the <strong>Node tool (<code>N</code>)</strong> and click on
+your path to display the segments.</li>
+<li>Hover your mouse along the sharpest bend of the elliptical curve
+until a snap indicator (such as an <code>X</code> or "Path extremum")
+appears.</li>
+<li><strong>Double-click</strong> the segment directly on that snapped
+point. Inkscape will insert a new node precisely at the extremum without
+altering the path geometry.</li>
+</ol>
+<hr />
+<h3 id="method-3-for-rotated-elliptical-paths">Method 3: For Rotated
+Elliptical Paths</h3>
+<p>If the elliptical segment is rotated, the geometric extrema no longer
+align with the global X/Y axes, so standard extremum snapping will not
+detect the maximum curvature point.</p>
+<ol type="1">
+<li><strong>Find the angle of orientation:</strong>
+<ul>
+<li>Select the path and open the <strong>Transform</strong> panel
+(<code>Ctrl + Shift + M</code>).</li>
+<li>If the rotation angle is known, rotate the object back to
+horizontal, apply <strong>Method 2</strong>, and then rotate it
+back.</li>
+</ul></li>
+<li><strong>Alternative using Tangent Snapping:</strong>
+<ul>
+<li>Enable <strong>Snap perpendicular lines</strong> and <strong>Snap
+tangent lines</strong> in the Snap Controls.</li>
+<li>Drag a guide line from the ruler (<code>Ctrl + R</code>) near the
+apex of the curve.</li>
+<li>Rotate the guide (<code>Shift + Click and Drag</code> on the guide)
+until it snaps tangentially to the apex of the ellipse.</li>
+<li>Switch to the <strong>Node tool (<code>N</code>)</strong>, ensure
+<strong>Snap to guides</strong> is enabled, and double-click the
+intersection where the guide touches the curve.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

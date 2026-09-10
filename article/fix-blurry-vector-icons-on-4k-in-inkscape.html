@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Blurry Vector Icons on 4K in Inkscape - inkscape</title>
+    <meta name="description" content="High-resolution 4K displays often cause small vector icons to appear blurry or soft in Inkscape due to operating system DPI scaling mismatches, subpixel antialiasing, and viewport rendering configurations. This guide explains how to correct high-DPI scal">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/fix-blurry-vector-icons-on-4k-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Fix Blurry Vector Icons on 4K in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/fix-blurry-vector-icons-on-4k-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="High-resolution 4K displays often cause small vector icons to appear blurry or soft in Inkscape due to operating system DPI scaling mismatches, subpixel antialiasing, and viewport rendering configurations. This guide explains how to correct high-DPI scal" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="fix-blurry-vector-icons-on-4k-in-inkscape">Fix Blurry Vector
+Icons on 4K in Inkscape</h1>
+<p>High-resolution 4K displays often cause small vector icons to appear
+blurry or soft in Inkscape due to operating system DPI scaling
+mismatches, subpixel antialiasing, and viewport rendering
+configurations. This guide explains how to correct high-DPI scaling
+conflicts, optimize Inkscape’s internal rendering pipeline, and align
+artwork properly so your small vector assets render with absolute
+sharpness.</p>
+<h3 id="override-high-dpi-scaling-in-windows">Override High-DPI Scaling
+in Windows</h3>
+<p>If you are on Windows, the operating system often attempts to scale
+the Inkscape interface and canvas automatically, resulting in a blurry
+bitmap-style upscale rather than true vector scaling.</p>
+<ol type="1">
+<li>Close Inkscape completely.</li>
+<li>Locate the Inkscape executable (usually in
+<code>C:\Program Files\Inkscape\bin\inkscape.exe</code>) or right-click
+your Inkscape desktop shortcut.</li>
+<li>Select <strong>Properties</strong> and open the
+<strong>Compatibility</strong> tab.</li>
+<li>Click <strong>Change high DPI settings</strong>.</li>
+<li>Check the box labeled <strong>Override high DPI scaling
+behavior</strong>.</li>
+<li>Set the dropdown menu for <strong>Scaling performed by:</strong> to
+<strong>Application</strong>.</li>
+<li>Click <strong>OK</strong>, apply the changes, and restart
+Inkscape.</li>
+</ol>
+<h3 id="adjust-display-mode-and-filter-settings">Adjust Display Mode and
+Filter Settings</h3>
+<p>Complex filters, blurs, and drop shadows on small vector elements are
+frequently rendered at lower internal resolutions to save GPU and CPU
+memory, creating visible fuzziness on 4K screens.</p>
+<ol type="1">
+<li>Navigate to the top menu and click <strong>View</strong>.</li>
+<li>Hover over <strong>Display Mode</strong> and select <strong>No
+Filters</strong>. If the icons immediately sharpen, a SVG filter effect
+is causing the degradation.</li>
+<li>To keep filters active without losing clarity, navigate to
+<strong>Edit &gt; Preferences &gt; Rendering</strong>.</li>
+<li>Set the <strong>Filter effects rendering quality</strong> slider to
+<strong>Best</strong>.</li>
+<li>Increase the <strong>Rendering cache size</strong> (e.g., to 512 MB
+or 1024 MB) to ensure your system allocates adequate memory for 4K
+canvas redraws.</li>
+</ol>
+<h3 id="align-vectors-to-the-pixel-grid">Align Vectors to the Pixel
+Grid</h3>
+<p>When designing small icons (such as 16x16, 24x24, or 32x32 pixels),
+paths placed on fractional pixel coordinates force Inkscape’s
+antialiasing engine to interpolate edges across adjacent pixels, causing
+visual blurriness.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Document Properties</strong> and open the
+<strong>Grids</strong> tab.</li>
+<li>Create a new <strong>Rectangular grid</strong>.</li>
+<li>Set <strong>Grid units</strong> to <strong>px</strong>, with both
+<strong>Spacing X</strong> and <strong>Spacing Y</strong> set to
+<code>1.0</code>.</li>
+<li>Enable snapping by clicking the <strong>Enable Snapping</strong>
+toggle in the top-right toolbar.</li>
+<li>Ensure <strong>Snap bounding boxes</strong> and <strong>Snap nodes,
+paths, and handles</strong> are enabled, with specific emphasis on
+<strong>Snap to grid</strong>.</li>
+<li>Select your icon elements and adjust their X, Y, width, and height
+values in the top control bar so they consist entirely of whole integers
+rather than decimal values.</li>
+</ol>
+<h3 id="configure-antialiasing-options">Configure Antialiasing
+Options</h3>
+<p>Inkscape allows you to adjust how vectors are antialiased against the
+canvas background.</p>
+<ol type="1">
+<li>Open <strong>Edit &gt; Preferences &gt; Rendering</strong>.</li>
+<li>Locate the <strong>Antialiasing</strong> options.</li>
+<li>Toggle antialiasing behavior to evaluate edge rendering. If your
+icons are strictly geometric or pixel-aligned, disabling full
+antialiasing or setting the rendering mode to optimize speed/crisp edges
+will produce sharp edges across 4K displays.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

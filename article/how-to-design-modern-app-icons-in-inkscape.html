@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Design Modern App Icons in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to design production-ready, scalable vector app icons using Inkscape while adhering to modern Android and iOS design specifications. You will learn how to configure a pixel-perfect workspace, construct geometric keylines, apply mo">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-design-modern-app-icons-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Design Modern App Icons in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-design-modern-app-icons-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to design production-ready, scalable vector app icons using Inkscape while adhering to modern Android and iOS design specifications. You will learn how to configure a pixel-perfect workspace, construct geometric keylines, apply mo" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-design-modern-app-icons-in-inkscape">How to Design Modern
+App Icons in Inkscape</h1>
+<p>This guide explains how to design production-ready, scalable vector
+app icons using Inkscape while adhering to modern Android and iOS design
+specifications. You will learn how to configure a pixel-perfect
+workspace, construct geometric keylines, apply modern lighting and depth
+effects, manage layer separation for adaptive frameworks, and export
+clean assets across all required resolutions.</p>
+<h2 id="1-configure-the-document-and-grid">1. Configure the Document and
+Grid</h2>
+<p>Modern icon design requires strict alignment to prevent sub-pixel
+rendering blur.</p>
+<ol type="1">
+<li>Open Inkscape and create a new document.</li>
+<li>Go to <strong>File &gt; Document Properties</strong>
+(<code>Shift + Ctrl + D</code>).</li>
+<li>Set the <strong>Display units</strong> to <code>px</code> and define
+a square canvas: <code>512 x 512 px</code> (standard for Google Play) or
+<code>1024 x 1024 px</code> (standard for the Apple App Store).</li>
+<li>Switch to the <strong>Grids</strong> tab, select <strong>New
+Rectangular Grid</strong>, and set the <strong>Spacing X</strong> and
+<strong>Spacing Y</strong> to <code>1 px</code>.</li>
+<li>Enable snapping via the Snap Controls Bar (top right), ensuring that
+<strong>Snap to Grid</strong> and <strong>Snap to Cusp Nodes</strong>
+are active.</li>
+</ol>
+<h2 id="2-set-up-keyline-shapes-and-safe-zones">2. Set Up Keyline Shapes
+and Safe Zones</h2>
+<p>Keylines maintain visual weight and consistency across diverse icon
+shapes within an operating system.</p>
+<ul>
+<li><strong>Safe Zones:</strong> Keep critical glyphs within the central
+80% of the canvas. For a 512×512 canvas, center your main artwork within
+a 410×410 px boundary.</li>
+<li><strong>Geometric Keylines:</strong> Create non-rendering guide
+circles, squares, and vertical/horizontal rectangles centered on the
+canvas to guide proportions:
+<ul>
+<li>Square: 384×384 px with rounded corners.</li>
+<li>Circle: 440 px diameter.</li>
+<li>Vertical Rectangle: 352×464 px.</li>
+<li>Horizontal Rectangle: 464×352 px.</li>
+</ul></li>
+<li>Place these shapes on a dedicated "Guides" layer, lock it, and set
+the opacity to 20%.</li>
+</ul>
+<h2 id="3-construct-the-icon-using-boolean-operations">3. Construct the
+Icon Using Boolean Operations</h2>
+<p>Modern vector icons rely on clean geometric construction rather than
+freehand drawing.</p>
+<ol type="1">
+<li>Build complex silhouettes using primitive shapes (rectangles,
+circles, and polygons).</li>
+<li>Combine and shape your vectors using Inkscape's <strong>Path
+Operations</strong>:
+<ul>
+<li><strong>Path &gt; Union</strong> (<code>Ctrl + +</code>): Merges
+overlapping shapes into a single vector.</li>
+<li><strong>Path &gt; Difference</strong> (<code>Ctrl + -</code>): Cuts
+the top shape out of the bottom shape.</li>
+<li><strong>Path &gt; Intersection</strong> (<code>Ctrl + *</code>):
+Keeps only the overlapping area.</li>
+</ul></li>
+<li>Smooth corner vertices by selecting the node with the Node Tool
+(<code>N</code>) and applying <strong>Path &gt; Path Effects &gt;
+Corners (Fillet/Chamfer)</strong>.</li>
+</ol>
+<h2 id="4-apply-modern-shading-colors-and-lighting">4. Apply Modern
+Shading, Colors, and Lighting</h2>
+<p>Contemporary guidelines favor clean, semi-flat aesthetics with
+purposeful lighting.</p>
+<ul>
+<li><strong>Color Palette:</strong> Select 2 to 3 vibrant, contrasting
+colors adhering to accessible contrast ratios.</li>
+<li><strong>Gradients:</strong> Use subtle linear gradients instead of
+flat fills. Set the light source angle consistently (typically
+top-to-bottom at 90° or top-left to bottom-right at 45°). Access this
+via the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>) using the <strong>Linear
+Gradient</strong> tool (<code>G</code>).</li>
+<li><strong>Edge Highlights:</strong> Add a 1 px inner stroke along the
+top edge with a semi-transparent white color (10%–20% opacity) to
+simulate beveling.</li>
+<li><strong>Soft Drop Shadows:</strong> Duplicate the primary glyph,
+move it downward by 4–8 px, set the color to a darkened tint of the
+background (avoid pure black), and apply a 4%–8% Gaussian blur with low
+opacity.</li>
+</ul>
+<h2 id="5-layer-for-modern-adaptive-standards">5. Layer for Modern
+Adaptive Standards</h2>
+<p>Android requires separate layers to support adaptive icon animations
+and dynamic theming.</p>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Shift + Ctrl + L</code>).</li>
+<li>Structure your document into two primary functional layers:
+<ul>
+<li><code>Background</code>: Solid colors, textures, or full-bleed
+gradients (must fill the entire canvas without rounded corners; the OS
+applies the mask).</li>
+<li><code>Foreground</code>: The central logo or glyph, sized within the
+safe zone and isolated with a transparent background.</li>
+</ul></li>
+<li>Avoid hardcoding platform-specific corner radii or masks directly
+into your source vector unless designing specifically for a legacy or
+web-only target.</li>
+</ol>
+<h2 id="6-optimize-and-export-assets">6. Optimize and Export Assets</h2>
+<p>Clean vector geometry ensures the smallest file size and crisp
+rendering across low- and high-density screens.</p>
+<ol type="1">
+<li>Convert all active strokes to filled paths via <strong>Path &gt;
+Stroke to Path</strong> (<code>Ctrl + Alt + C</code>).</li>
+<li>Remove unused definitions, gradients, and metadata by navigating to
+<strong>File &gt; Clean Up Document</strong>.</li>
+<li>Open the <strong>Export</strong> panel
+(<code>Shift + Ctrl + E</code>).</li>
+<li>Select the <strong>Batch Export</strong> or <strong>Single
+Image</strong> tab:
+<ul>
+<li><strong>Vector:</strong> Export as <strong>Optimized SVG</strong>
+for codebases and web use.</li>
+<li><strong>Raster:</strong> Export as <strong>PNG</strong> at required
+standard sizes (e.g., 512×512, 192×192, 144×144, 96×96, 72×72, 48×48 px)
+by setting the exact pixel dimensions in the export dialog.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

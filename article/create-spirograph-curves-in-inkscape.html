@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Spirograph Curves in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape features a built-in rendering tool designed to produce intricate, geometric Spirograph patterns known mathematically as hypotrochoids and epitrochoids. By adjusting mathematical parameters such as fixed ring radius, moving gear radius, and pen d">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-spirograph-curves-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Spirograph Curves in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-spirograph-curves-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape features a built-in rendering tool designed to produce intricate, geometric Spirograph patterns known mathematically as hypotrochoids and epitrochoids. By adjusting mathematical parameters such as fixed ring radius, moving gear radius, and pen d" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-spirograph-curves-in-inkscape">Create Spirograph Curves
+in Inkscape</h1>
+<p>Inkscape features a built-in rendering tool designed to produce
+intricate, geometric Spirograph patterns known mathematically as
+hypotrochoids and epitrochoids. By adjusting mathematical parameters
+such as fixed ring radius, moving gear radius, and pen distance, you can
+quickly generate complex vector line art. This guide provides a
+straightforward walkthrough on how to locate, configure, and generate
+these curves directly inside Inkscape.</p>
+<h3 id="accessing-the-spirograph-extension">Accessing the Spirograph
+Extension</h3>
+<p>To open the Spirograph generator:</p>
+<ol type="1">
+<li>Open Inkscape and create a new document or open an existing
+project.</li>
+<li>In the top menu, navigate to <strong>Extensions</strong>.</li>
+<li>Hover over <strong>Render</strong>.</li>
+<li>Select <strong>Spirograph...</strong> from the submenu.</li>
+</ol>
+<p>A dialog window will appear containing the numerical settings and a
+preview toggle.</p>
+<h3 id="configuring-curve-parameters">Configuring Curve Parameters</h3>
+<p>The pattern's shape is determined by the relationship between the
+fixed circle, the moving circle, and the drawing point:</p>
+<ul>
+<li><strong><span class="math inline">\(R\)</span> (Ring
+Radius):</strong> Defines the radius of the fixed outer circle.</li>
+<li><strong><span class="math inline">\(r\)</span> (Gear
+Radius):</strong> Defines the radius of the inner moving circle that
+rolls along the fixed ring. A negative value generates an epitrochoid
+(rolling along the outside of the ring), while a positive value
+generates a hypotrochoid (rolling along the inside).</li>
+<li><strong><span class="math inline">\(d\)</span> (Pen
+Distance):</strong> Sets the distance from the center of the rolling
+gear to the drawing pen point. Setting <span class="math inline">\(d
+&lt; r\)</span> creates a standard hypotrochoid, while <span
+class="math inline">\(d &gt; r\)</span> yields elongated, looped
+shapes.</li>
+<li><strong>Rotation:</strong> Sets the initial angular offset of the
+pattern in degrees.</li>
+<li><strong>Quality / Steps:</strong> Determines the smoothness and
+resolution of the resulting vector path. Higher values generate smoother
+curves at the expense of more path nodes.</li>
+</ul>
+<h3 id="generating-the-pattern">Generating the Pattern</h3>
+<ol type="1">
+<li>Check the <strong>Live Preview</strong> box in the bottom-left
+corner of the dialog box to see real-time updates on your canvas.</li>
+<li>Adjust the values of <strong><span
+class="math inline">\(R\)</span></strong>, <strong><span
+class="math inline">\(r\)</span></strong>, and <strong><span
+class="math inline">\(d\)</span></strong> until you achieve the desired
+number of petals and overlap density. Using integer ratios between <span
+class="math inline">\(R\)</span> and <span
+class="math inline">\(r\)</span> will produce closed, symmetrical
+patterns.</li>
+<li>Click <strong>Apply</strong> to generate the vector path on your
+active layer.</li>
+<li>Click <strong>Close</strong> to exit the tool.</li>
+</ol>
+<h3 id="styling-the-rendered-path">Styling the Rendered Path</h3>
+<p>Once generated, the Spirograph pattern is a standard vector path:</p>
+<ul>
+<li><strong>Stroke Width and Color:</strong> Open the <strong>Fill and
+Stroke</strong> panel (<code>Shift + Ctrl + F</code>) to modify line
+thickness, stroke paint color, or gradient fills.</li>
+<li><strong>Layering Patterns:</strong> You can run the extension
+multiple times with slight variations in the <strong>Rotation</strong>
+or <strong>Pen Distance</strong> fields to create multi-layered,
+multicolored geometric designs.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

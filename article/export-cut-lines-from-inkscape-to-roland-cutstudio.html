@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Cut Lines from Inkscape to Roland CutStudio - inkscape</title>
+    <meta name="description" content="This guide explains how to prepare, format, and export vector cut lines in Inkscape so they can be seamlessly imported and cut using Roland CutStudio. By properly converting shapes to vector paths, setting precise stroke weights, and choosing the correct">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-cut-lines-from-inkscape-to-roland-cutstudio">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Cut Lines from Inkscape to Roland CutStudio - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-cut-lines-from-inkscape-to-roland-cutstudio" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to prepare, format, and export vector cut lines in Inkscape so they can be seamlessly imported and cut using Roland CutStudio. By properly converting shapes to vector paths, setting precise stroke weights, and choosing the correct" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-cut-lines-from-inkscape-to-roland-cutstudio">Export Cut
+Lines from Inkscape to Roland CutStudio</h1>
+<p>This guide explains how to prepare, format, and export vector cut
+lines in Inkscape so they can be seamlessly imported and cut using
+Roland CutStudio. By properly converting shapes to vector paths, setting
+precise stroke weights, and choosing the correct export format, you can
+ensure your vinyl cutter reads your design outlines accurately without
+unwanted blade passes or missing lines.</p>
+<h3 id="1-convert-objects-and-text-to-paths">1. Convert Objects and Text
+to Paths</h3>
+<p>Roland CutStudio requires vector path data rather than editable text
+or grouped parametric objects to determine blade trajectories.</p>
+<ol type="1">
+<li>Open your design in Inkscape.</li>
+<li>Select any text elements and go to <strong>Path &gt; Object to
+Path</strong> (Shift+Ctrl+C).</li>
+<li>If you are starting from a raster image (PNG or JPEG), select it and
+choose <strong>Path &gt; Trace Bitmap</strong> (Shift+Alt+B) to generate
+a clean vector outline, then delete the original raster image
+underneath.</li>
+<li>Select all objects and ungroup them by pressing
+<strong>Ctrl+Shift+G</strong> until no groups remain.</li>
+</ol>
+<h3 id="2-configure-stroke-and-fill-for-cutting">2. Configure Stroke and
+Fill for Cutting</h3>
+<p>CutStudio interprets vector strokes as cut paths. Removing fills and
+defining a thin stroke ensures the software only identifies the intended
+cut boundaries.</p>
+<ol type="1">
+<li>Select your entire artwork with <strong>Ctrl+A</strong>.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel (<strong>Object &gt;
+Fill and Stroke</strong> or Shift+Ctrl+F).</li>
+<li>Under the <strong>Fill</strong> tab, click the <strong>X</strong>
+(No paint) icon to remove all fills.</li>
+<li>Under the <strong>Stroke paint</strong> tab, select <strong>Flat
+color</strong> and assign a distinct solid color (such as pure black or
+magenta).</li>
+<li>Under the <strong>Stroke style</strong> tab, set the unit to
+millimeters or points, and adjust the line width to a hairline
+thickness, ideally <strong>0.1 mm</strong> (or <strong>0.25
+pt</strong>).</li>
+</ol>
+<h3 id="3-remove-intersecting-lines">3. Remove Intersecting Lines</h3>
+<p>If your artwork has overlapping vector elements, the blade will cut
+through overlapping areas and damage the vinyl.</p>
+<ol type="1">
+<li>Select overlapping shapes that should be cut as a single
+boundary.</li>
+<li>Go to <strong>Path &gt; Union</strong> (Ctrl++) to merge them into
+one continuous outline.</li>
+<li>Use the <strong>Edit paths by nodes</strong> tool (F2) to delete any
+stray or unintended internal lines.</li>
+</ol>
+<h3 id="4-export-the-file-for-cutstudio">4. Export the File for
+CutStudio</h3>
+<p>Roland CutStudio reliably imports vector line art via the
+<strong>Encapsulated PostScript (.eps)</strong> format.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>In the file format dropdown, select <strong>Encapsulated PostScript
+(*.eps)</strong>.</li>
+<li>Name your file and click <strong>Save</strong>.</li>
+<li>In the EPS export options dialog:
+<ul>
+<li>Set <strong>Output page size</strong> to <strong>Use exported
+object's size</strong>.</li>
+<li>Ensure <strong>Convert texts to paths</strong> is checked.</li>
+<li>Set <strong>Rasterize filter effects</strong> to unchecked.</li>
+<li>Click <strong>OK</strong>.</li>
+</ul></li>
+</ol>
+<p><em>(Alternative: You can also select **Desktop Cutting Plotter
+(AutoCAD DXF R14) (</em>.dxf)** if EPS files do not import at the
+correct scale on your specific CutStudio version).*</p>
+<h3 id="5-import-and-cut-in-roland-cutstudio">5. Import and Cut in
+Roland CutStudio</h3>
+<ol type="1">
+<li>Launch Roland CutStudio.</li>
+<li>Go to <strong>File &gt; Import</strong>.</li>
+<li>Locate and select your exported <code>.eps</code> or
+<code>.dxf</code> file, then click <strong>Open</strong>.</li>
+<li>Verify that your graphics appear with sharp, distinct cutting
+lines.</li>
+<li>Use the <strong>Cutting Setup</strong> tools to position the design
+according to your vinyl width, set the origin point, and send the job to
+your Roland plotter.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

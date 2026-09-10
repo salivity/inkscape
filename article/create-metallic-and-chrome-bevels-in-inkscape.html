@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Metallic and Chrome Bevels in Inkscape - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to transform flat vector shapes and text into realistic metallic and chrome surfaces using Inkscape's built-in filter engine. You will learn how to apply pre-configured material filters, create custom bevels with lighting effe">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-metallic-and-chrome-bevels-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Metallic and Chrome Bevels in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-metallic-and-chrome-bevels-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to transform flat vector shapes and text into realistic metallic and chrome surfaces using Inkscape's built-in filter engine. You will learn how to apply pre-configured material filters, create custom bevels with lighting effe" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-metallic-and-chrome-bevels-in-inkscape">Create Metallic
+and Chrome Bevels in Inkscape</h1>
+<p>This guide demonstrates how to transform flat vector shapes and text
+into realistic metallic and chrome surfaces using Inkscape's built-in
+filter engine. You will learn how to apply pre-configured material
+filters, create custom bevels with lighting effects, and fine-tune
+filter primitives to achieve high-gloss, reflective metal finishes.</p>
+<h2 id="preparing-the-base-object">Preparing the Base Object</h2>
+<ol type="1">
+<li>Select the <strong>Text tool</strong> (<code>T</code>) or any shape
+tool to create your base design.</li>
+<li>Select your object and open the <strong>Fill and Stroke</strong>
+panel (<code>Ctrl + Shift + F</code>).</li>
+<li>For standard metal, apply a mid-tone neutral gray
+(<code>#808080</code>).</li>
+<li>For high-contrast chrome, apply a vertical multi-stop linear
+gradient that mimics a horizon line: light sky blue on top, near-white
+at the center, dark brown/black just below the center, and medium gray
+at the bottom.</li>
+</ol>
+<h2 id="method-1-using-built-in-material-and-bevel-filters">Method 1:
+Using Built-in Material and Bevel Filters</h2>
+<p>Inkscape includes several pre-configured filters designed
+specifically for metallic surfaces:</p>
+<ol type="1">
+<li>Select your vector object.</li>
+<li>Navigate to <strong>Filters &gt; Materials &gt; Specular
+Chrome</strong>. This instantly applies a 3D specular light map over
+your base shape.</li>
+<li>Alternatively, test other built-in metal presets:
+<ul>
+<li><strong>Filters &gt; Materials &gt; Enamel</strong>: Yields a
+polished, coated metal appearance.</li>
+<li><strong>Filters &gt; Materials &gt; Gold Splash</strong>: Ideal for
+warm, reflective gold surfaces.</li>
+<li><strong>Filters &gt; Bevels &gt; Deep Metal</strong>: Creates heavy,
+industrial 3D bevels with directional lighting.</li>
+</ul></li>
+</ol>
+<h2 id="method-2-customizing-the-bevel-with-the-filter-editor">Method 2:
+Customizing the Bevel with the Filter Editor</h2>
+<p>To gain full control over the depth, curvature, and reflection of the
+metal bevel, use the Filter Editor.</p>
+<h3 id="1-open-the-filter-editor">1. Open the Filter Editor</h3>
+<p>Go to <strong>Filters &gt; Filter Editor</strong> to view and modify
+the primitives that make up the active filter.</p>
+<h3 id="2-adjust-specular-lighting">2. Adjust Specular Lighting</h3>
+<p>The metallic sheen is primarily controlled by the <strong>Specular
+Lighting</strong> primitive:</p>
+<ul>
+<li><strong>Specular Constant</strong>: Increase this value (between
+<code>1.5</code> and <code>3.0</code>) to make the highlights brighter
+and more reflective like polished chrome.</li>
+<li><strong>Specular Exponent</strong>: Increase this value (between
+<code>20</code> and <code>50</code>) to create sharper, tighter metallic
+highlights. Lower values create a brushed or matte metal finish.</li>
+<li><strong>Surface Scale</strong>: Increase or decrease this value to
+control the perceived height and depth of the 3D bevel.</li>
+</ul>
+<h3 id="3-adjust-the-light-source">3. Adjust the Light Source</h3>
+<p>Within the <strong>Specular Lighting</strong> properties:</p>
+<ul>
+<li>Set the light type to <strong>Distant Light</strong>.</li>
+<li>Adjust the <strong>Azimuth</strong> angle (e.g., <code>225°</code>
+for top-left illumination) to orient where the light hits the
+bevel.</li>
+<li>Adjust the <strong>Elevation</strong> (typically between
+<code>30°</code> and <code>60°</code>) to control how directly the light
+strikes the surface.</li>
+</ul>
+<h2 id="fine-tuning-for-ultra-realistic-chrome">Fine-Tuning for
+Ultra-Realistic Chrome</h2>
+<ul>
+<li><strong>Smooth the Edges</strong>: If the bevel appears pixelated,
+select the <strong>Gaussian Blur</strong> primitive in the Filter Editor
+and adjust the standard deviation to a low value (between
+<code>0.5</code> and <code>1.5</code>) to smooth the contour
+transitions.</li>
+<li><strong>Duplicate for Depth</strong>: Duplicate the base object
+(<code>Ctrl + D</code>), remove the filter, set the fill to black, apply
+a slight Gaussian blur, and send it backward (<code>Page Down</code>) to
+create a subtle drop shadow beneath the beveled metal object.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

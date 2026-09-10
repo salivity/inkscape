@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Vector Artwork to HPGL in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape provides native support for converting and exporting vector graphics directly into the HPGL (Hewlett-Packard Graphics Language) format commonly used by plotters, vinyl cutters, and CNC machines. This guide details the essential preparation steps">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-vector-artwork-to-hpgl-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Vector Artwork to HPGL in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-vector-artwork-to-hpgl-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape provides native support for converting and exporting vector graphics directly into the HPGL (Hewlett-Packard Graphics Language) format commonly used by plotters, vinyl cutters, and CNC machines. This guide details the essential preparation steps" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-vector-artwork-to-hpgl-in-inkscape">Export Vector Artwork
+to HPGL in Inkscape</h1>
+<p>Inkscape provides native support for converting and exporting vector
+graphics directly into the HPGL (Hewlett-Packard Graphics Language)
+format commonly used by plotters, vinyl cutters, and CNC machines. This
+guide details the essential preparation steps and the direct export
+process required to save clean, plotter-ready <code>.hpgl</code> or
+<code>.plt</code> files using Inkscape.</p>
+<h3 id="1-prepare-vector-objects-and-paths">1. Prepare Vector Objects
+and Paths</h3>
+<p>Plotters interpret line data rather than standard fill colors. Before
+exporting, ensure your vector data consists of clean, single-line or
+stroked paths:</p>
+<ol type="1">
+<li><strong>Convert Text and Shapes to Paths:</strong> Select all
+elements in your document (<code>Ctrl + A</code>), then navigate to
+<strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>).</li>
+<li><strong>Convert Fills to Strokes:</strong> If working with filled
+shapes, select the objects, open the <strong>Fill and Stroke</strong>
+panel (<code>Ctrl + Shift + F</code>), set <strong>Fill</strong> to
+<em>None</em>, and apply a solid line in <strong>Stroke
+paint</strong>.</li>
+<li><strong>Convert Thick Outlines (Optional):</strong> If your cutter
+needs to trace both the inside and outside of a thick outline, go to
+<strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>).</li>
+<li><strong>Ungroup Elements:</strong> Go to <strong>Object &gt;
+Ungroup</strong> (<code>Ctrl + Shift + G</code>) repeatedly until all
+groupings are removed, ensuring the exporter can parse every individual
+path.</li>
+</ol>
+<h3 id="2-export-directly-to-hpgl-format">2. Export Directly to HPGL
+Format</h3>
+<p>Once the paths are prepared, export the artwork directly through the
+save dialogue:</p>
+<ol type="1">
+<li>Click <strong>File &gt; Save As...</strong> (or <strong>File &gt;
+Save a Copy...</strong>).</li>
+<li>Set the destination folder and type the desired file name.</li>
+<li>Open the <strong>Save as type</strong> dropdown menu.</li>
+<li>Select <strong>HP Graphics Language file (*.hpgl)</strong> or
+<strong>HPGL Plotter file (*.plt)</strong> depending on your plotter
+software requirements.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<h3 id="3-configure-hpgl-export-settings">3. Configure HPGL Export
+Settings</h3>
+<p>After clicking <strong>Save</strong>, an HPGL configuration dialog
+will appear. Adjust the settings to match your machine
+specifications:</p>
+<ul>
+<li><strong>Pen Number / Pen Force / Pen Speed:</strong> Set the
+physical pen parameters according to the tool and material loaded in
+your machine.</li>
+<li><strong>Resolution (dpi):</strong> Specify the target coordinate
+resolution (standard values are 1016 dpi for standard HPGL
+devices).</li>
+<li><strong>Auto-align / Orientation:</strong> Choose whether the
+coordinate origin should align to the bottom-left or center, and adjust
+rotation if your media feed requires portrait or landscape
+orientation.</li>
+<li><strong>Overcut (mm):</strong> If cutting thick vinyl, apply an
+overcut value to ensure complete cuts at the start/end points of closed
+shapes.</li>
+</ul>
+<p>Click <strong>OK</strong> to process and save the HPGL file to your
+computer.</p>
+<h3 id="alternative-direct-plotting-via-extensions">Alternative: Direct
+Plotting via Extensions</h3>
+<p>If your plotter is connected directly to your computer via a serial
+or COM port, you can send the vector data straight to the machine:</p>
+<ol type="1">
+<li>Navigate to <strong>Extensions &gt; Export &gt;
+Plot...</strong></li>
+<li>In the <strong>Plotter</strong> tab, configure your connection port,
+baud rate, and flow control.</li>
+<li>In the <strong>Plot features</strong> tab, configure pen speed, pen
+force, and overcut.</li>
+<li>Click <strong>Apply</strong> to stream the vector data directly to
+the device.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

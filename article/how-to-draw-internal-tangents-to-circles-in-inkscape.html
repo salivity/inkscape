@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Draw Internal Tangents to Circles in Inkscape - inkscape</title>
+    <meta name="description" content="Finding the common internal tangent lines between two non-overlapping circles in Inkscape can be accomplished either through automated snapping tools or via classic geometric construction. While modern versions of Inkscape include tangent snapping featur">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-draw-internal-tangents-to-circles-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Draw Internal Tangents to Circles in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-draw-internal-tangents-to-circles-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Finding the common internal tangent lines between two non-overlapping circles in Inkscape can be accomplished either through automated snapping tools or via classic geometric construction. While modern versions of Inkscape include tangent snapping featur" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-draw-internal-tangents-to-circles-in-inkscape">How to
+Draw Internal Tangents to Circles in Inkscape</h1>
+<p>Finding the common internal tangent lines between two non-overlapping
+circles in Inkscape can be accomplished either through automated
+snapping tools or via classic geometric construction. While modern
+versions of Inkscape include tangent snapping features for quick
+alignment, geometric construction guarantees mathematical precision when
+rendering vector graphics. This guide outlines both the fast snapping
+technique and the exact geometric workflow.</p>
+<h3 id="method-1-using-inkscapes-tangent-snapping">Method 1: Using
+Inkscape's Tangent Snapping</h3>
+<p>This is the fastest method and relies on Inkscape’s built-in
+geometric snapping engine.</p>
+<ol type="1">
+<li><strong>Enable Snapping:</strong> Click the <strong>Enable
+Snapping</strong> toggle in the top-right corner of the interface (or
+press <code>%</code>).</li>
+<li><strong>Enable Tangent Snapping:</strong> Expand the Snap Controls
+popover. Under the <strong>Points</strong> and <strong>Paths</strong>
+sections, ensure <strong>Snap to paths</strong> and <strong>Snap to
+tangents</strong> are turned on.</li>
+<li><strong>Select the Pen Tool:</strong> Press <code>B</code> or select
+the <strong>Draw Bezier curves and straight lines</strong> tool from the
+toolbar.</li>
+<li><strong>Draw the First Internal Tangent:</strong>
+<ul>
+<li>Hover over the inner side of the first circle until the snap tooltip
+indicates a tangent or path intersection.</li>
+<li>Click once to start the line.</li>
+<li>Cross over to the opposite side of the second circle. Move the
+cursor along the perimeter until the snap indicator displays
+<strong>Tangent to path</strong>.</li>
+<li>Click to set the endpoint, then press <code>Enter</code> to finalize
+the line.</li>
+</ul></li>
+<li><strong>Draw the Second Internal Tangent:</strong> Repeat the
+process starting from the opposite diagonal side to create the crossing
+tangent line.</li>
+</ol>
+<hr />
+<h3 id="method-2-mathematical-construction-exact-precision">Method 2:
+Mathematical Construction (Exact Precision)</h3>
+<p>If snapping produces floating-point rounding errors or fails to lock
+onto both curves simultaneously, use the Euclidean construction
+method.</p>
+<h4 id="step-1-connect-circle-centers">Step 1: Connect Circle
+Centers</h4>
+<ol type="1">
+<li>Ensure both circles are paths (<code>Path</code> &gt;
+<code>Object to Path</code> or <code>Shift + Ctrl + C</code>).</li>
+<li>Turn on <strong>Snap to object centers</strong>.</li>
+<li>With the <strong>Pen Tool</strong> (<code>B</code>), draw a straight
+segment connecting the center of Circle A (<span
+class="math inline">\(C_1\)</span>, radius <span
+class="math inline">\(R_1\)</span>) to the center of Circle B (<span
+class="math inline">\(C_2\)</span>, radius <span
+class="math inline">\(R_2\)</span>).</li>
+</ol>
+<h4 id="step-2-construct-the-sum-circle">Step 2: Construct the Sum
+Circle</h4>
+<ol type="1">
+<li>Select Circle A (the larger circle).</li>
+<li>Duplicate it (<code>Ctrl + D</code>).</li>
+<li>Open the <strong>Transform</strong> panel
+(<code>Shift + Ctrl + M</code>) to the <strong>Scale</strong> tab.</li>
+<li>Increase the diameter of the duplicate circle so that its radius
+equals <span class="math inline">\(R_1 + R_2\)</span>.</li>
+<li>Re-center this new enlarged circle over Circle A’s center.</li>
+</ol>
+<h4 id="step-3-find-the-midpoint-between-centers">Step 3: Find the
+Midpoint Between Centers</h4>
+<ol type="1">
+<li>Select the segment connecting <span
+class="math inline">\(C_1\)</span> and <span
+class="math inline">\(C_2\)</span>.</li>
+<li>Duplicate it (<code>Ctrl + D</code>) and rotate it 90 degrees to
+visually locate the exact midpoint, or use the <strong>Snap to midpoints
+of line segments</strong> option.</li>
+<li>Draw a reference circle centered at this midpoint with a diameter
+equal to the distance between <span class="math inline">\(C_1\)</span>
+and <span class="math inline">\(C_2\)</span>.</li>
+</ol>
+<h4 id="step-4-locate-intersection-points">Step 4: Locate Intersection
+Points</h4>
+<ol type="1">
+<li>Identify where the reference circle (from Step 3) intersects the
+enlarged circle (from Step 2). There will be two intersection points
+(<span class="math inline">\(P_1\)</span> and <span
+class="math inline">\(P_2\)</span>).</li>
+<li>Draw a line from <span class="math inline">\(C_1\)</span> through
+intersection point <span class="math inline">\(P_1\)</span> to the edge
+of the original Circle A. The point where this line crosses the boundary
+of Circle A is the exact point of tangency on Circle A.</li>
+</ol>
+<h4 id="step-5-draw-the-tangent">Step 5: Draw the Tangent</h4>
+<ol type="1">
+<li>Select the <strong>Pen Tool</strong> (<code>B</code>).</li>
+<li>Draw a perpendicular line from the point of tangency on Circle A
+across to Circle B.</li>
+<li>With <strong>Snap to perpendicular lines</strong> enabled, lock onto
+the boundary of Circle B to complete the exact internal tangent
+line.</li>
+<li>Repeat for <span class="math inline">\(P_2\)</span> to generate the
+opposite internal tangent.</li>
+<li>Delete the temporary construction circles and reference lines.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

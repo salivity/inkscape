@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extract Individual Faces from a 3D Box in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape’s 3D Box tool creates dynamic, perspective-controlled objects comprised of six individual polygon paths. This guide explains how to convert a parametric 3D box into standard vector shapes and extract its individual polygon faces for independen">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/extract-individual-faces-from-a-3d-box-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Extract Individual Faces from a 3D Box in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/extract-individual-faces-from-a-3d-box-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape’s 3D Box tool creates dynamic, perspective-controlled objects comprised of six individual polygon paths. This guide explains how to convert a parametric 3D box into standard vector shapes and extract its individual polygon faces for independen" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="extract-individual-faces-from-a-3d-box-in-inkscape">Extract
+Individual Faces from a 3D Box in Inkscape</h1>
+<p>Inkscape’s 3D Box tool creates dynamic, perspective-controlled
+objects comprised of six individual polygon paths. This guide explains
+how to convert a parametric 3D box into standard vector shapes and
+extract its individual polygon faces for independent editing, styling,
+or exporting.</p>
+<h3 id="method-1-ungrouping-the-3d-box">Method 1: Ungrouping the 3D
+Box</h3>
+<p>The most direct way to separate all faces into standalone vector
+paths is by ungrouping the 3D box element.</p>
+<ol type="1">
+<li><strong>Select the 3D Box:</strong> Click on the 3D box using the
+<strong>Select and Transform objects</strong> tool (<code>S</code> or
+<code>F1</code>).</li>
+<li><strong>Ungroup the Object:</strong> Navigate to the top menu and
+select <strong>Object &gt; Ungroup</strong>, or press
+<code>Ctrl + Shift + G</code> (Windows/Linux) or
+<code>Cmd + Shift + G</code> (macOS).</li>
+<li><strong>Separate the Polygons:</strong> Ungrouping converts the
+dynamic 3D box into six distinct 2D path objects (representing the
+front, back, top, bottom, left, and right faces). Click outside the
+object to deselect everything, then click and drag any individual face
+to separate it from the rest.</li>
+</ol>
+<h3 id="method-2-selecting-individual-faces-without-ungrouping">Method
+2: Selecting Individual Faces Without Ungrouping</h3>
+<p>If you want to modify, copy, or extract a specific face while keeping
+the parametric 3D box intact, you can target child paths directly.</p>
+<ol type="1">
+<li><strong>Direct Selection (Ctrl + Click):</strong> Switch to the
+<strong>Select and Transform objects</strong> tool (<code>S</code>).
+Hold <code>Ctrl</code> and click directly on the specific face you want
+to isolate.</li>
+<li><strong>Copy or Cut the Face:</strong> Press <code>Ctrl + C</code>
+to copy or <code>Ctrl + X</code> to cut the selected face.</li>
+<li><strong>Paste Outside the Group:</strong> Click anywhere on the
+empty canvas and press <code>Ctrl + V</code> to paste the face as an
+independent polygon.</li>
+</ol>
+<h3 id="method-3-using-the-node-tool">Method 3: Using the Node Tool</h3>
+<ol type="1">
+<li><strong>Switch to Node Tool:</strong> Select the <strong>Edit paths
+by nodes</strong> tool (<code>N</code> or <code>F2</code>).</li>
+<li><strong>Select a Face:</strong> Click on the specific plane you wish
+to manipulate. The bounding nodes of that specific polygon will become
+visible.</li>
+<li><strong>Duplicate the Path:</strong> Press <code>Ctrl + D</code> to
+duplicate the selected face path. You can now switch back to the
+Selector tool (<code>S</code>) and move the duplicated polygon away from
+the 3D box.</li>
+</ol>
+<h3 id="working-with-the-extracted-faces">Working with the Extracted
+Faces</h3>
+<p>Once extracted, each face functions as a standard four-node closed
+path. You can freely change fill colors, apply gradients, adjust stroke
+settings, modify corner nodes with the Node Tool, or delete unseen rear
+faces to optimize your SVG file size.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

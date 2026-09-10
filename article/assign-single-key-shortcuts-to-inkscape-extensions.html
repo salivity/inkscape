@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Single-Key Shortcuts to Inkscape Extensions - inkscape</title>
+    <meta name="description" content="Custom Python extensions can significantly accelerate your workflow in Inkscape, and binding them to single-key shortcuts eliminates the need to navigate multi-level menus. This guide explains how to map single-character keys directly to your installed P">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/assign-single-key-shortcuts-to-inkscape-extensions">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Assign Single-Key Shortcuts to Inkscape Extensions - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/assign-single-key-shortcuts-to-inkscape-extensions" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Custom Python extensions can significantly accelerate your workflow in Inkscape, and binding them to single-key shortcuts eliminates the need to navigate multi-level menus. This guide explains how to map single-character keys directly to your installed P" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="assign-single-key-shortcuts-to-inkscape-extensions">Assign
+Single-Key Shortcuts to Inkscape Extensions</h1>
+<p>Custom Python extensions can significantly accelerate your workflow
+in Inkscape, and binding them to single-key shortcuts eliminates the
+need to navigate multi-level menus. This guide explains how to map
+single-character keys directly to your installed Python extensions using
+Inkscape's built-in preferences or by manually editing the shortcut
+configuration file.</p>
+<h3 id="method-1-using-the-inkscape-preferences-menu">Method 1: Using
+the Inkscape Preferences Menu</h3>
+<p>The simplest way to bind a single-key shortcut is through the
+graphical interface.</p>
+<ol type="1">
+<li><p><strong>Open Keyboard Preferences:</strong></p>
+<ul>
+<li>Go to <strong>Edit</strong> &gt; <strong>Preferences</strong> (or
+press <code>Ctrl + Shift + P</code>).</li>
+<li>In the left sidebar, expand <strong>Interface</strong> and select
+<strong>Keyboard</strong>.</li>
+</ul></li>
+<li><p><strong>Locate Your Custom Extension:</strong></p>
+<ul>
+<li>In the search bar at the top of the Keyboard Shortcuts pane, type
+the exact display name of your custom Python extension.</li>
+<li>Alternatively, expand the <strong>Extensions</strong> category in
+the command tree and scroll to the submenu where your extension is
+categorized.</li>
+</ul></li>
+<li><p><strong>Assign the Single Key:</strong></p>
+<ul>
+<li>Click on the row of your extension under the
+<strong>Shortcut</strong> column. The text will change to indicate it is
+listening for key input (typically reading <em>New
+accelerator...</em>).</li>
+<li>Press the single key you wish to assign (for example,
+<code>J</code>, <code>Q</code>, or <code>1</code>).</li>
+</ul></li>
+<li><p><strong>Resolve Key Conflicts (If Prompted):</strong></p>
+<ul>
+<li>Inkscape uses many single keys for standard tools (e.g.,
+<code>S</code> for Selector, <code>R</code> for Rectangle). If your
+chosen key is already mapped, Inkscape will display a warning dialog
+showing the conflicting action.</li>
+<li>Confirm that you want to overwrite the existing shortcut to reassign
+it to your extension.</li>
+</ul></li>
+<li><p><strong>Test the Extension:</strong></p>
+<ul>
+<li>Close the Preferences window.</li>
+<li>Return to your canvas and press the assigned key to confirm the
+extension runs immediately.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="method-2-manually-editing-the-shortcut-xml-file">Method 2:
+Manually Editing the Shortcut XML File</h3>
+<p>If your extension does not appear cleanly in the search or you want
+to maintain a portable configuration, you can assign shortcuts by
+modifying Inkscape's user configuration file.</p>
+<ol type="1">
+<li><p><strong>Find the Extension ID:</strong></p>
+<ul>
+<li>Open your extension's <code>.inx</code> file in a text editor.</li>
+<li>Locate the <code>&lt;id&gt;</code> tag (e.g.,
+<code>&lt;id&gt;org.inkscape.render.my_custom_script&lt;/id&gt;</code>).
+Copy this ID string.</li>
+</ul></li>
+<li><p><strong>Locate or Create <code>default.xml</code>:</strong></p>
+<ul>
+<li>Navigate to your Inkscape user profile directory:
+<ul>
+<li><strong>Linux:</strong> <code>~/.config/inkscape/keys/</code></li>
+<li><strong>Windows:</strong> <code>%APPDATA%\inkscape\keys\</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/keys/</code></li>
+</ul></li>
+<li>If <code>default.xml</code> does not exist in the <code>keys</code>
+folder, create a new text file and name it
+<code>default.xml</code>.</li>
+</ul></li>
+<li><p><strong>Add the Key Binding:</strong></p>
+<ul>
+<li>Structure your <code>default.xml</code> as follows, replacing the
+<code>key</code> and <code>action</code> values with your chosen key and
+extension ID:</li>
+</ul></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span> <span class="ot">version=</span><span class="st">&quot;1.0&quot;</span> <span class="ot">encoding=</span><span class="st">&quot;UTF-8&quot;</span><span class="fu">?&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">inkscape-extension</span> <span class="ot">xmlns:inkscape=</span><span class="st">&quot;http://www.inkscape.org/namespaces/inkscape&quot;</span>&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">bind</span> <span class="ot">key=</span><span class="st">&quot;q&quot;</span> <span class="ot">action=</span><span class="st">&quot;org.inkscape.render.my_custom_script&quot;</span> /&gt;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">inkscape-extension</span>&gt;</span></code></pre></div>
+<ol start="4" type="1">
+<li><strong>Restart Inkscape:</strong>
+<ul>
+<li>Save the file and restart Inkscape. The key specified in the
+<code>key</code> attribute will now trigger the extension.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

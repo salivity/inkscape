@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automating Inkscape with Bash for Graphics Pipelines - inkscape</title>
+    <meta name="description" content="Integrating Inkscape into automated graphics generation pipelines allows developers and designers to batch-process vector assets, generate dynamic visual content, and convert file formats headlessly. By leveraging Inkscape’s modern command-line interfa">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/automating-inkscape-with-bash-for-graphics-pipelines">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Automating Inkscape with Bash for Graphics Pipelines - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/automating-inkscape-with-bash-for-graphics-pipelines" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Integrating Inkscape into automated graphics generation pipelines allows developers and designers to batch-process vector assets, generate dynamic visual content, and convert file formats headlessly. By leveraging Inkscape’s modern command-line interfa" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="automating-inkscape-with-bash-for-graphics-pipelines">Automating
+Inkscape with Bash for Graphics Pipelines</h1>
+<p>Integrating Inkscape into automated graphics generation pipelines
+allows developers and designers to batch-process vector assets, generate
+dynamic visual content, and convert file formats headlessly. By
+leveraging Inkscape’s modern command-line interface (CLI) in conjunction
+with Bash scripts and text-manipulation utilities, you can automate
+tasks such as rasterizing SVGs to multiple resolutions, dynamically
+altering vector templates, and exporting production-ready assets within
+continuous integration workflows.</p>
+<h3 id="understanding-inkscapes-command-line-interface">Understanding
+Inkscape's Command-Line Interface</h3>
+<p>Modern versions of Inkscape (v1.0+) include a CLI capable of running
+in headless environments without launching the graphical user
+interface.</p>
+<p>The primary commands for file conversion and export are:</p>
+<ul>
+<li><code>--export-filename=&lt;output_path&gt;</code>: Specifies the
+destination and file format of the output.</li>
+<li><code>--export-type=&lt;type&gt;</code>: Defines the export format
+(e.g., <code>png</code>, <code>pdf</code>, <code>svg</code>,
+<code>eps</code>).</li>
+<li><code>--export-dpi=&lt;dpi&gt;</code>: Sets the resolution for
+raster outputs.</li>
+<li><code>--export-id=&lt;object_id&gt;</code>: Exports only a specific
+element identified by its SVG ID.</li>
+<li><code>--export-area-drawing</code>: Crops the exported canvas
+tightly to the drawing’s bounding box.</li>
+</ul>
+<h3 id="batch-converting-vector-assets">Batch Converting Vector
+Assets</h3>
+<p>A common use case in asset pipelines is converting a directory of SVG
+source files into multiple raster formats for web or application
+use.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">INPUT_DIR</span><span class="op">=</span><span class="st">&quot;./src_vectors&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">OUTPUT_DIR</span><span class="op">=</span><span class="st">&quot;./dist_png&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">&quot;</span><span class="va">$OUTPUT_DIR</span><span class="st">&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> svg_file <span class="kw">in</span> <span class="st">&quot;</span><span class="va">$INPUT_DIR</span><span class="st">&quot;</span>/<span class="pp">*</span>.svg<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">[</span> <span class="ot">-f</span> <span class="st">&quot;</span><span class="va">$svg_file</span><span class="st">&quot;</span> <span class="bu">]</span> <span class="kw">||</span> <span class="cf">continue</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">base_name</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="st">&quot;</span><span class="va">$svg_file</span><span class="st">&quot;</span> .svg<span class="va">)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Export standard resolution PNG</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="ex">inkscape</span> <span class="st">&quot;</span><span class="va">$svg_file</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">--export-filename</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${OUTPUT_DIR}</span><span class="st">/</span><span class="va">${base_name}</span><span class="st">.png&quot;</span> <span class="dt">\</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">--export-type</span><span class="op">=</span>png <span class="dt">\</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">--export-dpi</span><span class="op">=</span>96</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Export high-DPI (Retina/Print) PNG</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="ex">inkscape</span> <span class="st">&quot;</span><span class="va">$svg_file</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">--export-filename</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${OUTPUT_DIR}</span><span class="st">/</span><span class="va">${base_name}</span><span class="st">@2x.png&quot;</span> <span class="dt">\</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">--export-type</span><span class="op">=</span>png <span class="dt">\</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">--export-dpi</span><span class="op">=</span>192</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
+<h3 id="generating-dynamic-graphics-using-svg-templates">Generating
+Dynamic Graphics Using SVG Templates</h3>
+<p>Since SVG files are structured XML documents, you can design
+templates in Inkscape containing placeholder strings or specific node
+IDs, modify the template via Bash tools, and render the final result
+automatically.</p>
+<h4 id="1-prepare-the-template">1. Prepare the Template</h4>
+<p>Create an SVG file (<code>badge_template.svg</code>) containing
+recognizable placeholder tokens like <code>{{USERNAME}}</code> or
+<code>{{SCORE}}</code>.</p>
+<h4 id="2-process-and-render-via-script">2. Process and Render via
+Script</h4>
+<p>Use <code>sed</code> or <code>envsubst</code> to replace placeholders
+and pipe the result directly or save it temporarily before rendering
+with Inkscape:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">TEMPLATE</span><span class="op">=</span><span class="st">&quot;badge_template.svg&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">USERS</span><span class="op">=</span><span class="va">(</span><span class="st">&quot;Alice&quot;</span> <span class="st">&quot;Bob&quot;</span> <span class="st">&quot;Charlie&quot;</span><span class="va">)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="va">SCORES</span><span class="op">=</span><span class="va">(</span>95 88 100<span class="va">)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="st">&quot;</span><span class="va">${</span><span class="op">!</span><span class="va">USERS</span><span class="op">[@]</span><span class="va">}</span><span class="st">&quot;</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="va">user</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${USERS</span><span class="op">[</span><span class="va">$i</span><span class="op">]</span><span class="va">}</span><span class="st">&quot;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="va">score</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${SCORES</span><span class="op">[</span><span class="va">$i</span><span class="op">]</span><span class="va">}</span><span class="st">&quot;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="va">temp_svg</span><span class="op">=</span><span class="st">&quot;temp_</span><span class="va">${user}</span><span class="st">.svg&quot;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="va">output_png</span><span class="op">=</span><span class="st">&quot;badge_</span><span class="va">${user}</span><span class="st">.png&quot;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Replace placeholders</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sed</span> <span class="at">-e</span> <span class="st">&quot;s/{{USERNAME}}/</span><span class="va">$user</span><span class="st">/g&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">-e</span> <span class="st">&quot;s/{{SCORE}}/</span><span class="va">$score</span><span class="st">/g&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;</span><span class="va">$TEMPLATE</span><span class="st">&quot;</span> <span class="op">&gt;</span> <span class="st">&quot;</span><span class="va">$temp_svg</span><span class="st">&quot;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Render graphic</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="ex">inkscape</span> <span class="st">&quot;</span><span class="va">$temp_svg</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">--export-filename</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$output_png</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">--export-type</span><span class="op">=</span>png</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Cleanup temporary SVG</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rm</span> <span class="st">&quot;</span><span class="va">$temp_svg</span><span class="st">&quot;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
+<h3 id="advanced-processing-with-inkscape-actions">Advanced Processing
+with Inkscape Actions</h3>
+<p>Inkscape supports chained commands via the <code>--actions</code>
+flag, enabling programmatic edits like object transformations,
+selections, and exports within a single process execution.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Open an SVG, select an object by ID, duplicate it, transform it, and export</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">--actions</span><span class="op">=</span><span class="st">&quot;select-by-id:logo; selection-duplicate; transform-scale:1.5; export-filename:output.png; export-do&quot;</span></span></code></pre></div>
+<h3 id="pipeline-deployment-considerations">Pipeline Deployment
+Considerations</h3>
+<p>When running Inkscape in headless Linux environments, Docker
+containers, or CI/CD platforms (like GitHub Actions or GitLab CI):</p>
+<ol type="1">
+<li><strong>Dependencies:</strong> Ensure standard fonts and vector
+libraries are installed on the host container (e.g.,
+<code>fonts-dejavu</code>, <code>libgl1</code>).</li>
+<li><strong>Headless Execution:</strong> Modern Inkscape handles
+headless CLI operations natively, but if rendering issues occur in
+legacy environments, prepend <code>xvfb-run</code> to emulate an X
+server.</li>
+<li><strong>Parallelization:</strong> For massive asset pipelines,
+combine your Bash script with <code>xargs -P</code> or GNU
+<code>parallel</code> to process multiple graphics simultaneously across
+CPU cores.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

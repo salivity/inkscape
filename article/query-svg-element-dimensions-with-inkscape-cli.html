@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query SVG Element Dimensions with Inkscape CLI - inkscape</title>
+    <meta name="description" content="This guide explains how to extract the exact width and height of a specific SVG element using the Inkscape command-line interface. By targeting element IDs with Inkscape's built-in query arguments, developers and designers can inspect bounding box dimens">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/query-svg-element-dimensions-with-inkscape-cli">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Query SVG Element Dimensions with Inkscape CLI - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/query-svg-element-dimensions-with-inkscape-cli" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to extract the exact width and height of a specific SVG element using the Inkscape command-line interface. By targeting element IDs with Inkscape's built-in query arguments, developers and designers can inspect bounding box dimens" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="query-svg-element-dimensions-with-inkscape-cli">Query SVG
+Element Dimensions with Inkscape CLI</h1>
+<p>This guide explains how to extract the exact width and height of a
+specific SVG element using the Inkscape command-line interface. By
+targeting element IDs with Inkscape's built-in query arguments,
+developers and designers can inspect bounding box dimensions directly
+from the terminal or automate dimension extraction within automated
+build scripts and pipelines without launching the graphical user
+interface.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>To query a specific element, you need to know its <code>id</code>
+attribute. Open the SVG in a text editor or inspect it inside Inkscape
+to find the target element's ID (for example, <code>rect1024</code> or
+<code>layer1</code>).</p>
+<h3 id="querying-width-and-height-separately">Querying Width and Height
+Separately</h3>
+<p>Inkscape provides dedicated query flags to output the width and
+height of an element in user units (typically pixels).</p>
+<p>To query the width of a specific element, use the
+<code>--query-id</code> flag alongside <code>--query-width</code>:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--query-id</span><span class="op">=</span><span class="st">&quot;element_id&quot;</span> <span class="at">--query-width</span> filename.svg</span></code></pre></div>
+<p>To query the height of a specific element, use
+<code>--query-height</code>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--query-id</span><span class="op">=</span><span class="st">&quot;element_id&quot;</span> <span class="at">--query-height</span> filename.svg</span></code></pre></div>
+<p>You can also use the shorthand equivalents for these options:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Query Width</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">-I</span> element_id <span class="at">-W</span> filename.svg</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Query Height</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">-I</span> element_id <span class="at">-H</span> filename.svg</span></code></pre></div>
+<h3 id="querying-both-dimensions-simultaneously">Querying Both
+Dimensions Simultaneously</h3>
+<p>If you need both width and height at the same time, using
+<code>--query-all</code> is faster because it parses the SVG document
+once. Combined with <code>--query-id</code>, it outputs a
+comma-separated list containing the element's ID, X position, Y
+position, width, and height:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--query-id</span><span class="op">=</span><span class="st">&quot;element_id&quot;</span> <span class="at">--query-all</span> filename.svg</span></code></pre></div>
+<p><strong>Output format:</strong></p>
+<pre class="text"><code>element_id,x,y,width,height</code></pre>
+<p>To isolate the width and height directly in a Unix/Linux shell, pipe
+the result to <code>cut</code>:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract Width (4th field)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--query-id</span><span class="op">=</span><span class="st">&quot;element_id&quot;</span> <span class="at">--query-all</span> filename.svg <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">&#39;,&#39;</span> <span class="at">-f4</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract Height (5th field)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--query-id</span><span class="op">=</span><span class="st">&quot;element_id&quot;</span> <span class="at">--query-all</span> filename.svg <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span><span class="st">&#39;,&#39;</span> <span class="at">-f5</span></span></code></pre></div>
+<h3 id="querying-the-whole-document">Querying the Whole Document</h3>
+<p>If you omit the <code>--query-id</code> (or <code>-I</code>)
+parameter entirely, Inkscape defaults to querying the bounding box of
+the entire SVG canvas:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get total document width</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">-W</span> filename.svg</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get total document height</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">-H</span> filename.svg</span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

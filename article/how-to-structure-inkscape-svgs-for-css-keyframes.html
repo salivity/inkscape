@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Structure Inkscape SVGs for CSS Keyframes - inkscape</title>
+    <meta name="description" content="Structuring SVG layers properly within Inkscape drastically simplifies the process of applying CSS keyframe animations after export. By establishing semantic group hierarchies, naming IDs intentionally, setting up reliable transform origins, and separati">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-structure-inkscape-svgs-for-css-keyframes">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Structure Inkscape SVGs for CSS Keyframes - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-structure-inkscape-svgs-for-css-keyframes" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Structuring SVG layers properly within Inkscape drastically simplifies the process of applying CSS keyframe animations after export. By establishing semantic group hierarchies, naming IDs intentionally, setting up reliable transform origins, and separati" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-structure-inkscape-svgs-for-css-keyframes">How to
+Structure Inkscape SVGs for CSS Keyframes</h1>
+<p>Structuring SVG layers properly within Inkscape drastically
+simplifies the process of applying CSS keyframe animations after export.
+By establishing semantic group hierarchies, naming IDs intentionally,
+setting up reliable transform origins, and separating static assets from
+animated parts, you create clean, accessible vector code that can be
+directly targeted and animated using CSS without tedious manual
+cleanup.</p>
+<h3 id="1-treat-inkscape-layers-as-animation-containers">1. Treat
+Inkscape Layers as Animation Containers</h3>
+<p>In Inkscape, every layer is rendered as an SVG <code>&lt;g&gt;</code>
+(group) element. To prepare an asset for animation:</p>
+<ul>
+<li>Place every distinct moving part onto its own separate layer or
+sub-layer.</li>
+<li>Avoid placing multiple independently moving elements into the same
+unorganized layer.</li>
+<li>Group nested components hierarchically. For example, if animating a
+character's arm, place the upper arm, forearm, and hand in nested groups
+so secondary motion cascades naturally.</li>
+</ul>
+<h3 id="2-assign-meaningful-ids-in-the-object-attributes">2. Assign
+Meaningful IDs in the Object Attributes</h3>
+<p>CSS keyframes target elements via classes or IDs. By default,
+Inkscape assigns generic IDs like <code>path1234</code> or
+<code>g5678</code>.</p>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li>Open the <strong>Object Properties</strong> panel
+(<code>Ctrl + Shift + O</code>).</li>
+<li>Select your group or layer and change both the
+<strong>Label</strong> and <strong>ID</strong> to a predictable name
+(such as <code>propeller-blade</code>, <code>clock-hand</code>, or
+<code>wheel-front</code>).</li>
+<li>Apply the change. When exported, the SVG wrapper will retain
+<code>&lt;g id="propeller-blade"&gt;</code>, allowing direct styling via
+<code>#propeller-blade</code> in your stylesheet.</li>
+</ol>
+<h3 id="3-flatten-and-combine-static-graphics">3. Flatten and Combine
+Static Graphics</h3>
+<p>Any vector element that will not be animated should be consolidated
+to keep the Document Object Model (DOM) lightweight:</p>
+<ul>
+<li>Select all static background or non-moving foreground objects.</li>
+<li>Combine them into single paths where possible (<strong>Path &gt;
+Combine</strong> or <strong>Path &gt; Union</strong>).</li>
+<li>Group them into a single layer labeled <code>background</code> or
+<code>static-elements</code>. This isolates animated nodes from static
+markup.</li>
+</ul>
+<h3 id="4-normalize-coordinates-and-transforms">4. Normalize Coordinates
+and Transforms</h3>
+<p>CSS transforms (such as <code>rotate</code>, <code>scale</code>, or
+<code>translate</code>) behave unpredictably when applied to SVG
+elements that contain native <code>transform="..."</code> attributes
+applied by Inkscape.</p>
+<ul>
+<li>Avoid resizing or rotating layers using the general selector tool
+after grouping, as this writes matrix transformations directly to the
+<code>&lt;g&gt;</code> tag.</li>
+<li>Instead, enter the group, manipulate the raw paths, or use
+<strong>Path &gt; Object to Path</strong>.</li>
+<li>When possible, align the center of rotation for rotating elements
+around an absolute coordinate, or prepare to use
+<code>transform-box: fill-box;</code> paired with
+<code>transform-origin: center;</code> in your CSS.</li>
+</ul>
+<h3 id="5-export-as-optimized-svg">5. Export as Optimized SVG</h3>
+<p>When your layout is finalized in Inkscape:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>Choose <strong>Optimized SVG (*.svg)</strong>.</li>
+<li>In the export configuration dialog:
+<ul>
+<li>Enable <strong>Remove unused IDs</strong>.</li>
+<li>Disable the option to remove or simplify existing IDs to preserve
+the names you assigned.</li>
+<li>Enable <strong>Collapse groups</strong> with caution; ensure it does
+not eliminate the dedicated animation layers you created.</li>
+<li>Format the output to retain clean indentation for readability.</li>
+</ul></li>
+</ol>
+<h3 id="6-target-the-svg-in-css">6. Target the SVG in CSS</h3>
+<p>Once embedded inline in your HTML document, the structured elements
+can be targeted directly:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Ensure the transform origin uses the bounding box of the specific layer */</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#propeller-blade</span> {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">transform-box</span><span class="ch">:</span> <span class="dv">fill-box</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">transform-origin</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">animation</span><span class="ch">:</span> <span class="dv">spin 2</span><span class="dt">s</span> <span class="dv">linear</span> <span class="dv">infinite</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">@keyframes</span> spin {</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dv">from</span> {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">transform</span><span class="ch">:</span> <span class="fu">rotate(</span><span class="dv">0</span><span class="dt">deg</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="dv">to</span> {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">transform</span><span class="ch">:</span> <span class="fu">rotate(</span><span class="dv">360</span><span class="dt">deg</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

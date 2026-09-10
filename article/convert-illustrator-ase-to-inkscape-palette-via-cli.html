@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Illustrator ASE to Inkscape Palette via CLI - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to convert Adobe Swatch Exchange (.ase) files into Inkscape-compatible palette (.gpl) files using the command line. Because Adobe Illustrator saves palettes in a proprietary binary format and Inkscape reads plain-text GIMP Pal">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/convert-illustrator-ase-to-inkscape-palette-via-cli">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Convert Illustrator ASE to Inkscape Palette via CLI - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/convert-illustrator-ase-to-inkscape-palette-via-cli" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to convert Adobe Swatch Exchange (.ase) files into Inkscape-compatible palette (.gpl) files using the command line. Because Adobe Illustrator saves palettes in a proprietary binary format and Inkscape reads plain-text GIMP Pal" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="convert-illustrator-ase-to-inkscape-palette-via-cli">Convert
+Illustrator ASE to Inkscape Palette via CLI</h1>
+<p>This guide demonstrates how to convert Adobe Swatch Exchange (.ase)
+files into Inkscape-compatible palette (.gpl) files using the command
+line. Because Adobe Illustrator saves palettes in a proprietary binary
+format and Inkscape reads plain-text GIMP Palette files, a command-line
+interface (CLI) conversion tool is the fastest method to batch process
+and integrate Adobe swatches directly into your open-source design
+workflow.</p>
+<h3 id="1-install-the-cli-converter">1. Install the CLI Converter</h3>
+<p>The most efficient way to convert <code>.ase</code> files to
+<code>.gpl</code> via the terminal is using the Python-based
+<code>ase-to-gpl</code> utility.</p>
+<p>Ensure you have Python and <code>pip</code> installed, then run:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install ase-to-gpl</span></code></pre></div>
+<p>Alternatively, if you use Node.js, you can use the
+<code>ase2gpl</code> npm package:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install <span class="at">-g</span> ase2gpl</span></code></pre></div>
+<h3 id="2-run-the-conversion-command">2. Run the Conversion Command</h3>
+<p>Once installed, execute the conversion command by pointing the tool
+to your input <code>.ase</code> file and defining the output
+<code>.gpl</code> file name.</p>
+<p>Using the Python utility:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ase-to-gpl</span> input_palette.ase output_palette.gpl</span></code></pre></div>
+<p>Using the Node.js utility:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ase2gpl</span> input_palette.ase <span class="at">-o</span> output_palette.gpl</span></code></pre></div>
+<p>To batch-convert multiple <code>.ase</code> files in a directory on
+Linux or macOS:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> <span class="pp">*</span>.ase<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">ase-to-gpl</span> <span class="st">&quot;</span><span class="va">$file</span><span class="st">&quot;</span> <span class="st">&quot;</span><span class="va">${file</span><span class="op">%</span>.ase<span class="va">}</span><span class="st">.gpl&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
+<h3 id="3-move-the-palette-to-inkscape">3. Move the Palette to
+Inkscape</h3>
+<p>Inkscape requires <code>.gpl</code> files to be placed in its user
+palettes directory to make them visible in the application interface.
+Move your generated file to the appropriate path for your operating
+system:</p>
+<ul>
+<li><strong>Linux:</strong>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> output_palette.gpl ~/.config/inkscape/palettes/</span></code></pre></div></li>
+<li><strong>macOS:</strong>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> output_palette.gpl ~/Library/Application\ Support/org.inkscape.Inkscape/config/inkscape/palettes/</span></code></pre></div></li>
+<li><strong>Windows (Command Prompt):</strong>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode cmd"><code class="sourceCode dosbat"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">move</span> output_palette.gpl <span class="st">&quot;</span><span class="pp">%</span><span class="va">APPDATA</span><span class="pp">%</span><span class="st">\inkscape\palettes</span><span class="sc">\&quot;</span></span></code></pre></div></li>
+</ul>
+<h3 id="4-access-the-palette-in-inkscape">4. Access the Palette in
+Inkscape</h3>
+<p>Restart Inkscape if it is currently running. Open the palette bar at
+the bottom of the window, click the small arrow in the bottom-right
+corner to open the palette list, and select your newly converted palette
+from the menu.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

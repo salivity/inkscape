@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export DXF R14 with Layer Colors in Inkscape - inkscape</title>
+    <meta name="description" content="Exporting engineering drawings from Inkscape to AutoCAD DXF R14 while retaining specific layer and color assignments requires structuring your SVG document correctly before using the native DXF export module. By organizing paths onto dedicated layers, as">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-dxf-r14-with-layer-colors-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export DXF R14 with Layer Colors in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-dxf-r14-with-layer-colors-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting engineering drawings from Inkscape to AutoCAD DXF R14 while retaining specific layer and color assignments requires structuring your SVG document correctly before using the native DXF export module. By organizing paths onto dedicated layers, as" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-dxf-r14-with-layer-colors-in-inkscape">Export DXF R14
+with Layer Colors in Inkscape</h1>
+<p>Exporting engineering drawings from Inkscape to AutoCAD DXF R14 while
+retaining specific layer and color assignments requires structuring your
+SVG document correctly before using the native DXF export module. By
+organizing paths onto dedicated layers, assigning uniform stroke colors
+based on the AutoCAD Color Index (ACI), and configuring the export
+settings properly, you can generate CNC- and CAD-ready files with intact
+layer definitions and distinct color profiles.</p>
+<h3 id="1-organize-elements-into-inkscape-layers">1. Organize Elements
+into Inkscape Layers</h3>
+<p>Open the Layers panel (<code>Ctrl + Shift + L</code>) in Inkscape.
+Create separate layers for each distinct operation or component of your
+drawing (for example: <em>CUT</em>, <em>ENGRAVE</em>,
+<em>DIMENSIONS</em>, <em>CENTERLINES</em>). Move your vector objects
+into their corresponding layers. The name assigned to each layer in
+Inkscape will be carried over directly as the layer name in the DXF
+file.</p>
+<h3 id="2-convert-objects-and-text-to-paths">2. Convert Objects and Text
+to Paths</h3>
+<p>DXF R14 does not reliably support complex SVG primitives, grouped
+objects, or live text fonts.</p>
+<ol type="1">
+<li>Select all objects in the drawing (<code>Ctrl + A</code>).</li>
+<li>Go to <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>).</li>
+<li>Ungroup any nested groups by repeatedly pressing <strong>Object &gt;
+Ungroup</strong> (<code>Ctrl + Shift + G</code>) until the status bar
+indicates no groups are selected.</li>
+</ol>
+<h3 id="3-apply-distinct-stroke-colors">3. Apply Distinct Stroke
+Colors</h3>
+<p>AutoCAD DXF R14 uses the standard AutoCAD Color Index (ACI) to assign
+colors to entities. To ensure CAD and CAM software correctly read
+distinct colors per layer:</p>
+<ol type="1">
+<li>Select all paths on a specific layer.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>Set the <strong>Fill</strong> to <em>No paint</em>
+(<code>X</code>).</li>
+<li>Set the <strong>Stroke paint</strong> to a flat, distinct color. For
+maximum compatibility with ACI standards, use pure primary and secondary
+RGB values:
+<ul>
+<li><strong>Red</strong> (<code>#FF0000</code>) = ACI Color 1</li>
+<li><strong>Yellow</strong> (<code>#FFFF00</code>) = ACI Color 2</li>
+<li><strong>Green</strong> (<code>#00FF00</code>) = ACI Color 3</li>
+<li><strong>Cyan</strong> (<code>#00FFFF</code>) = ACI Color 4</li>
+<li><strong>Blue</strong> (<code>#0000FF</code>) = ACI Color 5</li>
+<li><strong>Magenta</strong> (<code>#FF00FF</code>) = ACI Color 6</li>
+<li><strong>White/Black</strong> (<code>#FFFFFF</code> or
+<code>#000000</code>) = ACI Color 7</li>
+</ul></li>
+</ol>
+<h3 id="4-save-and-configure-the-dxf-export">4. Save and Configure the
+DXF Export</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong>
+(<code>Ctrl + Shift + S</code>).</li>
+<li>In the file type dropdown menu, select <strong>AutoCAD DXF R14
+(*.dxf)</strong>.</li>
+<li>Choose your destination folder, enter a filename, and click
+<strong>Save</strong>.</li>
+<li>In the export configuration dialog that appears, adjust the
+following parameters:
+<ul>
+<li><strong>Base unit</strong>: Choose <code>mm</code> or
+<code>in</code> according to your drawing's target scale.</li>
+<li><strong>Character encoding</strong>: Select <code>latin_1</code>
+(standard for R14).</li>
+<li><strong>Layer option</strong>: Ensure layers are toggled to export
+by name rather than flattened into layer 0.</li>
+<li><strong>Use ROBO-Master / LWPOLYLINE type</strong>: Leave unchecked
+unless specifically required by your target CAM cutter, as standard
+POLYLINE entities provide broader layer-color compatibility in R14
+viewers.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to generate the file.</li>
+</ol>
+<p>Your resulting DXF file will open in AutoCAD or CAM software with
+separate layers matching your Inkscape hierarchy, each containing vector
+geometry rendered in its designated color.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

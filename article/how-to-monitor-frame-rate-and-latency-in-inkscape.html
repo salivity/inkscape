@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Monitor Frame Rate and Latency in Inkscape - inkscape</title>
+    <meta name="description" content="Monitoring real-time frame rates and rendering latency during canvas manipulation in Inkscape helps identify performance bottlenecks when handling complex vector paths, heavy filters, and dense nodes. Because Inkscape does not provide an integrated, user">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-monitor-frame-rate-and-latency-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Monitor Frame Rate and Latency in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-monitor-frame-rate-and-latency-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Monitoring real-time frame rates and rendering latency during canvas manipulation in Inkscape helps identify performance bottlenecks when handling complex vector paths, heavy filters, and dense nodes. Because Inkscape does not provide an integrated, user" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-monitor-frame-rate-and-latency-in-inkscape">How to
+Monitor Frame Rate and Latency in Inkscape</h1>
+<p>Monitoring real-time frame rates and rendering latency during canvas
+manipulation in Inkscape helps identify performance bottlenecks when
+handling complex vector paths, heavy filters, and dense nodes. Because
+Inkscape does not provide an integrated, user-facing on-screen FPS
+counter, tracking canvas responsiveness requires utilizing the native
+GTK Inspector, command-line profiling flags, or dedicated display
+overlay software. This guide covers how to set up and read these metrics
+to diagnose viewport lag while panning, zooming, and editing.</p>
+<h3 id="method-1-use-the-built-in-gtk-inspector">Method 1: Use the
+Built-in GTK Inspector</h3>
+<p>Inkscape relies on the GTK graphical toolkit, which includes a
+comprehensive inspector capable of tracking frame clocks, render cycles,
+and redraw timings.</p>
+<ol type="1">
+<li><strong>Enable the GTK Inspector</strong>:
+<ul>
+<li>On Linux, launch Inkscape from a terminal using:<br />
+<code>GTK_DEBUG=interactive inkscape</code></li>
+<li>On Windows, enable the inspector by opening a command prompt or
+PowerShell in Inkscape's <code>bin</code> directory and executing:<br />
+<code>set GTK_DEBUG=interactive &amp;&amp; inkscape.exe</code></li>
+</ul></li>
+<li><strong>Open the Inspector Window</strong>: If the inspector does
+not open automatically, select your Inkscape window and press
+<code>Ctrl + Shift + D</code> or <code>Ctrl + Shift + I</code>.</li>
+<li><strong>Inspect the Frame Clock and Timings</strong>:
+<ul>
+<li>Navigate to the <strong>Statistics</strong> or
+<strong>Visual</strong> tab within the GTK Inspector window.</li>
+<li>Enable the frame clock diagnostic features to view active frame rate
+generation, layout latency, and redraw operations in milliseconds.</li>
+<li>Pan, zoom, or transform objects on the Inkscape canvas to observe
+real-time spikes in frame render times and drops in redraw
+frequency.</li>
+</ul></li>
+</ol>
+<h3 id="method-2-use-system-level-performance-overlays">Method 2: Use
+System-Level Performance Overlays</h3>
+<p>For a continuous, floating on-screen display (OSD) showing exact
+frames per second (FPS) and frame-time latency without auxiliary debug
+windows, use platform-specific GPU/window profilers.</p>
+<ul>
+<li><p><strong>Windows (RivaTuner Statistics Server or
+PresentMon)</strong>:</p>
+<ol type="1">
+<li>Download and open RTSS (bundled with MSI Afterburner) or Intel
+PresentMon.</li>
+<li>Add <code>inkscape.exe</code> to the application profile list.</li>
+<li>Set the injection or hook level to detect 2D/Direct3D/OpenGL
+rendering presentation calls.</li>
+<li>Enable the on-screen display to show real-time FPS and a frame-time
+graph (measured in milliseconds) directly over the Inkscape drawing area
+during interaction.</li>
+</ol></li>
+<li><p><strong>Linux (MangoHud)</strong>:</p>
+<ol type="1">
+<li>If running Inkscape through an OpenGL-accelerated layer or via
+Gamescope/X11 wrappers, run:<br />
+<code>mangohud inkscape</code></li>
+<li>MangoHud will overlay precise frame generation times, latency
+graphs, and render loads while you manipulate the canvas.</li>
+</ol></li>
+</ul>
+<h3 id="method-3-benchmarking-rendering-latency-via-preferences">Method
+3: Benchmarking Rendering Latency via Preferences</h3>
+<p>To isolate canvas rendering delays from general application
+processing, adjust Inkscape's internal rendering configuration while
+monitoring latency metrics:</p>
+<ol type="1">
+<li>Open <strong>Edit &gt; Preferences</strong>
+(<code>Ctrl + Shift + P</code>) and navigate to
+<strong>Rendering</strong>.</li>
+<li>Adjust the <strong>Number of threads</strong> to match your CPU core
+count. Monitor your frame-time tool to see if multi-threading reduces
+drawing latency on filter-heavy documents.</li>
+<li>Switch the <strong>Rendering cache size</strong> and toggle
+<strong>Use display downsampling</strong>. Reducing canvas complexity or
+enabling downsampling during active transformations will directly reduce
+render latency and stabilize viewport frame rates during fast pan and
+zoom movements.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

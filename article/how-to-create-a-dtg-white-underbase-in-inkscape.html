@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create a DTG White Underbase in Inkscape - inkscape</title>
+    <meta name="description" content="Preparing artwork for direct-to-garment (DTG) printing on dark garments requires a solid white ink underbase beneath your colored design to ensure colors appear vibrant and opaque. This guide outlines the exact process for isolating your vector design, g">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-a-dtg-white-underbase-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create a DTG White Underbase in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-a-dtg-white-underbase-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Preparing artwork for direct-to-garment (DTG) printing on dark garments requires a solid white ink underbase beneath your colored design to ensure colors appear vibrant and opaque. This guide outlines the exact process for isolating your vector design, g" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-a-dtg-white-underbase-in-inkscape">How to Create a
+DTG White Underbase in Inkscape</h1>
+<p>Preparing artwork for direct-to-garment (DTG) printing on dark
+garments requires a solid white ink underbase beneath your colored
+design to ensure colors appear vibrant and opaque. This guide outlines
+the exact process for isolating your vector design, generating a
+dedicated underbase shape, applying an inset choke to prevent white
+edges from peeking out, and exporting the final production-ready file
+using Inkscape.</p>
+<h3 id="1-prepare-and-organize-the-artwork">1. Prepare and Organize the
+Artwork</h3>
+<p>Ensure your artwork is fully finalized before creating the
+underbase:</p>
+<ul>
+<li>Open your design in Inkscape and verify the document color profile
+and resolution.</li>
+<li>Select all text and live shapes and convert them to vector paths by
+selecting <strong>Path &gt; Object to Path</strong>.</li>
+<li>If your design consists of multiple separate vector shapes, group
+them temporarily using <strong>Ctrl + G</strong> to keep them
+aligned.</li>
+<li>Delete any background elements, guidelines, or mock-up shirt layers
+so only the printable artwork remains on a transparent canvas.</li>
+</ul>
+<h3 id="2-duplicate-the-design-for-the-underbase">2. Duplicate the
+Design for the Underbase</h3>
+<p>Your underbase must match the exact dimensions and position of your
+color artwork:</p>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel (<strong>Layer
+&gt; Layers and Objects...</strong> or <strong>Ctrl + Shift +
+L</strong>).</li>
+<li>Create a new layer beneath your artwork layer and name it
+<code>White Underbase</code>.</li>
+<li>Select all visible artwork on your primary layer and press
+<strong>Ctrl + D</strong> to duplicate it.</li>
+<li>Move the duplicated artwork to the <code>White Underbase</code>
+layer by right-clicking and selecting <strong>Move to Layer...</strong>,
+or by dragging it within the Layers panel.</li>
+<li>Lock and hide the top color layer temporarily so you can focus
+entirely on the underbase.</li>
+</ol>
+<h3 id="3-create-a-solid-silhouette">3. Create a Solid Silhouette</h3>
+<p>The underbase needs to be a unified, solid shape covering every area
+where color ink will be deposited:</p>
+<ol type="1">
+<li>Select all paths on the <code>White Underbase</code> layer.</li>
+<li>Ungroup the selection completely (<strong>Ctrl + Shift + G</strong>)
+until all elements are individual paths.</li>
+<li>Go to <strong>Path &gt; Union</strong> (<strong>Ctrl + +</strong>)
+to merge overlapping paths into a single unified silhouette. If your
+artwork contains separate, non-touching elements, use <strong>Path &gt;
+Combine</strong> (<strong>Ctrl + K</strong>).</li>
+<li>Remove any existing stroke outlines: in the <strong>Fill and
+Stroke</strong> panel (<strong>Ctrl + Shift + F</strong>), set
+<strong>Stroke paint</strong> to <strong>No paint</strong>.</li>
+<li>Set the <strong>Fill</strong> color. Most RIP software accepts pure
+white (<code>#FFFFFF</code>) or pure black (<code>#000000</code>) for
+the underbase mask. Check your specific printer/RIP software manual;
+some setups require a distinct spot color (such as 100% Magenta or a
+dedicated named swatch).</li>
+</ol>
+<h3 id="4-apply-a-choke-inset">4. Apply a Choke (Inset)</h3>
+<p>Garment stretching and mechanical registration variance can cause the
+white underbase to visibly bleed past the edges of your colored ink. To
+prevent this, apply a "choke" by shrinking the underbase slightly:</p>
+<ol type="1">
+<li>Select your merged underbase path.</li>
+<li>Go to <strong>Path &gt; Inset</strong> (<strong>Ctrl +
+(</strong>).</li>
+<li>One or two insets (typically equivalent to 1–2 pixels, or roughly
+0.5 to 1 pt) is standard for DTG printing.</li>
+<li>Fine-tune the inset step size under <strong>Edit &gt; Preferences
+&gt; Behavior &gt; Steps &gt; Inset/Outset by</strong> if you need
+precise fractional-millimeter adjustments.</li>
+</ol>
+<h3 id="5-final-alignment-and-export">5. Final Alignment and Export</h3>
+<ol type="1">
+<li>Make your top color layer visible again and unlock it.</li>
+<li>Zoom in closely to confirm that the white underbase sits completely
+inside the boundaries of the colored artwork.</li>
+<li>Save your master working file as an <strong>Inkscape
+SVG</strong>.</li>
+<li>Check your RIP software requirements for the production file:
+<ul>
+<li><strong>Multi-layer PDF:</strong> Go to <strong>File &gt; Save
+As...</strong> and choose <strong>Portable Document Format
+(*.pdf)</strong>. Ensure layer data is retained if supported by your
+RIP.</li>
+<li><strong>Transparent PNG:</strong> If your RIP handles automated
+white generation from transparency, you may only need to export the top
+graphic. Otherwise, export the underbase as a separate grayscale 300 DPI
+PNG via <strong>File &gt; Export...</strong>, selecting the
+<code>Page</code> or <code>Selection</code> area at <strong>300
+DPI</strong>. Ensure the export boundaries match the color pass
+identically.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

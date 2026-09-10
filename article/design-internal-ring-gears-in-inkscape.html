@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Internal Ring Gears in Inkscape - inkscape</title>
+    <meta name="description" content="Constructing an internal ring gear for a planetary gearbox requires designing an inverted tooth profile where the gear teeth face inward rather than outward. This guide covers the mathematical constraints required for a planetary gear system, how to gene">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/design-internal-ring-gears-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Internal Ring Gears in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/design-internal-ring-gears-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Constructing an internal ring gear for a planetary gearbox requires designing an inverted tooth profile where the gear teeth face inward rather than outward. This guide covers the mathematical constraints required for a planetary gear system, how to gene" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="design-internal-ring-gears-in-inkscape">Design Internal Ring
+Gears in Inkscape</h1>
+<p>Constructing an internal ring gear for a planetary gearbox requires
+designing an inverted tooth profile where the gear teeth face inward
+rather than outward. This guide covers the mathematical constraints
+required for a planetary gear system, how to generate a standard spur
+gear using Inkscape's native rendering tools, and the boolean operations
+needed to turn that external gear into an internal ring gear ready for
+fabrication.</p>
+<h3 id="1-calculate-planetary-gear-parameters">1. Calculate Planetary
+Gear Parameters</h3>
+<p>Before generating paths in Inkscape, ensure your planetary gear
+parameters are geometrically compatible. All gears in the system (sun,
+planets, and ring) must share the same module (or diametral pitch) and
+pressure angle.</p>
+<p>Use the standard planetary relationship to calculate the ring gear's
+tooth count:</p>
+<ul>
+<li><strong>Tooth Count Formula:</strong> <span
+class="math inline">\(N_{ring} = N_{sun} + (2 \times
+N_{planet})\)</span></li>
+<li><strong>Pitch Diameter:</strong> <span class="math inline">\(D = N
+\times m\)</span> (where <span class="math inline">\(N\)</span> is the
+number of teeth and <span class="math inline">\(m\)</span> is the
+module)</li>
+</ul>
+<h3 id="2-generate-the-spur-gear-profile">2. Generate the Spur Gear
+Profile</h3>
+<p>Inkscape includes a built-in tool to generate involute gear geometry
+based on tooth count and pitch:</p>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>Extensions &gt; Render &gt;
+Gear &gt; Gear...</strong></li>
+<li>In the dialog box:
+<ul>
+<li>Set <strong>Number of teeth</strong> to your calculated <span
+class="math inline">\(N_{ring}\)</span>.</li>
+<li>Set <strong>Circular pitch (px)</strong> to match the pitch used for
+your sun and planet gears.</li>
+<li>Set the <strong>Pressure angle</strong> (typically 20°).</li>
+</ul></li>
+<li>Click <strong>Apply</strong> and close the window.</li>
+</ol>
+<p>This produces a standard external spur gear path whose outer
+perimeter contains the required tooth geometry.</p>
+<h3 id="3-create-the-outer-ring-body">3. Create the Outer Ring Body</h3>
+<p>An internal ring gear requires an outer mounting body to hold the
+inward-facing teeth:</p>
+<ol type="1">
+<li>Select the <strong>Circles and Ellipses</strong> tool
+(<code>F5</code>).</li>
+<li>Hold <code>Ctrl + Shift</code> to draw a perfect circle centered
+over your generated gear.</li>
+<li>Set the diameter of this circle sufficiently larger than the root
+diameter of the generated gear to provide mechanical strength for the
+gear wall or mounting points.</li>
+<li>Align the circle and gear by opening the <strong>Align and
+Distribute</strong> panel (<code>Shift + Ctrl + A</code>), selecting
+both objects, and clicking <strong>Center on horizontal axis</strong>
+and <strong>Center on vertical axis</strong>.</li>
+</ol>
+<h3 id="4-perform-the-boolean-subtraction">4. Perform the Boolean
+Subtraction</h3>
+<p>To invert the tooth profile so that it faces inward:</p>
+<ol type="1">
+<li>Select the generated spur gear and convert it into a path if it is
+grouped (<strong>Object &gt; Ungroup</strong>, or
+<code>Shift + Ctrl + G</code>).</li>
+<li>Ensure both the gear and the outer circle are paths via <strong>Path
+&gt; Object to Path</strong> (<code>Shift + Ctrl + C</code>).</li>
+<li>Select the outer circle, then shift-click the gear profile.</li>
+<li>Go to <strong>Path &gt; Difference</strong>
+(<code>Ctrl + -</code>).</li>
+</ol>
+<p>Inkscape will subtract the external gear profile from the outer
+circular blank, leaving an annular ring with inward-pointing teeth that
+match your system's pitch.</p>
+<h3 id="5-apply-backlash-and-tolerances">5. Apply Backlash and
+Tolerances</h3>
+<p>Mechanical manufacturing (such as 3D printing or laser cutting)
+requires clearance between meshing teeth:</p>
+<ol type="1">
+<li>Select the newly created internal ring gear.</li>
+<li>Go to <strong>Path &gt; Outset</strong> (<code>Ctrl + )</code>) to
+enlarge the internal cavity slightly, or open <strong>Path &gt; Path
+Effects...</strong>, add an <strong>Offset</strong> effect, and specify
+a precise clearance offset (typically 0.15 mm to 0.3 mm depending on
+manufacturing tolerances).</li>
+<li>If using the Path Effect, finalize the geometry with <strong>Path
+&gt; Object to Path</strong>.</li>
+</ol>
+<h3 id="6-export-for-production">6. Export for Production</h3>
+<p>Verify dimensions using the measurement tool (<code>M</code>). Once
+verified, save the file as an SVG or export to DXF via <strong>File &gt;
+Save As &gt; AutoCAD DXF R14</strong> for CNC milling, laser cutting, or
+import into CAD software.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch Replace Missing Fonts in SVG Using Inkscape CLI - inkscape</title>
+    <meta name="description" content="Batch-processing SVG files to replace missing fonts can be automated entirely through the command line using Inkscape’s headless action system. By executing scripted actions, you can query text elements, apply fallback or target font families across hu">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/batch-replace-missing-fonts-in-svg-using-inkscape-cli">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Batch Replace Missing Fonts in SVG Using Inkscape CLI - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/batch-replace-missing-fonts-in-svg-using-inkscape-cli" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Batch-processing SVG files to replace missing fonts can be automated entirely through the command line using Inkscape’s headless action system. By executing scripted actions, you can query text elements, apply fallback or target font families across hu" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="batch-replace-missing-fonts-in-svg-using-inkscape-cli">Batch
+Replace Missing Fonts in SVG Using Inkscape CLI</h1>
+<p>Batch-processing SVG files to replace missing fonts can be automated
+entirely through the command line using Inkscape’s headless action
+system. By executing scripted actions, you can query text elements,
+apply fallback or target font families across hundreds of files, and
+re-export the results without launching the graphical user interface.
+This guide covers how to construct Inkscape action sequences, write
+batch scripts for multiple operating systems, and ensure text styling
+remains consistent.</p>
+<hr />
+<h3 id="understanding-inkscape-cli-actions">Understanding Inkscape CLI
+Actions</h3>
+<p>Starting with version 1.2, Inkscape provides an action-based
+command-line interface. Instead of relying on legacy flags, commands can
+be chained together sequentially using the <code>--actions</code>
+argument or loaded from a dedicated action script file.</p>
+<p>To view all available actions supported by your installed version of
+Inkscape, run:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--action-list</span></span></code></pre></div>
+<p>For font replacement, the primary actions used are:</p>
+<ul>
+<li><code>select-by-element:text</code>: Selects all
+<code>&lt;text&gt;</code> elements within the document.</li>
+<li><code>object-set-property:font-family,&lt;FontName&gt;</code>:
+Updates the <code>font-family</code> CSS/SVG property for the selected
+elements.</li>
+<li><code>export-plain-svg</code> (or
+<code>export-filename:&lt;path&gt;</code>): Defines the output format
+and destination.</li>
+<li><code>export-do</code>: Executes the export pipeline.</li>
+</ul>
+<hr />
+<h3 id="replacing-fonts-globally-across-all-text-elements">Replacing
+Fonts Globally Across All Text Elements</h3>
+<p>If your SVG files contain missing fonts and you want to standardize
+all text elements to an installed system font (such as "Arial" or
+"Roboto"), you can chain these actions directly.</p>
+<h4 id="single-file-execution">Single File Execution</h4>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--actions</span><span class="op">=</span><span class="st">&quot;select-by-element:text;object-set-property:font-family,&#39;Roboto&#39;;export-filename:output.svg;export-do&quot;</span></span></code></pre></div>
+<h4 id="creating-a-reusable-action-script">Creating a Reusable Action
+Script</h4>
+<p>For more complex workflows, save the actions in a plain text file
+(e.g., <code>replace_font.actions</code>):</p>
+<pre class="text"><code>select-by-element:text
+object-set-property:font-family,Roboto
+export-plain-svg
+export-do</code></pre>
+<p>Run the action file against an SVG:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--action-file</span><span class="op">=</span>replace_font.actions <span class="at">--export-filename</span><span class="op">=</span>output.svg</span></code></pre></div>
+<hr />
+<h3 id="batch-processing-multiple-files">Batch Processing Multiple
+Files</h3>
+<p>To apply font replacement across an entire directory of SVG files,
+use shell scripting to iterate through your files.</p>
+<h4 id="bash-linux-and-macos">Bash (Linux and macOS)</h4>
+<p>Save this script in the directory containing your SVG files:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">TARGET_FONT</span><span class="op">=</span><span class="st">&quot;Open Sans&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="va">OUTPUT_DIR</span><span class="op">=</span><span class="st">&quot;./processed&quot;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">&quot;</span><span class="va">$OUTPUT_DIR</span><span class="st">&quot;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> <span class="pp">*</span>.svg<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">[</span> <span class="ot">-f</span> <span class="st">&quot;</span><span class="va">$file</span><span class="st">&quot;</span> <span class="bu">]</span> <span class="kw">||</span> <span class="cf">continue</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">&quot;Processing </span><span class="va">$file</span><span class="st">...&quot;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">inkscape</span> <span class="st">&quot;</span><span class="va">$file</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">--actions</span><span class="op">=</span><span class="st">&quot;select-by-element:text;object-set-property:font-family,&#39;</span><span class="va">$TARGET_FONT</span><span class="st">&#39;;export-filename:</span><span class="va">$OUTPUT_DIR</span><span class="st">/</span><span class="va">$file</span><span class="st">;export-do&quot;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Batch processing complete.&quot;</span></span></code></pre></div>
+<h4 id="powershell-windows">PowerShell (Windows)</h4>
+<p>Run the following commands inside PowerShell:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="va">$targetFont</span> <span class="op">=</span> <span class="st">&quot;Segoe UI&quot;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">$outputDir</span> <span class="op">=</span> <span class="st">&quot;.\processed&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">New-Item</span> <span class="op">-</span>ItemType Directory <span class="op">-</span>Force <span class="op">-</span>Path <span class="va">$outputDir</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">Get-ChildItem</span> <span class="op">-</span>Filter <span class="op">*.</span><span class="fu">svg</span> <span class="op">|</span> <span class="fu">ForEach-Object</span> <span class="op">{</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">$outPath</span> <span class="op">=</span> <span class="fu">Join-Path</span> <span class="va">$outputDir</span> <span class="va">$_</span><span class="op">.</span><span class="fu">Name</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Write-Host</span> <span class="st">&quot;Processing </span><span class="op">$(</span><span class="va">$_</span><span class="op">.</span><span class="fu">Name</span><span class="op">)</span><span class="st">...&quot;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    inkscape <span class="va">$_</span><span class="op">.</span><span class="fu">FullName</span> <span class="op">--</span>actions<span class="op">=</span><span class="st">&quot;select-by-element:text;object-set-property:font-family,&#39;</span><span class="va">$targetFont</span><span class="st">&#39;;export-filename:</span><span class="va">$outPath</span><span class="st">;export-do&quot;</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">Write-Host</span> <span class="st">&quot;Batch processing complete.&quot;</span></span></code></pre></div>
+<hr />
+<h3 id="replacing-specific-missing-fonts-targeted-replacement">Replacing
+Specific Missing Fonts (Targeted Replacement)</h3>
+<p>Inkscape's built-in <code>select-by-element:text</code> selects every
+text node in the document. If your SVGs have multiple fonts and you only
+want to substitute a specific missing font without modifying others, use
+a two-step pipeline: perform a regex substitution on the XML source,
+then process the file with Inkscape.</p>
+<ol type="1">
+<li><p><strong>Substitute the Font Name in the XML</strong>: SVGs store
+font names as plain text within <code>style</code> attributes or inline
+<code>font-family</code> attributes. Use <code>sed</code> (or Python) to
+swap the missing font name:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;s/font-family:&quot;OldMissingFont&quot;/font-family:&quot;NewAvailableFont&quot;/g&#39;</span> <span class="pp">*</span>.svg</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&quot;s/font-family:&#39;OldMissingFont&#39;/font-family:&#39;NewAvailableFont&#39;/g&quot;</span> <span class="pp">*</span>.svg</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-i</span> <span class="st">&#39;s/font-family:OldMissingFont/font-family:NewAvailableFont/g&#39;</span> <span class="pp">*</span>.svg</span></code></pre></div></li>
+<li><p><strong>Normalize and Clean with Inkscape</strong>: Once the font
+declarations are updated, run Inkscape to re-render the file and
+validate internal structures:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--actions</span><span class="op">=</span><span class="st">&quot;clean-up;export-plain-svg;export-filename:fixed_output.svg;export-do&quot;</span></span></code></pre></div></li>
+</ol>
+<hr />
+<h3
+id="preventing-future-font-issues-converting-text-to-paths">Preventing
+Future Font Issues: Converting Text to Paths</h3>
+<p>If the output SVGs will be distributed to systems that might also
+lack the replacement font, convert the newly updated text into vector
+shapes as the final step of the action chain:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--actions</span><span class="op">=</span><span class="st">&quot;select-by-element:text;object-set-property:font-family,&#39;Roboto&#39;;object-to-path;export-plain-svg;export-filename:final.svg;export-do&quot;</span></span></code></pre></div>
+<p>The <code>object-to-path</code> action converts glyphs into vector
+outlines based on the newly assigned font, ensuring the graphics appear
+identically across any machine or browser.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

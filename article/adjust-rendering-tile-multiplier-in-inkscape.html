@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjust Rendering Tile Multiplier in Inkscape - inkscape</title>
+    <meta name="description" content="Visual glitches, faint lines, and seam artifacts often appear on the canvas when working with complex paths, filters, or gradients in Inkscape. These issues typically stem from how the software divides the workspace into smaller blocks for multithreaded">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/adjust-rendering-tile-multiplier-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Adjust Rendering Tile Multiplier in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/adjust-rendering-tile-multiplier-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Visual glitches, faint lines, and seam artifacts often appear on the canvas when working with complex paths, filters, or gradients in Inkscape. These issues typically stem from how the software divides the workspace into smaller blocks for multithreaded" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="adjust-rendering-tile-multiplier-in-inkscape">Adjust Rendering
+Tile Multiplier in Inkscape</h1>
+<p>Visual glitches, faint lines, and seam artifacts often appear on the
+canvas when working with complex paths, filters, or gradients in
+Inkscape. These issues typically stem from how the software divides the
+workspace into smaller blocks for multithreaded rendering. By adjusting
+the rendering tile multiplier settings, you can alter the dimensions of
+these processing chunks to eliminate boundary seams and ensure a clean
+visual display.</p>
+<h3 id="why-visual-seam-artifacts-occur">Why Visual Seam Artifacts
+Occur</h3>
+<p>Inkscape uses a tiled rendering engine to boost performance on modern
+multi-core processors. The visible canvas is split into a grid of
+rectangular tiles that are rendered independently across available CPU
+threads. When anti-aliasing is calculated along the borders of adjacent
+tiles, rounding errors can cause hairline gaps, mismatched transparent
+pixels, or clipping errors in blurred and filtered objects.</p>
+<h3 id="step-by-step-adjusting-the-tile-multiplier">Step-by-Step:
+Adjusting the Tile Multiplier</h3>
+<ol type="1">
+<li><p><strong>Open the Preferences Dialog:</strong> Navigate to the top
+menu and select <strong>Edit &gt; Preferences</strong> (or press
+<code>Ctrl + Shift + P</code> on Windows/Linux,
+<code>Cmd + Shift + P</code> on macOS).</p></li>
+<li><p><strong>Access Rendering Settings:</strong> In the left sidebar
+of the Preferences window, select the <strong>Rendering</strong>
+category.</p></li>
+<li><p><strong>Locate the Tile Multiplier Settings:</strong> Look for
+the <strong>Rendering tile multiplier</strong> (or <strong>Tile
+multiplier</strong>) options. Depending on your version of Inkscape, you
+may see options for an overall multiplier or separate fields for
+horizontal (X) and vertical (Y) multipliers.</p></li>
+<li><p><strong>Increase the Multiplier Value:</strong></p>
+<ul>
+<li>The default value is typically set lower to optimize CPU thread
+distribution.</li>
+<li>Increase the multiplier value (for example, raising it from
+<code>1</code> or <code>2</code> up to <code>4</code>, <code>8</code>,
+or higher).</li>
+<li>A higher multiplier creates larger individual rendering tiles. When
+tiles are larger, there are fewer interior borders across your artwork,
+which minimizes or entirely eliminates the seam artifacts.</li>
+</ul></li>
+<li><p><strong>Apply and Test:</strong></p>
+<ul>
+<li>Close the Preferences window.</li>
+<li>Force a canvas redraw by zooming in and out (<code>+</code> and
+<code>-</code> keys) or panning across the workspace.</li>
+<li>If working with heavy blur filters, you may also need to restart
+Inkscape to fully clear the previous rendering cache.</li>
+</ul></li>
+</ol>
+<h3 id="balancing-visual-quality-and-performance">Balancing Visual
+Quality and Performance</h3>
+<p>Increasing the tile multiplier forces Inkscape to process larger
+image blocks per thread. While this eliminates boundary seams, setting
+the multiplier excessively high on lower-spec hardware can introduce
+slight panning or zooming latency when navigating dense files. If you
+experience lag, lower the multiplier incrementally until you find the
+optimal balance between smooth viewport navigation and clean graphical
+output.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use feTile to Repeat Patterns in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to use the SVG feTile filter primitive within Inkscape to duplicate a filtered graphic seamlessly across a canvas or object. By leveraging the Filter Editor, setting filter primitive subregions, and piping the processed graphic in">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-use-fetile-to-repeat-patterns-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use feTile to Repeat Patterns in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-use-fetile-to-repeat-patterns-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use the SVG feTile filter primitive within Inkscape to duplicate a filtered graphic seamlessly across a canvas or object. By leveraging the Filter Editor, setting filter primitive subregions, and piping the processed graphic in" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-fetile-to-repeat-patterns-in-inkscape">How to Use
+feTile to Repeat Patterns in Inkscape</h1>
+<p>This guide explains how to use the SVG <code>feTile</code> filter
+primitive within Inkscape to duplicate a filtered graphic seamlessly
+across a canvas or object. By leveraging the Filter Editor, setting
+filter primitive subregions, and piping the processed graphic into
+<code>feTile</code>, you can generate infinite textures, grids, and
+decorative backgrounds directly inside your vector workspace.</p>
+<h3 id="understanding-the-fetile-primitive">Understanding the feTile
+Primitive</h3>
+<p>The <code>feTile</code> primitive takes an input image or
+graphic—typically processed by preceding filter primitives—and repeats
+it along both the X and Y axes to fill a target area. For
+<code>feTile</code> to duplicate a pattern rather than stretching or
+displaying a single instance, the preceding primitive must have a
+defined <strong>Filter Primitive Subregion</strong> (coordinates for X,
+Y, Width, and Height). This subregion dictates the exact size of one
+repeating tile unit.</p>
+<h3 id="step-1-open-the-filter-editor">Step 1: Open the Filter
+Editor</h3>
+<ol type="1">
+<li>Open Inkscape and navigate to the top menu.</li>
+<li>Select <strong>Filters &gt; Filter Editor</strong>.</li>
+<li>In the Filter Editor panel, click the <strong>New</strong> button at
+the bottom left to create an empty filter.</li>
+<li>Rename your filter (e.g., "Pattern Tile") for easy
+identification.</li>
+</ol>
+<h3 id="step-2-build-the-tile-unit">Step 2: Build the Tile Unit</h3>
+<p>Before applying <code>feTile</code>, you need to generate or
+reference the graphic that will serve as the repeatable unit:</p>
+<ol type="1">
+<li>In the <strong>Add Primitive</strong> drop-down menu inside the
+Filter Editor, select an initial primitive (such as
+<strong>Turbulence</strong>, <strong>Flood</strong>, or
+<strong>Image</strong>).</li>
+<li>Click <strong>Add Primitive</strong>.</li>
+<li>With this primitive selected, switch to the <strong>Filter General
+Settings</strong> or the primitive parameters tab to specify the
+subregion:
+<ul>
+<li>Enable the subregion bounds.</li>
+<li>Set a fixed <strong>Width</strong> and <strong>Height</strong> (for
+example, <code>50px</code> by <code>50px</code>).</li>
+<li>Set <strong>X</strong> and <strong>Y</strong> offsets (typically
+<code>0px</code>).</li>
+</ul></li>
+<li>This boundary sets the exact dimensions for each repeated cell in
+the pattern.</li>
+</ol>
+<h3 id="step-3-add-and-connect-fetile">Step 3: Add and Connect
+feTile</h3>
+<ol type="1">
+<li>Go back to the <strong>Add Primitive</strong> drop-down menu and
+choose <strong>Tile</strong>.</li>
+<li>Click <strong>Add Primitive</strong>. The <code>feTile</code> node
+will appear in your filter list.</li>
+<li>In the visual node connection area:
+<ul>
+<li>Locate the input connector of the <strong>Tile</strong>
+primitive.</li>
+<li>Drag the connection line to the output of your previous primitive
+(the one with the defined subregion).</li>
+</ul></li>
+<li><code>feTile</code> will automatically read the subregion
+coordinates from that source and fill the entire bounding box of the
+target shape with repeated copies of it.</li>
+</ol>
+<h3 id="step-4-apply-the-filter-to-an-object">Step 4: Apply the Filter
+to an Object</h3>
+<ol type="1">
+<li>Select the <strong>Rectangle tool</strong> (<code>R</code>) from the
+toolbar and draw an element over the area of the canvas you want
+covered.</li>
+<li>While this new object is selected, go to the <strong>Filter
+Editor</strong> panel.</li>
+<li>Check the box next to your custom tile filter.</li>
+<li>The object will instantly render the repeating pattern across its
+entire surface.</li>
+</ol>
+<h3 id="fine-tuning-with-the-xml-editor">Fine-Tuning with the XML
+Editor</h3>
+<p>Inkscape's graphical interface for filter primitive subregions can
+sometimes require manual adjustment for pixel-perfect alignment. To set
+precise attributes:</p>
+<ol type="1">
+<li>Press <code>Ctrl + Shift + X</code> to open the <strong>XML
+Editor</strong>.</li>
+<li>Locate your <code>&lt;filter&gt;</code> element under
+<code>&lt;svg:defs&gt;</code>.</li>
+<li>Select the child primitive feeding into
+<code>&lt;feTile&gt;</code>.</li>
+<li>Add or modify the <code>x</code>, <code>y</code>,
+<code>width</code>, and <code>height</code> attributes directly (e.g.,
+<code>width="40"</code>, <code>height="40"</code>).</li>
+<li>Ensure the <code>&lt;feTile&gt;</code> element has <code>in</code>
+pointing to the result of that sized primitive.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

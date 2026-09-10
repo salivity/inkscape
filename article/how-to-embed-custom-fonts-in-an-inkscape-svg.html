@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Embed Custom Fonts in an Inkscape SVG - inkscape</title>
+    <meta name="description" content="Embedding custom fonts directly into an Inkscape SVG ensures your typography renders accurately across different devices and web browsers without requiring the viewer to install the font locally. This guide details how to embed font files directly into t">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-embed-custom-fonts-in-an-inkscape-svg">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Embed Custom Fonts in an Inkscape SVG - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-embed-custom-fonts-in-an-inkscape-svg" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Embedding custom fonts directly into an Inkscape SVG ensures your typography renders accurately across different devices and web browsers without requiring the viewer to install the font locally. This guide details how to embed font files directly into t" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-embed-custom-fonts-in-an-inkscape-svg">How to Embed
+Custom Fonts in an Inkscape SVG</h1>
+<p>Embedding custom fonts directly into an Inkscape SVG ensures your
+typography renders accurately across different devices and web browsers
+without requiring the viewer to install the font locally. This guide
+details how to embed font files directly into the SVG's internal code
+using CSS <code>@font-face</code> rules and base64 encoding, as well as
+the alternative method of converting text to vector paths.</p>
+<h2 id="method-1-embedding-fonts-using-base64-and-the-xml-editor">Method
+1: Embedding Fonts Using Base64 and the XML Editor</h2>
+<p>Embedding a font via base64 encoding keeps your text editable while
+packaging the actual font data inside the SVG file.</p>
+<h3 id="step-1-convert-your-font-to-a-base64-data-uri">Step 1: Convert
+Your Font to a Base64 Data URI</h3>
+<ol type="1">
+<li>Obtain the font file in <code>.woff</code>, <code>.woff2</code>, or
+<code>.ttf</code> format.</li>
+<li>Use a reliable online base64 converter or a local command-line tool
+to encode your font file into a base64 string.</li>
+<li>Prepare the CSS <code>@font-face</code> rule using the following
+structure:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">@font-face</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-family</span><span class="ch">:</span> <span class="st">&#39;YourFontName&#39;</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">src</span><span class="ch">:</span> <span class="fu">url(</span><span class="st">&#39;data:font/woff2;charset=utf-8;base64,PASTE_BASE64_STRING_HERE&#39;</span><span class="fu">)</span> <span class="fu">format(</span><span class="st">&#39;woff2&#39;</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-weight</span><span class="ch">:</span> <span class="dv">normal</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">font-style</span><span class="ch">:</span> <span class="dv">normal</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="step-2-add-the-font-to-inkscape-via-the-xml-editor">Step 2: Add
+the Font to Inkscape via the XML Editor</h3>
+<ol type="1">
+<li>Open your SVG file in Inkscape.</li>
+<li>Open the XML Editor by navigating to <strong>Edit &gt; XML
+Editor</strong> or pressing <strong>Ctrl + Shift + X</strong>
+(<strong>Cmd + Shift + X</strong> on macOS).</li>
+<li>In the XML tree, select the root <code>&lt;svg:svg&gt;</code>
+element or the <code>&lt;svg:defs&gt;</code> element. If
+<code>&lt;svg:defs&gt;</code> does not exist, create a new element named
+<code>svg:defs</code>.</li>
+<li>Right-click <code>&lt;svg:defs&gt;</code> and choose <strong>New
+child element</strong>.</li>
+<li>Name the element <code>svg:style</code> and click
+<strong>Create</strong>.</li>
+<li>Select the newly created <code>&lt;svg:style&gt;</code> element,
+click the <strong>New text node</strong> button, and paste your prepared
+CSS <code>@font-face</code> code.</li>
+<li>Save the SVG file.</li>
+</ol>
+<hr />
+<h2 id="method-2-converting-text-to-paths-alternative-approach">Method
+2: Converting Text to Paths (Alternative Approach)</h2>
+<p>If you do not need the text to remain editable and only want to
+preserve the visual appearance of the font, you can convert the text to
+vector outlines.</p>
+<ol type="1">
+<li>Select the text object in Inkscape.</li>
+<li>Go to <strong>Path &gt; Object to Path</strong> or press
+<strong>Ctrl + Shift + C</strong> (<strong>Cmd + Shift + C</strong> on
+macOS).</li>
+<li>Save your file.</li>
+</ol>
+<p><em>Note: Once converted to paths, the text becomes a shape and
+cannot be edited as standard text.</em></p>
+<hr />
+<h2 id="verifying-the-embedded-font">Verifying the Embedded Font</h2>
+<p>To confirm that the font is correctly embedded:</p>
+<ol type="1">
+<li>Open the saved SVG file in any modern web browser.</li>
+<li>Test the file on a secondary device or virtual machine that does not
+have the custom font installed to ensure the typeface displays
+properly.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

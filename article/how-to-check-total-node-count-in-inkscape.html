@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Check Total Node Count in Inkscape - inkscape</title>
+    <meta name="description" content="Checking the total node count across an entire project in Inkscape is a straightforward process that relies on selecting all elements across your layers and reading the application's built-in status bar. Monitoring your document's overall node count help">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-check-total-node-count-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Check Total Node Count in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-check-total-node-count-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Checking the total node count across an entire project in Inkscape is a straightforward process that relies on selecting all elements across your layers and reading the application's built-in status bar. Monitoring your document's overall node count help" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-check-total-node-count-in-inkscape">How to Check Total
+Node Count in Inkscape</h1>
+<p>Checking the total node count across an entire project in Inkscape is
+a straightforward process that relies on selecting all elements across
+your layers and reading the application's built-in status bar.
+Monitoring your document's overall node count helps you optimize file
+sizes, reduce rendering lag, and prepare clean vector files for CNC
+machining, laser cutting, or plotters.</p>
+<h3 id="step-1-ensure-all-layers-and-objects-are-unlocked">Step 1:
+Ensure All Layers and Objects Are Unlocked</h3>
+<p>Inkscape will only count nodes on selectable items. Before checking
+your count, ensure no layers or objects are hidden or locked:</p>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel by pressing
+<code>Ctrl + Shift + L</code> (Windows/Linux) or
+<code>Cmd + Shift + L</code> (macOS).</li>
+<li>Look through your layer tree to ensure all eye icons (visibility)
+are open and all padlock icons (lock status) are unlocked.</li>
+</ol>
+<h3 id="step-2-convert-shapes-to-paths-optional">Step 2: Convert Shapes
+to Paths (Optional)</h3>
+<p>Geometric primitives (such as standard rectangles, circles, or stars)
+and live text do not register as editable nodes until they are converted
+into paths. If you need these included in your node tally:</p>
+<ol type="1">
+<li>Press <code>Ctrl + Alt + A</code> (or <code>Cmd + Option + A</code>)
+to select all items in all layers.</li>
+<li>Go to the top menu and select <strong>Path &gt; Object to
+Path</strong> (or press <code>Shift + Ctrl + C</code>).</li>
+</ol>
+<h3 id="step-3-select-all-elements-across-all-layers">Step 3: Select All
+Elements Across All Layers</h3>
+<p>To tally every node in your workspace:</p>
+<ol type="1">
+<li>Deselect any active tool by switching to the <strong>Selector
+Tool</strong> (<code>S</code> or <code>F1</code>).</li>
+<li>Press <code>Ctrl + Alt + A</code> (Windows/Linux) or
+<code>Cmd + Option + A</code> (macOS), or go to <strong>Edit &gt; Select
+All in All Layers</strong>.</li>
+</ol>
+<h3 id="step-4-read-the-node-count-from-the-status-bar">Step 4: Read the
+Node Count from the Status Bar</h3>
+<p>Look at the <strong>Status Bar</strong> located at the very bottom of
+the Inkscape window.</p>
+<p>When your entire artwork is selected, the status bar displays a
+summary of the selection. It will state the total number of objects
+selected along with the precise node count in the format:</p>
+<blockquote>
+<p><em>"X objects of types Path, Group selected ... with
+<strong>Y</strong> nodes"</em></p>
+</blockquote>
+<p>The number listed next to <strong>nodes</strong> represents the exact
+total node count across your entire document.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

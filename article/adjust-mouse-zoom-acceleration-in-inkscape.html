@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjust Mouse Zoom Acceleration in Inkscape - inkscape</title>
+    <meta name="description" content="Controlling how quickly your canvas zooms in response to the mouse wheel allows for smoother, more precise navigation in Inkscape. By default, Inkscape applies an acceleration curve that magnifies the zoom speed when you spin the scroll wheel quickly. Th">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/adjust-mouse-zoom-acceleration-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Adjust Mouse Zoom Acceleration in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/adjust-mouse-zoom-acceleration-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Controlling how quickly your canvas zooms in response to the mouse wheel allows for smoother, more precise navigation in Inkscape. By default, Inkscape applies an acceleration curve that magnifies the zoom speed when you spin the scroll wheel quickly. Th" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="adjust-mouse-zoom-acceleration-in-inkscape">Adjust Mouse Zoom
+Acceleration in Inkscape</h1>
+<p>Controlling how quickly your canvas zooms in response to the mouse
+wheel allows for smoother, more precise navigation in Inkscape. By
+default, Inkscape applies an acceleration curve that magnifies the zoom
+speed when you spin the scroll wheel quickly. This behavior can be
+customized or entirely disabled within Inkscape’s preference settings to
+match your preferred workflow.</p>
+<h3 id="steps-to-adjust-the-zoom-acceleration">Steps to Adjust the Zoom
+Acceleration</h3>
+<ol type="1">
+<li><p><strong>Open the Preferences Dialog</strong></p>
+<ul>
+<li>On Windows or Linux, navigate to <strong>Edit &gt;
+Preferences</strong> or press <strong>Ctrl + Shift + P</strong>.</li>
+<li>On macOS, navigate to <strong>Inkscape &gt; Preferences</strong> or
+press <strong>Cmd + Shift + P</strong>.</li>
+</ul></li>
+<li><p><strong>Navigate to the Mouse Settings</strong></p>
+<ul>
+<li>In the left sidebar of the Preferences window, expand the
+<strong>Interface</strong> category.</li>
+<li>Click on <strong>Mouse</strong>.</li>
+</ul></li>
+<li><p><strong>Modify the Zoom Acceleration Value</strong></p>
+<ul>
+<li>In the main panel, locate the <strong>Zoom acceleration</strong>
+slider and input field.</li>
+<li><strong>To disable acceleration (linear zoom):</strong> Set the
+value to <code>0</code>. Each tick of the mouse wheel will zoom by a
+fixed, consistent increment regardless of how fast you spin the
+wheel.</li>
+<li><strong>To increase or decrease sensitivity:</strong> Adjust the
+slider to a higher or lower positive value. Higher values create a
+steeper acceleration curve, meaning rapid scrolling will exponentially
+increase the zoom distance.</li>
+</ul></li>
+<li><p><strong>Adjust Zoom Increment per Step (Optional)</strong></p>
+<ul>
+<li>In the same menu or under <strong>Behavior &gt; Steps</strong>, you
+can modify the baseline zoom factor (percentage per scroll tick) to
+fine-tune the standard step size used when the wheel is moved
+slowly.</li>
+</ul></li>
+<li><p><strong>Test and Close</strong></p>
+<ul>
+<li>Changes take effect immediately. Move your cursor over the canvas
+and scroll the wheel to test the response curve, adjusting the numerical
+value until the feel matches your preference. Close the Preferences
+window when finished.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

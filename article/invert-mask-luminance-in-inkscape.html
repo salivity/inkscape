@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invert Mask Luminance in Inkscape - inkscape</title>
+    <meta name="description" content="Inverting the luminance values of an applied transparency mask in Inkscape allows you to reverse what is hidden and what is visible, making opaque areas transparent and transparent areas opaque. Because Inkscape does not have a single-click "invert mask"">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/invert-mask-luminance-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Invert Mask Luminance in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/invert-mask-luminance-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inverting the luminance values of an applied transparency mask in Inkscape allows you to reverse what is hidden and what is visible, making opaque areas transparent and transparent areas opaque. Because Inkscape does not have a single-click "invert mask"" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="invert-mask-luminance-in-inkscape">Invert Mask Luminance in
+Inkscape</h1>
+<p>Inverting the luminance values of an applied transparency mask in
+Inkscape allows you to reverse what is hidden and what is visible,
+making opaque areas transparent and transparent areas opaque. Because
+Inkscape does not have a single-click "invert mask" toggle for already
+applied vector masks, the standard workflow requires releasing the mask,
+inverting the mask object's luminance values using color tools or
+filters, and reapplying the mask to your target artwork.</p>
+<h3 id="step-1-release-the-applied-mask">Step 1: Release the Applied
+Mask</h3>
+<ol type="1">
+<li>Select the masked object on your canvas using the <strong>Select and
+Transform objects</strong> tool (<code>S</code> or
+<code>F1</code>).</li>
+<li>Go to the top menu and select <strong>Object &gt; Mask &gt;
+Release</strong>.</li>
+<li>Inkscape will separate the original target object and the masking
+shape. The masking shape will appear directly above the target
+object.</li>
+</ol>
+<h3 id="step-2-invert-the-mask-objects-luminance">Step 2: Invert the
+Mask Object's Luminance</h3>
+<p>Mask transparency in Inkscape relies on luminance: pure white
+represents 100% opacity, pure black represents 100% transparency, and
+shades of gray represent partial transparency. To invert the mask,
+invert these tonal values.</p>
+<p><strong>For Simple Shapes and Solid Fills:</strong></p>
+<ul>
+<li>If your mask is a single flat color, select it and swap its tone
+using the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>). Change pure white
+(<code>#ffffff</code>) to pure black (<code>#000000</code>), or vice
+versa.</li>
+</ul>
+<p><strong>For Gradients:</strong></p>
+<ul>
+<li>Select the mask shape and activate the <strong>Gradient
+Tool</strong> (<code>G</code>).</li>
+<li>Select each gradient stop individually and invert its color (e.g.,
+switch the black stop to white and the white stop to black).</li>
+<li>Alternatively, click the <strong>Reverse the direction of the
+gradient</strong> button in the tool control bar at the top of the
+screen.</li>
+</ul>
+<p><strong>For Complex Vector Groups:</strong></p>
+<ol type="1">
+<li>Select the released mask object or group.</li>
+<li>Navigate to <strong>Extensions &gt; Color &gt;
+Negative</strong>.</li>
+<li>This extension automatically converts all color values to their
+mathematical opposites, effectively flipping the luminance map.</li>
+</ol>
+<p><strong>For Embedded Raster Images:</strong></p>
+<ol type="1">
+<li>Select the image used as the mask.</li>
+<li>Go to <strong>Filters &gt; Color &gt; Invert</strong> to flip the
+luminance channel directly on the bitmap.</li>
+</ol>
+<h3 id="step-3-reapply-the-inverted-mask">Step 3: Reapply the Inverted
+Mask</h3>
+<ol type="1">
+<li>Ensure the inverted mask shape is stacked directly above your target
+artwork. If necessary, press <code>Page Up</code> or go to
+<strong>Object &gt; Raise</strong> to position it over the object.</li>
+<li>Hold <code>Shift</code> and select both the inverted mask object and
+the base object to be masked.</li>
+<li>Go to <strong>Object &gt; Mask &gt; Set</strong> (or right-click the
+selection and choose <strong>Set Mask</strong>).</li>
+</ol>
+<p>The target object will now display the inverted transparency levels
+based on the updated luminance values.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

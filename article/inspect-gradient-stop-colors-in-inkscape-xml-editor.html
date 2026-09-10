@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspect Gradient Stop Colors in Inkscape XML Editor - inkscape</title>
+    <meta name="description" content="This guide explains how to locate and inspect the RGB color profiles and exact values of individual gradient stops using Inkscape's built-in XML Editor. By accessing the underlying SVG source tree, you can view, verify, or manually edit the raw hexadecim">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inspect-gradient-stop-colors-in-inkscape-xml-editor">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inspect Gradient Stop Colors in Inkscape XML Editor - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inspect-gradient-stop-colors-in-inkscape-xml-editor" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to locate and inspect the RGB color profiles and exact values of individual gradient stops using Inkscape's built-in XML Editor. By accessing the underlying SVG source tree, you can view, verify, or manually edit the raw hexadecim" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inspect-gradient-stop-colors-in-inkscape-xml-editor">Inspect
+Gradient Stop Colors in Inkscape XML Editor</h1>
+<p>This guide explains how to locate and inspect the RGB color profiles
+and exact values of individual gradient stops using Inkscape's built-in
+XML Editor. By accessing the underlying SVG source tree, you can view,
+verify, or manually edit the raw hexadecimal, RGB, or ICC color
+definitions associated with gradient stops without relying on the visual
+palette tools.</p>
+<h3 id="step-1-open-the-xml-editor">Step 1: Open the XML Editor</h3>
+<p>Select the object containing the gradient on your canvas. Open the
+XML Editor by navigating to <strong>Edit &gt; XML Editor</strong> from
+the main menu, or by pressing the shortcut <strong>Ctrl + Shift +
+X</strong> (or <strong>Cmd + Shift + X</strong> on macOS). This opens a
+docked panel displaying the complete SVG document tree.</p>
+<h3 id="step-2-locate-the-gradient-definition">Step 2: Locate the
+Gradient Definition</h3>
+<p>SVG gradients are stored separately from the shapes that use them,
+typically inside the document's <code>&lt;svg:defs&gt;</code>
+section.</p>
+<ol type="1">
+<li>In the XML Editor tree, expand the root <code>&lt;svg:svg&gt;</code>
+node.</li>
+<li>Locate and expand the <code>&lt;svg:defs&gt;</code> node.</li>
+<li>Look for gradient tags, either
+<code>&lt;svg:linearGradient&gt;</code> or
+<code>&lt;svg:radialGradient&gt;</code>.</li>
+<li>Note that Inkscape often uses two gradient entries: one that defines
+coordinates (linking to another gradient via <code>xlink:href</code>),
+and a parent gradient that holds the actual color stops. Select the
+gradient node that contains child elements.</li>
+</ol>
+<h3 id="step-3-select-the-target-stop-element">Step 3: Select the Target
+Stop Element</h3>
+<p>Expand the parent <code>&lt;svg:linearGradient&gt;</code> or
+<code>&lt;svg:radialGradient&gt;</code> node to reveal its nested child
+nodes:</p>
+<ul>
+<li>Each gradient stop is represented as an
+<code>&lt;svg:stop&gt;</code> element.</li>
+<li>The stops appear in sequential order corresponding to their
+positions from start (offset <code>0</code>) to end (offset
+<code>1</code>).</li>
+<li>Click on the specific <code>&lt;svg:stop&gt;</code> element you wish
+to inspect.</li>
+</ul>
+<h3 id="step-4-read-the-rgb-and-color-profile-data">Step 4: Read the RGB
+and Color Profile Data</h3>
+<p>Once an <code>&lt;svg:stop&gt;</code> node is highlighted, look at
+the right-hand attribute pane within the XML Editor:</p>
+<ul>
+<li><strong>The <code>style</code> Attribute:</strong> Look for the
+attribute named <code>style</code>. Its value contains parameters such
+as <code>stop-color</code> and <code>stop-opacity</code>.</li>
+<li><strong>Standard RGB Format:</strong> The <code>stop-color</code>
+will display either as a hexadecimal code (e.g., <code>#ff5733</code>)
+or as a functional notation like <code>rgb(255, 87, 51)</code>.</li>
+<li><strong>Color Profiles (ICC):</strong> If a specific color profile
+is applied to the stop, the <code>stop-color</code> attribute will
+define the fallback RGB value followed by the profile specification,
+typically formatted as
+<code>icc-color(&lt;profile-name&gt;, &lt;components&gt;)</code>.</li>
+<li><strong>Alternative Presentation Attributes:</strong> In some SVG
+specifications or cleaned files, you may see <code>stop-color</code>
+listed as an independent XML attribute rather than inside the
+<code>style</code> string.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

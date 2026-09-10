@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjust Node Sculpting Radius and Pressure in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to adjust the radius and pressure settings when sculpting nodes and paths in Inkscape. While the dedicated Tweak tool provides explicit numeric controls for brush radius (Width) and sculpting pressure (Force), the standard Node to">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/adjust-node-sculpting-radius-and-pressure-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Adjust Node Sculpting Radius and Pressure in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/adjust-node-sculpting-radius-and-pressure-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to adjust the radius and pressure settings when sculpting nodes and paths in Inkscape. While the dedicated Tweak tool provides explicit numeric controls for brush radius (Width) and sculpting pressure (Force), the standard Node to" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="adjust-node-sculpting-radius-and-pressure-in-inkscape">Adjust
+Node Sculpting Radius and Pressure in Inkscape</h1>
+<p>This guide explains how to adjust the radius and pressure settings
+when sculpting nodes and paths in Inkscape. While the dedicated Tweak
+tool provides explicit numeric controls for brush radius (Width) and
+sculpting pressure (Force), the standard Node tool relies on node
+selection ranges and graphics tablet pressure sensitivity. Below are the
+precise steps to control both parameters using both methods.</p>
+<h3 id="method-1-using-the-tweak-tool-brush-based-node-sculpting">Method
+1: Using the Tweak Tool (Brush-Based Node Sculpting)</h3>
+<p>The Tweak tool (<code>W</code>) is Inkscape’s primary tool for
+sculpting paths and nodes using a circular brush with adjustable radius
+and force.</p>
+<ol type="1">
+<li><strong>Activate the Tool:</strong> Select your path and press
+<code>W</code> to switch to the <strong>Tweak tool</strong>.</li>
+<li><strong>Select Sculpting Mode:</strong> In the top Tool Controls
+bar, click the <strong>Push path in any direction</strong> icon (or
+another path-sculpting mode such as Shrink, Grow, or Roughen).</li>
+<li><strong>Adjust the Radius (Width):</strong>
+<ul>
+<li><strong>Controls Bar:</strong> Change the numerical value in the
+<strong>Width</strong> box on the Tool Controls bar. A higher value
+creates a larger brush radius.</li>
+<li><strong>Keyboard Shortcut:</strong> Press the
+<code>Left Arrow</code> to decrease the radius or the
+<code>Right Arrow</code> to increase it.</li>
+</ul></li>
+<li><strong>Adjust the Pressure (Force):</strong>
+<ul>
+<li><strong>Controls Bar:</strong> Change the numerical value in the
+<strong>Force</strong> box. Higher values cause paths and nodes to
+deform more aggressively.</li>
+<li><strong>Keyboard Shortcut:</strong> Press the
+<code>Down Arrow</code> to decrease the force or the
+<code>Up Arrow</code> to increase it.</li>
+<li><strong>Stylus Pressure:</strong> Click the
+<strong>Pressure</strong> icon (represented by a pen tip next to the
+Width and Force inputs) to allow a graphics tablet’s pressure
+sensitivity to dynamically control the brush force.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="method-2-sculpting-with-the-node-tool-alt--drag">Method 2:
+Sculpting with the Node Tool (<code>Alt</code> + Drag)</h3>
+<p>Inkscape's Node tool (<code>N</code> or <code>F2</code>) includes a
+built-in node sculpting feature that moves selected nodes according to a
+bell-curve (Gaussian) falloff.</p>
+<ol type="1">
+<li><strong>Activate the Tool:</strong> Press <code>N</code> to select
+the <strong>Node tool</strong>, then select the path.</li>
+<li><strong>Define the Sculpting Radius:</strong>
+<ul>
+<li>In the Node tool, the radius is determined by your node selection
+rather than a brush size setting.</li>
+<li>Select the group of nodes you want the sculpting effect to cover.
+The outer boundary of your selection defines the effective radius of the
+deformation.</li>
+</ul></li>
+<li><strong>Sculpt the Nodes:</strong>
+<ul>
+<li>Hover over the node you want to move the most.</li>
+<li>Hold <code>Alt</code> and click-drag the node. The node directly
+under the cursor will experience the maximum displacement, while
+adjacent selected nodes will move proportionally less based on their
+distance from the cursor.</li>
+</ul></li>
+<li><strong>Modulate Pressure and Intensity:</strong>
+<ul>
+<li><strong>Drag Distance:</strong> The primary control over force is
+the distance you drag your cursor.</li>
+<li><strong>Tablet Pressure:</strong> If you are using a drawing tablet,
+ensure pressure sensitivity is enabled under <strong>Edit &gt; Input
+Devices</strong>. Inkscape modulates the displacement force of the
+<code>Alt</code> + drag action based on the physical pressure applied by
+the stylus.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

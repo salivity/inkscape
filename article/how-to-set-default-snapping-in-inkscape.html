@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Default Snapping in Inkscape - inkscape</title>
+    <meta name="description" content="In Inkscape, snapping parameters are tied directly to individual document settings rather than a standalone global toggle. To set global default snapping parameters for all new projects, you must configure your desired snapping options within an empty do">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-set-default-snapping-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Set Default Snapping in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-set-default-snapping-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In Inkscape, snapping parameters are tied directly to individual document settings rather than a standalone global toggle. To set global default snapping parameters for all new projects, you must configure your desired snapping options within an empty do" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-set-default-snapping-in-inkscape">How to Set Default
+Snapping in Inkscape</h1>
+<p>In Inkscape, snapping parameters are tied directly to individual
+document settings rather than a standalone global toggle. To set global
+default snapping parameters for all new projects, you must configure
+your desired snapping options within an empty document and save it as
+your custom default template. This guide outlines the exact steps to
+customize your snapping behavior and make those settings permanent for
+future documents.</p>
+<h3 id="step-1-open-a-blank-document">Step 1: Open a Blank Document</h3>
+<p>Launch Inkscape or create a fresh document by going to <strong>File
+&gt; New</strong> (or pressing <code>Ctrl + N</code> on Windows/Linux,
+<code>Cmd + N</code> on macOS).</p>
+<h3 id="step-2-configure-your-desired-snapping-rules">Step 2: Configure
+Your Desired Snapping Rules</h3>
+<ol type="1">
+<li>Locate the <strong>Snapping</strong> controls on the top right of
+the application window.</li>
+<li>Toggle the main <strong>Enable Snapping</strong> button on
+(<code>%</code> key).</li>
+<li>Click the arrow next to the snapping icon to open the snapping
+popover menu.</li>
+<li>Switch to <strong>Advanced Mode</strong> if you need fine-tuned
+control over specific snap targets.</li>
+<li>Enable or disable the individual snapping targets you want as your
+standard baseline, such as:
+<ul>
+<li><strong>Bounding Boxes:</strong> Edges, corners, and midpoints.</li>
+<li><strong>Nodes:</strong> Cusp nodes, smooth nodes, and line
+midpoints.</li>
+<li><strong>Alignment:</strong> Snapping to other objects, guide lines,
+and page borders.</li>
+</ul></li>
+</ol>
+<h3 id="step-3-adjust-global-snapping-thresholds-optional">Step 3:
+Adjust Global Snapping Thresholds (Optional)</h3>
+<p>To modify general snap sensitivity:</p>
+<ol type="1">
+<li>Go to <strong>Edit &gt; Preferences</strong> (or press
+<code>Shift + Ctrl + P</code> / <code>Shift + Cmd + P</code>).</li>
+<li>In the left panel, navigate to <strong>Behavior &gt;
+Snapping</strong>.</li>
+<li>Adjust the <strong>Snap distance</strong> (in screen pixels) or
+snapping weight preferences to fit your workflow.</li>
+<li>Close the Preferences window.</li>
+</ol>
+<h3 id="step-4-save-as-the-default-template">Step 4: Save as the Default
+Template</h3>
+<p>To ensure every new document opens with these exact parameters:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save Template...</strong></li>
+<li>In the dialog box, assign a name (e.g.,
+<code>My Default</code>).</li>
+<li>Check the box labeled <strong>Set as default template</strong>.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<h3 id="step-5-test-the-configuration">Step 5: Test the
+Configuration</h3>
+<p>Press <code>Ctrl + N</code> (or <code>Cmd + N</code>) to generate a
+new document. The new project will automatically load with your
+specified snapping targets and tolerances pre-configured.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

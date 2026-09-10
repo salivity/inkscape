@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Up Blister Packaging Heat-Seal Zones in Inkscape - inkscape</title>
+    <meta name="description" content="Designing commercial blister packaging cards in Inkscape requires establishing precise "clear zones"—areas where standard glossy coatings or varnishes are omitted so heat-seal adhesives can properly bond the plastic blister bubble to the paperboard car">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/set-up-blister-packaging-heat-seal-zones-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Set Up Blister Packaging Heat-Seal Zones in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/set-up-blister-packaging-heat-seal-zones-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing commercial blister packaging cards in Inkscape requires establishing precise "clear zones"—areas where standard glossy coatings or varnishes are omitted so heat-seal adhesives can properly bond the plastic blister bubble to the paperboard car" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="set-up-blister-packaging-heat-seal-zones-in-inkscape">Set Up
+Blister Packaging Heat-Seal Zones in Inkscape</h1>
+<p>Designing commercial blister packaging cards in Inkscape requires
+establishing precise "clear zones"—areas where standard glossy coatings
+or varnishes are omitted so heat-seal adhesives can properly bond the
+plastic blister bubble to the paperboard card. This guide details how to
+set up production-ready files by organizing functional layers, drawing
+accurate flange boundaries, designating spot-color knockout plates, and
+exporting print-ready PDFs.</p>
+<h3 id="1-document-and-layer-configuration">1. Document and Layer
+Configuration</h3>
+<p>Proper document organization is essential for packaging converters to
+read your artwork, die-cuts, and coating separations correctly.</p>
+<ol type="1">
+<li>Open Inkscape and access <strong>File &gt; Document
+Properties</strong> (<code>Ctrl+Shift+D</code>).</li>
+<li>Set your <strong>Display units</strong> and <strong>Page
+size</strong> units to <code>mm</code> or <code>in</code> based on your
+technical drawing specifications.</li>
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl+Shift+L</code>) and create three distinct layers from bottom
+to top:
+<ul>
+<li><strong>Artwork:</strong> Contains all CMYK background graphics,
+text, branding, and imagery.</li>
+<li><strong>Varnish-Free Zone (Heat-Seal):</strong> Contains the shapes
+indicating where heat-seal coating must be applied or where UV varnish
+must be knocked out.</li>
+<li><strong>Dieline:</strong> Contains the card outline, hang-hole
+punches, and blister placement reference lines.</li>
+</ul></li>
+</ol>
+<p>Lock the <strong>Dieline</strong> layer after drawing the outer cut
+paths to prevent accidental movement.</p>
+<h3 id="2-define-the-heat-seal-footprint">2. Define the Heat-Seal
+Footprint</h3>
+<p>The clear zone must match the flange (the flat outer lip) of your
+thermoformed blister package.</p>
+<ol type="1">
+<li>Measure your blister's flange width (typically 3mm to 6mm, depending
+on package weight).</li>
+<li>Select the <strong>Rectangle</strong> or <strong>Pen
+(Bezier)</strong> tool (<code>B</code>) to draw the exact inner edge of
+the blister cavity on the <strong>Varnish-Free Zone</strong> layer.</li>
+<li>Duplicate this shape (<code>Ctrl+D</code>).</li>
+<li>With the duplicate selected, navigate to <strong>Path &gt;
+Inset</strong> or use <strong>Path &gt; Path Effects &gt;
+Offset</strong> to expand the shape outward by the width of the blister
+flange.</li>
+<li>Add an extra 1mm to 1.5mm tolerance outward. Commercial packaging
+converters require this slight bleed over the flange area to compensate
+for mechanical registration shifts during the heat-sealing process.</li>
+<li>Select both the inner and outer paths, then click <strong>Path &gt;
+Difference</strong> (<code>Ctrl+-</code>) to create a hollow perimeter
+ring representing the exact sealing flange.</li>
+</ol>
+<h3 id="3-assigning-the-clear-zone-color-for-commercial-production">3.
+Assigning the Clear Zone Color for Commercial Production</h3>
+<p>Commercial printers require clear zones and varnish knockouts to be
+presented as a dedicated plate, typically designated with a solid,
+high-contrast spot color.</p>
+<ol type="1">
+<li>Select your flange shape on the <strong>Varnish-Free Zone</strong>
+layer.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl+Shift+F</code>).</li>
+<li>Set the <strong>Fill</strong> to 100% Magenta (<code>#FF00FF</code>)
+or 100% Cyan (<code>#00FFFF</code>) and remove any stroke.</li>
+<li>Name the object clearly in the <strong>Object Properties</strong>
+panel (e.g., <code>HeatSeal_Knockout</code> or
+<code>Varnish_Free</code>).</li>
+</ol>
+<p><em>Note on Overprint:</em> Inkscape natively generates RGB/standard
+CMYK PDF exports and lacks an automated "Overprint" toggle for spot
+swatches. Communicate with your prepress department or printer to inform
+them that the specific Magenta/Cyan plate on the named layer acts as the
+technical coating mask and must not knock out underlying artwork unless
+you are printing on raw, unprinted board.</p>
+<h3 id="4-exporting-production-ready-files">4. Exporting
+Production-Ready Files</h3>
+<ol type="1">
+<li>Double-check that all layers are visible and unhidden.</li>
+<li>Go to <strong>File &gt; Save As...</strong> and select
+<strong>Portable Document Format (*.pdf)</strong>.</li>
+<li>In the PDF export dialogue:
+<ul>
+<li>Set <strong>PDF version</strong> to <code>PDF/X-1a</code> or
+<code>PDF 1.5</code> depending on your commercial printer’s
+requirements.</li>
+<li>Set <strong>Resolution for rasterization</strong> to at least
+<code>300 dpi</code>.</li>
+<li>Ensure text is converted to paths via <strong>Path &gt; Object to
+Path</strong> before saving if your target print house does not carry
+your corporate fonts.</li>
+</ul></li>
+<li>Alternatively, export the artwork layer and the heat-seal mask layer
+as separate PDF files if your printer requests individual technical
+plates. To do this, hide the artwork layer, export the mask, then
+reverse the visibility and export the graphic design.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

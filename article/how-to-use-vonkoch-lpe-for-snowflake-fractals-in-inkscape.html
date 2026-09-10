@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use VonKoch LPE for Snowflake Fractals in Inkscape - inkscape</title>
+    <meta name="description" content="This guide provides a direct walkthrough on generating Koch snowflake fractals using the VonKoch Live Path Effect (LPE) in Inkscape. You will learn how to create the generator motif, prepare the base polygon, apply the LPE, and configure the recursion se">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-use-vonkoch-lpe-for-snowflake-fractals-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use VonKoch LPE for Snowflake Fractals in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-use-vonkoch-lpe-for-snowflake-fractals-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a direct walkthrough on generating Koch snowflake fractals using the VonKoch Live Path Effect (LPE) in Inkscape. You will learn how to create the generator motif, prepare the base polygon, apply the LPE, and configure the recursion se" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-vonkoch-lpe-for-snowflake-fractals-in-inkscape">How
+to Use VonKoch LPE for Snowflake Fractals in Inkscape</h1>
+<p>This guide provides a direct walkthrough on generating Koch snowflake
+fractals using the VonKoch Live Path Effect (LPE) in Inkscape. You will
+learn how to create the generator motif, prepare the base polygon, apply
+the LPE, and configure the recursion settings to produce clean vector
+fractals.</p>
+<h3 id="step-1-create-the-generator-motif">Step 1: Create the Generator
+Motif</h3>
+<p>The VonKoch effect requires a "generator" path that defines how each
+straight segment of your shape is subdivided. A standard Koch fractal
+divides a line into three equal sections and replaces the middle section
+with two sides of an equilateral triangle.</p>
+<ol type="1">
+<li>Select the <strong>Pen (Bezier) Tool</strong> (<code>B</code>).</li>
+<li>Hold <code>Ctrl</code> and draw a horizontal line segment.</li>
+<li>Use the <strong>Node Tool</strong> (<code>N</code>) to add two
+evenly spaced nodes in the center, dividing the segment into three equal
+parts.</li>
+<li>Add a fourth node between the two middle nodes, pull it upward to
+form an equilateral peak (a 60-degree point), and ensure all four
+sub-segments are of equal length.</li>
+<li>With the completed motif selected, copy it to your clipboard by
+pressing <code>Ctrl + C</code>.</li>
+</ol>
+<h3 id="step-2-create-the-base-geometry">Step 2: Create the Base
+Geometry</h3>
+<p>The outer skeleton of a standard Koch snowflake starts as an
+equilateral triangle.</p>
+<ol type="1">
+<li>Select the <strong>Stars and Polygons Tool</strong>
+(<code>*</code>).</li>
+<li>In the top toolbar, select the regular polygon mode and set
+<strong>Corners</strong> to <code>3</code>.</li>
+<li>Drag on the canvas to draw an equilateral triangle.</li>
+<li>Convert the geometric object into a standard vector path by
+navigating to <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>).</li>
+</ol>
+<h3 id="step-3-apply-and-configure-the-vonkoch-lpe">Step 3: Apply and
+Configure the VonKoch LPE</h3>
+<p>Once the base triangle is selected and the generator motif is in your
+clipboard, you can apply the effect.</p>
+<ol type="1">
+<li>Keep the base triangle selected and open the Path Effects panel via
+<strong>Path &gt; Path Effects</strong>.</li>
+<li>Click the <strong>+</strong> (Add Path Effect) icon and search for
+<strong>VonKoch</strong>. Click it to apply.</li>
+<li>In the VonKoch settings panel, locate the <strong>Generating
+path</strong> field.</li>
+<li>Click the <strong>Paste path</strong> icon (clipboard symbol) next
+to "Generating path" to link the motif you copied in Step 1.</li>
+<li>Locate the <strong>Order</strong> parameter. Set the value between
+<code>1</code> and <code>4</code>:
+<ul>
+<li>An order of <code>1</code> replaces each of the 3 sides with your
+4-segment motif (12 total segments).</li>
+<li>An order of <code>3</code> or <code>4</code> produces a detailed,
+classic snowflake fractal.</li>
+<li><em>Caution:</em> Avoid setting the order higher than
+<code>5</code>, as exponential node growth can cause Inkscape to
+freeze.</li>
+</ul></li>
+</ol>
+<h3 id="step-4-correct-alignment-and-finalize">Step 4: Correct Alignment
+and Finalize</h3>
+<p>If the fractal points inward toward the center of the triangle rather
+than outward:</p>
+<ul>
+<li>Select the shape, go to the top menu, and choose <strong>Path &gt;
+Reverse</strong>. This flips the path direction and points the
+iterations outward.</li>
+</ul>
+<p>To finalize the snowflake into standalone vector geometry that can be
+exported or edited node-by-node without live calculations, select the
+shape and navigate to <strong>Path &gt; Object to Path</strong>.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

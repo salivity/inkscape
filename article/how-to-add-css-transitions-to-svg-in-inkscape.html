@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Add CSS Transitions to SVG in Inkscape - inkscape</title>
+    <meta name="description" content="Applying CSS transitions directly within an SVG file creates interactive, web-ready vector graphics that animate on states like hover without needing external stylesheets. Inkscape provides a built-in XML Editor that allows you to inject raw <style> elem">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-add-css-transitions-to-svg-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Add CSS Transitions to SVG in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-add-css-transitions-to-svg-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Applying CSS transitions directly within an SVG file creates interactive, web-ready vector graphics that animate on states like hover without needing external stylesheets. Inkscape provides a built-in XML Editor that allows you to inject raw <style> elem" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-add-css-transitions-to-svg-in-inkscape">How to Add CSS
+Transitions to SVG in Inkscape</h1>
+<p>Applying CSS transitions directly within an SVG file creates
+interactive, web-ready vector graphics that animate on states like hover
+without needing external stylesheets. Inkscape provides a built-in XML
+Editor that allows you to inject raw <code>&lt;style&gt;</code> elements
+and custom CSS rules straight into the document structure. This guide
+explains how to use the Inkscape XML Editor to define transitions and
+link them to your SVG shapes.</p>
+<h3 id="step-1-open-the-xml-editor">Step 1: Open the XML Editor</h3>
+<ol type="1">
+<li>Open your graphic in Inkscape.</li>
+<li>Open the XML Editor by navigating to <strong>Edit &gt; XML
+Editor</strong> or by pressing <strong>Ctrl + Shift + X</strong> (Cmd +
+Shift + X on macOS).</li>
+<li>The editor tree will appear, showing the internal SVG DOM
+hierarchy.</li>
+</ol>
+<h3 id="step-2-add-an-svgstyle-element">Step 2: Add an
+<code>svg:style</code> Element</h3>
+<ol type="1">
+<li>In the XML Editor tree, select the root element, typically labeled
+<code>&lt;svg:svg ...&gt;</code>.</li>
+<li>Click the <strong>New element node</strong> button on the toolbar
+above the tree.</li>
+<li>In the dialog that appears, type <code>svg:style</code> and click
+<strong>Create</strong>.</li>
+<li>With the newly created <code>&lt;svg:style&gt;</code> element
+selected, add the <code>type</code> attribute:
+<ul>
+<li>In the <strong>Name</strong> field on the right panel, enter
+<code>type</code>.</li>
+<li>In the <strong>Value</strong> field, enter
+<code>text/css</code>.</li>
+<li>Click <strong>Set</strong>.</li>
+</ul></li>
+</ol>
+<h3 id="step-3-insert-css-rules-and-transitions">Step 3: Insert CSS
+Rules and Transitions</h3>
+<ol type="1">
+<li>With the <code>&lt;svg:style&gt;</code> node selected, click the
+<strong>New text node</strong> button on the toolbar.</li>
+<li>In the text area on the right, write your CSS styles including the
+transitions. For example:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.interactive-shape</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">fill</span><span class="ch">:</span> <span class="cn">#3498db</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">transition</span><span class="ch">:</span> <span class="dv">fill</span> <span class="dv">0.3</span><span class="dt">s</span> <span class="dv">ease</span><span class="op">,</span> <span class="dv">transform 0.3</span><span class="dt">s</span> <span class="dv">ease</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">transform-origin</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">.interactive-shape</span><span class="in">:hover</span> {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">fill</span><span class="ch">:</span> <span class="cn">#e74c3c</span><span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">transform</span><span class="ch">:</span> <span class="fu">scale(</span><span class="dv">1.1</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">cursor</span><span class="ch">:</span> <span class="dv">pointer</span><span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ol start="3" type="1">
+<li>Click <strong>Set</strong> to apply the text node.</li>
+</ol>
+<h3 id="step-4-assign-the-class-to-an-svg-element">Step 4: Assign the
+Class to an SVG Element</h3>
+<ol type="1">
+<li>In the XML tree, locate and select the node representing the shape
+you want to animate (e.g., <code>&lt;svg:path&gt;</code>,
+<code>&lt;svg:rect&gt;</code>, or <code>&lt;svg:circle&gt;</code>). You
+can also select the shape on the Inkscape canvas, and the editor will
+highlight the corresponding node.</li>
+<li>In the attribute panel on the right:
+<ul>
+<li>Enter <code>class</code> into the <strong>Name</strong> field.</li>
+<li>Enter the class name matching your CSS (e.g.,
+<code>interactive-shape</code>) into the <strong>Value</strong>
+field.</li>
+<li>Click <strong>Set</strong>.</li>
+</ul></li>
+<li>If the shape already has inline styles (a <code>style</code>
+attribute) defining properties like <code>fill</code>, remove or edit
+that attribute, as inline SVG presentation attributes can override your
+custom CSS classes.</li>
+</ol>
+<h3 id="step-5-save-and-test">Step 5: Save and Test</h3>
+<ol type="1">
+<li>Save the file via <strong>File &gt; Save As...</strong> and choose
+<strong>Plain SVG</strong> to remove Inkscape-specific metadata, or keep
+it as <strong>Inkscape SVG</strong> if you plan to edit it further.</li>
+<li>Open the saved <code>.svg</code> file directly in any modern web
+browser.</li>
+<li>Hover over the modified element to verify that the CSS transition
+executes smoothly.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Die-Cut Stickers with White Borders in Inkscape - inkscape</title>
+    <meta name="description" content="Designing custom die-cut stickers requires creating a solid artwork layer, adding an expanded white border (the sticker margin), and establishing an exact cut path for a vinyl cutter or print shop. This guide walks you through the step-by-step process of">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/make-die-cut-stickers-with-white-borders-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Make Die-Cut Stickers with White Borders in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/make-die-cut-stickers-with-white-borders-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing custom die-cut stickers requires creating a solid artwork layer, adding an expanded white border (the sticker margin), and establishing an exact cut path for a vinyl cutter or print shop. This guide walks you through the step-by-step process of" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="make-die-cut-stickers-with-white-borders-in-inkscape">Make
+Die-Cut Stickers with White Borders in Inkscape</h1>
+<p>Designing custom die-cut stickers requires creating a solid artwork
+layer, adding an expanded white border (the sticker margin), and
+establishing an exact cut path for a vinyl cutter or print shop. This
+guide walks you through the step-by-step process of preparing vector
+artwork, generating a clean white offset outline, and formatting a
+dedicated die-cut line using Inkscape.</p>
+<h3 id="step-1-prepare-your-vector-artwork">Step 1: Prepare Your Vector
+Artwork</h3>
+<ol type="1">
+<li>Open Inkscape and import or design your vector graphic.</li>
+<li>Select all components of your graphic and group them by pressing
+<code>Ctrl + G</code> (or <code>Cmd + G</code> on macOS).</li>
+<li>Ensure your artwork has a transparent background.</li>
+</ol>
+<h3 id="step-2-create-the-silhouette">Step 2: Create the Silhouette</h3>
+<p>To make a smooth outer border, you need a single solid shape behind
+the design.</p>
+<ol type="1">
+<li>Select your grouped artwork and duplicate it by pressing
+<code>Ctrl + D</code>.</li>
+<li>With the duplicate selected, ungroup it completely by pressing
+<code>Ctrl + Shift + G</code> repeatedly until all sub-groups are
+broken.</li>
+<li>Convert all elements to paths by going to <strong>Path &gt; Object
+to Path</strong> and <strong>Path &gt; Stroke to Path</strong>.</li>
+<li>Merge everything into a single solid silhouette by selecting
+<strong>Path &gt; Union</strong>.</li>
+</ol>
+<h3 id="step-3-add-the-white-border-offset">Step 3: Add the White Border
+Offset</h3>
+<ol type="1">
+<li>Select your merged silhouette and open the Path Effects panel by
+navigating to <strong>Path &gt; Path Effects</strong>.</li>
+<li>Click the <strong>+</strong> (Add Path Effect) button and choose
+<strong>Offset</strong>.</li>
+<li>In the Path Effects settings, choose <strong>Round</strong> for the
+Join style to ensure smooth sticker corners.</li>
+<li>Increase the <strong>Offset</strong> value until the border reaches
+your desired thickness (typically between 2 mm and 4 mm).</li>
+<li>Once satisfied, finalize the effect by selecting <strong>Path &gt;
+Object to Path</strong>.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>). Set the <strong>Fill</strong> to solid
+white (<code>#FFFFFF</code>) and set the <strong>Stroke paint</strong>
+to none.</li>
+<li>Lower the white shape behind your original graphic by pressing the
+<code>Page Down</code> key or clicking the <strong>Lower selection one
+step</strong> icon.</li>
+</ol>
+<h3 id="step-4-generate-the-die-cut-line">Step 4: Generate the Die-Cut
+Line</h3>
+<p>Print shops and cutting machines require a precise vector stroke to
+indicate where the blade should cut.</p>
+<ol type="1">
+<li>Select your white border shape and duplicate it
+(<code>Ctrl + D</code>).</li>
+<li>If you want the cut line directly on the edge of the white border,
+keep the shape as is. If you want a bleed margin, apply another small
+outset.</li>
+<li>In the <strong>Fill and Stroke</strong> panel:
+<ul>
+<li>Set <strong>Fill</strong> to <strong>No paint</strong>
+(transparent).</li>
+<li>Set <strong>Stroke paint</strong> to a distinct, high-contrast color
+(standard print-industry cut lines typically use 100% Magenta:
+<code>R: 255, G: 0, B: 255</code>).</li>
+<li>Set the <strong>Stroke style</strong> width to a hairline thickness,
+such as <code>0.25 pt</code> or <code>0.1 mm</code>.</li>
+</ul></li>
+<li>Align the cut line directly over the white border using the
+<strong>Align and Distribute</strong> panel
+(<code>Ctrl + Shift + A</code>) to center both horizontally and
+vertically.</li>
+</ol>
+<h3 id="step-5-organize-layers-and-export">Step 5: Organize Layers and
+Export</h3>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li>Organize your file into distinct layers: place your original artwork
+on an "Artwork" layer, the white backing on a "White Underbase" layer,
+and the stroke path on a dedicated "CutContour" layer.</li>
+<li>Save your master file as an <strong>Inkscape SVG</strong>.</li>
+<li>Go to <strong>File &gt; Save As</strong> and export the final
+production file as a <strong>PDF</strong> or <strong>EPS</strong>,
+ensuring that vector paths and transparency settings are preserved for
+printing.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

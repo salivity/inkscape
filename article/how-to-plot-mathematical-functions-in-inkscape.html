@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Plot Mathematical Functions in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape includes a built-in tool called the Function Plotter that allows you to generate precise 2D mathematical graphs directly onto your canvas as editable vector paths. This guide provides a step-by-step walkthrough for accessing the tool, configurin">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-plot-mathematical-functions-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Plot Mathematical Functions in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-plot-mathematical-functions-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape includes a built-in tool called the Function Plotter that allows you to generate precise 2D mathematical graphs directly onto your canvas as editable vector paths. This guide provides a step-by-step walkthrough for accessing the tool, configurin" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-plot-mathematical-functions-in-inkscape">How to Plot
+Mathematical Functions in Inkscape</h1>
+<p>Inkscape includes a built-in tool called the Function Plotter that
+allows you to generate precise 2D mathematical graphs directly onto your
+canvas as editable vector paths. This guide provides a step-by-step
+walkthrough for accessing the tool, configuring mathematical
+expressions, defining domain and range values, and styling the resulting
+vector plots for technical diagrams, academic documents, or
+illustrations.</p>
+<h3 id="1-open-the-function-plotter-extension">1. Open the Function
+Plotter Extension</h3>
+<ol type="1">
+<li>Launch Inkscape and open a new or existing document.</li>
+<li>In the top menu, navigate to <strong>Extensions</strong> &gt;
+<strong>Render</strong> &gt; <strong>Mathematics</strong> &gt;
+<strong>Function Plotter...</strong></li>
+<li>A dialog window will appear containing two main tabs:
+<strong>Function</strong> and <strong>Sampling</strong>.</li>
+</ol>
+<h3 id="2-enter-the-mathematical-formula">2. Enter the Mathematical
+Formula</h3>
+<p>In the <strong>Function</strong> tab, define the mathematical
+equation you want to plot:</p>
+<ul>
+<li><strong>Function / f(x):</strong> Enter your formula using standard
+Python mathematical syntax.
+<ul>
+<li>Addition/Subtraction: <code>x + 2</code>, <code>x - 5</code></li>
+<li>Multiplication/Division: <code>3 * x</code>, <code>x / 2</code></li>
+<li>Exponents: <code>x**2</code> (represents <span
+class="math inline">\(x^2\)</span>)</li>
+<li>Trigonometric functions: <code>sin(x)</code>, <code>cos(x)</code>,
+<code>tan(x)</code></li>
+<li>Other functions: <code>sqrt(x)</code> (square root),
+<code>exp(x)</code> (exponential), <code>log(x)</code> (natural
+logarithm)</li>
+</ul></li>
+</ul>
+<h3 id="3-set-the-domain-and-axis-ranges">3. Set the Domain and Axis
+Ranges</h3>
+<p>Still within the <strong>Function</strong> tab, set the boundaries
+for your plot:</p>
+<ul>
+<li><strong>Start X-value</strong> and <strong>End X-value:</strong> Set
+the domain of <span class="math inline">\(x\)</span> (e.g.,
+<code>-10</code> to <code>10</code>).</li>
+<li><strong>Multiply X-range by 2*pi:</strong> Enable this checkbox if
+you are plotting periodic trigonometric functions.</li>
+<li><strong>Y-value minimum</strong> and <strong>Y-value
+maximum:</strong> Define the visible vertical limits for <span
+class="math inline">\(y\)</span>. Values exceeding this range will be
+clipped.</li>
+</ul>
+<h3 id="4-configure-sampling-and-dimensions">4. Configure Sampling and
+Dimensions</h3>
+<p>Switch to the <strong>Sampling</strong> tab to configure the
+resolution and physical size of the output:</p>
+<ul>
+<li><strong>Number of samples:</strong> Controls the number of
+calculated points along the curve. A higher number (e.g., 200–500)
+results in a smoother curve, especially for rapidly changing
+functions.</li>
+<li><strong>Width</strong> and <strong>Height:</strong> Set the physical
+dimensions (in pixels) of the bounding box that will contain the plotted
+graph on the canvas.</li>
+<li><strong>Draw axes:</strong> Check this box to generate visible
+horizontal (<span class="math inline">\(X\)</span>) and vertical (<span
+class="math inline">\(Y\)</span>) axes along with the function
+curve.</li>
+<li><strong>Add isometric grid / marks:</strong> Enable additional tick
+marks or grid references if required for your diagram.</li>
+</ul>
+<h3 id="5-generate-and-customize-the-output">5. Generate and Customize
+the Output</h3>
+<ol type="1">
+<li>Check the <strong>Live preview</strong> box at the bottom of the
+window to view the graph in real-time before applying changes.</li>
+<li>Once the plot looks correct, click <strong>Apply</strong> and then
+<strong>Close</strong>.</li>
+<li>The generated graph is placed on the canvas as a standard SVG
+group.</li>
+<li>To style the plot, select it and open the <strong>Fill and
+Stroke</strong> panel (<strong>Shift + Ctrl + F</strong>). You can
+adjust the stroke color, line thickness, and dash patterns for both the
+function curve and the axes independently by ungrouping the object
+(<strong>Ctrl + Shift + G</strong>).</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

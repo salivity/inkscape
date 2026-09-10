@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Weed Borders for Vinyl Decals in Inkscape - inkscape</title>
+    <meta name="description" content="Weed borders, also known as weeding boxes or weed lines, make the process of removing excess vinyl from intricate decal designs faster and significantly less prone to tearing. This guide outlines how to use Inkscape to create both exterior boundary boxes">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-weed-borders-for-vinyl-decals-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Weed Borders for Vinyl Decals in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-weed-borders-for-vinyl-decals-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Weed borders, also known as weeding boxes or weed lines, make the process of removing excess vinyl from intricate decal designs faster and significantly less prone to tearing. This guide outlines how to use Inkscape to create both exterior boundary boxes" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-weed-borders-for-vinyl-decals-in-inkscape">Create Weed
+Borders for Vinyl Decals in Inkscape</h1>
+<p>Weed borders, also known as weeding boxes or weed lines, make the
+process of removing excess vinyl from intricate decal designs faster and
+significantly less prone to tearing. This guide outlines how to use
+Inkscape to create both exterior boundary boxes and specialized contour
+weed borders around complex vector artwork. By preparing your vector
+paths, applying offsets, and adding targeted dividing lines, you will
+produce clean, ready-to-cut cut files that streamline your vinyl
+production workflow.</p>
+<h3 id="step-1-prepare-and-group-your-vector-design">Step 1: Prepare and
+Group Your Vector Design</h3>
+<p>Before creating borders, ensure your intricate artwork is treated as
+a unified object so the software calculates distances accurately:</p>
+<ol type="1">
+<li>Open your design in Inkscape and select all elements using the
+<strong>Select Tool</strong> (<code>S</code>).</li>
+<li>Convert all text and strokes into paths by navigating to
+<strong>Path &gt; Object to Path</strong> and <strong>Path &gt; Stroke
+to Path</strong>.</li>
+<li>With all elements still selected, go to <strong>Path &gt;
+Union</strong> (<code>Ctrl + +</code>) to merge overlapping sections
+into a single compound path. If your design consists of multiple colors
+or non-overlapping sections that must stay separate, group them together
+instead using <strong>Object &gt; Group</strong>
+(<code>Ctrl + G</code>).</li>
+</ol>
+<h3 id="step-2-create-an-outer-weed-box">Step 2: Create an Outer Weed
+Box</h3>
+<p>A rectangular weed box isolates your cut design from the rest of the
+vinyl roll, allowing you to cut a neat perimeter around the decal.</p>
+<ol type="1">
+<li>Select the <strong>Rectangle Tool</strong> (<code>R</code>) from the
+left toolbar.</li>
+<li>Draw a rectangle that completely encloses your design, leaving
+roughly 0.25 to 0.5 inches of margin on all sides.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>Set <strong>Fill</strong> to "No paint" and <strong>Stroke
+paint</strong> to a flat color (such as black or red) with a stroke
+width appropriate for cutting (e.g., <code>0.5 px</code> or
+<code>0.001 in</code>).</li>
+<li>Select both the rectangle and your artwork, open the <strong>Align
+and Distribute</strong> panel (<code>Ctrl + Shift + A</code>), and click
+both <strong>Center on vertical axis</strong> and <strong>Center on
+horizontal axis</strong>.</li>
+</ol>
+<h3 id="step-3-create-an-intricate-contour-weed-border">Step 3: Create
+an Intricate Contour Weed Border</h3>
+<p>For highly detailed designs, a tightly fitted offset border (contour
+cut) prevents vinyl from catching and pulling delicate details away
+during weeding.</p>
+<ol type="1">
+<li>Select your unified design and duplicate it by pressing
+<code>Ctrl + D</code>.</li>
+<li>Go to <strong>Path &gt; Path Effects</strong>.</li>
+<li>In the Path Effects panel, click the plus sign (<code>+</code>) and
+select <strong>Offset</strong>.</li>
+<li>In the effect settings, set the <strong>Mode</strong> to "Miter" or
+"Round" depending on your design's styling.</li>
+<li>Increase the <strong>Offset</strong> value until a solid outline
+forms around the outer perimeter of your artwork (typically 3–5 mm or
+0.12–0.2 inches).</li>
+<li>With the duplicate still selected, go to <strong>Path &gt; Object to
+Path</strong> to bake the offset into a permanent vector shape.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel, remove the fill,
+and add a stroke. If small enclosed cutouts appear within the offset, go
+to <strong>Path &gt; Break Apart</strong>, select and delete the
+unwanted inner loops, and keep only the exterior boundary.</li>
+</ol>
+<h3 id="step-4-add-internal-weed-lines-for-complex-details">Step 4: Add
+Internal Weed Lines for Complex Details</h3>
+<p>Intricate designs often trap large fields of negative vinyl that are
+difficult to weed in one pull. Dividing these areas into smaller
+sections eliminates stress on thin lines:</p>
+<ol type="1">
+<li>Select the <strong>Draw Bezier Curves and Straight Lines
+Tool</strong> (<code>B</code>).</li>
+<li>Draw straight lines through open negative spaces between elements,
+connecting one edge of your weed box or contour border to the opposite
+edge. Avoid crossing directly over any part of the actual design.</li>
+<li>Hold <code>Shift</code>, select all the weed lines you created, and
+group them with <code>Ctrl + G</code>.</li>
+<li>Set their stroke properties in the <strong>Fill and Stroke</strong>
+panel to match your outer cut lines.</li>
+</ol>
+<h3 id="step-5-finalize-and-export-the-cut-file">Step 5: Finalize and
+Export the Cut File</h3>
+<ol type="1">
+<li>Select the original artwork, the outer weed border, and any internal
+weed lines.</li>
+<li>Ensure all cutting paths have their fill set to "None" and strokes
+set to a visible cut line recognized by your cutting software.</li>
+<li>Save your working project as an Inkscape SVG
+(<code>Ctrl + S</code>).</li>
+<li>Go to <strong>File &gt; Save As</strong>, choose <strong>Plain
+SVG</strong> or <strong>DXF</strong> (depending on your cutting plotter
+software requirements, such as Cricut Design Space, Silhouette Studio,
+or Roland CutStudio), and export your cut-ready file.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

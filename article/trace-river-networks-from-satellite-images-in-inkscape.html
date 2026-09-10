@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trace River Networks from Satellite Images in Inkscape - inkscape</title>
+    <meta name="description" content="Tracing complex river systems from satellite imagery into clean, simplified vector paths is an essential skill for cartographers, graphic designers, and GIS professionals. This guide walks you through the step-by-step process of importing satellite data">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/trace-river-networks-from-satellite-images-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Trace River Networks from Satellite Images in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/trace-river-networks-from-satellite-images-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Tracing complex river systems from satellite imagery into clean, simplified vector paths is an essential skill for cartographers, graphic designers, and GIS professionals. This guide walks you through the step-by-step process of importing satellite data" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="trace-river-networks-from-satellite-images-in-inkscape">Trace
+River Networks from Satellite Images in Inkscape</h1>
+<p>Tracing complex river systems from satellite imagery into clean,
+simplified vector paths is an essential skill for cartographers, graphic
+designers, and GIS professionals. This guide walks you through the
+step-by-step process of importing satellite data into Inkscape, tracing
+waterway centerlines, and utilizing vector simplification tools to
+produce streamlined, production-ready river networks without visual
+clutter.</p>
+<h2 id="1-prepare-and-import-the-satellite-image">1. Prepare and Import
+the Satellite Image</h2>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>File &gt; Document
+Properties</strong> to set your canvas dimensions according to your
+desired output.</li>
+<li>Go to <strong>File &gt; Import</strong>, select your high-resolution
+satellite image, and choose <strong>Embed</strong> to keep the image
+file self-contained within your SVG.</li>
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li>Rename this initial layer to "Satellite Basemap" and click the
+padlock icon to lock it, preventing accidental shifts while
+tracing.</li>
+<li>Create a new layer above it and name it "River Network."</li>
+</ol>
+<h2 id="2-trace-the-river-centerlines">2. Trace the River
+Centerlines</h2>
+<p>Because satellite rivers vary in width and often pass under canopy or
+bridges, manual tracing using the Bézier tool yields significantly
+cleaner results than automatic raster tracing.</p>
+<ol type="1">
+<li>Select the <strong>Draw Freehand Lines</strong> tool or the
+<strong>Bézier Curves</strong> tool (<code>B</code>) from the left
+toolbar.</li>
+<li>In the top tool controls bar, set the mode to <strong>Regular Bézier
+path</strong> and shape to <strong>None</strong>.</li>
+<li>Zoom in to the main river stem (<code>+</code> key or scroll wheel
+while holding <code>Ctrl</code>).</li>
+<li>Click along the visual center of the river channel, placing nodes at
+major bends and turns. Avoid over-clicking; sparse node placement
+creates naturally smoother curves.</li>
+<li>Repeat the process for tributaries. To connect a tributary to the
+main river, enable <strong>Snap to paths</strong> on the snapping
+toolbar and begin or end the tributary stroke directly on the main
+path.</li>
+</ol>
+<h2 id="3-simplify-the-vector-paths">3. Simplify the Vector Paths</h2>
+<p>Raw manual traces often contain minor hand tremors or redundant nodes
+that bloat file sizes and look jagged.</p>
+<ol type="1">
+<li>Switch to the <strong>Select and Transform Objects</strong> tool
+(<code>S</code>) and select your traced river paths.</li>
+<li>Run <strong>Path &gt; Simplify</strong> (<code>Ctrl + L</code>).
+Inkscape will automatically reduce the node count while retaining the
+overall geometry.</li>
+<li>To fine-tune the aggressiveness of the simplification, go to
+<strong>Edit &gt; Preferences &gt; Behavior &gt; Steps</strong> and
+adjust the <strong>Simplification threshold</strong>. A smaller value
+preserves tight meanders, while a larger value abstracts the river into
+generalized lines.</li>
+<li>Switch to the <strong>Edit paths by nodes</strong> tool
+(<code>N</code>) to manually inspect, move, or delete any remaining
+awkward sharp angles.</li>
+</ol>
+<h2 id="4-establish-visual-hierarchy-and-stroke-styling">4. Establish
+Visual Hierarchy and Stroke Styling</h2>
+<p>Natural river networks visually taper from headwaters to main
+channels. Setting proportional stroke widths establishes a clear
+cartographic hierarchy.</p>
+<ol type="1">
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>In the <strong>Fill</strong> tab, ensure fill is set to <strong>No
+paint</strong>.</li>
+<li>In the <strong>Stroke paint</strong> tab, select a uniform river
+color (such as a standard hydrographic blue or dark gray for minimalist
+maps).</li>
+<li>In the <strong>Stroke style</strong> tab:
+<ul>
+<li>Set <strong>Cap</strong> to <strong>Round cap</strong> and
+<strong>Join</strong> to <strong>Round join</strong> to eliminate harsh
+segment breaks.</li>
+<li>Assign thicker stroke widths to major rivers (e.g., 2.0–3.0 px) and
+progressively thinner strokes to secondary and tertiary tributaries
+(e.g., 0.75–1.25 px).</li>
+</ul></li>
+</ol>
+<h2 id="5-clean-up-and-export">5. Clean Up and Export</h2>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel and toggle the
+eye icon next to the "Satellite Basemap" layer to hide the background
+image.</li>
+<li>Inspect the standalone vector network for floating, disconnected, or
+overlapping paths.</li>
+<li>Select all river paths and group them (<code>Ctrl + G</code>) or
+navigate to <strong>Path &gt; Combine</strong> (<code>Ctrl + K</code>)
+if you want them unified into a single compound path.</li>
+<li>Go to <strong>File &gt; Save As...</strong> to save your clean
+vector artwork as an <strong>Inkscape SVG</strong> or <strong>Optimized
+SVG</strong> for digital design and GIS workflows.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

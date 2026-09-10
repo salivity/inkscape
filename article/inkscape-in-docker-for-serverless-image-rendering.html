@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape in Docker for Serverless Image Rendering - inkscape</title>
+    <meta name="description" content="Using Inkscape inside Docker containers enables fast, automated, and scalable vector image rendering in serverless environments like AWS Lambda, Google Cloud Run, and Azure Container Instances. This guide explains how to package Inkscape's command-line i">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-in-docker-for-serverless-image-rendering">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape in Docker for Serverless Image Rendering - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-in-docker-for-serverless-image-rendering" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Using Inkscape inside Docker containers enables fast, automated, and scalable vector image rendering in serverless environments like AWS Lambda, Google Cloud Run, and Azure Container Instances. This guide explains how to package Inkscape's command-line i" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-in-docker-for-serverless-image-rendering">Inkscape in
+Docker for Serverless Image Rendering</h1>
+<p>Using Inkscape inside Docker containers enables fast, automated, and
+scalable vector image rendering in serverless environments like AWS
+Lambda, Google Cloud Run, and Azure Container Instances. This guide
+explains how to package Inkscape's command-line interface (CLI) into a
+minimal container, execute headless SVG-to-raster conversions, and
+optimize the container for serverless performance without GUI
+dependencies.</p>
+<h3 id="why-containerize-inkscape-for-serverless">Why Containerize
+Inkscape for Serverless?</h3>
+<p>Inkscape provides advanced rendering capabilities for modern SVG
+features, complex paths, gradients, and text layouts that standard
+lightweight libraries often fail to parse accurately. Running Inkscape
+inside a container standardizes font rendering, eliminates OS-level
+discrepancies, and allows you to trigger automated rendering jobs via
+HTTP requests or event queues.</p>
+<h3 id="1-creating-the-dockerfile">1. Creating the Dockerfile</h3>
+<p>To run Inkscape in a serverless platform, use a minimal Linux base
+image and install Inkscape along with the necessary rendering libraries
+and system fonts.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode dockerfile"><code class="sourceCode dockerfile"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> alpine:latest</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Install Inkscape and necessary font packages</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">RUN</span> <span class="ex">apk</span> update <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">apk</span> add <span class="at">--no-cache</span> <span class="dt">\</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    inkscape <span class="dt">\</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    font-noto <span class="dt">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    font-noto-cjk <span class="dt">\</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    terminus-font <span class="dt">\</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    ca-certificates</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Set a working directory</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">WORKDIR</span> /app</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Optional: Add your custom fonts</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># COPY ./fonts/ /usr/share/fonts/custom/</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># RUN fc-cache -f -v</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Entry point or default command for processing</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="kw">ENTRYPOINT</span> [<span class="st">&quot;inkscape&quot;</span>]</span></code></pre></div>
+<h3 id="2-headless-inkscape-cli-commands">2. Headless Inkscape CLI
+Commands</h3>
+<p>Inkscape 1.0 and later versions natively support batch and headless
+processing without needing an X11 virtual frame buffer (Xvfb).</p>
+<p>Common conversion commands:</p>
+<ul>
+<li><strong>Export SVG to PNG:</strong>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--export-filename</span><span class="op">=</span>output.png <span class="at">--export-type</span><span class="op">=</span>png <span class="at">-w</span> 1920</span></code></pre></div></li>
+<li><strong>Export SVG to PDF:</strong>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--export-filename</span><span class="op">=</span>output.pdf <span class="at">--export-type</span><span class="op">=</span>pdf</span></code></pre></div></li>
+<li><strong>Export SVG to EPS:</strong>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--export-filename</span><span class="op">=</span>output.eps <span class="at">--export-type</span><span class="op">=</span>eps</span></code></pre></div></li>
+</ul>
+<h3 id="3-serverless-integration-architecture">3. Serverless Integration
+Architecture</h3>
+<p>To integrate the container into a serverless workflow:</p>
+<ol type="1">
+<li><strong>Wrapper Application:</strong> Package a lightweight HTTP
+server (using Node.js, Python, or Go) alongside Inkscape inside the
+container.</li>
+<li><strong>File Ingestion:</strong> The server receives an SVG via
+payload or downloads it from object storage (like Amazon S3 or Google
+Cloud Storage).</li>
+<li><strong>Process Execution:</strong> The application spawns a
+subprocess running the <code>inkscape</code> command to convert the file
+into the target format.</li>
+<li><strong>Result Upload:</strong> The rendered raster or PDF file is
+saved back to storage or returned directly in the HTTP response.</li>
+</ol>
+<p>Example execution in Python:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> render_svg(input_path, output_path, export_type<span class="op">=</span><span class="st">&quot;png&quot;</span>, width<span class="op">=</span><span class="dv">1200</span>):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    command <span class="op">=</span> [</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;inkscape&quot;</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        input_path,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f&quot;--export-filename=</span><span class="sc">{</span>output_path<span class="sc">}</span><span class="ss">&quot;</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f&quot;--export-type=</span><span class="sc">{</span>export_type<span class="sc">}</span><span class="ss">&quot;</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f&quot;--export-width=</span><span class="sc">{</span>width<span class="sc">}</span><span class="ss">&quot;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    subprocess.run(command, check<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<h3 id="4-performance-and-optimization-tips">4. Performance and
+Optimization Tips</h3>
+<ul>
+<li><strong>Font Cache Invalidation:</strong> Run
+<code>fc-cache -f -v</code> during the Docker build stage to pre-build
+the font cache. This prevents cold-start delays during initial
+serverless execution.</li>
+<li><strong>Memory Allocation:</strong> Inkscape requires adequate
+memory for large canvas sizes or complex paths. Allocate at least 1 GB
+to 2 GB of RAM to your serverless container instance.</li>
+<li><strong>Container Image Size:</strong> Use multi-stage builds or
+Alpine/Debian-Slim images to keep the overall container size down,
+speeding up serverless cold starts.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

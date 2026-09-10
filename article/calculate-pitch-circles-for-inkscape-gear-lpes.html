@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Pitch Circles for Inkscape Gear LPEs - inkscape</title>
+    <meta name="description" content="This guide explains how to calculate pitch circle diameters and radii when designing gear profiles using Live Path Effects (LPE) and parametric tools in Inkscape. By understanding the direct mathematical relationship between tooth count, module, and circ">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/calculate-pitch-circles-for-inkscape-gear-lpes">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Calculate Pitch Circles for Inkscape Gear LPEs - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/calculate-pitch-circles-for-inkscape-gear-lpes" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to calculate pitch circle diameters and radii when designing gear profiles using Live Path Effects (LPE) and parametric tools in Inkscape. By understanding the direct mathematical relationship between tooth count, module, and circ" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="calculate-pitch-circles-for-inkscape-gear-lpes">Calculate Pitch
+Circles for Inkscape Gear LPEs</h1>
+<p>This guide explains how to calculate pitch circle diameters and radii
+when designing gear profiles using Live Path Effects (LPE) and
+parametric tools in Inkscape. By understanding the direct mathematical
+relationship between tooth count, module, and circular pitch, you can
+accurately configure gear dimensions to ensure proper tooth engagement,
+center-to-center spacing, and seamless mechanical meshing within your
+vector layouts.</p>
+<h3 id="essential-gear-geometry-variables">Essential Gear Geometry
+Variables</h3>
+<p>To calculate the pitch circle accurately, you must define the
+following standard gear parameters:</p>
+<ul>
+<li><strong><span class="math inline">\(N\)</span> (or <span
+class="math inline">\(z\)</span>): Number of Teeth</strong> — The total
+count of teeth distributed evenly around the gear.</li>
+<li><strong><span class="math inline">\(m\)</span>: Module</strong> —
+The unit of size that indicates how big or small the gear teeth are
+(commonly in millimeters).</li>
+<li><strong><span class="math inline">\(p\)</span>: Circular
+Pitch</strong> — The distance measured along the pitch circle from the
+face of one tooth to the corresponding face of the adjacent tooth.</li>
+<li><strong><span class="math inline">\(D\)</span>: Pitch
+Diameter</strong> — The diameter of the imaginary pitch circle where two
+gears make contact and roll together without slipping.</li>
+<li><strong><span class="math inline">\(R\)</span>: Pitch
+Radius</strong> — The radius of the pitch circle (<span
+class="math inline">\(D / 2\)</span>).</li>
+</ul>
+<h3 id="primary-calculation-formulas">Primary Calculation Formulas</h3>
+<p>Inkscape’s parametric inputs rely on standard involute gear geometry.
+Depending on whether your tool prompts for the module or the circular
+pitch, use the corresponding formula:</p>
+<ol type="1">
+<li><p><strong>Using Module (<span
+class="math inline">\(m\)</span>):</strong> <span
+class="math display">\[\text{Pitch Diameter } (D) = N \times m\]</span>
+<span class="math display">\[\text{Pitch Radius } (R) = \frac{N \times
+m}{2}\]</span></p></li>
+<li><p><strong>Using Circular Pitch (<span
+class="math inline">\(p\)</span>):</strong> Because circular pitch
+represents circumference divided by tooth count (<span
+class="math inline">\(p = \frac{\pi \times D}{N}\)</span>), the pitch
+diameter is calculated as: <span class="math display">\[\text{Pitch
+Diameter } (D) = \frac{N \times p}{\pi}\]</span> <span
+class="math display">\[\text{Pitch Radius } (R) = \frac{N \times
+p}{2\pi}\]</span></p></li>
+</ol>
+<h3 id="calculating-pitch-circles-in-inkscape">Calculating Pitch Circles
+in Inkscape</h3>
+<p>When applying gear profiles in Inkscape via Live Path Effects or
+vector rendering extensions, tooth spacing is often defined using your
+document's current display units (such as millimeters or pixels).</p>
+<ol type="1">
+<li><strong>Match Document Units to the Formula:</strong> Ensure your
+project units are set consistently (e.g., millimeters). If you enter a
+circular pitch of <span class="math inline">\(5\text{ mm}\)</span> for a
+gear with <span class="math inline">\(24\)</span> teeth, the pitch
+diameter must be derived using the same unit.</li>
+<li><strong>Calculate the Radius for Snapping and Layout:</strong>
+<ul>
+<li>For <span class="math inline">\(N = 24\)</span> and <span
+class="math inline">\(p = 5\text{ mm}\)</span>: <span
+class="math display">\[D = \frac{24 \times 5}{\pi} \approx
+\frac{120}{3.14159} \approx 38.197\text{ mm}\]</span> <span
+class="math display">\[R \approx 19.098\text{ mm}\]</span></li>
+</ul></li>
+<li><strong>Draw Reference Circles:</strong> Create a circle with the
+exact computed diameter (<span class="math inline">\(38.197\text{
+mm}\)</span>) centered on your gear path. Turn this circle into a guide
+or set it to an auxiliary layer to verify that the generated tooth
+flanks intersect this boundary at the proper depth (the pitch
+line).</li>
+</ol>
+<h3 id="calculating-center-distances-for-meshing-pairs">Calculating
+Center Distances for Meshing Pairs</h3>
+<p>To correctly position two meshing gears generated with the same
+module or circular pitch, calculate the center-to-center distance (<span
+class="math inline">\(C\)</span>) using their respective pitch radii
+(<span class="math inline">\(R_1\)</span> and <span
+class="math inline">\(R_2\)</span>):</p>
+<p><span class="math display">\[C = R_1 + R_2 = \frac{D_1 +
+D_2}{2}\]</span></p>
+<p>Using the module: <span class="math display">\[C = \frac{m \times
+(N_1 + N_2)}{2}\]</span></p>
+<p>Using circular pitch: <span class="math display">\[C = \frac{p \times
+(N_1 + N_2)}{2\pi}\]</span></p>
+<p>Set Inkscape’s rotation centers and align the two gears along this
+calculated distance <span class="math inline">\(C\)</span> to guarantee
+proper mechanical clearance and engagement without tooth overlap.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

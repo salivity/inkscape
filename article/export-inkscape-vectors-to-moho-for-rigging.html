@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape Vectors to Moho for Rigging - inkscape</title>
+    <meta name="description" content="Transferring vector art from Inkscape to Moho requires preparing clean geometry, exporting in a compatible format, and adjusting the imported vectors for character rigging. This guide covers how to optimize paths and node counts in Inkscape, export the a">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-moho-for-rigging">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape Vectors to Moho for Rigging - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-moho-for-rigging" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transferring vector art from Inkscape to Moho requires preparing clean geometry, exporting in a compatible format, and adjusting the imported vectors for character rigging. This guide covers how to optimize paths and node counts in Inkscape, export the a" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-vectors-to-moho-for-rigging">Export Inkscape
+Vectors to Moho for Rigging</h1>
+<p>Transferring vector art from Inkscape to Moho requires preparing
+clean geometry, exporting in a compatible format, and adjusting the
+imported vectors for character rigging. This guide covers how to
+optimize paths and node counts in Inkscape, export the artwork as a
+Plain SVG, and properly configure the imported vector layers in Moho so
+your linework deforms smoothly with bone rigs.</p>
+<h3 id="1-prepare-linework-in-inkscape">1. Prepare Linework in
+Inkscape</h3>
+<p>Moho’s vector engine functions differently from standard illustration
+software. Moho relies on points, curvature, and connected edges rather
+than traditional Bézier handles. To ensure clean rigging later, prepare
+your artwork first:</p>
+<ul>
+<li><strong>Reduce Node Count:</strong> Moho performs best with minimal
+points. Select your paths and use <code>Path &gt; Simplify</code>
+(<code>Ctrl + L</code>) to remove unnecessary nodes while preserving the
+silhouette.</li>
+<li><strong>Convert or Maintain Strokes:</strong> Decide whether you
+want outline strokes or filled shapes. If you want outlines that adjust
+thickness uniformly, keep them as basic strokes. If your linework
+features complex calligraphic widths, convert them via
+<code>Path &gt; Stroke to Path</code>.</li>
+<li><strong>Remove Unsupported Features:</strong> Moho does not fully
+translate Inkscape-specific features such as live path effects, complex
+clipping masks, mesh gradients, or layer blend modes. Flatten effects
+and convert objects to standard paths using
+<code>Path &gt; Object to Path</code>.</li>
+<li><strong>Separate Body Parts:</strong> Place distinct body parts
+(head, torso, upper arm, lower arm, etc.) into separate layers or
+distinct groups in Inkscape to make layer organization inside Moho
+easier.</li>
+</ul>
+<h3 id="2-export-as-plain-svg">2. Export as Plain SVG</h3>
+<p>Once the linework is clean, export it in a standard SVG format:</p>
+<ol type="1">
+<li>Go to <code>File &gt; Save As...</code>.</li>
+<li>In the file type dropdown menu, select <strong>Plain SVG
+(*.svg)</strong> instead of the default "Inkscape SVG".</li>
+<li>Name your file and click <strong>Save</strong>.</li>
+</ol>
+<p>Plain SVG strips proprietary Inkscape metadata, which prevents import
+errors and coordinate shifting inside Moho.</p>
+<h3 id="3-import-the-svg-into-moho">3. Import the SVG into Moho</h3>
+<ol type="1">
+<li>Open your project in Moho.</li>
+<li>Navigate to <code>File &gt; Import &gt; General Import...</code> or
+<code>File &gt; Import &gt; SVG...</code> (depending on your Moho
+version).</li>
+<li>Select your saved Plain SVG file.</li>
+</ol>
+<p>Moho will generate a new group layer containing individual vector
+layers corresponding to the paths and groups created in Inkscape.</p>
+<h3 id="4-optimize-linework-for-moho-rigging">4. Optimize Linework for
+Moho Rigging</h3>
+<p>Before attaching bones, you must refine the vector data inside Moho
+to allow for seamless deformation:</p>
+<ul>
+<li><strong>Weld Open Points:</strong> Inkscape paths may import with
+disconnected endpoints. Use Moho's <strong>Transform Points</strong>
+tool (<code>T</code>) with <strong>Auto-weld</strong> enabled to merge
+overlapping points at joints.</li>
+<li><strong>Adjust Curvature:</strong> Moho translates Bézier curves
+into point curvature values. Use the <strong>Curvature</strong> tool
+(<code>C</code>) to adjust the roundness or sharpness of corners along
+your linework.</li>
+<li><strong>Set Stroke Exposure:</strong> Check that line widths are
+properly recognized. Use the <strong>Stroke Width</strong> tool
+(<code>W</code>) to normalize or taper lines where limbs bend.</li>
+<li><strong>Organize Layer Hierarchy:</strong> Move your vector layers
+into a <strong>Bone Layer</strong>. Ensure each articulating part (such
+as hands, limbs, and joints) resides on its own vector layer or is
+properly grouped for point binding, smooth flexi-binding, or use with
+smart warp meshes.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

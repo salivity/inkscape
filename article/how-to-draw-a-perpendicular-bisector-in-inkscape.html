@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Draw a Perpendicular Bisector in Inkscape - inkscape</title>
+    <meta name="description" content="Drawing a perpendicular bisector in Inkscape requires using the software's built-in geometric snapping features to identify the exact midpoint of an existing line segment and establish a true 90-degree angle. By configuring snapping for line midpoints an">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-draw-a-perpendicular-bisector-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Draw a Perpendicular Bisector in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-draw-a-perpendicular-bisector-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Drawing a perpendicular bisector in Inkscape requires using the software's built-in geometric snapping features to identify the exact midpoint of an existing line segment and establish a true 90-degree angle. By configuring snapping for line midpoints an" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-draw-a-perpendicular-bisector-in-inkscape">How to Draw a
+Perpendicular Bisector in Inkscape</h1>
+<p>Drawing a perpendicular bisector in Inkscape requires using the
+software's built-in geometric snapping features to identify the exact
+midpoint of an existing line segment and establish a true 90-degree
+angle. By configuring snapping for line midpoints and perpendicular
+paths, you can construct a mathematically precise bisector using native
+vector tools without manual measurement or calculations.</p>
+<h3 id="step-1-enable-geometric-snapping">Step 1: Enable Geometric
+Snapping</h3>
+<p>To ensure the new line aligns accurately with the original line
+segment, configure the snapping controls:</p>
+<ol type="1">
+<li>Turn on global snapping by clicking the <strong>Snap</strong> icon
+in the upper-right corner of the window (or press <code>%</code>).</li>
+<li>Open the <strong>Snap Controls</strong> menu (click the arrow next
+to the magnet icon or access the Snap Popover in newer Inkscape
+versions).</li>
+<li>Under <strong>Path Snapping</strong>, ensure <strong>Snap to
+paths</strong> is checked.</li>
+<li>Enable <strong>Snap to midpoints of line segments</strong>.</li>
+<li>Enable <strong>Snap perpendicularly to paths</strong>.</li>
+</ol>
+<h3 id="step-2-construct-the-perpendicular-line">Step 2: Construct the
+Perpendicular Line</h3>
+<p>Once snapping is configured, you can draw the bisecting line directly
+using the Pen tool:</p>
+<ol type="1">
+<li>Select the <strong>Draw Freehand Lines</strong> or <strong>Draw
+Bézier Curves and Straight Lines</strong> tool (press
+<code>B</code>).</li>
+<li>Position your cursor away from the line segment where you want the
+bisector to begin, and click once to place the first node.</li>
+<li>Move your cursor toward the target line segment.</li>
+<li>Hover near the center of the line segment until the snapping
+indicator displays both <strong>Perpendicular</strong> and
+<strong>Midpoint of line segment</strong>.</li>
+<li>Click to place the node, then press <code>Enter</code> to finish the
+path.</li>
+</ol>
+<h3
+id="alternative-method-midpoint-snapping-via-90-degree-rotation">Alternative
+Method: Midpoint Snapping via 90-Degree Rotation</h3>
+<p>If you prefer constructing a centered bisector of identical length,
+you can use object duplication combined with midpoint snapping:</p>
+<ol type="1">
+<li>Select the original line segment using the <strong>Select and
+Transform objects</strong> tool (<code>S</code>).</li>
+<li>Duplicate the line by pressing <code>Ctrl + D</code>.</li>
+<li>Rotate the duplicate line 90 degrees by clicking
+<strong>Object</strong> &gt; <strong>Rotate 90° CW</strong> (or press
+<code>]</code>).</li>
+<li>Ensure <strong>Snap to midpoints of line segments</strong> remains
+active in the Snap controls.</li>
+<li>Click and drag the rotated line segment by its midpoint until it
+snaps directly to the midpoint of the original segment.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

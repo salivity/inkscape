@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Boolean Intersection with Grouped Objects - inkscape</title>
+    <meta name="description" content="Applying a Boolean Intersection to grouped objects in Inkscape typically causes the operation to fail, leaving your artwork unchanged and generating an error notification. Because Inkscape’s Boolean engine operates strictly on individual vector path da">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-boolean-intersection-with-grouped-objects">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Boolean Intersection with Grouped Objects - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-boolean-intersection-with-grouped-objects" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Applying a Boolean Intersection to grouped objects in Inkscape typically causes the operation to fail, leaving your artwork unchanged and generating an error notification. Because Inkscape’s Boolean engine operates strictly on individual vector path da" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-boolean-intersection-with-grouped-objects">Inkscape
+Boolean Intersection with Grouped Objects</h1>
+<p>Applying a Boolean Intersection to grouped objects in Inkscape
+typically causes the operation to fail, leaving your artwork unchanged
+and generating an error notification. Because Inkscape’s Boolean engine
+operates strictly on individual vector path data rather than container
+elements, grouped shapes cannot be processed directly. This article
+explains the exact behavior that occurs during this operation, why
+Inkscape handles groups this way, and the necessary steps to
+successfully intersect grouped artwork.</p>
+<h3 id="what-happens-during-the-operation">What Happens During the
+Operation</h3>
+<p>When you select objects where at least one element is a group and
+navigate to <strong>Path &gt; Intersection</strong> (or press
+<code>Ctrl</code> + <code>*</code>), the following occurs:</p>
+<ul>
+<li><strong>The operation does not execute:</strong> Inkscape does not
+compute the overlapping areas of the shapes.</li>
+<li><strong>The visual elements remain unchanged:</strong> None of the
+selected objects are clipped, combined, or deleted.</li>
+<li><strong>A status bar warning appears:</strong> The notification area
+at the bottom of the Inkscape interface displays a message such as:
+<em>"One of the objects is not a path"</em> or <em>"Cannot perform
+boolean operation on groups."</em></li>
+</ul>
+<h3 id="why-inkscape-rejects-grouped-intersections">Why Inkscape Rejects
+Grouped Intersections</h3>
+<p>Under the SVG standard used by Inkscape, a group is represented as a
+<code>&lt;g&gt;</code> container element that holds multiple distinct
+paths, shapes, or other groups. Boolean operations—such as Union,
+Difference, and Intersection—rely on algorithmic calculations between
+the coordinate nodes of two distinct <code>&lt;path&gt;</code>
+elements.</p>
+<p>Because a group contains structural hierarchy rather than raw
+coordinate geometry, Inkscape's Boolean algorithms cannot interpret the
+group as a single geometric outline. Consequently, the software aborts
+the command to prevent corrupting the underlying SVG structure.</p>
+<h3 id="how-to-successfully-intersect-grouped-elements">How to
+Successfully Intersect Grouped Elements</h3>
+<p>To apply an intersection involving shapes that are currently inside a
+group, you must flatten or combine the geometry into recognized path
+elements before running the command:</p>
+<ol type="1">
+<li><strong>Ungroup the Objects:</strong> Select the grouped item and
+choose <strong>Object &gt; Ungroup</strong> (or press <code>Ctrl</code>
++ <code>Shift</code> + <code>G</code>). Repeat this step if you have
+nested groups.</li>
+<li><strong>Merge the Shapes into a Single Path:</strong> If the
+elements of the former group need to act collectively as one clipping
+shape against a base object, select all of them and choose <strong>Path
+&gt; Combine</strong> (<code>Ctrl</code> + <code>K</code>) or
+<strong>Path &gt; Union</strong> (<code>Ctrl</code> + <code>+</code>).
+This converts the distinct shapes into a single compound path.</li>
+<li><strong>Execute the Intersection:</strong> Select your newly
+prepared path along with the underlying target path, then select
+<strong>Path &gt; Intersection</strong> (<code>Ctrl</code> +
+<code>*</code>). The operation will execute as intended, keeping only
+the overlapping geometry.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

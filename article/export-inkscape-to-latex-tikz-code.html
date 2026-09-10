@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape to LaTeX TikZ Code - inkscape</title>
+    <meta name="description" content="Exporting vector drawings from Inkscape directly into LaTeX TikZ code allows you to create crisp, scalable diagrams that match the native fonts and styling of your LaTeX documents. This guide outlines the exact steps to convert Inkscape drawings into Tik">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-to-latex-tikz-code">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape to LaTeX TikZ Code - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-to-latex-tikz-code" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting vector drawings from Inkscape directly into LaTeX TikZ code allows you to create crisp, scalable diagrams that match the native fonts and styling of your LaTeX documents. This guide outlines the exact steps to convert Inkscape drawings into Tik" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-to-latex-tikz-code">Export Inkscape to LaTeX
+TikZ Code</h1>
+<p>Exporting vector drawings from Inkscape directly into LaTeX TikZ code
+allows you to create crisp, scalable diagrams that match the native
+fonts and styling of your LaTeX documents. This guide outlines the exact
+steps to convert Inkscape drawings into TikZ code using the dedicated
+<code>svg2tikz</code> extension, as well as how to include the resulting
+code in your LaTeX projects.</p>
+<h3 id="step-1-install-the-svg2tikz-extension">Step 1: Install the
+svg2tikz Extension</h3>
+<p>Inkscape does not include a native TikZ exporter by default, so you
+need the community-standard <code>svg2tikz</code> (formerly
+<code>inkscape2tikz</code>) extension.</p>
+<ol type="1">
+<li>Download the latest release of <strong>svg2tikz</strong> from its
+official repository.</li>
+<li>Locate your Inkscape user extensions directory:
+<ul>
+<li><strong>Linux:</strong>
+<code>~/.config/inkscape/extensions/</code></li>
+<li><strong>Windows:</strong>
+<code>%APPDATA%\inkscape\extensions\</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/extensions/</code></li>
+</ul></li>
+<li>Copy the extension files (specifically the <code>.inx</code> and
+<code>.py</code> files) into the <code>extensions</code> directory.</li>
+<li>Restart Inkscape to load the extension.</li>
+</ol>
+<h3 id="step-2-prepare-your-drawing">Step 2: Prepare Your Drawing</h3>
+<p>To ensure clean TikZ output, organize your Inkscape drawing:</p>
+<ul>
+<li>Convert complex text or unusual fonts to paths
+(<strong>Path</strong> &gt; <strong>Object to Path</strong>) if you want
+them rendered as pure shapes, or leave them as plain text objects so
+LaTeX can render them using the document font.</li>
+<li>Remove unnecessary layers, hidden objects, and clipping paths to
+keep the generated code small and readable.</li>
+</ul>
+<h3 id="step-3-export-to-tikz">Step 3: Export to TikZ</h3>
+<p>Once your drawing is ready, export it:</p>
+<ol type="1">
+<li>Click on <strong>Extensions</strong> &gt; <strong>Export</strong>
+&gt; <strong>Export to TikZ path...</strong> (or go to
+<strong>File</strong> &gt; <strong>Save As...</strong> and select
+*<em>TikZ code (*.tex, <em>.tikz)</em></em> from the file type
+dropdown).</li>
+<li>Configure your export settings:
+<ul>
+<li><strong>Output format:</strong> Choose between generating a complete
+standalone LaTeX file or a standalone TikZ snippet.</li>
+<li><strong>Scale:</strong> Adjust the scale factor to fit your
+document's dimensions.</li>
+<li><strong>Precision:</strong> Set the number of decimal places for
+coordinate accuracy.</li>
+</ul></li>
+<li>Choose the output directory and click <strong>Apply</strong> or
+<strong>Save</strong>.</li>
+</ol>
+<h3 id="step-4-include-the-tikz-code-in-latex">Step 4: Include the TikZ
+Code in LaTeX</h3>
+<p>To use the exported file in your document:</p>
+<ol type="1">
+<li>Add the TikZ package to your LaTeX preamble:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode latex"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">tikz</span>}</span></code></pre></div></li>
+<li>Import the generated <code>.tikz</code> or <code>.tex</code> file
+directly into your document body:
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode latex"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">figure</span>}[htbp]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\centering</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\input</span>{my-drawing.tikz}</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">\caption</span>{Diagram created with Inkscape and TikZ.}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">\label</span>{<span class="ex">fig:diagram</span>}</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">figure</span>}</span></code></pre></div></li>
+</ol>
+<h3 id="alternative-built-in-pdflatex-export">Alternative: Built-in
+PDF/LaTeX Export</h3>
+<p>If your drawing contains complex gradients, filters, or effects that
+TikZ cannot easily render, use Inkscape's built-in PDF+LaTeX export:</p>
+<ol type="1">
+<li>Go to <strong>File</strong> &gt; <strong>Save As...</strong> and
+select <strong>Portable Document Format (*.pdf)</strong>.</li>
+<li>In the options dialog, check the box labeled <strong>"Omit text in
+PDF and create LaTeX file"</strong>.</li>
+<li>Include the generated <code>.pdf_tex</code> file in LaTeX using
+<code>\input{drawing.pdf_tex}</code> with the
+<code>\usepackage{graphicx}</code> and <code>\usepackage{xcolor}</code>
+packages loaded.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Top-Down RPG Dungeon Doors in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to design a complete top-down RPG dungeon door sprite set in Inkscape featuring closed, locked, and open states. You will learn how to configure a pixel-aligned grid, construct a modular stone frame, style the door panel using bas">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/draw-top-down-rpg-dungeon-doors-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Draw Top-Down RPG Dungeon Doors in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/draw-top-down-rpg-dungeon-doors-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to design a complete top-down RPG dungeon door sprite set in Inkscape featuring closed, locked, and open states. You will learn how to configure a pixel-aligned grid, construct a modular stone frame, style the door panel using bas" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="draw-top-down-rpg-dungeon-doors-in-inkscape">Draw Top-Down RPG
+Dungeon Doors in Inkscape</h1>
+<p>This guide explains how to design a complete top-down RPG dungeon
+door sprite set in Inkscape featuring closed, locked, and open states.
+You will learn how to configure a pixel-aligned grid, construct a
+modular stone frame, style the door panel using basic shapes and
+shading, create visual indicators for the locked variation, and render
+the threshold geometry for the open state to export as a clean
+game-ready sprite asset.</p>
+<h2 id="canvas-setup-and-grid-configuration">Canvas Setup and Grid
+Configuration</h2>
+<ol type="1">
+<li>Open Inkscape and access <strong>File &gt; Document
+Properties</strong>.</li>
+<li>Under the <strong>Page</strong> tab, set the <strong>Display
+units</strong> and <strong>Page size units</strong> to <code>px</code>.
+Set the width and height to your target tile size (for example,
+<code>64 x 64 px</code>).</li>
+<li>Switch to the <strong>Grids</strong> tab, choose <strong>Rectangular
+grid</strong>, and click <strong>New</strong>.</li>
+<li>Set <strong>Spacing X</strong> and <strong>Spacing Y</strong> to
+<code>1 px</code> (or <code>2 px</code> for low-resolution pixel-art
+styles).</li>
+<li>Enable snapping by toggling the <strong>Enable snapping</strong>
+icon in the top right. Turn on <strong>Snap to paths</strong>,
+<strong>Snap to cusp nodes</strong>, and <strong>Snap to
+grid</strong>.</li>
+</ol>
+<h2 id="building-the-static-door-frame">Building the Static Door
+Frame</h2>
+<p>The frame remains identical across all three states to ensure
+seamless animation transitions inside your game engine.</p>
+<ol type="1">
+<li>Select the <strong>Rectangle tool</strong> (<code>R</code>).</li>
+<li>Draw two vertical pillars along the left and right edges of the
+canvas (e.g., <code>8 px</code> wide, <code>64 px</code> tall). Fill
+them with a mid-tone slate gray (<code>#555568</code>).</li>
+<li>Draw a horizontal lintel across the top between the two pillars
+(e.g., <code>48 px</code> wide, <code>12 px</code> tall) using a
+slightly lighter gray (<code>#6b6b7f</code>) to indicate the top surface
+facing the light source.</li>
+<li>Add top-down depth by drawing a <code>2 px</code> dark rectangle
+(<code>#252530</code>) beneath the top lintel to serve as a cast
+shadow.</li>
+<li>Group the frame elements by selecting them and pressing
+<code>Ctrl + G</code>. Place this group in a dedicated layer named
+<code>Frame</code> and lock it.</li>
+</ol>
+<h2 id="creating-the-closed-door-state">Creating the Closed Door
+State</h2>
+<ol type="1">
+<li>Create a new layer named <code>Door_Closed</code> beneath the
+<code>Frame</code> layer so the frame naturally overlaps the door
+edges.</li>
+<li>Select the <strong>Rectangle tool</strong> and draw a rectangle that
+fills the opening between the two side pillars, extending from just
+below the lintel shadow to the bottom of the canvas.</li>
+<li>Apply a dark brown base fill (<code>#4a2e18</code>) to represent
+aged wood.</li>
+<li>Draw thin vertical lines or <code>1 px</code> wide rectangles across
+the door using a darker brown (<code>#2e1b0d</code>) to separate
+individual planks.</li>
+<li>Add horizontal iron reinforcement bands: draw two horizontal
+rectangles across the width of the wooden door—one near the top, one
+near the bottom. Fill them with a dull metallic gray
+(<code>#474747</code>).</li>
+<li>Place a small circular brass handle on the right side using the
+<strong>Circle tool</strong> (<code>E</code>), filled with dull yellow
+(<code>#b88a3b</code>) and a darker outline.</li>
+</ol>
+<h2 id="designing-the-locked-state">Designing the Locked State</h2>
+<p>The locked state should clearly communicate obstruction without
+altering the core structure of the closed door.</p>
+<ol type="1">
+<li>Duplicate the <code>Door_Closed</code> layer and rename the
+duplicate to <code>Door_Locked</code>.</li>
+<li>Hide the <code>Door_Closed</code> layer.</li>
+<li><strong>Add a heavy padlock:</strong>
+<ul>
+<li>Select the <strong>Rectangle tool</strong>, set the corner rounding
+handles to create a rounded body (<code>8 x 8 px</code>), and fill it
+with brass or silver (<code>#c29a45</code>).</li>
+<li>Select the <strong>Circle tool</strong>, draw a circle for the
+shackle, set the fill to none, and set a thick stroke
+(<code>#3a3a3a</code>).</li>
+<li>Use <strong>Path &gt; Stroke to Path</strong>, then slice the lower
+half using a cutting shape with <strong>Path &gt; Difference</strong> to
+leave an inverted U-shape.</li>
+<li>Position the shackle on top of the padlock body and align the
+padlock over the door seam or handle.</li>
+</ul></li>
+<li><strong>Optional - Add crossed chains:</strong>
+<ul>
+<li>Draw two overlapping diagonal bars across the wooden door.</li>
+<li>Apply a repeating pattern of light and dark alternating strokes to
+create the illusion of chain links, finishing under the edges of the
+stone frame.</li>
+</ul></li>
+</ol>
+<h2 id="constructing-the-open-state">Constructing the Open State</h2>
+<p>In a top-down perspective, an open door exposes the floor threshold
+and the depth of the passage beyond.</p>
+<ol type="1">
+<li>Create a new layer named <code>Door_Open</code>. Hide the closed and
+locked layers.</li>
+<li><strong>Draw the floor threshold:</strong>
+<ul>
+<li>Fill the open area between the pillars with the dungeon floor
+texture or a stone tile color (<code>#3b3b47</code>).</li>
+<li>Add horizontal mortar lines or flagstone details to match your
+dungeon ground tiles.</li>
+</ul></li>
+<li><strong>Add the open door leaf:</strong>
+<ul>
+<li>For a swing-in door: Draw a narrow vertical rectangle
+(<code>4 px</code> to <code>6 px</code> wide) tucked tight against the
+inner edge of one pillar. Add a slight angled perspective to indicate
+the door has swung into the room.</li>
+<li>For an open archway/raised portcullis: Leave the passage completely
+open, with the door recessed vertically out of view.</li>
+</ul></li>
+<li><strong>Cast environmental shadows:</strong>
+<ul>
+<li>Draw a semi-transparent black rectangle (<code>#000000</code>, 40%
+Opacity) directly beneath the top lintel spanning <code>8 px</code>
+downward to simulate the ceiling shadow over the open doorway.</li>
+<li>Add a small vertical shadow cast by the inner edges of the side
+pillars onto the threshold floor.</li>
+</ul></li>
+</ol>
+<h2 id="organizing-and-exporting-the-sprites">Organizing and Exporting
+the Sprites</h2>
+<ol type="1">
+<li>If exporting as single tiles, toggle the visibility of each door
+layer (<code>Door_Closed</code>, <code>Door_Locked</code>,
+<code>Door_Open</code>) one at a time with the <code>Frame</code> layer
+visible.</li>
+<li>Go to <strong>File &gt; Export</strong>.</li>
+<li>Set the export area to <strong>Page</strong> to ensure dimensions
+remain strictly uniform.</li>
+<li>Set the resolution to your desired scaling factor (e.g., standard
+<code>96 DPI</code> for 1:1 pixel assets, or higher for modern
+displays).</li>
+<li>If creating a horizontal spritesheet, open <strong>Document
+Properties</strong>, expand your canvas width by 3x (e.g.,
+<code>192 px</code> for a <code>64 px</code> tile), and position the
+Closed, Locked, and Open door groups side by side on exact pixel
+increments before exporting.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

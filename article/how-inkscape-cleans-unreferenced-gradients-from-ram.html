@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Inkscape Cleans Unreferenced Gradients from RAM - inkscape</title>
+    <meta name="description" content="This article explores how Inkscape manages system memory by identifying and eliminating orphaned gradient swatches from its internal document tree. It covers the lifecycle of gradient definitions within the SVG structure, why unused gradients linger in d">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-inkscape-cleans-unreferenced-gradients-from-ram">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Inkscape Cleans Unreferenced Gradients from RAM - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-inkscape-cleans-unreferenced-gradients-from-ram" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores how Inkscape manages system memory by identifying and eliminating orphaned gradient swatches from its internal document tree. It covers the lifecycle of gradient definitions within the SVG structure, why unused gradients linger in d" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-inkscape-cleans-unreferenced-gradients-from-ram">How
+Inkscape Cleans Unreferenced Gradients from RAM</h1>
+<p>This article explores how Inkscape manages system memory by
+identifying and eliminating orphaned gradient swatches from its internal
+document tree. It covers the lifecycle of gradient definitions within
+the SVG structure, why unused gradients linger in dynamic memory, and
+the internal reference-tracking and garbage collection routines Inkscape
+employs to purge these unreferenced data blocks from RAM.</p>
+<h3 id="gradient-architecture-in-the-svg-document-object-model">Gradient
+Architecture in the SVG Document Object Model</h3>
+<p>In Inkscape, gradients are not stored directly within the vector
+paths that display them. Instead, following the W3C Scalable Vector
+Graphics (SVG) specification, gradients exist as reusable definitions
+inside the document’s <code>&lt;defs&gt;</code> element. Each gradient
+is instantiated as an independent node—either a linear or radial
+gradient element—containing child stop nodes that define color offsets
+and opacity.</p>
+<p>When an artist applies a gradient to a shape, the target element
+simply stores a URI reference (such as
+<code>fill="url(#linearGradient1234)"</code>) pointing to the
+definition. In dynamic memory, Inkscape models this document tree using
+an internal C++ object hierarchy known as the <code>SPObject</code>
+tree. Every gradient swatch is represented on the application heap by an
+<code>SPGradient</code> object.</p>
+<h3 id="the-problem-of-orphaned-swatches-and-undo-history">The Problem
+of Orphaned Swatches and Undo History</h3>
+<p>When a user deletes a shape or changes its fill property to a flat
+color, the corresponding <code>SPGradient</code> in
+<code>&lt;defs&gt;</code> does not immediately disappear. Inkscape
+intentionally detaches the reference without destroying the gradient
+definition right away.</p>
+<p>This design serves two primary purposes:</p>
+<ol type="1">
+<li><strong>Preserving Undo/Redo Stacks:</strong> If an operation is
+undone, the shape must restore its gradient instantly without
+reallocating and re-parsing a new object from scratch.</li>
+<li><strong>Palette Preservation:</strong> Gradients marked as
+persistent swatches are intended to remain available in the user
+interface palette regardless of whether an active canvas item is
+currently utilizing them.</li>
+</ol>
+<p>Consequently, as an editing session progresses, unreferenced gradient
+definitions remain loaded in RAM, increasing the process's resident set
+size (RSS).</p>
+<h3 id="reference-tracking-and-dependency-mapping">Reference Tracking
+and Dependency Mapping</h3>
+<p>Inkscape tracks relationships between elements through an internal
+dependency and notification system. Elements that depend on another
+object register as listeners to that object’s modifications and
+lifecycle events.</p>
+<p>For gradients, Inkscape maintains a reference count or dependency
+graph. Each time an element references a gradient via an
+<code>href</code> or <code>style</code> property, the target gradient’s
+reference counter increases. When that property is modified or the
+parent shape is destructed, the reference counter decreases. Vector
+swatches that drop to zero active references are flagged internally as
+candidates for cleanup, provided they are not explicitly locked or
+designated as global document swatches.</p>
+<h3 id="the-garbage-collection-and-pruning-mechanism">The Garbage
+Collection and Pruning Mechanism</h3>
+<p>Inkscape executes memory reclamation on these unreferenced swatches
+through both automated internal routines and explicit document pruning
+(historically known as the "Vacuum Defs" routine, accessible via "Clean
+Up Document").</p>
+<ol type="1">
+<li><strong>Tree Traversal and Mark-and-Sweep:</strong> Inkscape scans
+the document tree starting from the root node. It iterates through all
+visible elements and their attributes, marking every gradient ID
+currently participating in rendering.</li>
+<li><strong>Identifying Stale Definitions:</strong> The garbage
+collector then traverses the <code>&lt;defs&gt;</code> container. Any
+<code>SPGradient</code> whose ID was not flagged during the
+traversal—and which is not referenced as a parent/fallback vector by
+another active gradient—is identified as dead memory.</li>
+<li><strong>Node Detachment:</strong> The unreferenced gradient node is
+unlinked from the XML tree and the <code>SPObject</code> hierarchy. This
+detachment breaks all remaining internal pointer associations.</li>
+<li><strong>RAM Deallocation:</strong> Once detached from the document
+tree and purged from temporary undo buffers, the memory occupied by the
+<code>SPGradient</code> C++ instance, its stop vectors, and its color
+cache is freed back to the system allocator via standard C++ memory
+destructors.</li>
+</ol>
+<p>By decoupling the removal of canvas elements from immediate memory
+deallocation, Inkscape maintains rapid UI responsiveness and safe undo
+capabilities, while relying on targeted sweep routines to flush unneeded
+vector assets from RAM.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

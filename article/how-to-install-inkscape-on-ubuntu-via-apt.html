@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Install Inkscape on Ubuntu via APT - inkscape</title>
+    <meta name="description" content="This guide explains how to install Inkscape, a powerful open-source vector graphics editor, on Ubuntu using the APT package manager. You will learn the commands required to install the software using both the standard Ubuntu default repositories and the">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-install-inkscape-on-ubuntu-via-apt">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Install Inkscape on Ubuntu via APT - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-install-inkscape-on-ubuntu-via-apt" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to install Inkscape, a powerful open-source vector graphics editor, on Ubuntu using the APT package manager. You will learn the commands required to install the software using both the standard Ubuntu default repositories and the" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-install-inkscape-on-ubuntu-via-apt">How to Install
+Inkscape on Ubuntu via APT</h1>
+<p>This guide explains how to install Inkscape, a powerful open-source
+vector graphics editor, on Ubuntu using the APT package manager. You
+will learn the commands required to install the software using both the
+standard Ubuntu default repositories and the official Inkscape Personal
+Package Archive (PPA) to ensure you have the latest stable release.</p>
+<h2
+id="method-1-install-inkscape-from-the-default-ubuntu-repository">Method
+1: Install Inkscape from the Default Ubuntu Repository</h2>
+<p>This is the quickest method, though it may not always provide the
+very latest release of Inkscape.</p>
+<h3 id="step-1-update-your-package-list">Step 1: Update Your Package
+List</h3>
+<p>Open your terminal by pressing <code>Ctrl + Alt + T</code> and
+refresh your local package index:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div>
+<h3 id="step-2-install-inkscape">Step 2: Install Inkscape</h3>
+<p>Run the following command to install Inkscape and its required
+dependencies:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install inkscape <span class="at">-y</span></span></code></pre></div>
+<h3 id="step-3-verify-the-installation">Step 3: Verify the
+Installation</h3>
+<p>Check that the installation was successful and verify the installed
+version:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--version</span></span></code></pre></div>
+<hr />
+<h2
+id="method-2-install-the-latest-version-via-official-inkscape-ppa">Method
+2: Install the Latest Version via Official Inkscape PPA</h2>
+<p>If you require the newest features and updates not yet available in
+the default Ubuntu repositories, use the official Inkscape PPA.</p>
+<h3 id="step-1-add-the-official-inkscape-ppa">Step 1: Add the Official
+Inkscape PPA</h3>
+<p>Add the stable PPA repository to your system:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository ppa:inkscape.dev/stable</span></code></pre></div>
+<p>Press <code>Enter</code> when prompted to confirm.</p>
+<h3 id="step-2-update-the-package-index">Step 2: Update the Package
+Index</h3>
+<p>Update your system's package list to include the newly added PPA:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span></code></pre></div>
+<h3 id="step-3-install-inkscape">Step 3: Install Inkscape</h3>
+<p>Install or upgrade to the latest version of Inkscape:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install inkscape <span class="at">-y</span></span></code></pre></div>
+<hr />
+<h2 id="how-to-launch-inkscape">How to Launch Inkscape</h2>
+<p>Once installed, you can launch Inkscape in two ways:</p>
+<ul>
+<li><strong>Via Terminal:</strong> Type <code>inkscape</code> and press
+<code>Enter</code>.</li>
+<li><strong>Via Application Menu:</strong> Search for
+<strong>Inkscape</strong> in your Ubuntu Application launcher and click
+the icon.</li>
+</ul>
+<hr />
+<h2 id="how-to-uninstall-inkscape-via-apt">How to Uninstall Inkscape via
+APT</h2>
+<p>If you need to remove Inkscape from your system, execute:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt remove inkscape <span class="at">-y</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt autoremove <span class="at">-y</span></span></code></pre></div>
+<p>If you used the PPA and wish to remove it as well, run:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository <span class="at">--remove</span> ppa:inkscape.dev/stable</span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

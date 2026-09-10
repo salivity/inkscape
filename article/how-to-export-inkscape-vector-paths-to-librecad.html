@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Export Inkscape Vector Paths to LibreCAD - inkscape</title>
+    <meta name="description" content="Moving vector line paths from Inkscape to LibreCAD allows designers to combine Inkscape's flexible freehand and vector design tools with LibreCAD's precision CAD environment. This guide provides a clear, step-by-step workflow for converting Inkscape grap">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-export-inkscape-vector-paths-to-librecad">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Export Inkscape Vector Paths to LibreCAD - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-export-inkscape-vector-paths-to-librecad" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Moving vector line paths from Inkscape to LibreCAD allows designers to combine Inkscape's flexible freehand and vector design tools with LibreCAD's precision CAD environment. This guide provides a clear, step-by-step workflow for converting Inkscape grap" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-export-inkscape-vector-paths-to-librecad">How to Export
+Inkscape Vector Paths to LibreCAD</h1>
+<p>Moving vector line paths from Inkscape to LibreCAD allows designers
+to combine Inkscape's flexible freehand and vector design tools with
+LibreCAD's precision CAD environment. This guide provides a clear,
+step-by-step workflow for converting Inkscape graphics into CAD-ready
+paths, exporting them via the AutoCAD DXF format, and importing them
+into LibreCAD with correct architectural units and scale.</p>
+<h2 id="step-1-prepare-paths-in-inkscape">Step 1: Prepare Paths in
+Inkscape</h2>
+<p>LibreCAD does not recognize standard SVG shapes, dynamic strokes, or
+text as CAD geometry. You must convert all elements into basic vector
+line paths before exporting:</p>
+<ol type="1">
+<li><strong>Set Document Units:</strong> Go to <strong>File &gt;
+Document Properties</strong> (<code>Ctrl+Shift+D</code>). Set the
+display units and document units to your target architectural unit (such
+as millimeters, centimeters, or inches).</li>
+<li><strong>Convert Objects to Paths:</strong> Select all elements
+(<code>Ctrl+A</code>) and choose <strong>Path &gt; Object to
+Path</strong> (<code>Shift+Ctrl+C</code>).</li>
+<li><strong>Convert Strokes to Paths:</strong> If your drawing relies on
+stroke width rather than centerlines, select the lines and go to
+<strong>Path &gt; Stroke to Path</strong> (<code>Ctrl+Alt+C</code>). If
+you only need the single-line vector skeleton, skip this step and ensure
+your strokes have no fills.</li>
+<li><strong>Ungroup Everything:</strong> Select all objects and
+repeatedly press <strong>Object &gt; Ungroup</strong>
+(<code>Ctrl+Shift+G</code>) until the status bar confirms there are no
+groups left.</li>
+<li><strong>Flatten Layers (Optional):</strong> Move critical geometry
+to a single layer if you want to avoid nested layer issues during CAD
+translation.</li>
+</ol>
+<h2 id="step-2-export-as-a-dxf-file">Step 2: Export as a DXF File</h2>
+<p>LibreCAD relies on the Drawing Exchange Format (DXF) to read external
+CAD files.</p>
+<ol type="1">
+<li>Navigate to <strong>File &gt; Save As</strong>
+(<code>Shift+Ctrl+S</code>).</li>
+<li>Set the file format dropdown to <strong>AutoCAD DXF R14
+(*.dxf)</strong> or <strong>Desktop Cutting Plotter (AutoCAD DXF R14)
+(*.dxf)</strong>.</li>
+<li>In the export settings dialog that appears:
+<ul>
+<li><strong>Base Unit:</strong> Match this exactly to the unit chosen in
+your Document Properties (e.g., <code>mm</code> or
+<code>in</code>).</li>
+<li><strong>Character Encoding:</strong> Choose <code>UTF-8</code> or
+<code>Latin 1</code>.</li>
+<li><strong>Layer Option:</strong> Enable layer export if you want to
+preserve Inkscape layer names in LibreCAD.</li>
+<li><strong>Polyline Export:</strong> Check the option to export paths
+as polylines if prompted, as this yields the cleanest entities in CAD
+software.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to save the file.</li>
+</ol>
+<h2 id="step-3-import-and-configure-in-librecad">Step 3: Import and
+Configure in LibreCAD</h2>
+<ol type="1">
+<li>Launch LibreCAD.</li>
+<li>Go to <strong>File &gt; Open</strong> and select the
+<code>.dxf</code> file you exported from Inkscape.</li>
+<li>Go to <strong>Options &gt; Current Drawing
+Preferences</strong>.</li>
+<li>In the <strong>Units</strong> tab, verify that the <strong>Main
+drawing unit</strong> matches the unit you defined during the Inkscape
+export.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h2 id="step-4-verify-scale-and-clean-geometry">Step 4: Verify Scale and
+Clean Geometry</h2>
+<ol type="1">
+<li><strong>Check Dimensions:</strong> Use the measurement tool
+(<strong>Info &gt; Distance Point to Point</strong>) to measure a known
+reference line in your drawing. If the dimension does not match
+real-world measurements, select all entities (<code>Ctrl+A</code>) and
+use <strong>Modify &gt; Scale</strong> to resize the plan
+accordingly.</li>
+<li><strong>Handle Curves:</strong> Inkscape Bézier curves often export
+into DXF as segmented polylines. If smooth arcs are required for
+drafting or laser-cutting specifications, use LibreCAD's <strong>Draw
+&gt; Arc</strong> or <strong>Draw &gt; Circle</strong> tools to replace
+rough segments with true geometric arcs.</li>
+<li><strong>Assign Architectural Layers:</strong> Use the LibreCAD Layer
+List to organize your paths into functional CAD layers (such as
+<code>WALLS</code>, <code>DOORS</code>, <code>WINDOWS</code>, and
+<code>ANNOTATIONS</code>), assigning distinct line weights and colors
+for drafting standards.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

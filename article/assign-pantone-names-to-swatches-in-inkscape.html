@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Pantone Names to Swatches in Inkscape - inkscape</title>
+    <meta name="description" content="While Inkscape lacks native, proprietary Pantone color libraries due to licensing restrictions, you can accurately assign specific Pantone names to custom swatches for pre-press workflows. This guide explains how to convert RGB or CMYK approximations int">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/assign-pantone-names-to-swatches-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Assign Pantone Names to Swatches in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/assign-pantone-names-to-swatches-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="While Inkscape lacks native, proprietary Pantone color libraries due to licensing restrictions, you can accurately assign specific Pantone names to custom swatches for pre-press workflows. This guide explains how to convert RGB or CMYK approximations int" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="assign-pantone-names-to-swatches-in-inkscape">Assign Pantone
+Names to Swatches in Inkscape</h1>
+<p>While Inkscape lacks native, proprietary Pantone color libraries due
+to licensing restrictions, you can accurately assign specific Pantone
+names to custom swatches for pre-press workflows. This guide explains
+how to convert RGB or CMYK approximations into named swatches directly
+within Inkscape, assign precise Pantone labels using the XML Editor, and
+create reusable custom palette files.</p>
+<h3
+id="method-1-create-and-label-swatches-in-the-swatches-dialog">Method 1:
+Create and Label Swatches in the Swatches Dialog</h3>
+<ol type="1">
+<li><strong>Draw and Color an Object</strong>: Draw any shape and use
+the <strong>Fill and Stroke</strong> dialog
+(<code>Ctrl + Shift + F</code>) to set the color to your desired Pantone
+approximation (RGB or CMYK values).</li>
+<li><strong>Convert to a Swatch</strong>: In the <strong>Fill</strong>
+tab, click the <strong>Swatch</strong> icon (a grid of colored squares
+next to the gradient icons). This converts the solid color into an SVG
+swatch definition.</li>
+<li><strong>Open the Swatches Dialog</strong>: Go to <strong>Object &gt;
+Swatches</strong> (<code>Ctrl + Shift + W</code>) to view document
+swatches.</li>
+<li><strong>Rename the Swatch</strong>: Right-click the newly created
+swatch in the panel and select <strong>Edit</strong>. Change the label
+or name field to your exact Pantone designation (for example,
+<code>PANTONE 186 C</code>).</li>
+</ol>
+<h3 id="method-2-assign-pantone-labels-using-the-xml-editor">Method 2:
+Assign Pantone Labels Using the XML Editor</h3>
+<p>To ensure downstream pre-press processors read the swatch metadata
+reliably, assign the name directly to the SVG swatch definition:</p>
+<ol type="1">
+<li>Open the XML Editor by pressing <code>Ctrl + Shift + X</code> or
+navigating to <strong>Edit &gt; XML Editor</strong>.</li>
+<li>In the tree view, expand the <code>&lt;svg:svg&gt;</code> element
+and locate the <code>&lt;svg:defs&gt;</code> container.</li>
+<li>Find your swatch, which is typically stored as a
+<code>&lt;svg:linearGradient&gt;</code> element containing your color
+stop.</li>
+<li>Select the gradient node, then locate or add the
+<code>inkscape:label</code> attribute in the right-hand panel:
+<ul>
+<li><strong>Attribute Name</strong>: <code>inkscape:label</code></li>
+<li><strong>Attribute Value</strong>:
+<code>PANTONE [Number] [Suffix]</code> (e.g.,
+<code>PANTONE Reflex Blue C</code>)</li>
+<li>Click <strong>Set</strong>.</li>
+</ul></li>
+<li>Optionally, modify the <code>id</code> attribute to match (e.g.,
+<code>swatch_PANTONE_186_C</code>) to make reference easy inside the
+document structure.</li>
+</ol>
+<h3 id="method-3-build-a-custom-pantone-gpl-palette-file">Method 3:
+Build a Custom Pantone <code>.gpl</code> Palette File</h3>
+<p>If you frequently use the same set of Pantone colors, load them as an
+external palette:</p>
+<ol type="1">
+<li>Open a plain text editor and create a file formatted for
+GIMP/Inkscape palettes:
+<pre class="text"><code>GIMP Palette
+Name: Custom Pantone
+Columns: 4
+#
+200  16  46 PANTONE 186 C
+  0  20 137 PANTONE Reflex Blue C
+254 209   0 PANTONE Yellow C</code></pre></li>
+<li>Save the file with a <code>.gpl</code> extension (for example,
+<code>PantoneCustom.gpl</code>).</li>
+<li>Place the file into your Inkscape palettes folder:
+<ul>
+<li><strong>Windows</strong>:
+<code>%APPDATA%\inkscape\palettes\</code></li>
+<li><strong>macOS</strong>:
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/palettes/</code></li>
+<li><strong>Linux</strong>:
+<code>~/.config/inkscape/palettes/</code></li>
+</ul></li>
+<li>Restart Inkscape, click the arrow icon in the bottom-right corner of
+the color palette bar, and select your custom palette name. Hovering
+over each swatch will display the exact Pantone designation.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

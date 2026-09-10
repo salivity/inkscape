@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lock Perspective Axes in Inkscape 3D Box Tool - inkscape</title>
+    <meta name="description" content="This article explains how to lock and constrain the X, Y, and Z perspective axes when using the 3D Box tool in Inkscape. By adjusting vanishing point settings in the Tool Controls bar and utilizing keyboard modifiers, you can switch between perspective p">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/lock-perspective-axes-in-inkscape-3d-box-tool">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Lock Perspective Axes in Inkscape 3D Box Tool - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/lock-perspective-axes-in-inkscape-3d-box-tool" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how to lock and constrain the X, Y, and Z perspective axes when using the 3D Box tool in Inkscape. By adjusting vanishing point settings in the Tool Controls bar and utilizing keyboard modifiers, you can switch between perspective p" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="lock-perspective-axes-in-inkscape-3d-box-tool">Lock Perspective
+Axes in Inkscape 3D Box Tool</h1>
+<p>This article explains how to lock and constrain the X, Y, and Z
+perspective axes when using the 3D Box tool in Inkscape. By adjusting
+vanishing point settings in the Tool Controls bar and utilizing keyboard
+modifiers, you can switch between perspective projections and parallel
+(axonometric or isometric) views, preventing specific axes from
+converging to a point.</p>
+<h3 id="using-the-tool-controls-bar-to-lock-axes">Using the Tool
+Controls Bar to Lock Axes</h3>
+<p>The primary method for locking any perspective axis to a fixed,
+parallel orientation is via the 3D Box Tool Controls bar at the top of
+the canvas:</p>
+<ol type="1">
+<li>Select the <strong>3D Box tool</strong> from the toolbox on the
+left, or press <code>Shift + F4</code> (or <code>X</code>).</li>
+<li>Click on an existing 3D box or draw a new one to display its
+bounding controls and the Tool Controls bar.</li>
+<li>Locate the three perspective toggle buttons in the top toolbar:
+<strong>Angle X</strong>, <strong>Angle Y</strong>, and <strong>Angle
+Z</strong> (indicated by icons representing parallel lines for each
+axis).</li>
+<li>Click the toggle button for the axis you wish to lock:
+<ul>
+<li><strong>Toggle X (<code>||</code> X):</strong> Sets the X vanishing
+point (<span class="math inline">\(VP_X\)</span>) to infinity, locking
+the X-edges into parallel lines.</li>
+<li><strong>Toggle Y (<code>||</code> Y):</strong> Sets the Y vanishing
+point (<span class="math inline">\(VP_Y\)</span>) to infinity, locking
+the vertical/Y-edges into parallel lines.</li>
+<li><strong>Toggle Z (<code>||</code> Z):</strong> Sets the Z vanishing
+point (<span class="math inline">\(VP_Z\)</span>) to infinity, locking
+depth/Z-edges into parallel lines.</li>
+</ul></li>
+<li>Enter a specific degree value in the corresponding
+<strong>Angle</strong> input field next to the active toggle to fix the
+exact orientation of the parallel lines.</li>
+</ol>
+<h3 id="constraining-axes-with-modifier-keys">Constraining Axes with
+Modifier Keys</h3>
+<p>When manipulating a 3D box directly on the canvas using its handles,
+you can use keyboard modifiers to constrain movement along the
+perspective axes:</p>
+<ul>
+<li><strong>Shift + Drag:</strong> Dragging a vanishing point while
+holding <code>Shift</code> moves all vanishing points simultaneously,
+maintaining their relative perspective relationships.</li>
+<li><strong>Ctrl + Drag:</strong> When dragging a box handle (corner),
+holding <code>Ctrl</code> constrains the movement along the handle's
+corresponding perspective axis, preventing accidental distortion across
+other dimensions.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

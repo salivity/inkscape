@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape: Set Object Titles for Screen Readers - inkscape</title>
+    <meta name="description" content="Making Scalable Vector Graphics (SVG) accessible ensures that users relying on screen readers and assistive technologies can fully understand visual content. This guide explains how to add custom object titles and detailed descriptions to individual elem">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-set-object-titles-for-screen-readers">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape: Set Object Titles for Screen Readers - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-set-object-titles-for-screen-readers" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Making Scalable Vector Graphics (SVG) accessible ensures that users relying on screen readers and assistive technologies can fully understand visual content. This guide explains how to add custom object titles and detailed descriptions to individual elem" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-set-object-titles-for-screen-readers">Inkscape: Set
+Object Titles for Screen Readers</h1>
+<p>Making Scalable Vector Graphics (SVG) accessible ensures that users
+relying on screen readers and assistive technologies can fully
+understand visual content. This guide explains how to add custom object
+titles and detailed descriptions to individual elements and groups in
+Inkscape, optimizing your vector artwork for digital accessibility
+standards on the web.</p>
+<hr />
+<h3 id="step-1-open-the-object-properties-panel">Step 1: Open the Object
+Properties Panel</h3>
+<p>Inkscape provides a dedicated interface to manage object-level
+metadata without needing to write raw code.</p>
+<ol type="1">
+<li>Select the object, path, or group you want to make accessible using
+the <strong>Select tool</strong> (<code>S</code> or
+<code>F1</code>).</li>
+<li>Open the <strong>Object Properties</strong> dialog by doing one of
+the following:
+<ul>
+<li>Go to the top menu and select <strong>Object &gt; Object
+Properties</strong>.</li>
+<li>Use the keyboard shortcut <strong>Shift + Ctrl + O</strong> (or
+<strong>Shift + Cmd + O</strong> on macOS).</li>
+<li>Right-click the selected object on the canvas and choose
+<strong>Object Properties...</strong>.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="step-2-add-title-and-description-metadata">Step 2: Add Title and
+Description Metadata</h3>
+<p>Inside the <strong>Object Properties</strong> panel, you will find
+standard SVG metadata fields:</p>
+<ol type="1">
+<li><strong>Title (<code>&lt;title&gt;</code>):</strong> Enter a brief,
+concise label describing the object. Screen readers use this similarly
+to image <code>alt</code> text. It also serves as a default tooltip in
+many modern web browsers.</li>
+<li><strong>Description (<code>&lt;desc&gt;</code>):</strong> Enter a
+longer, more detailed description explaining the purpose, context, or
+detailed visual characteristics of the element.</li>
+<li>Click the <strong>Set</strong> button (in versions where required)
+to apply the changes to the SVG element.</li>
+</ol>
+<hr />
+<h3 id="step-3-verify-and-edit-via-the-xml-editor-optional">Step 3:
+Verify and Edit via the XML Editor (Optional)</h3>
+<p>If you want direct control over the SVG structure, you can inspect or
+insert accessibility tags directly through the XML Editor.</p>
+<ol type="1">
+<li>Open the XML Editor via <strong>Edit &gt; XML Editor</strong> or
+press <strong>Shift + Ctrl + X</strong>.</li>
+<li>Locate and highlight the node corresponding to your target
+object.</li>
+<li>Add or view child elements named <code>svg:title</code> and
+<code>svg:desc</code> to confirm that the text nodes contain your custom
+values.</li>
+</ol>
+<hr />
+<h3 id="best-practices-for-svg-accessibility-in-inkscape">Best Practices
+for SVG Accessibility in Inkscape</h3>
+<ul>
+<li><strong>Group Related Elements:</strong> Combine multiple paths that
+form a single visual concept into a group (<strong>Ctrl + G</strong>)
+and assign the title and description to the parent group rather than
+every individual sub-path.</li>
+<li><strong>Keep Titles Concise:</strong> Use the title field for quick
+identification (e.g., <em>"Quarterly Sales Bar Chart"</em>).</li>
+<li><strong>Use Descriptions for Context:</strong> Use the description
+field to explain information that is visually evident but not explicitly
+written as canvas text (e.g., <em>"A vertical bar chart showing sales
+increasing from $10k in Q1 to $45k in Q4"</em>).</li>
+<li><strong>Leave Decorative Elements Blank:</strong> Avoid adding
+titles to purely decorative shapes, lines, or background fills so screen
+readers can skip unnecessary clutter.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

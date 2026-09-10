@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subdivide Paths Evenly in Inkscape Using Add Nodes - inkscape</title>
+    <meta name="description" content="This guide explains how to use Inkscape's built-in "Add Nodes" extension to subdivide path segments evenly across your artwork. By using this tool, you can automatically insert equidistant nodes along any vector line or shape, enabling precise geometric">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/subdivide-paths-evenly-in-inkscape-using-add-nodes">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Subdivide Paths Evenly in Inkscape Using Add Nodes - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/subdivide-paths-evenly-in-inkscape-using-add-nodes" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use Inkscape's built-in "Add Nodes" extension to subdivide path segments evenly across your artwork. By using this tool, you can automatically insert equidistant nodes along any vector line or shape, enabling precise geometric" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="subdivide-paths-evenly-in-inkscape-using-add-nodes">Subdivide
+Paths Evenly in Inkscape Using Add Nodes</h1>
+<p>This guide explains how to use Inkscape's built-in "Add Nodes"
+extension to subdivide path segments evenly across your artwork. By
+using this tool, you can automatically insert equidistant nodes along
+any vector line or shape, enabling precise geometric modifications,
+uniform deformations, and cleaner path manipulation without manually
+measuring and placing points.</p>
+<h3 id="1-convert-your-shape-to-a-path">1. Convert Your Shape to a
+Path</h3>
+<p>The Add Nodes extension only works on standard paths. If you are
+working with a predefined shape (such as a rectangle, ellipse, or star)
+or text, you must convert it first:</p>
+<ol type="1">
+<li>Select the object using the <strong>Select Tool</strong>
+(<code>S</code>).</li>
+<li>Go to the top menu and click <strong>Path</strong> &gt;
+<strong>Object to Path</strong> (or press
+<code>Shift + Ctrl + C</code>).</li>
+</ol>
+<h3 id="2-select-the-target-path">2. Select the Target Path</h3>
+<p>Ensure the path you wish to subdivide is actively selected on your
+canvas. If you only want to subdivide a specific part of a complex path,
+use the <strong>Node Tool</strong> (<code>N</code>) to select specific
+nodes; otherwise, selecting the whole object will apply the subdivision
+across all segments.</p>
+<h3 id="3-open-the-add-nodes-extension">3. Open the Add Nodes
+Extension</h3>
+<ol type="1">
+<li>Navigate to the top menu and select
+<strong>Extensions</strong>.</li>
+<li>Hover over <strong>Modify Path</strong>.</li>
+<li>Click on <strong>Add Nodes...</strong> to open the tool's dialog
+box.</li>
+</ol>
+<h3 id="4-configure-subdivision-settings">4. Configure Subdivision
+Settings</h3>
+<p>The dialog provides two primary methods for adding nodes:</p>
+<ul>
+<li><strong>By number of segments:</strong> Divides each existing
+segment between two nodes into a specified number of equal parts. For
+example, entering <code>2</code> will insert a single node directly in
+the middle of each segment, creating two equal halves.</li>
+<li><strong>By max segment length (px):</strong> Subdivides segments so
+that no individual segment exceeds the specified pixel length, spacing
+new nodes evenly along the path.</li>
+</ul>
+<p>Check the <strong>Live preview</strong> box in the bottom-left corner
+of the dialog to see the adjustments directly on your canvas before
+applying them.</p>
+<h3 id="5-apply-and-verify">5. Apply and Verify</h3>
+<ol type="1">
+<li>Once satisfied with the preview, click <strong>Apply</strong>.</li>
+<li>Click <strong>Close</strong> to dismiss the dialog window.</li>
+<li>Switch to the <strong>Node Tool</strong> (<code>N</code>) to view
+and manipulate the newly generated, evenly spaced nodes along your
+path.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

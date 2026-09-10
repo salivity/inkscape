@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Vector Pencil Sketch Texture in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to convert clean vector shapes and paths into a realistic, hand-drawn pencil sketch using Inkscape’s native SVG Filter Editor. By stacking filter primitives such as fractal turbulence, displacement mapping, and color matrix adju">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-vector-pencil-sketch-texture-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Vector Pencil Sketch Texture in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-vector-pencil-sketch-texture-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to convert clean vector shapes and paths into a realistic, hand-drawn pencil sketch using Inkscape’s native SVG Filter Editor. By stacking filter primitives such as fractal turbulence, displacement mapping, and color matrix adju" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-vector-pencil-sketch-texture-in-inkscape">Create Vector
+Pencil Sketch Texture in Inkscape</h1>
+<p>This guide explains how to convert clean vector shapes and paths into
+a realistic, hand-drawn pencil sketch using Inkscape’s native SVG Filter
+Editor. By stacking filter primitives such as fractal turbulence,
+displacement mapping, and color matrix adjustments, you can simulate
+paper tooth, uneven graphite deposits, and wobbly hand-drawn edges
+entirely within a non-destructive vector workflow.</p>
+<h3 id="step-1-prepare-the-base-vector-art">Step 1: Prepare the Base
+Vector Art</h3>
+<ol type="1">
+<li>Select your target object or path in Inkscape.</li>
+<li>Set the stroke color to a dark charcoal gray (for example,
+<code>#2b2b2b</code>) rather than pure black, which better mimics
+graphite.</li>
+<li>If using filled shapes, lower the fill opacity or replace the solid
+fill with a loose hatch pattern, as genuine pencil sketches rely
+primarily on line weight and stippling rather than flat fills.</li>
+<li>Set an initial stroke width between 1 px and 3 px.</li>
+</ol>
+<h3 id="step-2-open-the-svg-filter-editor">Step 2: Open the SVG Filter
+Editor</h3>
+<ol type="1">
+<li>Navigate to <strong>Filters &gt; Filter Editor</strong>.</li>
+<li>Click <strong>New</strong> in the bottom-left of the Filter Editor
+panel to create an empty filter template.</li>
+<li>Rename the filter to "Pencil Sketch" for clarity.</li>
+<li>Check the box next to your new filter while the object is selected
+to apply it.</li>
+</ol>
+<h3 id="step-3-add-the-texture-foundation-with-feturbulence">Step 3: Add
+the Texture Foundation with feTurbulence</h3>
+<ol type="1">
+<li>In the <strong>Add Primitive</strong> drop-down menu, select
+<strong>Turbulence</strong> and click <strong>Add
+Primitive</strong>.</li>
+<li>In the settings panel for <code>feTurbulence</code>, set:
+<ul>
+<li><strong>Type</strong>: Fractal Noise</li>
+<li><strong>Base Frequency</strong>: Set horizontally and vertically
+between <code>0.6</code> and <code>0.9</code> to generate a fine, gritty
+grain.</li>
+<li><strong>Num Octaves</strong>: <code>3</code> or <code>4</code> to
+add complexity and mimic rough paper fibers.</li>
+</ul></li>
+</ol>
+<h3 id="step-4-distort-the-edges-with-fedisplacementmap">Step 4: Distort
+the Edges with feDisplacementMap</h3>
+<ol type="1">
+<li>Select <strong>Displacement Map</strong> from the drop-down menu and
+click <strong>Add Primitive</strong>.</li>
+<li>Connect the nodes in the filter graph:
+<ul>
+<li>Connect <strong>Input 1</strong> (Image) to <strong>Source
+Graphic</strong>.</li>
+<li>Connect <strong>Input 2</strong> (Displacement) to the output of
+<strong>Turbulence</strong>.</li>
+</ul></li>
+<li>In the <code>feDisplacementMap</code> parameters:
+<ul>
+<li>Set <strong>X Channel</strong> to <code>R</code> and <strong>Y
+Channel</strong> to <code>G</code>.</li>
+<li>Set <strong>Scale</strong> to a value between <code>2</code> and
+<code>6</code>. This breaks up the sharp edges of your path into
+irregular, jittery lines characteristic of a hand-drawn stroke.</li>
+</ul></li>
+</ol>
+<h3
+id="step-5-simulate-graphite-density-with-fecomposite-and-fecolormatrix">Step
+5: Simulate Graphite Density with feComposite and feColorMatrix</h3>
+<ol type="1">
+<li>Select <strong>Composite</strong> from the drop-down and click
+<strong>Add Primitive</strong>.</li>
+<li>Connect the inputs:
+<ul>
+<li>Set the first input to the output of your <strong>Displacement
+Map</strong>.</li>
+<li>Set the second input to the output of
+<strong>Turbulence</strong>.</li>
+</ul></li>
+<li>Set the <strong>Operator</strong> to <strong>In</strong> or
+<strong>Arithmetic</strong> (with low coefficients) to subtract parts of
+the stroke where the simulated paper texture is raised. This creates
+broken pencil marks and variations in line pressure.</li>
+<li>Select <strong>Color Matrix</strong> from the drop-down and click
+<strong>Add Primitive</strong>.</li>
+<li>Connect its input to the output of the <strong>Composite</strong>
+primitive.</li>
+<li>Set the matrix type to <strong>Matrix</strong> and slightly reduce
+the Alpha (A) multiplier to soften the overall stroke and allow
+underlying paper layers to show through.</li>
+</ol>
+<h3 id="step-6-fine-tune-the-appearance">Step 6: Fine-Tune the
+Appearance</h3>
+<ul>
+<li><strong>Line Weight</strong>: Adjust the original stroke width in
+the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>). The filter scales its distortion based
+on the stroke dimension.</li>
+<li><strong>Paper Roughness</strong>: Increase the
+<code>feTurbulence</code> frequency if the texture looks too clumped, or
+lower it if the texture looks too digital.</li>
+<li><strong>Filter Region</strong>: If the pencil strokes appear clipped
+around the bounding box, go to the <strong>Filter General
+Settings</strong> tab in the Filter Editor and increase the boundary
+coordinates (X, Y, Width, Height) by 10% to 20%.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Fix Inkscape Crashing on Launch from Plugins - inkscape</title>
+    <meta name="description" content="When Inkscape fails to open and crashes instantly upon startup, an incompatible, corrupted, or outdated Python plugin is often the primary culprit. This guide provides a straightforward method to diagnose and isolate problematic extensions causing startu">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-fix-inkscape-crashing-on-launch-from-plugins">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Fix Inkscape Crashing on Launch from Plugins - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-fix-inkscape-crashing-on-launch-from-plugins" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When Inkscape fails to open and crashes instantly upon startup, an incompatible, corrupted, or outdated Python plugin is often the primary culprit. This guide provides a straightforward method to diagnose and isolate problematic extensions causing startu" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-fix-inkscape-crashing-on-launch-from-plugins">How to Fix
+Inkscape Crashing on Launch from Plugins</h1>
+<p>When Inkscape fails to open and crashes instantly upon startup, an
+incompatible, corrupted, or outdated Python plugin is often the primary
+culprit. This guide provides a straightforward method to diagnose and
+isolate problematic extensions causing startup failures. By locating
+your custom extensions directory, testing Inkscape in a clean state, and
+using a systematic elimination process, you can identify the exact
+script breaking your installation and restore stability without losing
+your application settings.</p>
+<h3 id="step-1-identify-extension-directories">Step 1: Identify
+Extension Directories</h3>
+<p>Inkscape scans two locations for plugins at launch: system-wide
+extensions and user-installed extensions. Faulty plugins are almost
+always located in your user configuration directory rather than the core
+installation directory.</p>
+<p>Locate your user extensions folder based on your operating
+system:</p>
+<ul>
+<li><strong>Windows:</strong>
+<code>C:\Users\&lt;YourUsername&gt;\AppData\Roaming\inkscape\extensions</code>
+(You can also press <code>Win + R</code>, type
+<code>%APPDATA%\inkscape\extensions</code>, and hit Enter)</li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/extensions</code></li>
+<li><strong>Linux:</strong>
+<code>~/.config/inkscape/extensions</code></li>
+</ul>
+<h3 id="step-2-confirm-the-extensions-folder-is-the-cause">Step 2:
+Confirm the Extensions Folder is the Cause</h3>
+<p>Before debugging individual files, verify that user extensions are
+indeed causing the crash:</p>
+<ol type="1">
+<li>Close any hanging Inkscape processes in your system's Task Manager
+or Activity Monitor.</li>
+<li>Navigate to the parent directory of your user
+<code>extensions</code> folder (e.g., <code>%APPDATA%\inkscape</code> on
+Windows or <code>~/.config/inkscape</code> on Linux).</li>
+<li>Rename the <code>extensions</code> folder to
+<code>extensions_disabled</code>.</li>
+<li>Attempt to launch Inkscape.</li>
+</ol>
+<p>If Inkscape launches successfully, a user-installed extension is
+responsible. If Inkscape still crashes, the issue likely resides in your
+general configuration file (<code>preferences.xml</code>) or a corrupted
+core installation rather than a user plugin.</p>
+<h3 id="step-3-run-inkscape-from-the-terminal-to-catch-the-error">Step
+3: Run Inkscape from the Terminal to Catch the Error</h3>
+<p>Launching Inkscape from a command-line interface provides real-time
+error output and Python tracebacks that the graphical interface hides
+during a crash:</p>
+<ul>
+<li><strong>Windows:</strong> Open Command Prompt, navigate to your
+Inkscape directory (typically
+<code>cd "C:\Program Files\Inkscape\bin"</code>), and run
+<code>inkscape.exe</code>.</li>
+<li><strong>macOS:</strong> Open Terminal and execute
+<code>/Applications/Inkscape.app/Contents/MacOS/inkscape</code>.</li>
+<li><strong>Linux:</strong> Open a terminal and run
+<code>inkscape</code>.</li>
+</ul>
+<p>Examine the console output immediately preceding the crash. Python
+syntax errors, missing module alerts (e.g.,
+<code>ModuleNotFoundError</code>), or deprecation warnings will often
+explicitly name the offending <code>.py</code> or <code>.inx</code>
+file.</p>
+<h3 id="step-4-isolate-the-specific-plugin-binary-search-method">Step 4:
+Isolate the Specific Plugin (Binary Search Method)</h3>
+<p>If the terminal output does not name the specific file, use a binary
+search method to identify it quickly:</p>
+<ol type="1">
+<li>Create a new, empty folder named <code>extensions</code> in your
+Inkscape user directory.</li>
+<li>Open your <code>extensions_disabled</code> folder and copy
+<strong>half</strong> of its contents into the new
+<code>extensions</code> folder. Note that Inkscape extensions typically
+come in pairs consisting of an <code>.inx</code> file (XML description)
+and a <code>.py</code> file (Python script); ensure related files are
+moved together.</li>
+<li>Launch Inkscape.</li>
+<li><strong>If Inkscape launches normally:</strong> The problematic file
+is in the other half still inside <code>extensions_disabled</code>.</li>
+<li><strong>If Inkscape crashes:</strong> The problematic file is among
+the files you just moved into the new <code>extensions</code>
+folder.</li>
+<li>Repeat this process by halving the suspect group of files until only
+a single <code>.inx</code> and <code>.py</code> pair remains.</li>
+</ol>
+<h3 id="step-5-resolve-the-issue">Step 5: Resolve the Issue</h3>
+<p>Once the faulty plugin is isolated:</p>
+<ul>
+<li><strong>Delete the files:</strong> Permanently delete the identified
+<code>.inx</code> and corresponding <code>.py</code> files from the
+<code>extensions</code> folder to prevent future crashes.</li>
+<li><strong>Check Python compatibility:</strong> If the plugin is
+critical to your workflow, open the script in a text editor to check
+whether it was written for an older version of Python (such as Python 2)
+or requires external libraries that must be installed in Inkscape's
+internal Python environment.</li>
+<li><strong>Restore the rest:</strong> Move all known stable extensions
+back into the active <code>extensions</code> directory.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

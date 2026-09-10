@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Root Element with self.svg in Inkscape - inkscape</title>
+    <meta name="description" content="This article explains how to target and manipulate the document root element in an Inkscape Python extension using the self.svg property. In modern Inkscape development (Inkscape 1.0 and later), the inkex module wraps the XML document tree into high-leve">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/access-root-element-with-self-svg-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Access Root Element with self.svg in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/access-root-element-with-self-svg-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how to target and manipulate the document root element in an Inkscape Python extension using the self.svg property. In modern Inkscape development (Inkscape 1.0 and later), the inkex module wraps the XML document tree into high-leve" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="access-root-element-with-selfsvg-in-inkscape">Access Root
+Element with self.svg in Inkscape</h1>
+<p>This article explains how to target and manipulate the document root
+element in an Inkscape Python extension using the <code>self.svg</code>
+property. In modern Inkscape development (Inkscape 1.0 and later), the
+<code>inkex</code> module wraps the XML document tree into high-level
+objects, making the <code>self.svg</code> property the primary interface
+for interacting directly with the root <code>&lt;svg&gt;</code>
+node.</p>
+<p>In Inkscape extensions inheriting from
+<code>inkex.EffectExtension</code>, the <code>self.svg</code> property
+references the <code>SvgDocumentElement</code> instance, which
+represents the root <code>&lt;svg&gt;</code> tag of the document. Unlike
+older versions of Inkscape that required calling
+<code>self.document.getroot()</code>, modern <code>inkex</code>
+extensions treat <code>self.svg</code> directly as the root element
+itself.</p>
+<p>To read or update attributes on the root element, you can treat
+<code>self.svg</code> like a standard dictionary or use dedicated helper
+methods:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyExtension(inkex.EffectExtension):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Access the root element directly</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        root <span class="op">=</span> <span class="va">self</span>.svg</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Read root attributes</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        width <span class="op">=</span> root.get(<span class="st">&#39;width&#39;</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        height <span class="op">=</span> root.get(<span class="st">&#39;height&#39;</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        viewbox <span class="op">=</span> root.get(<span class="st">&#39;viewBox&#39;</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Modify root attributes</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        root.<span class="bu">set</span>(<span class="st">&#39;data-processed&#39;</span>, <span class="st">&#39;true&#39;</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        root.<span class="bu">set</span>(<span class="st">&#39;id&#39;</span>, <span class="st">&#39;main-svg-root&#39;</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    MyExtension().run()</span></code></pre></div>
+<p>Because <code>self.svg</code> functions as the root DOM node, you can
+also query, iterate, or append child elements directly from this
+property. For example, to add a new element to the top level of the
+document:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new circle element</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>new_circle <span class="op">=</span> inkex.Circle(cx<span class="op">=</span><span class="st">&quot;50&quot;</span>, cy<span class="op">=</span><span class="st">&quot;50&quot;</span>, r<span class="op">=</span><span class="st">&quot;20&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Append the element directly to the root</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.svg.append(new_circle)</span></code></pre></div>
+<p>To search for child elements starting from the root, use the built-in
+XPath and search methods provided by <code>self.svg</code>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find all path elements anywhere under the root</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>all_paths <span class="op">=</span> <span class="va">self</span>.svg.xpath(<span class="st">&#39;//svg:path&#39;</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find direct children of the root</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>direct_children <span class="op">=</span> <span class="bu">list</span>(<span class="va">self</span>.svg)</span></code></pre></div>
+<p>If your extension requires the raw <code>lxml</code> root element
+rather than the wrapped <code>inkex.SvgDocumentElement</code>, you can
+still call <code>self.document.getroot()</code>. However, using
+<code>self.svg</code> is the standard and recommended approach because
+it provides built-in units handling, viewBox calculations, and geometric
+utility methods natively supported by modern <code>inkex</code>.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

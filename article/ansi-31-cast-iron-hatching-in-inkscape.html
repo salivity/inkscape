@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANSI 31 Cast Iron Hatching in Inkscape - inkscape</title>
+    <meta name="description" content="This guide covers the process of creating standard ANSI 31 cross-hatching for cast iron sections in Inkscape using both Pattern Fills and Live Path Effects (LPE). ANSI 31 specifies uniformly spaced, single diagonal lines oriented at a 45-degree angle. By">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/ansi-31-cast-iron-hatching-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ANSI 31 Cast Iron Hatching in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/ansi-31-cast-iron-hatching-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide covers the process of creating standard ANSI 31 cross-hatching for cast iron sections in Inkscape using both Pattern Fills and Live Path Effects (LPE). ANSI 31 specifies uniformly spaced, single diagonal lines oriented at a 45-degree angle. By" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="ansi-31-cast-iron-hatching-in-inkscape">ANSI 31 Cast Iron
+Hatching in Inkscape</h1>
+<p>This guide covers the process of creating standard ANSI 31
+cross-hatching for cast iron sections in Inkscape using both Pattern
+Fills and Live Path Effects (LPE). ANSI 31 specifies uniformly spaced,
+single diagonal lines oriented at a 45-degree angle. By following these
+steps, you will learn how to configure the exact 45-degree angle and
+adjust line pitch (spacing) to achieve clean, technically accurate
+engineering section cuts.</p>
+<h3 id="understanding-ansi-31-specifications">Understanding ANSI 31
+Specifications</h3>
+<p>In technical drafting, ANSI 31 is the standard hatch designation for
+cast iron and general section lining. It consists of continuous,
+parallel diagonal lines drawn at a 45° angle relative to the primary
+axis of the drawing. Pitch—the perpendicular distance between adjacent
+hatch lines—typically ranges from 1.5 mm to 3 mm (1/16" to 1/8"), scaled
+proportionally to the size of the cross-sectioned area.</p>
+<hr />
+<h3
+id="method-1-using-live-path-effects-recommended-for-precision">Method
+1: Using Live Path Effects (Recommended for Precision)</h3>
+<p>The Live Path Effects (LPE) engine provides the most direct numerical
+control over hatch pitch and angle.</p>
+<ol type="1">
+<li><p><strong>Convert the Shape to a Path</strong></p>
+<ul>
+<li>Select the cut section shape.</li>
+<li>Go to <strong>Path &gt; Object to Path</strong> (or press
+<code>Shift + Ctrl + C</code>).</li>
+<li>Ensure the shape has a transparent fill and a defined stroke, or
+duplicate it if you need to retain a solid background outline.</li>
+</ul></li>
+<li><p><strong>Apply the Hatches Path Effect</strong></p>
+<ul>
+<li>Open the Path Effects panel via <strong>Path &gt; Path
+Effects</strong>.</li>
+<li>Click the <strong>+</strong> (Add Path Effect) button.</li>
+<li>Search for and select <strong>Hatches (rough)</strong> or
+<strong>Hatches</strong>.</li>
+</ul></li>
+<li><p><strong>Set the 45-Degree Angle</strong></p>
+<ul>
+<li>Select the <strong>Edit paths by nodes</strong> tool
+(<code>N</code>).</li>
+<li>On the canvas, you will see two handles connected by a guideline
+that controls the hatch direction and origin.</li>
+<li>Hold <code>Ctrl</code> while dragging the rotation handle to snap
+the angle precisely in 15-degree increments until you reach 45°.</li>
+</ul></li>
+<li><p><strong>Adjust the Pitch (Spacing)</strong></p>
+<ul>
+<li>In the Path Effects settings panel:
+<ul>
+<li>Set <strong>Frequency and Randomness</strong> options to ensure
+strict uniformity.</li>
+<li>Reduce <strong>Random factor</strong> and <strong>Jitter</strong> to
+<code>0</code> to remove hand-drawn irregularities.</li>
+<li>Adjust the <strong>Spacing</strong> or <strong>Frequency</strong>
+parameter to define the line pitch (e.g., <code>2.0 mm</code>).</li>
+</ul></li>
+<li>Adjust the stroke thickness in the <strong>Fill and Stroke</strong>
+panel (<code>Shift + Ctrl + F</code>) under the <strong>Stroke
+style</strong> tab (typically 0.25 mm to 0.35 mm for ANSI
+standards).</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="method-2-using-the-pattern-fill-engine">Method 2: Using the
+Pattern Fill Engine</h3>
+<p>Inkscape includes predefined stripe patterns that can be applied to
+any enclosed fill and rotated.</p>
+<ol type="1">
+<li><p><strong>Apply a Striped Pattern</strong></p>
+<ul>
+<li>Select the enclosed boundary representing the cast iron
+section.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>) and choose the <strong>Fill</strong>
+tab.</li>
+<li>Click the <strong>Pattern</strong> icon.</li>
+<li>From the pattern drop-down menu, choose <strong>Stripes 1:1</strong>
+or <strong>Stripes 1:2</strong>.</li>
+</ul></li>
+<li><p><strong>Orient to 45 Degrees and Adjust Pitch</strong></p>
+<ul>
+<li>Press <code>N</code> to switch to the <strong>Node
+Tool</strong>.</li>
+<li>Locate the pattern manipulation handles (usually appearing at the
+top-left origin of the canvas or bounding box):
+<ul>
+<li><strong>Cross (X) Handle:</strong> Moves the pattern origin.</li>
+<li><strong>Square Handle:</strong> Controls scale and pitch (line
+spacing).</li>
+<li><strong>Circle Handle:</strong> Controls rotation.</li>
+</ul></li>
+<li>Click and drag the <strong>Circle Handle</strong> while holding
+<code>Ctrl</code> to snap rotation to 45°.</li>
+<li>Click and drag the <strong>Square Handle</strong> inward or outward
+to scale the pitch to your desired dimension. Holding <code>Ctrl</code>
+preserves proportional scaling.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="best-practices-for-section-cuts">Best Practices for Section
+Cuts</h3>
+<ul>
+<li><strong>Scale Consistency:</strong> If multiple parts in an assembly
+consist of cast iron, maintain an identical pitch across all matching
+sections.</li>
+<li><strong>Mating Parts:</strong> When two cast iron components touch
+along a joint, set the adjacent hatch angle to 135° (-45°) to clearly
+distinguish separate parts.</li>
+<li><strong>Lineweight Hierarchy:</strong> Always keep hatch line
+weights noticeably thinner than the surrounding object boundary lines to
+preserve drawing readability.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

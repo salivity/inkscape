@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trace Pixel Art to Vector Grids in Inkscape - inkscape</title>
+    <meta name="description" content="Converting pixel art into clean, perfectly aligned vector graphics in Inkscape allows you to scale sprites infinitely without losing crisp edges or introducing unwanted blur. This guide covers how to import your raster sprite, configure the Trace Bitmap">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/trace-pixel-art-to-vector-grids-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Trace Pixel Art to Vector Grids in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/trace-pixel-art-to-vector-grids-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting pixel art into clean, perfectly aligned vector graphics in Inkscape allows you to scale sprites infinitely without losing crisp edges or introducing unwanted blur. This guide covers how to import your raster sprite, configure the Trace Bitmap" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="trace-pixel-art-to-vector-grids-in-inkscape">Trace Pixel Art to
+Vector Grids in Inkscape</h1>
+<p>Converting pixel art into clean, perfectly aligned vector graphics in
+Inkscape allows you to scale sprites infinitely without losing crisp
+edges or introducing unwanted blur. This guide covers how to import your
+raster sprite, configure the Trace Bitmap tool to capture hard pixel
+edges, snap paths to a precise grid, and optimize the final vector paths
+for clean shapes.</p>
+<h3 id="step-1-import-and-configure-image-rendering">Step 1: Import and
+Configure Image Rendering</h3>
+<ol type="1">
+<li>Open Inkscape and go to <strong>File &gt; Import</strong> to load
+your pixel art image (PNG or GIF format works best).</li>
+<li>Select the imported image and open the <strong>Object
+Properties</strong> panel (<strong>Shift + Ctrl + O</strong>).</li>
+<li>Set the <strong>Image Rendering</strong> dropdown to <strong>Blocky
+(optimizeSpeed / nearest neighbor)</strong>. This prevents Inkscape from
+applying anti-aliasing interpolation to the source image preview.</li>
+</ol>
+<h3 id="step-2-configure-the-trace-bitmap-tool">Step 2: Configure the
+Trace Bitmap Tool</h3>
+<ol type="1">
+<li>Select your pixel art on the canvas.</li>
+<li>Open the trace dialog via <strong>Path &gt; Trace Bitmap</strong>
+(or press <strong>Shift + Alt + B</strong>).</li>
+<li>Select the <strong>Multicolor</strong> tab and choose
+<strong>Colors</strong> from the detection dropdown.</li>
+<li>Set the number of <strong>Scans</strong> to match the exact number
+of colors used in your sprite (including background if applicable).</li>
+<li>Uncheck <strong>Smooth</strong> to prevent Inkscape from blurring
+color boundaries.</li>
+<li>Uncheck <strong>Stack scans</strong> to keep color layers from
+overlapping abnormally, or keep it checked if you prefer a continuous
+base layer.</li>
+<li>Switch to the <strong>Details</strong> / <strong>Advanced</strong>
+sub-tab:
+<ul>
+<li>Set <strong>Speckles</strong> (suppression threshold) to
+<strong>0</strong>.</li>
+<li>Set <strong>Smooth corners</strong> to <strong>0</strong> (forces
+90-degree square corners).</li>
+<li>Set <strong>Optimize</strong> to <strong>0</strong> (keeps straight
+edges along the pixel boundary).</li>
+</ul></li>
+<li>Click <strong>Apply</strong>.</li>
+</ol>
+<h3 id="step-3-align-to-a-pixel-perfect-grid">Step 3: Align to a
+Pixel-Perfect Grid</h3>
+<ol type="1">
+<li>Hide or delete the original raster image to view the generated
+vector group.</li>
+<li>Open <strong>View &gt; Page Grid</strong> (or press
+<strong>#</strong>) to enable the document grid.</li>
+<li>Open <strong>File &gt; Document Properties</strong> (<strong>Shift +
+Ctrl + D</strong>), navigate to the <strong>Grids</strong> tab, and set
+the <strong>Grid units</strong> to <code>px</code> with spacing values
+set to <code>1.0</code> (or the pixel scale of your sprite).</li>
+<li>Enable snapping on the top-right toolbar: toggle on <strong>Snap to
+Grids</strong> and <strong>Snap to Nodes</strong>.</li>
+<li>Select your vector object, ungroup it using <strong>Object &gt;
+Ungroup</strong> (<strong>Shift + Ctrl + G</strong>), and use the
+<strong>Node Tool</strong> (<strong>N</strong>) to verify that all nodes
+snap squarely to the grid intersection points.</li>
+</ol>
+<h3 id="step-4-clean-and-merge-vector-paths">Step 4: Clean and Merge
+Vector Paths</h3>
+<ol type="1">
+<li>Select all shapes sharing the same color.</li>
+<li>Go to <strong>Path &gt; Union</strong> (<strong>Ctrl + +</strong>)
+to combine separate pixel squares of the same color into a single
+compound path.</li>
+<li>Repeat this process for each color layer to minimize total node
+count while preserving exact sharp-edged pixel boundaries.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

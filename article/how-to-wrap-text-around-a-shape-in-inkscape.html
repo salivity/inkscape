@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Wrap Text Around a Shape in Inkscape - inkscape</title>
+    <meta name="description" content="Wrapping text around the exterior contour of a vector shape in Inkscape allows you to create circular badges, custom logos, and dynamic typography. This guide explains how to use Inkscape’s "Put on Path" tool alongside path offsets to position text sea">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-wrap-text-around-a-shape-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Wrap Text Around a Shape in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-wrap-text-around-a-shape-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Wrapping text around the exterior contour of a vector shape in Inkscape allows you to create circular badges, custom logos, and dynamic typography. This guide explains how to use Inkscape’s "Put on Path" tool alongside path offsets to position text sea" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-wrap-text-around-a-shape-in-inkscape">How to Wrap Text
+Around a Shape in Inkscape</h1>
+<p>Wrapping text around the exterior contour of a vector shape in
+Inkscape allows you to create circular badges, custom logos, and dynamic
+typography. This guide explains how to use Inkscape’s "Put on Path" tool
+alongside path offsets to position text seamlessly along the outside
+boundary of any vector object without overlapping the artwork.</p>
+<h3 id="step-1-prepare-the-vector-shape">Step 1: Prepare the Vector
+Shape</h3>
+<ol type="1">
+<li>Open your document in Inkscape and select your vector shape.</li>
+<li>If your shape is an object (such as a standard circle or rectangle),
+convert it to a path by going to <strong>Path &gt; Object to
+Path</strong>.</li>
+</ol>
+<h3 id="step-2-create-an-exterior-offset-guide">Step 2: Create an
+Exterior Offset Guide</h3>
+<p>Placing text directly on an existing shape aligns the text baseline
+directly onto the path line, which often causes letters to overlap the
+shape's fill or stroke. Creating an expanded guide ensures the text sits
+cleanly on the exterior contour.</p>
+<ol type="1">
+<li>Select your shape and duplicate it by pressing <strong>Ctrl +
+D</strong> (or <strong>Cmd + D</strong> on macOS).</li>
+<li>With the duplicate selected, enlarge its boundary by going to
+<strong>Path &gt; Outset</strong> (keyboard shortcut: <strong>Ctrl +
+)</strong>). Repeat this shortcut until you achieve the desired margin
+around your original shape.</li>
+<li><em>Alternative:</em> Go to <strong>Path &gt; Linked Offset</strong>
+and drag the top handle outward to precisely set the exterior
+distance.</li>
+</ol>
+<h3 id="step-3-create-and-format-your-text">Step 3: Create and Format
+Your Text</h3>
+<ol type="1">
+<li>Select the <strong>Text tool</strong> (<code>T</code>) from the left
+toolbar.</li>
+<li>Click anywhere on the canvas and type your desired text.</li>
+<li>Use the top tool controls bar to adjust the font family, font size,
+and letter spacing before attaching it to the shape.</li>
+</ol>
+<h3 id="step-4-attach-the-text-to-the-exterior-contour">Step 4: Attach
+the Text to the Exterior Contour</h3>
+<ol type="1">
+<li>Switch to the <strong>Select and Transform tool</strong>
+(<code>S</code> or <code>F1</code>).</li>
+<li>Select both your text object and the offset path simultaneously by
+holding <strong>Shift</strong> and clicking on both elements.</li>
+<li>Navigate to the top menu and select <strong>Text &gt; Put on
+Path</strong>. The text will instantly conform to the contour of the
+offset path.</li>
+</ol>
+<h3 id="step-5-adjust-text-position-and-orientation">Step 5: Adjust Text
+Position and Orientation</h3>
+<ul>
+<li><strong>Rotate Position:</strong> Click twice on the path to
+activate rotation handles, then rotate the shape. The attached text will
+follow along the contour.</li>
+<li><strong>Flip Orientation:</strong> If the text appears inverted or
+inside the shape, select the path (not the text) and click <strong>Path
+&gt; Reverse</strong>. You can also use the flip buttons on the top
+toolbar (<strong>Flip selected objects horizontally</strong> or
+<strong>vertically</strong>) to adjust orientation.</li>
+</ul>
+<h3 id="step-6-finalize-the-design">Step 6: Finalize the Design</h3>
+<p>Once the text is correctly positioned, select only the offset guide
+shape. Open the <strong>Fill and Stroke</strong> panel (<strong>Ctrl +
+Shift + F</strong>) and set both the <strong>Fill</strong> and
+<strong>Stroke paint</strong> to "No paint" (the <code>X</code> icon).
+This hides the helper outline while preserving the text's curvature
+along the exterior contour.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

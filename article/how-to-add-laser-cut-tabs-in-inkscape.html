@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Add Laser Cut Tabs in Inkscape - inkscape</title>
+    <meta name="description" content="Adding tabs—also known as micro-joints, bridges, or hold-downs—to your vector designs ensures that small or lightweight parts remain attached to the parent sheet during laser cutting. This guide explains how to quickly create these small gaps in Inks">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-add-laser-cut-tabs-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Add Laser Cut Tabs in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-add-laser-cut-tabs-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Adding tabs—also known as micro-joints, bridges, or hold-downs—to your vector designs ensures that small or lightweight parts remain attached to the parent sheet during laser cutting. This guide explains how to quickly create these small gaps in Inks" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-add-laser-cut-tabs-in-inkscape">How to Add Laser Cut Tabs
+in Inkscape</h1>
+<p>Adding tabs—also known as micro-joints, bridges, or hold-downs—to
+your vector designs ensures that small or lightweight parts remain
+attached to the parent sheet during laser cutting. This guide explains
+how to quickly create these small gaps in Inkscape using two precise
+methods: the Node Editing method for quick placement, and the Shape
+Subtraction method for mathematically uniform tab widths.</p>
+<h3 id="why-use-tabs-in-laser-cutting">Why Use Tabs in Laser
+Cutting?</h3>
+<p>When the laser finishes cutting a small piece, the assist air,
+vibration, or exhaust draft can tip the part up into the path of the
+laser nozzle, causing collisions and ruined cuts. Alternatively, parts
+can fall completely through the honeycomb bed. Leaving a tiny gap
+(typically 0.4 mm to 1.5 mm, depending on material thickness) prevents
+movement while allowing the finished part to be snapped out easily by
+hand.</p>
+<hr />
+<h3 id="method-1-the-node-tool-fastest-for-simple-shapes">Method 1: The
+Node Tool (Fastest for Simple Shapes)</h3>
+<p>This method breaks the cut path by deleting a segment between two
+manually placed nodes.</p>
+<ol type="1">
+<li><p><strong>Prepare Your Object:</strong></p>
+<ul>
+<li>Select your shape.</li>
+<li>If it is a native shape (circle, rectangle) or text, convert it by
+going to <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>).</li>
+</ul></li>
+<li><p><strong>Add Break Points:</strong></p>
+<ul>
+<li>Select the <strong>Edit paths by nodes</strong> tool
+(<code>N</code>).</li>
+<li>Locate the section of the cutline where you want the tab.</li>
+<li>Double-click on the path to add a node at the start of the tab.</li>
+<li>Double-click again to add a second node at the end of the tab,
+leaving the desired gap distance between them.</li>
+</ul></li>
+<li><p><strong>Remove the Segment:</strong></p>
+<ul>
+<li>Click the segment directly between the two new nodes to highlight
+it.</li>
+<li>In the top tool controls bar, click the <strong>Delete segment
+between two non-endpoint nodes</strong> icon.</li>
+<li>The path will open, leaving a physical gap where the laser will turn
+off, creating your tab.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="method-2-boolean-difference-best-for-precise-gap-widths">Method
+2: Boolean Difference (Best for Precise Gap Widths)</h3>
+<p>If you need your tabs to be a specific, uniform dimension across
+multiple parts, use spacer shapes to cut out the gaps.</p>
+<ol type="1">
+<li><p><strong>Create the Spacer:</strong></p>
+<ul>
+<li>Select the <strong>Rectangle Tool</strong> (<code>R</code>).</li>
+<li>Draw a small rectangle. Set its width in the top toolbar to your
+desired tab size (for example, <code>0.8 mm</code>) and give it enough
+height to comfortably cross your cutline.</li>
+</ul></li>
+<li><p><strong>Position the Spacer:</strong></p>
+<ul>
+<li>Move the rectangle over your cut path where you want the tab
+located.</li>
+<li>Duplicate the rectangle (<code>Ctrl + D</code>) and place it
+anywhere else additional tabs are needed.</li>
+</ul></li>
+<li><p><strong>Cut the Path:</strong></p>
+<ul>
+<li>If using multiple tab rectangles, select all of them and merge them
+using <strong>Path &gt; Union</strong> (<code>Ctrl + +</code>).</li>
+<li>Select both your main cut path and the tab rectangle(s).</li>
+<li>Go to <strong>Path &gt; Cut Path</strong>
+(<code>Ctrl + Alt + /</code>).</li>
+<li>This cuts the main path wherever the rectangle borders intersected
+it.</li>
+<li>Select the tiny cut segment left inside the rectangle boundary and
+press <strong>Delete</strong>.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="best-practices-for-tab-sizing-and-placement">Best Practices for
+Tab Sizing and Placement</h3>
+<ul>
+<li><strong>Sizing by Material:</strong> For paper, cardstock, or thin
+acrylic (1–2 mm), a tab width of 0.4 mm to 0.6 mm is sufficient. For 3
+mm to 6 mm plywood or acrylic, use tabs between 0.8 mm and 1.5 mm.</li>
+<li><strong>Placement:</strong> Position tabs along straight edges
+rather than intricate curves or sharp corners. Straight edges are far
+easier to sand flush after removal.</li>
+<li><strong>Quantity:</strong> Use at least two tabs on opposite sides
+for symmetrical pieces to prevent the part from swiveling on a single
+axis. Large or long parts require tabs placed every 50 mm to 75 mm along
+the perimeter.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

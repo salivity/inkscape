@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug GTK Initialization Errors in Inkscape - inkscape</title>
+    <meta name="description" content="When Inkscape fails to launch or crashes during startup, the issue frequently stems from GTK or GDK initialization problems. This guide outlines the specific command-line flags and runtime switches you can pass to Inkscape to capture detailed diagnostic">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/debug-gtk-initialization-errors-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Debug GTK Initialization Errors in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/debug-gtk-initialization-errors-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When Inkscape fails to launch or crashes during startup, the issue frequently stems from GTK or GDK initialization problems. This guide outlines the specific command-line flags and runtime switches you can pass to Inkscape to capture detailed diagnostic" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="debug-gtk-initialization-errors-in-inkscape">Debug GTK
+Initialization Errors in Inkscape</h1>
+<p>When Inkscape fails to launch or crashes during startup, the issue
+frequently stems from GTK or GDK initialization problems. This guide
+outlines the specific command-line flags and runtime switches you can
+pass to Inkscape to capture detailed diagnostic traces, force
+synchronous rendering calls, and isolate GTK initialization errors
+directly from your terminal.</p>
+<h3 id="core-gtk-and-gdk-debugging-flags">Core GTK and GDK Debugging
+Flags</h3>
+<p>Because Inkscape is built using the GTK toolkit, it accepts standard
+GTK and GDK command-line arguments directly. These flags alter how the
+toolkit initializes its display backends, windowing systems, and
+internal objects.</p>
+<ul>
+<li><code>--g-fatal-warnings</code>: Forces the application to abort
+immediately upon encountering any GLib or GTK warning or critical
+message. When used alongside a debugger, this generates an immediate
+core dump or breakpoint at the exact point of the initialization error
+rather than allowing it to cascade.</li>
+<li><code>--gtk-debug=FLAGS</code>: Enables specific GTK runtime
+debugging routines. You can pass individual categories or run
+<code>--gtk-debug=all</code> to output comprehensive traces of module
+loading, CSS parsing, geometry calculations, and widget layout during
+initialization.</li>
+<li><code>--gtk-no-debug=FLAGS</code>: Explicitly disables specific
+debug routines if a default configuration is generating excessive
+noise.</li>
+<li><code>--gdk-debug=FLAGS</code>: Traces the underlying GDK layer,
+which handles low-level windowing, event handling, and display
+initialization. Passing <code>--gdk-debug=all</code> logs every
+interaction with the display server (such as Wayland or X11) during
+startup.</li>
+<li><code>--gdk-no-debug=FLAGS</code>: Disables specific GDK debugging
+options.</li>
+<li><code>--sync</code>: Runs the X11 display connection in synchronous
+mode. This prevents asynchronous call buffering, ensuring that any X
+server error is reported immediately at the exact line of code that
+triggered it during startup.</li>
+</ul>
+<h3 id="inkscape-diagnostic-flags">Inkscape Diagnostic Flags</h3>
+<p>In addition to GTK-level arguments, Inkscape provides native flags to
+inspect the runtime environment:</p>
+<ul>
+<li><code>--debug-info</code>: Prints technical details regarding the
+operating system, Inkscape build configuration, GTK version, and linked
+graphics libraries. This helps verify if dynamic linkers are loading
+mismatched GTK libraries at launch.</li>
+</ul>
+<h3 id="tracing-with-environment-variables">Tracing with Environment
+Variables</h3>
+<p>While command-line flags handle most scenarios, GTK and GLib also
+evaluate specific environment variables during initialization before CLI
+parsing completes. These can be prepended directly to the launch
+command:</p>
+<ul>
+<li><code>G_MESSAGES_DEBUG=all inkscape</code>: Instructs GLib to print
+all diagnostic messages, including low-priority debug information that
+is suppressed by default.</li>
+<li><code>GTK_DEBUG=interactive inkscape</code>: Attempts to launch the
+GTK Inspector window alongside the application to inspect widget
+hierarchies and CSS rules, provided initialization gets far enough to
+map a window.</li>
+<li><code>G_DEBUG=fatal-criticals inkscape</code>: Directs GLib to crash
+on critical assertions, isolating the exact initialization failure.</li>
+</ul>
+<h3 id="combining-flags-with-a-debugger">Combining Flags with a
+Debugger</h3>
+<p>To trace an initialization crash to its source code origin, combine
+the fatal warning flag with the GNU Debugger (<code>gdb</code>):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gdb</span> <span class="at">--args</span> inkscape <span class="at">--g-fatal-warnings</span> <span class="at">--sync</span></span></code></pre></div>
+<p>Once inside <code>gdb</code>, execute <code>run</code>. When the GTK
+initialization error occurs, the process will halt immediately, allowing
+you to run <code>bt</code> (backtrace) to pinpoint the exact GTK
+function, theme, or plugin causing the initialization failure.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

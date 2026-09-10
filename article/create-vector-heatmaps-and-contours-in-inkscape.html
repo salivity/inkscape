@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Vector Heatmaps and Contours in Inkscape - inkscape</title>
+    <meta name="description" content="This guide provides a practical walkthrough on generating scalable vector heatmaps and geographic contour lines using Inkscape. By combining native vector tools such as Gaussian blurs, the Trace Bitmap engine, the Interpolate extension, and color ramps,">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-vector-heatmaps-and-contours-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Vector Heatmaps and Contours in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-vector-heatmaps-and-contours-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a practical walkthrough on generating scalable vector heatmaps and geographic contour lines using Inkscape. By combining native vector tools such as Gaussian blurs, the Trace Bitmap engine, the Interpolate extension, and color ramps," />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-vector-heatmaps-and-contours-in-inkscape">Create Vector
+Heatmaps and Contours in Inkscape</h1>
+<p>This guide provides a practical walkthrough on generating scalable
+vector heatmaps and geographic contour lines using Inkscape. By
+combining native vector tools such as Gaussian blurs, the Trace Bitmap
+engine, the Interpolate extension, and color ramps, you can transform
+raw spatial data or raster elevation maps into clean, fully editable
+vector graphics suitable for maps, infographics, and data
+visualizations.</p>
+<h2 id="generating-geographic-contour-lines">Generating Geographic
+Contour Lines</h2>
+<p>Geographic contour lines (isolines) represent constant values such as
+elevation. In Inkscape, you can generate them using two primary methods
+depending on your source data.</p>
+<h3 id="method-1-using-the-trace-bitmap-tool-on-elevation-data">Method
+1: Using the Trace Bitmap Tool on Elevation Data</h3>
+<p>If you have a grayscale Digital Elevation Model (DEM) or a raster
+topographic map:</p>
+<ol type="1">
+<li><strong>Import the Elevation Raster</strong>: Go to <strong>File
+&gt; Import</strong> and load your grayscale topographic image. Ensure
+high elevation is represented by white and low elevation by black (or
+vice versa).</li>
+<li><strong>Open Trace Bitmap</strong>: Select the image and go to
+<strong>Path &gt; Trace Bitmap</strong> (or press
+<code>Shift + Alt + B</code>).</li>
+<li><strong>Use Multiple Scans</strong>:
+<ul>
+<li>In the Trace Bitmap panel, switch to the <strong>Multicolor</strong>
+tab.</li>
+<li>Set the detection method to <strong>Brightness steps</strong>.</li>
+<li>Set the <strong>Scans</strong> count to the number of contour levels
+you want to generate (e.g., 8 to 16).</li>
+<li>Uncheck <strong>Smooth</strong> and <strong>Stack</strong> if you
+want discrete, flat steps.</li>
+</ul></li>
+<li><strong>Extract Line Boundaries</strong>:
+<ul>
+<li>Click <strong>Apply</strong> to generate the vector steps.</li>
+<li>Ungroup the result (<strong>Object &gt; Ungroup</strong> or
+<code>Ctrl + Shift + G</code>).</li>
+<li>Select all resulting paths, set the <strong>Fill</strong> to none,
+and apply a distinct <strong>Stroke</strong> color and width in the
+<strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>).</li>
+<li>Convert the step boundaries to clean single lines by using
+<strong>Path &gt; Stroke to Path</strong> or by editing the nodes using
+the <strong>Node Tool</strong> (<code>N</code>).</li>
+</ul></li>
+</ol>
+<h3 id="method-2-using-path-interpolation">Method 2: Using Path
+Interpolation</h3>
+<p>For custom, synthetic, or simplified topographic maps:</p>
+<ol type="1">
+<li><strong>Draw Outer and Inner Boundaries</strong>: Use the
+<strong>Bezier Tool</strong> (<code>B</code>) to draw the highest
+elevation line (inner small circle/shape) and the lowest elevation base
+(outer boundary).</li>
+<li><strong>Ensure Matching Path Directions</strong>: Make sure both
+paths are open or both are closed.</li>
+<li><strong>Interpolate Steps</strong>:
+<ul>
+<li>Select both paths.</li>
+<li>Navigate to <strong>Extensions &gt; Generate from Path &gt;
+Interpolate</strong>.</li>
+<li>Set the <strong>Interpolation Steps</strong> (e.g., 5 to 10
+steps).</li>
+<li>Set the <strong>Interpolation Method</strong> to <code>1</code> or
+<code>2</code> depending on the desired curve transition.</li>
+<li>Check <strong>Live Preview</strong> to adjust, then click
+<strong>Apply</strong>.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="creating-vector-heatmaps">Creating Vector Heatmaps</h2>
+<p>A vector heatmap represents data point density using smooth,
+graduated color transitions.</p>
+<h3 id="step-1-plot-data-points">Step 1: Plot Data Points</h3>
+<ol type="1">
+<li>Create a transparent background canvas.</li>
+<li>Use the <strong>Circle Tool</strong> (<code>E</code>) to draw
+circular markers at your data coordinates.</li>
+<li>Set the color of all data markers to solid black with an opacity of
+around 20% to 40%. Overlapping points will naturally create darker,
+denser regions.</li>
+</ol>
+<h3 id="step-2-create-the-density-map">Step 2: Create the Density
+Map</h3>
+<ol type="1">
+<li>Select all the data point circles and group them (<strong>Ctrl +
+G</strong>).</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>).</li>
+<li>Increase the <strong>Blur</strong> slider on the grouped points
+(typically between 10% and 30%) until the overlapping circles blend into
+a continuous grayscale gradient.</li>
+</ol>
+<h3 id="step-3-vectorize-and-colorize-the-density-zones">Step 3:
+Vectorize and Colorize the Density Zones</h3>
+<ol type="1">
+<li><strong>Rasterize Group Temporarily</strong>: Select the blurred
+group and go to <strong>Edit &gt; Make a Bitmap Copy</strong>
+(<code>Alt + B</code>). This generates an optimized raster
+representation of your blur inside the canvas.</li>
+<li><strong>Trace Graduated Layers</strong>:
+<ul>
+<li>Select the bitmap copy and open <strong>Path &gt; Trace
+Bitmap</strong>.</li>
+<li>Choose <strong>Multicolor &gt; Brightness steps</strong>.</li>
+<li>Choose the number of scans according to how many heat zones you want
+(e.g., 6 to 8).</li>
+<li>Enable <strong>Stack</strong> to create nested zones from outer to
+inner.</li>
+<li>Click <strong>Apply</strong>.</li>
+</ul></li>
+<li><strong>Apply a Thermal Color Palette</strong>:
+<ul>
+<li>Delete the temporary bitmap copy and the original blurred
+group.</li>
+<li>Ungroup the new vector trace.</li>
+<li>Select each nested layer from largest (lowest density) to smallest
+(highest density).</li>
+<li>Apply standard heatmap colors sequentially: Blue <span
+class="math inline">\(\rightarrow\)</span> Cyan <span
+class="math inline">\(\rightarrow\)</span> Green <span
+class="math inline">\(\rightarrow\)</span> Yellow <span
+class="math inline">\(\rightarrow\)</span> Red.</li>
+<li>Lower the layer opacity or apply soft blending to achieve smooth
+transitions.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="refining-and-cleaning-the-output">Refining and Cleaning the
+Output</h2>
+<ul>
+<li><strong>Simplify Paths</strong>: Trace operations often generate
+excess nodes. Select your vector paths and press <code>Ctrl + L</code>
+(<strong>Path &gt; Simplify</strong>) to reduce file size and smooth out
+jagged edges.</li>
+<li><strong>Adjust Layer Hierarchy</strong>: Open the <strong>Layers and
+Objects</strong> panel (<code>Shift + Ctrl + L</code>) to organize
+contours and heat layers, ensuring labels and markers sit on top of the
+gradient fills.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

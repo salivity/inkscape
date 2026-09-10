@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export PES, DST, and EXP Files in Inkscape - inkscape</title>
+    <meta name="description" content="Exporting embroidery formats like PES, DST, and EXP directly from Inkscape requires the use of the free, open-source extension known as Ink/Stitch. By converting vector paths into stitch data within Inkscape, you can save your designs into formats compat">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-pes-dst-and-exp-files-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export PES, DST, and EXP Files in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-pes-dst-and-exp-files-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting embroidery formats like PES, DST, and EXP directly from Inkscape requires the use of the free, open-source extension known as Ink/Stitch. By converting vector paths into stitch data within Inkscape, you can save your designs into formats compat" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-pes-dst-and-exp-files-in-inkscape">Export PES, DST, and
+EXP Files in Inkscape</h1>
+<p>Exporting embroidery formats like PES, DST, and EXP directly from
+Inkscape requires the use of the free, open-source extension known as
+Ink/Stitch. By converting vector paths into stitch data within Inkscape,
+you can save your designs into formats compatible with major embroidery
+machine brands, including Brother, Tajima, and Melco. This guide covers
+the complete, step-by-step process of preparing your vector graphic and
+saving it in your desired machine format.</p>
+<h2 id="step-1-install-the-inkstitch-extension">Step 1: Install the
+Ink/Stitch Extension</h2>
+<p>Inkscape does not natively support embroidery machine formats out of
+the box.</p>
+<ol type="1">
+<li>Download the Ink/Stitch extension corresponding to your operating
+system.</li>
+<li>Unpack the downloaded archive into your Inkscape extensions
+directory (found via <strong>Edit &gt; Preferences &gt; System &gt; User
+extensions</strong>).</li>
+<li>Restart Inkscape. You will now see an <strong>Ink/Stitch</strong>
+menu item under the <strong>Extensions</strong> menu.</li>
+</ol>
+<h2 id="step-2-prepare-your-vector-paths">Step 2: Prepare Your Vector
+Paths</h2>
+<p>Before exporting, your artwork must be converted into paths that
+Ink/Stitch can process into stitches:</p>
+<ol type="1">
+<li>Select all elements in your design.</li>
+<li>Navigate to <strong>Path &gt; Object to Path</strong> to ensure no
+raw shapes or text objects remain.</li>
+<li>If using text, ensure fonts are converted to paths or created using
+the <strong>Extensions &gt; Ink/Stitch &gt; Lettering</strong>
+tool.</li>
+<li>Set appropriate fill and stroke colors, as Ink/Stitch uses fills for
+tatami/fill stitches and strokes for satin or running stitches.</li>
+</ol>
+<h2 id="step-3-generate-and-validate-stitches">Step 3: Generate and
+Validate Stitches</h2>
+<p>Validate your design to ensure there are no intersecting paths or
+unclosed loops that cause machine errors:</p>
+<ol type="1">
+<li>Go to <strong>Extensions &gt; Ink/Stitch &gt; Troubleshoot &gt;
+Troubleshoot Objects</strong>. Fix any highlighted errors.</li>
+<li>Select your objects and go to <strong>Extensions &gt; Ink/Stitch
+&gt; Params</strong> to preview stitch density, underlay, and stitch
+types.</li>
+<li>Click <strong>Apply and Quit</strong> once you are satisfied with
+the stitch parameters.</li>
+</ol>
+<h2 id="step-4-export-to-pes-dst-or-exp">Step 4: Export to PES, DST, or
+EXP</h2>
+<p>Once your design is digitized and validated, export it into your
+required machine file format using either of the following methods:</p>
+<h3 id="method-a-standard-save-as">Method A: Standard "Save As"</h3>
+<ol type="1">
+<li>Click <strong>File &gt; Save As...</strong> (or <strong>File &gt;
+Save a Copy...</strong>).</li>
+<li>Open the file format dropdown menu at the bottom of the dialogue
+box.</li>
+<li>Scroll through the available formats and select your required
+format:
+<ul>
+<li><strong>Brother Embroidery Format (.pes)</strong></li>
+<li><strong>Tajima Embroidery Format (.dst)</strong></li>
+<li><strong>Melco Embroidery Format (.exp)</strong></li>
+</ul></li>
+<li>Choose your destination folder, enter a file name, and click
+<strong>Save</strong>.</li>
+</ol>
+<h3 id="method-b-inkstitch-batchinteractive-output">Method B: Ink/Stitch
+Batch/Interactive Output</h3>
+<ol type="1">
+<li>Navigate to <strong>Extensions &gt; Ink/Stitch &gt; Output &gt; Save
+Embroidery File</strong>.</li>
+<li>Select your target format from the list.</li>
+<li>Choose the export location and click <strong>Apply</strong> to
+generate the file.</li>
+</ol>
+<p>Your exported PES, DST, or EXP file is now ready to be loaded onto a
+USB drive or transferred directly to your embroidery machine.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

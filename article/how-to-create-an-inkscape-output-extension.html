@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create an Inkscape Output Extension - inkscape</title>
+    <meta name="description" content="This guide details how to build a custom Inkscape Output Extension to export SVG documents into proprietary or alternative file formats. By creating an XML definition file (.inx) and a Python implementation script using the inkex library, you can integra">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-an-inkscape-output-extension">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create an Inkscape Output Extension - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-an-inkscape-output-extension" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide details how to build a custom Inkscape Output Extension to export SVG documents into proprietary or alternative file formats. By creating an XML definition file (.inx) and a Python implementation script using the inkex library, you can integra" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-an-inkscape-output-extension">How to Create an
+Inkscape Output Extension</h1>
+<p>This guide details how to build a custom Inkscape Output Extension to
+export SVG documents into proprietary or alternative file formats. By
+creating an XML definition file (<code>.inx</code>) and a Python
+implementation script using the <code>inkex</code> library, you can
+integrate your custom file exporter directly into Inkscape’s "Save As"
+dialog.</p>
+<h3 id="understanding-the-extension-architecture">Understanding the
+Extension Architecture</h3>
+<p>Inkscape extensions rely on two primary files placed within the
+Inkscape extensions directory:</p>
+<ol type="1">
+<li><strong>The Descriptor File (<code>.inx</code>):</strong> An XML
+file that registers the extension, defines its UI parameters, and
+specifies its role as an output filter.</li>
+<li><strong>The Execution Script (<code>.py</code>):</strong> A Python
+script that parses the SVG document tree via the <code>inkex</code>
+library and serializes the data into your target format.</li>
+</ol>
+<p>Locate your user extensions folder by opening Inkscape and navigating
+to <strong>Edit &gt; Preferences &gt; System &gt; User
+extensions</strong>. Typically, this directory is found at:</p>
+<ul>
+<li><strong>Linux:</strong>
+<code>~/.config/inkscape/extensions/</code></li>
+<li><strong>Windows:</strong>
+<code>%APPDATA%\inkscape\extensions\</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/extensions/</code></li>
+</ul>
+<hr />
+<h3 id="step-1-create-the-inx-descriptor">Step 1: Create the INX
+Descriptor</h3>
+<p>Create a file named <code>custom_export.inx</code> in your user
+extensions directory. This file instructs Inkscape to display your
+format in the "Save As" menu.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span> <span class="ot">version=</span><span class="st">&quot;1.0&quot;</span> <span class="ot">encoding=</span><span class="st">&quot;UTF-8&quot;</span><span class="fu">?&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">inkscape-extension</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.inkscape.org/namespace/inkscape/extension&quot;</span>&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">name</span>&gt;Custom Format Exporter&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">id</span>&gt;org.example.output.customformat&lt;/<span class="kw">id</span>&gt;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">output</span>&gt;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">extension</span>&gt;.custom&lt;/<span class="kw">extension</span>&gt;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">mimetype</span>&gt;text/plain&lt;/<span class="kw">mimetype</span>&gt;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">filetypename</span>&gt;Custom Vector Format (*.custom)&lt;/<span class="kw">filetypename</span>&gt;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">filetypetooltip</span>&gt;Exports the document to a custom plain text format&lt;/<span class="kw">filetypetooltip</span>&gt;</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">output</span>&gt;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">script</span>&gt;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">command</span> <span class="ot">location=</span><span class="st">&quot;inx&quot;</span> <span class="ot">interpreter=</span><span class="st">&quot;python&quot;</span>&gt;custom_export.py&lt;/<span class="kw">command</span>&gt;</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">script</span>&gt;</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">inkscape-extension</span>&gt;</span></code></pre></div>
+<ul>
+<li><strong><code>&lt;id&gt;</code>:</strong> A globally unique
+identifier for your extension.</li>
+<li><strong><code>&lt;extension&gt;</code>:</strong> The target file
+extension appended to saved files.</li>
+<li><strong><code>&lt;filetypename&gt;</code>:</strong> The label that
+appears in the "Save As" file type dropdown.</li>
+<li><strong><code>&lt;command&gt;</code>:</strong> The script
+interpreter and the name of your Python file.</li>
+</ul>
+<hr />
+<h3 id="step-2-implement-the-exporter-in-python">Step 2: Implement the
+Exporter in Python</h3>
+<p>Create the corresponding <code>custom_export.py</code> file in the
+same directory. Modern versions of Inkscape (1.0+) provide the
+<code>inkex.OutputExtension</code> class, which handles standard stream
+interactions automatically.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex <span class="im">import</span> paths</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CustomOutputExtension(inkex.OutputExtension):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> save(<span class="va">self</span>, stream):</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Access the root SVG element</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        svg <span class="op">=</span> <span class="va">self</span>.svg</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Write header or metadata to the output stream</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        stream.write(<span class="ss">f&quot;# Document Dimensions: </span><span class="sc">{</span>svg<span class="sc">.</span>width<span class="sc">}</span><span class="ss">x</span><span class="sc">{</span>svg<span class="sc">.</span>height<span class="sc">}</span><span class="ch">\n</span><span class="ss">&quot;</span>.encode(<span class="st">&quot;utf-8&quot;</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Iterate over paths and visual elements in the document</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> elem <span class="kw">in</span> svg.descendants():</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">isinstance</span>(elem, inkex.PathElement):</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                elem_id <span class="op">=</span> elem.get(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;unnamed&quot;</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>                path_data <span class="op">=</span> elem.get(<span class="st">&quot;d&quot;</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Transform path data or extract raw coordinates</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                stream.write(<span class="ss">f&quot;PATH id=</span><span class="sc">{</span>elem_id<span class="sc">}</span><span class="ss"> data=</span><span class="sc">{</span>path_data<span class="sc">}</span><span class="ch">\n</span><span class="ss">&quot;</span>.encode(<span class="st">&quot;utf-8&quot;</span>))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> <span class="bu">isinstance</span>(elem, inkex.Rectangle):</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                elem_id <span class="op">=</span> elem.get(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;unnamed&quot;</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                x <span class="op">=</span> elem.get(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;0&quot;</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>                y <span class="op">=</span> elem.get(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;0&quot;</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>                w <span class="op">=</span> elem.get(<span class="st">&quot;width&quot;</span>, <span class="st">&quot;0&quot;</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                h <span class="op">=</span> elem.get(<span class="st">&quot;height&quot;</span>, <span class="st">&quot;0&quot;</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                stream.write(<span class="ss">f&quot;RECT id=</span><span class="sc">{</span>elem_id<span class="sc">}</span><span class="ss"> x=</span><span class="sc">{</span>x<span class="sc">}</span><span class="ss"> y=</span><span class="sc">{</span>y<span class="sc">}</span><span class="ss"> w=</span><span class="sc">{</span>w<span class="sc">}</span><span class="ss"> h=</span><span class="sc">{</span>h<span class="sc">}</span><span class="ch">\n</span><span class="ss">&quot;</span>.encode(<span class="st">&quot;utf-8&quot;</span>))</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    CustomOutputExtension().run()</span></code></pre></div>
+<hr />
+<h3 id="step-3-parse-and-convert-elements">Step 3: Parse and Convert
+Elements</h3>
+<p>Inside the <code>save(self, stream)</code> method:</p>
+<ul>
+<li><strong>Access Elements:</strong> Use
+<code>self.svg.descendants()</code> to traverse all nodes, or query
+specific elements using XPath via
+<code>self.svg.xpath('//svg:path')</code>.</li>
+<li><strong>Handle Transforms:</strong> Inkscape shapes often contain
+transformations. Resolve global positioning using
+<code>elem.composed_transform()</code> to obtain an element's absolute
+coordinates rather than local offsets.</li>
+<li><strong>Convert Geometry to Paths:</strong> To handle circles,
+rects, and polygons uniformly, use <code>inkex.PathElement</code>
+conversion utilities or generate standardized path commands using
+<code>elem.path.to_absolute()</code>.</li>
+<li><strong>Output Stream:</strong> The <code>stream</code> parameter
+expects binary data (<code>bytes</code>). Ensure strings are encoded
+(e.g., <code>.encode('utf-8')</code>) before writing.</li>
+</ul>
+<hr />
+<h3 id="step-4-test-the-extension">Step 4: Test the Extension</h3>
+<ol type="1">
+<li>Restart Inkscape to force it to re-scan the extensions folder.</li>
+<li>Open or create an SVG document containing basic shapes and
+paths.</li>
+<li>Click <strong>File &gt; Save As...</strong> or <strong>File &gt;
+Export...</strong>.</li>
+<li>In the format selection menu, choose <strong>Custom Vector Format
+(*.custom)</strong>.</li>
+<li>Save the file and inspect the generated output in a text editor to
+verify the data structure.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

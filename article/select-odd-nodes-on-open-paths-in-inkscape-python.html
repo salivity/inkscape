@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Odd Nodes on Open Paths in Inkscape Python - inkscape</title>
+    <meta name="description" content="This guide explains how to programmatically identify and isolate odd-numbered nodes along an open path in Inkscape using Python and the official inkex extension API. By reading the SVG path data, verifying that the subpath is open, and filtering the node">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/select-odd-nodes-on-open-paths-in-inkscape-python">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Select Odd Nodes on Open Paths in Inkscape Python - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/select-odd-nodes-on-open-paths-in-inkscape-python" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to programmatically identify and isolate odd-numbered nodes along an open path in Inkscape using Python and the official inkex extension API. By reading the SVG path data, verifying that the subpath is open, and filtering the node" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="select-odd-nodes-on-open-paths-in-inkscape-python">Select Odd
+Nodes on Open Paths in Inkscape Python</h1>
+<p>This guide explains how to programmatically identify and isolate
+odd-numbered nodes along an open path in Inkscape using Python and the
+official <code>inkex</code> extension API. By reading the SVG path data,
+verifying that the subpath is open, and filtering the node sequence
+based on index parity, you can automate precise node-level
+transformations, deletions, or data extraction.</p>
+<h2 id="understanding-path-data-in-inkscape">Understanding Path Data in
+Inkscape</h2>
+<p>In Inkscape 1.0 and later, extensions interact with SVG paths through
+the <code>inkex</code> library. A path consists of a sequence of
+commands (such as <code>Move</code>, <code>Line</code>, and
+<code>Curve</code>) stored in the <code>element.path</code>
+attribute.</p>
+<p>To determine whether a path is open:</p>
+<ul>
+<li>An open path does not end with a <code>Close</code> command
+(<code>Z</code> or <code>z</code>).</li>
+<li>Each node corresponds to the end coordinate of a path command. The
+first node is established by the <code>Move</code> command, followed by
+successive coordinates from <code>Line</code>, <code>Curve</code>, or
+<code>Arc</code> commands.</li>
+</ul>
+<h2 id="python-implementation">Python Implementation</h2>
+<p>Below is a complete Python script designed as an Inkscape extension
+effect. It iterates over selected path elements, checks if they are open
+paths, and targets odd-numbered nodes (using 1-based indexing: node 1,
+node 3, node 5, etc.).</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex.paths <span class="im">import</span> Move, Line, Curve, Arc, Close</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SelectOddNodes(inkex.EffectExtension):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Ensure elements are selected</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="va">self</span>.svg.selection:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            inkex.errormsg(<span class="st">&quot;Please select at least one open path.&quot;</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> elem <span class="kw">in</span> <span class="va">self</span>.svg.selection.<span class="bu">filter</span>(inkex.PathElement):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            path <span class="op">=</span> elem.path</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Check if the path is closed</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            is_closed <span class="op">=</span> <span class="bu">any</span>(<span class="bu">isinstance</span>(cmd, Close) <span class="cf">for</span> cmd <span class="kw">in</span> path)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> is_closed:</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                inkex.utils.debug(<span class="ss">f&quot;Skipping &#39;</span><span class="sc">{</span>elem<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss">&#39;: Path is closed.&quot;</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Extract end coordinates of each command to define the nodes</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            nodes <span class="op">=</span> []</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> cmd <span class="kw">in</span> path:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="bu">hasattr</span>(cmd, <span class="st">&#39;end_point&#39;</span>):</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>                    nodes.append(cmd.end_point)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Filter for odd-numbered nodes (1-based index: 1st, 3rd, 5th, ...)</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            <span class="co"># In 0-based indexing, these correspond to index 0, 2, 4, etc.</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            odd_nodes <span class="op">=</span> [node <span class="cf">for</span> idx, node <span class="kw">in</span> <span class="bu">enumerate</span>(nodes) <span class="cf">if</span> (idx <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="dv">2</span> <span class="op">!=</span> <span class="dv">0</span>]</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Process the selected odd nodes</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.process_odd_nodes(elem, odd_nodes)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> process_odd_nodes(<span class="va">self</span>, elem, odd_nodes):</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Example action: place a small visual marker at each odd node coordinate</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        parent <span class="op">=</span> elem.getparent()</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i, point <span class="kw">in</span> <span class="bu">enumerate</span>(odd_nodes):</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>            circle <span class="op">=</span> parent.add(inkex.Circle())</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>            circle.center <span class="op">=</span> point</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>            circle.radius <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>            circle.style <span class="op">=</span> {<span class="st">&#39;fill&#39;</span>: <span class="st">&#39;#ff0000&#39;</span>, <span class="st">&#39;stroke&#39;</span>: <span class="st">&#39;none&#39;</span>}</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    SelectOddNodes().run()</span></code></pre></div>
+<h2 id="step-by-step-breakdown">Step-by-Step Breakdown</h2>
+<h3 id="1-filtering-open-paths">1. Filtering Open Paths</h3>
+<p>The script verifies path openness using
+<code>isinstance(cmd, Close)</code>. If a path contains a
+<code>Close</code> command anywhere in its command list, the loop
+ignores it.</p>
+<h3 id="2-extracting-node-coordinates">2. Extracting Node
+Coordinates</h3>
+<p>Each segment command inherits from <code>PathCommand</code> and
+exposes the <code>end_point</code> property. Iterating over
+<code>elem.path</code> yields the coordinates in the exact sequence they
+appear from the path's starting node to its terminus.</p>
+<h3 id="3-applying-node-indexing">3. Applying Node Indexing</h3>
+<p>Depending on the requirement:</p>
+<ul>
+<li><strong>1-based Odd Nodes (1st, 3rd, 5th...):</strong> Evaluated as
+<code>(idx + 1) % 2 != 0</code> (or <code>idx % 2 == 0</code> in
+Python's 0-indexed syntax).</li>
+<li><strong>0-based Odd Nodes (indices 1, 3, 5...):</strong> Evaluated
+as <code>idx % 2 != 0</code>.</li>
+</ul>
+<h3 id="4-performing-operations">4. Performing Operations</h3>
+<p>Because the Inkscape GUI does not expose an external API to set
+active selections within the interactive Node Tool directly from a
+background script, typical extension actions on selected nodes
+include:</p>
+<ul>
+<li>Generating visual highlight circles or indicators.</li>
+<li>Rebuilding <code>elem.path</code> to retain or delete specific
+nodes.</li>
+<li>Exporting the coordinates to an external file for data
+analysis.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

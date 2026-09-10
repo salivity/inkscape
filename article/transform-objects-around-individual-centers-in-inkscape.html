@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform Objects Around Individual Centers in Inkscape - inkscape</title>
+    <meta name="description" content="Transforming multiple objects simultaneously around their individual centers in Inkscape allows designers to rotate, scale, or skew several elements at once without altering their relative layout on the canvas. Instead of using the standard on-canvas tra">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/transform-objects-around-individual-centers-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Transform Objects Around Individual Centers in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/transform-objects-around-individual-centers-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transforming multiple objects simultaneously around their individual centers in Inkscape allows designers to rotate, scale, or skew several elements at once without altering their relative layout on the canvas. Instead of using the standard on-canvas tra" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1
+id="transform-objects-around-individual-centers-in-inkscape">Transform
+Objects Around Individual Centers in Inkscape</h1>
+<p>Transforming multiple objects simultaneously around their individual
+centers in Inkscape allows designers to rotate, scale, or skew several
+elements at once without altering their relative layout on the canvas.
+Instead of using the standard on-canvas transform handles—which treat a
+multiple-object selection as a single unified bounding box—users must
+utilize the dedicated Transform dialog. This guide explains how to
+access this feature, configure the individual transformation setting,
+and execute simultaneous transformations efficiently.</p>
+<h3 id="accessing-the-transform-dialog">Accessing the Transform
+Dialog</h3>
+<p>The default selection tool transforms all selected objects relative
+to a single shared center point. To bypass this behavior, you must use
+the dedicated Transform panel:</p>
+<ol type="1">
+<li>Select all the objects you wish to modify.</li>
+<li>Open the Transform panel by navigating to <strong>Object &gt;
+Transform</strong> in the top menu.</li>
+<li>Alternatively, press the keyboard shortcut <strong>Shift + Ctrl +
+M</strong> (or <strong>Shift + Cmd + M</strong> on macOS).</li>
+</ol>
+<h3 id="enabling-apply-to-each-object-separately">Enabling "Apply to
+each object separately"</h3>
+<p>The key technique that enables individual center transformations is
+located at the bottom of the Transform panel:</p>
+<ol type="1">
+<li>Look at the bottom of the Transform panel for the checkbox labeled
+<strong>Apply to each object separately</strong>.</li>
+<li>Check this box before executing any transformation.</li>
+</ol>
+<p>When enabled, Inkscape calculates the transformation origin
+independently for every item in your selection, rather than calculating
+a single center for the entire group bounding box.</p>
+<h3 id="executing-the-transformations">Executing the
+Transformations</h3>
+<p>Once the checkbox is enabled, you can switch between the tabs at the
+top of the panel to perform different operations:</p>
+<ul>
+<li><strong>Rotate:</strong> Switch to the <strong>Rotate</strong> tab,
+enter your desired angle in degrees, choose the rotation direction
+(clockwise or counter-clockwise), and click <strong>Apply</strong>.
+Every selected object will spin around its own center point while
+staying in its current canvas position.</li>
+<li><strong>Scale:</strong> Switch to the <strong>Scale</strong> tab,
+set a percentage or absolute dimension, and click
+<strong>Apply</strong>. Objects will enlarge or shrink inward and
+outward from their individual centers. Ensure <strong>Scale
+proportionally</strong> is checked if you want to maintain original
+aspect ratios.</li>
+<li><strong>Skew:</strong> Switch to the <strong>Skew</strong> tab,
+define horizontal or vertical skew angles, and click
+<strong>Apply</strong> to skew each shape independently.</li>
+</ul>
+<h3 id="important-considerations">Important Considerations</h3>
+<ul>
+<li><strong>Groups:</strong> Inkscape treats a group as a single object.
+If you select multiple grouped objects, the transformation applies to
+the center of each group, not the individual paths inside them. To
+transform individual paths within a group, ungroup them first using
+<strong>Ctrl + U</strong> (<strong>Cmd + U</strong>).</li>
+<li><strong>Custom Rotation Centers:</strong> If you have manually moved
+an object's rotation center point using the Select tool, the Transform
+dialog will respect that custom center rather than the geometric center
+when executing individual rotations.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

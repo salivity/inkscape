@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import OriginLab Graphs to Inkscape with Text - inkscape</title>
+    <meta name="description" content="Exporting vector graphs from OriginLab to Inkscape often causes text labels, axis titles, and symbols to disappear or misalign due to font encoding and clipping incompatibilities. This guide outlines the most reliable workflows to successfully transfer y">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-import-originlab-graphs-to-inkscape-with-text">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import OriginLab Graphs to Inkscape with Text - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-import-originlab-graphs-to-inkscape-with-text" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting vector graphs from OriginLab to Inkscape often causes text labels, axis titles, and symbols to disappear or misalign due to font encoding and clipping incompatibilities. This guide outlines the most reliable workflows to successfully transfer y" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-originlab-graphs-to-inkscape-with-text">How to
+Import OriginLab Graphs to Inkscape with Text</h1>
+<p>Exporting vector graphs from OriginLab to Inkscape often causes text
+labels, axis titles, and symbols to disappear or misalign due to font
+encoding and clipping incompatibilities. This guide outlines the most
+reliable workflows to successfully transfer your scientific graphs from
+OriginLab into Inkscape while keeping all text labels completely intact
+and properly formatted.</p>
+<h3 id="method-1-exporting-via-pdf-recommended">Method 1: Exporting via
+PDF (Recommended)</h3>
+<p>The PDF format is the most robust bridge between OriginLab and
+Inkscape because it embeds fonts and preserves vector geometry
+accurately.</p>
+<ol type="1">
+<li>In OriginLab, navigate to <strong>File &gt; Export Graph &gt; Open
+Dialog...</strong></li>
+<li>Set the <strong>Image Type</strong> to <strong>Portable Document
+Format (*.pdf)</strong>.</li>
+<li>Expand the <strong>Export Settings</strong> branch:
+<ul>
+<li>Under <strong>Advanced</strong>, locate <strong>Font
+Options</strong>.</li>
+<li>Ensure that <strong>Embed Fonts</strong> or <strong>Convert text to
+outlines</strong> is checked. Converting text to outlines guarantees
+that symbols and non-standard scientific fonts will render identically
+in Inkscape, though the text will no longer be directly editable as
+characters.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to export the file.</li>
+<li>Open Inkscape and go to <strong>File &gt; Open</strong> (or
+<strong>Import</strong>) and select your PDF.</li>
+<li>In the <strong>PDF Import Settings</strong> dialog:
+<ul>
+<li>Choose <strong>Internal import</strong> to keep text editable,
+provided the required fonts are installed on your system.</li>
+<li>Alternatively, select <strong>Cairo import</strong> to treat fonts
+as paths if you observe missing symbols or displaced Greek
+characters.</li>
+</ul></li>
+</ol>
+<h3 id="method-2-direct-copy-paste-via-enhanced-metafile-emf">Method 2:
+Direct Copy-Paste via Enhanced Metafile (EMF)</h3>
+<p>For Windows users, the system clipboard provides a fast vector
+transfer method that avoids file export dialogs entirely.</p>
+<ol type="1">
+<li>In OriginLab, open the graph window.</li>
+<li>Go to <strong>Edit &gt; Copy Graph as Image</strong> (or press
+<strong>Ctrl + Alt + J</strong>) to open the copy settings.</li>
+<li>Set the format to <strong>Enhanced Metafile (EMF)</strong>.</li>
+<li>Open Inkscape and press <strong>Ctrl + V</strong> to paste the graph
+directly onto the canvas.</li>
+<li>Select the pasted object and press <strong>Ctrl + Shift + G</strong>
+to ungroup the components, allowing you to access individual text
+elements and paths.</li>
+</ol>
+<h3 id="method-3-optimizing-svg-export-settings">Method 3: Optimizing
+SVG Export Settings</h3>
+<p>If your workflow requires native SVG files, OriginLab’s SVG export
+parameters must be configured to prevent missing text elements.</p>
+<ol type="1">
+<li>Navigate to <strong>File &gt; Export Graph &gt; Open
+Dialog...</strong> and select <strong>Scalable Vector Graphics
+(*.svg)</strong> as the <strong>Image Type</strong>.</li>
+<li>Under <strong>Export Settings</strong>, set <strong>Text</strong> to
+either <strong>Convert to Curves</strong> (for visual fidelity) or
+<strong>Export as Text</strong> (for editability).</li>
+<li>If using standard text, ensure that text frames do not have a
+zero-width clipping path applied, which frequently causes Inkscape to
+hide the layer entirely.</li>
+<li>Click <strong>OK</strong> and import the resulting <code>.svg</code>
+file into Inkscape using <strong>File &gt; Open</strong>.</li>
+</ol>
+<h3 id="preventing-common-label-disappearances">Preventing Common Label
+Disappearances</h3>
+<ul>
+<li><strong>Replace Symbol Fonts with Unicode:</strong> OriginLab's
+legacy <code>Symbol</code> font often fails to map correctly inside
+Inkscape. Replace Greek letters and math operators using modern TrueType
+or OpenType Unicode fonts (such as Arial or Calibri) directly inside
+Origin before exporting.</li>
+<li><strong>Ungroup Clipped Layers in Inkscape:</strong> If an imported
+graph appears without labels, select the graph in Inkscape, right-click,
+and select <strong>Release Clip</strong>. Often, text is retained within
+the file structure but hidden beneath a restrictive boundary box created
+by OriginLab's page margins.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

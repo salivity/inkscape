@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Each SVG Layer to PNG Using Inkscape CLI - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to automate exporting every layer of an SVG document into individual PNG images using the Inkscape command-line interface (CLI). By parsing layer identifiers from the SVG file and executing Inkscape export commands within a ba">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-each-svg-layer-to-png-using-inkscape-cli">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Each SVG Layer to PNG Using Inkscape CLI - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-each-svg-layer-to-png-using-inkscape-cli" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to automate exporting every layer of an SVG document into individual PNG images using the Inkscape command-line interface (CLI). By parsing layer identifiers from the SVG file and executing Inkscape export commands within a ba" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-each-svg-layer-to-png-using-inkscape-cli">Export Each SVG
+Layer to PNG Using Inkscape CLI</h1>
+<p>This guide demonstrates how to automate exporting every layer of an
+SVG document into individual PNG images using the Inkscape command-line
+interface (CLI). By parsing layer identifiers from the SVG file and
+executing Inkscape export commands within a batch script, you can
+quickly generate isolated graphic assets without manually toggling layer
+visibility inside the Inkscape graphical interface.</p>
+<hr />
+<h3 id="the-base-inkscape-command">The Base Inkscape Command</h3>
+<p>In modern versions of Inkscape (v1.0 and newer), exporting a specific
+object or layer to PNG is handled via the following command:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--export-id</span><span class="op">=</span><span class="st">&quot;LAYER_ID&quot;</span> <span class="at">--export-id-only</span> <span class="at">--export-type</span><span class="op">=</span><span class="st">&quot;png&quot;</span> <span class="at">--export-filename</span><span class="op">=</span><span class="st">&quot;output.png&quot;</span></span></code></pre></div>
+<ul>
+<li><code>--export-id="LAYER_ID"</code>: Specifies the <code>id</code>
+of the layer or group you want to render.</li>
+<li><code>--export-id-only</code>: Ensures that only the specified
+element is drawn, hiding all other objects and layers.</li>
+<li><code>--export-type="png"</code>: Sets the export target format to
+PNG.</li>
+<li><code>--export-filename="output.png"</code>: Designates the output
+file path.</li>
+</ul>
+<hr />
+<h3 id="understanding-svg-layer-structure">Understanding SVG Layer
+Structure</h3>
+<p>Inkscape stores layers as standard SVG <code>&lt;g&gt;</code> (group)
+elements tagged with a special attribute:
+<code>inkscape:groupmode="layer"</code>. Each layer also has an
+<code>id</code> attribute (used internally by Inkscape) and an
+<code>inkscape:label</code> attribute (the human-readable layer name
+displayed in the UI).</p>
+<p>Because the Inkscape CLI does not have a single native switch to
+"export all layers," you need a lightweight wrapper script to extract
+these layer IDs and invoke the export command iteratively.</p>
+<hr />
+<h3 id="method-1-cross-platform-python-script">Method 1: Cross-Platform
+Python Script</h3>
+<p>Using Python is the most robust, cross-platform approach because it
+natively parses the SVG's XML structure and executes the CLI commands
+via the <code>subprocess</code> module.</p>
+<p>Save the following script as <code>export_layers.py</code>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xml.etree.ElementTree <span class="im">as</span> ET</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> export_svg_layers(svg_path, output_dir<span class="op">=</span><span class="st">&quot;output&quot;</span>):</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> os.path.isfile(svg_path):</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;Error: File &#39;</span><span class="sc">{</span>svg_path<span class="sc">}</span><span class="ss">&#39; not found.&quot;</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        sys.exit(<span class="dv">1</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    os.makedirs(output_dir, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Namespaces used by Inkscape SVG files</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    namespaces <span class="op">=</span> {</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;svg&#39;</span>: <span class="st">&#39;http://www.w3.org/2000/svg&#39;</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;inkscape&#39;</span>: <span class="st">&#39;http://www.inkscape.org/namespaces/inkscape&#39;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    tree <span class="op">=</span> ET.parse(svg_path)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    root <span class="op">=</span> tree.getroot()</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Find all group tags acting as Inkscape layers</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    layers <span class="op">=</span> root.findall(<span class="st">&quot;.//svg:g[@inkscape:groupmode=&#39;layer&#39;]&quot;</span>, namespaces)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> layers:</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;No Inkscape layers found in document.&quot;</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Found </span><span class="sc">{</span><span class="bu">len</span>(layers)<span class="sc">}</span><span class="ss"> layer(s). Starting export...&quot;</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> layer <span class="kw">in</span> layers:</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        layer_id <span class="op">=</span> layer.attrib.get(<span class="st">&quot;id&quot;</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Use human-readable label if present; fall back to ID</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        label_attr <span class="op">=</span> <span class="ss">f&quot;</span><span class="ch">{{</span><span class="sc">{</span>namespaces[<span class="st">&#39;inkscape&#39;</span>]<span class="sc">}</span><span class="ch">}}</span><span class="ss">label&quot;</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        layer_name <span class="op">=</span> layer.attrib.get(label_attr, layer_id)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Sanitize filename</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        safe_name <span class="op">=</span> <span class="st">&quot;&quot;</span>.join(c <span class="cf">for</span> c <span class="kw">in</span> layer_name <span class="cf">if</span> c.isalnum() <span class="kw">or</span> c <span class="kw">in</span> (<span class="st">&#39; &#39;</span>, <span class="st">&#39;_&#39;</span>, <span class="st">&#39;-&#39;</span>)).strip()</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        output_file <span class="op">=</span> os.path.join(output_dir, <span class="ss">f&quot;</span><span class="sc">{</span>safe_name<span class="sc">}</span><span class="ss">.png&quot;</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        cmd <span class="op">=</span> [</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;inkscape&quot;</span>,</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>            svg_path,</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f&quot;--export-id=</span><span class="sc">{</span>layer_id<span class="sc">}</span><span class="ss">&quot;</span>,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;--export-id-only&quot;</span>,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;--export-type=png&quot;</span>,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>            <span class="ss">f&quot;--export-filename=</span><span class="sc">{</span>output_file<span class="sc">}</span><span class="ss">&quot;</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;Exporting &#39;</span><span class="sc">{</span>layer_name<span class="sc">}</span><span class="ss">&#39; -&gt; </span><span class="sc">{</span>output_file<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        subprocess.run(cmd, check<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;All layers successfully exported.&quot;</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(sys.argv) <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;Usage: python export_layers.py &lt;input.svg&gt; [output_directory]&quot;</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>        sys.exit(<span class="dv">1</span>)</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    target_svg <span class="op">=</span> sys.argv[<span class="dv">1</span>]</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    out_dir <span class="op">=</span> sys.argv[<span class="dv">2</span>] <span class="cf">if</span> <span class="bu">len</span>(sys.argv) <span class="op">&gt;</span> <span class="dv">2</span> <span class="cf">else</span> <span class="st">&quot;output&quot;</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    export_svg_layers(target_svg, out_dir)</span></code></pre></div>
+<p>Run the script from your terminal:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> export_layers.py drawing.svg ./exported_pngs</span></code></pre></div>
+<hr />
+<h3 id="method-2-bash-script-using-inkscape-actions">Method 2: Bash
+Script Using Inkscape Actions</h3>
+<p>If you are on Linux or macOS and prefer a pure shell script, you can
+query object IDs directly using Inkscape's built-in query system or
+standard XML tools like <code>xmlstarlet</code>.</p>
+<p>Here is a Bash script utilizing <code>xmlstarlet</code> to parse the
+layer attributes:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-e</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="va">SVG_FILE</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="va">OUTPUT_DIR</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${2</span><span class="op">:-</span>./layers_out<span class="va">}</span><span class="st">&quot;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="ot">-z</span> <span class="st">&quot;</span><span class="va">$SVG_FILE</span><span class="st">&quot;</span> <span class="bu">]</span> <span class="kw">||</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="st">&quot;</span><span class="va">$SVG_FILE</span><span class="st">&quot;</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">&quot;Usage: </span><span class="va">$0</span><span class="st"> &lt;path-to-svg&gt; [output-dir]&quot;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">&quot;</span><span class="va">$OUTPUT_DIR</span><span class="st">&quot;</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract layer ID and layer label pairs</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ex">xmlstarlet</span> sel <span class="at">-N</span> svg=<span class="st">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="dt">\</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>               <span class="at">-N</span> inkscape=<span class="st">&quot;http://www.inkscape.org/namespaces/inkscape&quot;</span> <span class="dt">\</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">-t</span> <span class="at">-m</span> <span class="st">&quot;//svg:g[@inkscape:groupmode=&#39;layer&#39;]&quot;</span> <span class="dt">\</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">-v</span> <span class="st">&quot;@id&quot;</span> <span class="at">-o</span> <span class="st">&quot;:&quot;</span> <span class="at">-v</span> <span class="st">&quot;@inkscape:label&quot;</span> <span class="at">-n</span> <span class="st">&quot;</span><span class="va">$SVG_FILE</span><span class="st">&quot;</span> <span class="kw">|</span> <span class="cf">while</span> <span class="va">IFS</span><span class="op">=</span><span class="st">&quot;:&quot;</span> <span class="bu">read</span> <span class="at">-r</span> <span class="va">LAYER_ID</span> <span class="va">LAYER_LABEL</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fallback to ID if label is empty</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="va">FILENAME</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${LAYER_LABEL</span><span class="op">:-</span><span class="va">$LAYER_ID}</span><span class="st">&quot;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="va">OUTPUT_PNG</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$OUTPUT_DIR</span><span class="st">/</span><span class="va">${FILENAME}</span><span class="st">.png&quot;</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">&quot;Exporting: </span><span class="va">$FILENAME</span><span class="st"> (ID: </span><span class="va">$LAYER_ID</span><span class="st">)&quot;</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="ex">inkscape</span> <span class="st">&quot;</span><span class="va">$SVG_FILE</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">--export-id</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$LAYER_ID</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">--export-id-only</span> <span class="dt">\</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">--export-type</span><span class="op">=</span>png <span class="dt">\</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">--export-filename</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$OUTPUT_PNG</span><span class="st">&quot;</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Layer export complete.&quot;</span></span></code></pre></div>
+<p>Make the script executable and run it:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x export_layers.sh</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./export_layers.sh</span> graphic.svg ./output_layers</span></code></pre></div>
+<hr />
+<h3 id="customizing-resolution-and-dimensions">Customizing Resolution
+and Dimensions</h3>
+<p>You can append sizing flags to any of the Inkscape commands within
+these scripts:</p>
+<ul>
+<li>Set explicit DPI (default is 96):<br />
+<code>--export-dpi=300</code></li>
+<li>Set a fixed export width (height scales proportionally):<br />
+<code>--export-width=1920</code></li>
+<li>Set a fixed export height (width scales proportionally):<br />
+<code>--export-height=1080</code></li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

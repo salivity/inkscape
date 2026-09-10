@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designing Precision Cams with Coordinates in Inkscape - inkscape</title>
+    <meta name="description" content="Designing precision cam profiles from mathematical coordinate tables bridges the gap between kinematic calculations and digital fabrication. This article explains how to translate analytical cam displacement data—derived from mathematical formulas—in">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/designing-precision-cams-with-coordinates-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Designing Precision Cams with Coordinates in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/designing-precision-cams-with-coordinates-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing precision cam profiles from mathematical coordinate tables bridges the gap between kinematic calculations and digital fabrication. This article explains how to translate analytical cam displacement data—derived from mathematical formulas—in" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="designing-precision-cams-with-coordinates-in-inkscape">Designing
+Precision Cams with Coordinates in Inkscape</h1>
+<p>Designing precision cam profiles from mathematical coordinate tables
+bridges the gap between kinematic calculations and digital fabrication.
+This article explains how to translate analytical cam displacement
+data—derived from mathematical formulas—into accurate, scalable vector
+contours using Inkscape. By formatting Cartesian coordinate points and
+leveraging Inkscape's internal path definitions, you can generate exact
+2D cam geometry suitable for laser cutting, CNC machining, or mechanical
+simulation without relying on expensive CAD packages.</p>
+<h3 id="1-calculate-and-format-the-coordinate-data">1. Calculate and
+Format the Coordinate Data</h3>
+<p>Cam profiles are fundamentally defined by a displacement diagram
+combined with a base circle. Kinematic equations typically calculate
+points in polar coordinates <span class="math inline">\((r,
+\theta)\)</span>, where <span class="math inline">\(r\)</span> is the
+instantaneous radius and <span class="math inline">\(\theta\)</span> is
+the cam rotation angle.</p>
+<p>Because standard vector editors operate in a 2D Cartesian plane, you
+must convert your polar coordinates into Cartesian <span
+class="math inline">\((X, Y)\)</span> values:</p>
+<ul>
+<li><span class="math inline">\(X = r \cdot \cos(\theta)\)</span></li>
+<li><span class="math inline">\(Y = r \cdot \sin(\theta)\)</span></li>
+</ul>
+<p>Generate these points in a spreadsheet or numerical tool (such as
+Excel, Python, or MATLAB) with an angular resolution high enough to
+preserve profile dynamics—typically every <span
+class="math inline">\(0.5^\circ\)</span> to <span
+class="math inline">\(1.0^\circ\)</span> (360 to 720 points total).</p>
+<h3 id="2-convert-coordinates-to-svg-path-syntax">2. Convert Coordinates
+to SVG Path Syntax</h3>
+<p>The most reliable way to bring raw numerical tables into Inkscape
+without third-party plugins is to format the data directly into an SVG
+path string.</p>
+<p>SVG paths define lines using specific commands:</p>
+<ul>
+<li><code>M x,y</code>: Move to the starting point.</li>
+<li><code>L x,y</code>: Draw a straight line to the coordinate.</li>
+<li><code>Z</code>: Close the path back to the starting point.</li>
+</ul>
+<p>In your spreadsheet, create a formula column to assemble the path
+commands. If your <span class="math inline">\(X\)</span> values are in
+Column A and <span class="math inline">\(Y\)</span> values are in Column
+B:</p>
+<ul>
+<li>For the first row:
+<code>="M " &amp; A2 &amp; "," &amp; B2</code></li>
+<li>For subsequent rows:
+<code>="L " &amp; A3 &amp; "," &amp; B3</code></li>
+</ul>
+<p>Concatenate all rows into a single text block, and append the letter
+<code>Z</code> at the end to ensure a completely closed cam loop.</p>
+<h3 id="3-inject-the-data-into-inkscape">3. Inject the Data into
+Inkscape</h3>
+<p>Once the string is generated, import it directly into Inkscape's XML
+tree:</p>
+<ol type="1">
+<li>Open Inkscape and set your display units and document units to match
+your mathematical data (e.g., millimeters) under <strong>File &gt;
+Document Properties</strong>.</li>
+<li>Open the built-in XML Editor by pressing <strong>Ctrl + Shift +
+X</strong>.</li>
+<li>Select the primary layer element
+(<code>&lt;svg:g id="layer1"&gt;</code>).</li>
+<li>Click the <strong>New element node</strong> button, enter
+<code>svg:path</code>, and click <strong>Create</strong>.</li>
+<li>In the right-hand attributes pane, enter <code>d</code> for the
+attribute name.</li>
+<li>Paste your concatenated coordinate string into the attribute value
+field and click <strong>Set</strong>.</li>
+</ol>
+<p>The exact cam contour will immediately appear on your canvas at 1:1
+scale.</p>
+<h3 id="4-optimize-node-distribution-and-smoothness">4. Optimize Node
+Distribution and Smoothness</h3>
+<p>Depending on your manufacturing method, you must choose between a
+dense polygonal path or a smoothed curve:</p>
+<ul>
+<li><strong>Faceted Paths (Dense Linear Segments):</strong> If the
+coordinate step size is small enough (e.g., hundreds of points), leave
+the path with linear segments. This avoids introducing mathematical
+spline deviations that could alter the calculated acceleration or jerk
+profiles of the follower.</li>
+<li><strong>Curved Smoothing:</strong> If your downstream process
+requires true arcs or splines, select the path, switch to the
+<strong>Node Tool</strong> (<code>N</code>), select all nodes
+(<code>Ctrl + A</code>), and click <strong>Make selected nodes
+smooth</strong> in the top toolbar. Verify that the smoothed curve does
+not deviate visibly from the critical lift and dwell zones.</li>
+</ul>
+<h3 id="5-add-shaft-bores-and-alignment-references">5. Add Shaft Bores
+and Alignment References</h3>
+<p>A functional cam requires rotational constraints and alignment
+geometry:</p>
+<ol type="1">
+<li>Select the <strong>Circle Tool</strong> (<code>E</code>) and hold
+<code>Ctrl + Shift</code> to draw a concentric bore for the cam
+shaft.</li>
+<li>In the <strong>Align and Distribute</strong> panel
+(<code>Ctrl + Shift + A</code>), set <strong>Relative to:</strong> to
+"Biggest object."</li>
+<li>Select both the cam profile and the bore circle, then click
+<strong>Center on vertical axis</strong> and <strong>Center on
+horizontal axis</strong>. If your coordinate data was calculated
+relative to the center of rotation <span
+class="math inline">\((0,0)\)</span>, ensure the bore sits precisely at
+the origin point.</li>
+<li>Add any required keyways, set-screw holes, or timing index marks
+using boolean operations (<strong>Path &gt; Difference</strong> or
+<strong>Path &gt; Union</strong>).</li>
+</ol>
+<h3 id="6-export-for-fabrication">6. Export for Fabrication</h3>
+<p>To prepare the design for manufacturing:</p>
+<ul>
+<li>Open <strong>Fill and Stroke</strong>
+(<code>Ctrl + Shift + F</code>). Remove any fill, set the stroke to a
+solid color, and set the stroke width to a hairline value (such as <span
+class="math inline">\(0.001\text{ mm}\)</span> or <span
+class="math inline">\(0.05\text{ pt}\)</span>) as required by standard
+CNC or laser cutters.</li>
+<li>Save the file natively as <strong>Inkscape SVG</strong> for
+archiving.</li>
+<li>Export as a <strong>Desktop Cutting Plotter (AutoCAD DXF
+R14)</strong> or clean <strong>PDF</strong> to import directly into CAM
+toolpath generators. Ensure the export scale is set to a 1:1 ratio to
+maintain physical dimensional accuracy.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

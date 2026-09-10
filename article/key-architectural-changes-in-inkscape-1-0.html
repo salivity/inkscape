@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Architectural Changes in Inkscape 1.0 - inkscape</title>
+    <meta name="description" content="The milestone Inkscape 1.0 release marked a comprehensive overhaul of the open-source vector graphics editor, modernizing its core codebase after more than three years of intensive development. This transition addressed critical technical debt that had a">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/key-architectural-changes-in-inkscape-1-0">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Key Architectural Changes in Inkscape 1.0 - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/key-architectural-changes-in-inkscape-1-0" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The milestone Inkscape 1.0 release marked a comprehensive overhaul of the open-source vector graphics editor, modernizing its core codebase after more than three years of intensive development. This transition addressed critical technical debt that had a" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="key-architectural-changes-in-inkscape-10">Key Architectural
+Changes in Inkscape 1.0</h1>
+<p>The milestone Inkscape 1.0 release marked a comprehensive overhaul of
+the open-source vector graphics editor, modernizing its core codebase
+after more than three years of intensive development. This transition
+addressed critical technical debt that had accumulated since the
+project's inception in 2003. Key architectural shifts included the
+migration to the GTK3 toolkit, the alignment of the canvas coordinate
+system with modern SVG standards, a complete rewrite of the extension
+system for Python 3, native macOS windowing support, and the
+modernization of core rendering and geometry libraries.</p>
+<h3 id="migration-to-the-gtk3-user-interface-toolkit">Migration to the
+GTK3 User Interface Toolkit</h3>
+<p>The most visible and foundational structural upgrade in Inkscape 1.0
+was the long-awaited migration from GTK2 to GTK3. GTK2 had reached
+end-of-life, leaving the application unable to properly interface with
+modern display pipelines. Migrating the entire codebase to GTK3
+enabled:</p>
+<ul>
+<li><strong>Native HiDPI Support:</strong> The interface can scale
+properly on high-resolution displays without blurry icons or misaligned
+interface elements.</li>
+<li><strong>Wayland Compatibility:</strong> Linux users gained native
+Wayland support, bypassing the legacy XWayland compatibility layer.</li>
+<li><strong>CSS-Based Theming:</strong> UI styling was restructured
+around GTK3's CSS engine, allowing for dark mode support, custom icon
+sets, and granular theme customization.</li>
+</ul>
+<h3
+id="svg-compliant-coordinate-system-and-canvas-modernization">SVG-Compliant
+Coordinate System and Canvas Modernization</h3>
+<p>Historically, Inkscape used a Cartesian coordinate system with the
+origin <span class="math inline">\((0,0)\)</span> located at the
+bottom-left corner of the canvas. This was contrary to the official W3C
+SVG standard, which defines the origin at the top-left corner with the
+Y-axis increasing downward.</p>
+<p>To resolve this discrepancy, Inkscape 1.0 fundamentally restructured
+its canvas math to natively support the top-left origin. This eliminated
+internal coordinate transformations, simplified SVG export routines, and
+reduced bugs when exchanging files with other vector editors. Alongside
+this coordinate shift, the canvas rendering pipeline was refactored to
+support canvas rotation and canvas mirroring without modifying the
+underlying vector geometries.</p>
+<h3
+id="modernization-of-the-extensions-framework-to-python-3">Modernization
+of the Extensions Framework to Python 3</h3>
+<p>Before version 1.0, Inkscape’s extensive ecosystem of extensions
+relied on legacy Python 2 scripts and direct XML parsing. With Python 2
+officially retired, Inkscape redesigned its entire extension
+pipeline:</p>
+<ul>
+<li><strong>Rewrite of <code>inkex</code>:</strong> The core Python
+module that powers extensions (<code>inkex</code>) was rewritten into a
+modern, object-oriented API.</li>
+<li><strong>Python 3 Standard:</strong> All bundled extensions were
+updated to execute within Python 3 environments.</li>
+<li><strong>Structured Data Access:</strong> The new framework provided
+developers with high-level access to SVG elements, transform matrices,
+and styles, making custom plugin development substantially cleaner and
+more maintainable.</li>
+</ul>
+<h3 id="native-macos-architecture">Native macOS Architecture</h3>
+<p>Prior to Inkscape 1.0, macOS builds relied on the XQuartz X11 window
+server layer, resulting in poor integration with macOS design
+conventions, keyboard shortcuts, and performance overhead. Inkscape 1.0
+eliminated the X11 dependency entirely, packaging the software as a
+native, notarized macOS application directly using GTK’s native Quartz
+backend. This resolved clipboard synchronization issues and allowed the
+software to use native macOS input and menu systems.</p>
+<h3 id="core-c-codebase-modernization-and-library-decoupling">Core C++
+Codebase Modernization and Library Decoupling</h3>
+<p>Under the hood, developers transitioned the codebase to modern C++
+standards (C++11/C++14). This involved:</p>
+<ul>
+<li><strong>Threaded Rendering:</strong> Canvas redraw operations were
+decoupled from UI responsiveness through multi-threaded rendering
+routines.</li>
+<li><strong>Modularizing <code>lib2geom</code>:</strong> The underlying
+computational geometry engine, <code>lib2geom</code>, was refined and
+decoupled further from the core application, allowing more robust path
+operations, boolean tools, and path-offset calculations.</li>
+<li><strong>Memory Management:</strong> Legacy C-style memory
+allocations and raw pointers were systematically replaced with modern
+smart pointers and RAII (Resource Acquisition Is Initialization) idioms,
+significantly reducing memory leaks and unexpected crashes.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

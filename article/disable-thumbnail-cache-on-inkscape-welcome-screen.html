@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disable Thumbnail Cache on Inkscape Welcome Screen - inkscape</title>
+    <meta name="description" content="Inkscape generates and stores visual previews of recently opened files to display them directly on the Welcome screen upon startup. While this feature helps users quickly identify previous projects, it can raise privacy concerns, consume disk storage, or">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/disable-thumbnail-cache-on-inkscape-welcome-screen">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Disable Thumbnail Cache on Inkscape Welcome Screen - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/disable-thumbnail-cache-on-inkscape-welcome-screen" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape generates and stores visual previews of recently opened files to display them directly on the Welcome screen upon startup. While this feature helps users quickly identify previous projects, it can raise privacy concerns, consume disk storage, or" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="disable-thumbnail-cache-on-inkscape-welcome-screen">Disable
+Thumbnail Cache on Inkscape Welcome Screen</h1>
+<p>Inkscape generates and stores visual previews of recently opened
+files to display them directly on the Welcome screen upon startup. While
+this feature helps users quickly identify previous projects, it can
+raise privacy concerns, consume disk storage, or cause performance lags
+on older hardware. This guide provides straightforward instructions to
+turn off thumbnail caching, adjust recent file visibility in
+preferences, and clear existing cached preview images from your
+operating system.</p>
+<h3 id="disabling-document-thumbnails-via-preferences">Disabling
+Document Thumbnails via Preferences</h3>
+<ol type="1">
+<li>Launch Inkscape.</li>
+<li>Open the Preferences window by navigating to <strong>Edit</strong>
+&gt; <strong>Preferences</strong> from the top menu bar (or press
+<code>Ctrl</code> + <code>Shift</code> + <code>P</code> on
+Windows/Linux, <code>Cmd</code> + <code>Shift</code> + <code>P</code> on
+macOS).</li>
+<li>In the left-hand category pane, select
+<strong>Interface</strong>.</li>
+<li>Locate the <strong>Recent files</strong> or <strong>Welcome
+dialog</strong> section in the settings panel.</li>
+<li>Uncheck the option to <strong>Create thumbnails for recent
+files</strong> or toggle off thumbnail rendering to stop Inkscape from
+caching new document previews.</li>
+<li>To prevent recent files from displaying altogether, reduce the
+<strong>Maximum recent files</strong> counter to <code>0</code>.</li>
+</ol>
+<h3 id="preventing-thumbnails-from-saving-inside-files">Preventing
+Thumbnails from Saving Inside Files</h3>
+<p>Inkscape can also embed thumbnail metadata directly into SVG files
+upon saving, which supplies the Welcome screen with preview
+graphics:</p>
+<ol type="1">
+<li>In the <strong>Preferences</strong> dialog, expand
+<strong>Input/Output</strong> in the left sidebar.</li>
+<li>Click on <strong>SVG output</strong>.</li>
+<li>Locate the setting labeled <strong>Include thumbnail</strong> or
+<strong>Save document thumbnail</strong>.</li>
+<li>Uncheck the box to ensure Inkscape stops embedding image previews
+inside your saved vector files.</li>
+</ol>
+<h3 id="clearing-the-existing-thumbnail-cache">Clearing the Existing
+Thumbnail Cache</h3>
+<p>Disabling the feature stops future caching, but previously rendered
+thumbnails remain stored on your system. You can manually delete these
+files based on your operating system:</p>
+<ul>
+<li><strong>Windows:</strong> Press <code>Win</code> + <code>R</code>,
+type <code>%LOCALAPPDATA%\inkscape\cache</code> (or
+<code>%APPDATA%\inkscape\cache</code>), and press <code>Enter</code>.
+Delete the contents of the <code>thumbnails</code> or <code>cache</code>
+folder.</li>
+<li><strong>macOS:</strong> Open Finder, press <code>Cmd</code> +
+<code>Shift</code> + <code>G</code>, enter
+<code>~/Library/Caches/org.inkscape.Inkscape</code>, and remove the
+cached thumbnail files.</li>
+<li><strong>Linux:</strong> Open a terminal or file manager, navigate to
+<code>~/.cache/inkscape/</code>, and delete the thumbnail
+directory.</li>
+</ul>
+<p>Once completed, restart Inkscape. The Welcome screen will no longer
+generate or display cached visual previews of your documents.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import AI Files Directly into Inkscape - inkscape</title>
+    <meta name="description" content="Importing Adobe Illustrator (.ai) files directly into Inkscape is a straightforward process that does not require Adobe software. Because modern .ai files are built on a PDF-compatible structure, Inkscape can natively read and parse vector data, layers,">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-import-ai-files-directly-into-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import AI Files Directly into Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-import-ai-files-directly-into-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Importing Adobe Illustrator (.ai) files directly into Inkscape is a straightforward process that does not require Adobe software. Because modern .ai files are built on a PDF-compatible structure, Inkscape can natively read and parse vector data, layers," />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-ai-files-directly-into-inkscape">How to Import AI
+Files Directly into Inkscape</h1>
+<p>Importing Adobe Illustrator (.ai) files directly into Inkscape is a
+straightforward process that does not require Adobe software. Because
+modern <code>.ai</code> files are built on a PDF-compatible structure,
+Inkscape can natively read and parse vector data, layers, and text from
+these files using its built-in PDF rendering engine. This guide explains
+how to open or import <code>.ai</code> files directly, select the best
+import settings, and resolve common formatting issues.</p>
+<h3 id="prerequisites-for-ai-compatibility">Prerequisites for AI
+Compatibility</h3>
+<p>For Inkscape to open an <code>.ai</code> file seamlessly, the file
+must have been saved with the <strong>"Create PDF Compatible
+File"</strong> option enabled in Adobe Illustrator. This is the default
+setting in Illustrator and allows third-party vector editors like
+Inkscape to extract the visual vector paths.</p>
+<hr />
+<h3 id="method-1-open-an-ai-file-directly">Method 1: Open an AI File
+Directly</h3>
+<p>Use this method when you want to start a new Inkscape project using
+an <code>.ai</code> file as the base.</p>
+<ol type="1">
+<li>Launch Inkscape.</li>
+<li>Go to the top menu and select <strong>File &gt; Open</strong> (or
+press <code>Ctrl + O</code> on Windows/Linux, <code>Cmd + O</code> on
+macOS).</li>
+<li>Set the file format filter in the bottom-right corner of the file
+browser to <strong>All Files</strong> or <strong>Adobe Illustrator
+(*.ai)</strong>.</li>
+<li>Select your <code>.ai</code> file and click
+<strong>Open</strong>.</li>
+<li>The <strong>PDF Import Settings</strong> dialog will appear. Choose
+your preferred settings (detailed below) and click
+<strong>OK</strong>.</li>
+</ol>
+<hr />
+<h3 id="method-2-import-an-ai-file-into-an-existing-document">Method 2:
+Import an AI File into an Existing Document</h3>
+<p>Use this method to insert <code>.ai</code> artwork into a canvas you
+are currently editing.</p>
+<ol type="1">
+<li>Open your existing project in Inkscape.</li>
+<li>Go to <strong>File &gt; Import</strong> (or press
+<code>Ctrl + I</code> / <code>Cmd + I</code>).</li>
+<li>Locate and select the <code>.ai</code> file, then click
+<strong>Open</strong>.</li>
+<li>Configure the <strong>PDF Import Settings</strong> and click
+<strong>OK</strong>.</li>
+<li>The artwork will appear on your canvas as a grouped vector
+object.</li>
+</ol>
+<hr />
+<h3 id="configuring-pdf-import-settings">Configuring PDF Import
+Settings</h3>
+<p>When opening an <code>.ai</code> file, Inkscape displays an import
+dialog with two primary internal engines:</p>
+<ul>
+<li><strong>Internal Import:</strong> The recommended default. It keeps
+elements editable, converts standard text into editable Inkscape text
+objects, and handles gradients and vector paths cleanly.</li>
+<li><strong>Cairo/Poppler Import:</strong> Uses an external rendering
+library. It is best used when an <code>.ai</code> file contains complex
+clipping paths, embedded fonts that aren't installed on your system, or
+special effects that fail to render under the Internal Import
+engine.</li>
+</ul>
+<p><strong>Key Settings to Check:</strong></p>
+<ul>
+<li><strong>Text handling:</strong> Choose <em>Keep text as text</em> if
+you plan to edit the typography, or <em>Convert text to paths</em> if
+the original font is not installed on your computer to avoid font
+substitution errors.</li>
+<li><strong>Precision:</strong> Set the precision slider to standard or
+high to ensure accurate curve and bezier node rendering.</li>
+</ul>
+<hr />
+<h3 id="troubleshooting-common-import-issues">Troubleshooting Common
+Import Issues</h3>
+<ul>
+<li><strong>Missing or Replaced Fonts:</strong> If an <code>.ai</code>
+file uses fonts not installed on your operating system, Inkscape will
+replace them with a default fallback font. To fix this, install the
+missing fonts on your computer before importing, or ask the file creator
+to outline text paths in Illustrator first.</li>
+<li><strong>File Fails to Open:</strong> If Inkscape displays an error
+stating it cannot read the file, the <code>.ai</code> file was likely
+saved without PDF compatibility. The only workaround is to open the file
+in Illustrator (or an alternative converter) and re-save it with the
+"Create PDF Compatible File" checkbox enabled.</li>
+<li><strong>Complex Effects and Gradients:</strong> Advanced Illustrator
+features such as Mesh Gradients, 3D effects, and proprietary dynamic
+brushes may be flattened into raster images or simplified vector groups
+during the import process.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

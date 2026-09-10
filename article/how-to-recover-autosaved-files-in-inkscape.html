@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Recover Autosaved Files in Inkscape - inkscape</title>
+    <meta name="description" content="Unexpected crashes in Inkscape do not necessarily mean your unsaved work is permanently lost. Inkscape features an automated backup system that regularly saves emergency snapshots of your active documents. This guide outlines how to find the default auto">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-recover-autosaved-files-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Recover Autosaved Files in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-recover-autosaved-files-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Unexpected crashes in Inkscape do not necessarily mean your unsaved work is permanently lost. Inkscape features an automated backup system that regularly saves emergency snapshots of your active documents. This guide outlines how to find the default auto" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-recover-autosaved-files-in-inkscape">How to Recover
+Autosaved Files in Inkscape</h1>
+<p>Unexpected crashes in Inkscape do not necessarily mean your unsaved
+work is permanently lost. Inkscape features an automated backup system
+that regularly saves emergency snapshots of your active documents. This
+guide outlines how to find the default autosave directories across
+different operating systems, locate your recovered files, and properly
+restore your project.</p>
+<h3 id="step-1-check-default-autosave-locations">Step 1: Check Default
+Autosave Locations</h3>
+<p>When Inkscape crashes, it attempts to generate an emergency document.
+If Autosave is enabled, it periodically saves timestamped
+<code>.svg</code> files to a specific directory on your computer.</p>
+<ul>
+<li><strong>Windows:</strong> Check
+<code>C:\Users\&lt;YourUsername&gt;\</code> or
+<code>C:\Users\&lt;YourUsername&gt;\AppData\Local\Microsoft\Windows\INetCache\inkscape</code></li>
+<li><strong>macOS:</strong> Check
+<code>/Users/&lt;YourUsername&gt;/</code> (your user Home folder)</li>
+<li><strong>Linux:</strong> Check
+<code>/home/&lt;YourUsername&gt;/</code> (your user Home folder) or
+<code>/tmp/</code></li>
+</ul>
+<p>Autosaved files are typically named using the original file name
+appended with the date, time, and an index (for example:
+<code>drawing_2023_10_25_14_30_00_0000.svg</code> or
+<code>New document 1.svg</code>).</p>
+<h3 id="step-2-verify-your-specific-autosave-directory">Step 2: Verify
+Your Specific Autosave Directory</h3>
+<p>If you cannot find the files in the default folders, look up the
+exact path configured inside Inkscape's settings:</p>
+<ol type="1">
+<li>Open Inkscape.</li>
+<li>Go to <strong>Edit</strong> &gt; <strong>Preferences</strong> (or
+press <code>Ctrl + Shift + P</code> on Windows/Linux,
+<code>Cmd + Shift + P</code> on macOS).</li>
+<li>In the left sidebar, expand <strong>Input/Output</strong> and select
+<strong>Autosave</strong>.</li>
+<li>Look at the <strong>Autosave directory (folder)</strong> field. If
+this field is blank, Inkscape saves backups to your user home directory.
+If a path is specified, navigate to that exact folder using your file
+manager.</li>
+</ol>
+<h3 id="step-3-open-and-re-save-the-backup">Step 3: Open and Re-save the
+Backup</h3>
+<ol type="1">
+<li>Open your system's file manager and navigate to the autosave
+directory.</li>
+<li>Sort the folder contents by <strong>Date Modified</strong> to easily
+spot the most recent file.</li>
+<li>Open the latest <code>.svg</code> backup directly in Inkscape.</li>
+<li>Verify your artwork, then navigate to <strong>File</strong> &gt;
+<strong>Save As...</strong>.</li>
+<li>Save the file in your intended project directory with your preferred
+filename to resume normal working operations.</li>
+</ol>
+<h3 id="optimizing-autosave-settings-for-future-crashes">Optimizing
+Autosave Settings for Future Crashes</h3>
+<p>To prevent data loss in future sessions, ensure the backup feature is
+properly configured:</p>
+<ol type="1">
+<li>Navigate to <strong>Edit</strong> &gt; <strong>Preferences</strong>
+&gt; <strong>Input/Output</strong> &gt; <strong>Autosave</strong>.</li>
+<li>Ensure the <strong>Enable autosave</strong> box is checked.</li>
+<li>Set the <strong>Interval (in minutes)</strong> to a frequent
+duration, such as 5 to 10 minutes.</li>
+<li>Set the <strong>Maximum number of backups</strong> to at least 10 or
+20 to maintain a rolling history of changes without consuming excessive
+disk space.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

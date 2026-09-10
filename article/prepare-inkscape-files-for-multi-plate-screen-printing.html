@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prepare Inkscape Files for Multi-Plate Screen Printing - inkscape</title>
+    <meta name="description" content="Preparing vector artwork for multi-plate screen printing in Inkscape requires separating your design by ink color, applying trapping to prevent alignment gaps, adding registration marks for press setup, and converting all artwork to solid black for film">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/prepare-inkscape-files-for-multi-plate-screen-printing">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Prepare Inkscape Files for Multi-Plate Screen Printing - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/prepare-inkscape-files-for-multi-plate-screen-printing" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Preparing vector artwork for multi-plate screen printing in Inkscape requires separating your design by ink color, applying trapping to prevent alignment gaps, adding registration marks for press setup, and converting all artwork to solid black for film" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="prepare-inkscape-files-for-multi-plate-screen-printing">Prepare
+Inkscape Files for Multi-Plate Screen Printing</h1>
+<p>Preparing vector artwork for multi-plate screen printing in Inkscape
+requires separating your design by ink color, applying trapping to
+prevent alignment gaps, adding registration marks for press setup, and
+converting all artwork to solid black for film positive output.
+Following this workflow ensures that each color layer cleanly exposes
+onto its corresponding screen mesh, resulting in precise color
+registration on the press.</p>
+<h3 id="step-1-organize-artwork-by-color-layers">Step 1: Organize
+Artwork by Color Layers</h3>
+<ol type="1">
+<li>Open your final vector artwork in Inkscape.</li>
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li>Create a new layer for every distinct ink color in your design (for
+example: <em>Underbase White</em>, <em>Yellow</em>, <em>Red</em>,
+<em>Black</em>).</li>
+<li>Select all vector paths corresponding to a specific color,
+right-click, and choose <strong>Move to Layer</strong>, then select the
+appropriate color layer.</li>
+<li>Ensure all text is converted to paths by selecting the text and
+choosing <strong>Path &gt; Object to Path</strong>
+(<code>Ctrl + Shift + C</code>).</li>
+</ol>
+<h3 id="step-2-apply-trapping-choke-and-spread">Step 2: Apply Trapping
+(Choke and Spread)</h3>
+<p>Screen printing presses experience slight paper or garment shifting.
+Trapping creates a tiny overlap between adjacent colors to prevent white
+gaps.</p>
+<ol type="1">
+<li>Identify the lighter color adjacent to a darker color.</li>
+<li>Duplicate the lighter path (<code>Ctrl + D</code>).</li>
+<li>Apply a slight spread to the duplicate by selecting <strong>Path
+&gt; Outset</strong> (<code>Ctrl + )</code>). For fine adjustments, set
+the outset step in <strong>Edit &gt; Preferences &gt; Behavior &gt;
+Steps</strong>.</li>
+<li>Alternatively, apply a small stroke (e.g., 0.5 pt to 1 pt) in the
+same color to create an expansion beneath the darker overlapping
+layer.</li>
+</ol>
+<h3 id="step-3-add-universal-registration-marks">Step 3: Add Universal
+Registration Marks</h3>
+<p>Registration marks allow the printer to align each screen
+precisely.</p>
+<ol type="1">
+<li>Create a new top layer named <em>Registration</em>.</li>
+<li>Draw a small circle intersected by a crosshair outside the printable
+design area (top, bottom, left, and right margins).</li>
+<li>Group the registration mark components together.</li>
+<li>Ensure these marks remain identical and in the exact same
+coordinates on every single separation.</li>
+</ol>
+<h3 id="step-4-convert-all-artwork-to-100-solid-black">Step 4: Convert
+All Artwork to 100% Solid Black</h3>
+<p>Film positives block UV light during the screen exposure process.
+Regardless of the final ink color, every separated plate must be printed
+in pure, opaque black.</p>
+<ol type="1">
+<li>Unlock and select all paths on a single color layer.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>Set the Fill and Stroke colors to 100% Black (<code>#000000</code> /
+<code>CMYK: 0, 0, 0, 100</code>).</li>
+<li>Ensure all transparencies and opacities are set to 100%. Repeat this
+step for every color layer and the registration marks.</li>
+</ol>
+<h3 id="step-5-export-individual-film-positives">Step 5: Export
+Individual Film Positives</h3>
+<ol type="1">
+<li>Make only the <em>Registration</em> layer and one specific color
+layer visible by toggling the eye icons in the <strong>Layers and
+Objects</strong> panel (hide all other color layers).</li>
+<li>Go to <strong>File &gt; Save As...</strong> or <strong>File &gt;
+Export...</strong>.</li>
+<li>Choose <strong>PDF</strong> or high-resolution <strong>PNG</strong>
+(at least 300 to 600 DPI) as the output format.</li>
+<li>Save the file with a clear naming convention indicating the color
+and print order (e.g., <code>Design_Plate_01_Underbase.pdf</code>,
+<code>Design_Plate_02_Yellow.pdf</code>).</li>
+<li>Repeat this visibility toggle and export process for each individual
+layer.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

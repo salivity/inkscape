@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Spell Check Multi-Layer Files in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape includes a dedicated Check Spelling tool that scans text elements across documents to identify and fix typographical errors. In multi-layer projects, ensuring that the spell checker finds every mistake requires proper layer management and famili">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-spell-check-multi-layer-files-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Spell Check Multi-Layer Files in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-spell-check-multi-layer-files-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape includes a dedicated Check Spelling tool that scans text elements across documents to identify and fix typographical errors. In multi-layer projects, ensuring that the spell checker finds every mistake requires proper layer management and famili" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-spell-check-multi-layer-files-in-inkscape">How to Spell
+Check Multi-Layer Files in Inkscape</h1>
+<p>Inkscape includes a dedicated Check Spelling tool that scans text
+elements across documents to identify and fix typographical errors. In
+multi-layer projects, ensuring that the spell checker finds every
+mistake requires proper layer management and familiarity with the tool's
+interface. This guide outlines how to prepare your multi-layer Inkscape
+file, open the Check Spelling dialog, and process corrections across all
+text objects.</p>
+<h2 id="preparing-multi-layer-documents">Preparing Multi-Layer
+Documents</h2>
+<p>Before initiating the spell check, your document's layers must be set
+up so Inkscape can access all text elements.</p>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel via <strong>Layer
+&gt; Layers and Objects...</strong> or by pressing
+<code>Ctrl + Shift + L</code>.</li>
+<li>Ensure that all layers containing text are visible (the eye icon
+must be open).</li>
+<li>Unlock all relevant layers (the padlock icon must be open). Inkscape
+skips locked and hidden elements during automated text searches.</li>
+<li>If your text objects are embedded inside deep groups or clipped
+masks, ensure the parent objects are not locked.</li>
+</ol>
+<h2 id="accessing-the-check-spelling-dialog">Accessing the Check
+Spelling Dialog</h2>
+<p>Once your layers are accessible, launch the spelling utility:</p>
+<ol type="1">
+<li>Deselect all objects by pressing <code>Esc</code> or clicking an
+empty area on the canvas. If a specific object is selected, Inkscape may
+restrict the check to that selection.</li>
+<li>Go to the top menu and select <strong>Text &gt; Check
+Spelling...</strong> (or press <code>Ctrl + Alt + K</code>).</li>
+<li>The <strong>Check Spelling</strong> dialog window will appear.</li>
+</ol>
+<h2 id="correcting-typos">Correcting Typos</h2>
+<p>The Check Spelling tool navigates through the document sequentially,
+jumping to each unrecognized word across your layers.</p>
+<ol type="1">
+<li><strong>Review the Flagged Word:</strong> The dialog displays the
+flagged text in the <strong>Not in dictionary</strong> field and
+highlights the corresponding text object on the canvas, even if it
+resides on a different layer.</li>
+<li><strong>Select a Suggestion:</strong> Choose the correct spelling
+from the <strong>Suggestions</strong> list. You can also manually type
+the correction into the text box above the list.</li>
+<li><strong>Apply the Correction:</strong>
+<ul>
+<li>Click <strong>Change</strong> to replace only the current
+instance.</li>
+<li>Click <strong>Change All</strong> to replace every matching instance
+throughout the entire file across all unlocked layers.</li>
+</ul></li>
+<li><strong>Skip or Add Terms:</strong>
+<ul>
+<li>Click <strong>Ignore</strong> to skip the current instance.</li>
+<li>Click <strong>Ignore All</strong> to skip all matching instances of
+the term.</li>
+<li>Click <strong>Add</strong> to store proprietary terms, technical
+names, or brand names in your personal dictionary so they are not
+flagged in future checks.</li>
+</ul></li>
+<li><strong>Complete the Process:</strong> Continue through the prompts
+until Inkscape displays a notification that the spell check is complete,
+then close the dialog.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

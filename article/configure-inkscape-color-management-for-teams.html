@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure Inkscape Color Management for Teams - inkscape</title>
+    <meta name="description" content="Maintaining consistent color output across multi-member teams requires a synchronized color management policy within Inkscape. Because different operating systems, monitors, and default application settings can distort how colors are rendered and exporte">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/configure-inkscape-color-management-for-teams">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Configure Inkscape Color Management for Teams - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/configure-inkscape-color-management-for-teams" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Maintaining consistent color output across multi-member teams requires a synchronized color management policy within Inkscape. Because different operating systems, monitors, and default application settings can distort how colors are rendered and exporte" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="configure-inkscape-color-management-for-teams">Configure
+Inkscape Color Management for Teams</h1>
+<p>Maintaining consistent color output across multi-member teams
+requires a synchronized color management policy within Inkscape. Because
+different operating systems, monitors, and default application settings
+can distort how colors are rendered and exported, teams must standardize
+their International Color Consortium (ICC) profiles, calibrate display
+environments, and configure uniform document settings. This guide
+outlines how to establish and deploy a standardized Inkscape color
+management workflow to ensure seamless collaboration and predictable
+visual results across all team workstations.</p>
+<h2 id="1-standardize-team-icc-profiles">1. Standardize Team ICC
+Profiles</h2>
+<p>Before configuring Inkscape, your team must agree on and install the
+exact same set of ICC color profiles on all operating systems (Windows,
+macOS, or Linux).</p>
+<ul>
+<li><strong>Web/Digital Projects:</strong> Standardize on <strong>sRGB
+IEC61966-2.1</strong>.</li>
+<li><strong>Print Projects:</strong> Standardize on a regional CMYK
+profile, such as <strong>U.S. Web Coated (SWOP) v2</strong> (North
+America) or <strong>Coated FOGRA39</strong> / <strong>FOGRA51</strong>
+(Europe).</li>
+</ul>
+<p>Install these profiles in the default OS color directories so
+Inkscape can detect them automatically:</p>
+<ul>
+<li><strong>Windows:</strong> Right-click the <code>.icc</code> or
+<code>.icm</code> file and select <em>Install Profile</em>, or copy to
+<code>C:\Windows\System32\spool\drivers\color</code>.</li>
+<li><strong>macOS:</strong> Copy files to
+<code>/Library/ColorSync/Profiles</code> or
+<code>~/Library/ColorSync/Profiles</code>.</li>
+<li><strong>Linux:</strong> Copy files to
+<code>~/.local/share/icc/</code> or <code>/usr/share/icc/</code>.</li>
+</ul>
+<h2 id="2-configure-global-preferences-in-inkscape">2. Configure Global
+Preferences in Inkscape</h2>
+<p>Every team member must align their local Inkscape preferences to
+interpret colors identically.</p>
+<ol type="1">
+<li>Go to <strong>Edit &gt; Preferences</strong> (or <strong>Inkscape
+&gt; Preferences</strong> on macOS).</li>
+<li>Navigate to <strong>Input/Output &gt; Color
+management</strong>.</li>
+<li>Configure the following fields:
+<ul>
+<li><strong>Display profile:</strong> Set to your calibrated monitor
+profile or leave as <em>System default</em> if your OS manages monitor
+calibration.</li>
+<li><strong>Proofing profile:</strong> Select your team's target CMYK or
+print profile.</li>
+<li><strong>Device rendering intent:</strong> Set to
+<strong>Perceptual</strong> (for smooth photographic transitions) or
+<strong>Relative Colorimetric</strong> (for exact brand color matching
+with out-of-gamut clipping).</li>
+<li><strong>Black point compensation:</strong> Enable this option to
+prevent crushed shadow details when translating between color
+spaces.</li>
+</ul></li>
+</ol>
+<h2 id="3-link-profiles-to-document-templates">3. Link Profiles to
+Document Templates</h2>
+<p>Inkscape natively uses an RGB-based SVG format. To ensure
+document-level consistency when passing files between team members,
+embed or link profiles directly to SVG project files:</p>
+<ol type="1">
+<li>Open <strong>File &gt; Document Properties</strong>
+(Shift+Ctrl+D).</li>
+<li>Select the <strong>Color</strong> tab.</li>
+<li>Click the <strong>+</strong> icon to add your standardized ICC
+profile to the document's available color spaces.</li>
+<li>Save the configured document as a project template (<strong>File
+&gt; Save Template</strong>) and distribute the <code>.svg</code>
+template file across the team to serve as the baseline for all new
+assets.</li>
+</ol>
+<h2 id="4-work-with-brand-colors-and-soft-proofing">4. Work with Brand
+Colors and Soft Proofing</h2>
+<p>Because Inkscape handles vector elements primarily in RGB, use the
+following tools during active production:</p>
+<ul>
+<li><strong>Soft Proofing:</strong> Toggle <strong>View &gt; Color
+Proofing</strong> (or click the proofing icon on the bottom-right status
+bar) to preview how colors will appear when translated to the designated
+print profile.</li>
+<li><strong>Accurate Color Input:</strong> In the <strong>Fill and
+Stroke</strong> panel (Shift+Ctrl+X), use the <strong>CMS</strong> tab
+rather than standard RGB/HSL sliders when assigning print colors. The
+CMS tab links color values directly to your installed ICC profile,
+preserving device-specific CMYK definitions within the SVG code.</li>
+</ul>
+<h2 id="5-standardize-file-handoff-and-export-protocols">5. Standardize
+File Handoff and Export Protocols</h2>
+<p>Export mismatches can break cross-team pipelines. Establish uniform
+export rules for final deliverables:</p>
+<ul>
+<li><strong>For Web/UI Assets (PNG/SVG):</strong> Use <strong>File &gt;
+Export</strong> and ensure exports map to the standard sRGB space.</li>
+<li><strong>For Print Deliverables (PDF):</strong> Go to <strong>File
+&gt; Save As &gt; Portable Document Format (.pdf)</strong>. In the PDF
+export dialogue, set the PDF version (PDF 1.5 or PDF/X standard if using
+external pre-press tools) and check <strong>Convert texts to
+paths</strong> or <strong>Embed fonts</strong> to eliminate external
+rendering discrepancies.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

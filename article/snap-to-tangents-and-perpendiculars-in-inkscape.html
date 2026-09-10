@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snap to Tangents and Perpendiculars in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to enable and use tangent and perpendicular path snapping in Inkscape. By configuring Inkscape's advanced snapping controls and using the Bezier Pen tool, you can create precise geometric alignments, draw lines perfectly normal to">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/snap-to-tangents-and-perpendiculars-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Snap to Tangents and Perpendiculars in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/snap-to-tangents-and-perpendiculars-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to enable and use tangent and perpendicular path snapping in Inkscape. By configuring Inkscape's advanced snapping controls and using the Bezier Pen tool, you can create precise geometric alignments, draw lines perfectly normal to" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="snap-to-tangents-and-perpendiculars-in-inkscape">Snap to
+Tangents and Perpendiculars in Inkscape</h1>
+<p>This guide explains how to enable and use tangent and perpendicular
+path snapping in Inkscape. By configuring Inkscape's advanced snapping
+controls and using the Bezier Pen tool, you can create precise geometric
+alignments, draw lines perfectly normal to curved surfaces, and align
+objects along exact tangent vectors without manual calculations.</p>
+<hr />
+<h3 id="step-1-enable-the-snapping-system">Step 1: Enable the Snapping
+System</h3>
+<ol type="1">
+<li>Locate the <strong>Snap Controls</strong> bar, which is situated in
+the top-right corner of the interface (in Inkscape 1.2 and newer) or
+along the right edge of the screen (in earlier versions).</li>
+<li>Toggle the master <strong>Enable Snapping</strong> switch to the
+<strong>ON</strong> position (Shortcut: <code>%</code>).</li>
+</ol>
+<h3 id="step-2-configure-advanced-snapping-options">Step 2: Configure
+Advanced Snapping Options</h3>
+<ol type="1">
+<li>Click the dropdown arrow next to the master snapping toggle to open
+the detailed snapping popover menu.</li>
+<li>Switch the mode from <strong>Simple</strong> to
+<strong>Advanced</strong> if prompted.</li>
+<li>Under the <strong>Paths</strong> or <strong>Geometry</strong>
+section, ensure the following settings are enabled:
+<ul>
+<li><strong>Snap to paths</strong>: Allows the cursor to interact with
+path outlines.</li>
+<li><strong>Snap perpendicularly</strong>: Snaps your cursor at a strict
+90-degree angle to any path or curve segment.</li>
+<li><strong>Snap tangentially</strong>: Snaps your cursor along the
+tangent vector of a path or curved segment.</li>
+</ul></li>
+</ol>
+<h3 id="step-3-drawing-perpendicular-lines">Step 3: Drawing
+Perpendicular Lines</h3>
+<ol type="1">
+<li>Select the <strong>Draw Bezier curves and straight lines</strong>
+tool (Shortcut: <code>B</code>).</li>
+<li>Click anywhere on your canvas to establish the starting node of your
+line.</li>
+<li>Move your cursor toward the target path or curve.</li>
+<li>Hover near the target path until the snapping tooltip appears,
+indicating <strong>"Perpendicular to path"</strong>.</li>
+<li>Click to set the node. The resulting line will meet the target curve
+at an exact 90-degree angle.</li>
+</ol>
+<h3 id="step-4-drawing-tangent-lines">Step 4: Drawing Tangent Lines</h3>
+<ol type="1">
+<li>Select the <strong>Bezier Tool</strong> (<code>B</code>).</li>
+<li>Click on the canvas or an existing node to begin the line.</li>
+<li>Hover your cursor over the curved path or circle you wish to
+intersect tangentially.</li>
+<li>Move the cursor along the curve until the snap indicator displays
+<strong>"Tangential to path"</strong>.</li>
+<li>Click to confirm the point. The segment will align flush against the
+curve's perimeter without crossing its boundary at the contact
+point.</li>
+</ol>
+<h3 id="tips-for-precise-snapping">Tips for Precise Snapping</h3>
+<ul>
+<li><strong>Adjust Snapping Distance</strong>: If snapping triggers too
+easily or not easily enough, go to <strong>Edit &gt; Preferences &gt;
+Behavior &gt; Snapping</strong> and adjust the <strong>Snap
+sensitivity</strong> slider.</li>
+<li><strong>Temporary Disable</strong>: Hold <code>Shift</code> while
+dragging or drawing to temporarily suspend all active snapping if you
+need to place a node close to a snap point without locking to it.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

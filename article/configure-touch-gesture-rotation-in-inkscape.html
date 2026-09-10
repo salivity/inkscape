@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure Touch Gesture Rotation in Inkscape - inkscape</title>
+    <meta name="description" content="Configuring multi-touch gesture rotation in Inkscape allows digital artists to rotate the drawing canvas naturally using a compatible graphics tablet, screen display, or touch-sensitive device. This guide explains how to prepare your hardware drivers, co">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/configure-touch-gesture-rotation-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Configure Touch Gesture Rotation in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/configure-touch-gesture-rotation-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Configuring multi-touch gesture rotation in Inkscape allows digital artists to rotate the drawing canvas naturally using a compatible graphics tablet, screen display, or touch-sensitive device. This guide explains how to prepare your hardware drivers, co" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="configure-touch-gesture-rotation-in-inkscape">Configure Touch
+Gesture Rotation in Inkscape</h1>
+<p>Configuring multi-touch gesture rotation in Inkscape allows digital
+artists to rotate the drawing canvas naturally using a compatible
+graphics tablet, screen display, or touch-sensitive device. This guide
+explains how to prepare your hardware drivers, configure Inkscape's
+internal canvas preferences, and troubleshoot input settings to achieve
+smooth, two-finger canvas rotation.</p>
+<h3 id="1-enable-touch-input-in-tablet-drivers">1. Enable Touch Input in
+Tablet Drivers</h3>
+<p>Before configuring Inkscape, ensure that multi-touch recognition is
+active at the driver level:</p>
+<ol type="1">
+<li>Open your tablet's driver utility (such as Wacom Tablet Properties,
+Huion Tablet, or XP-Pen settings).</li>
+<li>Locate the <strong>Touch</strong> or <strong>Touch Options</strong>
+section.</li>
+<li>Verify that touch functionality is globally turned
+<strong>On</strong>.</li>
+<li>Check the gesture settings to ensure multi-finger
+gestures—specifically <strong>Rotate</strong> (two-finger twisting
+motion)—are enabled rather than overridden by application-specific
+shortcuts.</li>
+<li>If you are on Windows, ensure <strong>Use Windows Ink</strong> is
+toggled on in your tablet software, as modern Inkscape versions rely on
+native Windows Ink APIs for multi-touch gestures.</li>
+</ol>
+<h3 id="2-configure-inkscape-canvas-preferences">2. Configure Inkscape
+Canvas Preferences</h3>
+<p>Inkscape requires canvas rotation permissions to be enabled within
+its application settings:</p>
+<ol type="1">
+<li>Launch Inkscape.</li>
+<li>Open the preferences dialog by going to <strong>Edit &gt;
+Preferences</strong> (or <strong>Inkscape &gt; Preferences</strong> on
+macOS), or press <strong>Ctrl + Shift + P</strong>.</li>
+<li>In the left navigation menu, expand <strong>Interface</strong> and
+select <strong>Canvas</strong>.</li>
+<li>Locate the <strong>Canvas interaction</strong> section.</li>
+<li>Ensure that the option labeled <strong>Allow canvas
+rotation</strong> is checked. If this is disabled, gesture rotation will
+be ignored.</li>
+</ol>
+<h3 id="3-verify-hardware-input-devices">3. Verify Hardware Input
+Devices</h3>
+<p>Inkscape must register your tablet as a valid multi-touch input
+device:</p>
+<ol type="1">
+<li>In the <strong>Preferences</strong> window, select <strong>Input
+Devices</strong>.</li>
+<li>Click on <strong>Input Devices...</strong> to view the hardware
+list.</li>
+<li>Look for your tablet's touch module (often labeled "Touch",
+"Finger", or the vendor name).</li>
+<li>Ensure the device mode is set to <strong>Screen</strong> rather than
+<strong>Disabled</strong>.</li>
+<li>Save the configuration and close the dialog.</li>
+</ol>
+<h3 id="4-performing-and-resetting-the-gesture">4. Performing and
+Resetting the Gesture</h3>
+<p>Once configured, place two fingers on your tablet's active surface
+and twist them clockwise or counterclockwise. Inkscape will rotate the
+workspace in real-time around the midpoint between your fingers.</p>
+<p>To manage your view after rotating:</p>
+<ul>
+<li><strong>Reset Rotation:</strong> Press <strong>Ctrl + Shift +
+R</strong> to quickly snap the canvas back to the default 0-degree
+angle.</li>
+<li><strong>Manual Adjustment:</strong> You can also click and edit the
+numerical rotation value found in the lower-right corner of the status
+bar at the bottom of the Inkscape interface.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

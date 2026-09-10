@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Vector Feathers in Inkscape with Spray Tool - inkscape</title>
+    <meta name="description" content="Creating realistic vector feathers requires rendering hundreds of fine, overlapping barbs, which can be tedious to draw manually. Inkscape’s Spray tool solves this challenge by rapidly dispersing and orienting custom vector shapes along a path. This gu">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/draw-vector-feathers-in-inkscape-with-spray-tool">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Draw Vector Feathers in Inkscape with Spray Tool - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/draw-vector-feathers-in-inkscape-with-spray-tool" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating realistic vector feathers requires rendering hundreds of fine, overlapping barbs, which can be tedious to draw manually. Inkscape’s Spray tool solves this challenge by rapidly dispersing and orienting custom vector shapes along a path. This gu" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="draw-vector-feathers-in-inkscape-with-spray-tool">Draw Vector
+Feathers in Inkscape with Spray Tool</h1>
+<p>Creating realistic vector feathers requires rendering hundreds of
+fine, overlapping barbs, which can be tedious to draw manually.
+Inkscape’s Spray tool solves this challenge by rapidly dispersing and
+orienting custom vector shapes along a path. This guide explains how to
+construct a base barb, configure the Spray tool for organic
+distribution, apply the barbs along a central rachis, and refine the
+texture to achieve realistic interlocking vanes.</p>
+<h3 id="step-1-draw-the-feather-shaft-rachis">Step 1: Draw the Feather
+Shaft (Rachis)</h3>
+<ol type="1">
+<li>Select the <strong>Draw Freehand Lines</strong> or <strong>Bezier
+Curves</strong> tool (<code>B</code>).</li>
+<li>Draw a smooth, gentle curve that defines the overall length and
+spine of your feather.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>), assign a solid color to the stroke, and
+apply a taper by converting the path with <strong>Path &gt; Path
+Effects</strong> and adding a <strong>Power Stroke</strong> effect.</li>
+<li>Adjust the control points so the shaft is thicker at the base
+(quill) and tapers to a fine point at the tip.</li>
+</ol>
+<h3 id="step-2-create-the-base-barb-shape">Step 2: Create the Base Barb
+Shape</h3>
+<ol type="1">
+<li>Zoom in next to your shaft and select the <strong>Bezier
+Curves</strong> tool.</li>
+<li>Draw a very thin, slightly curved, needle-like shape that tapers at
+both ends. This single shape serves as your individual barb.</li>
+<li>Remove the stroke and give the shape a flat fill color matching the
+desired base color of your feather.</li>
+<li>For extra realism, duplicate the shape and adjust the length
+slightly, grouping two or three barbs together to create
+micro-variations.</li>
+</ol>
+<h3 id="step-3-configure-the-spray-tool">Step 3: Configure the Spray
+Tool</h3>
+<ol type="1">
+<li>Select your base barb object.</li>
+<li>Switch to the <strong>Spray Tool</strong> (<code>A</code> or
+<code>Shift + F3</code>).</li>
+<li>On the top tool control bar, configure the following settings:
+<ul>
+<li><strong>Mode:</strong> Choose <strong>Spray copies of the initial
+selection</strong> (or <strong>Spray clones</strong> if you want to
+alter the color of all barbs simultaneously later).</li>
+<li><strong>Width:</strong> Set to roughly the width of one side of your
+feather vane (around 15 to 30, depending on canvas scale).</li>
+<li><strong>Amount:</strong> Set between 10 and 25 to avoid clustering
+too heavily in a single click.</li>
+<li><strong>Rotation:</strong> Increase to allow slight natural
+variation, but keep it constrained (e.g., 10–20).</li>
+<li><strong>Scale:</strong> Set between 10 and 20 so barbs vary subtly
+in size.</li>
+<li><strong>Scatter:</strong> Keep low (around 5 to 15) to maintain
+directional control.</li>
+</ul></li>
+</ol>
+<h3 id="step-4-spray-the-barbs-along-the-shaft">Step 4: Spray the Barbs
+Along the Shaft</h3>
+<ol type="1">
+<li>Position the cursor near the rachis, angled in the direction the
+barbs naturally grow (pointing outward and toward the tip).</li>
+<li>Click and drag the Spray tool along one side of the shaft, sweeping
+outward. The tool will distribute dozens of barbs that naturally
+overlap.</li>
+<li>Repeat the process on the opposite side of the shaft. For
+asymmetrical feathers (like flight feathers), make one side noticeably
+narrower than the other by reducing the tool width and movement
+area.</li>
+<li>Near the base of the feather, switch the barb color to a lighter
+tone and spray lightly to create the soft, downy afterfeather
+(plumulaceous barbs).</li>
+</ol>
+<h3 id="step-5-create-the-interlocking-effect">Step 5: Create the
+Interlocking Effect</h3>
+<ol type="1">
+<li>Select groups of sprayed barbs that look too uniform and use the
+<strong>Tweak Tool</strong> (<code>W</code>) set to "Push parts of
+paths" to nudge strands into subtle bunches.</li>
+<li>Intentionally push a few barbs apart to create natural splits
+(splits where the microscopic barbules have unhooked).</li>
+<li>Select all sprayed barbs, group them (<code>Ctrl + G</code>), and
+place them on a layer beneath the rachis path so the central shaft
+cleanly anchors the inner edges.</li>
+<li>Apply a subtle linear or mesh gradient across the entire grouped
+vane to create realistic lighting, depth, and color transitions across
+the interlocking barbs.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

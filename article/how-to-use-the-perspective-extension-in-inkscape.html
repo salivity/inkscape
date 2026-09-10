@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use the Perspective Extension in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to project 2D vector artwork onto an angled plane using Inkscape's Envelope/Perspective extension. You will learn how to prepare your source artwork, draw the target quadrilateral frame correctly, and apply the extension to achiev">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-use-the-perspective-extension-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use the Perspective Extension in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-use-the-perspective-extension-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to project 2D vector artwork onto an angled plane using Inkscape's Envelope/Perspective extension. You will learn how to prepare your source artwork, draw the target quadrilateral frame correctly, and apply the extension to achiev" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-the-perspective-extension-in-inkscape">How to Use the
+Perspective Extension in Inkscape</h1>
+<p>This guide explains how to project 2D vector artwork onto an angled
+plane using Inkscape's Envelope/Perspective extension. You will learn
+how to prepare your source artwork, draw the target quadrilateral frame
+correctly, and apply the extension to achieve realistic perspective and
+vanishing point effects in your vector illustrations.</p>
+<hr />
+<h3 id="step-1-prepare-your-artwork">Step 1: Prepare Your Artwork</h3>
+<p>The Perspective extension requires the source object to be a path or
+a combined set of paths.</p>
+<ol type="1">
+<li>Select your artwork or text.</li>
+<li>If working with text or basic shapes (rectangles, circles), convert
+them to paths by going to <strong>Path &gt; Object to
+Path</strong>.</li>
+<li>If your artwork consists of multiple separate paths, select all of
+them and go to <strong>Path &gt; Combine</strong> (or group them
+together, depending on your Inkscape version; combining into a single
+path yields the most reliable results).</li>
+</ol>
+<hr />
+<h3 id="step-2-draw-the-destination-plane">Step 2: Draw the Destination
+Plane</h3>
+<p>The extension maps the rectangular bounding box of your artwork to a
+four-node path. The direction and starting point of this path dictate
+the orientation of the projected artwork.</p>
+<ol type="1">
+<li>Select the <strong>Draw Bezier curves and straight lines</strong>
+tool (pen tool).</li>
+<li>Click four times to create a four-sided polygon (quadrilateral) that
+represents the plane or surface where the artwork should appear.</li>
+<li>Draw the nodes in this specific order to prevent the artwork from
+appearing flipped or inverted:
+<ul>
+<li><strong>Node 1:</strong> Bottom-Left</li>
+<li><strong>Node 2:</strong> Top-Left</li>
+<li><strong>Node 3:</strong> Top-Right</li>
+<li><strong>Node 4:</strong> Bottom-Right</li>
+</ul></li>
+<li>Close the path by clicking back on the starting node (Node 1).</li>
+</ol>
+<hr />
+<h3 id="step-3-select-the-objects-in-order">Step 3: Select the Objects
+in Order</h3>
+<p>The Perspective tool relies on a strict selection order to identify
+the source and the target.</p>
+<ol type="1">
+<li>Select your source artwork first.</li>
+<li>Hold <strong>Shift</strong> and click the four-sided destination
+path to select it second.</li>
+</ol>
+<hr />
+<h3 id="step-4-apply-the-extension">Step 4: Apply the Extension</h3>
+<ol type="1">
+<li>Navigate to the top menu and select <strong>Extensions &gt; Modify
+Path &gt; Perspective</strong> (or <strong>Envelope</strong>, depending
+on whether you want a linear perspective mapping or a curved envelope
+deformation).</li>
+<li>Wait a moment for Inkscape to process the transformation.</li>
+<li>The source artwork will warp to fit precisely inside the four-sided
+polygon.</li>
+<li>Delete or hide the destination polygon path if it is no longer
+needed.</li>
+</ol>
+<hr />
+<h3 id="important-troubleshooting-tips">Important Troubleshooting
+Tips</h3>
+<ul>
+<li><strong>Inverted or Rotated Results:</strong> If the artwork appears
+upside down or sideways, the target path was drawn in the wrong
+direction. Reverse the path direction using <strong>Path &gt;
+Reverse</strong>, or redraw the four-sided shape starting strictly from
+the bottom-left corner and moving clockwise.</li>
+<li><strong>Extension Fails to Execute:</strong> Ensure that the target
+shape contains exactly four nodes. Shapes with fewer or more than four
+nodes will cause the extension to produce an error.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

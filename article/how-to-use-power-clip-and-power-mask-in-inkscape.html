@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Power Clip and Power Mask in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to use Inkscape's Power Clip and Power Mask Live Path Effects (LPE) for advanced, non-destructive masking. By leveraging these tools, you can hide or reveal parts of your vector artwork dynamically, allowing you to edit the underl">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-use-power-clip-and-power-mask-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use Power Clip and Power Mask in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-use-power-clip-and-power-mask-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use Inkscape's Power Clip and Power Mask Live Path Effects (LPE) for advanced, non-destructive masking. By leveraging these tools, you can hide or reveal parts of your vector artwork dynamically, allowing you to edit the underl" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-power-clip-and-power-mask-in-inkscape">How to Use
+Power Clip and Power Mask in Inkscape</h1>
+<p>This guide explains how to use Inkscape's Power Clip and Power Mask
+Live Path Effects (LPE) for advanced, non-destructive masking. By
+leveraging these tools, you can hide or reveal parts of your vector
+artwork dynamically, allowing you to edit the underlying objects and
+mask shapes simultaneously on the canvas without permanently modifying
+your original artwork.</p>
+<h2 id="power-clip-vs-power-mask-key-differences">Power Clip vs. Power
+Mask: Key Differences</h2>
+<ul>
+<li><strong>Power Clip:</strong> Functions like a traditional vector
+clipping path with crisp, hard edges, but allows you to edit the
+clipping shape's nodes directly on canvas without releasing the
+clip.</li>
+<li><strong>Power Mask:</strong> Uses grayscale values or alpha channels
+to create soft, semi-transparent transitions, gradients, and textured
+masking effects.</li>
+</ul>
+<hr />
+<h2 id="how-to-use-the-power-clip-lpe">How to Use the Power Clip
+LPE</h2>
+<p>Power Clip is ideal for cropping artwork into specific vector shapes
+while keeping the clip geometry editable.</p>
+<ol type="1">
+<li><strong>Prepare Your Objects:</strong> Create or select the object
+(or group) you want to clip. Place the shape you want to use as the
+clipping path over the target object.</li>
+<li><strong>Copy the Clip Path:</strong> Select the top clipping shape
+and copy it to your clipboard (<code>Ctrl + C</code> or
+<code>Cmd + C</code>).</li>
+<li><strong>Open Path Effects:</strong> Select the base object/group,
+then go to the top menu and select <strong>Path &gt; Path
+Effects</strong> to open the Path Effects dialog panel.</li>
+<li><strong>Add Power Clip:</strong>
+<ul>
+<li>Click the <strong>+</strong> (Add Path Effect) button in the
+panel.</li>
+<li>Search for <strong>Power Clip</strong> and click to apply it.</li>
+</ul></li>
+<li><strong>Link the Clip Shape:</strong>
+<ul>
+<li>In the Power Clip settings, locate the <strong>Clip path</strong>
+parameter.</li>
+<li>Click the <strong>Paste path</strong> icon (clipboard symbol) to
+apply the copied shape as your clip.</li>
+</ul></li>
+<li><strong>Edit the Clip:</strong> Switch to the <strong>Node
+Tool</strong> (<code>N</code>). You will see editable control nodes for
+both the base object and the clipping path directly on the canvas,
+allowing you to reshape the clipping boundary in real time.</li>
+</ol>
+<hr />
+<h2 id="how-to-use-the-power-mask-lpe">How to Use the Power Mask
+LPE</h2>
+<p>Power Mask is used when you need gradual fades, opacity variations,
+or detailed raster-like transparency using vector shapes.</p>
+<ol type="1">
+<li><strong>Create the Mask Object:</strong> Design a mask using
+grayscale values. White areas remain fully visible, black areas become
+fully transparent, and gray tones become semi-transparent.</li>
+<li><strong>Copy the Mask Object:</strong> Select your grayscale mask
+shape and copy it (<code>Ctrl + C</code> or <code>Cmd + C</code>).</li>
+<li><strong>Select the Base Target:</strong> Select the object or group
+you want to mask.</li>
+<li><strong>Add Power Mask:</strong>
+<ul>
+<li>Open the <strong>Path Effects</strong> panel (<strong>Path &gt; Path
+Effects</strong>).</li>
+<li>Click the <strong>+</strong> icon and select <strong>Power
+Mask</strong>.</li>
+</ul></li>
+<li><strong>Apply the Mask:</strong>
+<ul>
+<li>Under the Power Mask parameters, click the <strong>Paste
+path</strong> icon next to the <strong>Mask path</strong> property.</li>
+</ul></li>
+<li><strong>Configure Options:</strong>
+<ul>
+<li><strong>Invert mask:</strong> Inverts the transparency values (black
+becomes visible, white becomes hidden).</li>
+<li><strong>Wrap mask:</strong> Automatically fits the mask to the
+target object's bounding box.</li>
+<li><strong>Hide mask:</strong> Toggles the visibility of the source
+mask geometry for cleaner viewing.</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="modifying-and-removing-path-effects">Modifying and Removing Path
+Effects</h2>
+<p>Because both effects are non-destructive:</p>
+<ul>
+<li><strong>To move or reshape:</strong> Use the <strong>Node
+Tool</strong> (<code>N</code>) to adjust the handles of the mask or base
+shape independently at any time.</li>
+<li><strong>To remove:</strong> Select the object, open the <strong>Path
+Effects</strong> panel, select the effect, and click the
+<strong>Trash/Delete</strong> icon. The original artwork will instantly
+revert to its unmasked state.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

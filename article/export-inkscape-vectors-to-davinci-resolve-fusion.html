@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape Vectors to DaVinci Resolve Fusion - inkscape</title>
+    <meta name="description" content="Exporting vector artwork from Inkscape into DaVinci Resolve’s Fusion page enables you to create infinitely scalable, crisp motion graphics titles. This workflow requires converting artwork to standardized paths in Inkscape, saving it in a compatible fo">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-davinci-resolve-fusion">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape Vectors to DaVinci Resolve Fusion - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-davinci-resolve-fusion" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting vector artwork from Inkscape into DaVinci Resolve’s Fusion page enables you to create infinitely scalable, crisp motion graphics titles. This workflow requires converting artwork to standardized paths in Inkscape, saving it in a compatible fo" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-vectors-to-davinci-resolve-fusion">Export
+Inkscape Vectors to DaVinci Resolve Fusion</h1>
+<p>Exporting vector artwork from Inkscape into DaVinci Resolve’s Fusion
+page enables you to create infinitely scalable, crisp motion graphics
+titles. This workflow requires converting artwork to standardized paths
+in Inkscape, saving it in a compatible format, and importing it into
+Fusion as native vector nodes. Once imported, the vector paths become
+fully animatable elements that you can control using keyframes and
+modifiers.</p>
+<h3 id="step-1-prepare-the-vector-in-inkscape">Step 1: Prepare the
+Vector in Inkscape</h3>
+<p>Before exporting, you must simplify your artwork so Fusion can
+interpret the data without errors.</p>
+<ol type="1">
+<li><strong>Convert Strokes to Paths:</strong> Select all elements and
+navigate to <strong>Path &gt; Stroke to Path</strong>. Fusion cannot
+interpret native vector stroke properties properly without this
+conversion.</li>
+<li><strong>Convert Objects to Paths:</strong> Select all shapes
+(rectangles, text, circles) and go to <strong>Path &gt; Object to
+Path</strong>.</li>
+<li><strong>Ungroup Elements:</strong> Select everything and press
+<strong>Ctrl + Shift + G</strong> (or <strong>Cmd + Shift + G</strong>
+on macOS) repeatedly until there are no nested groups.</li>
+<li><strong>Organize Layers:</strong> Ensure separate design elements
+you plan to animate independently are separated on distinct paths or
+layers.</li>
+<li><strong>Fit Canvas to Selection:</strong> Go to <strong>File &gt;
+Document Properties</strong> and click <strong>Resize page to drawing or
+selection</strong> to remove unnecessary transparent padding, or set the
+page size to your project's resolution (e.g., 1920x1080).</li>
+</ol>
+<h3 id="step-2-save-as-plain-svg">Step 2: Save as Plain SVG</h3>
+<p>Inkscape defaults to its own proprietary SVG format containing
+metadata that Fusion does not need.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>In the file format dropdown, choose <strong>Plain SVG
+(*.svg)</strong> instead of Inkscape SVG.</li>
+<li>Name your file and save it to your project directory.</li>
+</ol>
+<h3 id="step-3-import-the-svg-into-davinci-resolve-fusion">Step 3:
+Import the SVG into DaVinci Resolve Fusion</h3>
+<p>Fusion features a dedicated import tool that converts standard SVG
+files directly into node-based vector graphics.</p>
+<ol type="1">
+<li>In DaVinci Resolve, create a new <strong>Fusion Composition</strong>
+in your timeline and switch to the <strong>Fusion page</strong>.</li>
+<li>Click the top menu and select <strong>Fusion &gt; Import &gt;
+SVG...</strong></li>
+<li>Locate and select your saved Plain SVG file, then click
+<strong>Open</strong>.</li>
+<li>In the import dialog box, set the frame size to match your project
+timeline resolution, then confirm.</li>
+</ol>
+<h3 id="step-4-organize-and-animate-nodes">Step 4: Organize and Animate
+Nodes</h3>
+<p>Once imported, Fusion automatically creates a network of nodes
+representing your design.</p>
+<ol type="1">
+<li><strong>Node Structure:</strong> Fusion imports the SVG as a series
+of <strong>Polygon</strong> mask nodes connected to colored
+<strong>Background</strong> nodes, combined through a chain of
+<strong>Merge</strong> nodes.</li>
+<li><strong>Identify Elements:</strong> Rename the generated Background
+or Polygon nodes to identify the specific parts of your title (e.g.,
+"MainText", "IconLogo", "AccentBar").</li>
+<li><strong>Add Transforms:</strong> Insert a <strong>Transform
+(XF)</strong> node after any individual Merge or Background node to
+animate its position, scale, or rotation independently.</li>
+<li><strong>Animate Native Paths:</strong> Select a
+<strong>Polygon</strong> node to directly keyframe individual vector
+points, animate the path drawing on with the <strong>Length</strong>
+control, or soften edges using <strong>Soft Edge</strong>.</li>
+<li><strong>Connect to Output:</strong> Connect the final Merge node of
+your imported vector chain to the <strong>MediaOut1</strong> node to
+make the motion graphics visible in the Edit page.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

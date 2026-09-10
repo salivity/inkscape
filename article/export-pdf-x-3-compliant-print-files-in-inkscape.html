@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export PDF/X-3 Compliant Print Files in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to produce print-ready PDF/X-3 files from Inkscape by preparing your artwork, configuring the native PDF export dialog, and ensuring strict standard compliance. While Inkscape handles vector design, color management, and standard">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-pdf-x-3-compliant-print-files-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export PDF/X-3 Compliant Print Files in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-pdf-x-3-compliant-print-files-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to produce print-ready PDF/X-3 files from Inkscape by preparing your artwork, configuring the native PDF export dialog, and ensuring strict standard compliance. While Inkscape handles vector design, color management, and standard" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-pdfx-3-compliant-print-files-in-inkscape">Export PDF/X-3
+Compliant Print Files in Inkscape</h1>
+<p>This guide explains how to produce print-ready PDF/X-3 files from
+Inkscape by preparing your artwork, configuring the native PDF export
+dialog, and ensuring strict standard compliance. While Inkscape handles
+vector design, color management, and standard PDF generation, achieving
+the exact PDF/X-3 output intent requires configuring specific document
+properties, export parameters, and running a final standardization
+pass.</p>
+<h3 id="1-configure-document-color-and-bleed-settings">1. Configure
+Document Color and Bleed Settings</h3>
+<p>PDF/X-3 requires defined color management and print geometry.</p>
+<ol type="1">
+<li>Open your document in Inkscape and navigate to <strong>File &gt;
+Document Properties</strong> (<code>Ctrl+Shift+D</code>).</li>
+<li>Go to the <strong>Color</strong> tab and link a standardized CMYK
+ICC profile (such as <em>ISO Coated v2</em> or <em>Coated FOGRA39</em>)
+provided by your print vendor.</li>
+<li>In the <strong>Page</strong> tab, verify that your document
+dimensions include bleed margins if your print provider requires them
+(typically 3 mm or 0.125 inches added to all edges).</li>
+</ol>
+<h3 id="2-prepare-vectors-filters-and-fonts">2. Prepare Vectors,
+Filters, and Fonts</h3>
+<p>The PDF/X-3 specification (ISO 15930-3) restricts live transparency
+in older variants and requires fully accessible font data.</p>
+<ol type="1">
+<li><strong>Convert Text to Paths</strong>: Select all text elements and
+go to <strong>Path &gt; Object to Path</strong>
+(<code>Ctrl+Shift+C</code>). This guarantees fonts will render
+identically on any prepress system without font substitution
+issues.</li>
+<li><strong>Handle Transparency and Blend Modes</strong>: If using
+blurs, opacities, or drop shadows, note that Cairo (Inkscape’s rendering
+engine) will rasterize these elements. Ensure that your rasterization
+DPI under <strong>File &gt; Document Properties &gt; Rendering</strong>
+is set to at least <strong>300 DPI</strong>.</li>
+</ol>
+<h3 id="3-configure-the-inkscape-pdf-export-dialog">3. Configure the
+Inkscape PDF Export Dialog</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong>
+(<code>Ctrl+Shift+S</code>) or <strong>File &gt; Export...</strong>
+(<code>Ctrl+Shift+E</code>).</li>
+<li>Select <strong>Portable Document Format (*.pdf)</strong> from the
+file format menu and click <strong>Save</strong>.</li>
+<li>In the PDF options dialog window, set the following parameters:
+<ul>
+<li><strong>PDF version</strong>: Select <strong>PDF 1.4</strong> or
+<strong>PDF 1.5</strong>. PDF/X-3 is built on PDF 1.3 or 1.4
+architectures.</li>
+<li><strong>Text output options</strong>: Select <strong>Convert text to
+paths</strong> (acts as a safeguard if text was not manually
+converted).</li>
+<li><strong>Rasterize filter effects</strong>: Checked.</li>
+<li><strong>Resolution for rasterization (dpi)</strong>: Set to
+<strong>300</strong> or higher.</li>
+<li><strong>Output page size</strong>: Choose <strong>Use document's
+page size</strong> or <strong>Use exported object's size</strong>,
+depending on whether bleed has been included on the canvas.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to generate the PDF.</li>
+</ol>
+<h3 id="4-finalize-pdfx-3-compliance-via-ghostscript">4. Finalize
+PDF/X-3 Compliance via Ghostscript</h3>
+<p>Inkscape's internal export engine outputs standard PDF files, but it
+does not embed the mandatory PDF/X-3 <code>OutputIntent</code> and
+metadata keys (<code>GTS_PDFXVersion</code>). To make the exported file
+pass preflight verification for PDF/X-3, convert the PDF using
+Ghostscript.</p>
+<p>Run the following command in your terminal or command prompt:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gs</span> <span class="at">-dPDFX</span> <span class="at">-dBATCH</span> <span class="at">-dNOPAUSE</span> <span class="at">-sColorConversionStrategy</span><span class="op">=</span>CMYK <span class="at">-sProcessColorModel</span><span class="op">=</span>DeviceCMYK <span class="at">-sDEVICE</span><span class="op">=</span>pdfwrite <span class="at">-dCompatibilityLevel</span><span class="op">=</span>1.4 <span class="at">-dPDFSETTINGS</span><span class="op">=</span>/prepress <span class="at">-sOutputFile</span><span class="op">=</span>final-print-pdfx3.pdf PDFX_def.ps input-from-inkscape.pdf</span></code></pre></div>
+<p><em>Note: Ensure you have a valid <code>PDFX_def.ps</code>
+configuration file in your working directory containing the specific ICC
+profile path and OutputCondition identifier matching your target print
+environment.</em></p>
+<p>Alternatively, import the Inkscape-generated PDF into
+<strong>Scribus</strong>, assign your CMYK ICC profile, and use
+<strong>File &gt; Export &gt; Save as PDF</strong>, choosing
+<strong>PDF/X-3</strong> directly from the compatibility dropdown
+menu.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

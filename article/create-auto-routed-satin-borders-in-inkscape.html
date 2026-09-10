@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Auto-Routed Satin Borders in Inkscape - inkscape</title>
+    <meta name="description" content="This guide provides a direct walkthrough on creating clean, auto-routed satin stitch borders around complex letterforms using Inkscape and the Ink/Stitch embroidery extension. You will learn how to convert typography into suitable vector paths, generate">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-auto-routed-satin-borders-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Auto-Routed Satin Borders in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-auto-routed-satin-borders-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a direct walkthrough on creating clean, auto-routed satin stitch borders around complex letterforms using Inkscape and the Ink/Stitch embroidery extension. You will learn how to convert typography into suitable vector paths, generate" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-auto-routed-satin-borders-in-inkscape">Create Auto-Routed
+Satin Borders in Inkscape</h1>
+<p>This guide provides a direct walkthrough on creating clean,
+auto-routed satin stitch borders around complex letterforms using
+Inkscape and the Ink/Stitch embroidery extension. You will learn how to
+convert typography into suitable vector paths, generate dual-rail satin
+columns automatically, configure auto-routing to eliminate unnecessary
+trims, and preview the final embroidery design for production.</p>
+<h3 id="1-prepare-the-letterforms">1. Prepare the Letterforms</h3>
+<ol type="1">
+<li>Type your text using the <strong>Text Tool</strong>
+(<code>T</code>). Choose your desired font and finalize your
+sizing.</li>
+<li>Select the text object and convert it to vector paths by navigating
+to <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>).</li>
+<li>Ungroup the resulting letters by selecting <strong>Object &gt;
+Ungroup</strong> (<code>Shift + Ctrl + G</code>).</li>
+<li>If your font is a script style or has overlapping glyphs, combine
+them into a single continuous shape by selecting all letters and
+clicking <strong>Path &gt; Union</strong> (<code>Ctrl + +</code>).</li>
+</ol>
+<h3 id="2-generate-the-border-path">2. Generate the Border Path</h3>
+<ol type="1">
+<li>Select the prepared letterform paths and duplicate them using
+<strong>Edit &gt; Duplicate</strong> (<code>Ctrl + D</code>).</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + Y</code>).</li>
+<li>Set the <strong>Fill</strong> tab to <strong>No paint</strong>
+(X).</li>
+<li>Set the <strong>Stroke paint</strong> tab to a <strong>Flat
+color</strong> that contrasts with your fill.</li>
+<li>In the <strong>Stroke style</strong> tab, set the stroke width to
+match your desired satin border width (typically between 1.5 mm and 3.0
+mm for standard embroidery threads).</li>
+<li>With the stroked path selected, convert it into an outline by going
+to <strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>).</li>
+<li>Break the path apart to separate the inner and outer boundaries by
+clicking <strong>Path &gt; Break Apart</strong>
+(<code>Shift + Ctrl + K</code>).</li>
+</ol>
+<h3 id="3-convert-outlines-to-satin-columns">3. Convert Outlines to
+Satin Columns</h3>
+<ol type="1">
+<li>Select the paths that define your border edges.</li>
+<li>Ensure direction: Satin columns require two subpaths (rails)
+traveling in the same relative direction.</li>
+<li>Open the Ink/Stitch tools by navigating to <strong>Extensions &gt;
+Ink/Stitch &gt; Tools: Satin &gt; Convert Line to Satin</strong>.
+Ink/Stitch will automatically generate rungs between the inner and outer
+paths, transforming them into a standard satin column.</li>
+</ol>
+<h3 id="4-apply-auto-routing">4. Apply Auto-Routing</h3>
+<p>Complex letters (such as "B", "P", or "R") feature sharp
+intersections and enclosed counters that cause excessive thread cuts if
+digitized manually. Auto-routing resolves this.</p>
+<ol type="1">
+<li>Select your satin borders.</li>
+<li>Navigate to <strong>Extensions &gt; Ink/Stitch &gt; Tools: Satin
+&gt; Auto-Route Satin Along Paths</strong>.</li>
+<li>In the dialog box, configure your routing preferences:
+<ul>
+<li>Check <strong>Add underlay</strong> to reinforce the letter
+borders.</li>
+<li>Specify your preferred trim minimization settings.</li>
+</ul></li>
+<li>Click <strong>Apply</strong>. Ink/Stitch will calculate the path,
+split complex junctions into stitchable segments, insert connector
+travel stitches, and organize the sewing order to minimize jump
+stitches.</li>
+</ol>
+<h3 id="5-adjust-embroidery-parameters-and-simulate">5. Adjust
+Embroidery Parameters and Simulate</h3>
+<ol type="1">
+<li>Select the routed satin group and navigate to <strong>Extensions
+&gt; Ink/Stitch &gt; Params</strong>.</li>
+<li>Fine-tune your stitch settings:
+<ul>
+<li><strong>Zigzag spacing (density):</strong> Recommended between 0.35
+mm and 0.45 mm.</li>
+<li><strong>Pull compensation:</strong> Set between 0.2 mm and 0.4 mm to
+prevent gaps between the border and the inner fill of the letter.</li>
+</ul></li>
+<li>Click <strong>Apply and Quit</strong>.</li>
+<li>Test the design by running <strong>Extensions &gt; Ink/Stitch &gt;
+Visualize and Export &gt; Simulator/Preview</strong> to verify that
+stitch angles, travel stitches, and corner transitions flow cleanly
+around every letter.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage System Font Fallback Lists in Inkscape - inkscape</title>
+    <meta name="description" content="Managing font fallback lists in an Inkscape project ensures that missing glyphs are automatically substituted by secondary typefaces instead of displaying as missing-character boxes. Because Inkscape adheres strictly to SVG and CSS specifications, fallba">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/manage-system-font-fallback-lists-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Manage System Font Fallback Lists in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/manage-system-font-fallback-lists-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Managing font fallback lists in an Inkscape project ensures that missing glyphs are automatically substituted by secondary typefaces instead of displaying as missing-character boxes. Because Inkscape adheres strictly to SVG and CSS specifications, fallba" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="manage-system-font-fallback-lists-in-inkscape">Manage System
+Font Fallback Lists in Inkscape</h1>
+<p>Managing font fallback lists in an Inkscape project ensures that
+missing glyphs are automatically substituted by secondary typefaces
+instead of displaying as missing-character boxes. Because Inkscape
+adheres strictly to SVG and CSS specifications, fallback behavior is
+governed by multi-font stacks defined on text elements and resolved by
+your operating system's font rendering engine. This guide details how to
+implement font stacks in Inkscape using the built-in XML Editor,
+leverage generic font families, and configure system-level fallbacks to
+handle missing glyphs reliably.</p>
+<h3 id="understanding-svg-font-stacks-in-inkscape">Understanding SVG
+Font Stacks in Inkscape</h3>
+<p>In SVG, font definitions rely on the standard CSS
+<code>font-family</code> property. When a primary font lacks a specific
+character or glyph (such as a foreign script, math symbol, or emoji),
+the rendering engine traverses the comma-separated list of families
+defined in that property until it finds a font that contains the
+required glyph.</p>
+<p>Inkscape's primary Text and Font tool (<code>Ctrl + Shift + T</code>
+or <code>Text &gt; Text and Font</code>) primarily displays a single
+selected font family. To specify a complete fallback sequence, you must
+define an explicit font stack within the text element’s style
+attributes.</p>
+<h3 id="method-1-specifying-font-fallbacks-via-the-xml-editor">Method 1:
+Specifying Font Fallbacks via the XML Editor</h3>
+<p>The most precise way to define a custom font fallback list for any
+text object in Inkscape is through the built-in XML Editor.</p>
+<ol type="1">
+<li>Select the text object with the Text tool or the Selection
+tool.</li>
+<li>Open the XML Editor by pressing <code>Ctrl + Shift + X</code> (or
+navigate to <strong>Edit &gt; XML Editor</strong>).</li>
+<li>In the tree view, locate and select the target
+<code>&lt;svg:text&gt;</code> element or its child
+<code>&lt;svg:tspan&gt;</code> element containing the text.</li>
+<li>In the right-hand panel, find the <code>style</code> attribute.</li>
+<li>In the attribute value field, locate the <code>font-family</code>
+rule.</li>
+<li>Replace the single font name with a comma-separated list of fonts in
+order of priority. Wrap font names containing spaces in single quotes.
+<ul>
+<li>Example:
+<code>font-family:'Roboto', 'Noto Sans', 'Segoe UI', sans-serif;</code></li>
+</ul></li>
+<li>Click the <strong>Set</strong> button to apply the changes.</li>
+</ol>
+<p>If the primary font (<code>Roboto</code>) lacks a required glyph,
+Inkscape will sequentially check <code>Noto Sans</code>, then
+<code>Segoe UI</code>, and finally defer to the system's default
+<code>sans-serif</code> font.</p>
+<h3
+id="method-2-defining-global-fallbacks-in-the-svg-style-element">Method
+2: Defining Global Fallbacks in the SVG Style Element</h3>
+<p>To apply a universal fallback list across all text objects in a
+document without editing each node individually, declare a global CSS
+rule in the document's <code>&lt;svg:style&gt;</code> element.</p>
+<ol type="1">
+<li>Open the XML Editor (<code>Ctrl + Shift + X</code>).</li>
+<li>Select the root <code>&lt;svg:svg&gt;</code> element.</li>
+<li>Click the <strong>New element node</strong> button at the top of the
+panel and enter <code>svg:style</code>.</li>
+<li>Select the newly created <code>&lt;svg:style&gt;</code> node, create
+a new attribute named <code>type</code>, and set its value to
+<code>text/css</code>.</li>
+<li>Add a text child node containing your default font rule:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>text {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span><span class="ch">:</span> <span class="st">&#39;MyPrimaryFont&#39;</span><span class="op">,</span> <span class="st">&#39;Noto Sans&#39;</span><span class="op">,</span> <span class="dv">sans-serif</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div></li>
+<li>Ensure that individual text elements do not override this rule with
+inline styles, or remove the <code>font-family</code> property from the
+inline <code>style</code> attribute of specific text objects to allow
+them to inherit the global stack.</li>
+</ol>
+<h3 id="method-3-utilizing-generic-fallback-families">Method 3:
+Utilizing Generic Fallback Families</h3>
+<p>Always terminate your font stacks with a CSS generic family name.
+Generic families inform the host operating system's text renderer which
+typeface category to use if none of the named fonts are installed or
+contain the necessary glyph:</p>
+<ul>
+<li><code>sans-serif</code>: Clean, unadorned typefaces (e.g., Arial,
+Helvetica, DejaVu Sans).</li>
+<li><code>serif</code>: Typefaces with decorative strokes (e.g., Times
+New Roman, Georgia, DejaVu Serif).</li>
+<li><code>monospace</code>: Fixed-width typefaces suitable for code or
+alignment (e.g., Courier New, Consolas).</li>
+<li><code>system-ui</code>: The native operating system user interface
+font.</li>
+</ul>
+<h3
+id="system-level-fallback-resolution-fontconfig-and-os-handlers">System-Level
+Fallback Resolution (Fontconfig and OS Handlers)</h3>
+<p>Inkscape relies on underlying rendering libraries (Pango and
+Fontconfig on Linux, DirectWrite on Windows, and Core Text on macOS) to
+handle character rendering:</p>
+<ul>
+<li><strong>Linux (Fontconfig):</strong> You can define machine-wide or
+user-specific glyph fallback rules by editing
+<code>~/.config/fontconfig/fonts.conf</code>. Using
+<code>&lt;alias&gt;</code> and <code>&lt;prefer&gt;</code> tags allows
+you to automatically map universal fallbacks (such as Noto Color Emoji
+or specialized CJK fonts) whenever any application, including Inkscape,
+encounters an unmapped character code.</li>
+<li><strong>Windows &amp; macOS:</strong> Both systems feature internal
+font-linking tables. If an entire font stack lacks a glyph and no
+generic family resolves it, the operating system attempts a last-resort
+substitute from system fonts like <code>Segoe UI Symbol</code> (Windows)
+or <code>Apple Symbols</code> (macOS).</li>
+</ul>
+<h3 id="preserving-glyphs-for-final-distribution">Preserving Glyphs for
+Final Distribution</h3>
+<p>Font fallback lists rely on the fonts installed on the computer
+viewing or editing the SVG. If an SVG is viewed on a system missing your
+specified fallbacks, typography may shift or default to unexpected
+system fonts.</p>
+<p>To permanently preserve glyph rendering for production or print,
+select your finalized text elements and convert them to vector paths by
+choosing <strong>Path &gt; Object to Path</strong>
+(<code>Ctrl + Shift + C</code>). Note that this renders the text
+non-editable, so maintain an unlinked, editable copy of your project
+with the active font stacks as a master file.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

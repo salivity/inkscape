@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Auto Palette from Inkscape Colors - inkscape</title>
+    <meta name="description" content="This guide explains how to automatically generate and configure a dynamic color palette based on the colors currently used in your Inkscape document. By using the built-in "Auto" palette feature, you can automatically extract every fill and stroke color">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-an-auto-palette-from-inkscape-colors">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create an Auto Palette from Inkscape Colors - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-an-auto-palette-from-inkscape-colors" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to automatically generate and configure a dynamic color palette based on the colors currently used in your Inkscape document. By using the built-in "Auto" palette feature, you can automatically extract every fill and stroke color" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-an-auto-palette-from-inkscape-colors">Create an Auto
+Palette from Inkscape Colors</h1>
+<p>This guide explains how to automatically generate and configure a
+dynamic color palette based on the colors currently used in your
+Inkscape document. By using the built-in "Auto" palette feature, you can
+automatically extract every fill and stroke color from your artwork into
+a functional swatch bar, eliminating the need to manually sample and
+save individual colors.</p>
+<h3 id="accessing-the-palette-menu">Accessing the Palette Menu</h3>
+<p>Inkscape displays a color bar along the bottom of the workspace by
+default. To configure this bar to show colors from your active
+drawing:</p>
+<ol type="1">
+<li>Locate the small arrow icon at the far right end of the bottom color
+palette bar.</li>
+<li>Click the arrow to open the list of available color preset
+palettes.</li>
+<li>Scroll to the top of the menu and select <strong>Auto</strong>.</li>
+</ol>
+<p>Alternatively, you can open the dedicated Swatches dialog by
+navigating to <strong>View</strong> &gt; <strong>Swatches</strong> (or
+pressing <strong>Shift + Ctrl + W</strong>). In the Swatches panel,
+click the menu icon in the upper-right corner and select
+<strong>Auto</strong>.</p>
+<h3 id="how-the-auto-palette-operates">How the Auto Palette
+Operates</h3>
+<p>Once set to <strong>Auto</strong>, Inkscape scans your SVG file and
+compiles every distinct color applied to objects, paths, and strokes
+across all layers.</p>
+<ul>
+<li><strong>Dynamic Updating:</strong> As you introduce new colors to
+your artwork, the palette updates automatically to include them.</li>
+<li><strong>Selection:</strong> Clicking any swatch in the Auto palette
+applies that color as the fill to currently selected objects. Holding
+<strong>Shift</strong> while clicking applies the color to the
+stroke.</li>
+<li><strong>Removal:</strong> If you completely remove all objects using
+a specific color from your document, that color will disappear from the
+Auto palette upon the next canvas refresh or file save.</li>
+</ul>
+<h3 id="customizing-the-auto-palette-display">Customizing the Auto
+Palette Display</h3>
+<p>You can adjust how the generated swatches appear to better fit your
+workflow:</p>
+<ol type="1">
+<li>Open the palette configuration menu by clicking the arrow at the
+right of the bottom palette or the menu icon in the
+<strong>Swatches</strong> panel.</li>
+<li>Select <strong>Configure...</strong> (or adjust settings directly in
+the drop-down menu depending on your Inkscape version).</li>
+<li>Adjust the following display settings:
+<ul>
+<li><strong>Tile Size:</strong> Change the dimensions of the color
+swatches to make them easier to target.</li>
+<li><strong>Aspect Ratio:</strong> Adjust swatch shapes between square
+and wide rectangular tiles.</li>
+<li><strong>Rows:</strong> Increase the number of rows displayed at the
+bottom of the screen to view all active colors simultaneously without
+horizontal scrolling.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

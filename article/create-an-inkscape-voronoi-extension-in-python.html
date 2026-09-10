@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Inkscape Voronoi Extension in Python - inkscape</title>
+    <meta name="description" content="This guide explains how to build a custom Inkscape extension using Python and the inkex library to generate randomized Voronoi tessellations directly on your canvas. By coupling an XML definition file (.inx) for the user interface with an underlying Pyth">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-an-inkscape-voronoi-extension-in-python">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create an Inkscape Voronoi Extension in Python - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-an-inkscape-voronoi-extension-in-python" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to build a custom Inkscape extension using Python and the inkex library to generate randomized Voronoi tessellations directly on your canvas. By coupling an XML definition file (.inx) for the user interface with an underlying Pyth" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-an-inkscape-voronoi-extension-in-python">Create an
+Inkscape Voronoi Extension in Python</h1>
+<p>This guide explains how to build a custom Inkscape extension using
+Python and the <code>inkex</code> library to generate randomized Voronoi
+tessellations directly on your canvas. By coupling an XML definition
+file (<code>.inx</code>) for the user interface with an underlying
+Python script (<code>.py</code>) leveraging <code>scipy.spatial</code>,
+you will learn how to define custom input parameters, calculate Voronoi
+regions from pseudo-random points, and render the resulting geometry as
+native SVG paths.</p>
+<h2 id="extension-file-architecture">Extension File Architecture</h2>
+<p>An Inkscape extension requires two primary files placed inside the
+user extensions directory:</p>
+<ul>
+<li><strong>Linux:</strong>
+<code>~/.config/inkscape/extensions/</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/extensions/</code></li>
+<li><strong>Windows:</strong>
+<code>%APPDATA%\inkscape\extensions\</code></li>
+</ul>
+<p>These files consist of an XML configuration file (<code>.inx</code>)
+describing the user interface and menu placement, and a Python script
+(<code>.py</code>) implementing the generation logic.</p>
+<h2 id="1-create-the-extension-definition-random_voronoiinx">1. Create
+the Extension Definition (<code>random_voronoi.inx</code>)</h2>
+<p>Save the following XML content as <code>random_voronoi.inx</code> in
+your Inkscape extensions directory. This file registers the extension
+under the <strong>Extensions &gt; Generate</strong> menu and provides
+controls for point count, width, and height.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span> <span class="ot">version=</span><span class="st">&quot;1.0&quot;</span> <span class="ot">encoding=</span><span class="st">&quot;UTF-8&quot;</span><span class="fu">?&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">inkscape-extension</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.inkscape.org/namespace/inkscape/extension&quot;</span>&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">name</span>&gt;Random Voronoi Tessellation&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">id</span>&gt;org.inkscape.generate.random_voronoi&lt;/<span class="kw">id</span>&gt;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">param</span> <span class="ot">name=</span><span class="st">&quot;num_points&quot;</span> <span class="ot">type=</span><span class="st">&quot;int&quot;</span> <span class="ot">min=</span><span class="st">&quot;3&quot;</span> <span class="ot">max=</span><span class="st">&quot;1000&quot;</span> <span class="ot">gui-text=</span><span class="st">&quot;Number of Points:&quot;</span>&gt;50&lt;/<span class="kw">param</span>&gt;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">param</span> <span class="ot">name=</span><span class="st">&quot;width&quot;</span> <span class="ot">type=</span><span class="st">&quot;float&quot;</span> <span class="ot">min=</span><span class="st">&quot;10.0&quot;</span> <span class="ot">max=</span><span class="st">&quot;5000.0&quot;</span> <span class="ot">gui-text=</span><span class="st">&quot;Width (px):&quot;</span>&gt;500.0&lt;/<span class="kw">param</span>&gt;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">param</span> <span class="ot">name=</span><span class="st">&quot;height&quot;</span> <span class="ot">type=</span><span class="st">&quot;float&quot;</span> <span class="ot">min=</span><span class="st">&quot;10.0&quot;</span> <span class="ot">max=</span><span class="st">&quot;5000.0&quot;</span> <span class="ot">gui-text=</span><span class="st">&quot;Height (px):&quot;</span>&gt;500.0&lt;/<span class="kw">param</span>&gt;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">effect</span>&gt;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">object-type</span>&gt;all&lt;/<span class="kw">object-type</span>&gt;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">submenu</span> <span class="ot">name=</span><span class="st">&quot;Generate&quot;</span>/&gt;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">effect</span>&gt;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">script</span>&gt;</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">command</span> <span class="ot">location=</span><span class="st">&quot;inx&quot;</span> <span class="ot">interpreter=</span><span class="st">&quot;python&quot;</span>&gt;random_voronoi.py&lt;/<span class="kw">command</span>&gt;</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">script</span>&gt;</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">inkscape-extension</span>&gt;</span></code></pre></div>
+<h2 id="2-create-the-python-script-random_voronoipy">2. Create the
+Python Script (<code>random_voronoi.py</code>)</h2>
+<p>Inkscape packages its own Python environment, which includes
+<code>inkex</code>, <code>numpy</code>, and <code>scipy</code>. Create
+<code>random_voronoi.py</code> in the same directory. This script reads
+the parameters, creates random coordinates, calculates the Voronoi
+network using <code>scipy.spatial.Voronoi</code>, and appends the path
+segments into a group element on the active layer.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.spatial <span class="im">import</span> Voronoi</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex <span class="im">import</span> Group, PathElement</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RandomVoronoiExtension(inkex.EffectExtension):</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add_arguments(<span class="va">self</span>, pars):</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        pars.add_argument(<span class="st">&quot;--num_points&quot;</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">50</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Number of random seed points&quot;</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        pars.add_argument(<span class="st">&quot;--width&quot;</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>, default<span class="op">=</span><span class="fl">500.0</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Width of generation bounding box&quot;</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        pars.add_argument(<span class="st">&quot;--height&quot;</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>, default<span class="op">=</span><span class="fl">500.0</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Height of generation bounding box&quot;</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        width <span class="op">=</span> <span class="va">self</span>.options.width</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        height <span class="op">=</span> <span class="va">self</span>.options.height</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        num_points <span class="op">=</span> <span class="va">self</span>.options.num_points</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Generate uniform random points</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        points <span class="op">=</span> np.array([</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            [random.uniform(<span class="dv">0</span>, width), random.uniform(<span class="dv">0</span>, height)]</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(num_points)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        ])</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Compute Voronoi diagram</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        vor <span class="op">=</span> Voronoi(points)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create a group to store the segments</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        container <span class="op">=</span> Group()</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        container.<span class="bu">set</span>(<span class="st">&quot;inkscape:label&quot;</span>, <span class="st">&quot;Voronoi Tessellation&quot;</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.svg.get_current_layer().append(container)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        path_data <span class="op">=</span> []</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Iterate through finite ridge vertices</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> simplex <span class="kw">in</span> vor.ridge_vertices:</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>            simplex <span class="op">=</span> np.asarray(simplex)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> np.<span class="bu">all</span>(simplex <span class="op">&gt;=</span> <span class="dv">0</span>):</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>                p1 <span class="op">=</span> vor.vertices[simplex[<span class="dv">0</span>]]</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>                p2 <span class="op">=</span> vor.vertices[simplex[<span class="dv">1</span>]]</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Optional bounding check to keep paths within defined area</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> (<span class="dv">0</span> <span class="op">&lt;=</span> p1[<span class="dv">0</span>] <span class="op">&lt;=</span> width <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> p1[<span class="dv">1</span>] <span class="op">&lt;=</span> height <span class="kw">and</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">0</span> <span class="op">&lt;=</span> p2[<span class="dv">0</span>] <span class="op">&lt;=</span> width <span class="kw">and</span> <span class="dv">0</span> <span class="op">&lt;=</span> p2[<span class="dv">1</span>] <span class="op">&lt;=</span> height):</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>                    path_data.append(<span class="ss">f&quot;M </span><span class="sc">{</span>p1[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">,</span><span class="sc">{</span>p1[<span class="dv">1</span>]<span class="sc">}</span><span class="ss"> L </span><span class="sc">{</span>p2[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">,</span><span class="sc">{</span>p2[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Render paths to SVG</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> path_data:</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>            elem <span class="op">=</span> PathElement()</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>            elem.<span class="bu">set</span>(<span class="st">&quot;d&quot;</span>, <span class="st">&quot; &quot;</span>.join(path_data))</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>            elem.<span class="bu">set</span>(<span class="st">&quot;style&quot;</span>, <span class="st">&quot;stroke:#000000;stroke-width:1;fill:none;&quot;</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>            container.append(elem)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    RandomVoronoiExtension().run()</span></code></pre></div>
+<h2 id="3-running-the-extension-in-inkscape">3. Running the Extension in
+Inkscape</h2>
+<ol type="1">
+<li>Restart Inkscape to allow the application to discover the new
+<code>.inx</code> metadata.</li>
+<li>Open a document and navigate to <strong>Extensions &gt; Generate
+&gt; Random Voronoi Tessellation</strong>.</li>
+<li>Set your desired point density, width, and height in the dialog
+box.</li>
+<li>Click <strong>Apply</strong>. Inkscape will execute the Python
+script, calculate the Delaunay dual to form the Voronoi ridge vertices,
+and draw the tessellation on your active layer as an SVG path
+group.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

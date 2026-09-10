@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Inkscape Paint Bucket Computes Distance Fields - inkscape</title>
+    <meta name="description" content="Inkscape’s Paint Bucket tool operates differently from standard vector path operations by using a hybrid raster-vector algorithm rather than direct geometric path clipping. To fill an area, the tool captures the current screen pixels, runs a flood fill">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-inkscape-paint-bucket-computes-distance-fields">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Inkscape Paint Bucket Computes Distance Fields - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-inkscape-paint-bucket-computes-distance-fields" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape’s Paint Bucket tool operates differently from standard vector path operations by using a hybrid raster-vector algorithm rather than direct geometric path clipping. To fill an area, the tool captures the current screen pixels, runs a flood fill" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-inkscape-paint-bucket-computes-distance-fields">How Inkscape
+Paint Bucket Computes Distance Fields</h1>
+<p>Inkscape’s Paint Bucket tool operates differently from standard
+vector path operations by using a hybrid raster-vector algorithm rather
+than direct geometric path clipping. To fill an area, the tool captures
+the current screen pixels, runs a flood fill to generate a binary mask,
+calculates a distance field across that mask to handle offset settings,
+and finally traces the result back into vector paths. This article
+explains the technical mechanics behind how Inkscape generates and
+computes this distance field to expand, contract, and refine fills.</p>
+<h3 id="screen-space-rasterization-and-mask-creation">Screen Space
+Rasterization and Mask Creation</h3>
+<p>When you activate the Paint Bucket tool, Inkscape does not compute
+mathematical intersections between SVG vector paths. Instead, it creates
+an offscreen raster buffer of the visible canvas at the current screen
+zoom level.</p>
+<ol type="1">
+<li><strong>Pixel Snapshot:</strong> The current viewport is rendered
+into an internal RGBA pixel array.</li>
+<li><strong>Seed Fill:</strong> A flood fill algorithm begins at the
+coordinates of the click point, checking adjacent pixels against a
+threshold value determined by the tool settings (such as color, alpha,
+or channel differences).</li>
+<li><strong>Binary Mask:</strong> The flood fill outputs a 1-bit binary
+raster mask where filled pixels are marked as <code>1</code>
+(foreground) and boundaries or non-matching pixels are marked as
+<code>0</code> (background).</li>
+</ol>
+<h3 id="computing-the-distance-field">Computing the Distance Field</h3>
+<p>To apply the "Grow/Shrink by" setting, Inkscape must compute an
+offset for the boundary of the filled region. Rather than applying a
+vector offset, Inkscape computes a Euclidean Distance Transform (EDT)
+directly on the binary bitmap mask.</p>
+<p>The distance transform evaluates the distance from every pixel to the
+nearest edge of the binary mask:</p>
+<ul>
+<li><strong>Boundary Extraction:</strong> Inkscape identifies the
+perimeter pixels where <code>1</code> meets <code>0</code>.</li>
+<li><strong>Metric Propagation:</strong> Using a two-pass linear-time
+Euclidean distance transform algorithm, Inkscape scans the pixel grid
+horizontally and vertically. For each pixel <span
+class="math inline">\((x, y)\)</span>, the algorithm calculates the
+minimum Euclidean distance: <span class="math display">\[D(x, y) =
+\min_{(x&#39;, y&#39;) \in \text{Boundary}} \sqrt{(x - x&#39;)^2 + (y -
+y&#39;)^2}\]</span></li>
+<li><strong>Signed Field Representation:</strong>
+<ul>
+<li>For growing the fill, pixels outside the original fill region
+receive positive distance values indicating how far they are from the
+original shape.</li>
+<li>For shrinking the fill, pixels inside the shape receive negative (or
+inverted) distance values indicating their depth relative to the
+exterior edge.</li>
+</ul></li>
+</ul>
+<p>Because this computation runs in raster space over a bounded grid,
+the time complexity scales linearly with the number of pixels in the
+rendered viewport rather than the complexity of the underlying vector
+nodes.</p>
+<h3 id="thresholding-the-distance-field">Thresholding the Distance
+Field</h3>
+<p>Once the distance field is calculated across the buffer:</p>
+<ol type="1">
+<li>The user-defined offset value (set in millimeters, pixels, or
+points) is converted into screen-pixel units based on the current zoom
+factor.</li>
+<li>A binary threshold is applied to the distance field. If the tool is
+set to grow by <span class="math inline">\(r\)</span> pixels, every
+pixel with a distance <span class="math inline">\(D(x, y) \le r\)</span>
+is marked as inside the new boundary. Conversely, if shrinking, pixels
+with an internal depth less than <span class="math inline">\(r\)</span>
+are discarded.</li>
+<li>The result is an expanded or contracted binary bitmap that
+represents the modified target area with smoothed corners matching the
+Euclidean metric.</li>
+</ol>
+<h3 id="vectorization-via-potrace">Vectorization via Potrace</h3>
+<p>Once the offset binary mask is finalized from the distance field,
+Inkscape converts the raster representation back into native SVG
+paths:</p>
+<ol type="1">
+<li><strong>Contour Extraction:</strong> Inkscape passes the modified
+binary bitmap to an embedded instance of the Potrace library.</li>
+<li><strong>Path Fitting:</strong> Potrace extracts the boundary
+contours and decomposes them into a series of optimal Bézier curves and
+straight line segments.</li>
+<li><strong>Coordinate Transformation:</strong> The resulting vector
+paths are transformed from screen-pixel coordinates back into standard
+SVG document space, accounting for document scale, viewbox, and viewport
+translation.</li>
+<li><strong>Insertion:</strong> The generated <code>&lt;path&gt;</code>
+element is inserted into the active layer with the specified fill and
+stroke attributes.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

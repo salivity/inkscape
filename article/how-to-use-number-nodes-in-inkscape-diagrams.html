@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Number Nodes in Inkscape Diagrams - inkscape</title>
+    <meta name="description" content="The Number Nodes extension in Inkscape is an essential tool for creating clear, professional technical assembly diagrams, balloon callouts, and step-by-step schematics. This guide provides a straightforward walkthrough on preparing your vector paths, con">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-use-number-nodes-in-inkscape-diagrams">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use Number Nodes in Inkscape Diagrams - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-use-number-nodes-in-inkscape-diagrams" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Number Nodes extension in Inkscape is an essential tool for creating clear, professional technical assembly diagrams, balloon callouts, and step-by-step schematics. This guide provides a straightforward walkthrough on preparing your vector paths, con" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-number-nodes-in-inkscape-diagrams">How to Use Number
+Nodes in Inkscape Diagrams</h1>
+<p>The Number Nodes extension in Inkscape is an essential tool for
+creating clear, professional technical assembly diagrams, balloon
+callouts, and step-by-step schematics. This guide provides a
+straightforward walkthrough on preparing your vector paths, configuring
+the Number Nodes extension settings, generating sequenced markers, and
+customizing the output to produce readable, production-ready technical
+illustrations.</p>
+<h2 id="1-prepare-your-base-geometry">1. Prepare Your Base Geometry</h2>
+<p>Before numbering, you must define the exact locations where numbers
+should appear on your technical drawing.</p>
+<ol type="1">
+<li><strong>Draw Anchor Paths:</strong> Use the <strong>Draw Bezier
+curves tool (B)</strong> or the <strong>Pen tool</strong> to place
+single-segment lines or multi-point paths where each node corresponds to
+a specific assembly step, component, or balloon marker.</li>
+<li><strong>Convert Objects to Paths:</strong> If you use shapes (such
+as circles or rectangles) as marker positions, select them and navigate
+to <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>).</li>
+<li><strong>Verify Node Direction:</strong> The extension numbers nodes
+strictly in the order they were created. Select your path with the
+<strong>Node Tool (N)</strong> to verify node sequences. If the
+numbering appears in reverse order later, select the path and click
+<strong>Path &gt; Reverse</strong>.</li>
+</ol>
+<h2 id="2-launch-the-number-nodes-extension">2. Launch the Number Nodes
+Extension</h2>
+<ol type="1">
+<li>Select the prepared path or group of paths you want to number.</li>
+<li>Go to the top menu and select <strong>Extensions &gt; Visualize Path
+&gt; Number Nodes...</strong>.</li>
+</ol>
+<h2 id="3-configure-the-extension-parameters">3. Configure the Extension
+Parameters</h2>
+<p>The dialogue box provides several parameters to tailor the numbering
+for technical clarity:</p>
+<ul>
+<li><strong>Font size:</strong> Sets the point size of the generated
+numbers. For standard technical drawings (A4/Letter), a size between 8
+px and 14 px is typically legible.</li>
+<li><strong>Dot size:</strong> Determines the radius of the marker dot
+placed at each node coordinate. Set this to <code>0</code> if you only
+want the text numbers without node dots.</li>
+<li><strong>Start numbering at:</strong> Defines the initial integer
+(usually <code>1</code> for the first step or part).</li>
+<li><strong>Step:</strong> Sets the increment value between consecutive
+nodes (typically <code>1</code>).</li>
+<li><strong>Shift nodes label by:</strong> Adjusts the offset (X and Y
+coordinates) of the text relative to the node. Adding an offset prevents
+the text from overlapping lines or assembly components.</li>
+</ul>
+<p>Check the <strong>Live Preview</strong> box at the bottom of the
+window to verify how the numbers align with your technical illustration
+in real-time.</p>
+<h2 id="4-apply-and-finalize-the-output">4. Apply and Finalize the
+Output</h2>
+<ol type="1">
+<li>Click <strong>Apply</strong> and close the dialogue box.</li>
+<li>The generated numbers and dots will appear as a distinct group of
+vector text objects and paths directly above your selected
+geometry.</li>
+<li><strong>Ungroup for Adjustments:</strong> If a specific number
+overlaps a detailed section of your technical drawing, select the group,
+press <strong>Ctrl + Shift + G</strong> to ungroup, and manually
+reposition individual numbers using the <strong>Select Tool
+(S)</strong>.</li>
+</ol>
+<h2 id="5-style-and-format-assembly-callouts">5. Style and Format
+Assembly Callouts</h2>
+<p>To make your markers conform to standard technical drawing
+conventions (such as circular balloon markers):</p>
+<ol type="1">
+<li>Create a standardized circle or boundary box on a separate
+layer.</li>
+<li>Align the generated numbers to the centers of these callout
+boundaries using the <strong>Align and Distribute</strong> panel
+(<code>Shift + Ctrl + A</code>).</li>
+<li>Apply leader lines with arrows linking each numbered callout
+directly to the target assembly components.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

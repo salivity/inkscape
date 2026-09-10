@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variable-Density Fill Shading in Ink/Stitch - inkscape</title>
+    <meta name="description" content="Blending thread colors in Ink/Stitch is achieved through variable-density fill shading, a technique where the stitch spacing gradually increases or decreases across an embroidered area. By creating two overlapping shapes with identical stitch angles and">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/variable-density-fill-shading-in-ink-stitch">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Variable-Density Fill Shading in Ink/Stitch - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/variable-density-fill-shading-in-ink-stitch" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Blending thread colors in Ink/Stitch is achieved through variable-density fill shading, a technique where the stitch spacing gradually increases or decreases across an embroidered area. By creating two overlapping shapes with identical stitch angles and" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="variable-density-fill-shading-in-inkstitch">Variable-Density
+Fill Shading in Ink/Stitch</h1>
+<p>Blending thread colors in Ink/Stitch is achieved through
+variable-density fill shading, a technique where the stitch spacing
+gradually increases or decreases across an embroidered area. By creating
+two overlapping shapes with identical stitch angles and setting opposing
+density gradients—one fading from dense to sparse, and the other from
+sparse to dense—the two thread colors physically interlace, resulting in
+a smooth, professional gradient transition.</p>
+<h3 id="step-1-prepare-the-overlapping-shapes">Step 1: Prepare the
+Overlapping Shapes</h3>
+<p>Create the embroidery boundary in Inkscape where the color blend will
+occur.</p>
+<ol type="1">
+<li>Draw the base shape and select the desired color for your starting
+thread.</li>
+<li>Duplicate the shape (<code>Ctrl + D</code>) in the exact same
+position and assign it your second thread color.</li>
+<li>Organize the layers so the base color stitches first and the
+overlapping blend color stitches second.</li>
+</ol>
+<h3 id="step-2-configure-the-bottom-layer-gradient">Step 2: Configure
+the Bottom Layer Gradient</h3>
+<p>Open the parameters for the bottom shape to establish the fading base
+layer.</p>
+<ol type="1">
+<li>Select the bottom shape.</li>
+<li>Navigate to <strong>Extensions &gt; Ink/Stitch &gt;
+Params</strong>.</li>
+<li>Under the <strong>Auto-Fill</strong> tab, locate the stitch spacing
+controls.</li>
+<li>Set the initial <strong>Stitch Spacing</strong> to a standard fill
+density, typically between <code>0.4 mm</code> and
+<code>0.45 mm</code>.</li>
+<li>Enable gradient spacing by entering a larger value for the
+<strong>Ending Stitch Spacing</strong>, such as <code>1.5 mm</code> to
+<code>2.5 mm</code>. This spreads the rows apart toward the end of the
+shape.</li>
+<li>Set the <strong>Stitch Angle</strong> (for example, <code>0°</code>
+for horizontal fills) and note this value.</li>
+<li>Click <strong>Apply and Quit</strong>.</li>
+</ol>
+<h3 id="step-3-configure-the-top-layer-gradient">Step 3: Configure the
+Top Layer Gradient</h3>
+<p>The top shape must reverse the spacing density so its stitches weave
+into the gaps left by the bottom shape.</p>
+<ol type="1">
+<li>Select the top shape and navigate to <strong>Extensions &gt;
+Ink/Stitch &gt; Params</strong>.</li>
+<li>Set the initial <strong>Stitch Spacing</strong> to match the loose
+density of the bottom shape's finish (e.g., <code>2.0 mm</code>).</li>
+<li>Set the <strong>Ending Stitch Spacing</strong> to standard density
+(e.g., <code>0.4 mm</code>).</li>
+<li>Set the <strong>Stitch Angle</strong> to precisely match the bottom
+layer. Maintaining parallel stitch directions prevents thread buildup
+and allows the top fibers to drop smoothly between the bottom
+fibers.</li>
+<li>Invert the gradient direction or angle if your version of Ink/Stitch
+uses a directional vector, ensuring the loose end of the top shape sits
+directly on top of the loose end of the bottom shape.</li>
+<li>Click <strong>Apply and Quit</strong>.</li>
+</ol>
+<h3 id="step-4-manage-underlay-settings">Step 4: Manage Underlay
+Settings</h3>
+<p>Dense underlay can ruin a delicate gradient by pushing threads out of
+alignment or causing bulk.</p>
+<ol type="1">
+<li>Re-open <strong>Params</strong> for both layers.</li>
+<li>Keep a light fill or running stitch underlay on the bottom layer to
+stabilize the fabric.</li>
+<li>Disable the underlay completely on the top layer to allow the loose
+stitches to lie flat against the bottom layer without unnecessary thread
+buildup.</li>
+</ol>
+<h3 id="step-5-simulate-and-adjust">Step 5: Simulate and Adjust</h3>
+<ol type="1">
+<li>Go to <strong>Extensions &gt; Ink/Stitch &gt; Visualize and Export
+&gt; Simulator/Preview</strong>.</li>
+<li>Observe how the two thread layers interleave across the transition
+zone.</li>
+<li>If the transition looks too abrupt, increase the range between the
+start and end stitch spacing (e.g., widen the maximum spacing to
+<code>3.0 mm</code>). If fabric shows through, reduce the maximum
+spacing to around <code>1.2 mm</code> to keep the background completely
+covered.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Export Inkscape SVG to Apple ICNS Icons - inkscape</title>
+    <meta name="description" content="Inkscape does not support direct export to Apple's native ICNS format, but you can create multi-resolution ICNS files by exporting your vector design as a high-resolution PNG and converting it using native macOS tools or cross-platform utilities. This gu">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-export-inkscape-svg-to-apple-icns-icons">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Export Inkscape SVG to Apple ICNS Icons - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-export-inkscape-svg-to-apple-icns-icons" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape does not support direct export to Apple's native ICNS format, but you can create multi-resolution ICNS files by exporting your vector design as a high-resolution PNG and converting it using native macOS tools or cross-platform utilities. This gu" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-export-inkscape-svg-to-apple-icns-icons">How to Export
+Inkscape SVG to Apple ICNS Icons</h1>
+<p>Inkscape does not support direct export to Apple's native ICNS
+format, but you can create multi-resolution ICNS files by exporting your
+vector design as a high-resolution PNG and converting it using native
+macOS tools or cross-platform utilities. This guide outlines the
+standard workflow for preparing your vector artwork in Inkscape,
+generating the required icon resolutions, and packaging them into a
+single, production-ready <code>.icns</code> file.</p>
+<h3 id="step-1-prepare-the-artwork-in-inkscape">Step 1: Prepare the
+Artwork in Inkscape</h3>
+<ol type="1">
+<li>Open your vector graphic in Inkscape.</li>
+<li>Open <strong>Document Properties</strong>
+(<code>Shift + Ctrl + D</code> or <code>Shift + Cmd + D</code>).</li>
+<li>Set the canvas to a square aspect ratio. A size of <strong>1024 x
+1024 px</strong> is recommended as the master size for macOS icons.</li>
+<li>Align your icon within the canvas, leaving standard padding around
+the edges to match macOS design guidelines.</li>
+</ol>
+<h3 id="step-2-export-the-master-png">Step 2: Export the Master PNG</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Export...</strong>
+(<code>Shift + Ctrl + E</code> or <code>Shift + Cmd + E</code>).</li>
+<li>Select the <strong>Page</strong> tab to export the entire 1024 x
+1024 canvas.</li>
+<li>Set the export format to <strong>PNG</strong>.</li>
+<li>Set the width and height to <strong>1024 x 1024
+pixels</strong>.</li>
+<li>Export the file as <code>icon_512x512@2x.png</code>.</li>
+</ol>
+<hr />
+<h3 id="step-3-generate-the-icns-file">Step 3: Generate the ICNS
+File</h3>
+<h4 id="method-a-using-macos-terminal-recommended">Method A: Using macOS
+Terminal (Recommended)</h4>
+<p>macOS includes a native command-line utility called
+<code>iconutil</code> that compiles an <code>.iconset</code> folder into
+an <code>.icns</code> file.</p>
+<ol type="1">
+<li><p><strong>Create an iconset folder:</strong> Open Terminal and
+create a folder ending with <code>.iconset</code>:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> MyIcon.iconset</span></code></pre></div></li>
+<li><p><strong>Generate the required resolutions:</strong> Place your
+exported 1024x1024 PNG in your working directory. Run the following
+<code>sips</code> commands to create all required Apple standard sizes
+inside the <code>.iconset</code> folder:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sips</span> <span class="at">-z</span> 16 16     icon_512x512@2x.png <span class="at">--out</span> MyIcon.iconset/icon_16x16.png</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sips</span> <span class="at">-z</span> 32 32     icon_512x512@2x.png <span class="at">--out</span> MyIcon.iconset/icon_16x16@2x.png</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sips</span> <span class="at">-z</span> 32 32     icon_512x512@2x.png <span class="at">--out</span> MyIcon.iconset/icon_32x32.png</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">sips</span> <span class="at">-z</span> 64 64     icon_512x512@2x.png <span class="at">--out</span> MyIcon.iconset/icon_32x32@2x.png</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">sips</span> <span class="at">-z</span> 128 128   icon_512x512@2x.png <span class="at">--out</span> MyIcon.iconset/icon_128x128.png</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">sips</span> <span class="at">-z</span> 256 256   icon_512x512@2x.png <span class="at">--out</span> MyIcon.iconset/icon_128x128@2x.png</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">sips</span> <span class="at">-z</span> 256 256   icon_512x512@2x.png <span class="at">--out</span> MyIcon.iconset/icon_256x256.png</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">sips</span> <span class="at">-z</span> 512 512   icon_512x512@2x.png <span class="at">--out</span> MyIcon.iconset/icon_256x256@2x.png</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">sips</span> <span class="at">-z</span> 512 512   icon_512x512@2x.png <span class="at">--out</span> MyIcon.iconset/icon_512x512.png</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> icon_512x512@2x.png MyIcon.iconset/icon_512x512@2x.png</span></code></pre></div></li>
+<li><p><strong>Convert the iconset to ICNS:</strong> Run
+<code>iconutil</code> to package the folder into a multi-resolution icon
+file:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">iconutil</span> <span class="at">-c</span> icns MyIcon.iconset</span></code></pre></div>
+<p>This generates <code>MyIcon.icns</code> in the current
+directory.</p></li>
+</ol>
+<hr />
+<h4 id="method-b-using-linux-libicns">Method B: Using Linux
+(<code>libicns</code>)</h4>
+<p>If you are working on Linux, use the <code>png2icns</code> tool
+provided by the <code>icnsutils</code> package.</p>
+<ol type="1">
+<li>Install the package:
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install icnsutils</span></code></pre></div></li>
+<li>Export the individual sizes from Inkscape: 16x16, 32x32, 128x128,
+256x256, and 512x512.</li>
+<li>Combine them into an ICNS file:
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">png2icns</span> icon.icns icon_16.png icon_32.png icon_128.png icon_256.png icon_512.png</span></code></pre></div></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

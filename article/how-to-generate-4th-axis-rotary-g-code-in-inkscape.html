@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Generate 4th-Axis Rotary G-Code in Inkscape - inkscape</title>
+    <meta name="description" content="This guide outlines the process of generating rotary chuck 4th-axis coordinates for cylinder engraving using Inkscape. It covers calculating the unwrapped surface dimensions of your cylinder, sizing your artwork, generating vector toolpaths using Inkscap">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-generate-4th-axis-rotary-g-code-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Generate 4th-Axis Rotary G-Code in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-generate-4th-axis-rotary-g-code-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide outlines the process of generating rotary chuck 4th-axis coordinates for cylinder engraving using Inkscape. It covers calculating the unwrapped surface dimensions of your cylinder, sizing your artwork, generating vector toolpaths using Inkscap" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-generate-4th-axis-rotary-g-code-in-inkscape">How to
+Generate 4th-Axis Rotary G-Code in Inkscape</h1>
+<p>This guide outlines the process of generating rotary chuck 4th-axis
+coordinates for cylinder engraving using Inkscape. It covers calculating
+the unwrapped surface dimensions of your cylinder, sizing your artwork,
+generating vector toolpaths using Inkscape's built-in G-code tools, and
+converting linear planar movements into rotational degrees for a true
+4th-axis (A-axis) controller.</p>
+<h3 id="1-calculate-cylinder-circumference">1. Calculate Cylinder
+Circumference</h3>
+<p>Engraving on a cylinder requires "unwrapping" the curved surface into
+a flat plane. You must calculate the exact circumference of the
+workpiece to define the rotational boundary.</p>
+<ul>
+<li>Measure the diameter (<span class="math inline">\(D\)</span>) of the
+cylinder using calipers.</li>
+<li>Calculate the circumference (<span
+class="math inline">\(C\)</span>):<br />
+<span class="math display">\[C = \pi \times D \approx 3.14159 \times
+D\]</span></li>
+</ul>
+<p>For example, a cylinder with a 50 mm diameter has a circumference of
+<span class="math inline">\(50 \times 3.14159 = 157.08\text{
+mm}\)</span>.</p>
+<h3 id="2-set-up-the-inkscape-document">2. Set Up the Inkscape
+Document</h3>
+<p>Configure the workspace so that the linear axis represents the length
+of the cylinder and the rotational axis matches the circumference.</p>
+<ol type="1">
+<li>Open <strong>File &gt; Document Properties</strong>
+(<code>Shift + Ctrl + D</code>).</li>
+<li>Set the display units to millimeters (<code>mm</code>).</li>
+<li>Set the canvas dimensions:
+<ul>
+<li><strong>Width (X-axis):</strong> Set to the engravable length of
+your cylinder.</li>
+<li><strong>Height (Y-axis):</strong> Set to the calculated
+circumference.</li>
+</ul></li>
+<li>Close the Document Properties dialog.</li>
+</ol>
+<h3 id="3-prepare-and-position-the-artwork">3. Prepare and Position the
+Artwork</h3>
+<ol type="1">
+<li>Import or create your design.</li>
+<li>Select all artwork and convert it to paths via <strong>Path &gt;
+Object to Path</strong> (<code>Shift + Ctrl + C</code>).</li>
+<li>Resize the design to fit within the document bounds, ensuring that
+any pattern meant to wrap seamlessly around the cylinder aligns
+precisely with the top (<span class="math inline">\(Y =
+\text{Circumference}\)</span>) and bottom (<span class="math inline">\(Y
+= 0\)</span>) edges of the canvas.</li>
+</ol>
+<h3 id="4-generate-standard-toolpaths-with-gcodetools">4. Generate
+Standard Toolpaths with Gcodetools</h3>
+<p>Inkscape includes a native extension called
+<strong>Gcodetools</strong> to generate CNC motion commands.</p>
+<ol type="1">
+<li>Go to <strong>Extensions &gt; Gcodetools &gt; Orientation
+points</strong>.
+<ul>
+<li>Select <strong>2-points mode</strong>.</li>
+<li>Set the surface Z depth (usually <code>0.0</code>) and the engraving
+depth (e.g., <code>-0.2 mm</code> for cutting or laser focus
+depth).</li>
+<li>Click <strong>Apply</strong>.</li>
+</ul></li>
+<li>Go to <strong>Extensions &gt; Gcodetools &gt; Tools
+library</strong>.
+<ul>
+<li>Choose the tool type (e.g., <strong>cylinder</strong> or
+<strong>engraving</strong>) and click <strong>Apply</strong>.</li>
+<li>Adjust the generated green text box on the canvas to configure feed
+rates and plunge speeds.</li>
+</ul></li>
+<li>Select your design paths and go to <strong>Extensions &gt;
+Gcodetools &gt; Path to Gcode</strong>.
+<ul>
+<li>In the <strong>Preferences</strong> tab, enter a file name and
+output directory.</li>
+<li>In the <strong>Path to Gcode</strong> tab, click
+<strong>Apply</strong> to generate the <code>.ngc</code> or
+<code>.gcode</code> file.</li>
+</ul></li>
+</ol>
+<h3 id="5-convert-planar-coordinates-to-4th-axis-a-axis-coordinates">5.
+Convert Planar Coordinates to 4th-Axis (A-Axis) Coordinates</h3>
+<p>Standard Inkscape output produces linear <span
+class="math inline">\(X\)</span>, <span
+class="math inline">\(Y\)</span>, and <span
+class="math inline">\(Z\)</span> coordinates. Depending on your CNC or
+laser controller configuration, use one of two methods to translate the
+Y-axis into rotation:</p>
+<h4
+id="method-a-hardware-level-y-to-rotary-substitution-no-code-modification">Method
+A: Hardware-Level Y-to-Rotary Substitution (No Code Modification)</h4>
+<p>If your rotary chuck plugs directly into the machine’s Y-axis driver
+port:</p>
+<ol type="1">
+<li>Divide your driver's steps-per-revolution by the cylinder
+circumference: <span class="math display">\[\text{Steps per mm} =
+\frac{\text{Microsteps per
+Revolution}}{\text{Circumference}}\]</span></li>
+<li>Update the machine's Y-axis step value in the firmware (e.g., GRBL
+<code>$101</code>).</li>
+<li>Run the standard Inkscape G-code file directly; linear Y-movements
+will turn the rotary chuck by the exact linear surface distance.</li>
+</ol>
+<h4
+id="method-b-software-conversion-to-a-axis-degrees-true-4-axis">Method
+B: Software Conversion to A-Axis Degrees (True 4-Axis)</h4>
+<p>If your controller expects a dedicated rotary axis command (<span
+class="math inline">\(A\)</span>) measured in degrees (<span
+class="math inline">\(0^\circ\)</span> to <span
+class="math inline">\(360^\circ\)</span>):</p>
+<ol type="1">
+<li>Open the generated G-code file in a text editor or spreadsheet.</li>
+<li>Convert all linear <span class="math inline">\(Y\)</span>
+coordinates to degrees (<span class="math inline">\(A\)</span>) using
+the formula: <span class="math display">\[A =
+\left(\frac{Y}{\text{Circumference}}\right) \times 360\]</span></li>
+<li>Replace the <code>Y[value]</code> commands with
+<code>A[calculated_angle]</code> using a find-and-replace script or a
+post-processor utility.</li>
+<li>Ensure the file header initiates the A-axis mode on your machine
+controller before execution.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

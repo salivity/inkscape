@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Cutlines for Cricut & Silhouette in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to generate clean, precise vinyl decal cutlines using Inkscape for both Cricut and Silhouette cutting machines. You will learn how to prepare your artwork, create an offset contour path to serve as the cutline, style your vector l">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-cutlines-for-cricut-silhouette-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Cutlines for Cricut & Silhouette in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-cutlines-for-cricut-silhouette-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate clean, precise vinyl decal cutlines using Inkscape for both Cricut and Silhouette cutting machines. You will learn how to prepare your artwork, create an offset contour path to serve as the cutline, style your vector l" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-cutlines-for-cricut--silhouette-in-inkscape">Create
+Cutlines for Cricut &amp; Silhouette in Inkscape</h1>
+<p>This guide explains how to generate clean, precise vinyl decal
+cutlines using Inkscape for both Cricut and Silhouette cutting machines.
+You will learn how to prepare your artwork, create an offset contour
+path to serve as the cutline, style your vector lines, and export the
+final file in the proper format (SVG or DXF) for your specific cutting
+software.</p>
+<h2 id="step-1-import-and-prepare-the-artwork">Step 1: Import and
+Prepare the Artwork</h2>
+<ol type="1">
+<li>Open Inkscape and go to <strong>File &gt; Import</strong> to load
+your image or design.</li>
+<li>If using a raster image (PNG or JPEG), convert it into a vector:
+<ul>
+<li>Select the image.</li>
+<li>Go to <strong>Path &gt; Trace Bitmap</strong>.</li>
+<li>Choose <strong>Single scan &gt; Brightness cutoff</strong>, adjust
+the threshold to capture clean edges, and click
+<strong>Apply</strong>.</li>
+<li>Delete the original raster image underneath.</li>
+</ul></li>
+<li>If using an existing vector graphic:
+<ul>
+<li>Select all elements of your graphic.</li>
+<li>Go to <strong>Path &gt; Object to Path</strong>.</li>
+<li>Go to <strong>Path &gt; Ungroup</strong> until all components are
+separated into individual paths.</li>
+</ul></li>
+</ol>
+<h2 id="step-2-combine-elements-into-a-solid-silhouette">Step 2: Combine
+Elements into a Solid Silhouette</h2>
+<p>To create a single continuous outline around your entire decal:</p>
+<ol type="1">
+<li>Select your entire design and duplicate it by pressing <strong>Ctrl
++ D</strong> (or <strong>Cmd + D</strong> on Mac).</li>
+<li>With the duplicate selected, go to <strong>Path &gt; Union</strong>.
+This merges all overlapping shapes into a single solid silhouette.</li>
+</ol>
+<h2 id="step-3-generate-the-offset-cutline">Step 3: Generate the Offset
+Cutline</h2>
+<p>Create the border offset that defines where the blade will cut around
+the graphic:</p>
+<ol type="1">
+<li>Select the merged silhouette.</li>
+<li>Open the Path Effects panel by going to <strong>Path &gt; Path
+Effects</strong>.</li>
+<li>Click the <strong>+</strong> (Add Path Effect) button and select
+<strong>Offset</strong>.</li>
+<li>In the Offset settings:
+<ul>
+<li>Set the <strong>Join</strong> style to <strong>Round</strong>
+(recommended for smooth sticker cuts).</li>
+<li>Increase the <strong>Offset</strong> value (e.g., 2 mm to 5 mm)
+until the border reaches your desired margin width.</li>
+</ul></li>
+<li>Once satisfied, go to <strong>Path &gt; Object to Path</strong> to
+bake the offset effect into a permanent vector path.</li>
+</ol>
+<h2 id="step-4-format-the-cutline-path">Step 4: Format the Cutline
+Path</h2>
+<ol type="1">
+<li>Select the newly generated offset path.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel (<strong>Ctrl +
+Shift + F</strong> or <strong>Cmd + Shift + F</strong>).</li>
+<li>In the <strong>Fill</strong> tab, click <strong>No paint
+(X)</strong> to remove the interior color.</li>
+<li>In the <strong>Stroke paint</strong> tab, click <strong>Flat
+color</strong> and select a high-contrast color (such as red or
+black).</li>
+<li>In the <strong>Stroke style</strong> tab, set the width to a thin
+value (e.g., <code>0.5 px</code> or <code>0.1 mm</code>).</li>
+<li>Send the cutline behind your original graphic by pressing
+<strong>End</strong> on your keyboard or selecting <strong>Object &gt;
+Lower to Bottom</strong>.</li>
+</ol>
+<h2 id="step-5-clean-up-stray-interior-cutlines">Step 5: Clean Up Stray
+Interior Cutlines</h2>
+<p>If your design has internal gaps or holes that you do not want the
+machine to cut:</p>
+<ol type="1">
+<li>Select the cutline path.</li>
+<li>Go to <strong>Path &gt; Break Apart</strong>.</li>
+<li>Hold <strong>Shift</strong> and click the outermost perimeter line
+to deselect it.</li>
+<li>Press <strong>Delete</strong> to remove all remaining interior path
+nodes.</li>
+</ol>
+<h2 id="step-6-export-for-your-cutting-software">Step 6: Export for Your
+Cutting Software</h2>
+<h3 id="for-cricut-design-space">For Cricut Design Space</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>Choose <strong>Plain SVG (*.svg)</strong> from the file format
+dropdown.</li>
+<li>Import the SVG into Cricut Design Space. In the Layers panel,
+designate your artwork layer to "Print Then Cut" or "Basic Cut," and
+your offset line to "Basic Cut." Use the <strong>Attach</strong> tool to
+keep them locked together.</li>
+</ol>
+<h3 id="for-silhouette-studio">For Silhouette Studio</h3>
+<ul>
+<li><strong>Silhouette Studio Designer Edition or higher:</strong> Save
+your file as <strong>Plain SVG (*.svg)</strong>. Open it in Silhouette
+Studio, go to the <strong>Send</strong> panel, select the outer line,
+and set the action to <strong>Cut</strong>.</li>
+<li><strong>Silhouette Studio Basic (Free) Edition:</strong> Go to
+<strong>File &gt; Save As...</strong> in Inkscape and select
+<strong>Desktop Cutting Plotter (AutoCAD DXF R14) (*.dxf)</strong>. In
+the export settings, check <strong>ROBO-Master export</strong> and set
+base units to <strong>mm</strong> or <strong>in</strong> to preserve
+scale when imported into Silhouette Studio.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

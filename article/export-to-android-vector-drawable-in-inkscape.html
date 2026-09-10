@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export to Android Vector Drawable in Inkscape - inkscape</title>
+    <meta name="description" content="Exporting vector graphics directly from Inkscape into the Android Vector Drawable (XML) format eliminates the need for intermediate conversion steps in Android Studio. While Inkscape natively saves to standard SVG formats, you can enable direct XML expor">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-to-android-vector-drawable-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export to Android Vector Drawable in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-to-android-vector-drawable-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting vector graphics directly from Inkscape into the Android Vector Drawable (XML) format eliminates the need for intermediate conversion steps in Android Studio. While Inkscape natively saves to standard SVG formats, you can enable direct XML expor" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-to-android-vector-drawable-in-inkscape">Export to Android
+Vector Drawable in Inkscape</h1>
+<p>Exporting vector graphics directly from Inkscape into the Android
+Vector Drawable (XML) format eliminates the need for intermediate
+conversion steps in Android Studio. While Inkscape natively saves to
+standard SVG formats, you can enable direct XML export by adding a
+dedicated Vector Drawable extension to your Inkscape installation. This
+guide details how to install the required extension, optimize your
+vector paths for Android compatibility, and save your assets directly as
+XML drawables.</p>
+<h3 id="1-install-the-android-vector-drawable-extension">1. Install the
+Android Vector Drawable Extension</h3>
+<p>Because Inkscape does not include a native Android XML exporter by
+default, you must install an extension (such as the community-developed
+<code>inkscape-vector-drawable</code> or <code>svg2vd</code>
+extension).</p>
+<ol type="1">
+<li>Download the extension files (<code>.inx</code> and <code>.py</code>
+files) from an open-source repository such as GitHub.</li>
+<li>Open Inkscape and navigate to <strong>Edit &gt; Preferences &gt;
+System</strong>.</li>
+<li>Locate the <strong>User extensions</strong> entry and click the
+folder icon to open your local extensions directory.</li>
+<li>Paste the downloaded <code>.inx</code> and <code>.py</code> files
+directly into this directory.</li>
+<li>Restart Inkscape to load the new export option.</li>
+</ol>
+<h3 id="2-prepare-your-vector-graphic-for-android">2. Prepare Your
+Vector Graphic for Android</h3>
+<p>Android Vector Drawables support a subset of SVG features. To avoid
+rendering issues in Android applications, sanitize your artwork before
+exporting:</p>
+<ul>
+<li><strong>Convert Strokes to Paths:</strong> Select all stroked
+objects and choose <strong>Path &gt; Stroke to Path</strong>.</li>
+<li><strong>Convert Text to Shapes:</strong> Select any text elements
+and choose <strong>Path &gt; Object to Path</strong>.</li>
+<li><strong>Ungroup Elements:</strong> Deeply nested groups can cause
+transformation bugs. Select everything and repeatedly press <strong>Ctrl
++ Shift + G</strong> (or <strong>Cmd + Shift + G</strong> on macOS)
+until all elements are ungrouped.</li>
+<li><strong>Combine Paths:</strong> Combine shapes of the same color
+using <strong>Path &gt; Union</strong> to minimize the number of
+distinct path tags in the resulting XML.</li>
+<li><strong>Remove Unsupported Features:</strong> Remove blurs, complex
+filter effects, and clipping masks, as standard Android Vector Drawables
+do not render them.</li>
+<li><strong>Resize Document to Selection:</strong> Go to <strong>File
+&gt; Document Properties</strong>, expand <strong>Resize to
+content</strong>, and click <strong>Resize page to drawing or
+selection</strong> to ensure your viewport matches the asset
+bounds.</li>
+</ul>
+<h3 id="3-export-directly-to-xml">3. Export Directly to XML</h3>
+<p>Once the extension is installed and your paths are optimized:</p>
+<ol type="1">
+<li>Click <strong>File &gt; Save As</strong> (or <strong>File &gt;
+Export</strong> depending on the specific extension version
+installed).</li>
+<li>In the "Save as type" dropdown menu, select <strong>Android Vector
+Drawable (*.xml)</strong>.</li>
+<li>Choose your destination directory, name your file using standard
+Android resource conventions (lowercase letters, numbers, and
+underscores only), and click <strong>Save</strong>.</li>
+</ol>
+<p>The output file can now be placed directly into an Android project's
+<code>res/drawable/</code> directory without additional compilation.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

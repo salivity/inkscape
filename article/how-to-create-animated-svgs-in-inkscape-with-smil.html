@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Animated SVGs in Inkscape with SMIL - inkscape</title>
+    <meta name="description" content="This guide explains how to create lightweight, native SVG animations directly inside Inkscape by injecting SMIL (Synchronized Multimedia Integration Language) elements using the built-in XML Editor. By adding animation tags directly to the vector markup,">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-animated-svgs-in-inkscape-with-smil">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Animated SVGs in Inkscape with SMIL - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-animated-svgs-in-inkscape-with-smil" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to create lightweight, native SVG animations directly inside Inkscape by injecting SMIL (Synchronized Multimedia Integration Language) elements using the built-in XML Editor. By adding animation tags directly to the vector markup," />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-animated-svgs-in-inkscape-with-smil">How to Create
+Animated SVGs in Inkscape with SMIL</h1>
+<p>This guide explains how to create lightweight, native SVG animations
+directly inside Inkscape by injecting SMIL (Synchronized Multimedia
+Integration Language) elements using the built-in XML Editor. By adding
+animation tags directly to the vector markup, you can produce
+self-contained, animated vector graphics that run natively in modern web
+browsers without requiring external CSS stylesheets or JavaScript
+libraries.</p>
+<h3 id="step-1-open-the-xml-editor-in-inkscape">Step 1: Open the XML
+Editor in Inkscape</h3>
+<ol type="1">
+<li>Open your vector project in Inkscape.</li>
+<li>Select the object you wish to animate on the canvas.</li>
+<li>Open the XML Editor by navigating to <strong>Edit &gt; XML
+Editor</strong> or by pressing <strong>Ctrl + Shift + X</strong> (Cmd +
+Shift + X on macOS).</li>
+<li>The XML tree will highlight the specific node corresponding to your
+selected visual element (such as a <code>&lt;path&gt;</code>,
+<code>&lt;rect&gt;</code>, <code>&lt;circle&gt;</code>, or
+<code>&lt;g&gt;</code>).</li>
+</ol>
+<h3 id="step-2-add-a-smil-animation-element">Step 2: Add a SMIL
+Animation Element</h3>
+<p>To animate an element with SMIL, you must add an animation tag as a
+child node under the target element's node.</p>
+<ol type="1">
+<li>Ensure the target element is selected in the XML tree.</li>
+<li>In the top toolbar of the XML Editor panel, click the <strong>New
+element node</strong> icon.</li>
+<li>In the dialog box that appears, enter the name of the SMIL animation
+tag you want to use:
+<ul>
+<li><strong><code>svg:animate</code></strong>: Used for basic attributes
+like opacity, fill, stroke, coordinates, or dimensions.</li>
+<li><strong><code>svg:animateTransform</code></strong>: Used for
+transformation properties such as rotate, scale, translate, or
+skew.</li>
+<li><strong><code>svg:animateMotion</code></strong>: Used for moving an
+object along a predefined path.</li>
+</ul></li>
+<li>Click <strong>Create</strong> to nest the animation element inside
+the selected object.</li>
+</ol>
+<h3 id="step-3-define-animation-attributes">Step 3: Define Animation
+Attributes</h3>
+<p>Once the child node is created, select it in the XML tree to define
+its behavior using attributes in the right-hand panel of the XML
+Editor.</p>
+<h4 id="example-1-animating-opacity-with-svganimate">Example 1:
+Animating Opacity with <code>svg:animate</code></h4>
+<p>To create a pulsing fade effect:</p>
+<ol type="1">
+<li>Select the newly created <code>&lt;svg:animate&gt;</code> node.</li>
+<li>In the <strong>Attribute name</strong> input field, enter
+<code>attributeName</code> and set the <strong>Value</strong> to
+<code>opacity</code>, then click <strong>Set</strong>.</li>
+<li>Add <code>from</code> with a value of <code>1</code>.</li>
+<li>Add <code>to</code> with a value of <code>0.2</code>.</li>
+<li>Add <code>dur</code> (duration) with a value of
+<code>2s</code>.</li>
+<li>Add <code>repeatCount</code> with a value of
+<code>indefinite</code>.</li>
+</ol>
+<h4 id="example-2-rotating-an-object-with-svganimatetransform">Example
+2: Rotating an Object with <code>svg:animateTransform</code></h4>
+<p>To make an object continuously rotate around its center point:</p>
+<ol type="1">
+<li>Select the newly created <code>&lt;svg:animateTransform&gt;</code>
+node.</li>
+<li>Add <code>attributeName</code> with a value of
+<code>transform</code>.</li>
+<li>Add <code>type</code> with a value of <code>rotate</code>.</li>
+<li>Add <code>from</code> with a value of <code>0 cx cy</code> (replace
+<code>cx</code> and <code>cy</code> with the center coordinates of your
+object).</li>
+<li>Add <code>to</code> with a value of <code>360 cx cy</code>.</li>
+<li>Add <code>dur</code> with a value of <code>4s</code>.</li>
+<li>Add <code>repeatCount</code> with a value of
+<code>indefinite</code>.</li>
+</ol>
+<h3 id="step-4-key-smil-attributes-reference">Step 4: Key SMIL
+Attributes Reference</h3>
+<ul>
+<li><strong><code>attributeName</code></strong>: The exact SVG or CSS
+property to animate (e.g., <code>fill</code>, <code>d</code>,
+<code>cx</code>, <code>width</code>).</li>
+<li><strong><code>from</code> / <code>to</code></strong>: The starting
+and ending states of the property.</li>
+<li><strong><code>values</code></strong>: A semicolon-separated list of
+values (e.g., <code>0; 1; 0</code>) for multi-step animations,
+overriding <code>from</code> and <code>to</code>.</li>
+<li><strong><code>dur</code></strong>: The duration of one animation
+cycle (e.g., <code>500ms</code>, <code>3s</code>).</li>
+<li><strong><code>repeatCount</code></strong>: How many times the
+animation plays (e.g., <code>1</code>, <code>5</code>, or
+<code>indefinite</code>).</li>
+<li><strong><code>begin</code></strong>: When the animation starts
+(e.g., <code>0s</code>, <code>click</code>, or
+<code>mouseover</code>).</li>
+</ul>
+<h3 id="step-5-save-and-preview">Step 5: Save and Preview</h3>
+<p>Inkscape's canvas does not render live SMIL playback. To view and
+test your animation:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>Choose <strong>Optimized SVG</strong> or <strong>Plain SVG</strong>
+to remove proprietary Inkscape metadata, or keep standard
+<strong>Inkscape SVG</strong> if you plan to edit shapes further.</li>
+<li>Open the saved <code>.svg</code> file in any modern web browser to
+view the running animation.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

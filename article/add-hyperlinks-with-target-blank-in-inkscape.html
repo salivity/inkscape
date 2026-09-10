@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Hyperlinks with Target Blank in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to convert static vector graphics into interactive SVG elements by embedding clickable web links directly onto objects within Inkscape. By utilizing Inkscape's built-in link properties and XML attributes, you can assign web addres">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/add-hyperlinks-with-target-blank-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Add Hyperlinks with Target Blank in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/add-hyperlinks-with-target-blank-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to convert static vector graphics into interactive SVG elements by embedding clickable web links directly onto objects within Inkscape. By utilizing Inkscape's built-in link properties and XML attributes, you can assign web addres" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="add-hyperlinks-with-target-blank-in-inkscape">Add Hyperlinks
+with Target Blank in Inkscape</h1>
+<p>This guide explains how to convert static vector graphics into
+interactive SVG elements by embedding clickable web links directly onto
+objects within Inkscape. By utilizing Inkscape's built-in link
+properties and XML attributes, you can assign web addresses to shapes,
+paths, or text and configure them with the <code>target="_blank"</code>
+attribute so that URLs open in a new browser window or tab.</p>
+<h3 id="step-1-select-your-vector-object">Step 1: Select Your Vector
+Object</h3>
+<p>Open your SVG file in Inkscape and use the <strong>Select
+Tool</strong> (<code>S</code> or <code>F1</code>) to click on the vector
+path, shape, group, or text element that you want to make clickable.</p>
+<h3 id="step-2-create-the-anchor-link">Step 2: Create the Anchor
+Link</h3>
+<p>With the object selected, convert it into an SVG hyperlink element
+(<code>&lt;a&gt;</code> tag):</p>
+<ol type="1">
+<li>Right-click the selected object.</li>
+<li>Select <strong>Create Link</strong> from the context menu.</li>
+</ol>
+<p>The object is now wrapped in an anchor container within the SVG
+document structure.</p>
+<h3 id="step-3-configure-link-properties-and-target">Step 3: Configure
+Link Properties and Target</h3>
+<p>Once the link wrapper is created, you must assign the destination URL
+and the target behavior:</p>
+<ol type="1">
+<li>Right-click the object again and select <strong>Link
+Properties</strong>.</li>
+<li>In the Link Properties dialog, locate the <strong>Href</strong>
+field and enter the full URL (including <code>https://</code>, for
+example: <code>https://example.com</code>).</li>
+<li>Locate the <strong>Target</strong> field. Enter or select
+<code>_blank</code> to ensure the link opens in a new browser tab.</li>
+<li>Click <strong>Set</strong> to apply the changes.</li>
+</ol>
+<h3 id="step-4-verify-via-the-xml-editor-optional">Step 4: Verify via
+the XML Editor (Optional)</h3>
+<p>To guarantee the attributes are correctly written to the raw SVG
+markup:</p>
+<ol type="1">
+<li>Open the XML Editor by pressing <code>Ctrl + Shift + X</code> (or
+<code>Cmd + Shift + X</code> on macOS).</li>
+<li>Locate the <code>svg:a</code> node wrapping your selected
+object.</li>
+<li>Verify that the following attributes are present on the
+<code>svg:a</code> node:
+<ul>
+<li><code>xlink:href</code> (or <code>href</code>): Set to your
+destination URL.</li>
+<li><code>target</code>: Set to <code>_blank</code>.</li>
+</ul></li>
+<li>If the <code>target</code> attribute is missing, click the attribute
+name field at the top right of the XML panel, type <code>target</code>,
+enter <code>_blank</code> in the value field, and click
+<strong>Set</strong>.</li>
+</ol>
+<h3 id="step-5-save-and-test-the-svg">Step 5: Save and Test the SVG</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>Choose either <strong>Plain SVG</strong> or <strong>Optimized
+SVG</strong> (if using Optimized SVG, ensure settings do not strip link
+attributes).</li>
+<li>Open the saved <code>.svg</code> file in any modern web browser
+(such as Chrome, Firefox, or Edge) and click the vector object to
+confirm that it redirects properly in a new tab.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

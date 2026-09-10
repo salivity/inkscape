@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embed PDF/X Color Output Intents in Inkscape - inkscape</title>
+    <meta name="description" content="While Inkscape provides robust tools for vector illustration, achieving strict PDF/X compliance requires embedding a standardized Output Intent dictionary into the document metadata to define how colors should render on commercial presses. Because Inksca">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/embed-pdf-x-color-output-intents-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Embed PDF/X Color Output Intents in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/embed-pdf-x-color-output-intents-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="While Inkscape provides robust tools for vector illustration, achieving strict PDF/X compliance requires embedding a standardized Output Intent dictionary into the document metadata to define how colors should render on commercial presses. Because Inksca" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="embed-pdfx-color-output-intents-in-inkscape">Embed PDF/X Color
+Output Intents in Inkscape</h1>
+<p>While Inkscape provides robust tools for vector illustration,
+achieving strict PDF/X compliance requires embedding a standardized
+Output Intent dictionary into the document metadata to define how colors
+should render on commercial presses. Because Inkscape’s native Cairo
+export engine does not directly write the ISO-standard
+<code>/OutputIntents</code> dictionary into PDF files, completing this
+process requires configuring the ICC color profile inside Inkscape,
+exporting the base PDF, and injecting the formal PDF/X metadata using an
+external post-processing tool like Ghostscript.</p>
+<h3
+id="step-1-install-and-configure-the-target-icc-profile-in-inkscape">Step
+1: Install and Configure the Target ICC Profile in Inkscape</h3>
+<p>Before exporting, you must assign the desired target print profile
+(such as FOGRA39, FOGRA51, or US Web Coated SWOP) to Inkscape's color
+management system.</p>
+<ol type="1">
+<li>Place your target <code>.icc</code> or <code>.icm</code> profile in
+your operating system's color profile directory:
+<ul>
+<li><strong>Linux:</strong> <code>~/.local/share/color/icc/</code> or
+<code>/usr/share/color/icc/</code></li>
+<li><strong>Windows:</strong>
+<code>C:\Windows\System32\spool\drivers\color</code></li>
+<li><strong>macOS:</strong> <code>/Library/ColorSync/Profiles</code> or
+<code>~/Library/ColorSync/Profiles</code></li>
+</ul></li>
+<li>Open Inkscape and navigate to <strong>Edit &gt; Preferences &gt;
+Color management</strong>.</li>
+<li>Set the <strong>Display profile</strong> and verify that your target
+CMYK profile appears under the available profiles list.</li>
+</ol>
+<h3 id="step-2-set-document-color-management">Step 2: Set Document Color
+Management</h3>
+<ol type="1">
+<li>Open your document in Inkscape.</li>
+<li>Go to <strong>File &gt; Document Properties</strong> (or press
+<code>Ctrl+Shift+D</code> / <code>Cmd+Shift+D</code>).</li>
+<li>Select the <strong>Color</strong> tab.</li>
+<li>Click <strong>Available profiles</strong>, select your target CMYK
+profile from the list, and click <strong>Link profile</strong>.</li>
+<li>When designing or coloring objects, use the <strong>CMS</strong> tab
+in the <strong>Fill and Stroke</strong> dialog
+(<code>Ctrl+Shift+F</code>) to ensure all colors are mapped directly to
+the linked ICC profile rather than unmanaged sRGB values.</li>
+</ol>
+<h3 id="step-3-export-the-base-pdf-from-inkscape">Step 3: Export the
+Base PDF from Inkscape</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>In the file format dropdown, select <strong>Portable Document Format
+(*.pdf)</strong>.</li>
+<li>In the PDF export options dialog:
+<ul>
+<li>Set the <strong>PDF version</strong> to <strong>PDF 1.4</strong> or
+<strong>PDF 1.5</strong> (required for PDF/X-1a and PDF/X-3
+standards).</li>
+<li>Ensure text output is set according to your printer's specifications
+(e.g., "Convert text to paths" to prevent missing font errors).</li>
+<li>Check <strong>Rasterize filter effects</strong> if you use blurs or
+blend modes.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to save the file.</li>
+</ol>
+<h3 id="step-4-inject-the-pdfx-output-intent-metadata">Step 4: Inject
+the PDF/X Output Intent Metadata</h3>
+<p>Because the standard export file lacks the specific
+<code>/OutputIntents</code> metadata key required by preflight software,
+inject it using Ghostscript.</p>
+<p>Create a definition file named <code>pdfx_intent.ps</code> containing
+the metadata parameters:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode postscript"><code class="sourceCode postscript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>[ <span class="dt">/_objdef</span> {OutputIntent_Obj} <span class="dt">/type</span> <span class="dt">/dict</span> <span class="dt">/OBJ</span> <span class="kw">get</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">dup</span> <span class="dt">/Type</span> <span class="dt">/OutputIntent</span> <span class="kw">put</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">dup</span> <span class="dt">/S</span> <span class="dt">/GTS_PDFX</span> <span class="kw">put</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">dup</span> <span class="dt">/OutputConditionIdentifier</span> <span class="st">(FOGRA39)</span> <span class="kw">put</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">dup</span> <span class="dt">/Info</span> <span class="st">(FOGRA39)</span> <span class="kw">put</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">dup</span> <span class="dt">/RegistryName</span> <span class="st">(http://www.color.org)</span> <span class="kw">put</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">/PUT</span> pdfmark</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>[{Catalog} &lt;&lt;<span class="dt">/OutputIntents</span> [{OutputIntent_Obj}]&gt;&gt; <span class="dt">/PUT</span> pdfmark</span></code></pre></div>
+<p>Run the following Ghostscript command in your terminal or command
+prompt to produce the final, compliant PDF/X file with embedded output
+intent metadata:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gs</span> <span class="at">-dPDFX</span> <span class="at">-dBATCH</span> <span class="at">-dNOPAUSE</span> <span class="at">-dNOOUTERSAVE</span> <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">-sProcessColorModel</span><span class="op">=</span>DeviceCMYK <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>   <span class="at">-sColorConversionStrategy</span><span class="op">=</span>CMYK <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>   <span class="at">-sDEVICE</span><span class="op">=</span>pdfwrite <span class="dt">\</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">-dCompatibilityLevel</span><span class="op">=</span>1.4 <span class="dt">\</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">-sOutputFile</span><span class="op">=</span>Final_Print_PDFX.pdf <span class="dt">\</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>   pdfx_intent.ps Inkscape_Export.pdf</span></code></pre></div>
+<h3 id="alternative-workflow-scribus-bridge">Alternative Workflow:
+Scribus Bridge</h3>
+<p>If you prefer a graphical interface over command-line utilities:</p>
+<ol type="1">
+<li>Save your artwork in Inkscape as a standard <strong>Inkscape
+SVG</strong>.</li>
+<li>Open <strong>Scribus</strong> and choose <strong>File &gt; Import
+&gt; Get Vector File...</strong> to import the SVG.</li>
+<li>Navigate to <strong>File &gt; Export &gt; Save as PDF</strong>.</li>
+<li>In the export dialog, select <strong>PDF/X-1a</strong>,
+<strong>PDF/X-3</strong>, or <strong>PDF/X-4</strong> from the
+<strong>Compatibility</strong> dropdown.</li>
+<li>Under the <strong>Color</strong> tab, choose
+<strong>Printer</strong> as the output target and select your intended
+CMYK profile under <strong>Output Intent</strong>. Scribus will
+automatically write the required PDF/X metadata dictionary to the final
+file.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How 2Geom Approximates Bezier Curves with Arcs - inkscape</title>
+    <meta name="description" content="The 2Geom library used by Inkscape converts Bezier curves into circular arc sequences by utilizing an adaptive biarc approximation algorithm. Because cubic Bezier curves have varying curvature that circular arcs cannot replicate directly, 2Geom breaks cu">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-2geom-approximates-bezier-curves-with-arcs">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How 2Geom Approximates Bezier Curves with Arcs - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-2geom-approximates-bezier-curves-with-arcs" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The 2Geom library used by Inkscape converts Bezier curves into circular arc sequences by utilizing an adaptive biarc approximation algorithm. Because cubic Bezier curves have varying curvature that circular arcs cannot replicate directly, 2Geom breaks cu" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-2geom-approximates-bezier-curves-with-arcs">How 2Geom
+Approximates Bezier Curves with Arcs</h1>
+<p>The 2Geom library used by Inkscape converts Bezier curves into
+circular arc sequences by utilizing an adaptive biarc approximation
+algorithm. Because cubic Bezier curves have varying curvature that
+circular arcs cannot replicate directly, 2Geom breaks curves into
+segments at inflection points, computes two-arc sequences (biarcs) that
+match the boundary positions and tangents, checks the deviation against
+a user-defined tolerance, and recursively subdivides segments until the
+error falls within acceptable limits.</p>
+<h3 id="inflection-point-splitting">Inflection Point Splitting</h3>
+<p>Before fitting circular arcs, the cubic Bezier curve must be
+segmented into monotonic curvature sections. A single circular arc or
+biarc cannot represent an inflection point where the sign of the
+curvature changes. 2Geom calculates the roots of the cross product of
+the curve's first and second derivatives (<span
+class="math inline">\(C&#39;(t) \times C&#39;&#39;(t) = 0\)</span>). The
+curve is split at these parameter values <span
+class="math inline">\(t\)</span>, guaranteeing that every resulting
+subsegment bends in a single direction without changing concavity.</p>
+<h3 id="biarc-fitting">Biarc Fitting</h3>
+<p>For each subsegment, 2Geom constructs a biarc. A biarc consists of
+two circular arcs sharing a common intermediate point and tangent,
+providing <span class="math inline">\(G^1\)</span> (tangent) continuity
+across the entire span:</p>
+<ol type="1">
+<li><strong>Boundary Conditions:</strong> The algorithm extracts the
+start point <span class="math inline">\(P_0\)</span>, end point <span
+class="math inline">\(P_1\)</span>, and their corresponding unit tangent
+vectors <span class="math inline">\(T_0\)</span> and <span
+class="math inline">\(T_1\)</span> directly from the Bezier
+segment.</li>
+<li><strong>Joint Point Selection:</strong> The connection point between
+the two arcs is computed based on geometric constraints. A common
+approach chosen in 2Geom is to place the joint point such that the ratio
+of the two arc radii minimizes curvature variation or equalizes the arc
+lengths.</li>
+<li><strong>Center and Radius Computation:</strong> With the endpoints,
+tangents, and transition point established, the centers and radii of
+both circular segments are solved geometrically via the intersections of
+the normal lines.</li>
+</ol>
+<h3 id="error-estimation">Error Estimation</h3>
+<p>Once a candidate biarc is generated, 2Geom measures how closely it
+follows the original Bezier segment. The deviation is evaluated by
+calculating the maximum distance (Hausdorff distance approximation)
+between points on the Bezier curve and the corresponding points along
+the biarc:</p>
+<ul>
+<li>Sample points along the parameter space <span
+class="math inline">\(t \in [0, 1]\)</span> are projected onto the
+biarc.</li>
+<li>The orthogonal distance from the Bezier curve to the arc surface is
+tested, particularly near the midpoint and points of maximum curvature
+deviation.</li>
+</ul>
+<h3 id="recursive-subdivision">Recursive Subdivision</h3>
+<p>If the maximum deviation exceeds the specified tolerance
+threshold:</p>
+<ol type="1">
+<li>The Bezier segment is subdivided into two smaller halves using de
+Casteljau's algorithm (typically at <span class="math inline">\(t =
+0.5\)</span> or at the parameter of maximum error).</li>
+<li>The biarc fitting process is applied recursively to both
+halves.</li>
+<li>If the computed error is within tolerance, the candidate biarc is
+accepted and appended to the output path.</li>
+</ol>
+<p>This recursive reduction produces a sequence of smoothly connected
+circular arcs that accurately mimics the original Bezier path within the
+exact tolerance required for CNC machining, plotter export, or CAD
+interoperability.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

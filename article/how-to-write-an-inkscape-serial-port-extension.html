@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Write an Inkscape Serial Port Extension - inkscape</title>
+    <meta name="description" content="Building an Inkscape extension to control external hardware involves creating an XML-based descriptor file (.inx) to generate the user interface within Inkscape and a Python script using the inkex and pyserial libraries to process drawing data and transm">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-write-an-inkscape-serial-port-extension">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Write an Inkscape Serial Port Extension - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-write-an-inkscape-serial-port-extension" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Building an Inkscape extension to control external hardware involves creating an XML-based descriptor file (.inx) to generate the user interface within Inkscape and a Python script using the inkex and pyserial libraries to process drawing data and transm" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-write-an-inkscape-serial-port-extension">How to Write an
+Inkscape Serial Port Extension</h1>
+<p>Building an Inkscape extension to control external hardware involves
+creating an XML-based descriptor file (<code>.inx</code>) to generate
+the user interface within Inkscape and a Python script using the
+<code>inkex</code> and <code>pyserial</code> libraries to process
+drawing data and transmit commands over a serial connection. This guide
+details how to configure the extension files, extract vector path
+coordinates from an active SVG document, and stream formatted motion
+commands directly to a connected microcontroller such as an Arduino.</p>
+<h3 id="1-prerequisites-and-setup">1. Prerequisites and Setup</h3>
+<p>Inkscape relies on its own internal Python environment to execute
+extensions. To communicate via a COM port, the <code>pyserial</code>
+library must be installed into that environment.</p>
+<p>Run the following command using the Python interpreter packaged with
+your Inkscape installation:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install pyserial</span></code></pre></div>
+<h3 id="2-define-the-extension-interface-inx">2. Define the Extension
+Interface (.inx)</h3>
+<p>Inkscape requires an <code>.inx</code> file to display the extension
+in the menu bar and to collect user inputs such as the serial port
+identifier and baud rate.</p>
+<p>Create a file named <code>serial_controller.inx</code> and place it
+in your Inkscape user extensions directory (located at <code>Edit</code>
+&gt; <code>Preferences</code> &gt; <code>System</code> &gt;
+<code>User extensions</code>):</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span> <span class="ot">version=</span><span class="st">&quot;1.0&quot;</span> <span class="ot">encoding=</span><span class="st">&quot;UTF-8&quot;</span><span class="fu">?&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">inkscape-extension</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.inkscape.org/namespace/inkscape/extension&quot;</span>&gt;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">name</span>&gt;Hardware Serial Controller&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">id</span>&gt;org.example.hardware.controller&lt;/<span class="kw">id</span>&gt;</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">param</span> <span class="ot">name=</span><span class="st">&quot;port&quot;</span> <span class="ot">type=</span><span class="st">&quot;string&quot;</span> <span class="ot">gui-text=</span><span class="st">&quot;Serial Port:&quot;</span>&gt;/dev/ttyUSB0&lt;/<span class="kw">param</span>&gt;</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">param</span> <span class="ot">name=</span><span class="st">&quot;baud&quot;</span> <span class="ot">type=</span><span class="st">&quot;int&quot;</span> <span class="ot">min=</span><span class="st">&quot;1200&quot;</span> <span class="ot">max=</span><span class="st">&quot;115200&quot;</span> <span class="ot">gui-text=</span><span class="st">&quot;Baud Rate:&quot;</span>&gt;115200&lt;/<span class="kw">param</span>&gt;</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">effect</span>&gt;</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">object-type</span>&gt;all&lt;/<span class="kw">object-type</span>&gt;</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">submenu</span> <span class="ot">name=</span><span class="st">&quot;Hardware Control&quot;</span>/&gt;</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">effect</span>&gt;</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">script</span>&gt;</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">command</span> <span class="ot">location=</span><span class="st">&quot;inx&quot;</span> <span class="ot">interpreter=</span><span class="st">&quot;python&quot;</span>&gt;serial_controller.py&lt;/<span class="kw">command</span>&gt;</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">script</span>&gt;</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">inkscape-extension</span>&gt;</span></code></pre></div>
+<h3 id="3-implement-the-extension-logic-py">3. Implement the Extension
+Logic (.py)</h3>
+<p>Create a Python file named <code>serial_controller.py</code> in the
+same directory. This script uses the <code>inkex</code> API to parse the
+selected paths, convert coordinate positions into hardware-readable
+instructions, and transmit them through <code>serial.Serial</code>.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex.paths <span class="im">import</span> Move, Line</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> serial</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SerialHardwareExtension(inkex.EffectExtension):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add_arguments(<span class="va">self</span>, pars):</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        pars.add_argument(<span class="st">&quot;--port&quot;</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">str</span>, default<span class="op">=</span><span class="st">&quot;/dev/ttyUSB0&quot;</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Serial port&quot;</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        pars.add_argument(<span class="st">&quot;--baud&quot;</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">115200</span>, <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Baud rate&quot;</span>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        port <span class="op">=</span> <span class="va">self</span>.options.port</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        baud <span class="op">=</span> <span class="va">self</span>.options.baud</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>            ser <span class="op">=</span> serial.Serial(port, baud, timeout<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            time.sleep(<span class="dv">2</span>)  <span class="co"># Wait for microcontroller reset upon connection</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> serial.SerialException <span class="im">as</span> e:</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>            inkex.errormsg(<span class="ss">f&quot;Failed to open serial port: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> element <span class="kw">in</span> <span class="va">self</span>.svg.selection.<span class="bu">filter</span>(inkex.PathElement):</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>                path <span class="op">=</span> element.path.to_absolute()</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> command <span class="kw">in</span> path:</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="bu">isinstance</span>(command, Move):</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>                        x, y <span class="op">=</span> command.x, command.y</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># Send pen-up or rapid move command</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>                        ser.write(<span class="ss">f&quot;G0 X</span><span class="sc">{</span>x<span class="sc">:.2f}</span><span class="ss"> Y</span><span class="sc">{</span>y<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">&quot;</span>.encode(<span class="st">&quot;utf-8&quot;</span>))</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">elif</span> <span class="bu">isinstance</span>(command, Line):</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>                        x, y <span class="op">=</span> command.x, command.y</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># Send pen-down or linear feed move command</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>                        ser.write(<span class="ss">f&quot;G1 X</span><span class="sc">{</span>x<span class="sc">:.2f}</span><span class="ss"> Y</span><span class="sc">{</span>y<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">&quot;</span>.encode(<span class="st">&quot;utf-8&quot;</span>))</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>                    </span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>                    <span class="co"># Read hardware acknowledgment</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>                    response <span class="op">=</span> ser.readline().decode(<span class="st">&quot;utf-8&quot;</span>).strip()</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">finally</span>:</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>            ser.close()</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    SerialHardwareExtension().run()</span></code></pre></div>
+<h3 id="4-running-the-extension">4. Running the Extension</h3>
+<ol type="1">
+<li>Restart Inkscape to register the new <code>.inx</code>
+configuration.</li>
+<li>Draw or import a vector shape, convert all objects to paths using
+<code>Path</code> &gt; <code>Object to Path</code>, and select the
+paths.</li>
+<li>Open the extension via <code>Extensions</code> &gt;
+<code>Hardware Control</code> &gt;
+<code>Hardware Serial Controller</code>.</li>
+<li>Enter your microcontroller's port (e.g., <code>COM3</code> on
+Windows or <code>/dev/ttyUSB0</code> on Linux) and target baud
+rate.</li>
+<li>Click <code>Apply</code> to execute the script and stream the
+coordinates directly to your hardware.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Y-Axis Inversion vs Cartesian Coordinates - inkscape</title>
+    <meta name="description" content="This article examines how Inkscape reconciles standard Cartesian coordinate systems with the native Scalable Vector Graphics (SVG) coordinate specifications. While traditional geometry uses a bottom-left origin where the Y-axis ascends positively, comput">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-y-axis-inversion-vs-cartesian-coordinates">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Y-Axis Inversion vs Cartesian Coordinates - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-y-axis-inversion-vs-cartesian-coordinates" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article examines how Inkscape reconciles standard Cartesian coordinate systems with the native Scalable Vector Graphics (SVG) coordinate specifications. While traditional geometry uses a bottom-left origin where the Y-axis ascends positively, comput" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-y-axis-inversion-vs-cartesian-coordinates">Inkscape
+Y-Axis Inversion vs Cartesian Coordinates</h1>
+<p>This article examines how Inkscape reconciles standard Cartesian
+coordinate systems with the native Scalable Vector Graphics (SVG)
+coordinate specifications. While traditional geometry uses a bottom-left
+origin where the Y-axis ascends positively, computer display standards
+and SVG use a top-left origin where the Y-axis increases downward. Below
+is an explanation of the mathematical inversion, Inkscape's historical
+coordinate handling, and how modern versions manage Y-axis orientation
+natively.</p>
+<h3 id="the-conflict-cartesian-plane-vs-svg-standard">The Conflict:
+Cartesian Plane vs. SVG Standard</h3>
+<p>In a standard Cartesian plane, the origin point <span
+class="math inline">\((0,0)\)</span> resides at the bottom-left corner
+of the primary quadrant. Moving horizontally to the right increases the
+<span class="math inline">\(X\)</span> value, while moving vertically
+upward increases the <span class="math inline">\(Y\)</span> value.</p>
+<p>The W3C SVG standard, originating from computer graphics and screen
+buffer conventions, adopts the display coordinate model:</p>
+<ul>
+<li>The origin <span class="math inline">\((0,0)\)</span> is fixed at
+the <strong>top-left</strong> corner of the viewport.</li>
+<li>The positive <strong>X-axis</strong> extends to the right.</li>
+<li>The positive <strong>Y-axis</strong> extends
+<strong>downward</strong>.</li>
+</ul>
+<p>Because geometry software often adopts Cartesian orientation and web
+graphics rely on screen coordinates, vector editors must bridge the
+mathematical difference.</p>
+<h3 id="mathematical-conversion">Mathematical Conversion</h3>
+<p>To convert between a Cartesian coordinate system and an SVG
+coordinate system, the vertical axis must undergo both a sign flip and a
+translation based on the total height of the canvas (<span
+class="math inline">\(H\)</span>):</p>
+<ul>
+<li><strong>Cartesian to SVG:</strong> <span
+class="math inline">\(Y_{\text{svg}} = H -
+Y_{\text{cartesian}}\)</span></li>
+<li><strong>SVG to Cartesian:</strong> <span
+class="math inline">\(Y_{\text{cartesian}} = H -
+Y_{\text{svg}}\)</span></li>
+</ul>
+<p>In matrix transformation terms, this inversion is represented as a
+vertical reflection accompanied by a translation along the Y-axis:</p>
+<p><span class="math display">\[\begin{bmatrix} X_{\text{svg}} \\
+Y_{\text{svg}} \\ 1 \end{bmatrix} = \begin{bmatrix} 1 &amp; 0 &amp; 0 \\
+0 &amp; -1 &amp; H \\ 0 &amp; 0 &amp; 1 \end{bmatrix} \begin{bmatrix}
+X_{\text{cartesian}} \\ Y_{\text{cartesian}} \\ 1
+\end{bmatrix}\]</span></p>
+<h3 id="inkscapes-historical-approach-pre-10">Inkscape's Historical
+Approach (Pre-1.0)</h3>
+<p>In versions prior to Inkscape 1.0, the software prioritized
+human-centric Cartesian conventions in its graphical user interface
+(GUI). The canvas rulers, tool coordinates, and status bar displayed
+<span class="math inline">\((0,0)\)</span> at the bottom-left corner,
+with positive <span class="math inline">\(Y\)</span> values moving
+upward.</p>
+<p>To maintain valid SVG files compliant with the W3C specification,
+Inkscape had to apply real-time translations:</p>
+<ol type="1">
+<li>The internal DOM maintained SVG standard coordinates (top-left
+origin).</li>
+<li>The user interface applied the <span
+class="math inline">\(Y_{\text{gui}} = H - Y_{\text{svg}}\)</span>
+calculation to all user-facing inputs and measurements.</li>
+<li>Nested layers or exported groups often required explicit
+transformation matrices (<code>transform="matrix(1,0,0,-1,0,H)"</code>)
+to ensure that imports, paths, and rendered geometries remained aligned
+between Cartesian GUI inputs and standard SVG viewers.</li>
+</ol>
+<p>This duality frequently caused confusion when editing raw SVG source
+code, as path coordinates in the XML editor did not match the values
+displayed in the toolbar.</p>
+<h3 id="modern-implementation-inkscape-10-and-later">Modern
+Implementation (Inkscape 1.0 and Later)</h3>
+<p>Starting with Inkscape 1.0, the software updated its internal
+architecture to align directly with the SVG standard.</p>
+<ul>
+<li><strong>Native Top-Left Origin:</strong> By default, Inkscape's
+rulers and document origin now reside at the top-left corner, matching
+the native SVG document structure. Moving an object downward increases
+its <span class="math inline">\(Y\)</span> value in both the interface
+and the underlying XML code.</li>
+<li><strong>Elimination of Root Transform Hacks:</strong> Because the
+GUI matches the SVG data structure, the software no longer needs to
+inject inverted transform matrices at the document root to reconcile the
+view with the file output.</li>
+<li><strong>User Preferences:</strong> For users who require a
+traditional Cartesian layout (such as for CNC machining, plotting, or
+CAD workflows), Inkscape provides a toggle in <strong>Preferences &gt;
+Interface &gt; Origin at top-left with Y downward</strong>. When
+unchecked, the UI flips the display logic mathematically, while
+preserving clean, spec-compliant SVG markup in the saved document.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

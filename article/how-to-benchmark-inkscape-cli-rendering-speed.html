@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Benchmark Inkscape CLI Rendering Speed - inkscape</title>
+    <meta name="description" content="Benchmarking Inkscape's command-line interface (CLI) allows you to quantify rendering performance, optimize batch export pipelines, and evaluate the impact of different export parameters. This guide explains how to measure the execution time of various I">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-benchmark-inkscape-cli-rendering-speed">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Benchmark Inkscape CLI Rendering Speed - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-benchmark-inkscape-cli-rendering-speed" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Benchmarking Inkscape's command-line interface (CLI) allows you to quantify rendering performance, optimize batch export pipelines, and evaluate the impact of different export parameters. This guide explains how to measure the execution time of various I" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-benchmark-inkscape-cli-rendering-speed">How to Benchmark
+Inkscape CLI Rendering Speed</h1>
+<p>Benchmarking Inkscape's command-line interface (CLI) allows you to
+quantify rendering performance, optimize batch export pipelines, and
+evaluate the impact of different export parameters. This guide explains
+how to measure the execution time of various Inkscape rendering commands
+accurately using system utilities and dedicated benchmarking tools.</p>
+<h3 id="understanding-inkscape-cli-rendering-actions">Understanding
+Inkscape CLI Rendering Actions</h3>
+<p>Inkscape executes rendering actions through flags passed directly to
+its executable. Common actions include rasterizing to PNG, compiling to
+vector PDF, altering export DPI, and selecting specific object IDs for
+export.</p>
+<p>A standard export command looks like this:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--export-filename</span><span class="op">=</span>output.png <span class="at">--export-dpi</span><span class="op">=</span>300</span></code></pre></div>
+<p>To compare performance, you change single parameters—such as
+<code>--export-type=pdf</code> versus <code>--export-type=png</code>, or
+rendering the whole page versus using
+<code>--export-area-drawing</code>.</p>
+<h3 id="using-the-time-utility-for-quick-measurements">Using the
+<code>time</code> Utility for Quick Measurements</h3>
+<p>The simplest way to measure execution speed on Unix-like systems
+(Linux, macOS) is the <code>time</code> command. To avoid shell built-in
+variations and capture memory and CPU details, use the absolute path to
+GNU <code>time</code>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/bin/time</span> <span class="at">-v</span> inkscape input.svg <span class="at">--export-filename</span><span class="op">=</span>output.png</span></code></pre></div>
+<p>Key metrics to record include:</p>
+<ul>
+<li><strong>Elapsed (wall clock) time:</strong> The actual real-world
+time the process took to complete.</li>
+<li><strong>User time:</strong> The time the CPU spent executing the
+Inkscape process.</li>
+<li><strong>System time:</strong> The time spent by the OS kernel
+handling tasks like disk I/O.</li>
+<li><strong>Maximum resident set size:</strong> The peak RAM consumed
+during the rendering process.</li>
+</ul>
+<p>On Windows PowerShell, you can use <code>Measure-Command</code>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Measure-Command</span> <span class="op">{</span> inkscape input<span class="op">.</span><span class="fu">svg</span> <span class="op">--</span>export-filename<span class="op">=</span>output<span class="op">.</span><span class="fu">png</span> <span class="op">}</span></span></code></pre></div>
+<h3 id="advanced-benchmarking-with-hyperfine">Advanced Benchmarking with
+Hyperfine</h3>
+<p>For statistically rigorous results, use <code>hyperfine</code>, a
+dedicated command-line benchmarking tool that automatically performs
+warm-up runs, statistical analysis, and multi-command comparisons.</p>
+<p>Install <code>hyperfine</code> via your package manager (e.g.,
+<code>brew install hyperfine</code>, <code>apt install hyperfine</code>,
+or <code>cargo install hyperfine</code>), then run comparisons between
+different actions.</p>
+<h4 id="1-comparing-export-formats">1. Comparing Export Formats</h4>
+<p>To compare rendering speeds between PNG, PDF, and EPS exports of the
+same source file:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hyperfine</span> <span class="at">--warmup</span> 2 <span class="dt">\</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;inkscape input.svg --export-filename=test.png&#39;</span> <span class="dt">\</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;inkscape input.svg --export-filename=test.pdf&#39;</span> <span class="dt">\</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;inkscape input.svg --export-filename=test.eps&#39;</span></span></code></pre></div>
+<h4 id="2-evaluating-the-impact-of-export-dpi">2. Evaluating the Impact
+of Export DPI</h4>
+<p>To benchmark how scaling output resolution affects rendering
+duration:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hyperfine</span> <span class="at">--warmup</span> 2 <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;inkscape input.svg --export-dpi=96 --export-filename=out96.png&#39;</span> <span class="dt">\</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;inkscape input.svg --export-dpi=300 --export-filename=out300.png&#39;</span> <span class="dt">\</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;inkscape input.svg --export-dpi=600 --export-filename=out600.png&#39;</span></span></code></pre></div>
+<h4 id="3-comparing-export-scopes">3. Comparing Export Scopes</h4>
+<p>Test whether cropping or isolating objects reduces processing
+overhead:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hyperfine</span> <span class="at">--warmup</span> 2 <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;inkscape input.svg --export-area-page --export-filename=page.png&#39;</span> <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;inkscape input.svg --export-area-drawing --export-filename=drawing.png&#39;</span> <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;inkscape input.svg --export-id=layer1 --export-filename=layer.png&#39;</span></span></code></pre></div>
+<h3 id="best-practices-for-accurate-benchmarking">Best Practices for
+Accurate Benchmarking</h3>
+<ul>
+<li><strong>Use Warm-up Runs:</strong> Initial command executions often
+suffer from cold-cache disk latency. Always run one or two warm-up
+executions before measuring.</li>
+<li><strong>Clean Output Files:</strong> Writing to existing files can
+behave differently than writing to new files. Use
+<code>hyperfine --prepare 'rm -f output.*'</code> to delete artifacts
+before each iteration.</li>
+<li><strong>Close Background Tasks:</strong> Heavy background processes
+(browsers, IDEs) can skew CPU metrics. Benchmarks should run in an
+isolated environment.</li>
+<li><strong>Test Large and Small SVGs:</strong> Complex filters, large
+raster embeddings, and heavy node counts scale differently across export
+formats. Benchmark both simple icons and complex graphics to understand
+your specific performance profile.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

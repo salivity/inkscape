@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Paint Vector Gouache Texture in Inkscape - inkscape</title>
+    <meta name="description" content="Simulating the rich, opaque, and textured finish of traditional gouache painting inside Inkscape relies on dialing in the Calligraphy Tool's dynamic stroke engines. By configuring rough, irregular stroke parameters, varying pen pressure, and layering fla">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-paint-vector-gouache-texture-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Paint Vector Gouache Texture in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-paint-vector-gouache-texture-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Simulating the rich, opaque, and textured finish of traditional gouache painting inside Inkscape relies on dialing in the Calligraphy Tool's dynamic stroke engines. By configuring rough, irregular stroke parameters, varying pen pressure, and layering fla" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-paint-vector-gouache-texture-in-inkscape">How to Paint
+Vector Gouache Texture in Inkscape</h1>
+<p>Simulating the rich, opaque, and textured finish of traditional
+gouache painting inside Inkscape relies on dialing in the Calligraphy
+Tool's dynamic stroke engines. By configuring rough, irregular stroke
+parameters, varying pen pressure, and layering flat-color paths from
+dark to light, you can mimic the wet-on-dry scumbling and dry-brush
+effects characteristic of physical gouache without ever leaving the
+vector space.</p>
+<h3 id="1-configure-the-calligraphy-tool-presets">1. Configure the
+Calligraphy Tool Presets</h3>
+<p>Select the <strong>Calligraphy Tool</strong> from the toolbar or
+press <code>C</code>. Gouache is known for its heavy body and rough,
+chalky edges, which you can mimic by modifying standard ink pen settings
+to introduce jitter and friction:</p>
+<ul>
+<li><strong>Profile:</strong> Set to <em>Custom</em> or
+<em>Wiggly</em>.</li>
+<li><strong>Width:</strong> Set to a baseline between 20 and 50
+depending on canvas resolution.</li>
+<li><strong>Mass:</strong> Lower to <code>5</code>–<code>10</code> for
+high responsiveness to hand movement, allowing natural jitter.</li>
+<li><strong>Angle:</strong> Fix at <code>30°</code> to <code>45°</code>
+to mimic the hold of a flat-chisel or round gouache brush.</li>
+<li><strong>Fixation:</strong> Set to <code>90</code> or
+<code>100</code> to maintain consistent stroke angle.</li>
+<li><strong>Tremor:</strong> Increase to between <code>20</code> and
+<code>45</code>. This parameter is critical: it roughs up the edge
+contours of your paths, producing the fragmented edge of a dry bristle
+brush dragging across heavy-tooth watercolor paper.</li>
+<li><strong>Wiggle:</strong> Keep low, between <code>0</code> and
+<code>10</code>, to prevent the line from looping erratically while
+retaining an organic outline.</li>
+</ul>
+<h3 id="2-emulate-the-traditional-gouache-workflow">2. Emulate the
+Traditional Gouache Workflow</h3>
+<p>Traditional gouache is an opaque medium generally applied from dark
+base layers up to lighter, textured highlights.</p>
+<ol type="1">
+<li><strong>Lay Flat Bases:</strong> Block in primary silhouettes using
+the <strong>Pen (Bezier) Tool</strong> (<code>B</code>) or large,
+low-tremor calligraphy strokes. Give these shapes solid, un-textured
+fills.</li>
+<li><strong>Build Middle Values with Scumbling:</strong> Switch back to
+the Calligraphy Tool with your Tremor setting enabled. Pick middle tones
+slightly lighter than your base. Use rapid, overlapping strokes where
+light hits form, allowing fragments of the darker underlayer to show
+through the jagged edges.</li>
+<li><strong>Apply Dry-Brush Highlights:</strong> Select your brightest
+gouache values. Reduce Calligraphy Width slightly, increase Tremor by an
+extra 5–10 points, and draw quick, confident marks along edges, ridges,
+and focal points.</li>
+</ol>
+<h3 id="3-manage-vector-nodes-and-document-performance">3. Manage Vector
+Nodes and Document Performance</h3>
+<p>Rough-edged Calligraphy strokes generate a high volume of vector
+nodes, which can slow down performance over a full illustration.</p>
+<ul>
+<li><strong>Union Layered Strokes:</strong> Once a textured patch of the
+same color is laid down, select the strokes and choose <strong>Path &gt;
+Union</strong> (<code>Ctrl + +</code>). This converts dozens of
+overlapping paths into a single compound path, drastically cutting down
+rendering overhead while preserving the textured perimeter.</li>
+<li><strong>Selective Simplification:</strong> If node counts become
+excessive, run <strong>Path &gt; Simplify</strong>
+(<code>Ctrl + L</code>). Test this cautiously; over-simplifying will
+round out the rough gouache bristles, so reduce the simplification
+threshold in Inkscape Preferences
+(<code>Input/Output &gt; Path Simplification</code>) to retain granular
+details.</li>
+</ul>
+<h3 id="4-color-variation-and-edge-definition">4. Color Variation and
+Edge Definition</h3>
+<p>Gouache pigments do not naturally blend into soft, airbrushed
+gradients; they sit as distinct, flat planes. To heighten the
+simulation:</p>
+<ul>
+<li>Avoid using vector gradients. Instead, step your colors manually in
+3 to 4 distinct tonal bands using your textured Calligraphy brush.</li>
+<li>Sample neighboring colors using the <strong>Dropper Tool</strong>
+(<code>D</code>), nudge the hue slightly warmer or cooler in the Fill
+and Stroke panel, and place thin, jagged strokes along value transitions
+to replicate natural paint mixing on the canvas.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

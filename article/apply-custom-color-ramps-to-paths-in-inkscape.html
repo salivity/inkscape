@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Custom Color Ramps to Paths in Inkscape - inkscape</title>
+    <meta name="description" content="Transforming grayscale artwork into vibrant vector graphics can be achieved efficiently in Inkscape by mapping color ramps to paths using extensions. This guide covers how to prepare your grayscale vector paths, apply linear two-tone color ramps using In">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/apply-custom-color-ramps-to-paths-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Apply Custom Color Ramps to Paths in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/apply-custom-color-ramps-to-paths-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transforming grayscale artwork into vibrant vector graphics can be achieved efficiently in Inkscape by mapping color ramps to paths using extensions. This guide covers how to prepare your grayscale vector paths, apply linear two-tone color ramps using In" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="apply-custom-color-ramps-to-paths-in-inkscape">Apply Custom
+Color Ramps to Paths in Inkscape</h1>
+<p>Transforming grayscale artwork into vibrant vector graphics can be
+achieved efficiently in Inkscape by mapping color ramps to paths using
+extensions. This guide covers how to prepare your grayscale vector
+paths, apply linear two-tone color ramps using Inkscape's native Color
+extension, and utilize specialized ramp scripts to remap tonal values
+across multiple paths simultaneously.</p>
+<h3 id="1-prepare-grayscale-paths">1. Prepare Grayscale Paths</h3>
+<p>Before applying any extension, ensure your source objects are vector
+paths with standardized grayscale fill or stroke values:</p>
+<ol type="1">
+<li>Select your artwork and convert all shapes to paths via <strong>Path
+&gt; Object to Path</strong>.</li>
+<li>If your paths are grouped, ungroup them using <strong>Object &gt;
+Ungroup</strong> (or <code>Ctrl + Shift + G</code>) so the extension can
+read individual path properties directly.</li>
+<li>Ensure the paths use pure grayscale tones. You can standardize this
+by navigating to <strong>Extensions &gt; Color &gt; Grayscale</strong>.
+This ensures the red, green, and blue channels are equal
+(<code>r = g = b</code>), which represents luminance from
+<code>0.0</code> (black) to <code>1.0</code> (white).</li>
+</ol>
+<h3 id="2-apply-a-color-ramp-using-the-native-custom-extension">2. Apply
+a Color Ramp Using the Native "Custom" Extension</h3>
+<p>Inkscape includes a built-in extension that accepts Python math
+functions to recalculate RGB channels. You can use this to map grayscale
+luminance values to a custom two-color gradient ramp.</p>
+<ol type="1">
+<li>Select all the grayscale paths you want to colorize.</li>
+<li>Go to <strong>Extensions &gt; Color &gt; Custom...</strong> in the
+top menu.</li>
+<li>Determine your target colors in normalized RGB values (divide
+standard 0–255 RGB values by 255).
+<ul>
+<li><em>Example Target Ramp:</em> Dark Navy
+(<code>r: 0.1, g: 0.1, b: 0.3</code>) for shadows to Warm Yellow
+(<code>r: 1.0, g: 0.8, b: 0.2</code>) for highlights.</li>
+</ul></li>
+<li>Use linear interpolation formulas:
+<code>Start + (End - Start) * r</code>.</li>
+<li>Enter the channel formulas into the extension input fields:
+<ul>
+<li><strong>Red function:</strong>
+<code>0.1 + (1.0 - 0.1) * r</code></li>
+<li><strong>Green function:</strong>
+<code>0.1 + (0.8 - 0.1) * r</code></li>
+<li><strong>Blue function:</strong>
+<code>0.3 + (0.2 - 0.3) * r</code></li>
+</ul></li>
+<li>Check the <strong>Live preview</strong> box to verify the color
+mapping across your paths.</li>
+<li>Click <strong>Apply</strong> and close the dialog.</li>
+</ol>
+<h3 id="3-apply-multi-stop-ramps-using-dedicated-extensions">3. Apply
+Multi-Stop Ramps Using Dedicated Extensions</h3>
+<p>For ramps with more than two color stops, custom third-party
+extensions (such as <em>Color Ramp</em> or <em>Gradient Map</em>
+Inkscape scripts) allow mapping paths against a reference gradient or
+palette strip.</p>
+<ol type="1">
+<li>Download the custom extension files (<code>.inx</code> and
+<code>.py</code>).</li>
+<li>Place them into your Inkscape user extensions directory:
+<ul>
+<li><strong>Linux:</strong>
+<code>~/.config/inkscape/extensions/</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/extensions/</code></li>
+<li><strong>Windows:</strong>
+<code>%APPDATA%\inkscape\extensions\</code></li>
+</ul></li>
+<li>Restart Inkscape to load the new menu item.</li>
+<li>Draw a reference rectangle filled with your custom gradient ramp
+alongside your artwork.</li>
+<li>Select both your reference ramp and the target grayscale paths.</li>
+<li>Open the installed extension from the <strong>Extensions</strong>
+menu (typically under <strong>Extensions &gt; Color</strong> or
+<strong>Extensions &gt; Generate from Path</strong>).</li>
+<li>Set the reference path as the palette source, choose whether to
+affect <strong>Fill</strong> or <strong>Stroke</strong>, and click
+<strong>Apply</strong>. The extension samples luminance from the paths
+and replaces their color with the corresponding stop on the reference
+ramp.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

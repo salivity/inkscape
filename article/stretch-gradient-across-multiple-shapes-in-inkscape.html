@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stretch Gradient Across Multiple Shapes in Inkscape - inkscape</title>
+    <meta name="description" content="Applying a single, continuous gradient across several independent vector objects creates a cohesive, professional aesthetic. This guide explains how to span, stretch, compress, and reposition gradient boundaries across multiple distinct shapes in Inkscap">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/stretch-gradient-across-multiple-shapes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Stretch Gradient Across Multiple Shapes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/stretch-gradient-across-multiple-shapes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Applying a single, continuous gradient across several independent vector objects creates a cohesive, professional aesthetic. This guide explains how to span, stretch, compress, and reposition gradient boundaries across multiple distinct shapes in Inkscap" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="stretch-gradient-across-multiple-shapes-in-inkscape">Stretch
+Gradient Across Multiple Shapes in Inkscape</h1>
+<p>Applying a single, continuous gradient across several independent
+vector objects creates a cohesive, professional aesthetic. This guide
+explains how to span, stretch, compress, and reposition gradient
+boundaries across multiple distinct shapes in Inkscape without
+permanently flattening them into a single path. By utilizing
+multi-selection techniques or object grouping, you can manipulate a
+single set of gradient boundary handles to precisely control the color
+transition across your entire layout.</p>
+<h3 id="method-1-multi-selection-with-the-gradient-tool">Method 1:
+Multi-Selection with the Gradient Tool</h3>
+<p>This method allows shapes to maintain their individual layers and
+attributes while sharing the same gradient geometry.</p>
+<ol type="1">
+<li><strong>Select the Objects:</strong> Use the <strong>Select
+Tool</strong> (<code>S</code>) to select all the distinct vector shapes
+you want to include. You can do this by dragging a selection box around
+them or holding <code>Shift</code> and clicking each shape.</li>
+<li><strong>Activate the Gradient Tool:</strong> Press <code>G</code> or
+click the <strong>Create and edit gradients</strong> icon in the
+left-hand toolbox.</li>
+<li><strong>Apply the Gradient:</strong> Click and drag across the
+selected objects from the desired start point to the end point. Inkscape
+will assign a synchronized linear or radial gradient across all chosen
+shapes.</li>
+<li><strong>Stretch or Compress the Boundaries:</strong>
+<ul>
+<li>Locate the start handle (a square) and the end handle (a
+circle).</li>
+<li>Click and drag either handle to alter the gradient span. Pulling the
+handles further apart stretches the gradient transition across the
+shapes; pushing them closer together compresses the boundary, resulting
+in a tighter color shift.</li>
+<li>Hold <code>Ctrl</code> while dragging to lock the gradient angle to
+15-degree increments.</li>
+</ul></li>
+</ol>
+<h3 id="method-2-grouping-the-objects">Method 2: Grouping the
+Objects</h3>
+<p>Grouping distinct paths is ideal when you want the shapes to
+permanently share a common fill definition without merging their vector
+paths.</p>
+<ol type="1">
+<li><strong>Group the Shapes:</strong> Select all the desired vector
+shapes using the <strong>Select Tool</strong> (<code>S</code>) and press
+<code>Ctrl + G</code> (or go to <strong>Object &gt;
+Group</strong>).</li>
+<li><strong>Apply the Gradient:</strong> Open the <strong>Fill and
+Stroke</strong> panel (<code>Ctrl + Shift + F</code>). Go to the
+<strong>Fill</strong> tab and click the <strong>Linear gradient</strong>
+or <strong>Radial gradient</strong> button. The gradient is applied to
+the group as a whole.</li>
+<li><strong>Adjust the Boundary:</strong> Select the <strong>Gradient
+Tool</strong> (<code>G</code>). The group's gradient handles will
+appear.</li>
+<li><strong>Scale the Transition:</strong> Drag the square or circular
+end nodes to stretch or compress the transition zone across the boundary
+of the grouped objects.</li>
+</ol>
+<h3 id="fine-tuning-the-gradient-extent">Fine-Tuning the Gradient
+Extent</h3>
+<ul>
+<li><strong>Repositioning:</strong> Click and drag the line connecting
+the two gradient handles to move the entire gradient transition without
+changing its stretch or compression ratio.</li>
+<li><strong>Adding Intermediate Stops:</strong> Double-click anywhere
+along the gradient line with the Gradient Tool active to insert
+intermediate color stops, allowing for localized compression of specific
+color phases across your shapes.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

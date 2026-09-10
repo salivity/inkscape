@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Satin Stitches in Ink/Stitch - inkscape</title>
+    <meta name="description" content="Creating satin stitch columns in Ink/Stitch, the open-source embroidery extension for Inkscape, transforms vector artwork into dense, professional embroidery lines, lettering, and borders. This guide explains how to properly construct dual-rail vector pa">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-satin-stitches-in-ink-stitch">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Satin Stitches in Ink/Stitch - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-satin-stitches-in-ink-stitch" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating satin stitch columns in Ink/Stitch, the open-source embroidery extension for Inkscape, transforms vector artwork into dense, professional embroidery lines, lettering, and borders. This guide explains how to properly construct dual-rail vector pa" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-satin-stitches-in-inkstitch">How to Create Satin
+Stitches in Ink/Stitch</h1>
+<p>Creating satin stitch columns in Ink/Stitch, the open-source
+embroidery extension for Inkscape, transforms vector artwork into dense,
+professional embroidery lines, lettering, and borders. This guide
+explains how to properly construct dual-rail vector paths, add
+directional rungs, configure stitch parameters, and generate clean satin
+columns ready for machine embroidery.</p>
+<h3 id="understanding-inkstitch-satin-columns">Understanding Ink/Stitch
+Satin Columns</h3>
+<p>In Ink/Stitch, a satin column is not a standard filled shape.
+Instead, it is a single vector object composed of two parallel or
+semi-parallel sub-paths called <strong>rails</strong>. The software
+generates zig-zag stitches that bounce back and forth between these
+rails. Connecting lines, called <strong>rungs</strong>, can be added
+between the rails to control the angle, direction, and density of the
+stitches.</p>
+<h3 id="method-1-automatic-conversion-stroke-to-satin">Method 1:
+Automatic Conversion (Stroke to Satin)</h3>
+<p>The fastest way to generate a satin column from a single line is by
+using the automated conversion tool.</p>
+<ol type="1">
+<li><strong>Draw the Path:</strong> Use the <strong>Pen
+(Bezier)</strong> or <strong>Pencil</strong> tool to draw a single line
+path.</li>
+<li><strong>Set Width:</strong> Open the <strong>Fill and
+Stroke</strong> panel (<code>Ctrl+Shift+F</code>), remove any fill, and
+set the stroke width to your desired satin column width.</li>
+<li><strong>Convert:</strong> Select the path, then navigate to
+<strong>Extensions &gt; Ink/Stitch &gt; Tools: Satin &gt; Stroke to
+Satin</strong>.</li>
+<li>Ink/Stitch will automatically generate two outer rails and
+cross-rungs matching your stroke thickness.</li>
+</ol>
+<h3 id="method-2-manual-satin-column-construction">Method 2: Manual
+Satin Column Construction</h3>
+<p>For custom shapes with varying widths or specific stitch directions,
+build the rails manually:</p>
+<ol type="1">
+<li><strong>Draw Two Rails:</strong> Use the <strong>Pen</strong> tool
+to draw two separate lines defining the left and right (or top and
+bottom) edges of your satin column. Both paths should have equal or
+similar node counts and follow the same direction.</li>
+<li><strong>Draw Rungs (Optional but Recommended):</strong> Draw
+cross-lines that connect the two rails. Each rung must touch or cross
+both rails to guide the stitch angle.</li>
+<li><strong>Combine the Paths:</strong>
+<ul>
+<li>Select both rails and all rungs simultaneously.</li>
+<li>Go to the top menu and select <strong>Path &gt; Combine</strong> (or
+press <code>Ctrl+K</code>). This turns the individual lines into a
+single compound path.</li>
+</ul></li>
+</ol>
+<h3 id="configuring-satin-parameters">Configuring Satin Parameters</h3>
+<p>Once your satin column path is created, configure the stitch
+generation settings:</p>
+<ol type="1">
+<li>Select your combined satin path.</li>
+<li>Navigate to <strong>Extensions &gt; Ink/Stitch &gt;
+Params</strong>.</li>
+<li>The preview window will render the satin column. If it displays
+correctly, the path geometry is valid.</li>
+<li>Adjust key settings:
+<ul>
+<li><strong>Zig-Zag Spacing (Density):</strong> The distance between
+each stitch (standard values range from 0.35 mm to 0.45 mm).</li>
+<li><strong>Pull Compensation:</strong> Adds extra width to counteract
+fabric tension pull.</li>
+<li><strong>Underlay:</strong> Enable contour, center-walk, or zig-zag
+underlay to stabilize the fabric before the top satin layer is
+stitched.</li>
+</ul></li>
+<li>Click <strong>Apply and Quit</strong> to save the settings to the
+object.</li>
+</ol>
+<h3 id="troubleshooting-common-issues">Troubleshooting Common
+Issues</h3>
+<ul>
+<li><strong>Crossed Stitches (Hourglassing):</strong> If stitches cross
+over each other in an X-shape, the two rails are running in opposite
+directions. Select one rail with the Node tool (<code>N</code>) and
+click <strong>Path &gt; Reverse</strong>.</li>
+<li><strong>Error "Two rails not found":</strong> Ensure you combined
+the paths using <code>Path &gt; Combine</code> (<code>Ctrl+K</code>),
+not grouped them (<code>Ctrl+G</code>).</li>
+<li><strong>Uneven Flow:</strong> Add more rungs along curved sections
+to explicitly direct the stitch angles around tight turns.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

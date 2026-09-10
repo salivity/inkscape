@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Inkscape Calculates Path Offset Distances - inkscape</title>
+    <meta name="description" content="This article explores the mathematical framework Inkscape uses to compute path offset distances, including Inset, Outset, and Dynamic Offset operations. Because exact offsets of cubic Bézier curves cannot be represented as standard Bézier curves, Inksc">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-inkscape-calculates-path-offset-distances">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Inkscape Calculates Path Offset Distances - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-inkscape-calculates-path-offset-distances" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores the mathematical framework Inkscape uses to compute path offset distances, including Inset, Outset, and Dynamic Offset operations. Because exact offsets of cubic Bézier curves cannot be represented as standard Bézier curves, Inksc" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-inkscape-calculates-path-offset-distances">How Inkscape
+Calculates Path Offset Distances</h1>
+<p>This article explores the mathematical framework Inkscape uses to
+compute path offset distances, including Inset, Outset, and Dynamic
+Offset operations. Because exact offsets of cubic Bézier curves cannot
+be represented as standard Bézier curves, Inkscape relies on specialized
+geometric approximation algorithms implemented in its internal
+libraries, primarily <strong>Livarot</strong> and
+<strong>lib2geom</strong>. The following sections break down the
+underlying mathematical challenge, the step-by-step algorithms used to
+calculate offset paths, and how intersections and curve fitting are
+resolved.</p>
+<h3 id="the-mathematical-problem-of-bézier-offsets">The Mathematical
+Problem of Bézier Offsets</h3>
+<p>Vector software like Inkscape defines shapes using piecewise
+parametric cubic Bézier curves. Mathematically, an offset curve <span
+class="math inline">\(C_d(t)\)</span> at a distance <span
+class="math inline">\(d\)</span> from a base curve <span
+class="math inline">\(C(t)\)</span> is defined as:</p>
+<p><span class="math display">\[C_d(t) = C(t) + d \cdot
+N(t)\]</span></p>
+<p>where <span class="math inline">\(N(t)\)</span> is the unit normal
+vector to the curve at parameter <span
+class="math inline">\(t\)</span>:</p>
+<p><span class="math display">\[N(t) = \frac{(-y&#39;(t),
+x&#39;(t))}{\sqrt{x&#39;(t)^2 + y&#39;(t)^2}}\]</span></p>
+<p>Because of the square root in the denominator representing the
+Euclidean norm, the resulting offset curve is generally non-polynomial
+and non-rational. For a cubic Bézier curve, the exact algebraic offset
+is an algebraic curve of degree 10, meaning it cannot be natively
+represented using cubic Bézier segments. Consequently, Inkscape must
+approximate the offset mathematically.</p>
+<h3 id="inkscapes-offset-pipeline">Inkscape's Offset Pipeline</h3>
+<p>Inkscape calculates path offsets through a multi-stage geometric
+algorithm handled primarily by the <strong>Livarot</strong> geometry
+library (used for destructive operations like Path &gt; Inset / Outset)
+and modern implementations in <strong>lib2geom</strong> (used for
+non-destructive Live Path Effects):</p>
+<h4 id="1-adaptive-polyline-discretization">1. Adaptive Polyline
+Discretization</h4>
+<p>The algorithm first samples the original Bézier curves and converts
+them into an adaptive polyline approximation. Curves with higher
+curvature are subdivided more finely using a tolerance threshold to
+ensure the geometric deviation between the true curve and the linear
+approximation remains negligible.</p>
+<h4 id="2-parallel-normal-displacement">2. Parallel Normal
+Displacement</h4>
+<p>Once the path is converted into a series of straight line segments,
+computing the offset becomes mathematically straightforward:</p>
+<ul>
+<li>Each line segment is translated along its perpendicular normal
+vector by the signed distance <span class="math inline">\(d\)</span>
+(positive for outset, negative for inset).</li>
+<li>Vertices between adjacent segments are connected using mitered
+projections, rounded arc fillets, or beveled segments depending on the
+join style specified.</li>
+</ul>
+<h4 id="3-topology-cleanup-and-self-intersection-removal">3. Topology
+Cleanup and Self-Intersection Removal</h4>
+<p>Offsetting curves inward (inset) often introduces loops, cusps, and
+self-intersections where the offset distance exceeds the local radius of
+curvature (<span class="math inline">\(d &gt; 1/\kappa\)</span>).</p>
+<ul>
+<li>The algorithm uses a sweep-line algorithm (Bentley-Ottmann style) to
+detect all intersection points within the offset polyline.</li>
+<li>A planar graph of the offset segments is constructed.</li>
+<li>Using winding number rules (even-odd or non-zero), invalid internal
+loops and overlapping regions are culled, leaving only the correct outer
+boundary.</li>
+</ul>
+<h4 id="4-spline-fitting-bézier-re-parameterization">4. Spline Fitting
+(Bézier Re-parameterization)</h4>
+<p>The cleaned polyline must be converted back into smooth cubic Bézier
+curves to match Inkscape's SVG data format.</p>
+<ul>
+<li>Inkscape employs a least-squares curve-fitting algorithm (derived
+from Philip J. Schneider’s method for fitting curves to digitizer
+data).</li>
+<li>The algorithm identifies corners (points with discontinuous
+tangents) and fits cubic Bézier segments between them.</li>
+<li>If the maximum error between a fitted segment and the offset
+polyline exceeds an internal tolerance threshold, the segment is split
+at the point of maximum deviation, and the process repeats recursively
+until the target precision is reached.</li>
+</ul>
+<h3 id="dynamic-offsets-vs-standard-offsets">Dynamic Offsets vs.
+Standard Offsets</h3>
+<p>Standard Inset and Outset operations perform this pipeline
+destructively, baking the resulting fitted Bézier control points
+directly into the SVG path. Dynamic Offsets use an algorithmic Live Path
+Effect (LPE) wrapper that recalculates the offset polyline and curve
+fitting continuously in real time as the control handle adjusts the
+distance parameter <span class="math inline">\(d\)</span>.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

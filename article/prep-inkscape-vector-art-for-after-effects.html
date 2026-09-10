@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prep Inkscape Vector Art for After Effects - inkscape</title>
+    <meta name="description" content="Preparing multi-layered vector artwork in Inkscape for Adobe After Effects requires structuring individual elements into dedicated layers, converting strokes and shapes into standard paths, setting appropriate canvas dimensions, and exporting to an After">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/prep-inkscape-vector-art-for-after-effects">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Prep Inkscape Vector Art for After Effects - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/prep-inkscape-vector-art-for-after-effects" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Preparing multi-layered vector artwork in Inkscape for Adobe After Effects requires structuring individual elements into dedicated layers, converting strokes and shapes into standard paths, setting appropriate canvas dimensions, and exporting to an After" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="prep-inkscape-vector-art-for-after-effects">Prep Inkscape Vector
+Art for After Effects</h1>
+<p>Preparing multi-layered vector artwork in Inkscape for Adobe After
+Effects requires structuring individual elements into dedicated layers,
+converting strokes and shapes into standard paths, setting appropriate
+canvas dimensions, and exporting to an After Effects-compatible format
+such as PDF or Illustrator-compatible SVG. Following a clean preparation
+pipeline ensures every asset can be rigged, animated, and scaled
+infinitely without rasterization issues or broken layer hierarchies in
+your composition.</p>
+<h3 id="1-set-up-document-properties-for-video">1. Set Up Document
+Properties for Video</h3>
+<p>Before drawing or exporting, configure your Inkscape canvas to match
+your After Effects composition settings.</p>
+<ul>
+<li>Open <strong>File &gt; Document Properties</strong> (Ctrl+Shift+D /
+Cmd+Shift+D).</li>
+<li>Set the display units and custom size units to <strong>Pixels
+(px)</strong>.</li>
+<li>Set the page width and height to your target video resolution (e.g.,
+1920 x 1080 for Full HD, 3840 x 2160 for 4K).</li>
+<li>Ensure the background color is set to transparent by adjusting the
+alpha channel (A) slider to <code>0</code> if you do not want a solid
+background plate exported with your artwork.</li>
+</ul>
+<h3 id="2-organize-layer-hierarchy">2. Organize Layer Hierarchy</h3>
+<p>After Effects treats top-level layers as independent composition
+layers. Grouped items nested inside a single layer will import as a
+single flattened asset.</p>
+<ul>
+<li>Open the <strong>Layers and Objects</strong> panel (Ctrl+Shift+L /
+Cmd+Shift+L).</li>
+<li>Create a dedicated top-level layer for every single part you intend
+to animate independently (e.g., <code>Head</code>,
+<code>Left_Arm</code>, <code>Right_Arm</code>, <code>Background</code>,
+<code>Wheel_Front</code>).</li>
+<li>Move corresponding shapes into their respective layers.</li>
+<li>Avoid using deeply nested sub-layers or complex groups across
+multiple parent layers, as these may collapse or cause coordinate shifts
+during import.</li>
+</ul>
+<h3 id="3-standardize-paths-and-outlines">3. Standardize Paths and
+Outlines</h3>
+<p>Special Inkscape procedural shapes and live path effects (LPEs) can
+fail to render properly when imported into external compositing
+software.</p>
+<ul>
+<li><strong>Convert Objects to Paths:</strong> Select all procedural
+primitives (rectangles, circles, stars, text) and go to <strong>Path
+&gt; Object to Path</strong> (Shift+Ctrl+C / Shift+Cmd+C).</li>
+<li><strong>Convert Text:</strong> All typography must be converted to
+paths to avoid missing font errors in After Effects.</li>
+<li><strong>Outline Strokes (Optional):</strong> If your design relies
+on stroke weights that should scale proportionally without altering
+vector properties, select the stroke and choose <strong>Path &gt; Stroke
+to Path</strong> (Ctrl+Alt+C / Cmd+Opt+C).</li>
+<li><strong>Bake Live Path Effects:</strong> Select paths using LPEs and
+run <strong>Path &gt; Object to Path</strong> to permanently apply the
+effect as raw vector nodes.</li>
+</ul>
+<h3 id="4-align-coordinates-and-remove-hidden-data">4. Align Coordinates
+and Remove Hidden Data</h3>
+<p>Unused assets, hidden objects, and stray nodes can cause visual
+errors or incorrect anchor points.</p>
+<ul>
+<li>Delete unused or hidden layers, draft sketches, and off-canvas
+elements.</li>
+<li>Ensure all elements intended for the scene fall within the canvas
+boundary.</li>
+<li>Clear unnecessary clipping masks: select objects with clip paths and
+apply <strong>Path &gt; Intersection</strong> or release clips where
+possible to prevent clipping artifacts.</li>
+</ul>
+<h3 id="5-export-to-an-after-effects-compatible-format">5. Export to an
+After Effects-Compatible Format</h3>
+<p>After Effects does not natively read native Inkscape
+<code>.svg</code> layer structures directly into composition layers. Use
+one of the following methods:</p>
+<h4
+id="method-a-export-as-layered-pdf-recommended-for-direct-ae-import">Method
+A: Export as Layered PDF (Recommended for Direct AE Import)</h4>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>Select <strong>Portable Document Format (*.pdf)</strong>.</li>
+<li>In the PDF export dialog, ensure output resolution is set to at
+least <strong>300 dpi</strong> or retain vector data.</li>
+<li>Open After Effects, import the PDF, and select <strong>Import As:
+Composition - Retain Layer Sizes</strong>.</li>
+</ol>
+<h4 id="method-b-intermediary-conversion-via-illustrator-ai">Method B:
+Intermediary Conversion via Illustrator (.AI)</h4>
+<ol type="1">
+<li>Save the file in Inkscape as a standard <strong>Inkscape
+SVG</strong>.</li>
+<li>Open the <code>.svg</code> in Adobe Illustrator.</li>
+<li>Verify that the layers match your top-level structure.</li>
+<li>Save the file as an <strong>Adobe Illustrator (*.ai)</strong>
+file.</li>
+<li>In After Effects, import the <code>.ai</code> file as
+<strong>Composition - Retain Layer Sizes</strong>.</li>
+</ol>
+<h3 id="6-final-setup-inside-after-effects">6. Final Setup Inside After
+Effects</h3>
+<p>Once imported into After Effects:</p>
+<ul>
+<li>Double-click the generated composition to access the individual
+layers.</li>
+<li>Enable the <strong>Continuously Rasterize</strong> switch (the small
+sun icon) on all vector layers to preserve crisp edges at any
+scale.</li>
+<li>If you need native shape animators (such as Trim Paths or direct
+node rigging), right-click the vector layer in the timeline and select
+<strong>Create &gt; Create Shapes from Vector Layer</strong>.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

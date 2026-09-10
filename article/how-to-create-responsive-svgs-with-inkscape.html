@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Responsive SVGs with Inkscape - inkscape</title>
+    <meta name="description" content="Creating responsive Scalable Vector Graphics (SVGs) ensures that illustrations, icons, and UI assets dynamically scale to any screen size without distortion. This guide explains how to properly configure canvas properties, manage viewports, and remove fi">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-responsive-svgs-with-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Responsive SVGs with Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-responsive-svgs-with-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating responsive Scalable Vector Graphics (SVGs) ensures that illustrations, icons, and UI assets dynamically scale to any screen size without distortion. This guide explains how to properly configure canvas properties, manage viewports, and remove fi" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-responsive-svgs-with-inkscape">How to Create
+Responsive SVGs with Inkscape</h1>
+<p>Creating responsive Scalable Vector Graphics (SVGs) ensures that
+illustrations, icons, and UI assets dynamically scale to any screen size
+without distortion. This guide explains how to properly configure canvas
+properties, manage viewports, and remove fixed dimensions in Inkscape to
+output fully fluid, responsive SVG code ready for web integration.</p>
+<h3 id="1-configure-the-document-dimensions">1. Configure the Document
+Dimensions</h3>
+<p>Open your artwork in Inkscape and adjust the document properties to
+tightly wrap your graphics:</p>
+<ol type="1">
+<li>Navigate to <strong>File &gt; Document Properties</strong> (or press
+<code>Ctrl+Shift+D</code> / <code>Cmd+Shift+D</code>).</li>
+<li>Set the <strong>Display units</strong> to <code>px</code>
+(pixels).</li>
+<li>Under the <strong>Page</strong> tab, expand <strong>Resize page to
+content...</strong> and click <strong>Resize page to drawing or
+selection</strong>. This eliminates unnecessary margins and ensures the
+coordinate origin aligns precisely with your graphic.</li>
+</ol>
+<h3 id="2-understand-the-viewbox-attribute">2. Understand the ViewBox
+Attribute</h3>
+<p>Responsiveness in SVGs relies heavily on the <code>viewBox</code>
+attribute. The <code>viewBox</code> establishes an internal coordinate
+system and an aspect ratio, allowing the browser to scale the graphic
+proportionally. When you adjust the page bounds in Inkscape, the program
+automatically sets the correct <code>viewBox</code> coordinate values
+(e.g., <code>viewBox="0 0 800 600"</code>).</p>
+<h3 id="3-save-as-an-optimized-svg">3. Save as an Optimized SVG</h3>
+<p>Inkscape introduces proprietary metadata by default. Exporting a
+clean file makes editing the SVG attributes straightforward:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>In the file type dropdown, choose <strong>Optimized SVG
+(*.svg)</strong>.</li>
+<li>In the export dialog, ensure options to convert coordinates and
+remove unused namespaces are checked, then click
+<strong>OK</strong>.</li>
+</ol>
+<h3 id="4-remove-fixed-width-and-height">4. Remove Fixed Width and
+Height</h3>
+<p>By default, Inkscape writes absolute <code>width</code> and
+<code>height</code> attributes (such as <code>width="800px"</code>) onto
+the root <code>&lt;svg&gt;</code> tag. These absolute values restrict
+the graphic from scaling dynamically:</p>
+<ol type="1">
+<li>Open the saved <code>.svg</code> file in any text or code editor (or
+use Inkscape's built-in <strong>XML Editor</strong> under <strong>Edit
+&gt; XML Editor</strong>).</li>
+<li>Locate the root <code>&lt;svg&gt;</code> opening tag.</li>
+<li>Delete the <code>width="..."</code> and <code>height="..."</code>
+attributes, ensuring the <code>viewBox</code> attribute remains
+intact.</li>
+</ol>
+<p>Example before:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">svg</span> <span class="ot">width=</span><span class="st">&quot;800px&quot;</span> <span class="ot">height=</span><span class="st">&quot;600px&quot;</span> <span class="ot">viewBox=</span><span class="st">&quot;0 0 800 600&quot;</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.w3.org/2000/svg&quot;</span>&gt;</span></code></pre></div>
+<p>Example after:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">svg</span> <span class="ot">viewBox=</span><span class="st">&quot;0 0 800 600&quot;</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.w3.org/2000/svg&quot;</span>&gt;</span></code></pre></div>
+<h3 id="5-control-scaling-via-css">5. Control Scaling via CSS</h3>
+<p>Once the fixed dimensions are removed and the <code>viewBox</code> is
+in place, the SVG adapts dynamically to the dimensions of its parent
+container in the browser. You can control its behavior using CSS:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>svg<span class="op">,</span> img<span class="fu">.responsive-svg</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">width</span><span class="ch">:</span> <span class="dv">100</span><span class="dt">%</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">max-width</span><span class="ch">:</span> <span class="dv">800</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">height</span><span class="ch">:</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">display</span><span class="ch">:</span> <span class="dv">block</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>This setup ensures the SVG shrinks fluidly on mobile viewports while
+expanding up to its maximum defined width on larger displays.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

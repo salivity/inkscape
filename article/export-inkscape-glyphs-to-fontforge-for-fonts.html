@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape Glyphs to FontForge for Fonts - inkscape</title>
+    <meta name="description" content="Creating custom, installable font files from vector designs involves designing vector paths in Inkscape, exporting those paths into individual SVG files, importing them into FontForge to map to character slots, and compiling the final font file. By maint">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-glyphs-to-fontforge-for-fonts">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape Glyphs to FontForge for Fonts - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-glyphs-to-fontforge-for-fonts" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating custom, installable font files from vector designs involves designing vector paths in Inkscape, exporting those paths into individual SVG files, importing them into FontForge to map to character slots, and compiling the final font file. By maint" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-glyphs-to-fontforge-for-fonts">Export Inkscape
+Glyphs to FontForge for Fonts</h1>
+<p>Creating custom, installable font files from vector designs involves
+designing vector paths in Inkscape, exporting those paths into
+individual SVG files, importing them into FontForge to map to character
+slots, and compiling the final font file. By maintaining consistent
+canvas scaling in Inkscape and configuring proper metrics in FontForge,
+you can convert custom lettering into fully functional OpenType (OTF) or
+TrueType (TTF) fonts.</p>
+<h3 id="step-1-prepare-vector-outlines-in-inkscape">Step 1: Prepare
+Vector Outlines in Inkscape</h3>
+<ol type="1">
+<li><p><strong>Set Up a Standard Document Size:</strong> Open Inkscape
+and set your document properties (<code>Shift + Ctrl + D</code>) to a
+square canvas, preferably 1000 × 1000 pixels. This standard dimension
+matches the default 1000-unit Em square in FontForge, ensuring accurate
+scale translation.</p></li>
+<li><p><strong>Establish Baseline Guides:</strong> Drag horizontal
+guides from the top ruler to establish your baseline, cap height,
+x-height, and descender lines. For a 1000 px canvas, a common baseline
+sits around 200 px from the bottom.</p></li>
+<li><p><strong>Convert Designs to Solid Paths:</strong> Every letterform
+must consist of closed vector paths with fills and no strokes:</p>
+<ul>
+<li>Convert objects to paths: Select the letter and go to <strong>Path
+&gt; Object to Path</strong>.</li>
+<li>Convert strokes: If you used strokes, select them and click
+<strong>Path &gt; Stroke to Path</strong>.</li>
+<li>Combine compound paths: For letters with counter spaces (such as
+'O', 'A', 'B', or 'e'), select all overlapping paths and choose
+<strong>Path &gt; Combine</strong> (<code>Ctrl + K</code>).</li>
+<li>Fix direction: Ensure overlapping shapes correctly subtract from
+each other using <strong>Path &gt; Difference</strong> or verify path
+directions.</li>
+</ul></li>
+<li><p><strong>Export Each Letter as an SVG:</strong> Save each
+character individually. Go to <strong>File &gt; Save As...</strong> and
+select <strong>Plain SVG (*.svg)</strong>. Name each file logically
+according to the character it represents (e.g., <code>A.svg</code>,
+<code>b.svg</code>, <code>exclamation.svg</code>).</p></li>
+</ol>
+<hr />
+<h3 id="step-2-set-up-the-fontforge-project">Step 2: Set Up the
+FontForge Project</h3>
+<ol type="1">
+<li><p><strong>Create a New Font:</strong> Launch FontForge and select
+<strong>File &gt; New</strong>.</p></li>
+<li><p><strong>Configure Font Properties:</strong> Go to <strong>Element
+&gt; Font Info</strong> (<code>Ctrl + Shift + F</code>):</p>
+<ul>
+<li>Under <strong>PS Names</strong>, define the Fontname, Family Name,
+and Full Name.</li>
+<li>Under <strong>General</strong>, confirm the <strong>Em Size</strong>
+is set to <code>1000</code> (matching your Inkscape canvas size). Set
+the Ascender (e.g., 800) and Descender (e.g., -200) values.</li>
+<li>Click <strong>OK</strong>.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="step-3-import-and-align-glyphs-in-fontforge">Step 3: Import and
+Align Glyphs in FontForge</h3>
+<ol type="1">
+<li><p><strong>Open a Character Slot:</strong> In the main FontForge
+grid, double-click the character cell you wish to populate (e.g., the
+'A' slot). This opens the Glyph drawing window.</p></li>
+<li><p><strong>Import the SVG:</strong></p>
+<ul>
+<li>Go to <strong>File &gt; Import</strong>.</li>
+<li>In the format dropdown menu, select <strong>SVG</strong>.</li>
+<li>Browse to your exported SVG file and click
+<strong>Import</strong>.</li>
+</ul></li>
+<li><p><strong>Adjust Bearings and Alignment:</strong></p>
+<ul>
+<li>Position the imported vector within the vertical metrics guides
+(baseline, ascender line).</li>
+<li>Adjust the Left Side Bearing (LSB) and Right Side Bearing (RSB) by
+dragging the vertical marker lines in the glyph window or by going to
+<strong>Metrics &gt; Set LBearing</strong> / <strong>Set
+RBearing</strong>.</li>
+</ul></li>
+<li><p><strong>Correct Path Directions:</strong> Select the entire glyph
+(<code>Ctrl + A</code>) and go to <strong>Element &gt; Correct
+Direction</strong> (<code>Ctrl + Shift + D</code>) to ensure all inner
+and outer cutouts render properly.</p></li>
+<li><p><strong>Repeat:</strong> Repeat this process for all characters
+in your typeface.</p></li>
+</ol>
+<hr />
+<h3 id="step-4-validate-and-generate-font-files">Step 4: Validate and
+Generate Font Files</h3>
+<ol type="1">
+<li><p><strong>Run Error Checks:</strong> From the main font view,
+select all populated cells and go to <strong>Element &gt; Validation
+&gt; Find Problems</strong>. Resolve any critical self-intersecting
+paths or missing extrema.</p></li>
+<li><p><strong>Export the Installable Font:</strong></p>
+<ul>
+<li>Go to <strong>File &gt; Generate Fonts</strong>.</li>
+<li>Select the target format, such as <strong>OpenType (CFF)</strong>
+(<code>.otf</code>) or <strong>TrueType</strong>
+(<code>.ttf</code>).</li>
+<li>Choose your destination folder and click
+<strong>Generate</strong>.</li>
+<li>Ignore minor non-critical warnings unless they affect glyph
+rendering.</li>
+</ul></li>
+</ol>
+<p>The resulting <code>.otf</code> or <code>.ttf</code> file can now be
+installed on Windows, macOS, or Linux systems for use in any
+text-processing or design software.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

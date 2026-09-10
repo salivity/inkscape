@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Realistic Vector Eye Irises in Inkscape - inkscape</title>
+    <meta name="description" content="This tutorial provides a step-by-step guide to designing a detailed, realistic vector eye iris using Inkscape. By combining multi-stop radial gradients for depth, jittered vector lines to simulate organic fibrous tissue (trabeculae), and blending modes f">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-realistic-vector-eye-irises-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Realistic Vector Eye Irises in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-realistic-vector-eye-irises-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This tutorial provides a step-by-step guide to designing a detailed, realistic vector eye iris using Inkscape. By combining multi-stop radial gradients for depth, jittered vector lines to simulate organic fibrous tissue (trabeculae), and blending modes f" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-realistic-vector-eye-irises-in-inkscape">Create Realistic
+Vector Eye Irises in Inkscape</h1>
+<p>This tutorial provides a step-by-step guide to designing a detailed,
+realistic vector eye iris using Inkscape. By combining multi-stop radial
+gradients for depth, jittered vector lines to simulate organic fibrous
+tissue (trabeculae), and blending modes for dynamic lighting, you will
+learn how to transform flat vector shapes into a lifelike eye.</p>
+<h3 id="step-1-establish-the-base-geometry-and-pupil">Step 1: Establish
+the Base Geometry and Pupil</h3>
+<ol type="1">
+<li>Select the <strong>Circles and Ellipses tool (E)</strong>, hold
+<code>Ctrl + Shift</code>, and draw a perfect circle on the canvas. This
+circle represents the outer boundary of the iris.</li>
+<li>Open the <strong>Fill and Stroke dialog
+(<code>Ctrl + Shift + F</code>)</strong>. Set the fill to a
+<strong>Radial Gradient</strong>.</li>
+<li>Place a dark stop at the very edge to represent the limbal ring (the
+dark border surrounding the iris), a vibrant midtone in the center, and
+a slightly darker shade near the core.</li>
+<li>Draw a smaller black circle in the exact center to serve as the
+pupil. Align both shapes using the <strong>Align and Distribute dialog
+(<code>Ctrl + Shift + A</code>)</strong> to ensure center alignment
+horizontally and vertically.</li>
+</ol>
+<h3 id="step-2-create-the-radial-fibers-striations">Step 2: Create the
+Radial Fibers (Striations)</h3>
+<p>The human iris contains hundreds of fibrous bands radiating outward
+from the pupil.</p>
+<ol type="1">
+<li>Select the <strong>Stars and Polygons tool (*)</strong>. Set the
+mode to <strong>Regular Polygon</strong> or <strong>Star</strong>, set
+the number of corners to between <code>30</code> and <code>50</code>,
+and adjust the spoke ratio close to <code>0.8</code> or <code>0.9</code>
+to produce a dense starburst. Alternatively, draw a single vertical
+line, set its rotation center to the bottom, and use <strong>Edit &gt;
+Clone &gt; Create Tiled Clones</strong> with rotation enabled to create
+a full radial wheel of lines.</li>
+<li>Once your starburst or radial spoke group is formed, combine the
+paths using <strong>Path &gt; Union
+(<code>Ctrl + +</code>)</strong>.</li>
+<li>Convert the shape into editable nodes by choosing <strong>Path &gt;
+Object to Path (<code>Ctrl + Shift + C</code>)</strong>.</li>
+</ol>
+<h3 id="step-3-apply-node-jitter-to-break-uniformity">Step 3: Apply Node
+Jitter to Break Uniformity</h3>
+<p>Natural fibers are irregular and wavy, not perfectly straight.</p>
+<ol type="1">
+<li>Select your combined radial fiber path.</li>
+<li>Navigate to <strong>Extensions &gt; Modify Path &gt; Jitter
+nodes</strong>.</li>
+<li>In the dialog, enable <strong>Live Preview</strong>. Adjust the
+<strong>Shift nodes</strong> and <strong>Maximum displacement</strong>
+values until the straight spokes warp into organic, irregular squiggles.
+Set the displacement direction to both X and Y to introduce varied
+thickness and curvature.</li>
+<li>Click <strong>Apply</strong> and close the window.</li>
+<li>Alternatively, open <strong>Path &gt; Path Effects</strong> and
+apply the <strong>Roughen</strong> effect for a non-destructive method
+to randomize the paths.</li>
+</ol>
+<h3 id="step-4-layer-colors-and-blend-modes">Step 4: Layer Colors and
+Blend Modes</h3>
+<ol type="1">
+<li>Duplicate the jittered path (<code>Ctrl + D</code>). Rotate the
+duplicate slightly so the patterns do not perfectly overlap.</li>
+<li>Color the bottom jittered layer a lighter, desaturated tone of your
+primary iris color. Color the top layer a brighter highlight tone (such
+as pale gold, sky blue, or light green).</li>
+<li>In the <strong>Fill and Stroke</strong> panel, set the <strong>Blend
+mode</strong> of the top jittered layer to <strong>Overlay</strong> or
+<strong>Screen</strong>, and lower the opacity to around
+<code>40%–60%</code>.</li>
+<li>Group the pupil and both fiber layers (<code>Ctrl + G</code>).
+Duplicate the base iris circle, bring it to the front, and select both
+the duplicated circle and the fiber group. Right-click and select
+<strong>Set Clip</strong> to cleanly mask any stray jittered lines
+outside the iris boundary.</li>
+</ol>
+<h3 id="step-5-add-depth-gradients-and-shadows">Step 5: Add Depth
+Gradients and Shadows</h3>
+<ol type="1">
+<li>Draw a circle the same size as the iris base, placing it directly
+over the fibers inside the clip group.</li>
+<li>Set its fill to a <strong>Radial Gradient</strong>: fully
+transparent in the middle, fading to deep black/navy at the outer rim
+(reinforcing the limbal ring) and fading inward toward the pupil. Set
+its blend mode to <strong>Multiply</strong>.</li>
+<li>Draw a thin crescent or curved path along the upper edge of the iris
+to simulate the cast shadow from the upper eyelid. Fill it with a linear
+gradient transitioning from black (50% opacity) to completely
+transparent.</li>
+</ol>
+<h3 id="step-6-insert-catchlights">Step 6: Insert Catchlights</h3>
+<ol type="1">
+<li>Draw one or two small white circles offset from the pupil to
+represent light reflection (the catchlight).</li>
+<li>For a soft photographic look, slightly blur one reflection using the
+<strong>Blur</strong> slider in the Fill and Stroke panel (around
+<code>1%–3%</code>), while keeping a second, smaller dot completely
+crisp and pure white.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

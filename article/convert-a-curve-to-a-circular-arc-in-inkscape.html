@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert a Curve to a Circular Arc in Inkscape - inkscape</title>
+    <meta name="description" content="Converting a curved segment into a circular arc in Inkscape requires shaping a Bézier curve to match the geometry of a circle using the Node tool. Because Inkscape represents freeform paths using cubic Bézier curves rather than native geometric arcs, y">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/convert-a-curve-to-a-circular-arc-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Convert a Curve to a Circular Arc in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/convert-a-curve-to-a-circular-arc-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting a curved segment into a circular arc in Inkscape requires shaping a Bézier curve to match the geometry of a circle using the Node tool. Because Inkscape represents freeform paths using cubic Bézier curves rather than native geometric arcs, y" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="convert-a-curve-to-a-circular-arc-in-inkscape">Convert a Curve
+to a Circular Arc in Inkscape</h1>
+<p>Converting a curved segment into a circular arc in Inkscape requires
+shaping a Bézier curve to match the geometry of a circle using the Node
+tool. Because Inkscape represents freeform paths using cubic Bézier
+curves rather than native geometric arcs, you can achieve an exact or
+near-exact circular arc by manipulating node handles, using symmetrical
+handle constraints, or snapping nodes and handles to a circular
+guide.</p>
+<h3 id="method-1-symmetrical-node-adjustment">Method 1: Symmetrical Node
+Adjustment</h3>
+<ol type="1">
+<li><strong>Activate the Node Tool:</strong> Press <code>N</code> or
+select the <strong>Edit paths by nodes</strong> icon from the left-hand
+toolbar.</li>
+<li><strong>Select the Segment:</strong> Click the path containing the
+curve, then select the two nodes that bound the curved segment by
+holding <code>Shift</code> and clicking both nodes.</li>
+<li><strong>Set Segment to Curve:</strong> If the segment is currently a
+straight line, click the <strong>Make selected segments curves</strong>
+icon in the top tool controls bar.</li>
+<li><strong>Drag the Curve:</strong> Click and drag the curve segment
+directly to bend it outward toward the desired arc shape.</li>
+<li><strong>Align the Handles:</strong>
+<ul>
+<li>Click each node to reveal its Bézier handles.</li>
+<li>Rotate the handles so they are perpendicular to the radius line of
+your intended circle (tangent to the circumference).</li>
+<li>Ensure both handles extending into the segment are of equal length.
+For a 90-degree arc, each handle length should equal approximately 55.2%
+of the circle's radius to achieve a mathematically accurate circular
+approximation.</li>
+</ul></li>
+</ol>
+<h3 id="method-2-snapping-to-a-circular-guide">Method 2: Snapping to a
+Circular Guide</h3>
+<p>For precise circular arcs, snapping the Node tool to a temporary
+reference shape provides the cleanest result:</p>
+<ol type="1">
+<li><strong>Create a Reference Circle:</strong> Select the
+<strong>Circle/Ellipse tool</strong> (<code>E</code>), hold
+<code>Ctrl</code>, and drag to create a perfect circle matching your
+desired arc radius.</li>
+<li><strong>Convert the Reference to Guides:</strong> With the circle
+selected, go to <strong>Object &gt; Objects to Guides</strong> to
+convert the perimeter into an exact circular guide, or simply lower the
+circle's opacity to use it as an on-canvas template.</li>
+<li><strong>Enable Snapping:</strong> Turn on the snapping controls on
+the top right. Enable <strong>Snap to paths</strong> and <strong>Snap to
+cusp nodes</strong>.</li>
+<li><strong>Snap Endpoints with the Node Tool:</strong> Select the
+target path using the Node tool (<code>N</code>). Drag the two segment
+endpoints so they snap onto the circular reference.</li>
+<li><strong>Match the Curve:</strong> Hover over the path segment with
+the Node tool until the cursor displays a curved hand icon. Click and
+drag the segment until the curve snaps along the perimeter of the
+circular reference.</li>
+</ol>
+<h3 id="method-3-using-the-circle-by-3-points-path-effect">Method 3:
+Using the "Circle by 3 Points" Path Effect</h3>
+<p>If your segment requires a mathematically perfect circular arc
+dynamically linked to node positions:</p>
+<ol type="1">
+<li>Select your path with the <strong>Node tool</strong>
+(<code>N</code>).</li>
+<li>Open the Path Effects dialog by choosing <strong>Path &gt; Path
+Effects</strong>.</li>
+<li>Click the <strong>+</strong> button and select <strong>Circle by 3
+Points</strong>.</li>
+<li>In the Path Effect settings, set the display mode to
+<strong>Arc</strong>.</li>
+<li>Return to the canvas with the Node tool to manipulate the three
+control nodes directly, which forces the segment to strictly follow a
+true circular arc between the points.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

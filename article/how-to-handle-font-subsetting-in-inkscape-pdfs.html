@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Handle Font Subsetting in Inkscape PDFs - inkscape</title>
+    <meta name="description" content="Generating press-ready PDF documents from Inkscape requires a precise approach to font subsetting to prevent rendering errors, font substitution, and Raster Image Processor (RIP) failures at the print shop. Inkscape utilizes the Cairo graphics library to">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-handle-font-subsetting-in-inkscape-pdfs">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Handle Font Subsetting in Inkscape PDFs - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-handle-font-subsetting-in-inkscape-pdfs" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Generating press-ready PDF documents from Inkscape requires a precise approach to font subsetting to prevent rendering errors, font substitution, and Raster Image Processor (RIP) failures at the print shop. Inkscape utilizes the Cairo graphics library to" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-handle-font-subsetting-in-inkscape-pdfs">How to Handle
+Font Subsetting in Inkscape PDFs</h1>
+<p>Generating press-ready PDF documents from Inkscape requires a precise
+approach to font subsetting to prevent rendering errors, font
+substitution, and Raster Image Processor (RIP) failures at the print
+shop. Inkscape utilizes the Cairo graphics library to render PDFs, which
+automatically embeds and subsets fonts by default, but this can
+sometimes cause complications with specialized commercial printing
+equipment. This guide outlines how Inkscape manages font subsetting
+natively, how to configure your export settings for reliable output, and
+the alternative workflows available to guarantee exact typographic
+fidelity on press.</p>
+<h3 id="understanding-inkscapes-native-subsetting">Understanding
+Inkscape's Native Subsetting</h3>
+<p>When you export a document to PDF via <strong>File &gt; Save
+As</strong> or <strong>File &gt; Export</strong>, Inkscape relies on the
+Cairo backend to process text. Cairo automatically generates font
+subsets, meaning it embeds only the specific glyphs used in your artwork
+rather than the entire font file. While this reduces the final file
+size, Cairo frequently embeds subset fonts as Type 3 fonts or uses
+non-standard encoding if the source fonts are complex OpenType (OTF) or
+variable formats. Many commercial RIP engines struggle with these
+structures, leading to dropped characters or low-resolution
+rendering.</p>
+<h3
+id="method-1-convert-text-to-paths-recommended-for-commercial-print">Method
+1: Convert Text to Paths (Recommended for Commercial Print)</h3>
+<p>The most foolproof method to bypass font subsetting and embedding
+issues in press-ready files is to convert typography into pure vector
+outlines.</p>
+<ol type="1">
+<li>Select your text elements and navigate to <strong>Path &gt; Object
+to Path</strong> (Shift + Ctrl + C).</li>
+<li>Alternatively, keep your text editable in the canvas and configure
+the conversion during export:
+<ul>
+<li>Go to <strong>File &gt; Save As</strong> and choose <strong>Portable
+Document Format (*.pdf)</strong>.</li>
+<li>In the PDF export dialog window, locate the text output
+options.</li>
+<li>Select <strong>Convert text to paths</strong>.</li>
+</ul></li>
+</ol>
+<p>This converts every glyph into standard vector curves. The resulting
+PDF eliminates all font dependencies, making missing font errors and
+subsetting conflicts impossible on press, though it slightly increases
+file size and removes the ability to edit text post-export.</p>
+<h3 id="method-2-standard-pdf-export-settings-for-embedding">Method 2:
+Standard PDF Export Settings for Embedding</h3>
+<p>If you must retain live text—such as for books, dense body copy, or
+searchable documents—you must ensure the embedded subsets are as clean
+as possible:</p>
+<ol type="1">
+<li>Use standard TrueType (.ttf) or PostScript-flavored OpenType (.otf)
+fonts. Avoid variable fonts, as Inkscape's PDF export does not reliably
+subset variable axes.</li>
+<li>Navigate to <strong>File &gt; Save As &gt; Portable Document Format
+(*.pdf)</strong>.</li>
+<li>Set the PDF version to at least <strong>PDF 1.5</strong> to support
+advanced transparency and modern font tables.</li>
+<li>Ensure <strong>Embed fonts</strong> is selected (this will
+automatically subset glyphs).</li>
+<li>Deselect "Convert text to paths."</li>
+</ol>
+<h3
+id="method-3-post-processing-via-ghostscript-for-true-pdfx-compliance">Method
+3: Post-Processing via Ghostscript for True PDF/X Compliance</h3>
+<p>Inkscape does not natively output standardized PDF/X-1a or PDF/X-4
+files, which are the industry standards for commercial printing. To
+enforce proper font subsetting and PDF/X compliance on an
+Inkscape-generated PDF, you can re-process the file using Ghostscript
+through the command line:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gs</span> <span class="at">-dPDFSETTINGS</span><span class="op">=</span>/prepress <span class="at">-dEmbedAllFonts</span><span class="op">=</span>true <span class="at">-dSubsetFonts</span><span class="op">=</span>true <span class="at">-sDEVICE</span><span class="op">=</span>pdfwrite <span class="at">-dCompatibilityLevel</span><span class="op">=</span>1.4 <span class="at">-dNOPAUSE</span> <span class="at">-dQUIET</span> <span class="at">-dBATCH</span> <span class="at">-sOutputFile</span><span class="op">=</span>press-ready.pdf input-from-inkscape.pdf</span></code></pre></div>
+<p>The <code>-dEmbedAllFonts=true</code> and
+<code>-dSubsetFonts=true</code> flags force Ghostscript to evaluate the
+fonts, rebuild the glyph tables into standard Type 1 or TrueType
+subsets, and embed them strictly according to prepress standards.</p>
+<h3 id="verifying-the-subsets-before-printing">Verifying the Subsets
+Before Printing</h3>
+<p>Always inspect your final PDF before sending it to production. Open
+the document in Adobe Acrobat or a dedicated PDF reader and go to
+<strong>File &gt; Properties &gt; Fonts</strong>.</p>
+<p>Every font listed should include the label <strong>Embedded
+Subset</strong>. If any font shows as non-embedded, or displays
+unfamiliar Type 3 instances that your printer does not support, convert
+the offending text to paths directly inside Inkscape to ensure flawless
+reproduction on the press.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape 90 to 96 DPI Transition: Scaling Impact - inkscape</title>
+    <meta name="description" content="The release of Inkscape 0.92 marked a major architectural shift by changing the software's default internal resolution from 90 DPI to 96 DPI. This article examines why this change occurred, how it directly affected the visual and physical scaling of lega">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-90-to-96-dpi-transition-scaling-impact">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape 90 to 96 DPI Transition: Scaling Impact - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-90-to-96-dpi-transition-scaling-impact" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The release of Inkscape 0.92 marked a major architectural shift by changing the software's default internal resolution from 90 DPI to 96 DPI. This article examines why this change occurred, how it directly affected the visual and physical scaling of lega" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-90-to-96-dpi-transition-scaling-impact">Inkscape 90 to
+96 DPI Transition: Scaling Impact</h1>
+<p>The release of Inkscape 0.92 marked a major architectural shift by
+changing the software's default internal resolution from 90 DPI to 96
+DPI. This article examines why this change occurred, how it directly
+affected the visual and physical scaling of legacy documents, and the
+solutions Inkscape implemented to manage the resulting size
+discrepancies across different graphic workflows.</p>
+<h3 id="the-reason-for-the-change">The Reason for the Change</h3>
+<p>Prior to version 0.92, Inkscape used an internal standard of 90 dots
+per inch (DPI) to map user units (pixels) to physical measurements like
+inches and millimeters. However, the World Wide Web Consortium (W3C)
+standardized the CSS and SVG specifications at 96 DPI (where 1 inch
+equals 96 CSS pixels).</p>
+<p>This discrepancy meant that an SVG created in older versions of
+Inkscape would render at a different size when opened in modern web
+browsers or other vector editing software, such as Adobe Illustrator. To
+align with modern web and SVG standards, Inkscape shifted its baseline
+to 96 DPI in version 0.92.</p>
+<h3 id="direct-impact-on-legacy-documents">Direct Impact on Legacy
+Documents</h3>
+<p>When files created in Inkscape 0.91 or earlier were opened in
+Inkscape 0.92 without modification, their visual scale changed by a
+factor of 96/90 (approximately 1.0667, or a 6.67% difference). The
+specific impact depended on how the original SVG defined its units:</p>
+<ul>
+<li><strong>Pixel-Based Documents:</strong> Elements defined purely in
+user units or pixels (<code>px</code>) maintained their pixel
+dimensions, but appeared roughly 6.67% smaller when printed or
+translated into real-world physical units (inches, centimeters,
+millimeters).</li>
+<li><strong>Physical-Unit Documents:</strong> Files designed with
+absolute real-world units (such as a 100 mm box for laser cutting or
+print design) retained their exact real-world dimensions on paper or
+output, but expanded by 6.67% in pixel count. This expansion frequently
+caused designs to clip outside the document's original
+<code>viewBox</code> or canvas boundaries.</li>
+<li><strong>Text and Line Widths:</strong> Because font sizes and stroke
+widths in older files were often defined in user units, text spacing,
+kerning, and line weights were noticeably altered relative to adjacent
+elements defined in physical units.</li>
+</ul>
+<h3 id="inkscapes-migration-solutions">Inkscape’s Migration
+Solutions</h3>
+<p>To prevent existing artwork from breaking, Inkscape 0.92 introduced
+an automatic migration dialog that appeared whenever a user opened a
+legacy file lacking an explicit 96 DPI identifier. Users were presented
+with several options:</p>
+<ol type="1">
+<li><strong>Scale Document Elements:</strong> Inkscape physically scaled
+the elements inside the document by 96/90 to preserve their intended
+real-world dimensions relative to the page.</li>
+<li><strong>Adjust the <code>viewBox</code>:</strong> The software
+modified the SVG's root <code>viewBox</code> coordinates. This preserved
+the visual appearance and relative proportions of the document without
+altering the underlying coordinate numbers of the drawn paths.</li>
+<li><strong>Leave Unchanged:</strong> Advanced users could bypass
+automatic conversion and adjust scale properties manually using the
+Document Properties dialog or XML editor.</li>
+</ol>
+<h3 id="long-term-impact">Long-Term Impact</h3>
+<p>While the transition caused temporary disruption for projects
+requiring precise physical tolerances—such as CNC machining, plotter
+design, and technical drawings—it resolved longstanding interoperability
+issues. Modern SVGs exported from Inkscape now match the rendering scale
+of modern web browsers, rendering engines, and third-party vector tools
+consistently without requiring manual scaling compensation.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

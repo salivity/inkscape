@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Inkscape Slow Startup Caused by Fonts - inkscape</title>
+    <meta name="description" content="Inkscape often experiences significant launch delays when loading a large collection of system fonts. Every time the application starts without a valid font cache, it scans and parses every installed font file, which can cause loading screens to hang for">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/fix-inkscape-slow-startup-caused-by-fonts">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Fix Inkscape Slow Startup Caused by Fonts - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/fix-inkscape-slow-startup-caused-by-fonts" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape often experiences significant launch delays when loading a large collection of system fonts. Every time the application starts without a valid font cache, it scans and parses every installed font file, which can cause loading screens to hang for" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="fix-inkscape-slow-startup-caused-by-fonts">Fix Inkscape Slow
+Startup Caused by Fonts</h1>
+<p>Inkscape often experiences significant launch delays when loading a
+large collection of system fonts. Every time the application starts
+without a valid font cache, it scans and parses every installed font
+file, which can cause loading screens to hang for several minutes. This
+guide explains how to eliminate these startup delays by properly
+generating the font cache, excluding unnecessary font directories,
+removing corrupt files, and managing active fonts efficiently.</p>
+<h3 id="let-the-font-cache-complete-its-initial-build">Let the Font
+Cache Complete Its Initial Build</h3>
+<p>Inkscape relies on the Fontconfig library to index fonts. If you
+close Inkscape while it is freezing during startup, the cache file is
+never saved, forcing the program to scan every font again on the next
+launch.</p>
+<ol type="1">
+<li>Launch Inkscape and leave the computer alone until the interface
+fully loads. Depending on your font count, this may take between 5 and
+15 minutes.</li>
+<li>Once the application opens completely, close it normally.</li>
+<li>Reopen Inkscape. If the cache was successfully written to your disk,
+subsequent launches should take only a few seconds.</li>
+</ol>
+<h3 id="manually-rebuild-the-fontconfig-cache-windows">Manually Rebuild
+the Fontconfig Cache (Windows)</h3>
+<p>If Inkscape fails to save the cache automatically, you can force the
+underlying tool to build the cache directly.</p>
+<ol type="1">
+<li>Close Inkscape completely.</li>
+<li>Navigate to your Inkscape installation directory (typically
+<code>C:\Program Files\Inkscape\bin</code>).</li>
+<li>Open Command Prompt inside this folder or open Command Prompt as
+Administrator and navigate to the path using:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cmd"><code class="sourceCode dosbat"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="st">&quot;C:\Program Files\Inkscape\bin&quot;</span></span></code></pre></div></li>
+<li>Run the font cache utility:
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cmd"><code class="sourceCode dosbat"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fc</span><span class="at">-cache</span>.exe <span class="at">-f</span> <span class="at">-v</span></span></code></pre></div></li>
+<li>Wait for the command to finish indexing all system and local fonts.
+Once complete, launch Inkscape.</li>
+</ol>
+<h3 id="exclude-unnecessary-font-directories">Exclude Unnecessary Font
+Directories</h3>
+<p>Fontconfig scans standard system font folders as well as third-party
+directories created by software like Adobe Creative Cloud, Corel, or
+local user paths. You can edit the Fontconfig configuration to stop
+Inkscape from scanning these extra locations.</p>
+<ol type="1">
+<li>Locate the <code>fonts.conf</code> file:
+<ul>
+<li><strong>Windows:</strong>
+<code>C:\Program Files\Inkscape\etc\fonts\fonts.conf</code></li>
+<li><strong>Linux:</strong> <code>/etc/fonts/fonts.conf</code> or
+<code>~/.config/fontconfig/fonts.conf</code></li>
+<li><strong>macOS:</strong>
+<code>/Applications/Inkscape.app/Contents/Resources/etc/fonts/fonts.conf</code></li>
+</ul></li>
+<li>Open the file in a plain text editor with administrative
+privileges.</li>
+<li>Search for <code>&lt;dir&gt;</code> tags. These lines define which
+folders Fontconfig searches.</li>
+<li>Remove or comment out non-essential directories (such as third-party
+software font repositories) by wrapping them in <code>&lt;!--</code> and
+<code>--&gt;</code>:
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- &lt;dir&gt;C:\Program Files\Common Files\Adobe\Fonts&lt;/dir&gt; --&gt;</span></span></code></pre></div></li>
+<li>Save the file and restart Inkscape.</li>
+</ol>
+<h3 id="remove-corrupted-and-duplicate-fonts">Remove Corrupted and
+Duplicate Fonts</h3>
+<p>A single damaged font file can cause Fontconfig to crash or hang
+indefinitely during the indexing process, preventing the cache from
+finalizing.</p>
+<ul>
+<li><strong>Windows:</strong> Open the Windows Font settings, review
+recently added third-party fonts, and remove non-standard or untrusted
+<code>.ttf</code> and <code>.otf</code> files.</li>
+<li><strong>macOS:</strong> Open Font Book, select all fonts, go to
+<strong>File &gt; Validate Fonts</strong>, and remove any fonts marked
+with warnings or errors.</li>
+<li><strong>Linux:</strong> Run <code>fc-cache -r</code> in the terminal
+to identify problematic font files that generate parsing errors.</li>
+</ul>
+<h3 id="use-a-font-manager">Use a Font Manager</h3>
+<p>Having thousands of active system fonts degrades the performance of
+most vector software. The most effective long-term solution is to keep
+your active system font count below 1,000 fonts.</p>
+<ol type="1">
+<li>Install a dedicated font manager such as MainType (Windows),
+FontBase (Windows/macOS/Linux), or Typeface (macOS).</li>
+<li>Deactivate font families that you do not use on a daily basis.</li>
+<li>Activate project-specific fonts only when working on files that
+require them, then deactivate them when finished.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

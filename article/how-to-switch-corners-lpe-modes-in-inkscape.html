@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Switch Corners LPE Modes in Inkscape - inkscape</title>
+    <meta name="description" content="The Corners (Fillet/Chamfer) Live Path Effect (LPE) in Inkscape allows you to dynamically round or bevel the corners of any path without permanently altering the original geometry. You can switch between fillet (standard rounded corner), inverse fillet (">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-switch-corners-lpe-modes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Switch Corners LPE Modes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-switch-corners-lpe-modes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Corners (Fillet/Chamfer) Live Path Effect (LPE) in Inkscape allows you to dynamically round or bevel the corners of any path without permanently altering the original geometry. You can switch between fillet (standard rounded corner), inverse fillet (" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-switch-corners-lpe-modes-in-inkscape">How to Switch
+Corners LPE Modes in Inkscape</h1>
+<p>The Corners (Fillet/Chamfer) Live Path Effect (LPE) in Inkscape
+allows you to dynamically round or bevel the corners of any path without
+permanently altering the original geometry. You can switch between
+fillet (standard rounded corner), inverse fillet (concave rounded
+corner), chamfer (flat bevel), and inverse chamfer modes either
+individually per node using canvas controls or precisely through a
+dedicated settings popup.</p>
+<h3 id="applying-the-corners-lpe">Applying the Corners LPE</h3>
+<ol type="1">
+<li>Select your vector path using the <strong>Select Tool</strong>
+(<code>S</code>).</li>
+<li>Navigate to the top menu and click <strong>Path</strong> &gt;
+<strong>Path Effects</strong> to open the Path Effects panel.</li>
+<li>Click the <strong>+</strong> (Add Path Effect) button, search for
+<strong>Corners (Fillet/Chamfer)</strong>, and select it.</li>
+</ol>
+<h3 id="method-1-the-quick-click-shortcut-canvas">Method 1: The Quick
+Click Shortcut (Canvas)</h3>
+<p>The fastest way to toggle between fillet, inverse fillet, chamfer,
+and inverse chamfer is directly on the canvas using your mouse and a
+modifier key.</p>
+<ol type="1">
+<li>Switch to the <strong>Node Tool</strong> by pressing <code>N</code>
+or selecting it from the left-hand toolbar.</li>
+<li>Select the object. Green circular control handles will appear at
+every corner.</li>
+<li>Hold <strong>Ctrl</strong> and <strong>Left-Click</strong> directly
+on a green corner handle.</li>
+<li>Each click cycles to the next mode in this sequence:
+<ul>
+<li><strong>Fillet:</strong> Standard outward curve.</li>
+<li><strong>Inverse Fillet:</strong> Inward concave scoop.</li>
+<li><strong>Chamfer:</strong> Straight diagonal cut.</li>
+<li><strong>Inverse Chamfer:</strong> Inward angular notch.</li>
+</ul></li>
+</ol>
+<h3 id="method-2-the-context-dialog-precise-control">Method 2: The
+Context Dialog (Precise Control)</h3>
+<p>If you prefer to pick the mode from a list or need to define an exact
+numerical radius at the same time:</p>
+<ol type="1">
+<li>Select the <strong>Node Tool</strong> (<code>N</code>).</li>
+<li><strong>Right-Click</strong> directly on the green handle of the
+corner you want to modify.</li>
+<li>A popup menu will appear displaying the corner's properties.</li>
+<li>Open the <strong>Method</strong> dropdown menu and choose your
+desired mode:
+<ul>
+<li><strong>Fillet</strong></li>
+<li><strong>Inverse Fillet</strong></li>
+<li><strong>Chamfer</strong></li>
+<li><strong>Inverse Chamfer</strong></li>
+</ul></li>
+<li>Adjust the <strong>Radius</strong> value if necessary, then close
+the dialog to apply the change.</li>
+</ol>
+<h3 id="changing-multiple-corners-simultaneously">Changing Multiple
+Corners Simultaneously</h3>
+<p>To change the corner mode for several nodes at once:</p>
+<ol type="1">
+<li>Activate the <strong>Node Tool</strong> (<code>N</code>).</li>
+<li>Drag a selection box around multiple corner handles, or hold
+<strong>Shift</strong> and click each green handle you want to
+adjust.</li>
+<li>Hold <strong>Ctrl</strong> and click any of the selected handles to
+cycle the mode for all selected corners at the same time, or right-click
+any selected handle to set the method uniformly via the dialog.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

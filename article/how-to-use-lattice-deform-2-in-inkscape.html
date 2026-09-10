@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Lattice Deform 2 in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to apply and manipulate the Lattice Deform 2 Live Path Effect (LPE) in Inkscape. You will learn how to convert your vector elements, apply the deformation grid, adjust lattice settings, and drag control nodes to achieve complex, n">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-use-lattice-deform-2-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use Lattice Deform 2 in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-use-lattice-deform-2-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to apply and manipulate the Lattice Deform 2 Live Path Effect (LPE) in Inkscape. You will learn how to convert your vector elements, apply the deformation grid, adjust lattice settings, and drag control nodes to achieve complex, n" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-lattice-deform-2-in-inkscape">How to Use Lattice
+Deform 2 in Inkscape</h1>
+<p>This guide explains how to apply and manipulate the Lattice Deform 2
+Live Path Effect (LPE) in Inkscape. You will learn how to convert your
+vector elements, apply the deformation grid, adjust lattice settings,
+and drag control nodes to achieve complex, non-destructive vector
+warping and perspective distortions.</p>
+<h3 id="1-prepare-your-vector-artwork">1. Prepare Your Vector
+Artwork</h3>
+<p>Lattice Deform 2 works on path elements. If you are working with text
+or basic geometric shapes (such as rectangles, circles, or stars),
+convert them into paths first:</p>
+<ol type="1">
+<li>Select the object using the <strong>Select Tool</strong>
+(<code>S</code>).</li>
+<li>Navigate to the top menu and select <strong>Path &gt; Object to
+Path</strong> (<code>Shift + Ctrl + C</code>).</li>
+<li>If you have multiple objects, combine them into a single path
+(<strong>Path &gt; Combine</strong>) or group them (<strong>Object &gt;
+Group</strong>).</li>
+</ol>
+<h3 id="2-open-the-path-effects-dialog">2. Open the Path Effects
+Dialog</h3>
+<ol type="1">
+<li>Select your target object or group.</li>
+<li>Go to <strong>Path &gt; Path Effects</strong> in the top menu to
+open the Path Effects panel on the right side of the workspace.</li>
+</ol>
+<h3 id="3-add-lattice-deform-2">3. Add Lattice Deform 2</h3>
+<ol type="1">
+<li>In the Path Effects panel, click the <strong>Add Path
+Effect</strong> button (represented by a <strong>+</strong> icon).</li>
+<li>Use the search bar to locate <strong>Lattice Deform 2</strong> and
+click to apply it to your selected object.</li>
+</ol>
+<h3 id="4-configure-the-lattice-grid">4. Configure the Lattice Grid</h3>
+<p>Once applied, the Path Effects panel will display configuration
+options for your lattice:</p>
+<ul>
+<li><strong>Horizontal / Vertical Grid Points:</strong> Set the number
+of rows and columns to control how many manipulation points appear on
+your grid. A higher number provides finer control over localized
+distortions, while a lower number creates broader, smoother bends.</li>
+<li><strong>Live Update:</strong> Ensure this is enabled to see
+real-time changes on your canvas as you move nodes.</li>
+</ul>
+<h3 id="5-deform-the-vector-object">5. Deform the Vector Object</h3>
+<ol type="1">
+<li>Switch to the <strong>Node Tool</strong> (<code>N</code>) from the
+left toolbar.</li>
+<li>An editable bounding grid will appear over your object, containing
+anchor points and control handles.</li>
+<li>Click and drag the node points along the grid perimeter or interior
+intersections to bend, stretch, perspective-warp, or squeeze the
+underlying vector graphic.</li>
+<li>Adjust the tangent handles attached to individual grid nodes to
+control the curvature of the distortion.</li>
+</ol>
+<h3 id="6-finalize-the-distortion-optional">6. Finalize the Distortion
+(Optional)</h3>
+<p>Because Lattice Deform 2 is a non-destructive Live Path Effect, you
+can continue to modify the grid at any time. If you want to permanently
+bake the distorted shape into standard vector paths (for exporting or
+standard node editing):</p>
+<ol type="1">
+<li>Select the distorted object.</li>
+<li>Go to <strong>Path &gt; Object to Path</strong>.</li>
+</ol>
+<p>The lattice grid will be removed, leaving behind the final deformed
+vector geometry.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

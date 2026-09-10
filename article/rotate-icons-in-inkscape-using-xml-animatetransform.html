@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotate Icons in Inkscape Using XML animateTransform - inkscape</title>
+    <meta name="description" content="This guide explains how to create continuous rotating SVG icon animations directly within Inkscape using its built-in XML Editor. By adding native SVG <animateTransform> elements to an icon group, you can produce lightweight, endlessly spinning vector gr">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/rotate-icons-in-inkscape-using-xml-animatetransform">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Rotate Icons in Inkscape Using XML animateTransform - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/rotate-icons-in-inkscape-using-xml-animatetransform" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to create continuous rotating SVG icon animations directly within Inkscape using its built-in XML Editor. By adding native SVG <animateTransform> elements to an icon group, you can produce lightweight, endlessly spinning vector gr" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="rotate-icons-in-inkscape-using-xml-animatetransform">Rotate
+Icons in Inkscape Using XML animateTransform</h1>
+<p>This guide explains how to create continuous rotating SVG icon
+animations directly within Inkscape using its built-in XML Editor. By
+adding native SVG <code>&lt;animateTransform&gt;</code> elements to an
+icon group, you can produce lightweight, endlessly spinning vector
+graphics suitable for web loaders, status indicators, and UI elements
+without needing external coding tools or third-party animation
+software.</p>
+<h3 id="step-1-prepare-your-icon-and-center-point">Step 1: Prepare Your
+Icon and Center Point</h3>
+<ol type="1">
+<li>Open your icon in Inkscape.</li>
+<li>Select the entire icon and press <strong>Ctrl+G</strong> to group
+all its paths into a single parent group.</li>
+<li>Select the grouped icon and look at the top toolbar to find its
+center coordinates:
+<ul>
+<li>Calculate the horizontal center (<span
+class="math inline">\(X_{center}\)</span>): <span
+class="math inline">\(X + (\text{Width} / 2)\)</span></li>
+<li>Calculate the vertical center (<span
+class="math inline">\(Y_{center}\)</span>): <span
+class="math inline">\(Y + (\text{Height} / 2)\)</span></li>
+<li>Note these two values, as they define the pivot point around which
+the icon will spin.</li>
+</ul></li>
+</ol>
+<h3 id="step-2-open-the-xml-editor">Step 2: Open the XML Editor</h3>
+<ol type="1">
+<li>Select the grouped icon on the canvas.</li>
+<li>Open the XML Editor by navigating to <strong>Edit &gt; XML
+Editor</strong> or pressing <strong>Shift+Ctrl+X</strong>.</li>
+<li>In the XML tree on the left, verify that the active
+<code>&lt;svg:g&gt;</code> element representing your icon group is
+highlighted.</li>
+</ol>
+<h3 id="step-3-create-the-animatetransform-node">Step 3: Create the
+animateTransform Node</h3>
+<ol type="1">
+<li>With the parent <code>&lt;svg:g&gt;</code> selected, click the
+<strong>New element node</strong> button in the XML Editor toolbar
+(represented by an icon with an angled bracket and a small
+star/plus).</li>
+<li>A dialog prompt will ask for the node name. Enter:<br />
+<code>svg:animateTransform</code></li>
+<li>Click <strong>Create</strong>. The new element will appear nested
+directly inside your selected group.</li>
+</ol>
+<h3 id="step-4-configure-the-animation-attributes">Step 4: Configure the
+Animation Attributes</h3>
+<p>Select the newly created <code>&lt;svg:animateTransform&gt;</code>
+element. Using the <strong>Attribute name</strong> input field and
+<strong>Attribute value</strong> field on the right side of the XML
+Editor, add the following attributes one by one by entering the name,
+value, and clicking <strong>Set</strong> (or pressing
+<strong>Ctrl+Enter</strong>):</p>
+<ul>
+<li><strong>attributeName</strong>
+<ul>
+<li>Name: <code>attributeName</code></li>
+<li>Value: <code>transform</code></li>
+</ul></li>
+<li><strong>type</strong>
+<ul>
+<li>Name: <code>type</code></li>
+<li>Value: <code>rotate</code></li>
+</ul></li>
+<li><strong>from</strong>
+<ul>
+<li>Name: <code>from</code></li>
+<li>Value: <code>0 Xcenter Ycenter</code> <em>(replace with your
+calculated values, e.g., <code>0 50 50</code>)</em></li>
+</ul></li>
+<li><strong>to</strong>
+<ul>
+<li>Name: <code>to</code></li>
+<li>Value: <code>360 Xcenter Ycenter</code> <em>(replace with the same
+center values, e.g., <code>360 50 50</code>)</em></li>
+</ul></li>
+<li><strong>dur</strong>
+<ul>
+<li>Name: <code>dur</code></li>
+<li>Value: <code>2s</code> <em>(controls speed; change to a higher value
+to slow down, or lower to speed up)</em></li>
+</ul></li>
+<li><strong>repeatCount</strong>
+<ul>
+<li>Name: <code>repeatCount</code></li>
+<li>Value: <code>indefinite</code></li>
+</ul></li>
+</ul>
+<h3 id="step-5-save-and-preview">Step 5: Save and Preview</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>Choose <strong>Optimized SVG</strong> or <strong>Plain SVG</strong>
+to ensure compatibility with modern browsers and clean up redundant
+editor metadata.</li>
+<li>Open the saved <code>.svg</code> file in any modern web browser
+(such as Chrome, Firefox, or Edge) to view the smooth, continuous
+rotation.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

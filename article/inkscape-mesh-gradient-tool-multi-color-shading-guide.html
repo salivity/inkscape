@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Mesh Gradient Tool: Multi-Color Shading Guide - inkscape</title>
+    <meta name="description" content="Inkscape's Mesh Gradient tool allows vector artists to create photorealistic, multi-directional color transitions and organic shading on any vector object. By dividing an object into a flexible grid of interconnected patches, each defined by independentl">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-mesh-gradient-tool-multi-color-shading-guide">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Mesh Gradient Tool: Multi-Color Shading Guide - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-mesh-gradient-tool-multi-color-shading-guide" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape's Mesh Gradient tool allows vector artists to create photorealistic, multi-directional color transitions and organic shading on any vector object. By dividing an object into a flexible grid of interconnected patches, each defined by independentl" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-mesh-gradient-tool-multi-color-shading-guide">Inkscape
+Mesh Gradient Tool: Multi-Color Shading Guide</h1>
+<p>Inkscape's Mesh Gradient tool allows vector artists to create
+photorealistic, multi-directional color transitions and organic shading
+on any vector object. By dividing an object into a flexible grid of
+interconnected patches, each defined by independently colorable corner
+nodes and adjustable Bézier handles, you can control the flow and blend
+of complex colors far beyond standard linear or radial gradients.</p>
+<h3 id="1-activating-and-applying-the-mesh-tool">1. Activating and
+Applying the Mesh Tool</h3>
+<ol type="1">
+<li>Select the vector path or shape you wish to shade.</li>
+<li>Choose the <strong>Mesh Tool</strong> from the left-hand toolbar (or
+press <strong>F7</strong> / click the grid-like gradient icon).</li>
+<li>On the top Tool Controls bar, configure the initial grid settings:
+<ul>
+<li>Choose whether the mesh applies to the <strong>Fill</strong> or
+<strong>Stroke</strong>.</li>
+<li>Set the initial number of <strong>Rows</strong> and
+<strong>Columns</strong> (start simple, such as 2x2 or 3x3, as you can
+add more later).</li>
+</ul></li>
+<li>Click and drag over your selected object, or double-click the object
+to generate the default mesh grid over its surface.</li>
+</ol>
+<h3 id="2-understanding-the-mesh-components">2. Understanding the Mesh
+Components</h3>
+<p>A mesh gradient consists of three key components:</p>
+<ul>
+<li><strong>Corner Nodes (Diamonds):</strong> Located at the
+intersections of the grid lines. These control the actual color values
+applied to the gradient.</li>
+<li><strong>Edge Handles (Circles/Bézier Handles):</strong> Attached to
+the lines connecting corner nodes. Moving these handles curves the
+gradient flow and changes how color stretches across the surface.</li>
+<li><strong>Patches:</strong> The four-sided areas bounded by four
+corner nodes and four edge lines.</li>
+</ul>
+<h3 id="3-assigning-colors-to-nodes">3. Assigning Colors to Nodes</h3>
+<p>To build multi-color shading:</p>
+<ol type="1">
+<li>Click on any corner node (diamond) to select it.</li>
+<li>Select a color using the <strong>Color Palette</strong> at the
+bottom of the screen, the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>), or the <strong>Eyedropper Tool</strong>
+(<code>D</code>) to sample from a reference image.</li>
+<li>To apply the same color to multiple points, hold <code>Shift</code>
+and click each node, or click and drag a selection box around multiple
+nodes, then pick your desired color.</li>
+</ol>
+<h3 id="4-shaping-and-refining-the-gradient-flow">4. Shaping and
+Refining the Gradient Flow</h3>
+<ul>
+<li><strong>Bending Color Lines:</strong> Click and drag the circular
+Bézier handles along the grid lines to curve the gradient. This allows
+highlights and shadows to wrap naturally around curved objects.</li>
+<li><strong>Moving Nodes:</strong> Click and drag any corner node to
+reposition where a specific color concentration sits on the object.</li>
+<li><strong>Adding More Detail:</strong> To insert an extra row or
+column for finer shading, double-click on any outer or inner grid line
+where you need more color stops.</li>
+<li><strong>Deleting Mesh Lines:</strong> Select a node on the line you
+want to remove and press <code>Delete</code> or <code>Backspace</code>
+to simplify the mesh.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

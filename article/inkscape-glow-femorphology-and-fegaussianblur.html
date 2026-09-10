@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Glow: feMorphology and feGaussianBlur - inkscape</title>
+    <meta name="description" content="Combining feMorphology and feGaussianBlur in Inkscape allows you to build expansive, luminous halos around objects without losing the sharpness of the original artwork. While a standard blur merely softens the boundaries of a shape, pairing a morphology">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-glow-femorphology-and-fegaussianblur">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Glow: feMorphology and feGaussianBlur - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-glow-femorphology-and-fegaussianblur" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Combining feMorphology and feGaussianBlur in Inkscape allows you to build expansive, luminous halos around objects without losing the sharpness of the original artwork. While a standard blur merely softens the boundaries of a shape, pairing a morphology" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-glow-femorphology-and-fegaussianblur">Inkscape Glow:
+feMorphology and feGaussianBlur</h1>
+<p>Combining <code>feMorphology</code> and <code>feGaussianBlur</code>
+in Inkscape allows you to build expansive, luminous halos around objects
+without losing the sharpness of the original artwork. While a standard
+blur merely softens the boundaries of a shape, pairing a morphology
+dilation step before the blur physically extends the object’s footprint
+outward first. This guide explains how SVG filter primitives work
+together and provides the direct steps to create this custom glowing
+effect using Inkscape’s Filter Editor.</p>
+<h3 id="why-combine-dilation-and-gaussian-blur">Why Combine Dilation and
+Gaussian Blur?</h3>
+<p>Applying <code>feGaussianBlur</code> directly to a shape diffuses its
+alpha channel inward and outward equally, which often causes thin lines
+or text to lose their definition and appear dim.</p>
+<p>The <code>feMorphology</code> primitive with its operator set to
+<code>dilate</code> thickens the object's alpha mask uniformly by a
+specified radius. When you route this widened mask into
+<code>feGaussianBlur</code>, the blur diffuses from an expanded
+boundary. This ensures the halo radiates well beyond the object's
+perimeter while retaining an intense, solid core.</p>
+<h3 id="step-by-step-implementation-in-inkscape">Step-by-Step
+Implementation in Inkscape</h3>
+<p>To build this filter, select your vector object and open the Filter
+Editor panel by navigating to <strong>Filters &gt; Filter
+Editor</strong>.</p>
+<ol type="1">
+<li><p><strong>Create the Base Filter</strong></p>
+<ul>
+<li>Click <strong>New</strong> in the Filter Editor panel to generate an
+empty filter container.</li>
+<li>Rename the filter to "Luminous Halo" for easy identification.</li>
+</ul></li>
+<li><p><strong>Add and Configure <code>feMorphology</code></strong></p>
+<ul>
+<li>In the <strong>Add Effect</strong> drop-down menu, select
+<strong>Morphology</strong> and click <strong>Add Effect</strong>.</li>
+<li>In the connection matrix, set the input of <code>feMorphology</code>
+to <code>SourceAlpha</code>.</li>
+<li>Under the <strong>Effect parameters</strong> tab, set the
+<strong>Operator</strong> to <strong>Dilate</strong>.</li>
+<li>Adjust the <strong>Radius</strong> (X and Y). A radius between 3 and
+10 pixels works well depending on the size of the artwork and how far
+you want the glow to reach.</li>
+</ul></li>
+<li><p><strong>Add and Configure
+<code>feGaussianBlur</code></strong></p>
+<ul>
+<li>Select <strong>Gaussian Blur</strong> from the drop-down menu and
+click <strong>Add Effect</strong>.</li>
+<li>Route the input of <code>feGaussianBlur</code> to the output of the
+<code>feMorphology</code> primitive.</li>
+<li>In the <strong>Effect parameters</strong>, adjust the
+<strong>Standard Deviation</strong>. A value roughly equal to or
+slightly higher than your dilation radius will produce a smooth, radiant
+fade.</li>
+</ul></li>
+<li><p><strong>Color the Halo with <code>feFlood</code> and
+<code>feComposite</code></strong></p>
+<ul>
+<li>Add a <strong>Flood</strong> primitive. Choose your desired glow
+color and opacity in the parameters tab.</li>
+<li>Add a <strong>Composite</strong> primitive. Connect the first input
+to the <strong>Flood</strong> effect and the second input to the
+<strong>Gaussian Blur</strong> effect.</li>
+<li>Set the composite <strong>Operator</strong> to <strong>in</strong>.
+This clips the flood color exclusively to the blurred, dilated
+shape.</li>
+</ul></li>
+<li><p><strong>Merge with the Original Object</strong></p>
+<ul>
+<li>Add a <strong>Merge</strong> primitive to the chain.</li>
+<li>Connect the first merge input node to the output of your
+<strong>Composite</strong> primitive (the glow).</li>
+<li>Connect the second merge input node to <code>SourceGraphic</code>
+(the original, crisp vector).</li>
+</ul></li>
+</ol>
+<p>Check the box next to your new filter in the Filter Editor list to
+apply it to your selected shape. You can tweak the morphology radius,
+blur amount, or flood color in real time to balance the size and
+softness of the surrounding halo.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

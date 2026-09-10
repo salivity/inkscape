@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set SVG Filter Color Space in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to configure the SVG filter color interpolation space to either linearRGB or sRGB within Inkscape. You will learn how to change this setting at both the application level for future filters and at the object level for existing fil">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-set-svg-filter-color-space-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Set SVG Filter Color Space in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-set-svg-filter-color-space-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to configure the SVG filter color interpolation space to either linearRGB or sRGB within Inkscape. You will learn how to change this setting at both the application level for future filters and at the object level for existing fil" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-set-svg-filter-color-space-in-inkscape">How to Set SVG
+Filter Color Space in Inkscape</h1>
+<p>This guide explains how to configure the SVG filter color
+interpolation space to either linearRGB or sRGB within Inkscape. You
+will learn how to change this setting at both the application level for
+future filters and at the object level for existing filters, preventing
+unwanted gamma shifts, darkening, and visual artifacts in your vector
+artwork.</p>
+<hr />
+<h3 id="understanding-filter-color-spaces-in-svg">Understanding Filter
+Color Spaces in SVG</h3>
+<p>By default, the SVG specification processes filter effects using the
+<code>linearRGB</code> color space to achieve physically accurate light
+calculations. However, this often causes unexpected color darkening or
+blending artifacts when working with assets designed in standard
+gamma-corrected <code>sRGB</code>. Inkscape allows you to explicitly
+control whether filters calculate in <code>sRGB</code> or
+<code>linearRGB</code>.</p>
+<hr />
+<h3 id="changing-the-default-filter-color-space-in-preferences">Changing
+the Default Filter Color Space in Preferences</h3>
+<p>To set the default interpolation mode that Inkscape assigns when
+creating new filters:</p>
+<ol type="1">
+<li>Open <strong>Preferences</strong> by navigating to <strong>Edit &gt;
+Preferences</strong> (or press <code>Ctrl + Shift + P</code> on
+Windows/Linux, <code>Cmd + Shift + P</code> on macOS).</li>
+<li>In the left navigation pane, expand the <strong>Filters</strong> or
+<strong>Rendering</strong> category (depending on your Inkscape
+version).</li>
+<li>Locate the setting labeled <strong>Filter color space</strong> or
+<strong>Color interpolation for filters</strong>.</li>
+<li>Select either <strong>sRGB</strong> (recommended for standard web/UI
+design) or <strong>linearRGB</strong> (standard SVG spec for realistic
+blurs/lighting).</li>
+<li>Close the Preferences dialog. Your choice will now apply to newly
+created filters.</li>
+</ol>
+<hr />
+<h3 id="adjusting-color-space-on-existing-filters">Adjusting Color Space
+on Existing Filters</h3>
+<p>If a document already contains filters that look washed out or overly
+dark, update their color space directly through the Filter Editor or the
+XML Editor.</p>
+<h4 id="method-1-using-the-filter-editor">Method 1: Using the Filter
+Editor</h4>
+<ol type="1">
+<li>Go to <strong>Filters &gt; Filter Editor...</strong> to open the
+panel.</li>
+<li>Select the target filter from the list on the left.</li>
+<li>In the primitives list, select a primitive (e.g., <em>Gaussian
+Blur</em>, <em>Color Matrix</em>).</li>
+<li>Look at the lower section of the panel for the <strong>Color
+interpolation</strong> or <strong>Effect attributes</strong>
+dropdown.</li>
+<li>Set the value explicitly to <strong>sRGB</strong> or
+<strong>linearRGB</strong>.</li>
+</ol>
+<h4 id="method-2-using-the-xml-editor">Method 2: Using the XML
+Editor</h4>
+<p>For direct and guaranteed control across the entire filter
+definition:</p>
+<ol type="1">
+<li>Open the XML Editor by navigating to <strong>Edit &gt; XML
+Editor</strong> (or press <code>Ctrl + Shift + X</code>).</li>
+<li>Locate the <code>&lt;svg:defs&gt;</code> node in the tree and expand
+it.</li>
+<li>Select the <code>&lt;svg:filter&gt;</code> element you want to
+edit.</li>
+<li>In the attribute panel on the right:
+<ul>
+<li>Enter <code>color-interpolation-filters</code> into the
+<strong>Attribute</strong> field.</li>
+<li>Enter either <code>sRGB</code> or <code>linearRGB</code> into the
+<strong>Value</strong> field.</li>
+</ul></li>
+<li>Click <strong>Set</strong> (or press the checkmark button).</li>
+</ol>
+<p>Applying <code>color-interpolation-filters="sRGB"</code> directly to
+the <code>&lt;filter&gt;</code> container automatically cascades the
+setting to all primitives inside that filter unless an individual
+primitive explicitly overrides it.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

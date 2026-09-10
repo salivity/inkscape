@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Inkscape Presentations with JessyInk - inkscape</title>
+    <meta name="description" content="This guide explains how to turn scalable vector graphics into interactive, browser-based slide decks using the JessyInk extension in Inkscape. You will learn how to initialize the extension, organize layers into slides, apply element animations and trans">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-inkscape-presentations-with-jessyink">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Inkscape Presentations with JessyInk - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-inkscape-presentations-with-jessyink" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to turn scalable vector graphics into interactive, browser-based slide decks using the JessyInk extension in Inkscape. You will learn how to initialize the extension, organize layers into slides, apply element animations and trans" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-inkscape-presentations-with-jessyink">Create Inkscape
+Presentations with JessyInk</h1>
+<p>This guide explains how to turn scalable vector graphics into
+interactive, browser-based slide decks using the JessyInk extension in
+Inkscape. You will learn how to initialize the extension, organize
+layers into slides, apply element animations and transitions, and export
+the finished presentation as an interactive SVG file that runs in any
+modern web browser without third-party presentation software.</p>
+<h2 id="what-is-jessyink">What is JessyInk?</h2>
+<p>JessyInk is a built-in Inkscape extension that embeds JavaScript into
+your SVG files. This code turns standard vector illustrations and layer
+structures into interactive slides. Because the resulting file is a
+standard SVG, the presentation scales infinitely to any display
+resolution and can be viewed using any standard web browser.</p>
+<h2 id="step-1-initialize-the-document">Step 1: Initialize the
+Document</h2>
+<p>Before building slides, you must inject the JessyInk script into your
+SVG document.</p>
+<ol type="1">
+<li>Open a new or existing document in Inkscape.</li>
+<li>Navigate to <strong>Extensions &gt; JessyInk &gt;
+Install/update...</strong> in the top menu.</li>
+<li>In the pop-up window, click <strong>Apply</strong>, then click
+<strong>Close</strong>.</li>
+</ol>
+<p>The core scripts are now embedded in your document, enabling keyboard
+navigation and presentation features.</p>
+<h2 id="step-2-structure-slides-using-layers">Step 2: Structure Slides
+Using Layers</h2>
+<p>JessyInk treats top-level layers as individual slides.</p>
+<ol type="1">
+<li>Open the Layers panel (<strong>Layer &gt; Layers and
+Objects...</strong> or <code>Ctrl+Shift+L</code>).</li>
+<li>Create a separate top-level layer for each slide you want to
+display.</li>
+<li>Place your text, graphics, and backgrounds on their respective slide
+layers.</li>
+<li>Rename each layer with a clear title or order number (e.g.,
+<code>01_Intro</code>, <code>02_Features</code>).</li>
+</ol>
+<h2 id="step-3-configure-layer-roles">Step 3: Configure Layer Roles</h2>
+<p>To ensure JessyInk recognizes your layers as sequential slides:</p>
+<ol type="1">
+<li>Select a layer in the Layers panel.</li>
+<li>Go to <strong>Extensions &gt; JessyInk &gt; Layer
+properties...</strong>.</li>
+<li>Set the layer mode to <strong>Slide</strong>.</li>
+<li>(Optional) Enter a slide title to display during index
+navigation.</li>
+<li>Click <strong>Apply</strong>.</li>
+<li>Repeat this process for every slide layer in the project.</li>
+</ol>
+<h2 id="step-4-add-object-transitions-and-sub-slides">Step 4: Add Object
+Transitions and Sub-Slides</h2>
+<p>You can reveal objects sequentially on a single slide to create
+bullet-point animations or progressive disclosures.</p>
+<ol type="1">
+<li>Select the specific object or group on a slide that you want to
+animate.</li>
+<li>Navigate to <strong>Extensions &gt; JessyInk &gt;
+Effects...</strong>.</li>
+<li>Choose the effect type:
+<ul>
+<li><strong>Appear</strong>: Reveals the object on a step forward.</li>
+<li><strong>Disappear</strong>: Hides the object on a step forward.</li>
+<li><strong>Pop</strong>: Briefly highlights the object.</li>
+</ul></li>
+<li>Assign an order number (e.g., <code>1</code> for the first click,
+<code>2</code> for the second click).</li>
+<li>Click <strong>Apply</strong>.</li>
+</ol>
+<p>Repeat this process for each sequential element on the slide.</p>
+<h2 id="step-5-set-up-a-master-slide-optional">Step 5: Set Up a Master
+Slide (Optional)</h2>
+<p>If your presentation uses persistent elements such as a company logo,
+page footer, or consistent background pattern:</p>
+<ol type="1">
+<li>Create a dedicated layer containing these shared elements.</li>
+<li>Select the layer.</li>
+<li>Open <strong>Extensions &gt; JessyInk &gt; Layer
+properties...</strong>.</li>
+<li>Set the mode to <strong>Master Slide</strong> and click
+<strong>Apply</strong>.</li>
+</ol>
+<p>This layer will remain visible across all regular slides during the
+presentation.</p>
+<h2 id="step-6-export-and-present">Step 6: Export and Present</h2>
+<p>Because JessyInk relies on native browser rendering, you do not need
+to convert the file into a PDF or PowerPoint format.</p>
+<ol type="1">
+<li>Save the file normally inside Inkscape as an <strong>Inkscape
+SVG</strong> (<code>File &gt; Save</code>).</li>
+<li>Locate the saved <code>.svg</code> file on your computer and open it
+with any modern web browser (such as Chrome, Firefox, Safari, or
+Edge).</li>
+<li>Switch your browser to full-screen mode (typically <code>F11</code>
+on Windows/Linux or <code>Cmd+Ctrl+F</code> on macOS).</li>
+</ol>
+<h3 id="presentation-controls">Presentation Controls</h3>
+<p>Once opened in a browser, control your presentation using the
+following keyboard shortcuts:</p>
+<ul>
+<li><strong>Next Slide / Step</strong>: <code>Right Arrow</code>,
+<code>Page Down</code>, or <code>Spacebar</code></li>
+<li><strong>Previous Slide / Step</strong>: <code>Left Arrow</code> or
+<code>Page Up</code></li>
+<li><strong>First Slide</strong>: <code>Home</code></li>
+<li><strong>Last Slide</strong>: <code>End</code></li>
+<li><strong>Slide Index / Overview</strong>: <code>i</code> (allows you
+to visually browse and jump to any slide)</li>
+<li><strong>Drawing Mode</strong>: <code>d</code> (lets you annotate
+directly on the slide using your cursor)</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

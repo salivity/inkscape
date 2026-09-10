@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape SVG to Fusion 360 for 3D Extrusions - inkscape</title>
+    <meta name="description" content="Transforming 2D vector graphics into 3D models is a standard workflow for custom badges, mechanical faceplates, and artistic designs. This guide walks you through preparing and exporting clean vector paths in Inkscape, importing them into Autodesk Fusion">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-svg-to-fusion-360-for-3d-extrusions">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape SVG to Fusion 360 for 3D Extrusions - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-svg-to-fusion-360-for-3d-extrusions" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transforming 2D vector graphics into 3D models is a standard workflow for custom badges, mechanical faceplates, and artistic designs. This guide walks you through preparing and exporting clean vector paths in Inkscape, importing them into Autodesk Fusion" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-svg-to-fusion-360-for-3d-extrusions">Export
+Inkscape SVG to Fusion 360 for 3D Extrusions</h1>
+<p>Transforming 2D vector graphics into 3D models is a standard workflow
+for custom badges, mechanical faceplates, and artistic designs. This
+guide walks you through preparing and exporting clean vector paths in
+Inkscape, importing them into Autodesk Fusion 360 as sketch profiles,
+and extruding those profiles into solid 3D bodies.</p>
+<h3 id="step-1-prepare-vector-paths-in-inkscape">Step 1: Prepare Vector
+Paths in Inkscape</h3>
+<p>Fusion 360 requires clean, closed geometric paths to generate
+extrudable profiles. Text and raw shapes must be converted into standard
+vector nodes before exporting.</p>
+<ol type="1">
+<li><strong>Convert Objects to Paths:</strong> Select your artwork,
+navigate to the top menu, and select <strong>Path &gt; Object to
+Path</strong>. If working with text, this converts font characters into
+editable vector outlines.</li>
+<li><strong>Ungroup Elements:</strong> Press <strong>Ctrl + Shift +
+G</strong> (or <strong>Cmd + Shift + G</strong> on macOS) repeatedly
+until all grouped elements are separated into individual paths.</li>
+<li><strong>Join Overlapping Shapes:</strong> If your design features
+intersecting parts, select them and use <strong>Path &gt; Union</strong>
+to merge them into a single continuous profile.</li>
+<li><strong>Ensure Closed Loops:</strong> Use the <strong>Edit paths by
+nodes</strong> tool (press <strong>N</strong>) to verify that your paths
+do not have open gaps. Open paths will import as lines rather than
+closed profiles, preventing solid extrusion.</li>
+<li><strong>Set Document Properties:</strong> Open <strong>File &gt;
+Document Properties</strong> and set the display units to match your
+intended Fusion 360 workspace units (typically millimeters). Scale your
+artwork to the exact target dimensions here to minimize scaling
+adjustments later.</li>
+</ol>
+<h3 id="step-2-export-as-plain-svg">Step 2: Export as Plain SVG</h3>
+<p>Inkscape saves files by default with proprietary metadata that can
+occasionally cause import errors or scaling discrepancies in CAD
+software.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As</strong>.</li>
+<li>In the file type dropdown menu, change the format from
+<strong>Inkscape SVG (*.svg)</strong> to <strong>Plain SVG
+(*.svg)</strong>.</li>
+<li>Choose your destination directory and click
+<strong>Save</strong>.</li>
+</ol>
+<h3 id="step-3-insert-the-svg-into-fusion-360">Step 3: Insert the SVG
+into Fusion 360</h3>
+<ol type="1">
+<li>Open your project in Autodesk Fusion 360.</li>
+<li>From the top toolbar in the <strong>Solid</strong> tab, select
+<strong>Insert &gt; Insert SVG</strong>.</li>
+<li>Choose the target construction plane or flat face where the sketch
+should sit.</li>
+<li>Click the folder icon next to <strong>Select SVG File</strong>,
+locate your Plain SVG, and open it.</li>
+<li>Use the canvas manipulator handles to position and rotate the
+artwork. If the scale is off, adjust the <strong>Scale Plane XY</strong>
+factor.</li>
+<li>Click <strong>OK</strong> in the Insert SVG dialog, then click
+<strong>Finish Sketch</strong> in the toolbar.</li>
+</ol>
+<h3 id="step-4-create-the-3d-extrusion">Step 4: Create the 3D
+Extrusion</h3>
+<ol type="1">
+<li>In the <strong>Solid</strong> tab, select the
+<strong>Extrude</strong> tool (keyboard shortcut
+<strong>E</strong>).</li>
+<li>Hover over your imported SVG geometry; closed paths will highlight
+as light blue profiles. Click inside each profile you wish to
+extrude.</li>
+<li>Enter a value in the <strong>Distance</strong> input field to define
+the extrusion thickness.</li>
+<li>Choose your operation type—typically <strong>New Body</strong> for
+standalone parts or <strong>Join</strong> / <strong>Cut</strong> if
+modifying an existing component.</li>
+<li>Click <strong>OK</strong> to generate the final 3D geometry.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

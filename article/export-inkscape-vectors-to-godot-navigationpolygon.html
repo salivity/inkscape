@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape Vectors to Godot NavigationPolygon - inkscape</title>
+    <meta name="description" content="Exporting vector line drawings from Inkscape into Godot as navigation polygons allows you to design complex 2D levels with precise pathfinding boundaries. While Godot can render SVG files natively as textures, it does not automatically convert raw SVG li">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-godot-navigationpolygon">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape Vectors to Godot NavigationPolygon - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-godot-navigationpolygon" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting vector line drawings from Inkscape into Godot as navigation polygons allows you to design complex 2D levels with precise pathfinding boundaries. While Godot can render SVG files natively as textures, it does not automatically convert raw SVG li" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-vectors-to-godot-navigationpolygon">Export
+Inkscape Vectors to Godot NavigationPolygon</h1>
+<p>Exporting vector line drawings from Inkscape into Godot as navigation
+polygons allows you to design complex 2D levels with precise pathfinding
+boundaries. While Godot can render SVG files natively as textures, it
+does not automatically convert raw SVG line paths into navigation
+geometry. This guide explains how to prepare your vector artwork in
+Inkscape, extract the coordinate data, and convert it into a functional
+<code>NavigationPolygon</code> inside Godot.</p>
+<h3 id="step-1-prepare-paths-in-inkscape">Step 1: Prepare Paths in
+Inkscape</h3>
+<p>Navigation geometry requires closed, non-intersecting shapes to
+define walkable or non-walkable areas.</p>
+<ol type="1">
+<li><strong>Draw Closed Shapes:</strong> Ensure all lines form closed
+shapes. If you drew open strokes, close them using the <strong>Edit
+paths by nodes</strong> tool (<code>N</code>) by joining the end nodes,
+or use <code>Path &gt; Stroke to Path</code> to convert line thickness
+into a closed polygon.</li>
+<li><strong>Convert Objects to Paths:</strong> Select all shapes and go
+to <code>Path &gt; Object to Path</code>
+(<code>Shift + Ctrl + C</code>).</li>
+<li><strong>Handle Holes and Obstacles:</strong> If your walkable map
+has internal obstacles (holes), select the outer boundary and the inner
+obstacles, then choose <code>Path &gt; Combine</code>
+(<code>Ctrl + K</code>).</li>
+<li><strong>Set Document Origin:</strong> Move the drawing close to the
+top-left corner of the canvas (<code>0, 0</code>), as Godot will treat
+this position as the node’s local origin.</li>
+<li><strong>Save as Plain SVG:</strong> Go to
+<code>File &gt; Save As...</code>, choose <strong>Plain SVG
+(*.svg)</strong> rather than Inkscape SVG to strip out unnecessary
+editor metadata.</li>
+</ol>
+<h3 id="step-2-convert-svg-geometry-to-godot-polygon-data">Step 2:
+Convert SVG Geometry to Godot Polygon Data</h3>
+<p>To bridge the gap between SVG path data and Godot navigation, use one
+of the two standard workflows:</p>
+<h4 id="method-a-using-a-gdscript-tool-script">Method A: Using a
+GDScript Tool Script</h4>
+<p>You can parse the SVG path coordinates directly in Godot using a
+short <code>@tool</code> script that reads the SVG's <code>d</code>
+attribute and assigns the vertices to a
+<code>NavigationPolygon</code>.</p>
+<ol type="1">
+<li>Open the <code>.svg</code> file in a text editor to locate the path
+points within the <code>&lt;path d="..." /&gt;</code> tag.</li>
+<li>Create a script attached to a <code>NavigationRegion2D</code> node
+in your Godot project:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode gdscript"><code class="sourceCode gdscript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>@tool</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">extends</span> NavigationRegion2D</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Array of Vector2 coordinates extracted from your path</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>@export <span class="kw">var</span> raw_points: PackedVector2Array <span class="op">=</span> []</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>@export <span class="kw">var</span> generate: bool <span class="op">=</span> <span class="va">false</span>:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set</span>(value):</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> value:</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">build_navpoly</span>()</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">func</span> <span class="fu">build_navpoly</span>() <span class="op">-&gt;</span> void:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> raw_points.<span class="fu">is_empty</span>():</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> nav_poly <span class="op">=</span> NavigationPolygon.<span class="fu">new</span>()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    nav_poly.<span class="fu">add_outline</span>(raw_points)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    nav_poly.<span class="fu">make_polygons_from_outlines</span>()</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    navigation_polygon <span class="op">=</span> nav_poly</span></code></pre></div>
+<ol start="3" type="1">
+<li>Paste the normalized vertex points into the inspector array and
+toggle the <strong>Generate</strong> checkbox to generate the polygon
+mesh instantly.</li>
+</ol>
+<h4 id="method-b-using-collisionpolygon2d-as-an-intermediary">Method B:
+Using CollisionPolygon2D as an Intermediary</h4>
+<p>If you prefer visual placement without writing custom XML
+parsers:</p>
+<ol type="1">
+<li>Import the SVG into Godot as a texture.</li>
+<li>Add a <code>Sprite2D</code> node with your SVG texture to the
+scene.</li>
+<li>Select the <code>Sprite2D</code> node, navigate to the top editor
+toolbar, and click <strong>Sprite2D &gt; Create CollisionPolygon2D
+Sibling</strong>.</li>
+<li>Adjust the simplification threshold to match your desired vertex
+count and click <strong>Build</strong>.</li>
+<li>Add a <code>NavigationRegion2D</code> to the scene.</li>
+<li>Create a new <code>NavigationPolygon</code> in the inspector.</li>
+<li>Select the generated <code>CollisionPolygon2D</code>, copy its
+<code>polygon</code> array from the Inspector, and paste it into an
+outline array within your <code>NavigationPolygon</code>.</li>
+</ol>
+<h3 id="step-3-bake-and-verify-the-navigation-mesh">Step 3: Bake and
+Verify the Navigation Mesh</h3>
+<ol type="1">
+<li>Select your <code>NavigationRegion2D</code>.</li>
+<li>Ensure the <code>NavigationPolygon</code> is assigned and visible in
+the 2D viewport.</li>
+<li>Click the <strong>Bake NavigationPolygon</strong> button in the top
+toolbar to triangulate the navmesh.</li>
+<li>Enable <strong>Debug &gt; Visible Navigation</strong> from the Godot
+editor's main menu while running your project to confirm the agents can
+traverse the imported shape.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

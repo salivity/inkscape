@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Measure Bounding Box Area and Centroid in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to use Inkscape's native Measure tool to obtain real-time geometric feedback on your vector objects. By following these steps, you will learn how to inspect visual bounding boxes, calculate real-time surface areas, and locate cent">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/measure-bounding-box-area-and-centroid-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Measure Bounding Box Area and Centroid in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/measure-bounding-box-area-and-centroid-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use Inkscape's native Measure tool to obtain real-time geometric feedback on your vector objects. By following these steps, you will learn how to inspect visual bounding boxes, calculate real-time surface areas, and locate cent" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="measure-bounding-box-area-and-centroid-in-inkscape">Measure
+Bounding Box Area and Centroid in Inkscape</h1>
+<p>This guide explains how to use Inkscape's native Measure tool to
+obtain real-time geometric feedback on your vector objects. By following
+these steps, you will learn how to inspect visual bounding boxes,
+calculate real-time surface areas, and locate centroid data directly on
+the canvas without running complex extensions.</p>
+<h3 id="1-activate-the-measure-tool">1. Activate the Measure Tool</h3>
+<p>Select the <strong>Measure</strong> tool from the left-hand toolbox
+or press the keyboard shortcut <strong>M</strong>.</p>
+<h3 id="2-configure-tool-preferences">2. Configure Tool Preferences</h3>
+<p>Before taking measurements, configure the Tool Controls bar located
+at the top of the workspace:</p>
+<ul>
+<li><strong>Units:</strong> Set your preferred unit of measurement (such
+as pixels, millimeters, or inches) in the dropdown menu.</li>
+<li><strong>Information Overlays:</strong> Ensure the options for
+displaying distances, angles, and bounding box properties are toggled
+on.</li>
+<li><strong>Canvas Snapping:</strong> Enable snapping to object bounding
+boxes and centers on the right-side snapping panel to ensure precise
+alignment.</li>
+</ul>
+<h3 id="3-measure-bounding-box-dimensions-and-area">3. Measure Bounding
+Box Dimensions and Area</h3>
+<p>To view real-time area calculations:</p>
+<ol type="1">
+<li>Hover the Measure tool over the target shape or path. Inkscape will
+display a temporary bounding box outline around the element.</li>
+<li>Click and drag across the element or from one corner of the bounding
+box to the opposite corner.</li>
+<li>As you drag, an on-canvas HUD (heads-up display) appears, detailing:
+<ul>
+<li>The width (<span class="math inline">\(\Delta X\)</span>) and height
+(<span class="math inline">\(\Delta Y\)</span>).</li>
+<li>The diagonal distance and angle.</li>
+<li>The calculated bounding box area based on your current unit
+settings.</li>
+</ul></li>
+</ol>
+<h3 id="4-locate-and-display-centroid-data">4. Locate and Display
+Centroid Data</h3>
+<p>The Measure tool automatically calculates center points for shapes
+and bounding boxes:</p>
+<ol type="1">
+<li>When hovering over or selecting geometry with the Measure tool
+active, center markers (represented by crosshairs or reference nodes)
+appear at the geometric center (centroid).</li>
+<li>To find the exact coordinate offset of the centroid relative to
+another element, click on the shape's center marker and drag the
+measurement line to your origin or reference point.</li>
+<li>The on-screen readout will update in real time, displaying the
+precise relative coordinates and distance from the centroid to the
+reference target.</li>
+</ol>
+<h3 id="5-switch-between-visual-and-geometric-bounding-boxes">5. Switch
+Between Visual and Geometric Bounding Boxes</h3>
+<p>To change how the bounding box area is calculated:</p>
+<ol type="1">
+<li>Open <strong>Edit &gt; Preferences</strong> (or press <strong>Ctrl +
+Shift + P</strong> / <strong>Cmd + Shift + P</strong>).</li>
+<li>Navigate to <strong>Tools &gt; Geometric bounding box</strong> or
+<strong>Visual bounding box</strong>.
+<ul>
+<li><strong>Geometric Bounding Box:</strong> Measures only the path
+nodes, ignoring stroke widths.</li>
+<li><strong>Visual Bounding Box:</strong> Includes stroke widths and
+marker dimensions in the total area calculation.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

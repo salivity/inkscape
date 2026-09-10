@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prepare Inkscape Vector Assets for Blender - inkscape</title>
+    <meta name="description" content="Preparing vector assets in Inkscape for 3D modeling in Blender requires converting all visual elements into raw path data, cleaning up unnecessary geometry, aligning the document coordinates, and exporting the file as a clean SVG. Following this workflow">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/prepare-inkscape-vector-assets-for-blender">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Prepare Inkscape Vector Assets for Blender - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/prepare-inkscape-vector-assets-for-blender" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Preparing vector assets in Inkscape for 3D modeling in Blender requires converting all visual elements into raw path data, cleaning up unnecessary geometry, aligning the document coordinates, and exporting the file as a clean SVG. Following this workflow" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="prepare-inkscape-vector-assets-for-blender">Prepare Inkscape
+Vector Assets for Blender</h1>
+<p>Preparing vector assets in Inkscape for 3D modeling in Blender
+requires converting all visual elements into raw path data, cleaning up
+unnecessary geometry, aligning the document coordinates, and exporting
+the file as a clean SVG. Following this workflow ensures that Blender
+interprets your 2D artwork as accurate, native curve objects that can be
+immediately extruded, beveled, or converted into 3D meshes without
+geometry errors or missing elements.</p>
+<h2 id="1-convert-text-and-shapes-to-paths">1. Convert Text and Shapes
+to Paths</h2>
+<p>Blender cannot read native Inkscape primitive shapes (rectangles,
+circles, stars) or editable text objects directly. Everything must be
+converted to standard vector paths.</p>
+<ol type="1">
+<li>Select all objects and text elements in your canvas
+(<code>Ctrl + A</code>).</li>
+<li>Go to the top menu and select <strong>Path &gt; Object to
+Path</strong> (or press <code>Shift + Ctrl + C</code>).</li>
+<li>If your design contains text, ungroup the converted letters by
+selecting <strong>Object &gt; Ungroup</strong>
+(<code>Ctrl + Shift + G</code>) so individual letter paths are fully
+accessible.</li>
+</ol>
+<h2 id="2-convert-strokes-to-filled-paths">2. Convert Strokes to Filled
+Paths</h2>
+<p>Blender reads SVG paths as filled shapes or open outlines, but it
+does not accurately interpret stroke widths applied in Inkscape.</p>
+<ol type="1">
+<li>Select any paths that rely on stroke thickness for their
+appearance.</li>
+<li>Go to <strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>).</li>
+<li>This converts the outline into a closed, filled shape representing
+the exact thickness of your original stroke.</li>
+</ol>
+<h2 id="3-clean-and-combine-overlapping-geometry">3. Clean and Combine
+Overlapping Geometry</h2>
+<p>Overlapping paths and excessive anchor nodes can cause non-manifold
+geometry, self-intersections, and shading artifacts when extruded in
+Blender.</p>
+<ol type="1">
+<li><strong>Perform Boolean Operations:</strong> Use <strong>Path &gt;
+Union</strong> (<code>Ctrl + +</code>) to merge overlapping shapes of
+the same color into a single continuous silhouette.</li>
+<li><strong>Create Cutouts (Compound Paths):</strong> If you have shapes
+with holes (such as the letter "O" or a donut shape), place the inner
+shape over the outer shape, select both, and choose <strong>Path &gt;
+Difference</strong> (<code>Ctrl + -</code>) or <strong>Path &gt;
+Combine</strong> (<code>Ctrl + K</code>).</li>
+<li><strong>Optimize Node Count:</strong> Switch to the <strong>Edit
+paths by nodes</strong> tool (<code>N</code>). Select complex paths and
+run <strong>Path &gt; Simplify</strong> (<code>Ctrl + L</code>) if the
+path contains excessive nodes, or manually delete redundant points to
+keep the curve data lightweight.</li>
+</ol>
+<h2 id="4-set-the-document-origin-and-scale">4. Set the Document Origin
+and Scale</h2>
+<p>Blender places imported SVGs based on the Inkscape document's origin
+point (the top-left corner of the page).</p>
+<ol type="1">
+<li>Select all elements of your design.</li>
+<li>Open the <strong>Document Properties</strong> window
+(<code>Ctrl + Shift + D</code>).</li>
+<li>Set your display units to <strong>Millimeters</strong> or
+<strong>Pixels</strong>.</li>
+<li>Expand the <strong>Resize to content</strong> section and click
+<strong>Resize page to drawing or selection</strong>
+(<code>Ctrl + Shift + R</code>). This moves the document origin directly
+to the bounds of your artwork, preventing the imported model from
+appearing far away from Blender's 3D world origin.</li>
+</ol>
+<h2 id="5-export-as-plain-svg">5. Export as Plain SVG</h2>
+<p>Inkscape saves files with proprietary XML metadata by default, which
+can cause import errors or unwanted groups in 3D software.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong>
+(<code>Shift + Ctrl + S</code>).</li>
+<li>In the file format dropdown menu, select <strong>Plain SVG
+(*.svg)</strong> instead of "Inkscape SVG".</li>
+<li>Name your file and click <strong>Save</strong>.</li>
+</ol>
+<h2 id="6-import-and-verify-in-blender">6. Import and Verify in
+Blender</h2>
+<ol type="1">
+<li>In Blender, ensure the <strong>Import-Export: Scalable Vector
+Graphics (SVG)</strong> add-on is enabled (enabled by default in modern
+Blender versions).</li>
+<li>Go to <strong>File &gt; Import &gt; Scalable Vector Graphics
+(.svg)</strong> and select your saved file.</li>
+<li>Your vector artwork will appear as curve objects in the
+Outliner.</li>
+<li>Scale the curves up (SVGs typically import at a very small
+real-world scale) by pressing <code>S</code>, typing <code>100</code>,
+and pressing <code>Enter</code>.</li>
+<li>Apply the scale transform using
+<code>Ctrl + A &gt; Scale</code>.</li>
+<li>Navigate to the <strong>Object Data Properties</strong> (green curve
+icon) in Blender and increase the <strong>Extrude</strong> and
+<strong>Bevel</strong> values under the <strong>Geometry</strong> tab to
+generate your 3D model.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure Spot Color Channels in Inkscape - inkscape</title>
+    <meta name="description" content="Configuring spot color channels in Inkscape allows designers to prepare artwork for commercial printing, screen printing, or vinyl cutting where specific plates or tooling passes are required. Although Inkscape natively operates within the SVG format—w">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/configure-spot-color-channels-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Configure Spot Color Channels in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/configure-spot-color-channels-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Configuring spot color channels in Inkscape allows designers to prepare artwork for commercial printing, screen printing, or vinyl cutting where specific plates or tooling passes are required. Although Inkscape natively operates within the SVG format—w" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="configure-spot-color-channels-in-inkscape">Configure Spot Color
+Channels in Inkscape</h1>
+<p>Configuring spot color channels in Inkscape allows designers to
+prepare artwork for commercial printing, screen printing, or vinyl
+cutting where specific plates or tooling passes are required. Although
+Inkscape natively operates within the SVG format—which defaults to
+digital RGB/sRGB displays—you can establish named spot color separations
+by defining custom document swatches, setting appropriate color space
+identifiers, and routing the final design into a prepress-ready PDF
+format.</p>
+<h2 id="1-open-the-fill-and-stroke-panel">1. Open the Fill and Stroke
+Panel</h2>
+<ol type="1">
+<li>Select the object you want to assign to a spot color channel.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel by pressing
+<code>Shift + Ctrl + F</code> (or <code>Cmd + Shift + F</code> on
+macOS).</li>
+<li>Choose either the <strong>Fill</strong> or <strong>Stroke
+paint</strong> tab, depending on which element requires the
+separation.</li>
+</ol>
+<h2 id="2-define-a-document-swatch">2. Define a Document Swatch</h2>
+<p>Inkscape manages reusable and named colors via the Swatches system.
+Converting a standard color into a swatch is necessary to associate it
+with an isolated named separation.</p>
+<ol type="1">
+<li>In the Fill and Stroke dialog, set your target color using any color
+wheel or RGB/CMYK sliders.</li>
+<li>Click the <strong>Swatch</strong> button (the icon displaying a
+small paint swatch) to convert the selected color into a global document
+swatch.</li>
+<li>Open the <strong>Swatches</strong> palette by navigating to
+<strong>View &gt; Swatches</strong>
+(<code>Shift + Ctrl + W</code>).</li>
+<li>Ensure the palette dropdown at the bottom of the Swatches dialog is
+set to <strong>Document</strong>.</li>
+</ol>
+<h2 id="3-name-the-color-separation">3. Name the Color Separation</h2>
+<p>Prepress RIP (Raster Image Processor) software identifies spot
+channels by their exact plate or channel names (such as
+<code>PANTONE 185 C</code>, <code>CutContour</code>, or
+<code>White_Ink</code>).</p>
+<ol type="1">
+<li>Open the <strong>XML Editor</strong> under <strong>Edit &gt; XML
+Editor</strong> (<code>Shift + Ctrl + X</code>).</li>
+<li>In the XML tree, expand <code>&lt;svg:defs&gt;</code>.</li>
+<li>Locate the <code>&lt;svg:linearGradient&gt;</code> or
+<code>&lt;svg:solidColor&gt;</code> element representing your newly
+created swatch.</li>
+<li>Locate the <code>id</code> or <code>inkscape:label</code> attribute
+in the right-hand panel.</li>
+<li>Change the value to your designated spot channel name (e.g.,
+<code>Spot1</code> or <code>CutContour</code>).</li>
+<li>Click <strong>Set</strong> to apply the identifier.</li>
+</ol>
+<h2 id="4-work-with-icc-profiles-optional-for-exact-prepress">4. Work
+with ICC Profiles (Optional for Exact Prepress)</h2>
+<p>If an exact ICC-based spot separation is required rather than a
+purely named vector channel:</p>
+<ol type="1">
+<li>Navigate to <strong>File &gt; Document Properties</strong>
+(<code>Shift + Ctrl + D</code>).</li>
+<li>Go to the <strong>Color</strong> tab.</li>
+<li>Link the appropriate ICC profile corresponding to your print house
+or plate setup.</li>
+<li>When defining color values, switch to the <strong>CMS</strong> tab
+inside the Fill and Stroke dialog and select your linked ICC profile to
+ensure the underlying values align with the physical output intent.</li>
+</ol>
+<h2 id="5-export-for-plate-separation">5. Export for Plate
+Separation</h2>
+<p>SVG files do not intrinsically contain separated plate channels, so
+the file must be exported to a format that print RIP software can
+interpret.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As</strong> or <strong>File &gt;
+Export</strong>.</li>
+<li>Set the file format to <strong>Portable Document Format
+(*.pdf)</strong>.</li>
+<li>In the PDF export dialogue, set the <strong>PDF version</strong> to
+<code>PDF/X-1a</code> or <code>PDF/X-3</code> if available via your
+installed Cairo/Ghostscript backend.</li>
+<li>Ensure <strong>Rasterize filter effects</strong> is checked if you
+have used any blend modes or transparency, as transparency can cause
+spot plates to convert into process CMYK if not flattened
+correctly.</li>
+<li>Click <strong>Save</strong> to generate the PDF containing your
+named separation metadata.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

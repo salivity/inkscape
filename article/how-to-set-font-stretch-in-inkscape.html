@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Font Stretch in Inkscape - inkscape</title>
+    <meta name="description" content="Adjusting font stretch—such as making text condensed, narrow, or expanded—is essential for fitting text into specific layouts and achieving precise typographic designs. In Inkscape, font stretch can be set using font family variants, variable font ax">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-set-font-stretch-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Set Font Stretch in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-set-font-stretch-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Adjusting font stretch—such as making text condensed, narrow, or expanded—is essential for fitting text into specific layouts and achieving precise typographic designs. In Inkscape, font stretch can be set using font family variants, variable font ax" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-set-font-stretch-in-inkscape">How to Set Font Stretch in
+Inkscape</h1>
+<p>Adjusting font stretch—such as making text condensed, narrow, or
+expanded—is essential for fitting text into specific layouts and
+achieving precise typographic designs. In Inkscape, font stretch can be
+set using font family variants, variable font axes, direct CSS attribute
+editing in the XML Editor, or manual object scaling. This guide covers
+how to access and apply these font-stretch properties efficiently within
+your vector projects.</p>
+<h3 id="method-1-use-font-styles-and-variants">Method 1: Use Font Styles
+and Variants</h3>
+<p>The standard way to apply condensed or expanded styles without
+distorting glyph proportions is by selecting a font family that includes
+dedicated width variants.</p>
+<ol type="1">
+<li>Select the <strong>Text Tool</strong> (<code>T</code>) and click on
+your text.</li>
+<li>Open the <strong>Text and Font</strong> panel by pressing
+<code>Shift + Ctrl + T</code> (or navigate to <strong>Text &gt; Text and
+Font</strong>).</li>
+<li>In the <strong>Font</strong> tab, browse through the
+<strong>Style</strong> list for the selected typeface.</li>
+<li>Look for built-in width styles such as <strong>Condensed</strong>,
+<strong>Semi-Condensed</strong>, <strong>Expanded</strong>, or
+<strong>Narrow</strong>.</li>
+<li>Select the desired style and click <strong>Apply</strong>.</li>
+</ol>
+<h3 id="method-2-adjust-the-width-axis-on-variable-fonts">Method 2:
+Adjust the Width Axis on Variable Fonts</h3>
+<p>If you are using an OpenType variable font (such as Roboto Flex,
+Inter, or Montserrat), you can freely control font stretch along a
+continuous slider.</p>
+<ol type="1">
+<li>Select your text using the <strong>Text Tool</strong>.</li>
+<li>Open the <strong>Text and Font</strong> panel
+(<code>Shift + Ctrl + T</code>).</li>
+<li>Click on the <strong>Variations</strong> tab (visible when a
+variable font is selected).</li>
+<li>Locate the <strong>Width</strong> (<code>wdth</code>) slider.</li>
+<li>Drag the slider to the left for condensed text or to the right for
+expanded text.</li>
+<li>Click <strong>Apply</strong> to save the changes.</li>
+</ol>
+<h3
+id="method-3-apply-the-font-stretch-property-via-the-xml-editor">Method
+3: Apply the <code>font-stretch</code> Property via the XML Editor</h3>
+<p>Inkscape allows direct SVG styling, enabling you to add the standard
+CSS <code>font-stretch</code> property directly to any text element.</p>
+<ol type="1">
+<li>Select the text object with the <strong>Select Tool</strong>
+(<code>S</code>).</li>
+<li>Open the <strong>XML Editor</strong> by pressing
+<code>Shift + Ctrl + X</code> (or via <strong>Edit &gt; XML
+Editor</strong>).</li>
+<li>Ensure the active <code>&lt;svg:text&gt;</code> or
+<code>&lt;svg:tspan&gt;</code> node is highlighted in the tree.</li>
+<li>In the attributes list on the right, look for the <code>style</code>
+attribute.</li>
+<li>At the bottom of the attributes panel, find the
+<strong>Name</strong> and <strong>Value</strong> fields.</li>
+<li>Type <code>font-stretch</code> into the attribute name field.</li>
+<li>In the value field, enter one of the standard SVG stretch values:
+<ul>
+<li><code>ultra-condensed</code></li>
+<li><code>extra-condensed</code></li>
+<li><code>condensed</code></li>
+<li><code>semi-condensed</code></li>
+<li><code>normal</code></li>
+<li><code>semi-expanded</code></li>
+<li><code>expanded</code></li>
+<li><code>extra-expanded</code></li>
+<li><code>ultra-expanded</code></li>
+</ul></li>
+<li>Click <strong>Set</strong> (or press <code>Enter</code>).</li>
+</ol>
+<p><em>Note: This method relies on your operating system and installed
+fonts having matching faces that map to these SVG stretch
+keywords.</em></p>
+<h3 id="method-4-manual-horizontal-scaling">Method 4: Manual Horizontal
+Scaling</h3>
+<p>If your chosen font does not include width variations and you simply
+need an immediate visual stretch:</p>
+<ol type="1">
+<li>Select the text using the <strong>Select Tool</strong>
+(<code>S</code>).</li>
+<li>In the top toolbar, ensure the aspect ratio lock icon is
+<strong>unlocked</strong>.</li>
+<li>Adjust the <strong>W</strong> (Width) percentage or absolute value
+to stretch or condense the text horizontally.</li>
+<li>Alternatively, click and drag the horizontal bounding box handles
+directly on the canvas while holding <code>Shift</code> to stretch
+outward from the center.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

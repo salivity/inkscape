@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimizing Inkscape SVGs for Embedded Displays - inkscape</title>
+    <meta name="description" content="Rendering vector graphics on microcontrollers and embedded displays requires extreme efficiency due to strict CPU, RAM, and flash memory constraints. This guide provides a step-by-step workflow for preparing and optimizing SVG files in Inkscape, focusing">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/optimizing-inkscape-svgs-for-embedded-displays">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Optimizing Inkscape SVGs for Embedded Displays - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/optimizing-inkscape-svgs-for-embedded-displays" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Rendering vector graphics on microcontrollers and embedded displays requires extreme efficiency due to strict CPU, RAM, and flash memory constraints. This guide provides a step-by-step workflow for preparing and optimizing SVG files in Inkscape, focusing" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="optimizing-inkscape-svgs-for-embedded-displays">Optimizing
+Inkscape SVGs for Embedded Displays</h1>
+<p>Rendering vector graphics on microcontrollers and embedded displays
+requires extreme efficiency due to strict CPU, RAM, and flash memory
+constraints. This guide provides a step-by-step workflow for preparing
+and optimizing SVG files in Inkscape, focusing on path simplification,
+coordinate scaling, metadata removal, and export configurations tailored
+for lightweight SVG parsers and vector-driven hardware.</p>
+<h2 id="1-match-canvas-dimensions-to-display-resolution">1. Match Canvas
+Dimensions to Display Resolution</h2>
+<p>Embedded displays—such as 128x64 OLEDs, e-paper panels, or SPI TFT
+screens—rely on specific pixel grids. Setting the correct canvas size in
+Inkscape eliminates runtime scaling overhead in firmware:</p>
+<ol type="1">
+<li>Open <strong>File &gt; Document Properties</strong>
+(<code>Ctrl+Shift+D</code>).</li>
+<li>Set the <strong>Display units</strong> to <code>px</code>.</li>
+<li>Set the <strong>Custom size</strong> width and height to match your
+hardware's exact resolution (e.g., <code>128</code> ×
+<code>64</code>).</li>
+<li>Enable grid snapping under <strong>Grids</strong> and set the
+spacing to <code>1 px</code> to ensure points align with physical
+display pixels.</li>
+</ol>
+<h2 id="2-convert-shapes-and-text-to-basic-paths">2. Convert Shapes and
+Text to Basic Paths</h2>
+<p>Embedded SVG parsers (such as NanoSVG or custom line-drawing
+interpreters) often fail to process high-level primitives like
+<code>&lt;rect&gt;</code>, <code>&lt;circle&gt;</code>,
+<code>&lt;text&gt;</code>, or CSS-styled objects.</p>
+<ul>
+<li><strong>Convert Objects to Paths:</strong> Select all elements
+(<code>Ctrl+A</code>) and choose <strong>Path &gt; Object to
+Path</strong> (<code>Shift+Ctrl+C</code>).</li>
+<li><strong>Flatten Text:</strong> Convert all text labels to outlines
+using the same command to avoid font dependency on the
+microcontroller.</li>
+<li><strong>Convert Strokes (Optional):</strong> If your renderer only
+supports filled polygons, select stroked paths and run <strong>Path &gt;
+Stroke to Path</strong> (<code>Ctrl+Alt+C</code>). For vector displays,
+oscilloscopes, or laser galvanometers, leave them as single-line open
+strokes.</li>
+</ul>
+<h2 id="3-reduce-node-count-and-complexity">3. Reduce Node Count and
+Complexity</h2>
+<p>Every segment in a Bézier curve requires mathematical calculation and
+memory storage. Reducing node density speeds up rasterization and lowers
+storage requirements:</p>
+<ol type="1">
+<li>Select a path and switch to the <strong>Node Tool</strong>
+(<code>N</code>).</li>
+<li>Run <strong>Path &gt; Simplify</strong> (<code>Ctrl+L</code>).</li>
+<li>If necessary, adjust the simplification threshold in <strong>Edit
+&gt; Preferences &gt; Behavior &gt; Steps</strong>.</li>
+<li>Manually delete redundant nodes using the <strong>Delete</strong>
+key while preserving the basic geometry.</li>
+</ol>
+<h2 id="4-flatten-transforms-and-remove-groups">4. Flatten Transforms
+and Remove Groups</h2>
+<p>Transforms (<code>matrix()</code>, <code>translate()</code>,
+<code>rotate()</code>) require the microcontroller to compute matrix
+multiplications per point during parsing.</p>
+<ol type="1">
+<li>Ungroup all nested elements repeatedly using <strong>Object &gt;
+Ungroup</strong> (<code>Ctrl+Shift+G</code>) until no groups
+remain.</li>
+<li>If transforms remain attached to paths, install and run an extension
+like <strong>Apply Transform</strong> or cut and paste the paths in
+place to bake coordinates directly into the raw path data.</li>
+<li>Remove hidden layers, unused defs, and invisible guide objects.</li>
+</ol>
+<h2 id="5-export-as-optimized-svg">5. Export as Optimized SVG</h2>
+<p>Inkscape includes a native optimization pipeline via
+<code>scour</code> that strips editor-specific metadata and reduces
+floating-point precision.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong> and select
+<strong>Optimized SVG (*.svg)</strong>.</li>
+<li>Configure the export dialog with the following settings:
+<ul>
+<li><strong>SVG Output:</strong> Check <em>Remove XML declaration</em>,
+<em>Remove metadata</em>, and <em>Remove comments</em>.</li>
+<li><strong>Paths data:</strong> Set <strong>Coordinate
+precision</strong> between <code>1</code> and <code>3</code>. Lower
+precision drastically reduces file size without visible degradation on
+low-resolution displays.</li>
+<li><strong>Graphics:</strong> Check <em>Convert styles to
+attributes</em>, <em>Collapse groups</em>, and <em>Remove unreferenced
+elements</em>.</li>
+<li><strong>Optimization:</strong> Check <em>Enable viewboxing</em> to
+ensure predictable scaling if viewport matching is required.</li>
+</ul></li>
+</ol>
+<h2 id="6-prepare-for-microcontroller-integration">6. Prepare for
+Microcontroller Integration</h2>
+<p>Once exported, the SVG can be incorporated into firmware
+workflows:</p>
+<ul>
+<li><strong>Direct Flash Storage:</strong> Compress the raw
+<code>.svg</code> text with standard gzip to serve directly to Web-based
+embedded interfaces or decompress via lightweight libraries.</li>
+<li><strong>C-Array Conversion:</strong> Convert the SVG into a C header
+file array of <code>uint8_t</code> using command-line tools like
+<code>xxd -i image.svg image.h</code>.</li>
+<li><strong>Path Parsing:</strong> Feed the plain path data into
+lightweight C/C++ parsers such as NanoSVG, LVGL (Light and Versatile
+Graphics Library), or direct DAC line-drawing routines for vector-based
+hardware.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

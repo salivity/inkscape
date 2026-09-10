@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive UI Button Components in Inkscape - inkscape</title>
+    <meta name="description" content="Creating modular and scalable UI design systems in Inkscape is straightforward when leveraging the power of live clones. This guide explains how to construct a master button component, generate synchronized clones to represent various interaction states,">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/responsive-ui-button-components-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Responsive UI Button Components in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/responsive-ui-button-components-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating modular and scalable UI design systems in Inkscape is straightforward when leveraging the power of live clones. This guide explains how to construct a master button component, generate synchronized clones to represent various interaction states," />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="responsive-ui-button-components-in-inkscape">Responsive UI
+Button Components in Inkscape</h1>
+<p>Creating modular and scalable UI design systems in Inkscape is
+straightforward when leveraging the power of live clones. This guide
+explains how to construct a master button component, generate
+synchronized clones to represent various interaction states, and
+organize your vector assets so that global style and structural updates
+propagate instantly across your entire component library.</p>
+<h2 id="1-create-the-master-component-base">1. Create the Master
+Component Base</h2>
+<ol type="1">
+<li><strong>Draw the Button Container:</strong> Select the
+<strong>Rectangle tool (R)</strong> and draw a box for the button
+background. In the tool control bar, adjust the <code>Rx</code> and
+<code>Ry</code> fields to set rounded corners.</li>
+<li><strong>Add Text:</strong> Select the <strong>Text tool
+(T)</strong>, click on the canvas, and enter the label (e.g., "Button").
+Use the <strong>Align and Distribute panel (Ctrl+Shift+A)</strong> to
+center the text both horizontally and vertically inside the background
+rectangle.</li>
+<li><strong>Group the Elements:</strong> Select both the background
+shape and the text, then press <strong>Ctrl+G</strong> to group
+them.</li>
+<li><strong>Name the Component:</strong> Open the <strong>Objects panel
+(Ctrl+Shift+L)</strong>, locate your new group, and rename it to
+<code>Master/Button/Primary</code>.</li>
+</ol>
+<h2 id="2-generate-live-clones-for-component-states">2. Generate Live
+Clones for Component States</h2>
+<p>Live clones in Inkscape inherit the geometric and stylistic
+properties of their parent. Changing the master immediately alters the
+clones.</p>
+<ol type="1">
+<li><strong>Duplicate as Clone:</strong> Select the master button group
+and press <strong>Alt+D</strong> (or navigate to <strong>Edit &gt; Clone
+&gt; Create Clone</strong>).</li>
+<li><strong>Create State Variants:</strong> Move the cloned object away
+from the master. Create three additional clones for common UI states:
+<ul>
+<li><code>Clone/Button/Hover</code></li>
+<li><code>Clone/Button/Active</code> (or Pressed)</li>
+<li><code>Clone/Button/Disabled</code></li>
+</ul></li>
+</ol>
+<h2 id="3-customize-clone-styles-using-unset-master-properties">3.
+Customize Clone Styles Using Unset Master Properties</h2>
+<p>By default, an Inkscape clone mirrors every attribute of its parent.
+To allow variants (like different background colors for hover states)
+while keeping dimensions and typography synced, set properties on the
+master to "Unset."</p>
+<ol type="1">
+<li><strong>Unset Master Fill:</strong> Double-click the master group to
+enter it, select the background rectangle, open the <strong>Fill and
+Stroke panel (Ctrl+Shift+F)</strong>, right-click the
+<strong>Fill</strong> swatch indicator in the bottom-left corner, and
+choose <strong>Unset</strong>.</li>
+<li><strong>Apply Variant Colors to Clones:</strong>
+<ul>
+<li>Select the <strong>Default Clone</strong> and set the fill to your
+primary brand color (e.g., <code>#007BFF</code>).</li>
+<li>Select the <strong>Hover Clone</strong> and assign a lighter or
+darker shade (e.g., <code>#0056B3</code>).</li>
+<li>Select the <strong>Disabled Clone</strong> and set the fill to a
+neutral gray (e.g., <code>#CCCCCC</code>) with a lower opacity.</li>
+</ul></li>
+</ol>
+<p>Any change to the master button's corner radius, text font, or base
+proportions will now instantly update across all state clones while
+retaining their unique state colors.</p>
+<h2 id="4-manage-layout-and-responsive-resizing">4. Manage Layout and
+Responsive Resizing</h2>
+<ol type="1">
+<li><strong>Path-Based Scaling:</strong> When resizing buttons to fit
+longer text labels, modify the width of the master rectangle. All linked
+clone states will scale uniformly.</li>
+<li><strong>Component Swapping and Organization:</strong> Keep your
+master components in a dedicated layer or off-canvas artboard named
+<code>_Components/Masters</code>. Lock this layer to prevent accidental
+edits while working on layouts.</li>
+<li><strong>Detaching Clones:</strong> If a specific instance requires
+an independent design deviation, select the clone and press
+<strong>Shift+Alt+D</strong> (<strong>Edit &gt; Clone &gt; Unlink
+Clone</strong>) to convert it into a standard, standalone group.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

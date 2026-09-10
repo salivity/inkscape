@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Inkscape Crashes Tracing High-Res Bitmaps - inkscape</title>
+    <meta name="description" content="Tracing ultra-high-resolution bitmaps in Inkscape frequently triggers memory exhaustion crashes because the integrated Potrace engine generates millions of vector nodes simultaneously, exceeding available RAM. This guide provides actionable solutions to">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/fix-inkscape-crashes-tracing-high-res-bitmaps">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Fix Inkscape Crashes Tracing High-Res Bitmaps - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/fix-inkscape-crashes-tracing-high-res-bitmaps" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Tracing ultra-high-resolution bitmaps in Inkscape frequently triggers memory exhaustion crashes because the integrated Potrace engine generates millions of vector nodes simultaneously, exceeding available RAM. This guide provides actionable solutions to" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="fix-inkscape-crashes-tracing-high-res-bitmaps">Fix Inkscape
+Crashes Tracing High-Res Bitmaps</h1>
+<p>Tracing ultra-high-resolution bitmaps in Inkscape frequently triggers
+memory exhaustion crashes because the integrated Potrace engine
+generates millions of vector nodes simultaneously, exceeding available
+RAM. This guide provides actionable solutions to bypass memory limits,
+optimize tracing settings, reduce node generation, and leverage external
+processing techniques to successfully convert massive raster images into
+vector formats without crashing Inkscape.</p>
+<h3 id="downsample-or-pre-process-the-bitmap">Downsample or Pre-process
+the Bitmap</h3>
+<p>The built-in Potrace vectorization algorithm does not require
+print-resolution detail to produce smooth vector curves.</p>
+<ol type="1">
+<li><strong>Reduce Pixel Dimensions:</strong> Open the image in an
+external editor like GIMP, Photoshop, or use ImageMagick via the command
+line to downsample the image resolution. Reducing an 8000x8000 pixel
+image to 3000x3000 pixels cuts memory consumption by over 80% while
+retaining edge fidelity.</li>
+<li><strong>Convert to Grayscale or High-Contrast Black and
+White:</strong> Eliminate color channels before importing. Forcing pure
+black-and-white pixels via a threshold filter removes antialiased
+mid-tones that exponentially increase path calculations.</li>
+</ol>
+<h3 id="optimize-inkscapes-trace-bitmap-settings">Optimize Inkscape’s
+Trace Bitmap Settings</h3>
+<p>Default "Trace Bitmap" settings often sample unnecessary data,
+creating bloated paths that exhaust memory.</p>
+<ul>
+<li><strong>Lower the Number of Scans:</strong> If using
+<strong>Multicolor</strong> (Brightness steps or Colors), reduce the
+scan count from the default 8 to 2–4. Each additional scan duplicates
+the entire layer's path calculation in RAM.</li>
+<li><strong>Increase the Speckles Threshold:</strong> In the
+<strong>Details</strong> tab, increase the <strong>Speckles</strong>
+(suppress speckles) value to 10–50. This tells the engine to ignore
+micro-artifacts, preventing the creation of thousands of microscopic,
+memory-heavy paths.</li>
+<li><strong>Enable Smooth Corners and Optimize Paths:</strong> Ensure
+<strong>Smooth corners</strong> is set between 1.0 and 1.34, and
+increase the <strong>Optimize</strong> value. Higher optimization
+combines adjacent nodes into single Bezier segments, lowering the
+overall memory footprint.</li>
+</ul>
+<h3 id="slice-the-image-into-tiles">Slice the Image into Tiles</h3>
+<p>If you must maintain extreme detail across a massive canvas, divide
+the workload into smaller segments:</p>
+<ol type="1">
+<li>Use an image editor to divide the large raster image into a grid of
+4 to 9 equal tiles (e.g., a 2x2 or 3x3 split).</li>
+<li>Import and trace each tile individually in separate Inkscape
+sessions.</li>
+<li>Once traced, copy the vector outputs into a single master SVG
+document.</li>
+<li>Align the vector tiles edge-to-edge and use <strong>Path &gt;
+Combine</strong> or <strong>Path &gt; Union</strong> to reconstruct the
+full graphic.</li>
+</ol>
+<h3 id="run-potrace-via-the-command-line">Run Potrace via the Command
+Line</h3>
+<p>Inkscape’s graphical user interface adds significant memory overhead.
+You can use the standalone version of Potrace directly through your
+terminal to process the image without running Inkscape.</p>
+<ol type="1">
+<li>Export the image as a pure monochrome <code>.bmp</code> or
+<code>.pbm</code> file.</li>
+<li>Run Potrace in the terminal:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">potrace</span> input.pbm <span class="at">-s</span> <span class="at">-o</span> output.svg</span></code></pre></div></li>
+<li>Open the resulting lightweight <code>output.svg</code> directly
+inside Inkscape for further editing.</li>
+</ol>
+<h3 id="increase-system-and-application-resource-limits">Increase System
+and Application Resource Limits</h3>
+<ul>
+<li><strong>Verify 64-bit Architecture:</strong> Ensure you are running
+the 64-bit version of Inkscape. The legacy 32-bit version is restricted
+to an absolute ceiling of 4 GB of RAM (often crashing at 2 GB).</li>
+<li><strong>Expand Virtual Memory (Pagefile/Swap):</strong> On Windows,
+increase your Virtual Memory paging file size to at least 1.5 times your
+physical RAM capacity. On Linux, increase your swap partition or create
+a temporary swap file to prevent the Out-Of-Memory (OOM) killer from
+terminating the process.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

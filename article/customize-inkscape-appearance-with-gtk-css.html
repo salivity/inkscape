@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Inkscape Appearance with GTK CSS - inkscape</title>
+    <meta name="description" content="Inkscape utilizes the GTK toolkit for its graphical user interface, allowing users to modify its fonts, colors, padding, and layout using custom GTK CSS rules. This guide explains how to locate Inkscape's user profile directory, create an override style.">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/customize-inkscape-appearance-with-gtk-css">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Customize Inkscape Appearance with GTK CSS - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/customize-inkscape-appearance-with-gtk-css" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape utilizes the GTK toolkit for its graphical user interface, allowing users to modify its fonts, colors, padding, and layout using custom GTK CSS rules. This guide explains how to locate Inkscape's user profile directory, create an override style." />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="customize-inkscape-appearance-with-gtk-css">Customize Inkscape
+Appearance with GTK CSS</h1>
+<p>Inkscape utilizes the GTK toolkit for its graphical user interface,
+allowing users to modify its fonts, colors, padding, and layout using
+custom GTK CSS rules. This guide explains how to locate Inkscape's user
+profile directory, create an override <code>style.css</code> file,
+identify target UI selectors, and apply functional styling examples to
+personalize your workspace.</p>
+<h3 id="step-1-locate-the-inkscape-user-profile-directory">Step 1:
+Locate the Inkscape User Profile Directory</h3>
+<p>To apply custom CSS without altering system-wide application files,
+place your stylesheet directly within your personal Inkscape
+configuration folder.</p>
+<p>You can find this path directly inside Inkscape by opening
+<strong>Edit &gt; Preferences &gt; System</strong> and checking the
+<strong>User config</strong> path. Typical default locations
+include:</p>
+<ul>
+<li><strong>Linux:</strong> <code>~/.config/inkscape/</code></li>
+<li><strong>Windows:</strong> <code>%APPDATA%\inkscape\</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/</code></li>
+</ul>
+<h3 id="step-2-create-the-stylecss-file">Step 2: Create the
+<code>style.css</code> File</h3>
+<p>Inside your user configuration folder, look for a subfolder named
+<code>ui</code>. If it does not exist, create it. Inside the
+<code>ui</code> folder, create a blank text file named
+<code>style.css</code>.</p>
+<ul>
+<li>Full Linux/macOS path:
+<code>~/.config/inkscape/ui/style.css</code></li>
+<li>Full Windows path: <code>%APPDATA%\inkscape\ui\style.css</code></li>
+</ul>
+<p>Inkscape automatically loads this file on startup and merges its
+rules with the active GTK theme.</p>
+<h3 id="step-3-inspect-interface-elements-with-gtk-inspector">Step 3:
+Inspect Interface Elements with GTK Inspector</h3>
+<p>To determine which class or element name controls a specific part of
+the interface, enable the GTK Inspector:</p>
+<ol type="1">
+<li><strong>Linux:</strong> Launch Inkscape from the terminal using the
+command:<br />
+<code>GTK_DEBUG=interactive inkscape</code></li>
+<li><strong>Windows:</strong> In a command prompt, set the environment
+variable before running the executable:<br />
+<code>set GTK_DEBUG=interactive</code><br />
+<code>inkscape.exe</code></li>
+</ol>
+<p>Use the "Objects" tab inside the Inspector to click on UI elements
+and read their corresponding CSS nodes, class names, and
+pseudo-classes.</p>
+<h3 id="step-4-write-custom-css-rules">Step 4: Write Custom CSS
+Rules</h3>
+<p>Open your <code>ui/style.css</code> file in any standard text editor.
+GTK CSS supports standard CSS syntax along with GTK-specific
+properties.</p>
+<h4 id="adjust-global-ui-font-and-size">Adjust Global UI Font and
+Size</h4>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Change the primary interface font */</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">*</span> {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-family</span><span class="ch">:</span> <span class="st">&quot;Segoe UI&quot;</span><span class="op">,</span> <span class="st">&quot;Noto Sans&quot;</span><span class="op">,</span> <span class="dv">sans-serif</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">11</span><span class="dt">pt</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h4 id="compact-the-toolbars-and-buttons">Compact the Toolbars and
+Buttons</h4>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Reduce padding around tool buttons for a tighter layout */</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>toolbar button {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">min-height</span><span class="ch">:</span> <span class="dv">24</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">min-width</span><span class="ch">:</span> <span class="dv">24</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span><span class="ch">:</span> <span class="dv">2</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin</span><span class="ch">:</span> <span class="dv">1</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h4 id="customize-the-canvas-rulers">Customize the Canvas Rulers</h4>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Change color and font for the measurement rulers */</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#InkRuler</span> {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">#2b2b2b</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span> <span class="cn">#aaaaaa</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">8</span><span class="dt">pt</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h4 id="highlight-active-and-hovered-elements">Highlight Active and
+Hovered Elements</h4>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Custom highlight color for active tools */</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>button<span class="in">:checked</span> {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">#3584e4</span><span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span><span class="ch">:</span> <span class="cn">#ffffff</span><span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">/* Subtle hover effect on buttons */</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>button<span class="in">:hover</span> {</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span> <span class="fu">rgba(</span><span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">255</span><span class="op">,</span> <span class="dv">0.1</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h4 id="style-panels-and-docks">Style Panels and Docks</h4>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Adjust panel container background and border */</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>notebook tab {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span><span class="ch">:</span> <span class="dv">4</span><span class="dt">px</span> <span class="dv">8</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">#242424</span><span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>notebook tab<span class="in">:checked</span> {</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">border-bottom</span><span class="ch">:</span> <span class="dv">2</span><span class="dt">px</span> <span class="dv">solid</span> <span class="cn">#3584e4</span><span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">#303030</span><span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<h3 id="step-5-apply-and-debug-changes">Step 5: Apply and Debug
+Changes</h3>
+<p>Save your changes to <code>ui/style.css</code> and restart Inkscape.
+The application will render using your custom stylesheet rules. If a
+rule does not render as expected, ensure selector specificity is high
+enough to override default GTK styles by appending the
+<code>!important</code> rule or adding parent container selectors.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

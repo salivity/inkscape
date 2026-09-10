@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Vector Compass Rose in Inkscape - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to design an intricate, symmetrical vector compass rose using Inkscape. By creating a single faceted compass point and leveraging Inkscape's rotational symmetry tools—specifically the Rotate Copies Path Effect and the Transf">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-vector-compass-rose-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Vector Compass Rose in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-vector-compass-rose-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to design an intricate, symmetrical vector compass rose using Inkscape. By creating a single faceted compass point and leveraging Inkscape's rotational symmetry tools—specifically the Rotate Copies Path Effect and the Transf" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-vector-compass-rose-in-inkscape">Create Vector Compass
+Rose in Inkscape</h1>
+<p>This guide demonstrates how to design an intricate, symmetrical
+vector compass rose using Inkscape. By creating a single faceted compass
+point and leveraging Inkscape's rotational symmetry tools—specifically
+the Rotate Copies Path Effect and the Transform panel—you can quickly
+generate primary, secondary, and tertiary directional points aligned
+around a shared center.</p>
+<h3 id="1-set-up-guides-and-snapping">1. Set Up Guides and Snapping</h3>
+<ol type="1">
+<li>Open a new document in Inkscape.</li>
+<li>Drag a horizontal and a vertical guide from the rulers onto the
+canvas so they intersect in the middle.</li>
+<li>Enable Snapping on the top toolbar. Ensure <strong>Snap to
+Guides</strong> and <strong>Snap to Nodes/Cusps</strong> are turned
+on.</li>
+</ol>
+<h3 id="2-draw-the-base-compass-point">2. Draw the Base Compass
+Point</h3>
+<p>A classic compass rose uses shaded facets to create a
+three-dimensional look.</p>
+<ol type="1">
+<li>Select the <strong>Draw Bezier curves and straight lines
+tool</strong> (<code>B</code>).</li>
+<li>Click at the guide intersection (the center base), click vertically
+upward along the vertical guide to create the tip, click outward to the
+left to define the half-width, and click back at the center to close the
+triangle.</li>
+<li>Select the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl+Shift+F</code>), give this left triangle a dark fill color
+(e.g., <code>#2B2B2B</code>), and remove the stroke.</li>
+<li>Select the triangle, press <code>Ctrl+D</code> to duplicate it, then
+click the <strong>Flip horizontally</strong> icon (<code>H</code>) on
+the top toolbar.</li>
+<li>Move the flipped shape to the right side of the vertical guide so
+both triangles share the central vertical seam.</li>
+<li>Change the fill color of the right triangle to a lighter shade
+(e.g., <code>#D4D4D4</code>).</li>
+<li>Select both triangles and press <code>Ctrl+G</code> to group them
+into a single compass point.</li>
+</ol>
+<h3 id="3-set-the-rotation-center">3. Set the Rotation Center</h3>
+<ol type="1">
+<li>Click the grouped point twice to reveal its rotation handle (the
+crosshair <code>+</code> at the center).</li>
+<li>Drag this crosshair down to the guide intersection. Snapping will
+ensure it locks precisely onto the center point.</li>
+</ol>
+<h3 id="4-apply-rotational-symmetry">4. Apply Rotational Symmetry</h3>
+<p>You can generate the remaining cardinal points (North, East, South,
+West) using either the <strong>Rotate Copies</strong> path effect or the
+<strong>Transform</strong> tool.</p>
+<h4
+id="method-a-using-the-rotate-copies-path-effect-live-symmetry">Method
+A: Using the Rotate Copies Path Effect (Live Symmetry)</h4>
+<ol type="1">
+<li>Ungroup your point (<code>Ctrl+Shift+G</code>), select both facets,
+and combine them into a single path using <strong>Path &gt; Object to
+Path</strong>, then group them again (<code>Ctrl+G</code>).</li>
+<li>Go to <strong>Path &gt; Path Effects...</strong> to open the Path
+Effects panel.</li>
+<li>Click the <strong>+</strong> (Add Path Effect) button and select
+<strong>Rotate Copies</strong>.</li>
+<li>In the effect settings:
+<ul>
+<li>Set <strong>Number of copies</strong> to <code>4</code>.</li>
+<li>Set <strong>Starting angle</strong> to <code>0</code>.</li>
+<li>Set <strong>Rotation angle</strong> to <code>90</code>.</li>
+</ul></li>
+<li>Inkscape will automatically project four symmetrical points around
+the center. Any changes made to the master point will automatically
+update the other three.</li>
+</ol>
+<h4 id="method-b-using-the-transform-tool-standard-duplication">Method
+B: Using the Transform Tool (Standard Duplication)</h4>
+<ol type="1">
+<li>Select the grouped point.</li>
+<li>Open the <strong>Transform</strong> panel
+(<code>Ctrl+Shift+M</code>) and navigate to the <strong>Rotate</strong>
+tab.</li>
+<li>Set the <strong>Angle</strong> to <code>90.0</code> degrees.</li>
+<li>Press <code>Ctrl+D</code> to duplicate the shape, then click
+<strong>Apply</strong> in the Transform panel.</li>
+<li>Repeat the duplication and rotation two more times to complete the
+four cardinal points.</li>
+</ol>
+<h3 id="5-add-secondary-and-tertiary-points">5. Add Secondary and
+Tertiary Points</h3>
+<ol type="1">
+<li>Select the main cardinal points and duplicate them
+(<code>Ctrl+D</code>).</li>
+<li>Open the <strong>Transform</strong> panel, set the rotation angle to
+<code>45.0</code> degrees, and click <strong>Apply</strong>.</li>
+<li>Scale this new set down proportionally by holding
+<code>Ctrl+Shift</code> and dragging an outer bounding box handle
+inward.</li>
+<li>Adjust the fill colors to slightly darker or muted tones to create
+visual hierarchy between cardinal and ordinal directions.</li>
+<li>For a 16-point compass, duplicate the secondary set, rotate by
+<code>22.5</code> degrees, scale down further, and adjust colors
+accordingly.</li>
+</ol>
+<h3 id="6-add-circular-accents">6. Add Circular Accents</h3>
+<ol type="1">
+<li>Select the <strong>Create circles, ellipses, and arcs tool</strong>
+(<code>E</code>).</li>
+<li>Hold <code>Ctrl+Shift</code>, click on the guide intersection, and
+drag outward to create a perfectly centered circle.</li>
+<li>Set the circle to have a stroke, no fill, and position it behind or
+between the points using the <strong>Page Down</strong> key.</li>
+<li>Duplicate the circle and resize it to create concentric rings
+framing the star.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

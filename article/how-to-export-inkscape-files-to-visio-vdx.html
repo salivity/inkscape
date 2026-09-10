@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Export Inkscape Files to Visio VDX - inkscape</title>
+    <meta name="description" content="This guide explains how to convert and export your Inkscape vector graphics into the Microsoft Visio XML Drawing (.vdx) format. Whether you need to collaborate with Visio users or migrate vector assets between software, you will learn the direct export p">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-export-inkscape-files-to-visio-vdx">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Export Inkscape Files to Visio VDX - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-export-inkscape-files-to-visio-vdx" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to convert and export your Inkscape vector graphics into the Microsoft Visio XML Drawing (.vdx) format. Whether you need to collaborate with Visio users or migrate vector assets between software, you will learn the direct export p" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-export-inkscape-files-to-visio-vdx">How to Export
+Inkscape Files to Visio VDX</h1>
+<p>This guide explains how to convert and export your Inkscape vector
+graphics into the Microsoft Visio XML Drawing (.vdx) format. Whether you
+need to collaborate with Visio users or migrate vector assets between
+software, you will learn the direct export procedure in Inkscape as well
+as alternative workflows to ensure maximum compatibility.</p>
+<h2 id="preparing-your-inkscape-document">Preparing Your Inkscape
+Document</h2>
+<p>Before exporting, prepare your document to ensure all visual elements
+translate accurately into Visio:</p>
+<ol type="1">
+<li><strong>Convert Text to Paths</strong>: Visio may not have the same
+fonts installed. Select your text elements and go to <strong>Path &gt;
+Object to Path</strong> to convert editable text into vector
+shapes.</li>
+<li><strong>Ungroup Complex Objects</strong>: Deeply nested groups can
+sometimes cause parsing errors. Select your objects and press
+<strong>Ctrl + Shift + G</strong> (or <strong>Cmd + Shift + G</strong>
+on macOS) to ungroup where appropriate.</li>
+<li><strong>Fit Page to Drawing</strong>: Go to <strong>File &gt;
+Document Properties</strong> and click <strong>Resize page to
+content</strong> so the exported canvas matches your artwork's exact
+dimensions.</li>
+</ol>
+<hr />
+<h2 id="method-1-direct-export-to-vdx">Method 1: Direct Export to
+VDX</h2>
+<p>If your Inkscape installation includes the required export extensions
+(such as UniConvertor or built-in Visio export filters), you can save
+directly to <code>.vdx</code>.</p>
+<ol type="1">
+<li>Open your project in Inkscape.</li>
+<li>Click <strong>File</strong> in the top menu and select <strong>Save
+As...</strong> (or press <strong>Shift + Ctrl + S</strong>).</li>
+<li>In the file dialogue, open the <strong>Save as type</strong>
+dropdown menu.</li>
+<li>Scroll through the format list and select <strong>Microsoft Visio
+XML Drawing (*.vdx)</strong>.</li>
+<li>Choose your target folder, name the file, and click
+<strong>Save</strong>.</li>
+</ol>
+<hr />
+<h2 id="method-2-export-via-svg-or-emf-recommended-fallback">Method 2:
+Export via SVG or EMF (Recommended Fallback)</h2>
+<p>Recent releases of Inkscape may lack native <code>.vdx</code> export
+support depending on your operating system and installed helper
+libraries. If <code>.vdx</code> does not appear in your format dropdown,
+use this standard workaround:</p>
+<ol type="1">
+<li>In Inkscape, go to <strong>File &gt; Save As...</strong></li>
+<li>Choose either:
+<ul>
+<li><strong>Plain SVG (*.svg)</strong>: Supported natively by Microsoft
+Visio 2013 and newer.</li>
+<li><strong>Enhanced Metafile (*.emf)</strong>: A native Windows vector
+format highly compatible with all Visio versions.</li>
+</ul></li>
+<li>Open <strong>Microsoft Visio</strong>.</li>
+<li>In Visio, click <strong>File &gt; Open</strong> and select your
+saved <code>.svg</code> or <code>.emf</code> file.</li>
+<li>Once opened in Visio, go to <strong>File &gt; Save As</strong>.</li>
+<li>Set the file format to <strong>Visio 2003–2010 Drawing
+(*.vdx)</strong> and click <strong>Save</strong>.</li>
+</ol>
+<hr />
+<h2 id="method-3-command-line-conversion-using-uniconvertor">Method 3:
+Command-Line Conversion Using UniConvertor</h2>
+<p>If you need automated or batch conversions to <code>.vdx</code>, use
+UniConvertor directly from your command line:</p>
+<ol type="1">
+<li>Install UniConvertor on your system.</li>
+<li>Save your file from Inkscape as a standard
+<strong>SVG</strong>.</li>
+<li>Open your terminal or command prompt.</li>
+<li>Run the following command:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uniconv</span> input_file.svg output_file.vdx</span></code></pre></div></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

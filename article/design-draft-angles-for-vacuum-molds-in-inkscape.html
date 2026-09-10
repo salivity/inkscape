@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Draft Angles for Vacuum Molds in Inkscape - inkscape</title>
+    <meta name="description" content="Designing vacuum-forming molds requires incorporating draft angles—typically between 3° and 5°—to allow the cooled plastic sheet to release cleanly from the mold buck without sticking. This guide outlines how to use Inkscape's vector toolset to acc">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/design-draft-angles-for-vacuum-molds-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Draft Angles for Vacuum Molds in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/design-draft-angles-for-vacuum-molds-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing vacuum-forming molds requires incorporating draft angles—typically between 3° and 5°—to allow the cooled plastic sheet to release cleanly from the mold buck without sticking. This guide outlines how to use Inkscape's vector toolset to acc" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="design-draft-angles-for-vacuum-molds-in-inkscape">Design Draft
+Angles for Vacuum Molds in Inkscape</h1>
+<p>Designing vacuum-forming molds requires incorporating draft
+angles—typically between 3° and 5°—to allow the cooled plastic sheet to
+release cleanly from the mold buck without sticking. This guide outlines
+how to use Inkscape's vector toolset to accurately calculate, draw, and
+offset mold silhouette profiles and cross-sections, enabling you to
+produce clean designs ready for CNC routing, laser-cut stacked
+fabrication, or 3D extrusion.</p>
+<h3 id="1-calculate-the-required-offset">1. Calculate the Required
+Offset</h3>
+<p>To create a draft angle in a 2D vector environment, you must
+calculate the horizontal taper distance based on the vertical height of
+your mold. Use the trigonometric formula:</p>
+<p><span class="math display">\[\text{Offset} = \text{Mold Height}
+\times \tan(\text{Draft Angle})\]</span></p>
+<p>For example, a mold section that is 20 mm high with a standard 3°
+draft angle requires an offset of approximately 1.05 mm (<span
+class="math inline">\(20 \times \tan(3^\circ) \approx 1.048\text{
+mm}\)</span>). This value determines how much smaller the top profile of
+your mold must be compared to the base footprint.</p>
+<h3 id="2-draw-the-base-mold-profile">2. Draw the Base Mold Profile</h3>
+<ol type="1">
+<li>Select the <strong>Rectangle tool</strong> (<code>R</code>) or
+<strong>Draw Bezier curves tool</strong> (<code>B</code>) to create the
+base silhouette of the mold.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>) and set the path to have a visible
+stroke with no fill.</li>
+<li>Switch to the <strong>Select and transform objects</strong> tool
+(<code>S</code>) and use the top toolbar to set the exact dimensions
+(width and length) of your mold buck's base in millimeters.</li>
+</ol>
+<h3 id="3-generate-the-drafted-top-profile">3. Generate the Drafted Top
+Profile</h3>
+<p>Inkscape provides precise path operations to generate the drafted
+inner profile from the base footprint:</p>
+<ol type="1">
+<li>Select your base shape and duplicate it by pressing
+<code>Ctrl + D</code>.</li>
+<li>Navigate to <strong>Path &gt; Path Effects</strong> to open the Path
+Effects panel.</li>
+<li>Click the <strong>+</strong> icon and select
+<strong>Offset</strong>.</li>
+<li>In the effect settings, set the offset distance to the negative
+value of your calculated offset (e.g., <code>-1.05 mm</code>).</li>
+<li>Choose <strong>Miter</strong> or <strong>Round</strong> join
+depending on whether you want sharp or radiused corners (rounded corners
+are generally preferred for vacuum forming to prevent localized sheet
+thinning).</li>
+<li>Convert the effect to a permanent path by selecting <strong>Path
+&gt; Object to Path</strong> (<code>Ctrl + Shift + C</code>).</li>
+</ol>
+<h3 id="4-create-layer-slices-for-stacked-fabrication">4. Create Layer
+Slices for Stacked Fabrication</h3>
+<p>If you are fabricating the mold by laser-cutting stacked sheet
+material (such as MDF or acrylic), each layer requires its own
+incremental draft offset:</p>
+<ol type="1">
+<li>Determine your sheet material thickness (<span
+class="math inline">\(T\)</span>).</li>
+<li>Calculate the per-layer offset step: <span
+class="math inline">\(\text{Step} = T \times \tan(\text{Draft
+Angle})\)</span>.</li>
+<li>Duplicate the base outline for the total number of physical
+layers.</li>
+<li>Apply an incremental offset to each layer: the bottom layer uses the
+base size (<span class="math inline">\(0\times \text{Step}\)</span>),
+the second layer uses <span class="math inline">\(-1\times
+\text{Step}\)</span>, the third uses <span
+class="math inline">\(-2\times \text{Step}\)</span>, and so on.</li>
+<li>Arrange each slice on your canvas, clearly labeling them with text
+outside the cut area to maintain proper assembly order.</li>
+</ol>
+<h3 id="5-verify-the-mold-cross-section">5. Verify the Mold
+Cross-Section</h3>
+<p>To ensure your silhouette has no negative drafts (undercuts) that
+would trap the plastic:</p>
+<ol type="1">
+<li>Use the <strong>Draw Bezier curves tool</strong> (<code>B</code>)
+while holding <code>Ctrl</code> to sketch a 2D side cross-section of
+your mold buck.</li>
+<li>Select the <strong>Measure tool</strong> (<code>M</code>) and drag a
+line along the sloped edge.</li>
+<li>Check the angle readout in the status bar to verify that all
+vertical walls diverge at minimum 3° to 5° relative to the vertical
+axis.</li>
+<li>Add corner radii to all top edges using the <strong>Corners
+(Fillet/Chamfer)</strong> Path Effect, as sharp upper corners cause
+webbing and tearing during vacuum drawdown.</li>
+</ol>
+<h3 id="6-prepare-and-export">6. Prepare and Export</h3>
+<ol type="1">
+<li>Select all paths and navigate to <strong>Path &gt; Object to
+Path</strong> to ensure all dynamic effects and primitives are flattened
+into raw vectors.</li>
+<li>Verify in the <strong>Fill and Stroke</strong> panel that all cut
+lines have a uniform stroke width (e.g., <code>0.001 in</code> or
+<code>0.02 mm</code> for standard laser cutters).</li>
+<li>Save your file as a standardized vector format via <strong>File &gt;
+Save As</strong>, choosing <strong>DXF</strong> for CNC routers or
+<strong>Plain SVG</strong> / <strong>PDF</strong> for laser cutting
+systems.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

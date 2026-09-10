@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector Water Droplet Reflections in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to design realistic, complex vector water droplet reflections using Inkscape's path tools, gradient editors, and blur filters. By breaking down the anatomy of a liquid droplet into base drop shadows, internal light refractions, an">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/vector-water-droplet-reflections-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vector Water Droplet Reflections in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/vector-water-droplet-reflections-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to design realistic, complex vector water droplet reflections using Inkscape's path tools, gradient editors, and blur filters. By breaking down the anatomy of a liquid droplet into base drop shadows, internal light refractions, an" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="vector-water-droplet-reflections-in-inkscape">Vector Water
+Droplet Reflections in Inkscape</h1>
+<p>This guide explains how to design realistic, complex vector water
+droplet reflections using Inkscape's path tools, gradient editors, and
+blur filters. By breaking down the anatomy of a liquid droplet into base
+drop shadows, internal light refractions, and sharp specular highlights,
+you can achieve a photorealistic three-dimensional effect directly
+within the software.</p>
+<h3 id="1-create-the-base-droplet-shape">1. Create the Base Droplet
+Shape</h3>
+<p>Select the <strong>Draw Bezier curves and straight lines</strong>
+tool (or press <code>B</code>) to draw the main outline of the droplet.
+For a simple resting drop, draw an asymmetrical organic shape or an
+ellipse converted to a path (<code>Path</code> &gt;
+<code>Object to Path</code>). Fine-tune the nodes using the <strong>Edit
+paths by nodes</strong> tool (<code>N</code>) to give it natural surface
+tension. Set the fill color to transparent or give it a very subtle,
+low-opacity tint matching the background surface.</p>
+<h3 id="2-add-the-base-cast-shadow">2. Add the Base Cast Shadow</h3>
+<p>Water droplets cast a distinct, concentrated shadow because light
+passes through them rather than blocking it entirely:</p>
+<ul>
+<li>Duplicate the base droplet path (<code>Ctrl + D</code>) and move it
+slightly downward and away from your intended light source.</li>
+<li>Set the fill to black with an opacity of around 40% to 60%.</li>
+<li>Go to the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>) and apply a slight <strong>Blur</strong>
+(typically 2% to 5%) to soften the edges.</li>
+</ul>
+<h3 id="3-generate-the-internal-refraction-gradient">3. Generate the
+Internal Refraction Gradient</h3>
+<p>Because water acts as a convex lens, light bends and creates
+brightness on the side opposite the light source:</p>
+<ul>
+<li>Duplicate the base droplet shape again.</li>
+<li>Select the <strong>Create and edit gradients</strong> tool
+(<code>G</code>) and apply a <strong>Radial Gradient</strong>.</li>
+<li>Position the center of the gradient near the bottom edge (opposite
+your light source).</li>
+<li>Set the inner stop to a bright, semi-transparent highlight color
+(such as light blue or white with 60% opacity) and the outer stop to a
+darker, more transparent tone (10% to 20% opacity). This creates the
+illusion of light pooling inside the bottom of the drop.</li>
+</ul>
+<h3 id="4-build-secondary-internal-reflections">4. Build Secondary
+Internal Reflections</h3>
+<p>To create complex, realistic depth, add secondary reflections of the
+surrounding environment:</p>
+<ul>
+<li>Draw a smaller, crescent-like path along the inner edge where the
+light enters the droplet.</li>
+<li>Apply a <strong>Linear Gradient</strong> that fades from white to
+fully transparent.</li>
+<li>For more realism, draw subtle, distorted geometric shapes inside the
+droplet to represent distorted reflections of objects or a horizon,
+setting their opacity between 10% and 30%.</li>
+</ul>
+<h3 id="5-add-sharp-specular-highlights">5. Add Sharp Specular
+Highlights</h3>
+<p>Specular highlights define the glossy surface of the water:</p>
+<ul>
+<li>Using the <strong>Circles and Ellipses</strong> tool
+(<code>E</code>), create a small white ellipse near the top edge closest
+to the light source.</li>
+<li>Rotate and deform the shape slightly to match the curvature of the
+droplet.</li>
+<li>Duplicate this highlight, make it smaller, and place it beside the
+first one to simulate a multi-point light source or window
+reflection.</li>
+<li>Keep the main highlight pure white (#FFFFFF) with 90% to 100%
+opacity and apply a very low blur (0.5% to 1%) to keep the edge
+crisp.</li>
+</ul>
+<h3 id="6-create-the-caustic-glow">6. Create the Caustic Glow</h3>
+<p>Water focuses light onto the surface directly beneath the shaded
+edge:</p>
+<ul>
+<li>Draw a small, flattened ellipse on the ground plane directly under
+the bottom edge of the drop.</li>
+<li>Fill it with pure white or a pale version of the background
+color.</li>
+<li>Set the opacity to around 70% and apply a heavy
+<strong>Blur</strong> (10% to 20%) so it appears as a bright, focused
+spot of light resting inside the cast shadow.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Atmospheric Perspective in Inkscape - inkscape</title>
+    <meta name="description" content="Atmospheric perspective mimics the visual effect of air, dust, and moisture scattering light, causing distant objects to appear lighter, lower in contrast, and tinted with the ambient sky color. In Inkscape, you can simulate this natural depth effectivel">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-atmospheric-perspective-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Atmospheric Perspective in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-atmospheric-perspective-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Atmospheric perspective mimics the visual effect of air, dust, and moisture scattering light, causing distant objects to appear lighter, lower in contrast, and tinted with the ambient sky color. In Inkscape, you can simulate this natural depth effectivel" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-atmospheric-perspective-in-inkscape">How to Create
+Atmospheric Perspective in Inkscape</h1>
+<p>Atmospheric perspective mimics the visual effect of air, dust, and
+moisture scattering light, causing distant objects to appear lighter,
+lower in contrast, and tinted with the ambient sky color. In Inkscape,
+you can simulate this natural depth effectively without manually
+recoloring every individual asset. By organizing your scene into
+distinct depth tiers and interweaving semi-transparent atmospheric color
+sheets between them, you create an editable, consistent sense of
+distance across your entire vector artwork.</p>
+<h3 id="step-1-organize-your-scene-into-depth-layers">Step 1: Organize
+Your Scene into Depth Layers</h3>
+<p>Open the Layers dialog by pressing <code>Ctrl + Shift + L</code>.
+Rather than keeping all artwork on a single layer, distribute your
+vector elements into distinct spatial tiers from back to front:</p>
+<ul>
+<li><strong>Sky / Background:</strong> The furthest visible plane.</li>
+<li><strong>Far Distance:</strong> Distant mountains, horizon lines, or
+distant skylines.</li>
+<li><strong>Midground:</strong> Secondary hills, mid-range vegetation,
+or intermediate structures.</li>
+<li><strong>Foreground:</strong> Immediate landscape, subjects, or focal
+points with the highest detail and contrast.</li>
+</ul>
+<h3 id="step-2-sample-your-atmospheric-haze-color">Step 2: Sample Your
+Atmospheric Haze Color</h3>
+<p>The color of your haze should match the ambient light or horizon
+color of your sky. If your scene is a clear daytime landscape, use a
+pale desaturated blue. For a sunset, sample a soft warm orange or dusty
+pink; for a misty or rainy scene, choose a neutral light gray. Using the
+Color Dropper tool (<code>D</code>), sample directly from the sky where
+it meets the horizon to keep the palette harmonious.</p>
+<h3 id="step-3-insert-stacking-tint-layers">Step 3: Insert Stacking Tint
+Layers</h3>
+<p>Atmospheric perspective intensifies with physical distance because
+light travels through more air. You can replicate this by placing
+transparent atmospheric sheets between your art layers:</p>
+<ol type="1">
+<li>Create a new layer immediately above your <strong>Far
+Distance</strong> layer and name it <code>Haze - Far</code>.</li>
+<li>Select the Rectangle tool (<code>R</code>) and draw a shape covering
+the entire canvas.</li>
+<li>Fill this rectangle with your sampled haze color and remove any
+stroke outline.</li>
+<li>Create another layer above your <strong>Midground</strong> layer,
+name it <code>Haze - Mid</code>, and duplicate the rectangle into this
+layer.</li>
+</ol>
+<h3 id="step-4-adjust-layer-opacity">Step 4: Adjust Layer Opacity</h3>
+<p>By keeping the haze rectangles identical in color, you simulate
+physical depth through additive opacity:</p>
+<ul>
+<li>Select the rectangle in <code>Haze - Far</code> and set its
+<strong>Opacity</strong> slider (found in the Fill and Stroke panel,
+<code>Ctrl + Shift + F</code>) between <strong>20% and
+40%</strong>.</li>
+<li>Select the rectangle in <code>Haze - Mid</code> and set its
+<strong>Opacity</strong> to a lower value, such as <strong>10% to
+20%</strong>.</li>
+</ul>
+<p>Because the furthest objects sit beneath both transparent sheets,
+they receive a cumulative desaturation and value shift, naturally
+receding into the background. The foreground remains untouched above all
+haze layers, retaining maximum contrast, saturation, and crisp
+edges.</p>
+<h3 id="step-5-add-vertical-gradients-for-ground-fog">Step 5: Add
+Vertical Gradients for Ground Fog</h3>
+<p>Real-world atmospheric haze is rarely uniform across the entire field
+of view; it tends to be denser near the ground or horizon.</p>
+<ol type="1">
+<li>Select one of your haze rectangles and switch to the Gradient tool
+(<code>G</code>).</li>
+<li>Apply a vertical Linear Gradient that transitions from your solid
+haze color at the horizon to full transparency (Alpha 0) toward the top
+of the canvas.</li>
+<li>Adjust the stop handles to concentrate the haze along valley floors,
+water surfaces, or tree lines to add localized ground fog and enhance
+the illusion of three-dimensional space.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

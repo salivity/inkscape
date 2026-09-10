@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape Vectors to RawTherapee Masks - inkscape</title>
+    <meta name="description" content="RawTherapee does not natively read raw SVG vector code, but you can bridge the gap by designing custom vector paths in Inkscape and translating them into high-precision raster masks for RawTherapee. This guide details how to draw vector shapes in Inkscap">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-rawtherapee-masks">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape Vectors to RawTherapee Masks - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-rawtherapee-masks" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="RawTherapee does not natively read raw SVG vector code, but you can bridge the gap by designing custom vector paths in Inkscape and translating them into high-precision raster masks for RawTherapee. This guide details how to draw vector shapes in Inkscap" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-vectors-to-rawtherapee-masks">Export Inkscape
+Vectors to RawTherapee Masks</h1>
+<p>RawTherapee does not natively read raw SVG vector code, but you can
+bridge the gap by designing custom vector paths in Inkscape and
+translating them into high-precision raster masks for RawTherapee. This
+guide details how to draw vector shapes in Inkscape, feather and render
+them to the appropriate dimensions, and apply them in RawTherapee using
+the Flat-Field tool to create completely custom vignetting effects.</p>
+<h3 id="step-1-match-aspect-ratio-and-dimensions-in-inkscape">Step 1:
+Match Aspect Ratio and Dimensions in Inkscape</h3>
+<ol type="1">
+<li>Open Inkscape and access <strong>File &gt; Document
+Properties</strong>.</li>
+<li>Under the <strong>Format</strong> or <strong>Custom size</strong>
+settings, change the units to pixels (<code>px</code>).</li>
+<li>Set the width and height to match the exact resolution or aspect
+ratio of your target raw photo (for example, 6000 x 4000 px).</li>
+</ol>
+<h3 id="step-2-draw-and-style-the-vignette-path">Step 2: Draw and Style
+the Vignette Path</h3>
+<ol type="1">
+<li>Select the <strong>Draw Bezier curves and straight lines</strong>
+tool (Shift+F6).</li>
+<li>Draw your custom vignetting path across the canvas.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel (Ctrl+Shift+F).</li>
+<li>Set the canvas background or an underlying rectangle to pure white
+(<code>#FFFFFF</code>).</li>
+<li>Set the fill of your drawn vignette shape to pure black
+(<code>#000000</code>) with no stroke.</li>
+<li>In the <strong>Fill and Stroke</strong> panel, adjust the
+<strong>Blur</strong> slider on the vignette object to feather the
+transition edges smoothly, or apply a radial/mesh gradient to create an
+organic falloff.</li>
+</ol>
+<h3 id="step-3-export-the-path-as-a-high-bit-depth-mask">Step 3: Export
+the Path as a High-Bit-Depth Mask</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Export</strong>.</li>
+<li>In the Export dialog, set the export area to <strong>Page</strong>
+to ensure the canvas bounds align with your image frame.</li>
+<li>Set the output format to <strong>TIFF</strong> or high-resolution
+<strong>PNG</strong>.</li>
+<li>Ensure the output DPI matches the target dimensions and export the
+file to your working directory.</li>
+</ol>
+<h3 id="step-4-apply-the-mask-as-a-vignette-in-rawtherapee">Step 4:
+Apply the Mask as a Vignette in RawTherapee</h3>
+<ol type="1">
+<li>Open RawTherapee and navigate to your target photo in the
+<strong>Editor</strong>.</li>
+<li>Go to the <strong>Raw</strong> tab located on the right-hand
+adjustment panel.</li>
+<li>Expand the <strong>Preprocessing</strong> section and locate
+<strong>Flat-Field</strong>.</li>
+<li>Check the box to enable <strong>Flat-Field</strong>.</li>
+<li>Set the mode to <strong>File</strong>, click the folder icon, and
+select the mask image you exported from Inkscape.</li>
+<li>Adjust the <strong>Flat-Field blur type</strong> and <strong>Auto
+clip control</strong> if needed to fine-tune the intensity and smooth
+out any harsh transitions across your photo.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Configure Cairo for PDF Export in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to configure the Cairo rendering engine when exporting PDF documents from Inkscape. You will learn how to access Cairo-driven export settings through the graphical interface, optimize rasterization resolution for unsupported SVG f">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-configure-cairo-for-pdf-export-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Configure Cairo for PDF Export in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-configure-cairo-for-pdf-export-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to configure the Cairo rendering engine when exporting PDF documents from Inkscape. You will learn how to access Cairo-driven export settings through the graphical interface, optimize rasterization resolution for unsupported SVG f" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-configure-cairo-for-pdf-export-in-inkscape">How to
+Configure Cairo for PDF Export in Inkscape</h1>
+<p>This guide explains how to configure the Cairo rendering engine when
+exporting PDF documents from Inkscape. You will learn how to access
+Cairo-driven export settings through the graphical interface, optimize
+rasterization resolution for unsupported SVG features, manage font
+embedding, and control Cairo output parameters directly from the command
+line.</p>
+<h2 id="accessing-the-cairo-pdf-dialog-in-the-gui">Accessing the Cairo
+PDF Dialog in the GUI</h2>
+<p>Inkscape relies on the Cairo 2D graphics library to translate native
+SVG elements into PDF vector operators. To access these settings in the
+graphical interface:</p>
+<ol type="1">
+<li>Open your document in Inkscape.</li>
+<li>Navigate to <strong>File &gt; Save As...</strong> or <strong>File
+&gt; Save a Copy...</strong></li>
+<li>In the file type dropdown, select <strong>Portable Document Format
+(*.pdf)</strong>.</li>
+<li>Choose a destination and click <strong>Save</strong>.</li>
+</ol>
+<p>The <strong>PDF Export</strong> dialog window will appear. The
+options presented in this dialog directly configure how the Cairo
+backend processes the document.</p>
+<h2 id="key-cairo-configuration-settings">Key Cairo Configuration
+Settings</h2>
+<p>Because Cairo cannot map every SVG feature to native PDF constructs,
+several settings must be configured to balance file size and visual
+fidelity:</p>
+<ul>
+<li><strong>PDF Version Compatibility:</strong> Select the PDF standard
+(typically <strong>PDF 1.4</strong> or <strong>PDF 1.5</strong>).
+Choosing PDF 1.4 or higher allows Cairo to preserve native alpha
+transparency rather than flattening the design into opaque layers.</li>
+<li><strong>Convert Text to Paths:</strong> Enabling this forces Cairo
+to trace text characters as vector shapes. This prevents font
+substitution or missing glyph issues on systems lacking the installed
+fonts, though it makes the final text unsearchable and
+unselectable.</li>
+<li><strong>Embed Fonts:</strong> Leaving text as native text directs
+Cairo to embed subset fonts into the PDF, maintaining searchability and
+crisp vector rendering.</li>
+<li><strong>Rasterize Filter Effects:</strong> SVG filters (such as
+Gaussian blurs, drop shadows, and blend modes) are not natively
+supported by standard PDF vector specifications. When checked, Cairo
+isolates these elements and converts them into raster bitmaps.</li>
+<li><strong>Resolution for Rasterization (DPI):</strong> Sets the pixel
+density for rasterized filter effects and fallback objects. For standard
+office printing, set this to <strong>300 DPI</strong>. For professional
+press work, use <strong>600 DPI</strong>, or reduce to <strong>96–150
+DPI</strong> to decrease file size for digital-only distribution.</li>
+<li><strong>Bleed / Margin Settings:</strong> Define bleed margins
+around the document if exporting for print production to ensure
+background artwork extends beyond the trim line.</li>
+</ul>
+<h2
+id="configuring-cairo-via-the-command-line-interface-cli">Configuring
+Cairo via the Command-Line Interface (CLI)</h2>
+<p>For automated workflows, you can pass Cairo configuration flags to
+the Inkscape executable without opening the graphical interface.</p>
+<h3 id="basic-export-command">Basic Export Command</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--export-filename</span><span class="op">=</span>output.pdf <span class="at">--export-type</span><span class="op">=</span>pdf</span></code></pre></div>
+<h3 id="advanced-export-with-cairo-settings">Advanced Export with Cairo
+Settings</h3>
+<p>To specify the PDF version, rasterization DPI, and font handling:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">--export-filename</span><span class="op">=</span>output.pdf <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--export-type</span><span class="op">=</span>pdf <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--export-pdf-version</span><span class="op">=</span>1.5 <span class="dt">\</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">--export-dpi</span><span class="op">=</span>300 <span class="dt">\</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">--export-text-to-path</span></span></code></pre></div>
+<ul>
+<li><code>--export-pdf-version</code>: Sets the PDF specification
+version (e.g., <code>1.4</code> or <code>1.5</code>).</li>
+<li><code>--export-dpi</code>: Adjusts the raster resolution for Cairo
+fallback rasterization.</li>
+<li><code>--export-text-to-path</code>: Bypasses font embedding by
+converting typography into vector paths.</li>
+<li><code>--export-area-page</code> or
+<code>--export-area-drawing</code>: Defines whether Cairo crops output
+to the page boundaries or includes the entire bounding box of drawn
+objects.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

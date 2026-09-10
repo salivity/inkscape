@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Inkscape Bounding Box Path Effect - inkscape</title>
+    <meta name="description" content="The Bounding Box Live Path Effect (LPE) in Inkscape allows you to automatically generate a dynamic frame or border around any path or group of objects. This guide provides a straightforward walkthrough on setting up the effect, linking it to your artwork">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-use-inkscape-bounding-box-path-effect">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use Inkscape Bounding Box Path Effect - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-use-inkscape-bounding-box-path-effect" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Bounding Box Live Path Effect (LPE) in Inkscape allows you to automatically generate a dynamic frame or border around any path or group of objects. This guide provides a straightforward walkthrough on setting up the effect, linking it to your artwork" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-inkscape-bounding-box-path-effect">How to Use
+Inkscape Bounding Box Path Effect</h1>
+<p>The Bounding Box Live Path Effect (LPE) in Inkscape allows you to
+automatically generate a dynamic frame or border around any path or
+group of objects. This guide provides a straightforward walkthrough on
+setting up the effect, linking it to your artwork, and configuring its
+parameters so the frame dynamically resizes and adapts whenever you
+modify the underlying object.</p>
+<h3 id="what-is-the-bounding-box-lpe">What is the Bounding Box LPE?</h3>
+<p>The Bounding Box effect calculates the precise outer limits of a
+linked source object and applies those dimensions to a separate path.
+Because it is a "Live" path effect, any movement, scaling, or path
+adjustments made to the source object will immediately update the shape
+and position of the linked bounding frame.</p>
+<hr />
+<h3 id="step-by-step-adding-a-bounding-box">Step-by-Step: Adding a
+Bounding Box</h3>
+<h4 id="1-prepare-your-source-object">1. Prepare Your Source Object</h4>
+<p>Draw or select the object or group of objects that you want to frame.
+Once created, copy the object to your clipboard by pressing
+<code>Ctrl + C</code> (or <code>Cmd + C</code> on macOS).</p>
+<h4 id="2-create-the-frame-path">2. Create the Frame Path</h4>
+<ol type="1">
+<li>Select the <strong>Rectangle tool</strong> (<code>R</code>) or
+<strong>Pen tool</strong> (<code>B</code>) and draw a new, simple shape
+anywhere on the canvas. This shape will become the bounding frame.</li>
+<li>Ensure this newly created path is selected.</li>
+</ol>
+<h4 id="3-open-the-path-effects-dialog">3. Open the Path Effects
+Dialog</h4>
+<ol type="1">
+<li>Navigate to the top menu and select <strong>Path</strong> &gt;
+<strong>Path Effects</strong>.</li>
+<li>In the Path Effects panel that appears on the right, click the
+<strong>+</strong> (Add Path Effect) button.</li>
+<li>Search for <strong>Bounding Box</strong> in the effect list and
+click it to apply.</li>
+</ol>
+<h4 id="4-link-the-source-object-to-the-frame">4. Link the Source Object
+to the Frame</h4>
+<ol type="1">
+<li>Locate the <strong>Linked path</strong> option within the Bounding
+Box settings inside the Path Effects panel.</li>
+<li>Click the <strong>Link to path on clipboard</strong> icon (which
+looks like a clipboard with a link).</li>
+<li>The selected path will immediately snap to the contours of the
+object you copied in Step 1.</li>
+</ol>
+<hr />
+<h3 id="configuring-the-bounding-box-settings">Configuring the Bounding
+Box Settings</h3>
+<p>Once applied, you can fine-tune how the frame interacts with the
+target object using the controls in the Path Effects panel:</p>
+<ul>
+<li><strong>Bounding Box Type:</strong> Choose between
+<strong>Visual</strong> (which includes the stroke width, markers, and
+blur in the size calculation) and <strong>Geometric</strong> (which
+calculates the box solely based on the underlying path nodes, ignoring
+stroke thickness).</li>
+<li><strong>Padding:</strong> Adjust the horizontal and vertical margins
+to offset the bounding frame away from the source graphic, creating
+custom margins or borders.</li>
+<li><strong>Styling the Frame:</strong> You can style the bounding frame
+independently using the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>). Change the stroke color, dash style, or
+fill without altering the appearance of the original linked
+graphic.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

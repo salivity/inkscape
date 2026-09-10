@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Variable Angle Underlays in Ink/Stitch - inkscape</title>
+    <meta name="description" content="This guide explains how to generate fill stitches with variable angle underlays using the Ink/Stitch embroidery extension for Inkscape. While Ink/Stitch provides automated underlay options in the basic fill parameters, these use uniform angles across the">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-variable-angle-underlays-in-ink-stitch">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Variable Angle Underlays in Ink/Stitch - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-variable-angle-underlays-in-ink-stitch" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate fill stitches with variable angle underlays using the Ink/Stitch embroidery extension for Inkscape. While Ink/Stitch provides automated underlay options in the basic fill parameters, these use uniform angles across the" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-variable-angle-underlays-in-inkstitch">How to
+Create Variable Angle Underlays in Ink/Stitch</h1>
+<p>This guide explains how to generate fill stitches with variable angle
+underlays using the Ink/Stitch embroidery extension for Inkscape. While
+Ink/Stitch provides automated underlay options in the basic fill
+parameters, these use uniform angles across the shape. Creating an
+underlay that dynamically shifts along with a curved or
+contour-following fill requires using custom guided fills on duplicate
+layers. Below are the precise steps to set up guide paths, configure
+custom underlays, and adjust parameter settings for clean embroidery
+output.</p>
+<h3 id="1-create-the-top-fill-shape-and-direction-guides">1. Create the
+Top Fill Shape and Direction Guides</h3>
+<ol type="1">
+<li>Draw your base shape as a closed path using the <strong>Bezier
+Tool</strong> (<code>B</code>).</li>
+<li>Draw two or more open stroke paths across the shape to serve as
+stitch direction guides. These lines define the variable flow of the
+fill stitches across your shape.</li>
+<li>Select both the shape and the guide lines, then group them together
+(<code>Ctrl + G</code>) or combine them into a single object depending
+on your workflow.</li>
+</ol>
+<h3 id="2-duplicate-the-shape-for-the-custom-underlay">2. Duplicate the
+Shape for the Custom Underlay</h3>
+<p>Because default automated underlays cannot independently follow
+custom variable angles, you must create a dedicated underlay object:</p>
+<ol type="1">
+<li>Select the entire group (the shape and its guide lines).</li>
+<li>Duplicate the selection (<code>Ctrl + D</code>).</li>
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li>Rename the lower group to "Underlay" and the upper group to "Top
+Fill". Ensure the Underlay group sits below the Top Fill group so it
+stitches first.</li>
+</ol>
+<h3 id="3-adjust-the-underlay-angle-guides">3. Adjust the Underlay Angle
+Guides</h3>
+<p>For structural stability, underlay stitches should cross the top
+stitches at an angle (ideally between 45 and 90 degrees):</p>
+<ol type="1">
+<li>In the "Underlay" group, select the guide lines.</li>
+<li>Rotate or redraw these lines using the <strong>Node Tool</strong>
+(<code>N</code>) so that they run perpendicular or diagonal to the
+curves of the top fill guides while still maintaining a variable
+curve.</li>
+</ol>
+<h3 id="4-configure-underlay-stitch-parameters">4. Configure Underlay
+Stitch Parameters</h3>
+<ol type="1">
+<li>Select the path in the "Underlay" group.</li>
+<li>Go to <strong>Extensions &gt; Ink/Stitch &gt; Params</strong>.</li>
+<li>Set the stitch properties to function as an underlay:
+<ul>
+<li><strong>Method:</strong> Fill Stitch (Guided Fill).</li>
+<li><strong>Row Spacing (Density):</strong> Increase this value to
+between <code>1.2 mm</code> and <code>2.5 mm</code> (a low-density grid
+prevents excessive bulk).</li>
+<li><strong>Stitch Length:</strong> Set between <code>2.5 mm</code> and
+<code>3.5 mm</code>.</li>
+<li><strong>Underlay:</strong> Ensure all built-in underlay checkboxes
+are unchecked inside this dialog to avoid redundant stitches.</li>
+</ul></li>
+<li>Click <strong>Apply and Quit</strong>.</li>
+</ol>
+<h3 id="5-configure-the-top-fill-stitch-parameters">5. Configure the Top
+Fill Stitch Parameters</h3>
+<ol type="1">
+<li>Select the path in the "Top Fill" group.</li>
+<li>Go to <strong>Extensions &gt; Ink/Stitch &gt; Params</strong>.</li>
+<li>Set your standard top stitch parameters:
+<ul>
+<li><strong>Row Spacing (Density):</strong> Set to your desired final
+density (typically <code>0.4 mm</code> to <code>0.45 mm</code>).</li>
+<li><strong>Underlay:</strong> Uncheck the default underlay options
+(Tatami, Row, Center Walk) since the custom variable underlay is already
+generated beneath it.</li>
+</ul></li>
+<li>Click <strong>Apply and Quit</strong>.</li>
+</ol>
+<h3 id="6-verify-and-simulate-the-stitch-path">6. Verify and Simulate
+the Stitch Path</h3>
+<ol type="1">
+<li>Select both the Underlay and Top Fill groups.</li>
+<li>Navigate to <strong>Extensions &gt; Ink/Stitch &gt; Visualize and
+Export &gt; Simulator/Realistic Preview</strong>.</li>
+<li>Ensure the underlay sews first along your modified contour angles,
+followed by the dense top fill running along its respective variable
+guide paths.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

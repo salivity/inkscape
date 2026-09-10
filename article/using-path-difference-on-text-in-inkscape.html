@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Path Difference on Text in Inkscape - inkscape</title>
+    <meta name="description" content="Performing a path Difference operation between text and a background rectangle is a common way to create cut-out or stencil effects in Inkscape. However, trying to run this operation directly will fail because Inkscape cannot perform Boolean operations o">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/using-path-difference-on-text-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Using Path Difference on Text in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/using-path-difference-on-text-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Performing a path Difference operation between text and a background rectangle is a common way to create cut-out or stencil effects in Inkscape. However, trying to run this operation directly will fail because Inkscape cannot perform Boolean operations o" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="using-path-difference-on-text-in-inkscape">Using Path Difference
+on Text in Inkscape</h1>
+<p>Performing a path Difference operation between text and a background
+rectangle is a common way to create cut-out or stencil effects in
+Inkscape. However, trying to run this operation directly will fail
+because Inkscape cannot perform Boolean operations on editable text
+objects. This guide explains the essential prerequisite steps required
+to convert your live text into a compatible path format before cutting
+it out of a background shape.</p>
+<h3 id="the-required-step-convert-text-to-paths">The Required Step:
+Convert Text to Paths</h3>
+<p>Before you can perform a path Difference
+(<code>Path &gt; Difference</code> or <code>Ctrl</code> +
+<code>-</code>), you must convert the live text object into a unified
+vector path. Live text is stored as typography data rather than pure
+vector nodes, making it incompatible with Boolean path operations.</p>
+<p>Follow these steps to prepare your text and complete the
+operation:</p>
+<ol type="1">
+<li><p><strong>Convert the Text Object to a Path</strong><br />
+Select your text with the <strong>Select Tool</strong> (<code>S</code>).
+Go to the top menu and select <strong>Path &gt; Object to Path</strong>
+(or press <code>Shift</code> + <code>Ctrl</code> +
+<code>C</code>).</p></li>
+<li><p><strong>Ungroup the Letter Paths</strong><br />
+Inkscape converts text into a group of individual paths (one path per
+letter). Boolean operations require two single paths, not a group. With
+the converted text still selected, go to <strong>Object &gt;
+Ungroup</strong> (or press <code>Ctrl</code> + <code>Shift</code> +
+<code>G</code>).</p></li>
+<li><p><strong>Combine the Letters into a Single Path</strong><br />
+With all the individual letter paths selected, go to <strong>Path &gt;
+Union</strong> (or press <code>Ctrl</code> + <code>+</code>). This
+merges all the separate letters into one single, compound path.</p></li>
+<li><p><strong>Perform the Path Difference</strong><br />
+Ensure your unified text path is positioned above the background
+rectangle in the z-order (layer stack). Select both the text path and
+the background rectangle by holding <code>Shift</code> and clicking
+each. Finally, choose <strong>Path &gt; Difference</strong> (or press
+<code>Ctrl</code> + <code>-</code>).</p></li>
+</ol>
+<p>The text shape will cut directly through the rectangle, leaving you
+with a clean, cut-out vector shape.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Batch Export Icons in Inkscape - inkscape</title>
+    <meta name="description" content="Exporting multiple icons individually in Inkscape can be tedious, but the built-in Batch Export feature allows you to output dozens of assets simultaneously. This guide explains how to organize your design assets, navigate the Export dialog's Batch Expor">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-batch-export-icons-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Batch Export Icons in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-batch-export-icons-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting multiple icons individually in Inkscape can be tedious, but the built-in Batch Export feature allows you to output dozens of assets simultaneously. This guide explains how to organize your design assets, navigate the Export dialog's Batch Expor" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-batch-export-icons-in-inkscape">How to Batch Export Icons
+in Inkscape</h1>
+<p>Exporting multiple icons individually in Inkscape can be tedious, but
+the built-in Batch Export feature allows you to output dozens of assets
+simultaneously. This guide explains how to organize your design assets,
+navigate the Export dialog's Batch Export mode, and automatically render
+multiple icons into your desired file formats and resolutions in just a
+few clicks.</p>
+<h2 id="1-prepare-and-name-your-icons">1. Prepare and Name Your
+Icons</h2>
+<p>Before opening the export panel, ensure your icons are properly
+structured on the canvas:</p>
+<ul>
+<li><strong>Group Elements:</strong> Combine all paths, shapes, and text
+for each individual icon into a single group by selecting the parts and
+pressing <code>Ctrl + G</code> (or <code>Cmd + G</code> on macOS).</li>
+<li><strong>Name Your Groups:</strong> Inkscape uses object IDs or
+labels as the exported filenames. Open the <strong>Layers and
+Objects</strong> panel (<code>Ctrl + Shift + L</code> /
+<code>Cmd + Shift + L</code>), right-click each icon group, select
+<strong>Rename</strong>, and enter the desired filename.</li>
+</ul>
+<h2 id="2-open-the-export-dialog">2. Open the Export Dialog</h2>
+<p>Open Inkscape’s export interface using one of the following
+methods:</p>
+<ul>
+<li>Go to the top menu and select <strong>File &gt;
+Export...</strong></li>
+<li>Use the keyboard shortcut <code>Ctrl + Shift + E</code>
+(Windows/Linux) or <code>Cmd + Shift + E</code> (macOS).</li>
+</ul>
+<p>The Export dialog will appear docked on the right side of your
+workspace.</p>
+<h2 id="3-switch-to-the-batch-export-tab">3. Switch to the Batch Export
+Tab</h2>
+<p>Inside the Export panel, you will see several tabs at the top
+(Single, Batch export).</p>
+<ol type="1">
+<li>Click on the <strong>Batch export</strong> tab.</li>
+<li>Select your batch source mode depending on how your project is
+structured:
+<ul>
+<li><strong>Selection:</strong> Exports all currently selected objects
+or groups on the canvas as separate files.</li>
+<li><strong>Layers:</strong> Exports every visible layer as an
+independent file.</li>
+<li><strong>Pages:</strong> Exports individual pages if you are using
+Inkscape’s multi-page feature.</li>
+</ul></li>
+</ol>
+<p>If you organized your icons into individual groups, select all the
+icon groups on your canvas and choose the <strong>Selection</strong>
+option.</p>
+<h2 id="4-configure-output-formats-and-settings">4. Configure Output
+Formats and Settings</h2>
+<p>In the lower section of the Batch export panel:</p>
+<ol type="1">
+<li>Click <strong>Add Export Format</strong> if the target file type is
+not already listed.</li>
+<li>Choose your preferred file format (e.g., <strong>PNG</strong>,
+<strong>SVG</strong>, <strong>PDF</strong>, or
+<strong>JPEG</strong>).</li>
+<li>Set your export parameters:
+<ul>
+<li>For <strong>PNG/raster formats</strong>, specify the DPI (e.g., 96
+DPI for standard web resolution, 300 DPI for high resolution, or custom
+pixel dimensions).</li>
+<li>For <strong>SVG</strong>, select the SVG profile suitable for your
+workflow (such as Plain SVG or Optimized SVG).</li>
+</ul></li>
+<li>Add multiple formats simultaneously if you need icons in both vector
+(SVG) and raster (PNG) formats.</li>
+</ol>
+<h2 id="5-choose-the-destination-and-export">5. Choose the Destination
+and Export</h2>
+<ol type="1">
+<li>Click the folder icon next to the <strong>Directory</strong> field
+to choose the folder where your icons will be saved.</li>
+<li>Review the preview list in the dialog to confirm the filenames and
+export formats.</li>
+<li>Click the <strong>Export</strong> button at the bottom of the
+panel.</li>
+</ol>
+<p>Inkscape will process each asset sequentially and save all the icons
+to your designated folder.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

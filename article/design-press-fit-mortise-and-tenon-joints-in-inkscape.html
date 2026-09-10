@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Press-Fit Mortise and Tenon Joints in Inkscape - inkscape</title>
+    <meta name="description" content="Designing press-fit mortise and tenon joints in Inkscape requires precise vector construction and accurate compensation for machine kerf. This guide covers how to configure Inkscape's measurement settings, accurately measure your raw material, calculate">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/design-press-fit-mortise-and-tenon-joints-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Press-Fit Mortise and Tenon Joints in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/design-press-fit-mortise-and-tenon-joints-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing press-fit mortise and tenon joints in Inkscape requires precise vector construction and accurate compensation for machine kerf. This guide covers how to configure Inkscape's measurement settings, accurately measure your raw material, calculate" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="design-press-fit-mortise-and-tenon-joints-in-inkscape">Design
+Press-Fit Mortise and Tenon Joints in Inkscape</h1>
+<p>Designing press-fit mortise and tenon joints in Inkscape requires
+precise vector construction and accurate compensation for machine kerf.
+This guide covers how to configure Inkscape's measurement settings,
+accurately measure your raw material, calculate kerf offsets, and
+utilize shape tools and boolean operations to produce interlocking tabs
+and slots that fit tightly without glue.</p>
+<h3 id="1-configure-inkscape-measurement-settings">1. Configure Inkscape
+Measurement Settings</h3>
+<p>Before drawing your joints, ensure Inkscape measures the actual
+geometry of your paths rather than the visual stroke width.</p>
+<ol type="1">
+<li>Go to <strong>Edit &gt; Preferences &gt; Tools</strong>.</li>
+<li>Select <strong>Geometric bounding box</strong> instead of "Visual
+bounding box." This ensures dimensions entered in the toolbar reflect
+the cut line, ignoring stroke thickness.</li>
+<li>Change your global display units to millimeters or inches via
+<strong>File &gt; Document Properties &gt; Display units</strong>.</li>
+</ol>
+<h3 id="2-measure-material-and-kerf">2. Measure Material and Kerf</h3>
+<p>A true press fit relies on sub-millimeter accuracy.</p>
+<ol type="1">
+<li><strong>Measure Material Thickness:</strong> Use digital calipers to
+measure your stock in multiple places. Sheet materials like plywood and
+acrylic rarely match their nominal dimensions (e.g., "3mm" plywood often
+measures 2.8mm to 3.2mm).</li>
+<li><strong>Determine Beam Kerf:</strong> Laser cutters and CNC endmills
+remove material along the path. A typical CO2 laser beam removes roughly
+0.1mm to 0.2mm of material (kerf).</li>
+<li><strong>Calculate Joint Tolerances:</strong> For a friction or press
+fit, the mortise (hole) must be slightly smaller than the tenon (tab).
+<ul>
+<li><strong>Mortise Width:</strong> Material Thickness minus Kerf.</li>
+<li><strong>Tenon Width:</strong> Desired joint length plus Kerf (or
+keep the tenon nominal and reduce the mortise dimension).</li>
+</ul></li>
+</ol>
+<h3 id="3-draw-the-tenon-tab">3. Draw the Tenon (Tab)</h3>
+<ol type="1">
+<li>Select the <strong>Rectangle tool (R)</strong>.</li>
+<li>In the top toolbar, set the exact width and height:
+<ul>
+<li><strong>Width:</strong> Your desired joint width (e.g., 20.0
+mm).</li>
+<li><strong>Height:</strong> The exact measured thickness of the mating
+material.</li>
+</ul></li>
+<li>Align the tenon to the edge of your workpiece using the
+<strong>Align and Distribute</strong> panel
+(<strong>Ctrl+Shift+A</strong>).</li>
+<li>Select both the base part and the tenon rectangle, then navigate to
+<strong>Path &gt; Union (Ctrl++)</strong> to merge them into a single
+continuous outline.</li>
+</ol>
+<h3 id="4-draw-the-mortise-slot">4. Draw the Mortise (Slot)</h3>
+<ol type="1">
+<li>Select the <strong>Rectangle tool (R)</strong>.</li>
+<li>Enter the dimensions adjusted for kerf:
+<ul>
+<li><strong>Width:</strong> Match the tenon width, reduced by your kerf
+tolerance (e.g., 19.85 mm for a snug fit).</li>
+<li><strong>Height:</strong> Measured material thickness reduced by the
+laser kerf (e.g., if material is 3.0 mm and kerf is 0.15 mm, set height
+to 2.85 mm).</li>
+</ul></li>
+<li>Position the rectangle on the mating part using <strong>Align and
+Distribute</strong>.</li>
+<li>If the slot is internal, select the main piece and the slot
+rectangle, then click <strong>Path &gt; Difference (Ctrl+-)</strong> to
+cut the opening through the path.</li>
+</ol>
+<h3 id="5-add-friction-bumps-for-reliable-press-fits">5. Add Friction
+Bumps for Reliable Press Fits</h3>
+<p>Wood expansion and manufacturing variances can cause straight
+press-fit slots to fail or loosen over time. Adding small interference
+bumps ensures a consistent lock.</p>
+<ol type="1">
+<li>Convert the mortise rectangle to a path via <strong>Path &gt; Object
+to Path (Ctrl+Shift+C)</strong>.</li>
+<li>Select the <strong>Edit paths by nodes tool (N)</strong>.</li>
+<li>Double-click the inside edge of the mortise slot to create
+additional nodes.</li>
+<li>Pull the center node inward by 0.05 mm to 0.1 mm to create a subtle
+triangular or rounded ridge along the slot wall. This ridge will
+compress upon insertion, securing the joint firmly regardless of minor
+material variations.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

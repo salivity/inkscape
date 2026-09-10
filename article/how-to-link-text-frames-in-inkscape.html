@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Link Text Frames in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape allows you to handle overflowing text by flowing a single text block across multiple shapes or frames in a specific sequence. This guide outlines how to prepare your text and container shapes, link them together using the "Flow into Frame" comma">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-link-text-frames-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Link Text Frames in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-link-text-frames-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape allows you to handle overflowing text by flowing a single text block across multiple shapes or frames in a specific sequence. This guide outlines how to prepare your text and container shapes, link them together using the "Flow into Frame" comma" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-link-text-frames-in-inkscape">How to Link Text Frames in
+Inkscape</h1>
+<p>Inkscape allows you to handle overflowing text by flowing a single
+text block across multiple shapes or frames in a specific sequence. This
+guide outlines how to prepare your text and container shapes, link them
+together using the "Flow into Frame" command, adjust the flow order, and
+detach frames when necessary.</p>
+<h3 id="1-create-your-text-and-containers">1. Create Your Text and
+Containers</h3>
+<p>First, create the text and the shapes that will hold it:</p>
+<ul>
+<li>Use the <strong>Text tool</strong> (press <code>T</code>) to click
+on the canvas and type or paste your full body of text. At this stage,
+it does not matter if the text extends far beyond the canvas.</li>
+<li>Use the <strong>Rectangle tool</strong> (press <code>R</code>) or
+any other shape tool to draw two or more shapes representing the columns
+or frames where you want your text to appear.</li>
+</ul>
+<h3 id="2-flow-text-into-the-linked-frames">2. Flow Text Into the Linked
+Frames</h3>
+<p>Inkscape links frames based on the order in which the shapes are
+selected:</p>
+<ol type="1">
+<li>Select the <strong>Selection tool</strong> (press <code>S</code> or
+<code>F1</code>).</li>
+<li>Click on your text object.</li>
+<li>Hold down the <code>Shift</code> key and click your first container
+shape.</li>
+<li>Continue holding <code>Shift</code> and click the second container
+shape, followed by any subsequent shapes in the exact order you want the
+text to flow.</li>
+<li>Go to the top menu and select <strong>Text &gt; Flow into
+Frame</strong> (or press <code>Alt + W</code>).</li>
+</ol>
+<p>The text will immediately enter the first shape. When the first shape
+is filled, the remaining text will automatically overflow into the next
+selected shape in the sequence.</p>
+<h3 id="3-adjusting-containers-and-text">3. Adjusting Containers and
+Text</h3>
+<p>After the text is linked, the shapes remain fully dynamic:</p>
+<ul>
+<li>You can resize or move any of the container frames independently
+using the Selection tool; the text will automatically redistribute
+across all linked shapes in real time.</li>
+<li>If you edit the text using the Text tool, the overflow will
+dynamically advance or retract through the chain of frames.</li>
+<li>To add an additional frame later, select the flowed text along with
+the new shape while holding <code>Shift</code>, and run <strong>Text
+&gt; Flow into Frame</strong> again.</li>
+</ul>
+<h3 id="4-unlinking-frames">4. Unlinking Frames</h3>
+<p>If you want to revert the text back to a standard, unlinked text
+object:</p>
+<ol type="1">
+<li>Select the flowed text object.</li>
+<li>Go to the top menu and select <strong>Text &gt; Unflow</strong> (or
+press <code>Shift + Alt + W</code>).</li>
+</ol>
+<p>The text will revert to a single, continuous line or block, and the
+shapes will return to empty path objects.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

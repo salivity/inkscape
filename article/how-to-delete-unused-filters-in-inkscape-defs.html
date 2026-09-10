@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Delete Unused Filters in Inkscape Defs - inkscape</title>
+    <meta name="description" content="Inkscape files frequently accumulate orphan filter elements inside the document's <defs> tag when elements are duplicated, modified, or deleted, leading to bloated file sizes and messy SVG code. This guide outlines the most effective ways to purge these">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-delete-unused-filters-in-inkscape-defs">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Delete Unused Filters in Inkscape Defs - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-delete-unused-filters-in-inkscape-defs" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape files frequently accumulate orphan filter elements inside the document's <defs> tag when elements are duplicated, modified, or deleted, leading to bloated file sizes and messy SVG code. This guide outlines the most effective ways to purge these" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-delete-unused-filters-in-inkscape-defs">How to Delete
+Unused Filters in Inkscape Defs</h1>
+<p>Inkscape files frequently accumulate orphan filter elements inside
+the document's <code>&lt;defs&gt;</code> tag when elements are
+duplicated, modified, or deleted, leading to bloated file sizes and
+messy SVG code. This guide outlines the most effective ways to purge
+these unused filters directly within Inkscape using the automated
+document cleanup tool, the XML Editor, and the Filter Editor panel.</p>
+<h3 id="method-1-the-clean-up-document-tool-automated">Method 1: The
+"Clean Up Document" Tool (Automated)</h3>
+<p>The quickest way to remove unused filters, gradients, markers, and
+patterns from the <code>&lt;defs&gt;</code> block is to let Inkscape
+audit the file automatically.</p>
+<ol type="1">
+<li>Open your SVG file in Inkscape.</li>
+<li>Go to the top menu and select <strong>File</strong> &gt;
+<strong>Clean Up Document</strong>. (In older versions of Inkscape, this
+command is labeled <strong>Vacuum Defs</strong>).</li>
+<li>Inkscape immediately scans the <code>&lt;defs&gt;</code> section and
+removes any filter definitions not actively referenced by elements on
+the canvas.</li>
+<li>Save your file (<strong>File</strong> &gt;
+<strong>Save</strong>).</li>
+</ol>
+<h3 id="method-2-use-the-xml-editor-manual-precision">Method 2: Use the
+XML Editor (Manual Precision)</h3>
+<p>If you want complete control over which filter elements are removed
+from the code, use the internal XML tree viewer.</p>
+<ol type="1">
+<li>Open the XML Editor by navigating to <strong>Edit</strong> &gt;
+<strong>XML Editor</strong> or by pressing <strong>Ctrl + Shift +
+X</strong> (<strong>Cmd + Shift + X</strong> on macOS).</li>
+<li>In the XML tree on the left, expand the root <code>svg:svg</code>
+node.</li>
+<li>Locate and click on the <code>svg:defs</code> node to expand its
+contents.</li>
+<li>Scroll through the items inside <code>svg:defs</code> until you
+locate child nodes named <code>svg:filter</code>.</li>
+<li>Select the unused <code>svg:filter</code> node you want to
+eliminate.</li>
+<li>Click the <strong>Delete node</strong> button (represented by a red
+"X" or trash can icon) at the top of the XML Editor panel.</li>
+<li>Repeat for any other unwanted filters and save the file.</li>
+</ol>
+<h3 id="method-3-use-the-filter-editor-panel">Method 3: Use the Filter
+Editor Panel</h3>
+<p>Inkscape provides a dedicated GUI panel for managing all filter
+definitions in the current SVG.</p>
+<ol type="1">
+<li>Open the panel by selecting <strong>Filters</strong> &gt;
+<strong>Filter Editor</strong>.</li>
+<li>The left pane of this dialog lists all filter presets defined in
+your document.</li>
+<li>Select the filter you wish to delete from the list.</li>
+<li>Click the <strong>Delete</strong> button located below the list of
+filters.</li>
+<li>This permanently removes the <code>&lt;filter&gt;</code> definition
+from <code>&lt;defs&gt;</code>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

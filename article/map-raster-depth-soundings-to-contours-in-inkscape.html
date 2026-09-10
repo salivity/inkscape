@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Raster Depth Soundings to Contours in Inkscape - inkscape</title>
+    <meta name="description" content="This guide details the end-to-end process of transforming static raster depth soundings from nautical charts into scalable vector bathymetric contours using Inkscape. By importing your georeferenced or scanned chart, interpreting soundings through manual">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/map-raster-depth-soundings-to-contours-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Map Raster Depth Soundings to Contours in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/map-raster-depth-soundings-to-contours-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide details the end-to-end process of transforming static raster depth soundings from nautical charts into scalable vector bathymetric contours using Inkscape. By importing your georeferenced or scanned chart, interpreting soundings through manual" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="map-raster-depth-soundings-to-contours-in-inkscape">Map Raster
+Depth Soundings to Contours in Inkscape</h1>
+<p>This guide details the end-to-end process of transforming static
+raster depth soundings from nautical charts into scalable vector
+bathymetric contours using Inkscape. By importing your georeferenced or
+scanned chart, interpreting soundings through manual interpolation,
+drawing continuous depth curves with the Bézier tool, and applying
+hydrographic styling conventions, you can generate clean, publishable
+vector bathymetry suitable for digital cartography and navigational
+visualization.</p>
+<h3 id="1-import-and-setup-the-raster-chart">1. Import and Setup the
+Raster Chart</h3>
+<ol type="1">
+<li>Open Inkscape and create a new document.</li>
+<li>Go to <strong>File &gt; Import</strong> to load your raster nautical
+chart (PNG, TIFF, or JPEG). In the dialog, select <strong>Embed</strong>
+and set image resolution to <strong>From file</strong>.</li>
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Shift + Ctrl + L</code>). Rename the default layer to
+<code>Raster Chart</code>.</li>
+<li>Select the imported image and lock the layer by clicking the padlock
+icon in the Layers panel. This prevents accidental movement while
+tracing.</li>
+<li>Create a new layer above it and name it
+<code>Bathymetric Contours</code>.</li>
+</ol>
+<h3 id="2-identify-soundings-and-plan-contour-intervals">2. Identify
+Soundings and Plan Contour Intervals</h3>
+<p>Nautical charts use scattered numerical soundings (spot depths)
+rather than continuous contour lines. Before drawing:</p>
+<ul>
+<li>Determine the contour interval you want to generate (e.g., 2m, 5m,
+10m, or 20m depth lines).</li>
+<li>Mentally or digitally interpolate between numbers. For example, if a
+<code>4</code> sounding sits next to an <code>8</code>, a 6-meter depth
+contour will pass roughly halfway between them.</li>
+<li>Locate shoals, reefs, and navigational channels to maintain
+navigational safety margins (contours traditionally favor the shallower
+soundings).</li>
+</ul>
+<h3 id="3-trace-contours-using-the-bézier-tool">3. Trace Contours Using
+the Bézier Tool</h3>
+<ol type="1">
+<li>Switch to the <strong>Draw Bézier curves and straight lines</strong>
+tool by pressing <code>B</code>.</li>
+<li>In the top tool controls bar, set the mode to <strong>Create regular
+Bézier path</strong> and shape to <strong>None</strong>.</li>
+<li>Click to drop nodes along an interpolated depth path. Keep nodes
+relatively sparse; you will refine curvature later.</li>
+<li>For closed depth areas (like underwater knolls or depressions),
+return to the starting node and click it to close the path. For
+continuous coast-to-edge contours, extend the path slightly beyond the
+chart boundary.</li>
+<li>Press <code>Enter</code> to complete the path.</li>
+</ol>
+<h3 id="4-refine-curvature-and-nodes">4. Refine Curvature and Nodes</h3>
+<ol type="1">
+<li>Switch to the <strong>Edit paths by nodes</strong> tool
+(<code>N</code>).</li>
+<li>Click and drag the line segments between nodes to smooth them into
+natural curves following the underwater topography.</li>
+<li>Select nodes that appear sharp or jagged, and click <strong>Make
+selected nodes smooth</strong> in the top toolbar.</li>
+<li>If a contour requires minor simplification without losing its
+overall geometry, select the path and press <code>Ctrl + L</code> (Path
+&gt; Simplify). Adjust the simplification threshold under <strong>Edit
+&gt; Preferences &gt; Behavior &gt; Steps</strong> if the command alters
+the line too aggressively.</li>
+</ol>
+<h3 id="5-structure-depth-polygons">5. Structure Depth Polygons</h3>
+<p>If your goal is to generate color-filled depth bands rather than
+single contour lines:</p>
+<ol type="1">
+<li>Create a duplicate of each boundary line
+(<code>Ctrl + D</code>).</li>
+<li>Join adjacent contour lines together at the document boundaries
+using the Node tool by selecting two endpoints and clicking <strong>Join
+selected endnodes with a new segment</strong>.</li>
+<li>Ensure every depth band forms a closed polygon representing a
+specific depth range (e.g., 0–2m, 2–5m, 5–10m).</li>
+<li>Organize the layers or stack order so that the deepest bathymetric
+layer sits at the bottom and shallow waters sit on top
+(<code>Page Down</code> / <code>Page Up</code>).</li>
+</ol>
+<h3 id="6-apply-hydrographic-styling">6. Apply Hydrographic Styling</h3>
+<ol type="1">
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>).</li>
+<li>For line contours:
+<ul>
+<li>Select the paths and set the <strong>Stroke paint</strong> to a
+uniform nautical blue (e.g., <code>#1b4d7e</code>) or neutral dark
+grey.</li>
+<li>Adjust <strong>Stroke style</strong> width to maintain visual
+hierarchy (use thicker strokes for index contours like 10m/50m/100m, and
+thinner lines for intermediate contours).</li>
+<li>Apply dashed patterns for approximate or low-confidence
+soundings.</li>
+</ul></li>
+<li>For depth tint bands:
+<ul>
+<li>Apply color fills ranging from white or light blue for deep water to
+progressively darker cyan/blue tints for shallow water, matching
+standard navigational charting conventions.</li>
+<li>Set stroke to none on polygon fills to prevent edge artifacts.</li>
+</ul></li>
+</ol>
+<h3 id="7-clean-and-export-the-vector-bathymetry">7. Clean and Export
+the Vector Bathymetry</h3>
+<ol type="1">
+<li>Toggle the visibility of the <code>Raster Chart</code> layer off by
+clicking the eye icon in the Layers panel to inspect the vector contours
+against a blank background.</li>
+<li>Select all vector paths and check for unintended gaps, overlapping
+nodes, or crossed segments.</li>
+<li>Go to <strong>File &gt; Save As</strong> to save the master vector
+file as an <strong>Inkscape SVG</strong>.</li>
+<li>To export for publication or GIS post-processing, choose
+<strong>File &gt; Export</strong>, select your format (such as PDF, DXF,
+or optimized SVG), and set your desired output DPI.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

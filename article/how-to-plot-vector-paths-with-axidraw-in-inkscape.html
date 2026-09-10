@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Plot Vector Paths with AxiDraw in Inkscape - inkscape</title>
+    <meta name="description" content="This guide outlines the process of sending vector line paths directly from Inkscape to an AxiDraw pen plotter using the official AxiDraw software extension. You will learn how to properly prepare your vector document, configure the hardware setup, adjust">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-plot-vector-paths-with-axidraw-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Plot Vector Paths with AxiDraw in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-plot-vector-paths-with-axidraw-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide outlines the process of sending vector line paths directly from Inkscape to an AxiDraw pen plotter using the official AxiDraw software extension. You will learn how to properly prepare your vector document, configure the hardware setup, adjust" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-plot-vector-paths-with-axidraw-in-inkscape">How to Plot
+Vector Paths with AxiDraw in Inkscape</h1>
+<p>This guide outlines the process of sending vector line paths directly
+from Inkscape to an AxiDraw pen plotter using the official AxiDraw
+software extension. You will learn how to properly prepare your vector
+document, configure the hardware setup, adjust plotting parameters, and
+execute the physical plot directly to your machine.</p>
+<h3 id="1-prepare-your-vector-artwork">1. Prepare Your Vector
+Artwork</h3>
+<p>The AxiDraw plots strokes along vector paths. Ensure your artwork
+consists purely of clean, strokable paths rather than raster images or
+unstroked fills.</p>
+<ul>
+<li><strong>Convert Objects to Paths:</strong> Select all elements in
+your document and go to <code>Path &gt; Object to Path</code>. If your
+artwork contains text, this step converts the text into vector
+outlines.</li>
+<li><strong>Ungroup Elements:</strong> Select everything and press
+<code>Ctrl+Shift+G</code> (or <code>Cmd+Shift+G</code> on macOS)
+repeatedly until no groups remain.</li>
+<li><strong>Verify Strokes:</strong> The pen plotter follows the center
+line of a vector stroke. Remove all fills from your shapes and assign a
+visible stroke color to confirm the exact line paths the pen will
+trace.</li>
+<li><strong>Set Document Dimensions:</strong> Go to
+<code>File &gt; Document Properties</code> and set your page dimensions
+to match your physical paper size and the physical working area of your
+specific AxiDraw model (e.g., A4, A3, or custom dimensions). Ensure the
+units match (inches or millimeters). Place the artwork within the page
+boundaries.</li>
+</ul>
+<h3 id="2-connect-and-position-the-axidraw">2. Connect and Position the
+AxiDraw</h3>
+<ol type="1">
+<li>Connect the AxiDraw to your computer using the USB cable.</li>
+<li>Connect the barrel plug of the external power supply to the AxiDraw,
+then plug it into an electrical outlet.</li>
+<li>Manually position the AxiDraw carriage at the "Home" position
+(top-left corner of the plotting area), with the carriage physically
+aligned against the home stops.</li>
+<li>Mount your drawing tool (pen or pencil) into the tool holder at the
+proper height while the carriage is in the "pen up" state.</li>
+</ol>
+<h3 id="3-open-the-axidraw-control-extension">3. Open the AxiDraw
+Control Extension</h3>
+<p>In Inkscape, navigate to the top menu and select
+<code>Extensions &gt; AxiDraw &gt; AxiDraw Control...</code>. This will
+open the primary interface dialog.</p>
+<h3 id="4-configure-plotting-parameters">4. Configure Plotting
+Parameters</h3>
+<p>Before executing the plot, configure your pen movement and mechanical
+settings:</p>
+<ul>
+<li><strong>Setup Tab:</strong> Use the "Toggle pen up/down" utility to
+test your pen placement. Verify that "pen down" touches the paper with
+appropriate pressure and "pen up" lifts the pen sufficiently clear of
+the drawing surface.</li>
+<li><strong>Options Tab:</strong> Set the <em>Pen height: up</em> and
+<em>Pen height: down</em> percentages based on your test. Adjust <em>Pen
+raising speed</em> and <em>Pen lowering speed</em> to prevent ink
+splatters.</li>
+<li><strong>Timing Tab:</strong> Adjust the <em>Writing/Drawing
+speed</em> (movement speed while drawing) and <em>Transit speed</em>
+(movement speed while moving between paths). Slower speeds yield higher
+precision, especially with delicate pen tips.</li>
+</ul>
+<h3 id="5-execute-the-plot">5. Execute the Plot</h3>
+<ol type="1">
+<li>Return to the <strong>Plot</strong> tab inside the AxiDraw Control
+dialog.</li>
+<li>Confirm the <em>Plot</em> radio button is selected.</li>
+<li>Click the <strong>Apply</strong> button in the lower-right
+corner.</li>
+</ol>
+<p>The AxiDraw software will calculate the path trajectories and
+immediately begin transmitting motion commands over the USB connection,
+plotting the vector lines directly onto your paper.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

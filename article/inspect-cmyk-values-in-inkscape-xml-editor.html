@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspect CMYK Values in Inkscape XML Editor - inkscape</title>
+    <meta name="description" content="This guide explains how to inspect exact CMYK color channel values directly from the SVG source code using Inkscape's built-in XML Editor. While Inkscape works natively in an RGB display space, it allows color profiling and print-specific CMYK definition">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inspect-cmyk-values-in-inkscape-xml-editor">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inspect CMYK Values in Inkscape XML Editor - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inspect-cmyk-values-in-inkscape-xml-editor" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to inspect exact CMYK color channel values directly from the SVG source code using Inkscape's built-in XML Editor. While Inkscape works natively in an RGB display space, it allows color profiling and print-specific CMYK definition" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inspect-cmyk-values-in-inkscape-xml-editor">Inspect CMYK Values
+in Inkscape XML Editor</h1>
+<p>This guide explains how to inspect exact CMYK color channel values
+directly from the SVG source code using Inkscape's built-in XML Editor.
+While Inkscape works natively in an RGB display space, it allows color
+profiling and print-specific CMYK definitions that are stored directly
+within element attributes. Accessing the XML Editor provides a reliable
+way to verify the exact Cyan, Magenta, Yellow, and Key (Black) values
+embedded into your vector objects.</p>
+<h3 id="step-1-open-the-xml-editor">Step 1: Open the XML Editor</h3>
+<p>Launch Inkscape, open your document, and open the XML Editor using
+one of the following methods:</p>
+<ul>
+<li>Go to the top menu and select <strong>Edit</strong> &gt; <strong>XML
+Editor</strong>.</li>
+<li>Press the keyboard shortcut <strong>Ctrl + Shift + X</strong>
+(Windows/Linux) or <strong>Cmd + Shift + X</strong> (macOS).</li>
+</ul>
+<p>A panel will appear, displaying the hierarchical tree structure of
+the SVG document on the left and the attributes of the selected node on
+the right.</p>
+<h3 id="step-2-select-the-target-object">Step 2: Select the Target
+Object</h3>
+<p>With the XML Editor open, select the object on your canvas using the
+<strong>Select Tool</strong> (S). The XML tree will automatically expand
+and highlight the specific XML element node (such as
+<code>&lt;svg:path&gt;</code>, <code>&lt;svg:rect&gt;</code>, or
+<code>&lt;svg:circle&gt;</code>) that corresponds to your selection.</p>
+<h3 id="step-3-locate-the-color-attribute">Step 3: Locate the Color
+Attribute</h3>
+<p>In the right-hand panel of the XML Editor, locate the attribute
+responsible for the object's color:</p>
+<ul>
+<li><strong><code>style</code></strong>: Most objects store their visual
+properties here. Click on the <code>style</code> row to view its
+contents in the bottom text field.</li>
+<li><strong><code>fill</code></strong> or
+<strong><code>stroke</code></strong>: If the document does not bundle
+styles into a single declaration, fill and stroke values may appear as
+individual attributes.</li>
+</ul>
+<h3 id="step-4-read-the-cmyk-channel-values">Step 4: Read the CMYK
+Channel Values</h3>
+<p>Within the attribute value, look for either the <code>fill:</code> or
+<code>stroke:</code> declaration. If the color was set using a CMYK
+profile or color managed workflow, the definition will feature an RGB
+fallback alongside the explicit CMYK definition:</p>
+<ul>
+<li><strong>ICC Color Syntax:</strong>
+<code>fill:#rrggbb icc-color(&lt;profile-name&gt;, C, M, Y, K)</code></li>
+<li><strong>Device-CMYK Syntax:</strong>
+<code>fill:device-cmyk(C, M, Y, K)</code></li>
+</ul>
+<p>The four numerical values represent Cyan, Magenta, Yellow, and Key
+(Black) in order:</p>
+<ul>
+<li>The channels are typically expressed as decimal numbers ranging from
+<code>0</code> to <code>1</code> (for example,
+<code>0.2, 0.5, 0, 0.1</code> corresponds to 20% Cyan, 50% Magenta, 0%
+Yellow, and 10% Black).</li>
+<li>Some profiles may define these values directly as percentages (e.g.,
+<code>20%, 50%, 0%, 10%</code>).</li>
+</ul>
+<p>If only a standard hexadecimal code (like <code>#ff00aa</code>) or
+<code>rgb()</code> value appears without an <code>icc-color</code> or
+<code>device-cmyk</code> tag, the object only contains RGB data and has
+not been explicitly assigned CMYK channel values.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

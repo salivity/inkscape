@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Bounding Box Corner Handles Settings - inkscape</title>
+    <meta name="description" content="In Inkscape, the display and behavior of bounding box corner handles depend on whether you are transforming full objects or individual path nodes. The primary controls governing these handles are the Show transform handles for selected nodes toggle on th">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-bounding-box-corner-handles-settings">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Bounding Box Corner Handles Settings - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-bounding-box-corner-handles-settings" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In Inkscape, the display and behavior of bounding box corner handles depend on whether you are transforming full objects or individual path nodes. The primary controls governing these handles are the Show transform handles for selected nodes toggle on th" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-bounding-box-corner-handles-settings">Inkscape Bounding
+Box Corner Handles Settings</h1>
+<p>In Inkscape, the display and behavior of bounding box corner handles
+depend on whether you are transforming full objects or individual path
+nodes. The primary controls governing these handles are the <strong>Show
+transform handles for selected nodes</strong> toggle on the Node Tool
+Controls bar, the <strong>Selector</strong> tool bounding box mode
+(Visual vs. Geometric) located in Preferences, and the general handle
+size settings under Interface preferences.</p>
+<h3 id="1-node-tool-transform-handles-toggle">1. Node Tool: Transform
+Handles Toggle</h3>
+<p>When editing paths with the <strong>Node Tool</strong>
+(<code>N</code> or <code>F2</code>), bounding box handles do not appear
+by default around multiple selected nodes. You can enable or disable
+them using the control bar:</p>
+<ol type="1">
+<li>Select the <strong>Node Tool</strong> from the left-hand
+toolbar.</li>
+<li>Select two or more nodes on a path.</li>
+<li>Locate the Tool Controls Bar across the top of the workspace.</li>
+<li>Click the <strong>Show transform handles for selected nodes</strong>
+icon (represented by an icon with four corner arrows around a dashed
+square).</li>
+</ol>
+<p>When active, a bounding box with corner scale and rotation handles
+appears around the selected nodes, allowing you to scale or skew them
+directly.</p>
+<h3 id="2-selector-tool-visual-vs-geometric-bounding-box">2. Selector
+Tool: Visual vs. Geometric Bounding Box</h3>
+<p>When using the <strong>Select and Transform Objects</strong> tool
+(<code>S</code> or <code>F1</code>), corner handles are visible by
+default whenever an object is selected. However, the precise placement
+of these corner handles is controlled by the bounding box calculation
+method:</p>
+<ol type="1">
+<li>Go to <strong>Edit &gt; Preferences</strong> (or press
+<code>Ctrl + Shift + P</code> / <code>Cmd + Shift + P</code>).</li>
+<li>In the left panel, expand <strong>Tools</strong> and select
+<strong>Selector</strong>.</li>
+<li>Under <strong>Bounding box to use</strong>, choose between:
+<ul>
+<li><strong>Visual bounding box</strong>: Places corner handles along
+the outside edge of the object, taking stroke width, markers, and blur
+into account.</li>
+<li><strong>Geometric bounding box</strong>: Places corner handles
+strictly along the path’s true geometric nodes, ignoring stroke
+thickness.</li>
+</ul></li>
+</ol>
+<h3 id="3-handle-scaling-and-rotation-modes">3. Handle Scaling and
+Rotation Modes</h3>
+<p>For standard object selections, clicking an object once displays
+double-sided corner arrows for proportional or directional scaling.
+Clicking the object a second time toggles the corner handles into curved
+arrows, which control rotation and skewing around a central rotation
+point.</p>
+<h3 id="4-adjusting-handle-visibility-and-size">4. Adjusting Handle
+Visibility and Size</h3>
+<p>If corner handles appear too small or difficult to grab:</p>
+<ol type="1">
+<li>Open <strong>Edit &gt; Preferences</strong>.</li>
+<li>Select <strong>Interface</strong>.</li>
+<li>Adjust the <strong>Handle size</strong> slider to increase or
+decrease the pixel size of canvas handles across all tools.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

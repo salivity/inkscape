@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using External Python Libraries in Inkscape Extensions - inkscape</title>
+    <meta name="description" content="Inkscape extensions rely on an underlying Python interpreter to execute scripts, but utilizing advanced third-party libraries like NumPy or SciPy requires configuring the extension to see those dependencies. Depending on your operating system and deploym">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/using-external-python-libraries-in-inkscape-extensions">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Using External Python Libraries in Inkscape Extensions - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/using-external-python-libraries-in-inkscape-extensions" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape extensions rely on an underlying Python interpreter to execute scripts, but utilizing advanced third-party libraries like NumPy or SciPy requires configuring the extension to see those dependencies. Depending on your operating system and deploym" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="using-external-python-libraries-in-inkscape-extensions">Using
+External Python Libraries in Inkscape Extensions</h1>
+<p>Inkscape extensions rely on an underlying Python interpreter to
+execute scripts, but utilizing advanced third-party libraries like NumPy
+or SciPy requires configuring the extension to see those dependencies.
+Depending on your operating system and deployment preferences, you can
+make external libraries accessible by installing them directly into
+Inkscape's bundled Python environment, modifying <code>sys.path</code>
+within your extension script, or delegating computation to an external
+Python environment via <code>subprocess</code>.</p>
+<h3 id="understanding-the-inkscape-python-environment">Understanding the
+Inkscape Python Environment</h3>
+<p>How Inkscape executes Python depends on the operating system:</p>
+<ul>
+<li><strong>Linux:</strong> Inkscape uses the system-level Python
+interpreter. If an extension requires NumPy or SciPy, it expects them to
+be installed in the system environment or user site-packages.</li>
+<li><strong>Windows and macOS:</strong> Inkscape typically bundles its
+own isolated Python distribution. Installing packages to your global
+system Python will not make them available to Inkscape extensions by
+default.</li>
+</ul>
+<hr />
+<h3 id="method-1-install-directly-into-inkscapes-bundled-python">Method
+1: Install Directly into Inkscape's Bundled Python</h3>
+<p>On Windows and macOS, you can use the bundled interpreter to run
+<code>pip</code> and install packages directly into Inkscape’s internal
+environment.</p>
+<h4 id="windows">Windows</h4>
+<ol type="1">
+<li>Open Command Prompt or PowerShell as Administrator.</li>
+<li>Locate Inkscape’s internal Python executable (typically located in
+<code>C:\Program Files\Inkscape\bin\</code> or
+<code>C:\Program Files\Inkscape\bin\python.exe</code>).</li>
+<li>Run <code>pip</code> using that specific executable:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cmd"><code class="sourceCode dosbat"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;C:\Program Files\Inkscape\bin\python.exe&quot;</span> -m pip install numpy scipy</span></code></pre></div>
+<h4 id="macos">macOS</h4>
+<ol type="1">
+<li>Open Terminal.</li>
+<li>Target the Python binary inside the Inkscape application
+bundle:</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/Applications/Inkscape.app/Contents/Resources/bin/python3</span> <span class="at">-m</span> pip install numpy scipy</span></code></pre></div>
+<p>Once installed, your extension script can import these libraries
+normally:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.spatial <span class="im">import</span> Voronoi</span></code></pre></div>
+<hr />
+<h3
+id="method-2-dynamically-append-an-external-environment-syspath">Method
+2: Dynamically Append an External Environment
+(<code>sys.path</code>)</h3>
+<p>If you want to avoid altering Inkscape’s internal files or need to
+use a dedicated virtual environment (<code>venv</code> or Conda), you
+can dynamically append the path of that environment's
+<code>site-packages</code> directory to <code>sys.path</code> inside
+your extension script before importing the library.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the path to your external environment&#39;s site-packages</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust the path according to your operating system and environment name</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>venv_path <span class="op">=</span> os.path.expanduser(<span class="st">&quot;~/my_project_env/lib/python3.10/site-packages&quot;</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> venv_path <span class="kw">not</span> <span class="kw">in</span> sys.path:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    sys.path.insert(<span class="dv">0</span>, venv_path)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Import external dependencies</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CustomExtension(inkex.EffectExtension):</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Your extension logic utilizing NumPy or SciPy</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">pass</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    CustomExtension().run()</span></code></pre></div>
+<hr />
+<h3 id="method-3-use-the-system-package-manager-linux">Method 3: Use the
+System Package Manager (Linux)</h3>
+<p>On Linux distributions, extensions execute through the system's
+default Python interpreter. Install the required libraries globally or
+for your local user using your distribution's package manager or
+<code>pip</code>.</p>
+<ul>
+<li><strong>Debian / Ubuntu:</strong>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install python3-numpy python3-scipy</span></code></pre></div></li>
+<li><strong>Fedora:</strong>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dnf install python3-numpy python3-scipy</span></code></pre></div></li>
+<li><strong>Arch Linux:</strong>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> pacman <span class="at">-S</span> python-numpy python-scipy</span></code></pre></div></li>
+</ul>
+<hr />
+<h3 id="method-4-delegate-processing-via-subprocess">Method 4: Delegate
+Processing via <code>subprocess</code></h3>
+<p>For complex workflows, you can keep the Inkscape extension
+lightweight and offload computational tasks to a completely separate
+Python script running inside a specific environment.</p>
+<ol type="1">
+<li>The Inkscape extension extracts coordinates, paths, or SVG
+data.</li>
+<li>It serializes the data (e.g., as JSON) and sends it to a standalone
+script using <code>subprocess.Popen</code> or
+<code>subprocess.run</code>.</li>
+<li>The standalone script, executed by your chosen Python environment
+with NumPy/SciPy, computes the output and prints or returns the
+result.</li>
+<li>The extension parses the output and updates the SVG document.</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> HeavyMathExtension(inkex.EffectExtension):</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        input_data <span class="op">=</span> [<span class="fl">1.0</span>, <span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">4.0</span>]</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Call an external Python environment</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> subprocess.run(</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>            [<span class="st">&quot;/path/to/venv/bin/python&quot;</span>, <span class="st">&quot;compute.py&quot;</span>],</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>            <span class="bu">input</span><span class="op">=</span>json.dumps(input_data),</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>            text<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>            capture_output<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>            check<span class="op">=</span><span class="va">True</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        output_data <span class="op">=</span> json.loads(result.stdout)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Apply output_data to the SVG elements...</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    HeavyMathExtension().run()</span></code></pre></div>
+<p>This method decouples third-party scientific dependencies entirely
+from Inkscape's bundled installation.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

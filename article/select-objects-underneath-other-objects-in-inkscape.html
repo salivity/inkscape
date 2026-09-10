@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Objects Underneath Other Objects in Inkscape - inkscape</title>
+    <meta name="description" content="Selecting objects hidden beneath other shapes or layers in Inkscape is a common task in vector design that does not require moving elements out of the way. This guide covers the most efficient built-in methods—including keyboard shortcuts, the Layers a">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/select-objects-underneath-other-objects-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Select Objects Underneath Other Objects in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/select-objects-underneath-other-objects-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Selecting objects hidden beneath other shapes or layers in Inkscape is a common task in vector design that does not require moving elements out of the way. This guide covers the most efficient built-in methods—including keyboard shortcuts, the Layers a" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="select-objects-underneath-other-objects-in-inkscape">Select
+Objects Underneath Other Objects in Inkscape</h1>
+<p>Selecting objects hidden beneath other shapes or layers in Inkscape
+is a common task in vector design that does not require moving elements
+out of the way. This guide covers the most efficient built-in
+methods—including keyboard shortcuts, the Layers and Objects panel, and
+alternate display modes—to quickly target and manipulate hidden objects
+while keeping your layout intact.</p>
+<h3 id="method-1-the-alt--click-shortcut-z-order-cycling">Method 1: The
+Alt + Click Shortcut (Z-Order Cycling)</h3>
+<p>The fastest way to select an object located directly beneath another
+is using the <strong>Alt</strong> modifier key with the Select tool
+(<strong>S</strong> or <strong>F1</strong>).</p>
+<ol type="1">
+<li>Click on the topmost object to select it.</li>
+<li>Hold down the <strong>Alt</strong> key (or <strong>Option</strong>
+key on macOS) and click the same spot again. Inkscape will select the
+next object down in the Z-order stack.</li>
+<li>Continue to hold <strong>Alt</strong> and click until the specific
+hidden object you need is selected.</li>
+<li>To reverse the cycling order, hold <strong>Alt + Shift</strong> and
+click.</li>
+</ol>
+<p><em>Note for Linux users: If the Alt key triggers window movement in
+your desktop environment, you can use <strong>Ctrl + Alt +
+Click</strong> or remap the window manager key in your OS
+settings.</em></p>
+<h3 id="method-2-the-layers-and-objects-panel">Method 2: The Layers and
+Objects Panel</h3>
+<p>When working with complex illustrations with multiple overlapping
+elements, the <strong>Layers and Objects</strong> panel provides the
+most precise control.</p>
+<ol type="1">
+<li>Open the panel by navigating to <strong>Layer &gt; Layers and
+Objects...</strong> or pressing <strong>Ctrl + Shift + L</strong>
+(<strong>Cmd + Shift + L</strong> on macOS).</li>
+<li>Expand the layer containing your artwork.</li>
+<li>Hover over or click through the list of objects in the tree view to
+highlight and select the exact hidden item without touching the
+canvas.</li>
+</ol>
+<h3 id="method-3-cycling-with-the-tab-key">Method 3: Cycling with the
+Tab Key</h3>
+<p>You can cycle through all objects on the current layer sequentially
+using the keyboard:</p>
+<ol type="1">
+<li>Select any visible object near the hidden one.</li>
+<li>Press the <strong>Tab</strong> key to select the next object in the
+stacking order, or <strong>Shift + Tab</strong> to cycle backward.</li>
+<li>Stop when the bounding box outlines the hidden object you want to
+edit.</li>
+</ol>
+<h3 id="method-4-outline-display-mode">Method 4: Outline Display
+Mode</h3>
+<p>If an object is completely obscured by opaque fills:</p>
+<ol type="1">
+<li>Go to <strong>View &gt; Display Mode &gt; Outline</strong> (or press
+<strong>Ctrl + 5</strong> on the numeric keypad).</li>
+<li>Inkscape will render all paths as wireframes, removing all fills so
+you can directly click on the outline of the hidden object.</li>
+<li>Switch back by selecting <strong>View &gt; Display Mode &gt;
+Normal</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

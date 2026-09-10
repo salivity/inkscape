@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limit Colors to SVG Named Colors in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to configure Inkscape to restrict your color selection strictly to the standardized SVG Named Colors palette. By switching the active palette and using the Swatches panel exclusively for fills and strokes, you can ensure that ever">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/limit-colors-to-svg-named-colors-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Limit Colors to SVG Named Colors in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/limit-colors-to-svg-named-colors-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to configure Inkscape to restrict your color selection strictly to the standardized SVG Named Colors palette. By switching the active palette and using the Swatches panel exclusively for fills and strokes, you can ensure that ever" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="limit-colors-to-svg-named-colors-in-inkscape">Limit Colors to
+SVG Named Colors in Inkscape</h1>
+<p>This guide explains how to configure Inkscape to restrict your color
+selection strictly to the standardized SVG Named Colors palette. By
+switching the active palette and using the Swatches panel exclusively
+for fills and strokes, you can ensure that every color used in your
+vector artwork strictly matches the W3C SVG color specification without
+accidental deviations.</p>
+<h3 id="step-1-switch-the-palette-bar-to-svg-named-colors">Step 1:
+Switch the Palette Bar to SVG Named Colors</h3>
+<ol type="1">
+<li>Look at the bottom of the Inkscape workspace where the color palette
+bar is located.</li>
+<li>Click the small arrow icon on the far right edge of the color bar to
+open the palette menu.</li>
+<li>Scroll through the list and select <strong>SVG Named
+Colors</strong>.</li>
+</ol>
+<p>The color bar at the bottom will immediately reload to display only
+the 147 officially recognized SVG/CSS color names (such as
+<code>aliceblue</code>, <code>crimson</code>, <code>forestgreen</code>,
+and <code>navy</code>).</p>
+<h3 id="step-2-open-and-dock-the-swatches-panel">Step 2: Open and Dock
+the Swatches Panel</h3>
+<p>Using the Swatches panel is the most reliable way to pick and verify
+colors by their official names rather than guessing hex values.</p>
+<ol type="1">
+<li>Open the menu and go to <strong>View &gt; Swatches</strong> (or
+press <strong>Shift + Ctrl + W</strong>).</li>
+<li>If the panel does not automatically show the correct palette, click
+the menu icon in the upper-right corner of the Swatches panel and choose
+<strong>SVG Named Colors</strong>.</li>
+<li>Resize the panel so that the color names are clearly visible
+alongside the color tiles.</li>
+</ol>
+<h3 id="step-3-apply-colors-exclusively-from-the-palette">Step 3: Apply
+Colors Exclusively from the Palette</h3>
+<p>To maintain strict compliance, apply colors directly using the
+Swatches panel or the bottom palette bar:</p>
+<ul>
+<li><strong>Set Fill:</strong> Select your object and left-click the
+desired color swatch.</li>
+<li><strong>Set Stroke:</strong> Select your object, hold
+<strong>Shift</strong>, and left-click the desired color swatch.</li>
+<li><strong>Fill and Stroke Dialog:</strong> Open the dialog
+(<strong>Object &gt; Fill and Stroke</strong> or <strong>Shift + Ctrl +
+F</strong>). On either the <strong>Fill</strong> or <strong>Stroke
+paint</strong> tab, click the <strong>Swatch</strong> button (the icon
+depicting a grid of color tiles). This forces the object's paint
+definition to link directly to a selected swatch rather than arbitrary
+RGB, HSL, or CMYK slider values.</li>
+</ul>
+<h3 id="step-4-avoid-unconstrained-eyedropper-sampling">Step 4: Avoid
+Unconstrained Eyedropper Sampling</h3>
+<p>The Eyedropper tool (<strong>D</strong> or <strong>F7</strong>)
+samples rendered screen pixels, which can vary based on opacity,
+antialiasing, and display color management. To avoid picking
+non-compliant RGB values:</p>
+<ul>
+<li>Do not use the Eyedropper on imported raster images or antialiased
+object edges.</li>
+<li>If you must copy colors between objects, select the target object
+and use the Swatches panel, or select the source object, copy it
+(<strong>Ctrl + C</strong>), select the target, and choose <strong>Edit
+&gt; Paste Style</strong> (<strong>Ctrl + Shift + V</strong>) to
+duplicate the exact SVG color assignment.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

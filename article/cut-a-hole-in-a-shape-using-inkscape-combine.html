@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cut a Hole in a Shape Using Inkscape Combine - inkscape</title>
+    <meta name="description" content="Cutting an interior hole out of a shape in Inkscape allows you to create complex composite paths, such as rings, frames, or letterforms, while keeping them as a single editable vector object. Although the Difference tool is commonly used for subtraction,">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/cut-a-hole-in-a-shape-using-inkscape-combine">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Cut a Hole in a Shape Using Inkscape Combine - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/cut-a-hole-in-a-shape-using-inkscape-combine" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Cutting an interior hole out of a shape in Inkscape allows you to create complex composite paths, such as rings, frames, or letterforms, while keeping them as a single editable vector object. Although the Difference tool is commonly used for subtraction," />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="cut-a-hole-in-a-shape-using-inkscape-combine">Cut a Hole in a
+Shape Using Inkscape Combine</h1>
+<p>Cutting an interior hole out of a shape in Inkscape allows you to
+create complex composite paths, such as rings, frames, or letterforms,
+while keeping them as a single editable vector object. Although the
+<code>Difference</code> tool is commonly used for subtraction, the
+<code>Combine</code> command creates a compound path where overlapping
+paths can interact to form negative space. This guide outlines the exact
+steps to place an inner shape inside an outer shape and utilize the
+<code>Combine</code> feature along with proper fill rules to cut out an
+interior hole.</p>
+<h3 id="step-1-create-and-convert-the-shapes">Step 1: Create and Convert
+the Shapes</h3>
+<ol type="1">
+<li>Use the shape tools (such as the <strong>Rectangle</strong> or
+<strong>Circle</strong> tool) to draw your primary outer shape on the
+canvas.</li>
+<li>Draw the smaller shape that will serve as the interior cutout.</li>
+<li>If you created these using the parametric shape tools, convert them
+to standard vector paths by selecting each shape and navigating to
+<strong>Path &gt; Object to Path</strong> (or pressing
+<code>Shift + Ctrl + C</code>).</li>
+</ol>
+<h3 id="step-2-position-the-shapes">Step 2: Position the Shapes</h3>
+<ol type="1">
+<li>Select the inner shape and place it directly over the outer shape
+where you want the hole to appear.</li>
+<li>If precise alignment is required, select both objects, open the
+<strong>Align and Distribute</strong> panel
+(<code>Shift + Ctrl + A</code>), and use the center alignment options to
+position the inner shape accurately.</li>
+</ol>
+<h3 id="step-3-combine-the-paths">Step 3: Combine the Paths</h3>
+<ol type="1">
+<li>With the <strong>Select tool</strong> (<code>S</code>), select both
+the outer shape and the inner shape simultaneously by clicking and
+dragging over them, or by holding <code>Shift</code> and clicking each
+one.</li>
+<li>Go to the top menu and select <strong>Path &gt; Combine</strong> (or
+press <code>Ctrl + K</code>).</li>
+</ol>
+<h3 id="step-4-adjust-the-fill-rule-if-the-hole-does-not-appear">Step 4:
+Adjust the Fill Rule (If the Hole Does Not Appear)</h3>
+<p>Depending on your default path settings, the combined object may
+still appear solid instead of showing a cutout. If this occurs, you need
+to adjust the path's fill rule:</p>
+<ol type="1">
+<li>Select the combined path and open the <strong>Fill and
+Stroke</strong> dialog (<code>Shift + Ctrl + Y</code>).</li>
+<li>In the <strong>Fill</strong> tab, locate the <strong>Fill
+rule</strong> toggle buttons at the top right of the fill controls
+(represented by two overlapping circle icons).</li>
+<li>Switch the fill rule from <strong>Non-Zero</strong> to
+<strong>Even-Odd</strong>. This rule automatically turns any overlapping
+interior area into a transparent hole.</li>
+<li>Alternatively, if you want to keep the <strong>Non-Zero</strong>
+fill rule, select only the inner sub-path using the <strong>Node
+tool</strong> (<code>N</code>), click a node on the inner path, and go
+to <strong>Path &gt; Reverse</strong>. Changing the winding direction of
+the inner path creates the cutout under the non-zero rule.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

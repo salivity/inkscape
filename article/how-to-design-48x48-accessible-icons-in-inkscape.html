@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Design 48x48 Accessible Icons in Inkscape - inkscape</title>
+    <meta name="description" content="Designing mobile icons requires balancing visual clarity with physical usability. This guide covers how to set up an Inkscape workspace, construct a 48x48 pixel touch target, align artwork to a precise pixel grid, and satisfy Web Content Accessibility Gu">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-design-48x48-accessible-icons-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Design 48x48 Accessible Icons in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-design-48x48-accessible-icons-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing mobile icons requires balancing visual clarity with physical usability. This guide covers how to set up an Inkscape workspace, construct a 48x48 pixel touch target, align artwork to a precise pixel grid, and satisfy Web Content Accessibility Gu" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-design-48x48-accessible-icons-in-inkscape">How to Design
+48x48 Accessible Icons in Inkscape</h1>
+<p>Designing mobile icons requires balancing visual clarity with
+physical usability. This guide covers how to set up an Inkscape
+workspace, construct a 48x48 pixel touch target, align artwork to a
+precise pixel grid, and satisfy Web Content Accessibility Guidelines
+(WCAG) for target size and contrast. Following these steps ensures your
+mobile UI icons are usable, legible, and compliant with modern
+accessibility standards.</p>
+<h2 id="1-set-up-the-inkscape-document">1. Set Up the Inkscape
+Document</h2>
+<p>To design for mobile touch targets, your canvas must mirror screen
+pixels directly:</p>
+<ol type="1">
+<li>Open Inkscape and create a new document.</li>
+<li>Open <strong>Document Properties</strong>
+(<code>Shift + Ctrl + D</code>).</li>
+<li>Under the <strong>Page</strong> tab, set the <strong>Display
+units</strong> to <code>px</code>.</li>
+<li>Set the <strong>Custom size</strong> to a Width of <code>48</code>
+and Height of <code>48</code> pixels.</li>
+<li>Go to the <strong>Grids</strong> tab, select <strong>Rectangular
+grid</strong>, and click <strong>New</strong>.</li>
+<li>Set <strong>Grid units</strong> to <code>px</code>, with
+<strong>Spacing X</strong> and <strong>Spacing Y</strong> both set to
+<code>1.0</code>. Set <strong>Major grid line every</strong> to
+<code>4</code> or <code>8</code>.</li>
+<li>Enable snapping (<code>%</code>) and toggle on <strong>Snap to
+grids</strong> and <strong>Snap to bounding box corners</strong> to
+ensure all nodes align to whole pixels.</li>
+</ol>
+<h2 id="2-understand-touch-target-vs-visual-icon-area">2. Understand
+Touch Target vs. Visual Icon Area</h2>
+<p>WCAG 2.5.5 (Target Size - Level AAA) requires a target size of at
+least 44x44 CSS pixels, while Google’s Material Design standard
+specifies a 48x48 dp touch target. WCAG 2.5.8 (Target Size - Level AA)
+requires at least 24x24 CSS pixels with adequate spacing.</p>
+<p>A 48x48 pixel canvas represents the <strong>entire interactive touch
+target</strong>, not the icon artwork itself.</p>
+<ul>
+<li><strong>The Canvas (48x48 px):</strong> The interactive tap
+region.</li>
+<li><strong>The Safe/Live Area (24x24 px to 32x32 px):</strong> The
+centered area where the actual visual glyph sits.</li>
+<li><strong>The Padding (8x8 px to 12x12 px):</strong> The surrounding
+buffer zone preventing accidental taps on adjacent elements.</li>
+</ul>
+<h2 id="3-draw-and-align-the-glyph">3. Draw and Align the Glyph</h2>
+<ol type="1">
+<li>Select the <strong>Rectangle tool</strong> (<code>R</code>) and draw
+a 24x24 pixel square in the center of the canvas to act as a temporary
+visual bounding box.</li>
+<li>Open the <strong>Align and Distribute</strong> panel
+(<code>Shift + Ctrl + A</code>), set <strong>Relative to</strong> to
+<code>Page</code>, and click <strong>Center on horizontal axis</strong>
+and <strong>Center on vertical axis</strong>.</li>
+<li>Draw your icon artwork inside this 24x24 zone using standard paths
+and geometric shapes.</li>
+<li>Keep stroke widths at whole integers (e.g., <code>2px</code>,
+<code>3px</code>) or center strokes on half-pixel increments to
+eliminate anti-aliasing blur.</li>
+<li>Once designed, delete or hide the temporary 24x24 reference
+box.</li>
+</ol>
+<h2 id="4-satisfy-wcag-color-and-contrast-requirements">4. Satisfy WCAG
+Color and Contrast Requirements</h2>
+<p>Icons conveying functional meaning (such as navigation or form
+controls) must comply with WCAG 2.1 Success Criterion 1.4.11 (Non-text
+Contrast):</p>
+<ul>
+<li><strong>3:1 Minimum Contrast:</strong> The icon artwork must have at
+least a 3:1 contrast ratio against the adjacent background color. Test
+your hex values using an accessibility contrast checker.</li>
+<li><strong>Avoid Color as the Sole Indicator:</strong> If an icon
+toggles state (e.g., active/inactive), do not rely solely on color
+shifts. Change the shape, fill, or add a secondary indicator (such as an
+underline or badge).</li>
+</ul>
+<h2 id="5-prepare-the-48x48-target-for-export">5. Prepare the 48x48
+Target for Export</h2>
+<p>Mobile rendering engines need to recognize the full 48x48 pixel
+boundary, even if the visual icon in the center is only 24 pixels
+wide.</p>
+<ol type="1">
+<li>Draw a rectangle that covers the full <code>48x48</code> px
+canvas.</li>
+<li>In the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + Y</code>), set the <strong>Fill</strong> to flat
+color, but adjust the <strong>Alpha (A)</strong> channel or
+<strong>Opacity</strong> to <code>0</code>.</li>
+<li>Move this invisible rectangle to the bottom of your layer stack
+(<code>Page Down</code> or <code>Object &gt; Lower to Bottom</code>).
+This forces the exported SVG or PNG to retain the exact 48x48 touch
+target dimensions.</li>
+<li>Select all visible glyph elements and convert them to clean vectors:
+<ul>
+<li>Select strokes and choose <strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>).</li>
+<li>Combine intersecting shapes using <strong>Path &gt; Union</strong>
+(<code>Ctrl + +</code>).</li>
+</ul></li>
+</ol>
+<h2 id="6-export-the-asset">6. Export the Asset</h2>
+<ol type="1">
+<li>Open the <strong>Export</strong> panel
+(<code>Shift + Ctrl + E</code>).</li>
+<li>Select the <strong>Page</strong> tab to ensure the full 48x48
+dimensions are exported.</li>
+<li>For web and modern mobile frameworks (React Native, Flutter, iOS,
+Android), choose <strong>Optimized SVG</strong>.</li>
+<li>If exporting bitmaps for legacy Android/iOS assets, set the DPI
+scale accordingly (e.g., 48x48 at 1x/mdpi, 96x96 at 2x/xhdpi, 144x144 at
+3x/xxhdpi).</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

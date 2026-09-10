@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Export Inkscape SVG to CSS Clip-Path - inkscape</title>
+    <meta name="description" content="This guide explains how to design a custom vector shape in Inkscape and export its path data for use with the CSS clip-path property. You will learn how to convert your artwork into a clean, unified path, extract the SVG coordinate data, and apply it dir">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-export-inkscape-svg-to-css-clip-path">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Export Inkscape SVG to CSS Clip-Path - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-export-inkscape-svg-to-css-clip-path" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to design a custom vector shape in Inkscape and export its path data for use with the CSS clip-path property. You will learn how to convert your artwork into a clean, unified path, extract the SVG coordinate data, and apply it dir" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-export-inkscape-svg-to-css-clip-path">How to Export
+Inkscape SVG to CSS Clip-Path</h1>
+<p>This guide explains how to design a custom vector shape in Inkscape
+and export its path data for use with the CSS <code>clip-path</code>
+property. You will learn how to convert your artwork into a clean,
+unified path, extract the SVG coordinate data, and apply it directly
+within your CSS stylesheets or via inline SVG definitions for responsive
+web designs.</p>
+<h3 id="step-1-convert-objects-to-a-single-path">Step 1: Convert Objects
+to a Single Path</h3>
+<p>CSS <code>clip-path</code> properties require vector paths rather
+than standard geometric shapes or grouped layers.</p>
+<ol type="1">
+<li>Open your document in Inkscape and select the shape you want to use
+as a mask.</li>
+<li>If your shape is an object (such as a rectangle, ellipse, or text),
+navigate to <strong>Path</strong> &gt; <strong>Object to Path</strong>
+(or press <code>Shift + Ctrl + C</code>).</li>
+<li>If your design consists of multiple paths, combine them into one by
+selecting all shapes and choosing <strong>Path</strong> &gt;
+<strong>Union</strong> (<code>Ctrl + +</code>) or <strong>Path</strong>
+&gt; <strong>Combine</strong> (<code>Ctrl + K</code>).</li>
+</ol>
+<h3 id="step-2-set-the-document-scale-and-origin">Step 2: Set the
+Document Scale and Origin</h3>
+<p>Coordinates in CSS <code>clip-path</code> are relative to the
+element's top-left corner <code>(0, 0)</code>. To prevent offset
+issues:</p>
+<ol type="1">
+<li>Open Document Properties by going to <strong>File</strong> &gt;
+<strong>Document Properties</strong>
+(<code>Shift + Ctrl + D</code>).</li>
+<li>Under the <strong>Display</strong> tab, set the units to
+<code>px</code>.</li>
+<li>Under the <strong>Page</strong> tab, resize the page to fit your
+drawing precisely, or manually set the width and height to match the
+pixel dimensions of your target HTML element.</li>
+<li>Align your shape to <code>(X: 0, Y: 0)</code> using the
+<strong>Align and Distribute</strong> panel
+(<code>Shift + Ctrl + A</code>).</li>
+</ol>
+<h3 id="step-3-extract-the-path-data-d-attribute">Step 3: Extract the
+Path Data (<code>d</code> Attribute)</h3>
+<p>You can copy the raw path definition directly out of Inkscape without
+saving a separate file.</p>
+<ol type="1">
+<li>Open the built-in XML Editor via <strong>Edit</strong> &gt;
+<strong>XML Editor</strong> (<code>Shift + Ctrl + X</code>).</li>
+<li>In the XML tree on the left, expand the <code>&lt;svg:svg&gt;</code>
+node, locate your <code>&lt;svg:path&gt;</code> element, and select
+it.</li>
+<li>In the attribute panel on the right, find the <strong>d</strong>
+attribute.</li>
+<li>Click on the <code>d</code> attribute, highlight the coordinate
+string in the text box below it, and copy it to your clipboard.</li>
+</ol>
+<h3 id="step-4-apply-the-path-in-css">Step 4: Apply the Path in CSS</h3>
+<p>You can apply the extracted SVG path to your HTML elements using one
+of two methods:</p>
+<h4 id="method-a-using-the-css-path-function">Method A: Using the CSS
+<code>path()</code> Function</h4>
+<p>For fixed-size elements, you can paste the coordinates directly into
+your CSS stylesheet:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.clipped-element</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">width</span><span class="ch">:</span> <span class="dv">300</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">height</span><span class="ch">:</span> <span class="dv">300</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">clip-path</span><span class="ch">:</span> <span class="fu">path(</span><span class="st">&quot;M 0,0 L 300,0 L 150,300 Z&quot;</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p><em>Note: The <code>path()</code> function uses static pixel values
+and does not scale automatically if the container resizes.</em></p>
+<h4
+id="method-b-using-an-inline-svg-clippath-for-responsive-scaling">Method
+B: Using an Inline SVG <code>&lt;clipPath&gt;</code> for Responsive
+Scaling</h4>
+<p>To make your clip-path responsive, normalize your design in Inkscape
+to a 1x1 unit square (values between 0.0 and 1.0) and reference an
+inline SVG definition:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">svg</span><span class="ot"> width</span><span class="op">=</span><span class="st">&quot;0&quot;</span><span class="ot"> height</span><span class="op">=</span><span class="st">&quot;0&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">defs</span><span class="dt">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">clipPath</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;my-clip&quot;</span><span class="ot"> clipPathUnits</span><span class="op">=</span><span class="st">&quot;objectBoundingBox&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">path</span><span class="ot"> d</span><span class="op">=</span><span class="st">&quot;M 0,0 L 1,0 L 0.5,1 Z&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">clipPath</span><span class="dt">&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">defs</span><span class="dt">&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">svg</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>Then attach it in your CSS using the URL reference:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.clipped-element</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">clip-path</span><span class="ch">:</span> <span class="fu">url(</span><span class="st">#my-clip</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

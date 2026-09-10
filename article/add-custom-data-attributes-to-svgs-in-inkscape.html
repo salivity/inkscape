@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Custom Data Attributes to SVGs in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to attach custom data- attributes to SVG vector elements directly inside Inkscape using its built-in XML Editor. By embedding these custom attributes into your graphic elements, you can easily select, manipulate, and pass dynamic">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/add-custom-data-attributes-to-svgs-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Add Custom Data Attributes to SVGs in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/add-custom-data-attributes-to-svgs-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to attach custom data- attributes to SVG vector elements directly inside Inkscape using its built-in XML Editor. By embedding these custom attributes into your graphic elements, you can easily select, manipulate, and pass dynamic" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="add-custom-data-attributes-to-svgs-in-inkscape">Add Custom Data
+Attributes to SVGs in Inkscape</h1>
+<p>This guide explains how to attach custom <code>data-*</code>
+attributes to SVG vector elements directly inside Inkscape using its
+built-in XML Editor. By embedding these custom attributes into your
+graphic elements, you can easily select, manipulate, and pass dynamic
+data to vector objects using JavaScript for web interactions,
+animations, and data visualizations.</p>
+<h3 id="step-1-open-the-xml-editor">Step 1: Open the XML Editor</h3>
+<ol type="1">
+<li>Open your document and select the vector shape you want to
+modify.</li>
+<li>Open Inkscape's built-in XML tree view by navigating to <strong>Edit
+&gt; XML Editor</strong> from the top menu bar, or press the keyboard
+shortcut <strong>Ctrl + Shift + X</strong> (Windows/Linux) or
+<strong>Cmd + Shift + X</strong> (macOS).</li>
+</ol>
+<h3 id="step-2-locate-the-target-element">Step 2: Locate the Target
+Element</h3>
+<ol type="1">
+<li>When you select a shape on your canvas, the XML Editor automatically
+highlights the corresponding node in the XML hierarchy tree (typically a
+<code>&lt;path&gt;</code>, <code>&lt;rect&gt;</code>,
+<code>&lt;circle&gt;</code>, or <code>&lt;g&gt;</code> tag).</li>
+<li>Ensure the correct element node is active before attempting to add
+attributes.</li>
+</ol>
+<h3 id="step-3-add-the-custom-attribute">Step 3: Add the Custom
+Attribute</h3>
+<ol type="1">
+<li>In the right-hand panel of the XML Editor, locate the two text
+fields at the bottom: the attribute name field and the attribute value
+field.</li>
+<li>In the top/left input field (name), type your custom attribute
+following standard HTML5 data-attribute conventions, such as
+<code>data-id</code>, <code>data-tooltip</code>, or
+<code>data-state</code>.</li>
+<li>In the larger input field (value), enter the desired value for the
+attribute.</li>
+<li>Click the <strong>Set</strong> button (or press
+<strong>Enter</strong>) to commit the attribute to the selected node.
+The new attribute will now appear in the list of properties for that
+element.</li>
+</ol>
+<h3 id="step-4-save-the-svg">Step 4: Save the SVG</h3>
+<p>Save your file as an <strong>Optimized SVG</strong> or <strong>Plain
+SVG</strong> via <strong>File &gt; Save As...</strong>. Avoid formats or
+export cleaners that strip custom data attributes, ensuring that "Remove
+metadata" or similar aggressive optimization settings leave
+<code>data-*</code> attributes intact.</p>
+<h3 id="step-5-access-the-attribute-via-javascript">Step 5: Access the
+Attribute via JavaScript</h3>
+<p>Once the SVG is embedded inline within an HTML document, you can
+access your custom vector elements and their properties using standard
+DOM methods:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Select the vector element by its custom attribute</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> shape <span class="op">=</span> <span class="bu">document</span><span class="op">.</span><span class="fu">querySelector</span>(<span class="st">&#39;[data-id=&quot;my-shape&quot;]&#39;</span>)<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Read the value using the dataset API</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> shapeId <span class="op">=</span> shape<span class="op">.</span><span class="at">dataset</span><span class="op">.</span><span class="at">id</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Alternatively, read using getAttribute</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> state <span class="op">=</span> shape<span class="op">.</span><span class="fu">getAttribute</span>(<span class="st">&#39;data-state&#39;</span>)<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Modify the attribute dynamically</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>shape<span class="op">.</span><span class="at">dataset</span><span class="op">.</span><span class="at">state</span> <span class="op">=</span> <span class="st">&#39;active&#39;</span><span class="op">;</span></span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

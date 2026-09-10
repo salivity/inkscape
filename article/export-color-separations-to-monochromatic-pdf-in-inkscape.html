@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Color Separations to Monochromatic PDF in Inkscape - inkscape</title>
+    <meta name="description" content="This guide details how to export color separations as individual monochromatic PDF pages in Inkscape for applications like screen printing, plate making, and offset printing. Because Inkscape handles colors in an RGB-native workspace, creating true monoc">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-color-separations-to-monochromatic-pdf-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Color Separations to Monochromatic PDF in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-color-separations-to-monochromatic-pdf-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide details how to export color separations as individual monochromatic PDF pages in Inkscape for applications like screen printing, plate making, and offset printing. Because Inkscape handles colors in an RGB-native workspace, creating true monoc" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1
+id="export-color-separations-to-monochromatic-pdf-in-inkscape">Export
+Color Separations to Monochromatic PDF in Inkscape</h1>
+<p>This guide details how to export color separations as individual
+monochromatic PDF pages in Inkscape for applications like screen
+printing, plate making, and offset printing. Because Inkscape handles
+colors in an RGB-native workspace, creating true monochromatic
+separations requires isolating each color channel or spot color,
+converting the artwork to solid black, placing each separation onto
+dedicated pages, and exporting the final layout as a multi-page PDF.</p>
+<h3 id="step-1-isolate-colors-using-layers-or-selection">Step 1: Isolate
+Colors Using Layers or Selection</h3>
+<ol type="1">
+<li>Open your artwork in Inkscape.</li>
+<li>Select an object containing the first color you want to
+separate.</li>
+<li>Go to <strong>Edit &gt; Select Same &gt; Fill Color</strong> (or
+<strong>Fill and Stroke</strong>) to select all elements sharing that
+color across the canvas.</li>
+<li>Press <code>Ctrl + G</code> to group the selected elements.</li>
+<li>Open the <strong>Layers and Objects</strong> panel (<strong>Layer
+&gt; Layers and Objects</strong>).</li>
+<li>Create a new layer for each color separation (for example: <em>Black
+Plate</em>, <em>Red Plate</em>, <em>Blue Plate</em>) and move the
+corresponding grouped elements into their dedicated layers.</li>
+</ol>
+<h3 id="step-2-convert-elements-to-monochromatic-black">Step 2: Convert
+Elements to Monochromatic Black</h3>
+<p>For physical separations like film positives or printing plates,
+every printable area must be solid black (100% K) regardless of its
+intended final print color.</p>
+<ol type="1">
+<li>Select the group or layer representing your first color
+separation.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>).</li>
+<li>Set the <strong>Fill</strong> color to pure black
+(<code>#000000</code> or CMYK: 0, 0, 0, 100).</li>
+<li>If the objects have outlines, set the <strong>Stroke paint</strong>
+to pure black as well.</li>
+<li>Repeat this process for every color layer until all separations
+consist entirely of black graphics on transparent backgrounds.</li>
+</ol>
+<h3 id="step-3-align-plates-using-registration-marks">Step 3: Align
+Plates Using Registration Marks</h3>
+<ol type="1">
+<li>Create a new top layer named <em>Registration</em>.</li>
+<li>Draw registration marks (such as crosshairs or targets) outside the
+printable artwork area at opposite corners of the page.</li>
+<li>Color these marks solid black.</li>
+<li>Keep this layer visible across all separations so each exported
+plate aligns accurately on press.</li>
+</ol>
+<h3 id="step-4-arrange-separations-on-separate-pages">Step 4: Arrange
+Separations on Separate Pages</h3>
+<p>Inkscape includes native multi-page document support, allowing you to
+export each plate as an individual page within a single PDF
+document:</p>
+<ol type="1">
+<li>Select the <strong>Create and Edit Pages</strong> tool from the left
+toolbar (or press <code>Shift + P</code>).</li>
+<li>Click the <strong>Add Page</strong> button in the top toolbar to
+create a new page for each color separation. Ensure all pages are the
+same dimensions.</li>
+<li>Align each color group onto its respective page at the exact same X
+and Y coordinates. Alternatively, duplicate the original page and keep
+only one color layer visible per page.</li>
+</ol>
+<h3 id="step-5-export-the-monochromatic-pdf">Step 5: Export the
+Monochromatic PDF</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong> (or press
+<code>Shift + Ctrl + S</code>).</li>
+<li>Set the file format dropdown to <strong>Portable Document Format
+(*.pdf)</strong>.</li>
+<li>Choose your destination folder and click <strong>Save</strong>.</li>
+<li>In the PDF export dialog window:
+<ul>
+<li>Ensure the <strong>Output page size</strong> is set to match your
+document pages.</li>
+<li>Under <strong>Pages</strong>, select <strong>All</strong> to output
+every separation page into a single PDF file.</li>
+<li>Set <strong>Rasterize filter effects</strong> resolution to 300 dpi
+or higher if your artwork uses blurs or gradients.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to generate the PDF.</li>
+</ol>
+<p>Each page in the resulting PDF will contain a single,
+registration-aligned monochromatic separation ready for film output or
+digital platemaking.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

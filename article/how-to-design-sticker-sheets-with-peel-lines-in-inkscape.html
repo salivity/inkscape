@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Design Sticker Sheets with Peel Lines in Inkscape - inkscape</title>
+    <meta name="description" content="Designing custom die-cut sticker sheets with crack-and-peel backing in Inkscape requires organizing your artwork, kiss-cut lines, sheet borders, and liner slit paths onto dedicated vector layers. This guide walks you through setting up precise cut paths,">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-design-sticker-sheets-with-peel-lines-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Design Sticker Sheets with Peel Lines in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-design-sticker-sheets-with-peel-lines-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing custom die-cut sticker sheets with crack-and-peel backing in Inkscape requires organizing your artwork, kiss-cut lines, sheet borders, and liner slit paths onto dedicated vector layers. This guide walks you through setting up precise cut paths," />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-design-sticker-sheets-with-peel-lines-in-inkscape">How to
+Design Sticker Sheets with Peel Lines in Inkscape</h1>
+<p>Designing custom die-cut sticker sheets with crack-and-peel backing
+in Inkscape requires organizing your artwork, kiss-cut lines, sheet
+borders, and liner slit paths onto dedicated vector layers. This guide
+walks you through setting up precise cut paths, configuring the outer
+die-cut border, and adding reverse backing score lines so your stickers
+peel effortlessly from the sheet.</p>
+<h3 id="step-1-set-up-the-document-and-layer-hierarchy">Step 1: Set Up
+the Document and Layer Hierarchy</h3>
+<p>Open Inkscape and access <strong>File &gt; Document
+Properties</strong> (<code>Ctrl+Shift+D</code>). Set your display units
+and document dimensions to inches or millimeters according to your
+target sheet size (e.g., 4x6 inches or 5x7 inches). Set the color
+profile to CMYK if your print workflow requires it, or stick to RGB if
+converting downstream.</p>
+<p>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl+Shift+L</code>) and create four distinct layers from bottom
+to top:</p>
+<ol type="1">
+<li><strong>Backing Slits</strong>: Vector paths marking the
+crack-and-peel cut lines on the liner.</li>
+<li><strong>Artwork</strong>: Full-color graphics and background
+illustrations.</li>
+<li><strong>Kiss Cuts</strong>: Contours defining the peelable
+individual stickers.</li>
+<li><strong>Die Cut</strong>: The final outer border that cuts through
+both the vinyl and backing paper.</li>
+</ol>
+<h3 id="step-2-lay-out-the-artwork-with-bleed">Step 2: Lay Out the
+Artwork with Bleed</h3>
+<p>Place your sticker illustrations onto the <strong>Artwork</strong>
+layer. Ensure there is at least 0.25 inches (6 mm) of space between each
+sticker design and 0.25 inches from the outer edge of the sheet.</p>
+<p>If any graphic has a background color or pattern that touches a cut
+line, extend the artwork at least 0.0625 inches (1.5 mm) beyond where
+the cut will occur. This bleed prevents white slivers if the cutting
+blade drifts slightly during production.</p>
+<h3 id="step-3-generate-the-kiss-cut-paths">Step 3: Generate the
+Kiss-Cut Paths</h3>
+<p>A kiss cut cuts through the vinyl layer without puncturing the
+backing paper.</p>
+<ol type="1">
+<li>Lock the <strong>Artwork</strong> layer and select the <strong>Kiss
+Cuts</strong> layer.</li>
+<li>Duplicate the silhouette of each individual design. If working with
+bitmap images, use <strong>Path &gt; Trace Bitmap</strong> to generate a
+boundary path.</li>
+<li>Select the path and apply an offset using <strong>Path &gt;
+Inset/Outset</strong> or <strong>Path &gt; Dynamic Offset</strong> to
+generate an even border around the artwork.</li>
+<li>Remove any fill color. Set the stroke to a visible, distinct spot
+color—commonly 100% Magenta (<code>#FF00FF</code>).</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl+Shift+F</code>) and set the stroke width to
+<code>0.25 pt</code> (or <code>0.1 mm</code>) to denote a vector
+hairline.</li>
+</ol>
+<h3 id="step-4-create-the-outer-die-cut-path">Step 4: Create the Outer
+Die-Cut Path</h3>
+<p>The die cut trims through the entire sheet, releasing the finished
+product from the raw stock.</p>
+<ol type="1">
+<li>Select the <strong>Die Cut</strong> layer.</li>
+<li>Draw a rectangle or rounded rectangle that encompasses the full
+sheet dimensions using the <strong>Rectangle Tool</strong>
+(<code>R</code>).</li>
+<li>Remove the fill.</li>
+<li>Set the stroke color to a unique identifier—commonly 100% Cyan
+(<code>#00FFFF</code>)—with a stroke width of <code>0.25 pt</code>.</li>
+</ol>
+<h3 id="step-5-add-crack-and-peel-backing-lines">Step 5: Add
+Crack-and-Peel Backing Lines</h3>
+<p>Crack-and-peel lines (also called liner slits) score or cut through
+only the paper backing from the reverse side, allowing the customer to
+bend the sheet and easily grip the sticker edge.</p>
+<ol type="1">
+<li>Select the <strong>Backing Slits</strong> layer.</li>
+<li>Using the <strong>Draw Freehand Lines</strong> or <strong>Draw
+Bézier Curves</strong> tool (<code>B</code>), draw straight horizontal
+or vertical lines that pass behind the stickers. Position these lines
+approximately one-third into the body of the sticker designs, avoiding
+the very tips or tight corners.</li>
+<li>Set the stroke to a dedicated spot color—commonly 100% Green
+(<code>#00FF00</code>) or a dashed stroke style via the <strong>Fill and
+Stroke</strong> panel under the <strong>Stroke style</strong> tab.</li>
+<li>Note that if your print provider processes sheets from the reverse
+side, horizontal slit coordinates must account for horizontal mirroring.
+Check with your print shop to confirm whether they prefer backing lines
+embedded on a shared coordinate grid or on an inverted duplicate
+artboard.</li>
+</ol>
+<h3 id="step-6-verify-and-export-for-production">Step 6: Verify and
+Export for Production</h3>
+<p>Before exporting, verify alignment and line weights:</p>
+<ol type="1">
+<li>Hide the <strong>Artwork</strong> layer temporarily to inspect all
+vector paths on the <strong>Kiss Cuts</strong>, <strong>Die
+Cut</strong>, and <strong>Backing Slits</strong> layers. Ensure there
+are no stray vector nodes or unjoined lines.</li>
+<li>Unhide all layers.</li>
+<li>Convert any active text objects to paths using <strong>Path &gt;
+Object to Path</strong> (<code>Ctrl+Shift+C</code>).</li>
+<li>Go to <strong>File &gt; Save As...</strong> and select
+<strong>Portable Document Format (*.pdf)</strong>.</li>
+<li>In the PDF export dialog, set <strong>Output format</strong> to PDF
+1.5 or PDF/X-1a (if available through your extensions), ensure
+<strong>Convert texts to paths</strong> is selected, and keep the
+resolution at 300 dpi or higher.</li>
+</ol>
+<p>Provide your print vendor with a cut-line key indicating which stroke
+colors correspond to Kiss Cut (Magenta), Outer Die Cut (Cyan), and
+Backing Slit (Green).</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

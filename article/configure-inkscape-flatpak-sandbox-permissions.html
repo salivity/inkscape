@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure Inkscape Flatpak Sandbox Permissions - inkscape</title>
+    <meta name="description" content="The Flatpak version of Inkscape runs inside an isolated sandbox to enhance system security, but this can sometimes prevent the application from accessing certain files, external drives, or hardware devices like drawing tablets. You can easily modify thes">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/configure-inkscape-flatpak-sandbox-permissions">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Configure Inkscape Flatpak Sandbox Permissions - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/configure-inkscape-flatpak-sandbox-permissions" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Flatpak version of Inkscape runs inside an isolated sandbox to enhance system security, but this can sometimes prevent the application from accessing certain files, external drives, or hardware devices like drawing tablets. You can easily modify thes" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="configure-inkscape-flatpak-sandbox-permissions">Configure
+Inkscape Flatpak Sandbox Permissions</h1>
+<p>The Flatpak version of Inkscape runs inside an isolated sandbox to
+enhance system security, but this can sometimes prevent the application
+from accessing certain files, external drives, or hardware devices like
+drawing tablets. You can easily modify these sandbox boundaries to grant
+Inkscape specific access to system resources. This guide covers how to
+customize Inkscape's permissions using both a graphical interface via
+Flatseal and the native Flatpak command-line interface.</p>
+<h2 id="method-1-using-flatseal-gui">Method 1: Using Flatseal (GUI)</h2>
+<p>Flatseal is a graphical permission manager for Flatpak applications
+that provides a simple toggle-based interface.</p>
+<ol type="1">
+<li><p><strong>Install Flatseal:</strong><br />
+If you do not have Flatseal installed, install it using your software
+manager or run:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> install flathub com.github.juankmorales.flatseal</span></code></pre></div></li>
+<li><p><strong>Open Flatseal and Select Inkscape:</strong><br />
+Launch Flatseal from your application menu and locate
+<strong>Inkscape</strong> in the list of applications on the left
+panel.</p></li>
+<li><p><strong>Adjust Permissions:</strong><br />
+Scroll through the categories on the right to modify access:</p>
+<ul>
+<li><strong>Filesystem:</strong> Enable <strong>All system
+files</strong> (<code>host</code>) or add specific paths under
+<strong>Other files</strong> (e.g., <code>/run/media</code> for external
+drives or <code>~/.local/share/fonts</code> for user fonts).</li>
+<li><strong>Device:</strong> Ensure <strong>Direct 3D rendering</strong>
+(<code>dri</code>) and <strong>Input devices</strong> are toggled on if
+you experience issues with graphics acceleration or drawing
+tablets.</li>
+<li><strong>Sockets:</strong> Ensure <strong>X11 windowing
+system</strong> and <strong>Wayland windowing system</strong> are
+enabled according to your desktop display server.</li>
+</ul></li>
+</ol>
+<p>Changes made in Flatseal apply immediately. Restart Inkscape to load
+the new permissions.</p>
+<hr />
+<h2 id="method-2-using-the-command-line-flatpak-override">Method 2:
+Using the Command Line (<code>flatpak override</code>)</h2>
+<p>You can configure persistent permission changes directly from the
+terminal using the <code>flatpak override</code> command targeting
+Inkscape’s application ID, <code>org.inkscape.Inkscape</code>.</p>
+<h3 id="granting-filesystem-access">Granting Filesystem Access</h3>
+<ul>
+<li><p><strong>Access the entire host filesystem:</strong></p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> override org.inkscape.Inkscape <span class="at">--filesystem</span><span class="op">=</span>host</span></code></pre></div></li>
+<li><p><strong>Access a specific directory (Read/Write):</strong></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> override org.inkscape.Inkscape <span class="at">--filesystem</span><span class="op">=</span>/path/to/your/folder</span></code></pre></div></li>
+<li><p><strong>Access a directory as Read-Only (e.g., custom
+fonts):</strong></p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> override org.inkscape.Inkscape <span class="at">--filesystem</span><span class="op">=</span>~/.local/share/fonts:ro</span></code></pre></div></li>
+<li><p><strong>Access external media drives:</strong></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> override org.inkscape.Inkscape <span class="at">--filesystem</span><span class="op">=</span>/media <span class="at">--filesystem</span><span class="op">=</span>/run/media</span></code></pre></div></li>
+</ul>
+<h3 id="granting-hardware-and-device-access">Granting Hardware and
+Device Access</h3>
+<ul>
+<li><strong>Allow access to all input devices (useful for stylus and
+graphics tablets):</strong>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> override org.inkscape.Inkscape <span class="at">--device</span><span class="op">=</span>all</span></code></pre></div></li>
+</ul>
+<h3 id="revoking-permissions-and-resetting">Revoking Permissions and
+Resetting</h3>
+<ul>
+<li><p><strong>Revoke a specific permission:</strong></p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> override org.inkscape.Inkscape <span class="at">--nofilesystem</span><span class="op">=</span>/path/to/your/folder</span></code></pre></div></li>
+<li><p><strong>Reset all custom permissions back to
+default:</strong></p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> override <span class="at">--reset</span> org.inkscape.Inkscape</span></code></pre></div></li>
+<li><p><strong>View active overrides:</strong></p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">flatpak</span> override <span class="at">--show</span> org.inkscape.Inkscape</span></code></pre></div></li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

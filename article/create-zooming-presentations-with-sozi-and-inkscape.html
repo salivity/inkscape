@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Zooming Presentations with Sozi and Inkscape - inkscape</title>
+    <meta name="description" content="This guide provides a straightforward walkthrough on using Inkscape alongside Sozi to build dynamic, non-linear presentations. You will learn how to design your visual canvas in Inkscape, define individual camera frames, configure fluid pan and zoom tran">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-zooming-presentations-with-sozi-and-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Zooming Presentations with Sozi and Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-zooming-presentations-with-sozi-and-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a straightforward walkthrough on using Inkscape alongside Sozi to build dynamic, non-linear presentations. You will learn how to design your visual canvas in Inkscape, define individual camera frames, configure fluid pan and zoom tran" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-zooming-presentations-with-sozi-and-inkscape">Create
+Zooming Presentations with Sozi and Inkscape</h1>
+<p>This guide provides a straightforward walkthrough on using Inkscape
+alongside Sozi to build dynamic, non-linear presentations. You will
+learn how to design your visual canvas in Inkscape, define individual
+camera frames, configure fluid pan and zoom transitions, and export the
+final interactive presentation as a web-ready file that runs in any
+modern browser.</p>
+<h3 id="1-prepare-your-visual-canvas-in-inkscape">1. Prepare Your Visual
+Canvas in Inkscape</h3>
+<ol type="1">
+<li>Open Inkscape and create a new document.</li>
+<li>Group related graphics, diagrams, and text blocks across a single
+large canvas rather than dividing them across multiple pages.</li>
+<li>Keep the visual hierarchy clear. You can place smaller details
+inside larger illustrations to take full advantage of Sozi's deep
+zooming capabilities.</li>
+<li>(Optional) Create placeholder rectangles over the specific regions
+you want the camera to focus on during each slide. Set their stroke and
+fill to transparent if you do not want them visible in the final
+presentation.</li>
+<li>Save your document in the standard <strong>Inkscape SVG</strong>
+format.</li>
+</ol>
+<h3 id="2-open-the-svg-in-sozi">2. Open the SVG in Sozi</h3>
+<p>Modern versions of Sozi operate as a standalone application that
+directly reads and writes Inkscape SVG files:</p>
+<ol type="1">
+<li>Launch the Sozi desktop application.</li>
+<li>Click the open icon or press <code>Ctrl + O</code>
+(<code>Cmd + O</code> on macOS) to select your saved SVG file.</li>
+<li>Your Inkscape artwork will load directly into the central
+workspace.</li>
+</ol>
+<p><em>(Note: If using a legacy version of the Sozi Inkscape extension,
+navigate directly within Inkscape to <strong>Extensions &gt;
+Sozi</strong> to launch the frame editor interface.)</em></p>
+<h3 id="3-create-and-position-presentation-frames">3. Create and
+Position Presentation Frames</h3>
+<ol type="1">
+<li>Click the <strong>+ (Add Frame)</strong> button in the Sozi timeline
+panel to create your first frame.</li>
+<li>Use your mouse to frame the view:
+<ul>
+<li><strong>Click and drag</strong> to pan across the canvas.</li>
+<li><strong>Scroll the mouse wheel</strong> to zoom in or out.</li>
+<li><strong>Right-click and drag</strong> (or hold <code>Shift</code>
+while dragging) to rotate the view if desired.</li>
+</ul></li>
+<li>Alternatively, click on one of the transparent placeholder
+rectangles you created in Inkscape; Sozi can automatically fit the
+camera view to match that object's boundaries.</li>
+<li>Give each frame a meaningful title in the properties panel to easily
+track the flow.</li>
+<li>Repeat this process for each stop in your presentation.</li>
+</ol>
+<h3 id="4-adjust-transition-properties">4. Adjust Transition
+Properties</h3>
+<p>Select a frame in the timeline to customize how the camera moves
+toward it:</p>
+<ul>
+<li><strong>Duration:</strong> Set the transition time in seconds (e.g.,
+1.0 to 1.5 seconds for smooth movement).</li>
+<li><strong>Timing Function:</strong> Choose an easing profile such as
+<em>Linear</em>, <em>Accelerate</em>, or <em>Decelerate</em> to control
+the acceleration of the camera.</li>
+<li><strong>Path Profile:</strong> Adjust the zoom-out factor during
+transitions. A higher profile forces the camera to pull backward before
+diving into the next frame, providing spatial context.</li>
+<li><strong>Layer Visibility:</strong> Hide or reveal specific Inkscape
+layers on a per-frame basis to show details progressively.</li>
+</ul>
+<h3 id="5-save-and-present">5. Save and Present</h3>
+<ol type="1">
+<li>Save your project in Sozi using <code>Ctrl + S</code>
+(<code>Cmd + S</code>).</li>
+<li>Sozi automatically generates a companion HTML file in the same
+directory as your SVG (e.g., <code>presentation.sozi.html</code>).</li>
+<li>Open the resulting HTML file in any modern web browser to view the
+presentation.</li>
+<li>Navigate during the live presentation using:
+<ul>
+<li><strong>Spacebar / Right Arrow:</strong> Move to the next
+frame.</li>
+<li><strong>Left Arrow:</strong> Move to the previous frame.</li>
+<li><strong>Mouse Click:</strong> Advance forward.</li>
+<li><strong>F:</strong> Toggle full-screen mode.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

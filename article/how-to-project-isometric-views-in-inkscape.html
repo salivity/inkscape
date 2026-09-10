@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Project Isometric Views in Inkscape - inkscape</title>
+    <meta name="description" content="Projecting flat 2D orthographic drawings (top, front, and side views) into a pseudo-3D isometric projection in Inkscape is achieved using the SSR method: Scale, Shear, and Rotate. By taking advantage of Inkscape’s native Transform panel, you can mathem">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-project-isometric-views-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Project Isometric Views in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-project-isometric-views-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Projecting flat 2D orthographic drawings (top, front, and side views) into a pseudo-3D isometric projection in Inkscape is achieved using the SSR method: Scale, Shear, and Rotate. By taking advantage of Inkscape’s native Transform panel, you can mathem" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-project-isometric-views-in-inkscape">How to Project
+Isometric Views in Inkscape</h1>
+<p>Projecting flat 2D orthographic drawings (top, front, and side views)
+into a pseudo-3D isometric projection in Inkscape is achieved using the
+SSR method: Scale, Shear, and Rotate. By taking advantage of Inkscape’s
+native Transform panel, you can mathematically transform flat vector
+artwork into precise 30-degree isometric planes. This guide walks you
+through the exact values and steps required to convert each orthographic
+view and assemble them into a cohesive isometric illustration.</p>
+<h3 id="preparing-your-artwork-and-tools">Preparing Your Artwork and
+Tools</h3>
+<p>Before projecting, ensure each orthographic view (top, front, and
+side) is grouped individually (<code>Ctrl + G</code>) so paths, strokes,
+and fills transform together.</p>
+<ol type="1">
+<li>Open the Transform panel by navigating to <strong>Object &gt;
+Transform</strong> or pressing <code>Shift + Ctrl + M</code>.</li>
+<li>Familiarize yourself with the three relevant tabs in this panel:
+<strong>Scale</strong>, <strong>Shear</strong>, and
+<strong>Rotate</strong>.</li>
+<li>In the <strong>Scale</strong> tab, ensure the <strong>Scale
+proportionally</strong> checkbox is unticked, and set the unit dropdown
+to <strong>%</strong>.</li>
+<li>In the <strong>Shear</strong> and <strong>Rotate</strong> tabs, make
+sure the angle unit is set to degrees (<strong>°</strong>).</li>
+</ol>
+<p>Always execute the three operations in strict order:
+<strong>Scale</strong>, then <strong>Shear</strong>, then
+<strong>Rotate</strong>. Applying them out of sequence will distort the
+geometry incorrectly.</p>
+<hr />
+<h3 id="projecting-the-top-view">Projecting the Top View</h3>
+<p>The top view represents the horizontal plane seen from above, resting
+between the 30-degree and 150-degree isometric axes.</p>
+<ol type="1">
+<li>Select your grouped <strong>Top</strong> orthographic artwork.</li>
+<li><strong>Scale:</strong> Go to the <strong>Scale</strong> tab. Set
+<strong>Width</strong> to <code>100%</code> and <strong>Height</strong>
+to <code>86.602%</code>. Click <strong>Apply</strong>.</li>
+<li><strong>Shear:</strong> Switch to the <strong>Shear</strong> tab.
+Set <strong>Horizontal</strong> shear to <code>-30°</code> and
+<strong>Vertical</strong> shear to <code>0°</code>. Click
+<strong>Apply</strong>.</li>
+<li><strong>Rotate:</strong> Switch to the <strong>Rotate</strong> tab.
+Set the angle to <code>30°</code> counter-clockwise (positive value).
+Click <strong>Apply</strong>.</li>
+</ol>
+<hr />
+<h3 id="projecting-the-front-left-view">Projecting the Front (Left)
+View</h3>
+<p>The front view forms the left-facing vertical surface of your
+isometric object, where vertical lines remain vertical and horizontal
+lines angle downwards to the left at 30 degrees.</p>
+<ol type="1">
+<li>Select your grouped <strong>Front</strong> orthographic
+artwork.</li>
+<li><strong>Scale:</strong> In the <strong>Scale</strong> tab, set
+<strong>Width</strong> to <code>100%</code> and <strong>Height</strong>
+to <code>86.602%</code>. Click <strong>Apply</strong>.</li>
+<li><strong>Shear:</strong> In the <strong>Shear</strong> tab, set
+<strong>Horizontal</strong> shear to <code>-30°</code> and
+<strong>Vertical</strong> shear to <code>0°</code>. Click
+<strong>Apply</strong>.</li>
+<li><strong>Rotate:</strong> In the <strong>Rotate</strong> tab, set the
+angle to <code>-30°</code> (clockwise rotation, or <code>330°</code>).
+Click <strong>Apply</strong>.</li>
+</ol>
+<hr />
+<h3 id="projecting-the-side-right-view">Projecting the Side (Right)
+View</h3>
+<p>The side view forms the right-facing vertical surface, where vertical
+lines remain vertical and horizontal lines rise to the right at 30
+degrees.</p>
+<ol type="1">
+<li>Select your grouped <strong>Side</strong> orthographic artwork.</li>
+<li><strong>Scale:</strong> In the <strong>Scale</strong> tab, set
+<strong>Width</strong> to <code>100%</code> and <strong>Height</strong>
+to <code>86.602%</code>. Click <strong>Apply</strong>.</li>
+<li><strong>Shear:</strong> In the <strong>Shear</strong> tab, set
+<strong>Horizontal</strong> shear to <code>30°</code> and
+<strong>Vertical</strong> shear to <code>0°</code>. Click
+<strong>Apply</strong>.</li>
+<li><strong>Rotate:</strong> In the <strong>Rotate</strong> tab, set the
+angle to <code>30°</code> counter-clockwise. Click
+<strong>Apply</strong>.</li>
+</ol>
+<hr />
+<h3 id="assembling-the-projected-views">Assembling the Projected
+Views</h3>
+<p>Once all three planes have been transformed:</p>
+<ol type="1">
+<li>Enable snapping on the right toolbar (<code>%</code> or click the
+magnet icon).</li>
+<li>Activate <strong>Snap to paths</strong>, <strong>Snap to cusps
+nodes</strong>, and <strong>Snap to corners of bounding
+boxes</strong>.</li>
+<li>Drag the projected Front, Side, and Top groups together using the
+<strong>Select and Transform objects</strong> tool (<code>S</code>).
+Align their matching corners so the surfaces snap securely into a solid
+isometric form.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

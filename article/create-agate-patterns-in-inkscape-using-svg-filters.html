@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Agate Patterns in Inkscape Using SVG Filters - inkscape</title>
+    <meta name="description" content="This guide explains how to generate realistic banded agate mineral patterns in Inkscape using procedural SVG filter primitives. By pairing feTurbulence to create organic, distorted noise with feColorMatrix to manipulate luminance values into distinct col">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-agate-patterns-in-inkscape-using-svg-filters">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Agate Patterns in Inkscape Using SVG Filters - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-agate-patterns-in-inkscape-using-svg-filters" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate realistic banded agate mineral patterns in Inkscape using procedural SVG filter primitives. By pairing feTurbulence to create organic, distorted noise with feColorMatrix to manipulate luminance values into distinct col" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-agate-patterns-in-inkscape-using-svg-filters">Create
+Agate Patterns in Inkscape Using SVG Filters</h1>
+<p>This guide explains how to generate realistic banded agate mineral
+patterns in Inkscape using procedural SVG filter primitives. By pairing
+<code>feTurbulence</code> to create organic, distorted noise with
+<code>feColorMatrix</code> to manipulate luminance values into distinct
+color stripes, you can procedurally simulate the cyclic, stratified
+layers found in natural cut stones directly inside your vector
+workspace.</p>
+<h3 id="understanding-the-filter-pipeline">Understanding the Filter
+Pipeline</h3>
+<p>Natural agate is characterized by undulating, concentric bands of
+varied mineral opacity and color. In SVG, procedural textures rely on
+noise functions. The <code>feTurbulence</code> primitive generates
+Perlin-style noise coordinates, while the <code>feColorMatrix</code>
+primitive transforms the pixel channels of that noise mathematically. By
+stretching the noise along one or more axes and applying high-contrast
+color shifts via the color matrix, smooth noise transitions become
+sharp, stratified bands.</p>
+<h3 id="step-1-initialize-the-filter-in-inkscape">Step 1: Initialize the
+Filter in Inkscape</h3>
+<ol type="1">
+<li>Draw a base shape (such as a circle or an irregular pebble-like
+polygon) on your canvas using the <strong>Pen (B)</strong> or
+<strong>Ellipse (E)</strong> tool. Set the fill to a neutral color.</li>
+<li>Open the Filter Editor panel by navigating to <strong>Filters &gt;
+Filter Editor</strong>.</li>
+<li>Click <strong>New</strong> at the bottom of the Filter Editor panel
+to initialize an empty custom filter, and rename it to
+"AgateBanding".</li>
+<li>Check the box next to your new filter while your shape is selected
+to assign the filter to the target object.</li>
+</ol>
+<h3 id="step-2-generate-the-base-distortion-with-feturbulence">Step 2:
+Generate the Base Distortion with feTurbulence</h3>
+<p>The <code>feTurbulence</code> primitive generates the structural
+foundation of the mineral veins.</p>
+<ol type="1">
+<li>In the <strong>Add Primitive</strong> dropdown menu, select
+<strong>Turbulence</strong> and click <strong>Add
+Primitive</strong>.</li>
+<li>Select the <code>feTurbulence</code> node in the filter list to view
+its properties in the panel below:
+<ul>
+<li><strong>Type</strong>: Set to <strong>Fractal Noise</strong> for
+soft, cloud-like transitions, or <strong>Turbulence</strong> for
+sharper, jagged transitions.</li>
+<li><strong>Base Frequency</strong>: Agate banding requires stretched,
+directional variation rather than uniform isotropic noise. Set unequal
+frequencies for the X and Y axes (for example, <code>X: 0.015</code>,
+<code>Y: 0.060</code>). This stretches the pattern into stratified
+layers.</li>
+<li><strong>NumOctaves</strong>: Set between <code>3</code> and
+<code>5</code>. Higher octaves introduce fine, microscopic veins, while
+lower octaves produce broad, smooth bands.</li>
+<li><strong>Seed</strong>: Adjust this value to alter the randomization
+until the flow lines mimic natural mineral strata.</li>
+</ul></li>
+</ol>
+<h3 id="step-3-create-banding-with-fecolormatrix">Step 3: Create Banding
+with feColorMatrix</h3>
+<p>The <code>feColorMatrix</code> primitive applies a 5x4 transformation
+matrix to the RGBA channels of the turbulence output. To turn continuous
+gradient noise into bands, you must map the continuous grayscale or
+alpha values into distinct color ranges.</p>
+<ol type="1">
+<li>In the <strong>Add Primitive</strong> dropdown, select <strong>Color
+Matrix</strong> and click <strong>Add Primitive</strong>.</li>
+<li>Connect the output of the <code>feTurbulence</code> primitive to the
+input of the <code>feColorMatrix</code> primitive by dragging the
+connector line in the editor graph.</li>
+<li>Select the <code>feColorMatrix</code> node and set the
+<strong>Type</strong> dropdown to <strong>Matrix</strong>.</li>
+<li>Input custom values into the matrix grid to isolate bands. A
+standard SVG color matrix operates as:</li>
+</ol>
+<pre class="text"><code>| R&#39; |   | a00 a01 a02 a03 a04 |   | R |
+| G&#39; | = | a10 a11 a12 a13 a14 | * | G |
+| B&#39; |   | a20 a21 a22 a23 a24 |   | B |
+| A&#39; |   | a30 a31 a32 a33 a34 |   | A |
+| 1  |                             | 1 |</code></pre>
+<p>To create sharp agate rings:</p>
+<ul>
+<li>Multiply the noise input across channels with large contrasting
+values to force rapid clipping between color steps.</li>
+<li>Use alternating high-positive and negative coefficients in the Red,
+Green, and Blue rows relative to the input channel (typically the Red or
+Alpha output from the turbulence). For example, setting high multipliers
+on the Red channel while leaving Blue negative forces the intermediate
+noise values to split sharply into warm carnelian, cream, and deep amber
+bands.</li>
+<li>Adjust the fifth column (offset values) to slide the color
+distribution up or down, effectively revealing or hiding interior
+rings.</li>
+</ul>
+<h3 id="step-4-fine-tuning-mineral-realism">Step 4: Fine-Tuning Mineral
+Realism</h3>
+<p>To refine the agate appearance:</p>
+<ul>
+<li><strong>Layer Multiplication</strong>: Chain a second
+<code>feColorMatrix</code> set to <strong>Saturate</strong> or
+<strong>Hue Rotate</strong> to calibrate the final tone without
+rebuilding the matrix bands.</li>
+<li><strong>Blend with Base Vectors</strong>: Add a
+<strong>Composite</strong> (<code>feComposite</code>) primitive at the
+end of the chain, setting the <strong>Operator</strong> to
+<strong>In</strong> or <strong>Atop</strong> with the
+<code>Source Graphic</code> to ensure the mineral pattern clips cleanly
+to the original geometry of your stone cut.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

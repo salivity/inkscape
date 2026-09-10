@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where to Find Inkscape Autosave Files on macOS - inkscape</title>
+    <meta name="description" content="If Inkscape crashes or quits unexpectedly on macOS, unsaved progress can often be retrieved from cache locations and emergency save folders. This guide details the default temporary file paths where Inkscape stores recovery documents on macOS, how to acc">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/where-to-find-inkscape-autosave-files-on-macos">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Where to Find Inkscape Autosave Files on macOS - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/where-to-find-inkscape-autosave-files-on-macos" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="If Inkscape crashes or quits unexpectedly on macOS, unsaved progress can often be retrieved from cache locations and emergency save folders. This guide details the default temporary file paths where Inkscape stores recovery documents on macOS, how to acc" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="where-to-find-inkscape-autosave-files-on-macos">Where to Find
+Inkscape Autosave Files on macOS</h1>
+<p>If Inkscape crashes or quits unexpectedly on macOS, unsaved progress
+can often be retrieved from cache locations and emergency save folders.
+This guide details the default temporary file paths where Inkscape
+stores recovery documents on macOS, how to access them via Finder or
+Terminal, and how to configure your autosave settings to prevent future
+data loss.</p>
+<h2 id="1-the-user-home-directory-emergency-saves">1. The User Home
+Directory (Emergency Saves)</h2>
+<p>When Inkscape suffers an unexpected crash on macOS, its built-in
+emergency save routine attempts to write the document state immediately
+before closing. By default, these emergency files are saved directly in
+your macOS user profile folder:</p>
+<ul>
+<li><strong>Path:</strong> <code>/Users/&lt;your-username&gt;/</code>
+(or <code>~</code>)</li>
+<li><strong>File Format:</strong> Files are typically named after the
+original document or labelled as
+<code>inkscape-emergency-save.svg</code>, often appended with a date or
+timestamp (e.g.,
+<code>New document 1.2024_05_12_14_30_00.0.svg</code>).</li>
+</ul>
+<h3 id="how-to-access">How to access:</h3>
+<ol type="1">
+<li>Open <strong>Finder</strong>.</li>
+<li>Press <strong>Command + Shift + H</strong> to jump straight to your
+Home directory.</li>
+<li>Sort the folder by <strong>Date Modified</strong> to locate recently
+created <code>.svg</code> files.</li>
+<li>If the file is not visible, press <strong>Command + Shift +
+.</strong> (period) to toggle the visibility of hidden files.</li>
+</ol>
+<hr />
+<h2 id="2-the-macos-temporary-directory-tmpdir">2. The macOS Temporary
+Directory (<code>$TMPDIR</code>)</h2>
+<p>If the emergency save process cannot write to the home folder, macOS
+frequently redirects temporary application dumps to the system's private
+temporary directory.</p>
+<h3 id="how-to-access-1">How to access:</h3>
+<ol type="1">
+<li>Open the <strong>Terminal</strong> application (found in
+Applications &gt; Utilities).</li>
+<li>Type the following command and press <strong>Enter</strong>:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">open</span> <span class="va">$TMPDIR</span></span></code></pre></div></li>
+<li>A Finder window will open showing your system's temporary
+directory.</li>
+<li>Search this folder (and any subfolders named <code>inkscape</code>
+or alphanumeric temporary folders) for files ending in
+<code>.svg</code>.</li>
+</ol>
+<hr />
+<h2 id="3-scheduled-autosave-directory">3. Scheduled Autosave
+Directory</h2>
+<p>Scheduled autosaves (created at set intervals while the app is
+running normally) are distinct from crash emergency saves. If you have
+the autosave feature enabled, Inkscape stores these files in the
+directory configured in your preferences.</p>
+<p>If no custom path was designated, Inkscape defaults to saving these
+backups in:</p>
+<ul>
+<li><strong>Default Path:</strong> <code>~/.cache/inkscape/</code> or
+<code>/Users/&lt;your-username&gt;/Library/Application Support/org.inkscape.Inkscape/</code></li>
+</ul>
+<h3 id="how-to-access-2">How to access:</h3>
+<ol type="1">
+<li>Open <strong>Finder</strong>.</li>
+<li>Press <strong>Command + Shift + G</strong> to open the "Go to
+Folder" prompt.</li>
+<li>Enter
+<code>~/Library/Application Support/org.inkscape.Inkscape/</code> and
+press <strong>Enter</strong>.</li>
+<li>Check for folders named <code>cache</code> or backup files saved
+directly inside.</li>
+</ol>
+<hr />
+<h2 id="how-to-verify-or-change-the-autosave-location">How to Verify or
+Change the Autosave Location</h2>
+<p>To ensure autosaves are actively working and to set a predictable
+recovery path:</p>
+<ol type="1">
+<li>Open <strong>Inkscape</strong>.</li>
+<li>Navigate to <strong>Inkscape</strong> &gt;
+<strong>Preferences</strong> in the top menu bar (or press
+<strong>Command + ,</strong>).</li>
+<li>In the left-hand sidebar, expand <strong>Input/Output</strong> and
+select <strong>Autosave</strong>.</li>
+<li>Ensure the <strong>Enable autosave</strong> box is checked.</li>
+<li>In the <strong>Autosave directory</strong> field, specify a
+dedicated folder (such as
+<code>/Users/&lt;your-username&gt;/Documents/InkscapeBackups/</code>) to
+make recovery straightforward following future unexpected quits.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

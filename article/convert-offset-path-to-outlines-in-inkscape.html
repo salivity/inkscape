@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Offset Path to Outlines in Inkscape - inkscape</title>
+    <meta name="description" content="Converting an offset path into standard vector outlines in Inkscape is essential when preparing files for cutting machines, plotters, or standard SVG export. When you create a dynamic or linked offset in Inkscape, the program maintains it as a parametric">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/convert-offset-path-to-outlines-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Convert Offset Path to Outlines in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/convert-offset-path-to-outlines-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting an offset path into standard vector outlines in Inkscape is essential when preparing files for cutting machines, plotters, or standard SVG export. When you create a dynamic or linked offset in Inkscape, the program maintains it as a parametric" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="convert-offset-path-to-outlines-in-inkscape">Convert Offset Path
+to Outlines in Inkscape</h1>
+<p>Converting an offset path into standard vector outlines in Inkscape
+is essential when preparing files for cutting machines, plotters, or
+standard SVG export. When you create a dynamic or linked offset in
+Inkscape, the program maintains it as a parametric object rather than a
+fixed vector shape with editable nodes. This guide explains how to
+convert these dynamic offsets and stroke outlines into permanent,
+standard vector paths in just a few clicks.</p>
+<h3
+id="converting-a-dynamic-or-linked-offset-to-a-standard-path">Converting
+a Dynamic or Linked Offset to a Standard Path</h3>
+<p>If you used the <strong>Dynamic Offset</strong>
+(<code>Ctrl + J</code>) or <strong>Linked Offset</strong> feature, the
+resulting shape is controlled by a single node handle. To convert it
+into a standard vector path:</p>
+<ol type="1">
+<li>Click on the <strong>Select and Transform objects</strong> tool
+(shortcut: <code>S</code> or <code>F1</code>).</li>
+<li>Click on your offset object to select it.</li>
+<li>Open the <strong>Path</strong> menu from the top navigation
+bar.</li>
+<li>Click <strong>Object to Path</strong> (shortcut:
+<code>Shift + Ctrl + C</code>).</li>
+<li>Select the <strong>Edit paths by nodes</strong> tool (shortcut:
+<code>N</code> or <code>F2</code>) to confirm. You will now see regular
+anchor nodes along the perimeter of the shape instead of the single
+dynamic handle.</li>
+</ol>
+<h3 id="converting-a-stroke-outline-into-a-path">Converting a Stroke
+Outline into a Path</h3>
+<p>If you created an outline by increasing the stroke width of an object
+rather than using an offset command, you must convert the stroke itself
+into a filled vector object:</p>
+<ol type="1">
+<li>Select the stroked object with the <strong>Select</strong>
+tool.</li>
+<li>Go to the <strong>Path</strong> menu.</li>
+<li>Click <strong>Stroke to Path</strong> (shortcut:
+<code>Ctrl + Alt + C</code>).</li>
+<li>The stroke is now an independent vector shape with its own fill and
+editable outlines.</li>
+</ol>
+<h3 id="combining-overlapping-outlines-optional">Combining Overlapping
+Outlines (Optional)</h3>
+<p>If your offset outline needs to be merged seamlessly with the
+original underlying object (such as creating a unified sticker
+border):</p>
+<ol type="1">
+<li>Select both the converted offset path and the original object.</li>
+<li>Open the <strong>Path</strong> menu.</li>
+<li>Select <strong>Union</strong> (shortcut:
+<code>Ctrl + +</code>).</li>
+<li>The intersecting paths will fuse into a single, continuous vector
+outline ready for production.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

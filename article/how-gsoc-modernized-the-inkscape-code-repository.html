@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GSoC Modernized the Inkscape Code Repository - inkscape</title>
+    <meta name="description" content="Google Summer of Code (GSoC) served as a pivotal catalyst in transforming Inkscape from an aging, monolithic codebase into a modernized, maintainable vector graphics editor. By pairing student developers with experienced core maintainers, the program pro">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-gsoc-modernized-the-inkscape-code-repository">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GSoC Modernized the Inkscape Code Repository - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-gsoc-modernized-the-inkscape-code-repository" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Google Summer of Code (GSoC) served as a pivotal catalyst in transforming Inkscape from an aging, monolithic codebase into a modernized, maintainable vector graphics editor. By pairing student developers with experienced core maintainers, the program pro" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-gsoc-modernized-the-inkscape-code-repository">How GSoC
+Modernized the Inkscape Code Repository</h1>
+<p>Google Summer of Code (GSoC) served as a pivotal catalyst in
+transforming Inkscape from an aging, monolithic codebase into a
+modernized, maintainable vector graphics editor. By pairing student
+developers with experienced core maintainers, the program provided
+dedicated engineering hours to tackle large-scale refactoring
+initiatives that standard volunteer cycles could rarely accommodate.
+This article examines the specific technical breakthroughs achieved
+through GSoC—including the transition to modern C++ standards, the
+migration to updated GTK toolkits, the modularization of core libraries,
+and the establishment of sustainable developer infrastructure.</p>
+<h3 id="accelerating-the-adoption-of-modern-c">Accelerating the Adoption
+of Modern C++</h3>
+<p>Inkscape originated as a fork of Sodipodi in 2003, inheriting a
+significant amount of legacy C code, early C++ paradigms, and
+idiosyncratic memory management patterns. Standardizing this vast
+codebase presented a daunting challenge for regular volunteers. Over
+multiple GSoC cycles, contributors systematically refactored older
+modules to modern C++ standards (C++11, C++14, and C++17).</p>
+<p>GSoC projects eliminated error-prone raw pointers and custom
+reference-counting systems in favor of standard smart pointers
+(<code>std::unique_ptr</code> and <code>std::shared_ptr</code>).
+Students replaced archaic custom data structures with standard C++
+library containers and algorithms, vastly improving type safety,
+reducing memory leaks, and making the codebase more accessible to modern
+software engineers.</p>
+<h3 id="driving-the-multi-year-gtk3-migration">Driving the Multi-Year
+GTK3 Migration</h3>
+<p>One of the largest hurdles in Inkscape’s development history was the
+transition from the deprecated GTK2 toolkit to GTK3, a prerequisite for
+proper HiDPI display support, Wayland compatibility, and modern theming.
+Because the UI layer was deeply intertwined with core document logic,
+the migration could not happen overnight.</p>
+<p>GSoC contributors tackled this massive undertaking incrementally:</p>
+<ul>
+<li><strong>Decoupling Widgets:</strong> Isolating monolithic dialogs
+into self-contained widgets compatible with modern Gtkmm wrappers.</li>
+<li><strong>Canvas Upgrades:</strong> Refactoring the internal rendering
+loop to eliminate direct X11/GDK drawing calls, migrating the canvas to
+modern Cairo-based rendering pipelines.</li>
+<li><strong>UI Redesigns:</strong> Porting crucial docking mechanisms
+and tool palettes to modern GTK layouts, which ultimately made the
+milestone Inkscape 1.0 release possible.</li>
+</ul>
+<h3 id="decoupling-and-modularizing-core-engines">Decoupling and
+Modularizing Core Engines</h3>
+<p>Historically, Inkscape suffered from tight coupling, where vector
+mathematics, document object model (DOM) manipulations, and user
+interface events existed within the same execution threads. Several GSoC
+initiatives focused on architectural separation:</p>
+<ol type="1">
+<li><strong><code>lib2geom</code> Enhancements:</strong> Students helped
+extract and modernize Inkscape’s primary 2D computational geometry
+engine, <code>lib2geom</code>, turning it into a stand-alone library
+with high test coverage and efficient curve, path, and boolean
+operations.</li>
+<li><strong>Extensions and Node Tool Refactoring:</strong> Projects
+dismantled complex, legacy tools—such as the Node Tool and the Live Path
+Effects (LPE) system—rebuilding them with modular APIs that allowed
+independent feature additions without risking core application
+stability.</li>
+<li><strong>Async and Multi-Threading Implementations:</strong> GSoC
+contributors worked on offloading intensive tasks, such as filter
+rendering and path operations, from the main UI thread to background
+worker pools, significantly boosting performance on modern multi-core
+processors.</li>
+</ol>
+<h3 id="build-system-modernization-and-developer-tooling">Build System
+Modernization and Developer Tooling</h3>
+<p>Onboarding new developers was historically hindered by complex build
+setups relying on outdated Autotools scripts. GSoC contributors
+contributed to the repository's migration toward CMake, aligning
+Inkscape with industry-standard development workflows across Linux,
+Windows, and macOS. These modernization efforts also introduced
+comprehensive automated testing suites, continuous integration (CI)
+pipelines, and static analysis tooling, ensuring that modern code
+quality standards are maintained for all new contributions.</p>
+<h3 id="cultivating-core-maintainers">Cultivating Core Maintainers</h3>
+<p>Beyond code metrics, GSoC altered the trajectory of the Inkscape
+repository by functioning as a primary recruitment mechanism for
+long-term maintainers. Several students who entered the project to solve
+a specific modernization task remained active after their programs
+concluded, stepping into roles as core architects. This generational
+influx of expertise ensured that the technical debt resolved during
+summer programs did not re-accumulate, securing Inkscape’s reputation as
+a modern, competitive open-source creative suite.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

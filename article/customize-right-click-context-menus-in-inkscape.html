@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customize Right-Click Context Menus in Inkscape - inkscape</title>
+    <meta name="description" content="Customizing the canvas right-click context menu in Inkscape allows you to streamline your design workflow by placing frequently used commands directly at your cursor. In modern versions of Inkscape (version 1.0 and newer), the interface elements—includ">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/customize-right-click-context-menus-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Customize Right-Click Context Menus in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/customize-right-click-context-menus-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Customizing the canvas right-click context menu in Inkscape allows you to streamline your design workflow by placing frequently used commands directly at your cursor. In modern versions of Inkscape (version 1.0 and newer), the interface elements—includ" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="customize-right-click-context-menus-in-inkscape">Customize
+Right-Click Context Menus in Inkscape</h1>
+<p>Customizing the canvas right-click context menu in Inkscape allows
+you to streamline your design workflow by placing frequently used
+commands directly at your cursor. In modern versions of Inkscape
+(version 1.0 and newer), the interface elements—including popup context
+menus—are defined using GTK XML configuration files. By creating an
+override file in your personal configuration folder, you can safely add,
+remove, or reorder items in the canvas right-click menu without
+modifying core program files.</p>
+<h3 id="step-1-locate-the-default-menu-file">Step 1: Locate the Default
+Menu File</h3>
+<p>Inkscape defines its menu structures in a file named
+<code>menus.ui</code>. To safely modify it, first locate the default
+installation file:</p>
+<ul>
+<li><strong>Linux:</strong>
+<code>/usr/share/inkscape/ui/menus.ui</code></li>
+<li><strong>Windows:</strong>
+<code>C:\Program Files\Inkscape\share\inkscape\ui\menus.ui</code></li>
+<li><strong>macOS:</strong>
+<code>/Applications/Inkscape.app/Contents/Resources/share/inkscape/ui/menus.ui</code></li>
+</ul>
+<h3 id="step-2-copy-the-file-to-your-user-profile">Step 2: Copy the File
+to Your User Profile</h3>
+<p>Modifying the original installation file directly is not recommended,
+as application updates will overwrite your changes. Instead, copy
+<code>menus.ui</code> into your personal user directory:</p>
+<ul>
+<li><strong>Linux:</strong> <code>~/.config/inkscape/ui/</code></li>
+<li><strong>Windows:</strong> <code>%APPDATA%\inkscape\ui\</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/ui/</code></li>
+</ul>
+<p><em>Note: If the <code>ui</code> folder does not exist in your user
+directory, create it manually.</em></p>
+<h3 id="step-3-edit-the-context-menu-in-a-text-editor">Step 3: Edit the
+Context Menu in a Text Editor</h3>
+<p>Open the copied <code>menus.ui</code> file in a plain text editor
+such as VS Code, Notepad++, or Kate.</p>
+<ol type="1">
+<li>Use the search function (Ctrl+F or Cmd+F) to locate the canvas popup
+menu section. Look for the
+<code>&lt;menu id="canvas-context-menu"&gt;</code> or related context
+menu tags (such as menus for objects, paths, or text selections).</li>
+<li>Inside the target menu block, you will see a list of
+<code>&lt;item&gt;</code> elements that define each entry. Each item
+consists of a label attribute and an action attribute.</li>
+</ol>
+<p><strong>To remove an item:</strong> Delete the entire
+<code>&lt;item ... /&gt;</code> line for that command.</p>
+<p><strong>To reorder items:</strong> Cut and paste the
+<code>&lt;item&gt;</code> lines into your preferred sequential
+order.</p>
+<p><strong>To add a new item:</strong> Insert a new
+<code>&lt;item&gt;</code> tag referencing a valid Inkscape action ID.
+For example:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">item</span> <span class="ot">action=</span><span class="st">&quot;app.selection-group&quot;</span> /&gt;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">item</span> <span class="ot">action=</span><span class="st">&quot;app.selection-ungroup&quot;</span> /&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">item</span> <span class="ot">action=</span><span class="st">&quot;win.dialog-open(id=&#39;AlignDistribute&#39;)&quot;</span> /&gt;</span></code></pre></div>
+<h3 id="step-4-find-valid-action-ids">Step 4: Find Valid Action IDs</h3>
+<p>To bind commands correctly, you must use valid Inkscape action IDs.
+You can discover available action names by navigating in Inkscape to
+<strong>Edit &gt; Preferences &gt; Interface &gt; Keyboard
+Shortcuts</strong>, where actions and their internal identifiers are
+listed. You can also run the terminal command
+<code>inkscape --action-list</code> to output all supported actions.</p>
+<h3 id="step-5-save-and-relaunch">Step 5: Save and Relaunch</h3>
+<p>Save your changes to <code>menus.ui</code> and restart Inkscape. When
+you right-click on the canvas or an object, the context menu will
+reflect your custom layout. If the menu fails to load properly, verify
+that the XML syntax is well-formed with matching opening and closing
+tags.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

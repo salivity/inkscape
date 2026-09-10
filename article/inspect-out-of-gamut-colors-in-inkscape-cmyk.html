@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspect Out-of-Gamut Colors in Inkscape CMYK - inkscape</title>
+    <meta name="description" content="This article explains how to set up and inspect out-of-gamut color warnings in Inkscape using CMYK soft-proofing. By configuring your color management settings, selecting a target print profile, and toggling soft-proof display controls, you can identify">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inspect-out-of-gamut-colors-in-inkscape-cmyk">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inspect Out-of-Gamut Colors in Inkscape CMYK - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inspect-out-of-gamut-colors-in-inkscape-cmyk" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how to set up and inspect out-of-gamut color warnings in Inkscape using CMYK soft-proofing. By configuring your color management settings, selecting a target print profile, and toggling soft-proof display controls, you can identify" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inspect-out-of-gamut-colors-in-inkscape-cmyk">Inspect
+Out-of-Gamut Colors in Inkscape CMYK</h1>
+<p>This article explains how to set up and inspect out-of-gamut color
+warnings in Inkscape using CMYK soft-proofing. By configuring your color
+management settings, selecting a target print profile, and toggling
+soft-proof display controls, you can identify and adjust colors that
+fall outside the printable CMYK color space before sending your artwork
+to print.</p>
+<h3 id="1-configure-color-management-preferences">1. Configure Color
+Management Preferences</h3>
+<p>Before checking for out-of-gamut colors, Inkscape must be linked to
+your target CMYK profile:</p>
+<ol type="1">
+<li>Go to <strong>Edit &gt; Preferences</strong> (or press
+<code>Ctrl + Shift + P</code>).</li>
+<li>Select the <strong>Color management</strong> tab from the left
+sidebar.</li>
+<li>In the <strong>Proofing profile</strong> dropdown, choose the CMYK
+ICC profile required by your commercial printer (such as <em>Coated
+FOGRA39</em> or <em>U.S. Web Coated SWOP</em>). If your desired profile
+is missing, install the <code>.icc</code> file on your operating system
+and restart Inkscape.</li>
+<li>Set the <strong>Gamut warning color</strong> to a distinct,
+high-contrast color (such as bright magenta, cyan, or mid-gray) that
+stands out against your artwork.</li>
+</ol>
+<h3 id="2-enable-soft-proofing-and-gamut-warning">2. Enable
+Soft-Proofing and Gamut Warning</h3>
+<p>Once your profiles are assigned, turn on the soft-proofing engine and
+the gamut check:</p>
+<ol type="1">
+<li>Navigate to <strong>View &gt; Color Display Mode</strong> in the top
+menu.</li>
+<li>Select <strong>Soft Proofing</strong> to simulate how the CMYK
+profile renders the colors on your display.</li>
+<li>To reveal colors that cannot be accurately reproduced in CMYK, go to
+<strong>View &gt; Color Display Mode</strong> and toggle <strong>Gamut
+Check</strong> (or select the gamut warning option depending on your
+Inkscape version).</li>
+</ol>
+<p>In Inkscape 1.2 and newer, you can also toggle soft-proofing and
+gamut check quickly by clicking the <strong>Color Management</strong>
+icon located at the bottom-right corner of the canvas window.</p>
+<h3 id="3-identify-and-correct-out-of-gamut-colors">3. Identify and
+Correct Out-of-Gamut Colors</h3>
+<p>With Gamut Check enabled, any artwork element containing colors
+outside the CMYK gamut will be masked by the gamut warning color
+configured in your preferences.</p>
+<p>To correct an affected object:</p>
+<ol type="1">
+<li>Select the object displaying the gamut warning mask.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>Switch the color selector to the <strong>CMYK</strong> or
+<strong>HSL</strong> tab.</li>
+<li>Lower the saturation or manually adjust the CMYK sliders until the
+warning color disappears, ensuring the selected shade is safely within
+the printable gamut.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

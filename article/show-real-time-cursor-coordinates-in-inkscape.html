@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Real-Time Cursor Coordinates in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to monitor cursor positions and display live coordinate information while working in Inkscape. While Inkscape primarily streams real-time X and Y pointer coordinates through the application's bottom Status Bar, users needing direc">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/show-real-time-cursor-coordinates-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Show Real-Time Cursor Coordinates in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/show-real-time-cursor-coordinates-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to monitor cursor positions and display live coordinate information while working in Inkscape. While Inkscape primarily streams real-time X and Y pointer coordinates through the application's bottom Status Bar, users needing direc" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="show-real-time-cursor-coordinates-in-inkscape">Show Real-Time
+Cursor Coordinates in Inkscape</h1>
+<p>This guide explains how to monitor cursor positions and display live
+coordinate information while working in Inkscape. While Inkscape
+primarily streams real-time X and Y pointer coordinates through the
+application's bottom Status Bar, users needing direct on-canvas visual
+readouts can utilize specific built-in tools—such as the Measure Tool,
+live snapping tooltips, and geometric node displays—to view positional
+data directly over their artwork.</p>
+<h3 id="viewing-real-time-coordinates-in-the-status-bar">Viewing
+Real-Time Coordinates in the Status Bar</h3>
+<p>By default, Inkscape constantly updates your cursor's exact
+coordinates in the workspace interface:</p>
+<ol type="1">
+<li>Look at the <strong>Status Bar</strong> located at the very bottom
+of the Inkscape window.</li>
+<li>Locate the <strong>X:</strong> and <strong>Y:</strong> coordinate
+fields (typically situated toward the bottom right or center, next to
+the zoom and rotation controls).</li>
+<li>Move your mouse across the canvas; the X and Y indicators update
+instantaneously according to your cursor's position relative to the
+document origin.</li>
+<li>To change the display measurement units (e.g., millimeters, pixels,
+or inches), press <code>Ctrl + Shift + D</code> to open <strong>Document
+Properties</strong> and change the <strong>Display units</strong>
+setting.</li>
+</ol>
+<h3 id="displaying-on-canvas-overlays-with-the-measure-tool">Displaying
+On-Canvas Overlays with the Measure Tool</h3>
+<p>If you require coordinates and dimensional data directly on the
+canvas surface rather than at the bottom of the screen, the Measure Tool
+acts as a real-time overlay:</p>
+<ol type="1">
+<li>Press <code>M</code> or select the <strong>Measure Tool</strong>
+(ruler icon) from the left toolbox.</li>
+<li>Click and hold anywhere on your canvas, then drag the cursor.</li>
+<li>Inkscape will project a real-time visual overlay following the
+cursor, displaying:
+<ul>
+<li>Current distance (length).</li>
+<li>Angle relative to the horizontal axis.</li>
+<li>Coordinate offsets (<span class="math inline">\(\Delta X\)</span>
+and <span class="math inline">\(\Delta Y\)</span>).</li>
+</ul></li>
+<li>To measure relative to existing objects without creating permanent
+paths, hover over shapes with the Measure Tool enabled to view automatic
+surface-to-point overlays.</li>
+</ol>
+<h3 id="enabling-on-canvas-snapping-tooltips">Enabling On-Canvas
+Snapping Tooltips</h3>
+<p>Inkscape can display temporary on-canvas tooltips directly at the
+cursor when it aligns with specific coordinates or geometries:</p>
+<ol type="1">
+<li>Ensure the <strong>Snapping</strong> control bar is enabled (toggle
+the magnet icon in the top-right corner or press <code>%</code>).</li>
+<li>Expand the snapping popover menu and enable <strong>Snap to
+Grid</strong>, <strong>Snap to Guides</strong>, or <strong>Snap to
+Paths</strong>.</li>
+<li>Move your cursor near canvas elements or grid lines. Inkscape will
+generate an on-canvas pop-up tag directly at the cursor tip indicating
+the exact structural coordinate being targeted (e.g., "cusp node",
+"intersection", or "grid line").</li>
+</ol>
+<h3 id="checking-coordinates-with-the-node-tool">Checking Coordinates
+with the Node Tool</h3>
+<p>For precise placement and coordinate inspection of vector paths:</p>
+<ol type="1">
+<li>Press <code>N</code> to switch to the <strong>Node
+Tool</strong>.</li>
+<li>Select any vector path to reveal its nodes.</li>
+<li>Click on a specific node. The <strong>Tool Controls Bar</strong> at
+the top of the screen will immediately display the exact absolute X and
+Y coordinates for that specific point.</li>
+<li>Dragging a node displays a real-time movement delta overlay
+indicating how far the point has moved from its original
+coordinates.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solving Inkscape Fill Errors: Nonzero vs EvenOdd - inkscape</title>
+    <meta name="description" content="Self-intersecting paths and complex combined vectors in Inkscape often create unexpected rendering glitches, such as unwanted holes or improperly filled shapes. These visual errors occur because rendering engines rely on specific mathematical algorithms">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/solving-inkscape-fill-errors-nonzero-vs-evenodd">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Solving Inkscape Fill Errors: Nonzero vs EvenOdd - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/solving-inkscape-fill-errors-nonzero-vs-evenodd" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Self-intersecting paths and complex combined vectors in Inkscape often create unexpected rendering glitches, such as unwanted holes or improperly filled shapes. These visual errors occur because rendering engines rely on specific mathematical algorithms" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="solving-inkscape-fill-errors-nonzero-vs-evenodd">Solving
+Inkscape Fill Errors: Nonzero vs EvenOdd</h1>
+<p>Self-intersecting paths and complex combined vectors in Inkscape
+often create unexpected rendering glitches, such as unwanted holes or
+improperly filled shapes. These visual errors occur because rendering
+engines rely on specific mathematical algorithms to determine which
+enclosed regions belong to the inside or outside of a path. By adjusting
+the path's fill rule between <strong>Nonzero</strong> (Winding) and
+<strong>EvenOdd</strong>, or by reversing path directions, you can
+instantly resolve these rendering artifacts without redrawing your
+vector artwork.</p>
+<h3 id="understanding-nonzero-vs-evenodd-fill-rules">Understanding
+Nonzero vs. EvenOdd Fill Rules</h3>
+<p>Inkscape supports two primary SVG fill rules that define how
+overlapping and intersecting paths are colored:</p>
+<ul>
+<li><strong>Nonzero (Winding Rule):</strong> This default rule
+determines whether a point is inside the shape by drawing a ray outward
+and tracking the direction (clockwise vs. counterclockwise) of every
+intersecting path segment. If overlapping sub-paths travel in the same
+direction, they stay filled. If an inner loop runs in the opposite
+direction of the outer boundary, it creates a transparent cutout (hole).
+Unintended self-intersections often fail to create cutouts under this
+rule if the path directions match.</li>
+<li><strong>EvenOdd Rule:</strong> This rule ignores path direction
+entirely. It counts the total number of path boundaries crossed from any
+given point to infinity. If the number of crossings is odd, the area is
+filled; if the count is even, the area remains empty. This makes EvenOdd
+ideal for automatically alternating between solid and transparent
+regions in self-intersecting or nested paths.</li>
+</ul>
+<h3 id="how-to-change-fill-rules-in-inkscape">How to Change Fill Rules
+in Inkscape</h3>
+<ol type="1">
+<li>Select the problematic path using the <strong>Select Tool</strong>
+(<code>S</code> or <code>F1</code>).</li>
+<li>Open the Fill and Stroke dialog by pressing
+<code>Ctrl + Shift + F</code> (or <code>Cmd + Shift + F</code> on macOS)
+or navigating to <strong>Object &gt; Fill and Stroke</strong>.</li>
+<li>In the <strong>Fill</strong> tab (or <strong>Stroke paint</strong>
+tab if using filled strokes), locate the <strong>Fill rule</strong>
+toggle buttons at the bottom-right corner of the panel.</li>
+<li>Switch from <strong>Nonzero</strong> (represented by a solid polygon
+icon) to <strong>EvenOdd</strong> (represented by a polygon with a hole
+in the center), or vice versa.</li>
+<li>Inspect the canvas to verify that the self-intersecting loops and
+overlapping sections now render correctly.</li>
+</ol>
+<h3 id="fixing-fill-errors-without-changing-the-rule">Fixing Fill Errors
+Without Changing the Rule</h3>
+<p>If your target format requires the Nonzero rule (often required for
+certain font formats, cutting plotters, or specific SVG standards), you
+can fix rendering errors manually:</p>
+<ul>
+<li><strong>Reverse Sub-Path Direction:</strong> If a hole in a compound
+path is filled instead of transparent under the Nonzero rule, switch to
+the <strong>Node Tool</strong> (<code>N</code>), select a node on the
+inner loop, and select <strong>Path &gt; Reverse</strong>
+(<code>Shift + R</code>). This flips the winding direction and restores
+the cutout.</li>
+<li><strong>Flatten Self-Intersections:</strong> To permanently remove
+overlapping geometry, select the path and navigate to <strong>Path &gt;
+Union</strong> (<code>Ctrl + +</code>) or use the <strong>Shape Builder
+Tool</strong> (<code>X</code>) to merge overlapping segments into a
+clean, single-boundary shape.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

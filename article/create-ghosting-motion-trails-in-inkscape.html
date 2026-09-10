@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Ghosting Motion Trails in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to generate dynamic, semi-transparent vector ghosting motion trails in Inkscape to convey speed and movement in your artwork. You will learn how to use automated path interpolation for smooth, sequential step trails, manual duplic">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-ghosting-motion-trails-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Ghosting Motion Trails in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-ghosting-motion-trails-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate dynamic, semi-transparent vector ghosting motion trails in Inkscape to convey speed and movement in your artwork. You will learn how to use automated path interpolation for smooth, sequential step trails, manual duplic" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-ghosting-motion-trails-in-inkscape">Create Ghosting
+Motion Trails in Inkscape</h1>
+<p>This guide explains how to generate dynamic, semi-transparent vector
+ghosting motion trails in Inkscape to convey speed and movement in your
+artwork. You will learn how to use automated path interpolation for
+smooth, sequential step trails, manual duplication for stylized action
+sequences, and gradient transparency masks to create a fading motion
+blur effect.</p>
+<h2 id="method-1-using-the-interpolate-extension">Method 1: Using the
+Interpolate Extension</h2>
+<p>The Interpolate extension generates a specific number of intermediate
+vector steps between two shapes, creating an evenly spaced motion
+trail.</p>
+<ol type="1">
+<li><strong>Prepare Your Object:</strong> Select your vector object. If
+it is grouped or a text/shape element, convert it to a path by going to
+<strong>Path &gt; Object to Path</strong> and ungrouping if necessary
+(<strong>Ctrl + Shift + G</strong> / <strong>Cmd + Shift +
+G</strong>).</li>
+<li><strong>Create the Trail Endpoints:</strong> Duplicate the object
+(<strong>Ctrl + D</strong> / <strong>Cmd + D</strong>) and move the
+duplicate to where the motion begins. Scale or rotate it slightly if the
+object is changing size or angle during movement.</li>
+<li><strong>Select Both Paths:</strong> Hold <strong>Shift</strong> and
+click both the original object and the duplicate.</li>
+<li><strong>Open Interpolate:</strong> Go to <strong>Extensions &gt;
+Generate from Path &gt; Interpolate</strong>.</li>
+<li><strong>Adjust Settings:</strong>
+<ul>
+<li>Set the <strong>Interpolation Steps</strong> between 4 and 10
+depending on the trail length.</li>
+<li>Check <strong>Interpolate Style</strong> so Inkscape blends the
+colors and opacities automatically.</li>
+<li>Enable <strong>Live Preview</strong> to adjust the spacing.</li>
+</ul></li>
+<li><strong>Apply:</strong> Click <strong>Apply</strong> and close the
+dialog.</li>
+<li><strong>Set Transparency:</strong> Select the resulting group of
+interpolated shapes, ungroup them (<strong>Ctrl + U</strong> /
+<strong>Cmd + U</strong>), and decrease the opacity of each trailing
+step progressively using the <strong>Fill and Stroke</strong> panel
+(<strong>Ctrl + Shift + F</strong> / <strong>Cmd + Shift + F</strong>).
+Give the oldest ghost the lowest opacity (e.g., 10%) and the newest
+ghost a higher opacity (e.g., 70%).</li>
+</ol>
+<h2 id="method-2-manual-duplication-with-staggered-transforms">Method 2:
+Manual Duplication with Staggered Transforms</h2>
+<p>For custom spacing, dynamic character poses, or non-linear motion,
+manual duplication offers precise control.</p>
+<ol type="1">
+<li><strong>Duplicate Along the Path:</strong> Select your object and
+press <strong>Ctrl + D</strong> to duplicate it. Move the copy backward
+along the intended trajectory. Repeat this 3 to 5 times.</li>
+<li><strong>Layer Order:</strong> Ensure the original lead object sits
+at the top of the stack. Select the lead object and press the
+<strong>Home</strong> key to raise it to the top. Raise subsequent
+duplicates in descending order from front to back.</li>
+<li><strong>Adjust Step-Down Opacity:</strong>
+<ul>
+<li>Select the duplicate directly behind the main object and set its
+opacity to 60%.</li>
+<li>Select the next duplicate and set it to 40%.</li>
+<li>Set subsequent duplicates to 20% and 5%.</li>
+</ul></li>
+<li><strong>Scale Down:</strong> Select trailing duplicates and scale
+them down slightly toward the tail of the trail to simulate perspective
+and speed dissipation.</li>
+</ol>
+<h2 id="refining-trails-with-gradient-fades-and-blur">Refining Trails
+with Gradient Fades and Blur</h2>
+<p>To make the ghosting effect appear more like a continuous motion
+smear rather than discrete steps:</p>
+<ol type="1">
+<li><strong>Add Directional Blur:</strong> Select the trailing ghost
+objects (excluding the main object) and open the <strong>Fill and
+Stroke</strong> panel. Under the <strong>Fill</strong> or
+<strong>Stroke</strong> tab, apply a subtle <strong>Blur</strong>
+(between 1% and 4%) to soften the vector edges.</li>
+<li><strong>Apply a Linear Gradient Mask:</strong> Group all the ghost
+trail objects together (<strong>Ctrl + G</strong>). Draw a rectangle
+that completely covers the ghost group. Fill the rectangle with a linear
+gradient transitioning from solid white to pure black, running in the
+direction of the movement.</li>
+<li><strong>Set the Mask:</strong> Select both the rectangle and the
+ghost group, then go to <strong>Object &gt; Mask &gt; Set</strong>. The
+black area of the gradient will completely hide the tail, while the
+white area will keep the front ghosts visible, resulting in a smooth
+transparency falloff.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

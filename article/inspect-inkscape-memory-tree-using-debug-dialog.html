@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspect Inkscape Memory Tree Using Debug Dialog - inkscape</title>
+    <meta name="description" content="Inkscape relies on an internal representation of documents called the SPObject tree, which manages live C++ objects in system memory separately from the raw SVG XML markup. This guide explains how to open the Debug dialog, navigate the internal object me">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inspect-inkscape-memory-tree-using-debug-dialog">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inspect Inkscape Memory Tree Using Debug Dialog - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inspect-inkscape-memory-tree-using-debug-dialog" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape relies on an internal representation of documents called the SPObject tree, which manages live C++ objects in system memory separately from the raw SVG XML markup. This guide explains how to open the Debug dialog, navigate the internal object me" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inspect-inkscape-memory-tree-using-debug-dialog">Inspect
+Inkscape Memory Tree Using Debug Dialog</h1>
+<p>Inkscape relies on an internal representation of documents called the
+<code>SPObject</code> tree, which manages live C++ objects in system
+memory separately from the raw SVG XML markup. This guide explains how
+to open the Debug dialog, navigate the internal object memory tree, and
+inspect runtime object references, node types, and memory allocations
+for debugging and development purposes.</p>
+<h3 id="understanding-the-object-memory-tree">Understanding the Object
+Memory Tree</h3>
+<p>Inkscape maintains two parallel structural representations of any
+open vector file:</p>
+<ol type="1">
+<li><strong>The XML DOM Tree:</strong> The standard SVG source code,
+viewable through the XML Editor (<code>Ctrl</code> + <code>Shift</code>
++ <code>X</code>).</li>
+<li><strong>The <code>SPObject</code> Memory Tree:</strong> The
+internal, live C++ object hierarchy that drives rendering,
+transformations, live path effects, and canvas interactions.</li>
+</ol>
+<p>While the XML Editor displays attributes and tags, the Debug dialog
+exposes the underlying <code>SPObject</code> memory tree, showing live
+pointer addresses, reference counts, cache statuses, and internal
+signals.</p>
+<h3 id="opening-the-debug-dialog">Opening the Debug Dialog</h3>
+<p>Accessing internal debugging tools depends on your Inkscape build
+(standard release or development/debug build):</p>
+<ol type="1">
+<li><strong>Via Command Palette:</strong> Press <code>?</code> (or
+<code>Shift</code> + <code>Ctrl</code> + <code>P</code>) to open the
+Command Palette. Type <code>Debug</code> and select the
+<strong>Debug</strong> dialog or internal memory inspector from the
+matching action list.</li>
+<li><strong>Via Terminal or Launch Flag:</strong> If the option does not
+appear in standard menus, launch Inkscape from your terminal with
+developer options enabled:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--debug-info</span></span></code></pre></div>
+Alternatively, run Inkscape within a development environment built with
+<code>CMAKE_BUILD_TYPE=Debug</code>.</li>
+<li><strong>Using GTK Inspector:</strong> On builds compiled with
+developer flags, press <code>Ctrl</code> + <code>Shift</code> +
+<code>I</code> or <code>Ctrl</code> + <code>Shift</code> +
+<code>D</code> to open the underlying GTK/Application Inspector to view
+active window objects and memory layouts.</li>
+</ol>
+<h3 id="navigating-the-internal-hierarchy">Navigating the Internal
+Hierarchy</h3>
+<p>Once the Debug or Memory inspection interface is open:</p>
+<ol type="1">
+<li><strong>Locate the Document Root:</strong> Expand the top-level
+<code>SPDocument</code> node. This serves as the root container for all
+loaded document assets, definitions, and render layers.</li>
+<li><strong>Expand the <code>SPRoot</code> Object:</strong> Directly
+beneath <code>SPDocument</code>, find <code>SPRoot</code> (corresponding
+to the <code>&lt;svg&gt;</code> tag).</li>
+<li><strong>Traverse Child Nodes:</strong>
+<ul>
+<li>Expand branches to inspect structural containers like
+<code>SPDefs</code> (markers, gradients, patterns) and
+<code>SPGroup</code> (layers and grouped objects).</li>
+<li>Identify leaf nodes such as <code>SPShape</code>,
+<code>SPPath</code>, <code>SPText</code>, and <code>SPImage</code>.</li>
+</ul></li>
+</ol>
+<h3 id="inspecting-runtime-object-attributes">Inspecting Runtime Object
+Attributes</h3>
+<p>Selecting any individual node in the tree displays diagnostic memory
+details:</p>
+<ul>
+<li><strong>Object Pointer:</strong> Displays the hexadecimal memory
+address (e.g., <code>0x55d8f2a1b3c0</code>) of the <code>SPObject</code>
+instance.</li>
+<li><strong>Type Identifier:</strong> Confirms the exact C++ runtime
+class implementing the node.</li>
+<li><strong>Reference Counts:</strong> Indicates how many active
+elements or internal listeners hold references to the object, useful for
+identifying memory leaks and orphaned elements.</li>
+<li><strong>Represented XML Node:</strong> Maps the selected memory
+object back to its linked <code>Inkscape::XML::Node</code>.</li>
+<li><strong>Clean/Dirty Flags:</strong> Shows whether the object
+requires a rendering update or transformation recalculation.</li>
+</ul>
+<h3 id="diagnosing-issues-with-the-memory-tree">Diagnosing Issues with
+the Memory Tree</h3>
+<ul>
+<li><strong>Ghost Objects:</strong> If an element is deleted from the
+canvas but still visible in the Debug tree, verify its reference count
+to ensure an extension, clone, or signal is not preventing garbage
+collection.</li>
+<li><strong>Live Path Effect (LPE) Stacks:</strong> Expand path elements
+to verify that linked LPE objects are properly attached and executing
+along the memory pipeline.</li>
+<li><strong>Clone Dependencies:</strong> Trace <code>SPUse</code> nodes
+back to their original source objects to ensure link integrity across
+document modifications.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

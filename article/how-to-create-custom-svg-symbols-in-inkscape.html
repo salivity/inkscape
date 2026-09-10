@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Custom SVG Symbols in Inkscape - inkscape</title>
+    <meta name="description" content="Creating a custom SVG Symbols library in Inkscape allows design and development teams to standardize reusable design assets, icons, and UI components across shared projects. This guide explains how to design assets, convert them into Inkscape symbols, sa">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-custom-svg-symbols-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Custom SVG Symbols in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-custom-svg-symbols-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating a custom SVG Symbols library in Inkscape allows design and development teams to standardize reusable design assets, icons, and UI components across shared projects. This guide explains how to design assets, convert them into Inkscape symbols, sa" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-custom-svg-symbols-in-inkscape">How to Create
+Custom SVG Symbols in Inkscape</h1>
+<p>Creating a custom SVG Symbols library in Inkscape allows design and
+development teams to standardize reusable design assets, icons, and UI
+components across shared projects. This guide explains how to design
+assets, convert them into Inkscape symbols, save them to the correct
+local directory, and distribute the custom symbol library to your entire
+team for seamless drag-and-drop workflow integration.</p>
+<h3 id="1-design-and-prepare-your-vector-assets">1. Design and Prepare
+Your Vector Assets</h3>
+<p>Open Inkscape and create a new document. Before turning shapes into
+symbols, ensure each graphic is properly structured:</p>
+<ul>
+<li><strong>Group Elements:</strong> Combine all paths, shapes, and text
+for a single icon into a single group by selecting them and pressing
+<code>Ctrl + G</code> (or <code>Cmd + G</code> on macOS).</li>
+<li><strong>Convert Strokes to Paths:</strong> If icons need to scale
+uniformly without stroke width distortion, select the paths and navigate
+to <strong>Path &gt; Stroke to Path</strong>.</li>
+<li><strong>Clean Up Objects:</strong> Ensure there are no unwanted
+hidden layers, transparent overlapping shapes, or stray nodes.</li>
+<li><strong>Fit Canvas to Selection (Optional):</strong> While not
+strictly required, setting sensible dimensions (e.g., 24x24 px or 32x32
+px) ensures visual consistency.</li>
+</ul>
+<h3 id="2-convert-objects-into-symbols">2. Convert Objects into
+Symbols</h3>
+<p>Inkscape provides a built-in Symbols panel to handle reusable
+components.</p>
+<ol type="1">
+<li>Open the Symbols dialog by going to <strong>Object &gt;
+Symbols</strong> (or press <code>Ctrl + Shift + Y</code> /
+<code>Cmd + Shift + Y</code>).</li>
+<li>Select one of your grouped assets on the canvas.</li>
+<li>In the Symbols panel, click the <strong>Add Symbol from current
+document</strong> icon (the <code>+</code> icon at the bottom of the
+panel).</li>
+<li>Repeat this step for every asset you want to include in the
+library.</li>
+</ol>
+<h3 id="3-name-and-organize-your-symbols">3. Name and Organize Your
+Symbols</h3>
+<p>Proper naming makes symbols searchable inside Inkscape's Symbols
+panel:</p>
+<ol type="1">
+<li>Open the <strong>Object Properties</strong> panel by going to
+<strong>Object &gt; Object Properties</strong>
+(<code>Ctrl + Shift + O</code> / <code>Cmd + Shift + O</code>).</li>
+<li>Select a symbol on the canvas or from the Symbols list.</li>
+<li>Fill in the <strong>ID</strong> and <strong>Title</strong> fields
+with descriptive, standardized names (e.g.,
+<code>icon-user-profile</code>, <code>btn-primary-arrow</code>).</li>
+<li>Click <strong>Set</strong> to apply the changes.</li>
+</ol>
+<h3 id="4-save-the-symbol-library-file">4. Save the Symbol Library
+File</h3>
+<p>To make the symbols appear in Inkscape’s permanent library list, the
+file must be saved in Inkscape's dedicated <code>symbols</code>
+folder:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>Choose <strong>Plain SVG (*.svg)</strong> as the format.</li>
+<li>Name the file after your team or design system (e.g.,
+<code>company-ui-icons.svg</code>).</li>
+<li>Save the file to the user symbols directory for your operating
+system:
+<ul>
+<li><strong>Windows:</strong>
+<code>%APPDATA%\inkscape\symbols\</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/symbols/</code></li>
+<li><strong>Linux:</strong>
+<code>~/.config/inkscape/symbols/</code></li>
+</ul></li>
+</ol>
+<p><em>(Note: If the <code>symbols</code> folder does not exist in that
+directory, create it manually.)</em></p>
+<h3 id="5-distribute-the-library-to-your-team">5. Distribute the Library
+to Your Team</h3>
+<p>To deploy the symbol library across your organization:</p>
+<ul>
+<li><strong>Direct File Sharing:</strong> Share the <code>.svg</code>
+file via internal storage, email, or Slack, and instruct team members to
+copy it into their respective OS <code>symbols</code> directory.</li>
+<li><strong>Version Control / Repository:</strong> Store the symbol file
+in a shared Git repository. Team members can clone or pull updates
+directly.</li>
+<li><strong>Symlink / Automation:</strong> Advanced setups can use
+symbolic links (symlinks) pointing from the local Inkscape
+<code>symbols</code> directory to a synchronized shared cloud folder
+(such as Dropbox, Nextcloud, or Google Drive) to automatically keep the
+team updated whenever symbols are modified.</li>
+</ul>
+<h3 id="6-access-and-use-the-symbols">6. Access and Use the Symbols</h3>
+<p>Once the file is placed in the symbols directory:</p>
+<ol type="1">
+<li>Restart Inkscape (or open a new document).</li>
+<li>Open the <strong>Symbols</strong> panel
+(<code>Ctrl + Shift + Y</code>).</li>
+<li>Click the <strong>Symbol set</strong> dropdown menu at the top of
+the panel.</li>
+<li>Select your custom library name from the list.</li>
+<li>Drag and drop any symbol directly from the panel onto the active
+canvas.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

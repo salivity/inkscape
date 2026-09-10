@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Radar Charts in Inkscape - inkscape</title>
+    <meta name="description" content="Radar charts, commonly called spider diagrams, offer an effective visual method for comparing multiple quantitative variables across one or more data series. This tutorial provides a direct, step-by-step workflow for building fully editable, scalable vec">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-radar-charts-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Radar Charts in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-radar-charts-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Radar charts, commonly called spider diagrams, offer an effective visual method for comparing multiple quantitative variables across one or more data series. This tutorial provides a direct, step-by-step workflow for building fully editable, scalable vec" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-radar-charts-in-inkscape">How to Create Radar
+Charts in Inkscape</h1>
+<p>Radar charts, commonly called spider diagrams, offer an effective
+visual method for comparing multiple quantitative variables across one
+or more data series. This tutorial provides a direct, step-by-step
+workflow for building fully editable, scalable vector radar charts from
+scratch using Inkscape. You will learn how to generate concentric
+polygon background webs, align radial axes, accurately plot and close
+data series polygons, and apply clear color-coded styling for
+multi-metric analysis.</p>
+<h3 id="step-1-set-up-the-document-and-snapping">Step 1: Set Up the
+Document and Snapping</h3>
+<ol type="1">
+<li>Open Inkscape and press <strong>Ctrl+Shift+D</strong> to access
+<strong>Document Properties</strong>. Set your display units to pixels
+(<code>px</code>) or millimeters (<code>mm</code>) according to your
+output needs.</li>
+<li>Enable the <strong>Snap Controls Bar</strong> on the right side of
+the canvas.</li>
+<li>Turn on <strong>Snap to paths</strong>, <strong>Snap to cusp
+nodes</strong>, and <strong>Snap to object centers</strong> to ensure
+precision when aligning grid lines and data points.</li>
+</ol>
+<h3 id="step-2-build-the-concentric-polygon-grid">Step 2: Build the
+Concentric Polygon Grid</h3>
+<ol type="1">
+<li>Select the <strong>Stars and Polygons</strong> tool
+(<strong>F8</strong> or <code>*</code>).</li>
+<li>On the top toolbar, switch the mode to <strong>Regular
+polygon</strong>.</li>
+<li>Set the <strong>Corners</strong> value to match your metric count
+(e.g., <code>5</code> for five metrics, <code>6</code> for six metrics).
+Ensure <strong>Spoke ratio</strong> is set to <code>1.000</code> and
+<strong>Rounded</strong> is set to <code>0.000</code>.</li>
+<li>Hold <strong>Ctrl</strong> while clicking and dragging on the canvas
+to draw a symmetric polygon. This represents the outer boundary (100%
+scale).</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<strong>Ctrl+Shift+F</strong>). Set <strong>Fill</strong> to none,
+choose a light gray <strong>Stroke paint</strong>, and set the
+<strong>Stroke width</strong> to a thin line (e.g.,
+<code>1px</code>).</li>
+<li>With the polygon selected, press <strong>Ctrl+D</strong> to
+duplicate it.</li>
+<li>Open the <strong>Transform</strong> panel
+(<strong>Ctrl+Shift+M</strong>), switch to the <strong>Scale</strong>
+tab, check <strong>Scale proportionally</strong>, and scale the
+duplicate down to represent internal grid intervals (e.g., 80%, 60%,
+40%, 20%). Repeat the duplication and scaling process for each
+interval.</li>
+</ol>
+<h3 id="step-3-draw-the-radial-axes">Step 3: Draw the Radial Axes</h3>
+<ol type="1">
+<li>Select the <strong>Draw Bezier curves and straight lines</strong>
+tool (<strong>Shift+F6</strong> or <code>B</code>).</li>
+<li>Click directly on the center node of the innermost polygon or
+intersection.</li>
+<li>Draw a straight line out to one of the vertices of the outermost
+polygon and press <strong>Enter</strong>.</li>
+<li>Repeat this process for each vertex so that an axis runs from the
+center to each metric corner.</li>
+<li>Select all axis lines, group them (<strong>Ctrl+G</strong>), and
+match their stroke color and width to the background polygon grid.</li>
+</ol>
+<h3 id="step-4-plot-the-data-points">Step 4: Plot the Data Points</h3>
+<ol type="1">
+<li>Calculate the relative position of each metric along its respective
+axis line based on your raw values (e.g., a score of 70 on a 0–100 scale
+sits at 70% distance from the center).</li>
+<li>Use the <strong>Circle/Ellipse</strong> tool (<strong>F5</strong>)
+to create small markers (e.g., <code>6px</code> by <code>6px</code>) at
+each calculated metric distance along the axis lines.</li>
+<li>Select the <strong>Bezier</strong> tool again and click sequentially
+through each plotted point to draw a connected, closed loop representing
+your data set. Click the initial point to close the path.</li>
+</ol>
+<h3 id="step-5-style-for-multi-metric-comparison">Step 5: Style for
+Multi-Metric Comparison</h3>
+<ol type="1">
+<li>Select the closed data shape you created in Step 4.</li>
+<li>In the <strong>Fill and Stroke</strong> panel, apply a distinct
+primary color to the <strong>Stroke paint</strong> (e.g., deep blue) and
+increase the stroke width to make the series stand out (e.g.,
+<code>2px</code> or <code>3px</code>).</li>
+<li>Set the <strong>Fill</strong> to the same color, but lower the
+<strong>Alpha</strong> channel or opacity (e.g., 20% to 30%) so
+underlying grid elements remain visible.</li>
+<li>For additional comparison datasets, duplicate the plotting process
+using contrasting colors (e.g., bright orange or green) with identical
+fill opacity settings.</li>
+<li>Group each dataset polygon with its corresponding point
+markers.</li>
+</ol>
+<h3 id="step-6-add-labels-and-scales">Step 6: Add Labels and Scales</h3>
+<ol type="1">
+<li>Select the <strong>Text</strong> tool (<strong>F8</strong> or
+<code>T</code>).</li>
+<li>Click outside each outer vertex to label each axis with its metric
+name.</li>
+<li>In the <strong>Align and Distribute</strong> panel
+(<strong>Ctrl+Shift+A</strong>), align labels symmetrically relative to
+the chart’s center.</li>
+<li>Add numerical indicators (such as 0, 25, 50, 75, 100) along a single
+reference axis to provide a clear reading scale for the entire
+diagram.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

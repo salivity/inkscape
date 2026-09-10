@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Inkscape Calculates Path Normal Vectors - inkscape</title>
+    <meta name="description" content="This article explains the mathematical and algorithmic processes Inkscape uses to calculate normal and tangent vectors along a path when rendering SVG markers. Inkscape utilizes its underlying computational geometry engine, lib2geom, to evaluate parametr">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-inkscape-calculates-path-normal-vectors">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Inkscape Calculates Path Normal Vectors - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-inkscape-calculates-path-normal-vectors" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains the mathematical and algorithmic processes Inkscape uses to calculate normal and tangent vectors along a path when rendering SVG markers. Inkscape utilizes its underlying computational geometry engine, lib2geom, to evaluate parametr" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-inkscape-calculates-path-normal-vectors">How Inkscape
+Calculates Path Normal Vectors</h1>
+<p>This article explains the mathematical and algorithmic processes
+Inkscape uses to calculate normal and tangent vectors along a path when
+rendering SVG markers. Inkscape utilizes its underlying computational
+geometry engine, <code>lib2geom</code>, to evaluate parametric path
+derivatives, determine direction vectors at vertices, compute angle
+bisectors for intermediate nodes, and rotate these vectors to establish
+the surface normals required to orient markers correctly according to
+the SVG specification.</p>
+<h3 id="parametric-curve-representation-and-tangents">Parametric Curve
+Representation and Tangents</h3>
+<p>Inkscape represents vector paths as a series of parametric curve
+segments, typically cubic Bézier curves, line segments, or elliptical
+arcs. A 2D parametric segment is defined as:</p>
+<p><span class="math display">\[\mathbf{P}(t) = (x(t), y(t)) \quad
+\text{where} \quad t \in [0, 1]\]</span></p>
+<p>To establish an orientation at any point along a segment, Inkscape
+first calculates the tangent vector by taking the first derivative with
+respect to the parameter <span class="math inline">\(t\)</span>:</p>
+<p><span class="math display">\[\mathbf{P}&#39;(t) = \left(
+\frac{dx}{dt}, \frac{dy}{dt} \right)\]</span></p>
+<p>Once the tangent vector <span class="math inline">\(\mathbf{T}(t) =
+\mathbf{P}&#39;(t)\)</span> is obtained, it is normalized to unit
+length:</p>
+<p><span class="math display">\[\hat{\mathbf{T}}(t) =
+\frac{\mathbf{P}&#39;(t)}{\|\mathbf{P}&#39;(t)\|}\]</span></p>
+<p>The corresponding normal vector <span
+class="math inline">\(\hat{\mathbf{N}}(t)\)</span> is derived by
+rotating the unit tangent vector 90 degrees counterclockwise (or
+clockwise, depending on coordinate system conventions, typically <span
+class="math inline">\((-y&#39;, x&#39;)\)</span> in standard Cartesian
+coordinates or <span class="math inline">\((y&#39;, -x&#39;)\)</span> in
+computer graphics screen coordinates where the Y-axis points
+downward):</p>
+<p><span class="math display">\[\hat{\mathbf{N}}(t) = (-\hat{T}_y(t),
+\hat{T}_x(t))\]</span></p>
+<h3 id="calculating-vectors-at-path-terminals">Calculating Vectors at
+Path Terminals</h3>
+<p>For <code>marker-start</code> and <code>marker-end</code>, Inkscape
+evaluates the directional vectors at the boundary limits of the
+respective segments:</p>
+<ul>
+<li><strong>Start Marker:</strong> The incoming tangent is evaluated at
+the start of the first segment as <span class="math inline">\(t \to
+0^+\)</span>. The tangent is <span
+class="math inline">\(\mathbf{T}_{start} =
+\mathbf{P}&#39;(0)\)</span>.</li>
+<li><strong>End Marker:</strong> The outgoing tangent is evaluated at
+the end of the final segment as <span class="math inline">\(t \to
+1^-\)</span>. The tangent is <span
+class="math inline">\(\mathbf{T}_{end} =
+\mathbf{P}&#39;(1)\)</span>.</li>
+</ul>
+<p>The normal vectors at these boundaries are the perpendicular
+complements of these boundary tangents.</p>
+<h3 id="angle-bisectors-at-intermediate-vertices-mid-markers">Angle
+Bisectors at Intermediate Vertices (Mid Markers)</h3>
+<p>For intermediate vertices (<code>marker-mid</code>), an incoming
+segment ends and an outgoing segment begins. Inkscape follows the W3C
+SVG specification for markers configured with
+<code>orient="auto"</code>:</p>
+<ol type="1">
+<li><strong>Calculate Incident Tangents:</strong> The normalized
+incoming tangent vector <span
+class="math inline">\(\hat{\mathbf{u}}_{in}\)</span> is computed at
+<span class="math inline">\(t = 1\)</span> of the preceding segment. The
+normalized outgoing tangent vector <span
+class="math inline">\(\hat{\mathbf{u}}_{out}\)</span> is computed at
+<span class="math inline">\(t = 0\)</span> of the subsequent
+segment.</li>
+<li><strong>Vector Summation (Bisector):</strong> Inkscape computes the
+average directional vector by summing the two unit vectors: <span
+class="math display">\[\mathbf{V}_{mid} = \hat{\mathbf{u}}_{in} +
+\hat{\mathbf{u}}_{out}\]</span></li>
+<li><strong>Normalization:</strong> If <span
+class="math inline">\(\|\mathbf{V}_{mid}\| \neq 0\)</span>, the vector
+is normalized: <span class="math display">\[\hat{\mathbf{T}}_{mid} =
+\frac{\mathbf{V}_{mid}}{\|\mathbf{V}_{mid}\|}\]</span></li>
+<li><strong>Normal Derivation:</strong> The marker normal <span
+class="math inline">\(\hat{\mathbf{N}}_{mid}\)</span> is generated
+directly orthogonal to <span
+class="math inline">\(\hat{\mathbf{T}}_{mid}\)</span>. This bisects the
+interior/exterior angle between the two joining segments, ensuring the
+marker aligns symmetrically across the joint.</li>
+</ol>
+<h3 id="edge-cases-and-degenerate-segments">Edge Cases and Degenerate
+Segments</h3>
+<p>Inkscape must handle specific degenerate states where the first
+derivative evaluates to zero:</p>
+<ul>
+<li><strong>Zero-Length Segments and Cusps:</strong> If <span
+class="math inline">\(\mathbf{P}&#39;(t) = (0, 0)\)</span> (such as at a
+cusp point on a Bézier curve), <code>lib2geom</code> evaluates
+higher-order derivatives (such as the second derivative <span
+class="math inline">\(\mathbf{P}&#39;&#39;(t)\)</span>) using
+L'Hôpital's rule principles to find the limiting direction of the
+curve.</li>
+<li><strong>Opposing Collinear Segments (180° Reversals):</strong> When
+the incoming and outgoing vectors point in exactly opposite directions
+(<span class="math inline">\(\hat{\mathbf{u}}_{in} +
+\hat{\mathbf{u}}_{out} = \mathbf{0}\)</span>), vector addition yields a
+zero vector. In this case, Inkscape falls back to using the incoming
+vector <span class="math inline">\(\hat{\mathbf{u}}_{in}\)</span> or the
+outgoing vector depending on subpath context to compute the orthogonal
+normal.</li>
+<li><strong>Subpath Discontinuities:</strong> For non-continuous
+subpaths created by SVG <code>M</code> (moveto) commands, terminal rules
+apply to each open boundary rather than computing bisectors.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

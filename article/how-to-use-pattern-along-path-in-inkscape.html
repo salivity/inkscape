@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Pattern Along Path in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape's Pattern Along Path Live Path Effect (LPE) allows you to duplicate and stretch or distribute a vector shape along the trajectory of a line. This guide provides a straightforward, step-by-step walkthrough on how to prepare your source objects, a">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-use-pattern-along-path-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use Pattern Along Path in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-use-pattern-along-path-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape's Pattern Along Path Live Path Effect (LPE) allows you to duplicate and stretch or distribute a vector shape along the trajectory of a line. This guide provides a straightforward, step-by-step walkthrough on how to prepare your source objects, a" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-pattern-along-path-in-inkscape">How to Use Pattern
+Along Path in Inkscape</h1>
+<p>Inkscape's Pattern Along Path Live Path Effect (LPE) allows you to
+duplicate and stretch or distribute a vector shape along the trajectory
+of a line. This guide provides a straightforward, step-by-step
+walkthrough on how to prepare your source objects, apply the effect, and
+configure options such as spacing, repetition modes, and offsets to
+achieve clean, repeatable vector designs.</p>
+<h3 id="step-1-create-and-convert-your-objects">Step 1: Create and
+Convert Your Objects</h3>
+<ol type="1">
+<li>Draw the shape you want to repeat (the pattern).</li>
+<li>Draw the line or curve you want the pattern to follow (the
+path).</li>
+<li>Ensure both objects are converted to paths. Select each object
+individually and go to <strong>Path &gt; Object to Path</strong> (or
+press <code>Shift + Ctrl + C</code>).</li>
+</ol>
+<h3 id="step-2-copy-the-pattern-to-the-clipboard">Step 2: Copy the
+Pattern to the Clipboard</h3>
+<ol type="1">
+<li>Select the pattern object using the <strong>Select Tool</strong>
+(<code>S</code>).</li>
+<li>Copy it to your clipboard by pressing <code>Ctrl + C</code> (or
+<code>Cmd + C</code> on macOS).</li>
+</ol>
+<h3 id="step-3-apply-the-pattern-along-path-effect">Step 3: Apply the
+Pattern Along Path Effect</h3>
+<ol type="1">
+<li>Select the destination path (the line or curve).</li>
+<li>Open the Path Effects panel by navigating to <strong>Path &gt; Path
+Effects</strong>.</li>
+<li>Click the <strong>+</strong> (Add Path Effect) button.</li>
+<li>In the search bar, type <code>Pattern Along Path</code> and click on
+the effect to add it to the path.</li>
+</ol>
+<h3 id="step-4-link-the-pattern-to-the-path">Step 4: Link the Pattern to
+the Path</h3>
+<ol type="1">
+<li>In the <strong>Path Effects</strong> panel under the "Pattern Along
+Path" settings, locate the <strong>Pattern source</strong> row.</li>
+<li>Click the <strong>Paste Path</strong> (clipboard icon) or
+<strong>Link to path in clipboard</strong> button.</li>
+<li>The selected path will immediately transform, rendering the copied
+pattern along its length.</li>
+</ol>
+<h3 id="step-5-configure-the-effect-settings">Step 5: Configure the
+Effect Settings</h3>
+<p>Fine-tune the output using the controls in the Path Effects
+panel:</p>
+<ul>
+<li><strong>Pattern copies:</strong>
+<ul>
+<li><em>Single:</em> Places one stretched copy along the entire
+path.</li>
+<li><em>Repeated:</em> Duplicates the pattern across the path at its
+original proportions.</li>
+<li><em>Repeated, stretched:</em> Duplicates the pattern and
+automatically stretches them so they fit the path length evenly.</li>
+</ul></li>
+<li><strong>Spacing:</strong> Adjusts the gap or overlap between
+consecutive pattern copies.</li>
+<li><strong>Normal offset:</strong> Moves the pattern perpendicular to
+the path (above or below the line).</li>
+<li><strong>Tangential offset:</strong> Shifts the start position of the
+pattern along the path.</li>
+<li><strong>Pattern is vertical:</strong> Toggle this if your original
+pattern was drawn vertically rather than horizontally.</li>
+</ul>
+<h3 id="step-6-finalizing-the-output-optional">Step 6: Finalizing the
+Output (Optional)</h3>
+<p>If you want to freeze the design and turn the repeated shapes into
+permanent, editable vector nodes, select the object and go to
+<strong>Path &gt; Object to Path</strong>. This removes the dynamic
+effect and converts the result into standard editable geometry.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

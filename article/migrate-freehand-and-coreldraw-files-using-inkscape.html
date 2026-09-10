@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Migrate FreeHand and CorelDRAW Files Using Inkscape - inkscape</title>
+    <meta name="description" content="Migrating legacy vector artwork from proprietary formats like Macromedia FreeHand (.fh) and CorelDRAW (.cdr) to modern, open standards ensures long-term accessibility, preserves intellectual property, and removes dependencies on obsolete software. Inksca">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/migrate-freehand-and-coreldraw-files-using-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Migrate FreeHand and CorelDRAW Files Using Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/migrate-freehand-and-coreldraw-files-using-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Migrating legacy vector artwork from proprietary formats like Macromedia FreeHand (.fh) and CorelDRAW (.cdr) to modern, open standards ensures long-term accessibility, preserves intellectual property, and removes dependencies on obsolete software. Inksca" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="migrate-freehand-and-coreldraw-files-using-inkscape">Migrate
+FreeHand and CorelDRAW Files Using Inkscape</h1>
+<p>Migrating legacy vector artwork from proprietary formats like
+Macromedia FreeHand (.fh) and CorelDRAW (.cdr) to modern, open standards
+ensures long-term accessibility, preserves intellectual property, and
+removes dependencies on obsolete software. Inkscape serves as a powerful
+open-source bridge for this process, utilizing specialized underlying
+import libraries to read legacy files and convert them directly into
+W3C-standard Scalable Vector Graphics (SVG). This guide explains how to
+prepare, convert, and troubleshoot legacy files using both Inkscape's
+graphical interface and command-line automation.</p>
+<hr />
+<h3 id="understanding-the-underlying-import-engines">Understanding the
+Underlying Import Engines</h3>
+<p>Inkscape does not require original installations of FreeHand or
+CorelDRAW to open their files. Instead, it relies on dedicated
+open-source reverse-engineering libraries:</p>
+<ul>
+<li><strong><code>libfreehand</code></strong>: Handles Macromedia/Adobe
+FreeHand files (versions 7 through 11 / MX).</li>
+<li><strong><code>libcdr</code></strong>: Handles CorelDRAW files from
+version 7 up to modern versions (X7, X8, and newer).</li>
+<li><strong><code>librevenge</code></strong>: Acts as the base
+communication layer between these format libraries and Inkscape.</li>
+</ul>
+<p>These libraries are bundled by default in standard Inkscape
+installations for Windows, macOS, and Linux.</p>
+<hr />
+<h3 id="method-1-manual-conversion-via-the-graphical-interface">Method
+1: Manual Conversion via the Graphical Interface</h3>
+<p>For small archives or complex files that require individual visual
+inspection, use the direct GUI import method.</p>
+<ol type="1">
+<li><p><strong>Open the File:</strong></p>
+<ul>
+<li>Launch Inkscape.</li>
+<li>Go to <strong>File &gt; Open</strong> (or press <code>Ctrl+O</code>
+/ <code>Cmd+O</code>).</li>
+<li>Set the file type filter to <strong>All Files</strong> or select
+<strong>Corel DRAW Drawing (*.cdr)</strong> / <strong>Macromedia
+FreeHand (<em>.fh</em>)</strong>.</li>
+<li>Select your target file and click <strong>Open</strong>.</li>
+</ul></li>
+<li><p><strong>Inspect and Verify:</strong></p>
+<ul>
+<li><strong>Text Elements:</strong> Check if text remained editable or
+converted to paths. If the original fonts are missing on your current
+system, Inkscape will substitute them with fallback fonts.</li>
+<li><strong>Gradients and Fills:</strong> Verify that custom gradient
+meshes or proprietary pattern fills were interpreted accurately.</li>
+<li><strong>Layers and Groups:</strong> Open the <strong>Layers and
+Objects</strong> panel (<code>Ctrl+Shift+L</code>) to ensure grouped
+hierarchies and layer separations are intact.</li>
+</ul></li>
+<li><p><strong>Export to Open Standards:</strong></p>
+<ul>
+<li>Go to <strong>File &gt; Save As...</strong>
+(<code>Ctrl+Shift+S</code>).</li>
+<li>Select <strong>Plain SVG (*.svg)</strong> for the most universally
+compatible web-standard output, or <strong>Inkscape SVG (*.svg)</strong>
+if you plan to continue editing with Inkscape-specific features.</li>
+<li>Alternatively, choose <strong>PDF (*.pdf)</strong> or
+<strong>PostScript (*.ps)</strong> for print-ready vector
+distribution.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="method-2-batch-conversion-via-the-command-line">Method 2: Batch
+Conversion via the Command Line</h3>
+<p>When dealing with large archives of <code>.cdr</code> or
+<code>.fh</code> files, using Inkscape’s Command-Line Interface (CLI)
+allows you to automate the conversion process without opening the
+GUI.</p>
+<h4 id="single-file-cli-command">Single File CLI Command</h4>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--export-filename</span><span class="op">=</span><span class="st">&quot;output.svg&quot;</span> <span class="st">&quot;input.cdr&quot;</span></span></code></pre></div>
+<h4 id="batch-processing-on-linux--macos-bash">Batch Processing on Linux
+/ macOS (Bash)</h4>
+<p>Run the following script inside a directory containing your legacy
+files to convert all <code>.cdr</code> files to <code>.svg</code>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> <span class="pp">*</span>.cdr<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">inkscape</span> <span class="at">--export-filename</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${file</span><span class="op">%</span>.cdr<span class="va">}</span><span class="st">.svg&quot;</span> <span class="st">&quot;</span><span class="va">$file</span><span class="st">&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
+<p>For FreeHand files (e.g., <code>.fh11</code>):</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> file <span class="kw">in</span> <span class="pp">*</span>.fh11<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">inkscape</span> <span class="at">--export-filename</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${file</span><span class="op">%</span>.fh11<span class="va">}</span><span class="st">.svg&quot;</span> <span class="st">&quot;</span><span class="va">$file</span><span class="st">&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
+<h4 id="batch-processing-on-windows-powershell">Batch Processing on
+Windows (PowerShell)</h4>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Get-ChildItem</span> <span class="op">-</span>Filter <span class="op">*.</span><span class="fu">cdr</span> <span class="op">|</span> <span class="fu">ForEach-Object</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">&amp;</span> <span class="st">&quot;C:\Program Files\Inkscape\bin\inkscape.exe&quot;</span> <span class="op">--</span>export-filename<span class="op">=</span><span class="st">&quot;</span><span class="op">$(</span><span class="va">$_</span><span class="op">.</span><span class="fu">BaseName</span><span class="op">)</span><span class="st">.svg&quot;</span> <span class="va">$_</span><span class="op">.</span><span class="fu">FullName</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<hr />
+<h3 id="handling-common-migration-issues">Handling Common Migration
+Issues</h3>
+<ul>
+<li><strong>Missing Fonts:</strong> Legacy formats often rely on Type 1
+(PostScript) or obsolete TrueType fonts. If the exact fonts are not
+installed on the system performing the conversion, text layout shifts
+may occur. If original software access is available, convert text to
+curves/paths before migrating.</li>
+<li><strong>CMYK vs. RGB Color Shifts:</strong> SVG is primarily an
+RGB-based standard. CorelDRAW and FreeHand print files using CMYK color
+spaces will be converted to RGB. To maintain print fidelity, verify
+critical colors using Inkscape's color management features (via
+<strong>File &gt; Document Properties &gt; Color</strong>).</li>
+<li><strong>Proprietary Lens and Transparency Effects:</strong> Advanced
+proprietary effects (such as CorelDRAW lenses or FreeHand vector
+transparencies) might be rasterized or flattened during import. Inspect
+these elements and recreate them using standard SVG blend modes and
+opacity masks if editing flexibility is required.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

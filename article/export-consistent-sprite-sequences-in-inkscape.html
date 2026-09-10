@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Consistent Sprite Sequences in Inkscape - inkscape</title>
+    <meta name="description" content="Exporting animated walk cycles from Inkscape often results in sprite jitter because the default export settings automatically crop to the bounding box of the visible artwork, which shifts with every frame. This guide covers how to lock the export dimensi">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-consistent-sprite-sequences-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Consistent Sprite Sequences in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-consistent-sprite-sequences-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting animated walk cycles from Inkscape often results in sprite jitter because the default export settings automatically crop to the bounding box of the visible artwork, which shifts with every frame. This guide covers how to lock the export dimensi" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-consistent-sprite-sequences-in-inkscape">Export
+Consistent Sprite Sequences in Inkscape</h1>
+<p>Exporting animated walk cycles from Inkscape often results in sprite
+jitter because the default export settings automatically crop to the
+bounding box of the visible artwork, which shifts with every frame. This
+guide covers how to lock the export dimensions and position across all
+frames using Inkscape's Pages tool and transparent reference frames,
+ensuring a smooth, production-ready sequence for game engines.</p>
+<h2 id="the-core-problem">The Core Problem</h2>
+<p>When exporting vectors using the <strong>Selection</strong> or
+<strong>Drawing</strong> modes, Inkscape calculates the bounding box
+based solely on the outermost nodes of the current frame. In a walk
+cycle, swinging limbs alter the total width and height from frame to
+frame. When imported into a game engine, the sprite's pivot point jumps
+inconsistently.</p>
+<p>To prevent this, you must force Inkscape to export against a fixed
+frame boundary.</p>
+<hr />
+<h2 id="method-1-using-the-multi-page-tool-inkscape-12-and-newer">Method
+1: Using the Multi-Page Tool (Inkscape 1.2 and Newer)</h2>
+<p>Modern versions of Inkscape feature a native multi-page tool, which
+is the cleanest method for batch exporting sprite sequences with
+identical canvas sizes.</p>
+<h3 id="1-set-up-the-master-frame-size">1. Set Up the Master Frame
+Size</h3>
+<ol type="1">
+<li>Open your walk cycle document.</li>
+<li>Select the <strong>Create and Edit Pages</strong> tool
+(<code>Shift + P</code>) from the left toolbar.</li>
+<li>In the top toolbar, specify your target sprite width and height (for
+example, <code>128 px</code> by <code>128 px</code>).</li>
+</ol>
+<h3 id="2-create-pages-for-each-frame">2. Create Pages for Each
+Frame</h3>
+<ol type="1">
+<li>In the page settings toolbar, click the <strong>Create New
+Page</strong> button to add an identical page next to your first.</li>
+<li>Repeat this process until you have one page per frame of your walk
+cycle.</li>
+<li>Align each frame of your character to the center or base of each
+corresponding page. Use Inkscape's <strong>Align and Distribute</strong>
+panel (<code>Ctrl + Shift + A</code>) to maintain consistent
+footing.</li>
+</ol>
+<h3 id="3-batch-export-the-pages">3. Batch Export the Pages</h3>
+<ol type="1">
+<li>Open the <strong>Export</strong> dialog
+(<code>Ctrl + Shift + E</code>).</li>
+<li>Switch to the <strong>Batch Export</strong> tab at the top of the
+panel.</li>
+<li>Select the <strong>Pages</strong> sub-tab.</li>
+<li>Set your output format (PNG), DPI (standard is <code>96 DPI</code>
+for 1:1 pixel scale), and destination folder.</li>
+<li>Set the filename prefix (e.g., <code>walk_cycle_</code>).</li>
+<li>Click <strong>Export</strong>. Inkscape will generate sequentially
+numbered frames with identical dimensions.</li>
+</ol>
+<hr />
+<h2
+id="method-2-the-transparent-anchor-box-for-single-page-or-layer-based-workflows">Method
+2: The Transparent Anchor Box (For Single-Page or Layer-Based
+Workflows)</h2>
+<p>If your frames are stacked on separate layers within a single canvas,
+use an invisible reference box to lock the bounding area.</p>
+<h3 id="1-create-a-reference-rectangle">1. Create a Reference
+Rectangle</h3>
+<ol type="1">
+<li>Draw a rectangle that fully encompasses the maximum reach of your
+walk cycle animation.</li>
+<li>Set its exact dimensions in the top toolbar to whole pixel
+values.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>Set the Fill and Stroke to completely transparent (set Alpha to
+<code>0</code>).</li>
+</ol>
+<h3 id="2-group-the-anchor-with-each-frame">2. Group the Anchor with
+Each Frame</h3>
+<ol type="1">
+<li>Duplicate the transparent box (<code>Ctrl + D</code>) for every
+frame of your animation.</li>
+<li>Group one transparent box with the vector elements of each
+corresponding frame (<code>Ctrl + G</code>).</li>
+<li>Ensure the anchor box is positioned in the exact same coordinates
+relative to the character's ground line for every frame.</li>
+</ol>
+<h3 id="3-export-by-selection-or-layer">3. Export by Selection or
+Layer</h3>
+<ol type="1">
+<li>Select the grouped frame.</li>
+<li>In the <strong>Export</strong> panel
+(<code>Ctrl + Shift + E</code>), choose the <strong>Selection</strong>
+tab.</li>
+<li>Because the selection includes the transparent rectangle, Inkscape
+uses the bounds of the invisible box rather than the character's
+limbs.</li>
+<li>Export each frame sequentially.</li>
+</ol>
+<hr />
+<h2 id="key-export-settings-to-double-check">Key Export Settings to
+Double-Check</h2>
+<ul>
+<li><strong>DPI Settings:</strong> Always export at <code>96 DPI</code>
+unless working at a deliberate vector multiplier. Changing DPI shifts
+the exported pixel resolution.</li>
+<li><strong>Anti-Aliasing:</strong> If working with pixel art styles
+within Inkscape, change the rendering mode under Document Properties
+(<code>Ctrl + Shift + D</code>) to disable anti-aliasing to preserve
+hard pixel edges.</li>
+<li><strong>Snapping:</strong> Keep pixel grid snapping enabled
+(<code>%</code> key) when aligning anchor boxes to prevent sub-pixel
+blurring during rasterization.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

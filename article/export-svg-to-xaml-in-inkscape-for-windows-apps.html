@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export SVG to XAML in Inkscape for Windows Apps - inkscape</title>
+    <meta name="description" content="Exporting SVG icons to XAML format is an essential workflow for Windows application development across WPF, UWP, and WinUI frameworks. This guide provides a straightforward, step-by-step method to convert vector SVG graphics into native XAML code using I">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-svg-to-xaml-in-inkscape-for-windows-apps">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export SVG to XAML in Inkscape for Windows Apps - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-svg-to-xaml-in-inkscape-for-windows-apps" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting SVG icons to XAML format is an essential workflow for Windows application development across WPF, UWP, and WinUI frameworks. This guide provides a straightforward, step-by-step method to convert vector SVG graphics into native XAML code using I" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-svg-to-xaml-in-inkscape-for-windows-apps">Export SVG to
+XAML in Inkscape for Windows Apps</h1>
+<p>Exporting SVG icons to XAML format is an essential workflow for
+Windows application development across WPF, UWP, and WinUI frameworks.
+This guide provides a straightforward, step-by-step method to convert
+vector SVG graphics into native XAML code using Inkscape, enabling
+scalable, lightweight, and hardware-accelerated UI assets directly
+inside your Visual Studio projects.</p>
+<h2 id="preparing-the-svg-in-inkscape">Preparing the SVG in
+Inkscape</h2>
+<p>Before exporting, optimize your vector graphic to avoid compatibility
+issues with the XAML renderer:</p>
+<ol type="1">
+<li><strong>Ungroup Elements:</strong> Select the entire artwork using
+<code>Ctrl + A</code>, then press <code>Ctrl + Shift + G</code>
+repeatedly until all groups are resolved.</li>
+<li><strong>Convert Strokes to Paths:</strong> Select all outlined
+objects and go to <strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>). Windows XAML handles filled paths more
+consistently than complex stroke definitions.</li>
+<li><strong>Combine Shapes:</strong> Where appropriate, select related
+vector shapes and go to <strong>Path &gt; Union</strong>
+(<code>Ctrl + +</code>) or <strong>Path &gt; Combine</strong>
+(<code>Ctrl + K</code>) to reduce the final element count to a single
+compound path.</li>
+<li><strong>Fit Canvas to Selection:</strong> Go to <strong>File &gt;
+Document Properties</strong> (<code>Ctrl + Shift + D</code>), expand
+<strong>Resize to content</strong>, and click <strong>Resize page to
+drawing or selection</strong> to remove unwanted padding.</li>
+</ol>
+<h2 id="method-1-direct-export-via-save-as">Method 1: Direct Export via
+Save As</h2>
+<p>Inkscape includes built-in support for exporting directly to standard
+Microsoft XAML formats.</p>
+<ol type="1">
+<li>Open your prepared SVG file in Inkscape.</li>
+<li>Click <strong>File &gt; Save As...</strong> (or press
+<code>Shift + Ctrl + S</code>).</li>
+<li>In the file type dropdown menu, locate and select <strong>Microsoft
+XAML (*.xaml)</strong>.</li>
+<li>Choose your destination folder, enter a file name, and click
+<strong>Save</strong>.</li>
+<li>Open the resulting <code>.xaml</code> file in a text editor or
+Visual Studio to inspect the generated <code>&lt;Canvas&gt;</code> and
+<code>&lt;Path&gt;</code> elements.</li>
+</ol>
+<h2 id="method-2-extracting-path-data-streamgeometry">Method 2:
+Extracting Path Data (StreamGeometry)</h2>
+<p>For modern Windows development (such as WinUI 3, WPF, or MAUI), using
+a simple <code>&lt;PathIcon&gt;</code> or <code>&lt;Path&gt;</code> with
+a <code>Data</code> string is often cleaner than importing a full
+<code>&lt;Canvas&gt;</code> document.</p>
+<ol type="1">
+<li>Select your unified path object in Inkscape.</li>
+<li>Open the <strong>XML Editor</strong> by going to <strong>Edit &gt;
+XML Editor</strong> (or press <code>Ctrl + Shift + X</code>).</li>
+<li>In the tree view, select the <code>&lt;svg:path&gt;</code>
+element.</li>
+<li>In the right panel, find the <code>d</code> attribute (the SVG path
+data).</li>
+<li>Copy the value of the <code>d</code> attribute.</li>
+<li>In your Windows XAML file, paste the string directly into a
+<code>Path</code> or <code>PathIcon</code> element:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">Path</span> <span class="ot">Data=</span><span class="st">&quot;PASTE_COPIED_D_ATTRIBUTE_HERE&quot;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>      <span class="ot">Fill=</span><span class="st">&quot;{ThemeResource SystemControlForegroundBaseHighBrush}&quot;</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      <span class="ot">Stretch=</span><span class="st">&quot;Uniform&quot;</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      <span class="ot">Width=</span><span class="st">&quot;24&quot;</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      <span class="ot">Height=</span><span class="st">&quot;24&quot;</span> /&gt;</span></code></pre></div>
+<h2 id="best-practices-for-windows-applications">Best Practices for
+Windows Applications</h2>
+<ul>
+<li><strong>Use Vectors as Static Resources:</strong> Wrap exported XAML
+paths inside a <code>&lt;Canvas&gt;</code> or
+<code>&lt;Viewbox&gt;</code> within a <code>ResourceDictionary</code> to
+allow efficient reuse across multiple views.</li>
+<li><strong>Remove Hardcoded Colors:</strong> Replace hardcoded
+<code>Fill</code> or <code>Stroke</code> hex colors generated by
+Inkscape with Windows Theme resources (e.g.,
+<code>{ThemeResource ...}</code> in WinUI or dynamic brushes in WPF) to
+support system dark and light modes automatically.</li>
+<li><strong>Clean Decimal Precision:</strong> In Inkscape, configure
+<strong>Preferences &gt; Input/Output &gt; SVG Output</strong> to limit
+decimal places to 2 or 3 digits, minimizing file size without visible
+loss in icon quality.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

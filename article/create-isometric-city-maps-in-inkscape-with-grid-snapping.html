@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Isometric City Maps in Inkscape with Grid Snapping - inkscape</title>
+    <meta name="description" content="Designing isometric city map layouts in Inkscape relies on setting up an axonometric projection grid and leveraging vector snapping tools to align geometric shapes with mathematical precision. By configuring an isometric grid, enabling node snapping, and">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-isometric-city-maps-in-inkscape-with-grid-snapping">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Isometric City Maps in Inkscape with Grid Snapping - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-isometric-city-maps-in-inkscape-with-grid-snapping" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing isometric city map layouts in Inkscape relies on setting up an axonometric projection grid and leveraging vector snapping tools to align geometric shapes with mathematical precision. By configuring an isometric grid, enabling node snapping, and" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1
+id="create-isometric-city-maps-in-inkscape-with-grid-snapping">Create
+Isometric City Maps in Inkscape with Grid Snapping</h1>
+<p>Designing isometric city map layouts in Inkscape relies on setting up
+an axonometric projection grid and leveraging vector snapping tools to
+align geometric shapes with mathematical precision. By configuring an
+isometric grid, enabling node snapping, and drawing modular building
+blocks—such as bases, walls, and roofs—you can quickly construct
+intricate, three-dimensional architectural layouts entirely in 2D vector
+space.</p>
+<h3 id="1-configure-the-axonometric-grid">1. Configure the Axonometric
+Grid</h3>
+<p>Before drawing, you need to replace Inkscape's standard rectangular
+grid with a true isometric projection.</p>
+<ol type="1">
+<li>Open a new document and press <strong>Shift + Ctrl + D</strong> (or
+go to <strong>File &gt; Document Properties</strong>).</li>
+<li>Select the <strong>Grids</strong> tab.</li>
+<li>In the "Creation" dropdown menu, select <strong>Axonometric
+grid</strong> and click <strong>New</strong>.</li>
+<li>Adjust the grid settings:
+<ul>
+<li><strong>Grid units:</strong> Set to <code>px</code> or
+<code>mm</code> depending on your preference.</li>
+<li><strong>Spacing Y:</strong> Set a manageable spacing (such as
+<code>10px</code> or <code>20px</code>).</li>
+<li><strong>Angle X:</strong> Set to <code>30.0</code>.</li>
+<li><strong>Angle Z:</strong> Set to <code>30.0</code>.</li>
+</ul></li>
+<li>Close the Document Properties dialog. You will now see a triangular,
+isometric grid overlay across the canvas.</li>
+</ol>
+<h3 id="2-enable-grid-snapping-controls">2. Enable Grid Snapping
+Controls</h3>
+<p>Snapping ensures that every point you click locks directly onto the
+grid intersections, eliminating gaps and misaligned angles.</p>
+<ol type="1">
+<li>Turn on snapping by clicking the <strong>Enable Snapping</strong>
+toggle in the top-right corner (or press <strong>%</strong>).</li>
+<li>Open the advanced snapping pop-over or toolbar to activate specific
+behaviors:
+<ul>
+<li>Enable <strong>Snap to grids</strong>.</li>
+<li>Enable <strong>Snap nodes, paths, and handles</strong>.</li>
+<li>Enable <strong>Snap cusp nodes</strong> and <strong>Snap path
+intersections</strong>.</li>
+</ul></li>
+<li>Set the snapping sensitivity high enough that your cursor pulls
+toward intersections naturally when using drawing tools.</li>
+</ol>
+<h3 id="3-draw-building-bases-and-extrusions">3. Draw Building Bases and
+Extrusions</h3>
+<p>Every isometric building consists of three visible faces: the top
+(roof), the left wall, and the right wall.</p>
+<ol type="1">
+<li>Select the <strong>Draw Bezier curves and straight lines</strong>
+tool (<strong>B</strong> or <strong>Shift + F6</strong>).</li>
+<li>Set the shape mode to <strong>Regular Bezier path</strong>.</li>
+<li><strong>Draw the Roof (Top Face):</strong> Click four grid
+intersections to form a diamond shape that defines the building's
+footprint, then click the starting node to close the path.</li>
+<li><strong>Draw the Left Wall:</strong> Start from the leftmost corner
+of your roof, draw a line vertically down a set number of grid units,
+draw parallel to the roof edge downward to the center, go vertically up
+to the roof's bottom corner, and close the path.</li>
+<li><strong>Draw the Right Wall:</strong> Repeat the process on the
+right side, starting from the center-bottom corner down, moving up to
+the rightmost point, and closing back onto the roof edge.</li>
+</ol>
+<h3 id="4-apply-directional-shading">4. Apply Directional Shading</h3>
+<p>Isometric depth is conveyed through consistent lighting across all
+buildings on the map.</p>
+<ol type="1">
+<li>Select an imaginary light source (for example, light coming from the
+top-left).</li>
+<li><strong>Top Face (Roof):</strong> Fill with your lightest tint
+(e.g., <code>#E0E6ED</code>).</li>
+<li><strong>Left Face:</strong> Fill with a mid-tone shade representing
+reflected light (e.g., <code>#9AA5B1</code>).</li>
+<li><strong>Right Face:</strong> Fill with the darkest shadow tone
+(e.g., <code>#52606D</code>).</li>
+<li>Remove all strokes (<strong>Shift-click</strong> the "X" in the
+color palette) for a clean, modern vector aesthetic, or set a uniform
+stroke width to give the map a technical blueprint appearance.</li>
+</ol>
+<h3 id="5-add-architectural-details">5. Add Architectural Details</h3>
+<p>Using the existing grid, you can quickly add features that match the
+perspective:</p>
+<ul>
+<li><strong>Flat-topped Roof Edges:</strong> Duplicate the top face
+(<strong>Ctrl + D</strong>), inset it slightly, and color it darker to
+create a parapet wall.</li>
+<li><strong>Windows and Doors:</strong> Use the Bezier tool to snap
+rectangular polygons onto the left and right walls. Windows on the left
+wall must follow the left grid axis; windows on the right wall must
+follow the right grid axis.</li>
+<li><strong>Rooftop Utilities:</strong> Add small cubes for HVAC units
+or water towers by repeating the three-face cube drawing process at a
+smaller scale directly on top of the roof plane.</li>
+</ul>
+<h3 id="6-assemble-the-city-layout">6. Assemble the City Layout</h3>
+<p>With modular building components created, group each building
+together (<strong>Ctrl + G</strong>) to position them into streets,
+blocks, and districts.</p>
+<ol type="1">
+<li><strong>Duplicate and Scale:</strong> Duplicate buildings
+(<strong>Ctrl + D</strong>) and snap their base nodes to different
+intersections along the grid.</li>
+<li><strong>Maintain Depth Ordering:</strong> Isometric projection does
+not use vanishing points, meaning overlap determines depth. Always place
+background buildings behind foreground buildings using <strong>Page
+Down</strong> (Lower) and <strong>Page Up</strong> (Raise).</li>
+<li><strong>Lay Roads:</strong> Draw flat isometric planes directly
+beneath the buildings to delineate streets, intersections, and plazas
+using darker contrast colors to anchor the city structures.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

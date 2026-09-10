@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Pattern Fills in Inkscape for Retina Displays - inkscape</title>
+    <meta name="description" content="This guide explains how to design, configure, and export seamless SVG vector pattern fills using Inkscape that scale flawlessly across high-DPI (Retina) screens. High-resolution displays often reveal microscopic seam gaps and rendering artifacts caused b">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/svg-pattern-fills-in-inkscape-for-retina-displays">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SVG Pattern Fills in Inkscape for Retina Displays - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/svg-pattern-fills-in-inkscape-for-retina-displays" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to design, configure, and export seamless SVG vector pattern fills using Inkscape that scale flawlessly across high-DPI (Retina) screens. High-resolution displays often reveal microscopic seam gaps and rendering artifacts caused b" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="svg-pattern-fills-in-inkscape-for-retina-displays">SVG Pattern
+Fills in Inkscape for Retina Displays</h1>
+<p>This guide explains how to design, configure, and export seamless SVG
+vector pattern fills using Inkscape that scale flawlessly across
+high-DPI (Retina) screens. High-resolution displays often reveal
+microscopic seam gaps and rendering artifacts caused by sub-pixel
+anti-aliasing. By setting up strict integer grids, creating
+self-contained pattern tiles, and configuring SVG pattern attributes
+correctly, you can ensure your pattern fills remain crisp and gap-free
+at any device pixel ratio.</p>
+<h3 id="step-1-configure-document-units-and-grids">Step 1: Configure
+Document Units and Grids</h3>
+<p>Sub-pixel rendering errors on high-DPI displays occur when pattern
+dimensions contain fractional coordinates. Aligning your artwork to
+whole pixels eliminates this issue.</p>
+<ol type="1">
+<li>Open Inkscape and open Document Properties (<strong>File &gt;
+Document Properties</strong> or <code>Ctrl+Shift+D</code>).</li>
+<li>Set <strong>Display units</strong> to <code>px</code> and ensure the
+scale is set to <code>1.0</code>.</li>
+<li>Switch to the <strong>Grids</strong> tab, select <strong>Rectangular
+grid</strong>, and click <strong>New</strong>.</li>
+<li>Set <strong>Spacing X</strong> and <strong>Spacing Y</strong> to
+integer values (such as <code>1px</code> or <code>10px</code>).</li>
+<li>Enable snapping via the Snap toolbar (<strong>%</strong>), and make
+sure <strong>Snap to grids</strong> and <strong>Snap bounding
+boxes</strong> are activated.</li>
+</ol>
+<h3 id="step-2-construct-the-repeating-base-tile">Step 2: Construct the
+Repeating Base Tile</h3>
+<p>Your base tile must align perfectly to prevent fractional pixel gaps
+when rendered by browser rasterizers.</p>
+<ol type="1">
+<li>Draw a background rectangle using the Rectangle tool
+(<code>R</code>) with fixed integer dimensions (e.g., 40x40 px or
+100x100 px).</li>
+<li>Ensure the X and Y coordinates on the top toolbar are whole numbers,
+with no decimal places.</li>
+<li>If your pattern requires elements to cross the boundary of the tile,
+duplicate the element and shift it across the axis by the exact width or
+height of the tile using the Transform panel (<strong>Object &gt;
+Transform</strong> or <code>Ctrl+Shift+M</code>).</li>
+<li>To eliminate hairline background gaps caused by browser rounding on
+high-DPI displays, slightly overlap adjacent tiles by extending
+background base rectangles by <code>0.5px</code> outside the tile area,
+or use an identical solid background under the pattern layer.</li>
+</ol>
+<h3 id="step-3-convert-the-artwork-to-an-svg-pattern">Step 3: Convert
+the Artwork to an SVG Pattern</h3>
+<p>Once your tile design is complete, convert it into an SVG
+<code>&lt;pattern&gt;</code> definition:</p>
+<ol type="1">
+<li>Select all components of your tile.</li>
+<li>Group the selection (<strong>Object &gt; Group</strong> or
+<code>Ctrl+G</code>).</li>
+<li>Navigate to <strong>Object &gt; Pattern &gt; Objects to
+Pattern</strong> (or press <code>Alt+I</code>).</li>
+</ol>
+<p>Inkscape moves the vector data into the document’s
+<code>&lt;defs&gt;</code> section as a reusable
+<code>&lt;pattern&gt;</code> element and applies it as the fill to the
+current object.</p>
+<h3 id="step-4-fine-tune-pattern-positioning-and-scale">Step 4:
+Fine-Tune Pattern Positioning and Scale</h3>
+<p>Applying the pattern to larger shapes requires precise handle
+placement to prevent misalignment on scaling.</p>
+<ol type="1">
+<li>Create the destination shape you wish to fill with the pattern.</li>
+<li>In the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl+Shift+F</code>), select the <strong>Fill</strong> tab and
+choose <strong>Pattern Fill</strong>. Select your newly created pattern
+from the drop-down list.</li>
+<li>Select the <strong>Node Tool</strong> (<code>N</code>). Three
+handles will appear on the canvas near the original location of the
+source tile:
+<ul>
+<li><strong>Cross handle:</strong> Controls the pattern origin (starting
+coordinate).</li>
+<li><strong>Square handle:</strong> Adjusts the horizontal and vertical
+scale.</li>
+<li><strong>Circle handle:</strong> Adjusts pattern rotation.</li>
+</ul></li>
+<li>Snap the <strong>Cross handle</strong> to an exact whole-pixel grid
+intersection. This guarantees that repeating tiles calculate their
+boundaries against integer coordinates, preventing blurry edges on
+high-density displays.</li>
+</ol>
+<h3 id="step-5-clean-and-export-the-svg">Step 5: Clean and Export the
+SVG</h3>
+<p>Browser rendering engines interpret SVG patterns most reliably on
+Retina displays when the code uses vector units rather than raster
+fallbacks.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong> and select
+<strong>Optimized SVG (*.svg)</strong>.</li>
+<li>In the optimization dialog, enable <strong>Remove unused
+defs</strong> and <strong>Convert CSS attributes to XML
+attributes</strong>.</li>
+<li>Open the saved SVG in a code editor and verify that the
+<code>&lt;pattern&gt;</code> element contains
+<code>patternUnits="userSpaceOnUse"</code>. This attribute ensures the
+pattern relies on the global coordinate space, enabling vector sharpness
+across 2x, 3x, and fractional display scaling.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

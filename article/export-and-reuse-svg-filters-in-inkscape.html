@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export and Reuse SVG Filters in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to export and reuse custom SVG filter presets from an existing Inkscape document across other projects. While Inkscape does not feature a dedicated one-click "Export Filter" button, you can transfer your filters using direct objec">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-and-reuse-svg-filters-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export and Reuse SVG Filters in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-and-reuse-svg-filters-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to export and reuse custom SVG filter presets from an existing Inkscape document across other projects. While Inkscape does not feature a dedicated one-click "Export Filter" button, you can transfer your filters using direct objec" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-and-reuse-svg-filters-in-inkscape">Export and Reuse SVG
+Filters in Inkscape</h1>
+<p>This guide explains how to export and reuse custom SVG filter presets
+from an existing Inkscape document across other projects. While Inkscape
+does not feature a dedicated one-click "Export Filter" button, you can
+transfer your filters using direct object copying, the XML Editor,
+custom document templates, or by adding them permanently to your
+personal Inkscape filters library.</p>
+<h3 id="method-1-the-copy-and-paste-technique">Method 1: The
+Copy-and-Paste Technique</h3>
+<p>The simplest way to transfer an SVG filter to another project is by
+leveraging Inkscape's automatic definition transfer.</p>
+<ol type="1">
+<li>Open the Inkscape file containing your custom filter.</li>
+<li>Select any vector shape and apply the filter to it via
+<strong>Filters</strong> or the <strong>Filter Editor</strong>
+(<code>Filters &gt; Filter Editor</code>).</li>
+<li>Copy the object (<code>Ctrl + C</code> or
+<code>Cmd + C</code>).</li>
+<li>Switch to your target document and paste the object
+(<code>Ctrl + V</code> or <code>Cmd + V</code>).</li>
+<li>Delete the pasted object from the canvas.</li>
+</ol>
+<p>The filter definition remains stored inside the
+<code>&lt;defs&gt;</code> section of your new document and is
+immediately accessible to other objects through the <strong>Filter
+Editor</strong> panel.</p>
+<h3 id="method-2-extracting-filters-using-the-xml-editor">Method 2:
+Extracting Filters Using the XML Editor</h3>
+<p>If you want to isolate the raw SVG code without transferring
+graphical assets, use the built-in XML Editor.</p>
+<ol type="1">
+<li>Open the source SVG file in Inkscape.</li>
+<li>Open the XML Editor by pressing <code>Ctrl + Shift + X</code> (or
+<code>Cmd + Shift + X</code>).</li>
+<li>Expand the <code>&lt;svg:svg&gt;</code> tree and select the
+<code>&lt;svg:defs&gt;</code> node.</li>
+<li>Locate the <code>&lt;svg:filter&gt;</code> element containing your
+custom effect (you can identify it by its <code>id</code> or child
+primitives like <code>feGaussianBlur</code> or
+<code>feColorMatrix</code>).</li>
+<li>Right-click the filter element and select
+<strong>Duplicate</strong>, or copy the attributes and child nodes
+directly.</li>
+<li>Open your target document's XML Editor, navigate to its
+<code>&lt;svg:defs&gt;</code> node, and paste the filter element
+inside.</li>
+</ol>
+<h3 id="method-3-saving-as-a-reusable-template">Method 3: Saving as a
+Reusable Template</h3>
+<p>If you regularly use a specific set of filters for new projects, turn
+the file into a template.</p>
+<ol type="1">
+<li>Open a clean document containing only the objects or
+<code>&lt;defs&gt;</code> elements that feature your custom
+filters.</li>
+<li>Go to <strong>File &gt; Save Template...</strong>.</li>
+<li>Enter a name (e.g., "Custom Filter Workspace") and save.</li>
+<li>When starting a new project, navigate to <strong>File &gt; New from
+Template...</strong> and choose your saved template. All preloaded
+filters will be ready to use in the Filter Editor.</li>
+</ol>
+<h3 id="method-4-adding-filters-to-the-global-user-library">Method 4:
+Adding Filters to the Global User Library</h3>
+<p>To make filters permanently appear in the application menus for all
+future documents:</p>
+<ol type="1">
+<li>Save an SVG file containing your custom filters.</li>
+<li>Locate your Inkscape User Preferences directory:
+<ul>
+<li><strong>Windows:</strong>
+<code>%APPDATA%\inkscape\filters\</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/filters/</code></li>
+<li><strong>Linux:</strong>
+<code>~/.config/inkscape/filters/</code></li>
+</ul></li>
+<li>If the <code>filters</code> folder does not exist in that directory,
+create it.</li>
+<li>Copy your saved SVG file into this <code>filters</code> folder.</li>
+<li>Restart Inkscape. Your filters will now be loaded automatically and
+categorized within the <strong>Filters</strong> menu.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

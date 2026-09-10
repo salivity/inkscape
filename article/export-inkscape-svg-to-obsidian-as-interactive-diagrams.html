@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape SVG to Obsidian as Interactive Diagrams - inkscape</title>
+    <meta name="description" content="Integrating vector graphics from Inkscape into Obsidian allows you to enrich your personal knowledge base with dynamic, scalable illustrations that support hyperlinks, hover states, and custom CSS styling. By properly preparing your artwork in Inkscape,">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-svg-to-obsidian-as-interactive-diagrams">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape SVG to Obsidian as Interactive Diagrams - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-svg-to-obsidian-as-interactive-diagrams" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Integrating vector graphics from Inkscape into Obsidian allows you to enrich your personal knowledge base with dynamic, scalable illustrations that support hyperlinks, hover states, and custom CSS styling. By properly preparing your artwork in Inkscape," />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-svg-to-obsidian-as-interactive-diagrams">Export
+Inkscape SVG to Obsidian as Interactive Diagrams</h1>
+<p>Integrating vector graphics from Inkscape into Obsidian allows you to
+enrich your personal knowledge base with dynamic, scalable illustrations
+that support hyperlinks, hover states, and custom CSS styling. By
+properly preparing your artwork in Inkscape, choosing the correct export
+settings, and embedding the raw SVG code or linking it via native HTML
+tags in Obsidian, you can transform static illustrations into
+interactive visual hubs.</p>
+<h3 id="1-prepare-interactive-elements-in-inkscape">1. Prepare
+Interactive Elements in Inkscape</h3>
+<p>Before exporting, configure your vector paths and shapes to respond
+to interaction:</p>
+<ol type="1">
+<li><strong>Assign Identifiers and Classes</strong>: Open the
+<strong>Object Properties</strong> panel
+(<code>Shift + Ctrl + O</code>). Select an element, then assign a unique
+<strong>ID</strong> or <strong>Class</strong> (e.g.,
+<code>interactive-node</code>). This enables custom CSS targeting inside
+Obsidian.</li>
+<li><strong>Add Hyperlinks</strong>: Right-click any shape, text, or
+group and select <strong>Create Link</strong>. In the link settings, set
+the <code>href</code> attribute. You can use standard URLs
+(<code>https://example.com</code>) or Obsidian URI schemes
+(<code>obsidian://open?vault=MyVault&amp;file=TargetNote</code>) to
+navigate directly to other notes.</li>
+<li><strong>Clean Up the Document</strong>: Navigate to <strong>File
+&gt; Clean Up Document</strong> to remove unused definitions, gradients,
+and metadata that inflate file size.</li>
+</ol>
+<h3 id="2-export-as-optimized-svg">2. Export as Optimized SVG</h3>
+<p>Standard Inkscape SVGs contain proprietary editor metadata that can
+interfere with web rendering.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong>.</li>
+<li>Set the file format dropdown to <strong>Optimized SVG
+(*.svg)</strong>.</li>
+<li>In the export dialog:
+<ul>
+<li>Enable <strong>Convert CSS attributes to XML attributes</strong> (or
+keep CSS depending on your preference).</li>
+<li>Ensure <strong>Remove unused IDs</strong> is unchecked if you plan
+to target specific elements with CSS or JavaScript.</li>
+<li>Check <strong>Shorten color values</strong> and <strong>Collapse
+groups</strong> to streamline markup.</li>
+</ul></li>
+<li>Save the file to your Obsidian vault's attachment directory.</li>
+</ol>
+<h3 id="3-embed-the-diagram-into-obsidian">3. Embed the Diagram into
+Obsidian</h3>
+<p>Obsidian handles standard markdown image syntax
+(<code>![[diagram.svg]]</code>) as a flat, static image. To retain full
+vector interactivity, choose one of the following methods:</p>
+<h4
+id="method-a-direct-inline-svg-recommended-for-styling-and-links">Method
+A: Direct Inline SVG (Recommended for Styling and Links)</h4>
+<p>Open the exported <code>.svg</code> file in a code editor, copy the
+entire <code>&lt;svg&gt;...&lt;/svg&gt;</code> block, and paste it
+directly into your Obsidian markdown note.</p>
+<ul>
+<li><strong>Pros</strong>: Complete access to embedded links, tooltips
+(<code>&lt;title&gt;</code> tags), and internal CSS.</li>
+<li><strong>Cons</strong>: Clutters the markdown source mode with
+code.</li>
+</ul>
+<h4 id="method-b-the-html-object-tag">Method B: The HTML
+<code>&lt;object&gt;</code> Tag</h4>
+<p>If you prefer to keep your markdown clean, reference the SVG file
+using an HTML <code>&lt;object&gt;</code> element:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">object</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;image/svg+xml&quot;</span><span class="ot"> data</span><span class="op">=</span><span class="st">&quot;app://local/full/path/to/your/vault/attachments/diagram.svg&quot;</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;interactive-svg&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">object</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>Alternatively, if using an active web server or static asset plugin,
+use the relative vault path:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">object</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;image/svg+xml&quot;</span><span class="ot"> data</span><span class="op">=</span><span class="st">&quot;attachments/diagram.svg&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">object</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>This isolates the SVG document while preserving internal click events
+and pointer dynamics.</p>
+<h3 id="4-style-and-animate-with-css-snippets">4. Style and Animate with
+CSS Snippets</h3>
+<p>To add hover effects or match your Obsidian theme (light/dark
+mode):</p>
+<ol type="1">
+<li>Go to <strong>Settings &gt; Appearance &gt; CSS snippets</strong> in
+Obsidian and open your snippets folder.</li>
+<li>Create a file named <code>svg-styling.css</code>.</li>
+<li>Add custom rules targeting the classes or IDs defined in
+Inkscape:</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode css"><code class="sourceCode css"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">/* Change color on hover */</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">.interactive-node</span><span class="in">:hover</span> {</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">fill</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--interactive-accent</span><span class="fu">)</span> <span class="at">!important</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">cursor</span><span class="ch">:</span> <span class="dv">pointer</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">transition</span><span class="ch">:</span> <span class="dv">fill</span> <span class="dv">0.2</span><span class="dt">s</span> <span class="dv">ease-in-out</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">/* Adapt stroke to dark/light theme */</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">.theme-dark</span> <span class="fu">.interactive-svg</span> path {</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">stroke</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--text-normal</span><span class="fu">)</span><span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ol start="4" type="1">
+<li>Reload and enable the snippet inside Obsidian's appearance
+settings.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

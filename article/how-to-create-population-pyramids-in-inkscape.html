@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Population Pyramids in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to design a clean, vector-based population pyramid infographic in Inkscape using linked bar charts and clone features. You will learn how to set up an exact coordinate system, construct the baseline cohort bars, link and mirror da">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-population-pyramids-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Population Pyramids in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-population-pyramids-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to design a clean, vector-based population pyramid infographic in Inkscape using linked bar charts and clone features. You will learn how to set up an exact coordinate system, construct the baseline cohort bars, link and mirror da" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-population-pyramids-in-inkscape">How to Create
+Population Pyramids in Inkscape</h1>
+<p>This guide explains how to design a clean, vector-based population
+pyramid infographic in Inkscape using linked bar charts and clone
+features. You will learn how to set up an exact coordinate system,
+construct the baseline cohort bars, link and mirror data elements for
+male and female demographics, and apply clean typographic and color
+styling. By using linked clones and precise numerical inputs, you can
+create fully scalable graphics that remain easy to update whenever your
+underlying data changes.</p>
+<h3 id="1-set-up-the-document-and-alignment-grid">1. Set Up the Document
+and Alignment Grid</h3>
+<p>Open Inkscape and access <strong>File &gt; Document
+Properties</strong> (<code>Ctrl+Shift+D</code>). Set your display units
+to pixels (<code>px</code>) or millimeters (<code>mm</code>) based on
+your intended output format.</p>
+<p>Enable the grid via <strong>View &gt; Page Grid</strong>
+(<code>#</code>). Open the <strong>Align and Distribute</strong> panel
+(<code>Ctrl+Shift+A</code>) and the <strong>Transform</strong> panel
+(<code>Ctrl+Shift+M</code>), as these will be essential for positioning
+data tracks accurately. Pull a vertical guide from the left ruler to the
+center of your canvas to act as the primary dividing axis for the two
+halves of your pyramid.</p>
+<h3 id="2-create-the-master-bar-components">2. Create the Master Bar
+Components</h3>
+<p>A population pyramid relies on standardized bar heights for age
+cohorts, with varying widths representing the population volume:</p>
+<ol type="1">
+<li>Select the <strong>Rectangle Tool</strong> (<code>R</code>).</li>
+<li>Draw a single horizontal bar on the left side of your center
+guide.</li>
+<li>In the top toolbar, assign a fixed height (for example,
+<code>15 px</code>) and an initial width corresponding to your baseline
+data point (e.g., <code>100 px</code>).</li>
+<li>Set the pivot point to the right edge of the rectangle by
+double-clicking the shape and dragging the rotation/origin crosshair to
+the edge touching the center guide. This ensures width changes expand
+outward rather than inward.</li>
+</ol>
+<h3 id="3-build-the-age-cohorts-using-clones">3. Build the Age Cohorts
+Using Clones</h3>
+<p>To keep bars linked for uniform design updates (such as corner
+radiuses, styling, or structural adjustments):</p>
+<ol type="1">
+<li>Select your base rectangle.</li>
+<li>Create linked instances using <strong>Edit &gt; Clone &gt; Create
+Clone</strong> (<code>Alt+D</code>), or use <strong>Edit &gt; Clone &gt;
+Create Tiled Clones</strong> for a rapid vertical stack.</li>
+<li>In the Tiled Clones panel, set the shift to translate along the
+Y-axis by 100% plus your desired spacing margin.</li>
+<li>Set the row count to match your age brackets (typically 16 to 18
+rows for five-year age intervals).</li>
+<li>Click <strong>Create</strong>.</li>
+</ol>
+<p>Each cloned bar will dynamically retain the fill, stroke, and height
+properties of the original master object.</p>
+<h3 id="4-adjust-data-widths-for-the-first-demographic-females">4.
+Adjust Data Widths for the First Demographic (Females)</h3>
+<ol type="1">
+<li>Unlink individual clones if you require purely vector-driven widths
+without affecting the master style: select all cloned bars and navigate
+to <strong>Edit &gt; Clone &gt; Unlink Clone</strong>
+(<code>Shift+Alt+D</code>). This breaks the geometric dependency while
+preserving the vertical distribution.</li>
+<li>Select each bar sequentially from bottom to top (youngest to oldest
+cohort).</li>
+<li>Use the width field (<code>W</code>) in the top toolbar to input the
+exact numerical value corresponding to your demographic data
+points.</li>
+<li>Re-align the right edge of all bars flush against the central
+vertical guide using the <strong>Align and Distribute</strong> panel
+(align right edges to anchor).</li>
+</ol>
+<h3 id="5-mirror-the-structure-for-the-opposite-demographic-males">5.
+Mirror the Structure for the Opposite Demographic (Males)</h3>
+<ol type="1">
+<li>Select all the adjusted bars representing your first demographic
+group.</li>
+<li>Duplicate the entire set using <strong>Edit &gt; Duplicate</strong>
+(<code>Ctrl+D</code>).</li>
+<li>Flip the duplicated set horizontally by pressing <strong>H</strong>
+or clicking <strong>Object &gt; Flip Horizontal</strong>.</li>
+<li>With the duplicate bars still selected, use the <strong>Align and
+Distribute</strong> panel to align their left edges directly against the
+central vertical guide.</li>
+<li>Apply a distinct fill color to this mirrored set to differentiate
+the two demographic groups.</li>
+<li>Select each bar on this side and enter the corresponding values into
+the width (<code>W</code>) box, ensuring that the bars expand outward to
+the left by aligning the right edges to the central guide
+afterward.</li>
+</ol>
+<h3 id="6-add-axes-cohort-labels-and-finishing-details">6. Add Axes,
+Cohort Labels, and Finishing Details</h3>
+<ol type="1">
+<li><strong>Center Labels:</strong> Create a narrow vertical column
+along the center guide. Using the <strong>Text Tool</strong>
+(<code>T</code>), place age cohort markers (such as "0–4", "5–9", "80+")
+directly down the center line between the two sets of bars, or move the
+labels to the outer margin to leave the center seam unbroken.</li>
+<li><strong>Horizontal Scale:</strong> Draw a horizontal axis line
+across the bottom of both sides using the <strong>Draw Bezier Curves
+Tool</strong> (<code>B</code>). Place numeric ticks at uniform
+increments (e.g., 2%, 4%, 6% or absolute numbers) mirroring outward from
+the zero point at the center.</li>
+<li><strong>Data Polish:</strong> Group the male data
+(<code>Ctrl+G</code>), female data, and textual elements into separate
+layers in the <strong>Layers and Objects</strong> panel
+(<code>Ctrl+Shift+L</code>) to facilitate export adjustments and rapid
+data maintenance.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

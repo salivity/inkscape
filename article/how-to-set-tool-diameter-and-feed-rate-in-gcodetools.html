@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Tool Diameter and Feed Rate in Gcodetools - inkscape</title>
+    <meta name="description" content="Configuring the cutting tool diameter and feed rates in the Gcodetools extension for Inkscape is essential for generating accurate and safe G-code for CNC machines. This guide explains how to generate the tool definition box using the Tools Library, edit">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-set-tool-diameter-and-feed-rate-in-gcodetools">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Set Tool Diameter and Feed Rate in Gcodetools - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-set-tool-diameter-and-feed-rate-in-gcodetools" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Configuring the cutting tool diameter and feed rates in the Gcodetools extension for Inkscape is essential for generating accurate and safe G-code for CNC machines. This guide explains how to generate the tool definition box using the Tools Library, edit" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-set-tool-diameter-and-feed-rate-in-gcodetools">How to Set
+Tool Diameter and Feed Rate in Gcodetools</h1>
+<p>Configuring the cutting tool diameter and feed rates in the
+Gcodetools extension for Inkscape is essential for generating accurate
+and safe G-code for CNC machines. This guide explains how to generate
+the tool definition box using the Tools Library, edit critical
+parameters such as cutter diameter, horizontal feed, and plunge rate
+directly on the canvas, and prepare your vector paths for precise
+machining.</p>
+<h3 id="step-1-open-the-gcodetools-tools-library">Step 1: Open the
+Gcodetools Tools Library</h3>
+<ol type="1">
+<li>Open your vector project in Inkscape.</li>
+<li>In the top menu, navigate to <strong>Extensions</strong> &gt;
+<strong>Gcodetools</strong> &gt; <strong>Tools library...</strong>.</li>
+<li>In the dialog window that appears, select the tool type suitable for
+your job (such as <strong>default</strong>, <strong>cylinder</strong>,
+or <strong>cone</strong>).</li>
+<li>Click <strong>Apply</strong>, then click
+<strong>Close</strong>.</li>
+</ol>
+<h3 id="step-2-locate-the-tool-definition-box-on-the-canvas">Step 2:
+Locate the Tool Definition Box on the Canvas</h3>
+<p>After applying the tool library, Gcodetools will generate a green
+rectangular box containing text on your Inkscape canvas. This graphic
+box acts as the configuration table for the active cutting tool.</p>
+<h3 id="step-3-modify-the-tool-diameter">Step 3: Modify the Tool
+Diameter</h3>
+<ol type="1">
+<li>Select the <strong>Text Tool</strong> from the left toolbar (or
+press <strong>T</strong> on your keyboard).</li>
+<li>Click directly on the numeric value next to the
+<code>diameter</code> field inside the green box.</li>
+<li>Change the number to match your actual tool diameter in your
+project's measurement units (typically millimeters).
+<ul>
+<li><em>Example:</em> For an 1/8-inch bit in a millimeter workspace, set
+the value to <code>3.175</code>.</li>
+</ul></li>
+</ol>
+<h3 id="step-4-configure-feed-rates-and-spindle-speed">Step 4: Configure
+Feed Rates and Spindle Speed</h3>
+<p>Using the <strong>Text Tool</strong>, adjust the following
+operational parameters within the same text box:</p>
+<ul>
+<li><strong>feed:</strong> Sets the horizontal (X/Y axis) cutting speed
+in units per minute (e.g., <code>800</code> for 800 mm/min).</li>
+<li><strong>penetration feed:</strong> Sets the vertical (Z axis)
+plunging speed into the material. This should typically be slower than
+the horizontal feed (e.g., <code>200</code> to <code>300</code>
+mm/min).</li>
+<li><strong>spindle rpm:</strong> Defines the rotational speed of the
+spindle if supported by your CNC controller.</li>
+<li><strong>depth step:</strong> Sets the maximum depth the tool will
+cut in a single pass.</li>
+</ul>
+<h3 id="step-5-important-editing-rules">Step 5: Important Editing
+Rules</h3>
+<ul>
+<li><strong>Preserve Text Formatting:</strong> Do not delete the
+parameter labels (e.g., <code>diameter:</code>, <code>feed:</code>) or
+the colons. Only change the numeric values following the labels.</li>
+<li><strong>Do Not Ungroup the Box:</strong> The green rectangle and its
+text are grouped internally so Gcodetools can read the data. Avoid
+ungrouping the object.</li>
+<li><strong>Multiple Tools:</strong> If performing multi-tool
+operations, you can generate multiple tool boxes. Ensure the active tool
+box corresponds to the paths being processed.</li>
+</ul>
+<p>Once the parameters are set, you can proceed to
+<strong>Extensions</strong> &gt; <strong>Gcodetools</strong> &gt;
+<strong>Path to Gcode</strong> to calculate toolpaths using your
+customized tool diameter and feed rates.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

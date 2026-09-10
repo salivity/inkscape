@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Legacy Flowed Text to SVG 2 in Inkscape - inkscape</title>
+    <meta name="description" content="Legacy flowed text created in older versions of Inkscape relies on the non-standard <flowRoot> element, which often fails to render in web browsers and external SVG viewers. Modern Inkscape releases (version 1.0 and later) fully support SVG 2.0 text wrap">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/convert-legacy-flowed-text-to-svg-2-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Convert Legacy Flowed Text to SVG 2 in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/convert-legacy-flowed-text-to-svg-2-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Legacy flowed text created in older versions of Inkscape relies on the non-standard <flowRoot> element, which often fails to render in web browsers and external SVG viewers. Modern Inkscape releases (version 1.0 and later) fully support SVG 2.0 text wrap" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="convert-legacy-flowed-text-to-svg-2-in-inkscape">Convert Legacy
+Flowed Text to SVG 2 in Inkscape</h1>
+<p>Legacy flowed text created in older versions of Inkscape relies on
+the non-standard <code>&lt;flowRoot&gt;</code> element, which often
+fails to render in web browsers and external SVG viewers. Modern
+Inkscape releases (version 1.0 and later) fully support SVG 2.0 text
+wrapping standards, using native <code>&lt;text&gt;</code> elements
+styled with attributes like <code>inline-size</code> or
+<code>shape-inside</code>. This guide explains how to identify legacy
+flowed text in your documents and convert it into fully compliant SVG
+2.0 text objects without losing your typography formatting.</p>
+<h3 id="why-legacy-flowed-text-fails">Why Legacy Flowed Text Fails</h3>
+<p>Older versions of Inkscape implemented an early draft of the SVG
+standard for text wrapping using <code>&lt;flowRoot&gt;</code>,
+<code>&lt;flowRegion&gt;</code>, and <code>&lt;flowPara&gt;</code> tags.
+Because the W3C ultimately dropped this draft, modern web browsers do
+not render <code>&lt;flowRoot&gt;</code> elements, leading to blank or
+invisible text when SVGs are viewed online.</p>
+<p>SVG 2.0 resolves this by introducing standard text wrapping directly
+inside standard <code>&lt;text&gt;</code> elements using CSS properties
+like <code>inline-size</code> and <code>white-space: pre</code>.</p>
+<h3 id="method-1-using-the-text-menu-conversion">Method 1: Using the
+Text Menu Conversion</h3>
+<p>The fastest native way to remove the obsolete
+<code>&lt;flowRoot&gt;</code> structure from an object is to use
+Inkscape's built-in text conversion tools.</p>
+<ol type="1">
+<li>Select the legacy text object on your canvas using the
+<strong>Select Tool</strong> (<code>S</code> or <code>F1</code>). Look
+at the status bar at the bottom; it will read <strong>Flowed
+text...</strong> instead of <strong>Text...</strong>.</li>
+<li>Navigate to the top menu and select <strong>Text</strong> &gt;
+<strong>Convert to regular text</strong>.</li>
+<li>Inkscape will replace the <code>&lt;flowRoot&gt;</code> hierarchy
+with a standard <code>&lt;text&gt;</code> container and multiple
+<code>&lt;tspan&gt;</code> elements, placing line breaks manually.</li>
+<li>To turn this standard text into an SVG 2.0 auto-wrapping box,
+activate the <strong>Text Tool</strong> (<code>T</code>), click and drag
+the blue bounding handle at the top-right of the text block to establish
+an active wrapping width.</li>
+</ol>
+<h3 id="method-2-manual-migration-to-an-svg-20-text-frame">Method 2:
+Manual Migration to an SVG 2.0 Text Frame</h3>
+<p>If you need dynamic re-wrapping where text flows automatically based
+on a predefined frame width rather than fixed <code>&lt;tspan&gt;</code>
+lines, manually migrating to an SVG 2.0 text box is the cleanest
+approach.</p>
+<ol type="1">
+<li>Select the legacy flowed text object and copy the text content
+(<code>Ctrl+C</code> / <code>Cmd+C</code>).</li>
+<li>Activate the <strong>Text Tool</strong> (<code>T</code> or
+<code>F8</code>).</li>
+<li>Instead of single-clicking the canvas, <strong>click and
+drag</strong> across the canvas to define a rectangular text frame.
+Inkscape 1.0+ automatically initializes this box as an SVG 2.0-compliant
+text object with an embedded <code>inline-size</code> property.</li>
+<li>Paste your copied text into this newly drawn box
+(<code>Ctrl+V</code> / <code>Cmd+V</code>).</li>
+<li>Select the original legacy flowed text object and press
+<code>Delete</code>.</li>
+</ol>
+<h3 id="method-3-flowing-text-into-an-arbitrary-shape">Method 3: Flowing
+Text into an Arbitrary Shape</h3>
+<p>If your legacy text was flowed into an irregular shape (like a
+polygon or circle):</p>
+<ol type="1">
+<li>Select the text and the boundary shape simultaneously using the
+<strong>Select Tool</strong> while holding <code>Shift</code>.</li>
+<li>Navigate to <strong>Text</strong> &gt; <strong>Flow into
+Frame</strong> (<code>Alt+W</code>).</li>
+<li>In Inkscape 1.2 and later, this action writes SVG 2.0 compliant
+markup (<code>shape-inside</code>) rather than the outdated
+<code>&lt;flowRoot&gt;</code> element.</li>
+</ol>
+<h3 id="verifying-svg-20-compliance">Verifying SVG 2.0 Compliance</h3>
+<p>To confirm that all legacy tags have been eliminated from your
+file:</p>
+<ol type="1">
+<li>Open the XML Editor by going to <strong>Edit</strong> &gt;
+<strong>XML Editor</strong> (<code>Ctrl+Shift+X</code> /
+<code>Cmd+Shift+X</code>).</li>
+<li>Search through the XML tree to verify there are no
+<code>&lt;svg:flowRoot&gt;</code> nodes remaining.</li>
+<li>Your compliant text will appear as an <code>&lt;svg:text&gt;</code>
+element containing a <code>style</code> attribute that includes
+<code>white-space: pre;</code> and an <code>inline-size</code> or
+<code>shape-inside</code> declaration.</li>
+<li>Save your file as a standard <strong>Plain SVG</strong> via
+<strong>File</strong> &gt; <strong>Save As...</strong> to ensure maximum
+compatibility across all web rendering engines.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Vector Planet Craters in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to construct stylized vector planetary terrain and realistic craters using Inkscape’s Boolean difference operations. You will learn how to create the base planetary body, construct dynamic crater rims using overlapping geometric">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/draw-vector-planet-craters-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Draw Vector Planet Craters in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/draw-vector-planet-craters-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to construct stylized vector planetary terrain and realistic craters using Inkscape’s Boolean difference operations. You will learn how to create the base planetary body, construct dynamic crater rims using overlapping geometric" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="draw-vector-planet-craters-in-inkscape">Draw Vector Planet
+Craters in Inkscape</h1>
+<p>This guide explains how to construct stylized vector planetary
+terrain and realistic craters using Inkscape’s Boolean difference
+operations. You will learn how to create the base planetary body,
+construct dynamic crater rims using overlapping geometric paths, apply
+compound differences to generate light and shadow crescents, and nest
+the finished craters seamlessly across your vector terrain.</p>
+<h3 id="setting-up-the-base-terrain">Setting Up the Base Terrain</h3>
+<p>Begin by establishing the main surface of the planet:</p>
+<ol type="1">
+<li>Select the <strong>Circles and Ellipses tool</strong>
+(<code>E</code>) and hold <code>Ctrl</code> while dragging to draw a
+perfect circle.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>) and assign a mid-tone surface color,
+such as dusty red, slate gray, or pale beige.</li>
+<li>Duplicate this circle (<code>Ctrl + D</code>) and set it aside to
+use later as a clipping mask for the finished terrain.</li>
+</ol>
+<h3 id="constructing-the-crater-geometry">Constructing the Crater
+Geometry</h3>
+<p>A realistic crater consists of a raised rim with a highlighted side,
+a shadow side, and an interior cavity floor. These depth-defining
+crescents are built cleanly using the <strong>Difference</strong> path
+operation.</p>
+<ol type="1">
+<li><strong>Draw the Outer Boundary:</strong> Use the <strong>Circles
+and Ellipses tool</strong> to draw an ellipse matching the perspective
+of your planet's surface. Tilt the ellipse slightly using the
+<strong>Select and Transform tool</strong> (<code>S</code>) to match the
+terrain angle.</li>
+<li><strong>Create the Inner Cavity:</strong> Duplicate the ellipse
+(<code>Ctrl + D</code>), make it slightly smaller by holding
+<code>Shift + Ctrl</code> while scaling downward, and shift it slightly
+down and inward along the direction of your intended light source.</li>
+<li><strong>Generate the Crescent Rim:</strong>
+<ul>
+<li>Duplicate both the outer and inner ellipses.</li>
+<li>Select the top inner ellipse and shift it slightly toward the light
+source.</li>
+<li>Select both duplicates and go to <strong>Path &gt;
+Difference</strong> (<code>Ctrl + -</code>). This leaves behind a thin
+crescent shape representing the highlighted rim.</li>
+<li>Set the fill color to a lighter tint of the base terrain.</li>
+</ul></li>
+</ol>
+<h3 id="creating-interior-shadows-with-compound-differences">Creating
+Interior Shadows with Compound Differences</h3>
+<p>To generate the deep shadow cast along the inside wall of the
+crater:</p>
+<ol type="1">
+<li>Duplicate the original inner cavity ellipse twice.</li>
+<li>Move the topmost copy toward the light source so it partially
+overlaps the underlying ellipse, exposing a crescent on the side
+opposite the light.</li>
+<li>Select both copies and choose <strong>Path &gt; Difference</strong>
+(<code>Ctrl + -</code>).</li>
+<li>Set the resulting shape to a dark, desaturated tone of the surface
+color to represent ambient occlusion and cast shadow.</li>
+<li>Lower this shadow crescent behind the rim highlight by pressing
+<strong>Page Down</strong> or using the <strong>Object &gt;
+Lower</strong> command.</li>
+</ol>
+<h3 id="building-compound-clusters">Building Compound Clusters</h3>
+<p>To scatter multiple craters across the surface without messy
+overlapping paths, combine your shapes:</p>
+<ol type="1">
+<li>Select all components of your completed crater (rim highlight,
+interior shadow, and floor).</li>
+<li>Duplicate the group (<code>Ctrl + D</code>), scale it down, and
+distribute several variations across the terrain.</li>
+<li>For overlapping impact zones, select the shadow paths of overlapping
+craters and navigate to <strong>Path &gt; Union</strong>
+(<code>Ctrl + +</code>) or <strong>Path &gt; Combine</strong>
+(<code>Ctrl + K</code>) to merge them into a unified compound shadow
+layer.</li>
+<li>If a newer crater cuts into an older crater rim, duplicate the new
+crater's outer perimeter, select the older rim, and run <strong>Path
+&gt; Difference</strong> to carve the new impact directly into the old
+geometry.</li>
+</ol>
+<h3 id="clipping-to-the-planetary-edge">Clipping to the Planetary
+Edge</h3>
+<ol type="1">
+<li>Select the original planetary duplicate circle created in the first
+step.</li>
+<li>Bring it to the very top of the layer stack by pressing
+<code>Home</code>.</li>
+<li>Select the planet base, all crater shapes, and the top circle.</li>
+<li>Go to <strong>Object &gt; Clip &gt; Set</strong>.</li>
+</ol>
+<p>Any crater elements extending beyond the horizon will be cleanly
+masked, leaving a clean, vector planetary surface with accurate crater
+depth.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Trace Bitmap: Stacked vs Cutout Layers - inkscape</title>
+    <meta name="description" content="Vectorizing raster graphics in Inkscape requires choosing how color layers interact with one another. When using the Trace Bitmap tool, you can create stacked layers where colors sit on top of each other, or non-overlapping cutouts where each color piece">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-trace-bitmap-stacked-vs-cutout-layers">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Trace Bitmap: Stacked vs Cutout Layers - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-trace-bitmap-stacked-vs-cutout-layers" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Vectorizing raster graphics in Inkscape requires choosing how color layers interact with one another. When using the Trace Bitmap tool, you can create stacked layers where colors sit on top of each other, or non-overlapping cutouts where each color piece" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-trace-bitmap-stacked-vs-cutout-layers">Inkscape Trace
+Bitmap: Stacked vs Cutout Layers</h1>
+<p>Vectorizing raster graphics in Inkscape requires choosing how color
+layers interact with one another. When using the Trace Bitmap tool, you
+can create stacked layers where colors sit on top of each other, or
+non-overlapping cutouts where each color piece fits together like a
+jigsaw puzzle. This guide explains the core differences between these
+two output methods and provides step-by-step instructions on how to
+generate both in Inkscape.</p>
+<h2 id="understanding-stacked-vs-non-overlapping-layers">Understanding
+Stacked vs. Non-Overlapping Layers</h2>
+<ul>
+<li><strong>Stacked Layers:</strong> The software generates base shapes
+that cover larger background areas, placing smaller detail colors
+directly on top of them. This eliminates visible gaps between colors and
+is ideal for standard vector illustrations, digital art, and print
+design.</li>
+<li><strong>Non-Overlapping Cutouts:</strong> Each color is traced as an
+isolated shape with no underlying layers. The pieces fit edge-to-edge.
+This approach is essential for vinyl cutting, plotter machines, laser
+engraving, and heat transfer vinyl (HTV) where overlapping layers create
+unwanted thickness or material waste.</li>
+</ul>
+<hr />
+<h2 id="how-to-trace-as-stacked-color-layers">How to Trace as Stacked
+Color Layers</h2>
+<ol type="1">
+<li><strong>Import the Image:</strong> Open Inkscape and import your
+raster graphic (<strong>File &gt; Import</strong>).</li>
+<li><strong>Open Trace Bitmap:</strong> Select the image, then navigate
+to <strong>Path &gt; Trace Bitmap</strong> (or press
+<code>Shift + Alt + B</code>).</li>
+<li><strong>Select Multicolor Mode:</strong> In the Trace Bitmap panel,
+switch to the <strong>Multicolor</strong> tab and choose
+<strong>Colors</strong> from the detection dropdown menu.</li>
+<li><strong>Set Scans:</strong> Adjust the <strong>Scans</strong> count
+to match the number of colors in your image.</li>
+<li><strong>Enable Stacking:</strong> Ensure the <strong>Stack</strong>
+checkbox is <strong>checked</strong>. This tells Inkscape to build each
+scan on top of the previous layer.</li>
+<li><strong>Execute Trace:</strong> Click <strong>Apply</strong>.
+Inkscape will generate a grouped set of overlapping vector paths.</li>
+</ol>
+<hr />
+<h2 id="how-to-trace-as-non-overlapping-cutouts">How to Trace as
+Non-Overlapping Cutouts</h2>
+<ol type="1">
+<li><strong>Select the Image:</strong> Click on your raster image on the
+canvas.</li>
+<li><strong>Open Trace Bitmap:</strong> Go to <strong>Path &gt; Trace
+Bitmap</strong>.</li>
+<li><strong>Configure Multicolor Settings:</strong> Select the
+<strong>Multicolor</strong> tab and set the detection method to
+<strong>Colors</strong>.</li>
+<li><strong>Disable Stacking:</strong> Ensure the <strong>Stack</strong>
+checkbox is <strong>unchecked</strong>.</li>
+<li><strong>Execute Trace:</strong> Click <strong>Apply</strong>.</li>
+<li><strong>Verify Separation:</strong> Ungroup the result (<strong>Ctrl
++ Shift + G</strong> or <strong>Object &gt; Ungroup</strong>) and move
+the individual pieces apart to confirm that each color exists as a
+distinct cutout with empty spaces beneath.</li>
+</ol>
+<hr />
+<h2 id="fixing-overlaps-manually-via-boolean-operations">Fixing Overlaps
+Manually via Boolean Operations</h2>
+<p>If an existing vector file is stacked and needs to be converted into
+non-overlapping cutouts:</p>
+<ol type="1">
+<li>Ungroup the vector shapes (<strong>Ctrl + Shift + G</strong>).</li>
+<li>Duplicate the top layer shape (<strong>Ctrl + D</strong>).</li>
+<li>Select the duplicate and the underlying layer beneath it.</li>
+<li>Go to <strong>Path &gt; Difference</strong> (or press
+<code>Ctrl + -</code>).</li>
+<li>Repeat this process for each overlapping layer until all shapes fit
+together without overlapping.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

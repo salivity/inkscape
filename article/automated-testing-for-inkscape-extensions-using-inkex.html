@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated Testing for Inkscape Extensions Using inkex - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to build and execute automated regression tests for custom Inkscape extensions using the built-in inkex.tester module. By leveraging the framework's test harness, you can isolate extension behavior, supply test vector files, a">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/automated-testing-for-inkscape-extensions-using-inkex">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Automated Testing for Inkscape Extensions Using inkex - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/automated-testing-for-inkscape-extensions-using-inkex" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to build and execute automated regression tests for custom Inkscape extensions using the built-in inkex.tester module. By leveraging the framework's test harness, you can isolate extension behavior, supply test vector files, a" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="automated-testing-for-inkscape-extensions-using-inkex">Automated
+Testing for Inkscape Extensions Using inkex</h1>
+<p>This guide demonstrates how to build and execute automated regression
+tests for custom Inkscape extensions using the built-in
+<code>inkex.tester</code> module. By leveraging the framework's test
+harness, you can isolate extension behavior, supply test vector files,
+and automatically assert that generated SVG output matches established
+reference files to prevent breaking changes across updates.</p>
+<h2 id="setting-up-the-test-directory-structure">Setting Up the Test
+Directory Structure</h2>
+<p>The <code>inkex</code> testing framework relies on a predictable file
+organization to discover test inputs and verify them against expected
+reference outputs. Place your test scripts and sample data in a
+dedicated <code>tests</code> directory within your extension's root
+folder:</p>
+<pre class="text"><code>my_extension/
+├── my_extension.py
+├── my_extension.inx
+└── tests/
+    ├── test_my_extension.py
+    └── data/
+        ├── input/
+        │   └── basic_shape.svg
+        └── refs/
+            └── basic_shape.svg</code></pre>
+<p>The <code>data/input</code> directory holds the original SVG files
+prior to extension processing. The <code>data/refs</code> directory
+holds the exact, expected SVG or text output that the extension should
+generate after modification.</p>
+<h2 id="creating-the-test-case">Creating the Test Case</h2>
+<p>Inkscape provides the <code>ComparisonMixin</code> and
+<code>TestCase</code> classes inside <code>inkex.tester</code>.
+Combining these classes allows you to test your extension against
+multiple combinations of command-line arguments and input files with
+minimal boilerplate.</p>
+<p>Create a test file (e.g., <code>tests/test_my_extension.py</code>)
+with the following implementation:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex.tester <span class="im">import</span> ComparisonMixin, TestCase</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> my_extension <span class="im">import</span> MyCustomExtension</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TestMyCustomExtension(ComparisonMixin, TestCase):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Specify the extension class to instantiate</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    effect_class <span class="op">=</span> MyCustomExtension</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define test combinations: (args_tuple, input_filename)</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    comparisons <span class="op">=</span> [</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Tests default execution on basic_shape.svg</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        (),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Tests specific CLI arguments passed to the extension</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        (<span class="st">&quot;--custom-param=42&quot;</span>, <span class="st">&quot;--mode=outline&quot;</span>),</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    ]</span></code></pre></div>
+<p>When no file is explicitly tied to a comparison tuple,
+<code>inkex</code> will attempt to use default test SVG files or files
+defined in the test class. To specify an input file directly alongside
+arguments:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TestMyCustomExtensionWithFiles(ComparisonMixin, TestCase):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    effect_class <span class="op">=</span> MyCustomExtension</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    comparisons <span class="op">=</span> [</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Format: (args_list, input_filename)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        ([<span class="st">&quot;--custom-param=100&quot;</span>], <span class="st">&quot;basic_shape.svg&quot;</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    ]</span></code></pre></div>
+<h2 id="how-the-comparison-works">How the Comparison Works</h2>
+<p>During execution, <code>ComparisonMixin</code> processes the test in
+several steps:</p>
+<ol type="1">
+<li><strong>Loads the Input File:</strong> It reads the designated file
+from <code>tests/data/input/</code>.</li>
+<li><strong>Executes the Extension:</strong> It initializes your
+<code>effect_class</code>, parses the provided argument list, and
+executes the extension's logic in-memory.</li>
+<li><strong>Compares to Reference:</strong> It extracts the output SVG
+document and compares its XML structure against the corresponding file
+in <code>tests/data/refs/</code>.</li>
+</ol>
+<p>The framework normalizes XML attributes, element order, and
+floating-point precision differences, ensuring tests do not fail on
+minor syntactic variations between environments.</p>
+<h2 id="generating-initial-reference-files">Generating Initial Reference
+Files</h2>
+<p>When writing a new test, you must generate the initial reference file
+to establish baseline expectations.</p>
+<ol type="1">
+<li>Ensure your input file exists in
+<code>tests/data/input/basic_shape.svg</code>.</li>
+<li>Set the environment variable <code>EXPORT_COMPARE</code> to
+automatically write the generated output directly to the references
+folder during execution:</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">EXPORT_COMPARE</span><span class="op">=</span>true <span class="ex">pytest</span> tests/test_my_extension.py</span></code></pre></div>
+<ol start="3" type="1">
+<li>Open the newly generated file inside <code>tests/data/refs/</code>
+in a text editor or Inkscape to manually verify that the output is
+correct. Once verified, commit this file to your version control
+system.</li>
+</ol>
+<h2 id="running-the-regression-tests">Running the Regression Tests</h2>
+<p>The <code>inkex</code> test suite is compatible with
+<code>pytest</code>. Run your test suite from your extension's root
+directory:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span></span></code></pre></div>
+<p>To run only a specific test class or method with verbose output:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> tests/test_my_extension.py <span class="at">-v</span></span></code></pre></div>
+<p>If an update alters the generated SVG structure, <code>pytest</code>
+will report a failure and display a unified XML diff indicating
+precisely which nodes, attributes, or text contents changed, allowing
+you to catch unintended visual and programmatic regressions
+instantly.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

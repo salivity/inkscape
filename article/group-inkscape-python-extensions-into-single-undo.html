@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Inkscape Python Extensions into Single Undo - inkscape</title>
+    <meta name="description" content="This article explains how to ensure an entire Inkscape Python extension run registers as a single entry in Inkscape's undo history. By understanding the data flow between Inkscape and its Python extension subsystem (inkex), structuring your script using">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/group-inkscape-python-extensions-into-single-undo">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Group Inkscape Python Extensions into Single Undo - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/group-inkscape-python-extensions-into-single-undo" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how to ensure an entire Inkscape Python extension run registers as a single entry in Inkscape's undo history. By understanding the data flow between Inkscape and its Python extension subsystem (inkex), structuring your script using" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="group-inkscape-python-extensions-into-single-undo">Group
+Inkscape Python Extensions into Single Undo</h1>
+<p>This article explains how to ensure an entire Inkscape Python
+extension run registers as a single entry in Inkscape's undo history. By
+understanding the data flow between Inkscape and its Python extension
+subsystem (<code>inkex</code>), structuring your script using
+<code>inkex.EffectExtension</code>, and properly setting metadata in
+your extension definition file, you can manipulate complex vector data
+while providing a clean, single-step undo experience for end users.</p>
+<h2 id="how-inkscape-tracks-extension-changes">How Inkscape Tracks
+Extension Changes</h2>
+<p>Inkscape isolates external Python extensions from its live internal
+memory. When an extension is triggered from the menu, Inkscape creates a
+single transaction boundary in its undo stack:</p>
+<ol type="1">
+<li>Inkscape writes the current document state as an XML stream to
+standard input (<code>stdin</code>).</li>
+<li>The Python script parses the document, performs all node
+manipulations in memory, and writes the modified XML back to standard
+output (<code>stdout</code>).</li>
+<li>Inkscape compares or replaces the document tree with the returned
+data and commits the entire batch of changes as one atomic undo
+step.</li>
+</ol>
+<p>Because the live canvas is updated only after the script exits, all
+standard DOM alterations made during a single execution naturally
+collapse into one undo event.</p>
+<h2 id="standard-implementation-with-inkexeffectextension">Standard
+Implementation with <code>inkex.EffectExtension</code></h2>
+<p>To take advantage of atomic undo grouping, always base your extension
+on <code>inkex.EffectExtension</code> rather than invoking external
+Inkscape shell commands. Perform all operations within the overridden
+<code>effect()</code> method.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex <span class="im">import</span> Circle</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyBatchExtension(inkex.EffectExtension):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># All modifications happen in-memory on self.svg</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> element <span class="kw">in</span> <span class="va">self</span>.svg.selection:</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Example operation: add a circle at element coordinates</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            bbox <span class="op">=</span> element.bounding_box()</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> bbox:</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                circle <span class="op">=</span> Circle(cx<span class="op">=</span><span class="bu">str</span>(bbox.center.x), cy<span class="op">=</span><span class="bu">str</span>(bbox.center.y), r<span class="op">=</span><span class="st">&quot;5&quot;</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                circle.style <span class="op">=</span> {<span class="st">&#39;fill&#39;</span>: <span class="st">&#39;red&#39;</span>, <span class="st">&#39;stroke&#39;</span>: <span class="st">&#39;none&#39;</span>}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.svg.append(circle)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    MyBatchExtension().run()</span></code></pre></div>
+<p>As long as modifications are applied to <code>self.svg</code> and
+standard output is preserved for the main process exit, Inkscape records
+the run as a single action.</p>
+<h2 id="avoiding-fractured-undo-histories">Avoiding Fractured Undo
+Histories</h2>
+<p>The most common reason an extension splits into multiple undo
+operations—or fails to integrate into the undo stack properly—is the
+misuse of interactive commands or external subprocess calls.</p>
+<ul>
+<li><strong>Do not invoke multiple Inkscape CLI actions:</strong> Using
+<code>inkex.command.inkscape()</code> to execute multiple batch actions
+(such as <code>verb-call</code> or <code>--actions</code>) against an
+active GUI document bypasses the standard input/output pipeline and
+creates separate undo steps for each action call.</li>
+<li><strong>Keep processing within the DOM:</strong> If you must use
+path operations (such as unions or intersections) that standard XML
+parsing cannot perform, compute them via path libraries like
+<code>shapely</code> or pass chained action strings in a single call
+rather than executing sequential isolated commands.</li>
+</ul>
+<h2 id="naming-the-undo-step-in-the-inx-file">Naming the Undo Step in
+the <code>.inx</code> File</h2>
+<p>Inkscape labels the single undo entry based on the
+<code>&lt;name&gt;</code> tag defined inside the extension's
+corresponding <code>.inx</code> file:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span> <span class="ot">version=</span><span class="st">&quot;1.0&quot;</span> <span class="ot">encoding=</span><span class="st">&quot;UTF-8&quot;</span><span class="fu">?&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">inkscape-extension</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.inkscape.org/namespace/inkscape/extension&quot;</span>&gt;</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">name</span>&gt;Batch Shape Generator&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">id</span>&gt;org.example.batch_shape_generator&lt;/<span class="kw">id</span>&gt;</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">effect</span>&gt;</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">object-type</span>&gt;all&lt;/<span class="kw">object-type</span>&gt;</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">submenu</span> <span class="ot">name=</span><span class="st">&quot;Custom Tools&quot;</span>/&gt;</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">effect</span>&gt;</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">script</span>&gt;</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">command</span> <span class="ot">location=</span><span class="st">&quot;inx&quot;</span> <span class="ot">interpreter=</span><span class="st">&quot;python&quot;</span>&gt;my_script.py&lt;/<span class="kw">command</span>&gt;</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">script</span>&gt;</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">inkscape-extension</span>&gt;</span></code></pre></div>
+<p>When a user runs this extension, the entry appearing under
+<strong>Edit &gt; Undo</strong> will read <strong>Undo: Batch Shape
+Generator</strong>, reverting all generated nodes and modifications in
+one step.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

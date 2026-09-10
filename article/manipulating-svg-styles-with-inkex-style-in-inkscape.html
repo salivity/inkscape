@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulating SVG Styles with inkex.Style in Inkscape - inkscape</title>
+    <meta name="description" content="Manipulating SVG styling programmatically is a core task when developing Inkscape extensions using Python. This guide demonstrates how to inspect, add, update, and remove element styles directly using the inkex.Style class, which behaves like a standard">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/manipulating-svg-styles-with-inkex-style-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Manipulating SVG Styles with inkex.Style in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/manipulating-svg-styles-with-inkex-style-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Manipulating SVG styling programmatically is a core task when developing Inkscape extensions using Python. This guide demonstrates how to inspect, add, update, and remove element styles directly using the inkex.Style class, which behaves like a standard" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1
+id="manipulating-svg-styles-with-inkexstyle-in-inkscape">Manipulating
+SVG Styles with inkex.Style in Inkscape</h1>
+<p>Manipulating SVG styling programmatically is a core task when
+developing Inkscape extensions using Python. This guide demonstrates how
+to inspect, add, update, and remove element styles directly using the
+<code>inkex.Style</code> class, which behaves like a standard Python
+dictionary representing inline SVG CSS properties.</p>
+<h2 id="accessing-and-inspecting-element-styles">Accessing and
+Inspecting Element Styles</h2>
+<p>In modern Inkscape extensions (<code>inkex</code> 1.0 and newer), SVG
+elements represent their inline style attribute through the
+<code>style</code> property. This property returns an
+<code>inkex.Style</code> object, which implements Python's
+<code>collections.abc.MutableMapping</code> interface.</p>
+<p>To read a style property, use standard dictionary access or the
+<code>.get()</code> method to handle missing keys gracefully:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access an element from the document</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>element <span class="op">=</span> <span class="va">self</span>.svg.selected.first()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve a style property</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>fill_color <span class="op">=</span> element.style.get(<span class="st">&#39;fill&#39;</span>, <span class="st">&#39;none&#39;</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>stroke_width <span class="op">=</span> element.style.get(<span class="st">&#39;stroke-width&#39;</span>, <span class="st">&#39;1px&#39;</span>)</span></code></pre></div>
+<h2 id="modifying-and-adding-style-properties">Modifying and Adding
+Style Properties</h2>
+<p>Because <code>inkex.Style</code> acts as a dictionary, modifying or
+adding CSS rules requires only assigning a value to the target key.
+Values should typically be strings conforming to standard SVG/CSS
+specifications.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Update existing styles or add new ones</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>element.style[<span class="st">&#39;fill&#39;</span>] <span class="op">=</span> <span class="st">&#39;#ff5733&#39;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>element.style[<span class="st">&#39;stroke&#39;</span>] <span class="op">=</span> <span class="st">&#39;#000000&#39;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>element.style[<span class="st">&#39;stroke-width&#39;</span>] <span class="op">=</span> <span class="st">&#39;2.5px&#39;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>element.style[<span class="st">&#39;fill-opacity&#39;</span>] <span class="op">=</span> <span class="st">&#39;0.8&#39;</span></span></code></pre></div>
+<p>Changes made to <code>element.style</code> update the internal
+dictionary immediately and are serialized back to the element's
+<code>style</code> attribute upon document export.</p>
+<h2 id="removing-style-properties">Removing Style Properties</h2>
+<p>To eliminate a specific style declaration so that an element inherits
+styling from a parent group or default stylesheet, use the standard
+<code>del</code> statement or the <code>.pop()</code> method:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove a style property using del</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">&#39;stroke&#39;</span> <span class="kw">in</span> element.style:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">del</span> element.style[<span class="st">&#39;stroke&#39;</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Safely remove a property using pop</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>element.style.pop(<span class="st">&#39;stroke-dasharray&#39;</span>, <span class="va">None</span>)</span></code></pre></div>
+<p>To clear all inline styles from an element entirely:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>element.style.clear()</span></code></pre></div>
+<h2 id="creating-and-assigning-a-new-inkexstyle">Creating and Assigning
+a New inkex.Style</h2>
+<p>You can instantiate <code>inkex.Style</code> independently and assign
+it to an element. The constructor accepts a raw CSS string, a
+dictionary, or keyword arguments:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex <span class="im">import</span> Style</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># From a CSS string</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>element.style <span class="op">=</span> Style(<span class="st">&quot;fill:#00ff00;stroke:#333333;stroke-width:1px&quot;</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># From a dictionary</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>element.style <span class="op">=</span> Style({<span class="st">&#39;fill&#39;</span>: <span class="st">&#39;blue&#39;</span>, <span class="st">&#39;opacity&#39;</span>: <span class="st">&#39;0.5&#39;</span>})</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Updating multiple styles at once</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>element.style.update({</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;fill-rule&#39;</span>: <span class="st">&#39;evenodd&#39;</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;stroke-linecap&#39;</span>: <span class="st">&#39;round&#39;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<h2 id="complete-extension-example">Complete Extension Example</h2>
+<p>Below is a minimal <code>EffectExtension</code> implementation
+showing how to iterate over selected elements and apply direct style
+changes:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex <span class="im">import</span> EffectExtension</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> DirectStyleModifier(EffectExtension):</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Iterate over all selected elements</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> elem <span class="kw">in</span> <span class="va">self</span>.svg.selection:</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Check if the element has styling capabilities</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">hasattr</span>(elem, <span class="st">&#39;style&#39;</span>):</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Read current stroke</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>                current_stroke <span class="op">=</span> elem.style.get(<span class="st">&#39;stroke&#39;</span>, <span class="st">&#39;none&#39;</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Apply new styling</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                elem.style[<span class="st">&#39;fill&#39;</span>] <span class="op">=</span> <span class="st">&#39;#4a90e2&#39;</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                elem.style[<span class="st">&#39;stroke-width&#39;</span>] <span class="op">=</span> <span class="st">&#39;3px&#39;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Conditional logic based on existing style</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> current_stroke <span class="op">==</span> <span class="st">&#39;none&#39;</span>:</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                    elem.style[<span class="st">&#39;stroke&#39;</span>] <span class="op">=</span> <span class="st">&#39;#1b365d&#39;</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    DirectStyleModifier().run()</span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

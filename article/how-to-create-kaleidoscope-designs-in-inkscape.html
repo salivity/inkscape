@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Kaleidoscope Designs in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to use Inkscape’s Mirror Symmetry Live Path Effect (LPE) to generate dynamic, multi-axis kaleidoscope patterns in real time. You will learn how to prepare your base vector elements, apply and configure stacked mirror reflections">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-kaleidoscope-designs-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Kaleidoscope Designs in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-kaleidoscope-designs-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use Inkscape’s Mirror Symmetry Live Path Effect (LPE) to generate dynamic, multi-axis kaleidoscope patterns in real time. You will learn how to prepare your base vector elements, apply and configure stacked mirror reflections" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-kaleidoscope-designs-in-inkscape">How to Create
+Kaleidoscope Designs in Inkscape</h1>
+<p>This guide explains how to use Inkscape’s Mirror Symmetry Live Path
+Effect (LPE) to generate dynamic, multi-axis kaleidoscope patterns in
+real time. You will learn how to prepare your base vector elements,
+apply and configure stacked mirror reflections across multiple angles,
+and edit the source geometry so the entire kaleidoscope updates
+instantaneously.</p>
+<h2 id="1-create-a-base-object-and-group-it">1. Create a Base Object and
+Group It</h2>
+<ol type="1">
+<li>Select the <strong>Draw Freehand Lines tool (P)</strong> or
+<strong>Draw Bezier Curves tool (B)</strong> and sketch an asymmetrical,
+flowing path or shape on the canvas.</li>
+<li>Set a distinct stroke color and fill to make tracking changes
+easy.</li>
+<li>Select the object and press <strong>Ctrl + G</strong> to place it
+inside a group.</li>
+</ol>
+<p>Grouping the initial object is a crucial step. Applying Live Path
+Effects to a group allows you to add, remove, or modify multiple
+distinct shapes inside that group later without breaking the symmetry
+calculations.</p>
+<h2 id="2-apply-the-first-mirror-symmetry-effect">2. Apply the First
+Mirror Symmetry Effect</h2>
+<ol type="1">
+<li>Ensure your group is selected.</li>
+<li>Open the Path Effects dialog by navigating to <strong>Path &gt; Path
+Effects</strong>.</li>
+<li>Click the <strong>Add Path Effect (+)</strong> button and search for
+<strong>Mirror symmetry</strong>.</li>
+<li>Click the effect to apply it. By default, Inkscape mirrors the path
+across a vertical axis.</li>
+</ol>
+<h2 id="3-position-the-first-symmetry-line">3. Position the First
+Symmetry Line</h2>
+<ol type="1">
+<li>Switch to the <strong>Edit paths by nodes tool (N)</strong>.</li>
+<li>You will see a dashed line across your object with two round control
+handles at either end. This represents the mirror plane.</li>
+<li>Drag the handles to reposition the mirror axis. For a standard
+four-part reflection, keep this first axis vertical (hold
+<strong>Ctrl</strong> while dragging to snap to increments).</li>
+</ol>
+<h2 id="4-stack-additional-axes-for-multi-axis-reflections">4. Stack
+Additional Axes for Multi-Axis Reflections</h2>
+<p>To create a true multi-axis kaleidoscope, you must stack multiple
+reflections at intersecting angles.</p>
+<ol type="1">
+<li>With the same group selected, click the <strong>Add Path Effect
+(+)</strong> button in the Path Effects panel again.</li>
+<li>Add a second <strong>Mirror symmetry</strong> effect to the
+stack.</li>
+<li>Switch back to the <strong>Node tool (N)</strong>. You will now see
+a second set of control handles corresponding to the second mirror
+effect.</li>
+<li>Drag one handle to orient this axis horizontally (90 degrees
+relative to the first). Your design now reflects across four
+quadrants.</li>
+<li>To create an eight-point kaleidoscope, add a third <strong>Mirror
+symmetry</strong> effect and rotate its mirror line to a 45-degree
+diagonal intersecting the center point of the previous two axes.</li>
+</ol>
+<p><em>Tip:</em> Ensure all mirror axes intersect at the exact same
+central point. You can enable snapping to object midpoints or node
+handles to align the centers precisely.</p>
+<h2 id="5-edit-base-elements-dynamically">5. Edit Base Elements
+Dynamically</h2>
+<p>Because the effects are non-destructive, any change made to the
+source vector instantly ripples through every reflected axis.</p>
+<ol type="1">
+<li>Double-click inside the group to enter it, or select the source path
+directly using the <strong>Node tool (N)</strong>.</li>
+<li>Move nodes, adjust curve handles, or draw new shapes within the
+group.</li>
+<li>Change fills, gradients, or stroke widths. Every edit updates
+dynamically across all mirror axes, creating complex kaleidoscopic
+mandalas with minimal effort.</li>
+</ol>
+<h2 id="6-finalize-the-artwork">6. Finalize the Artwork</h2>
+<p>Once you are satisfied with the design:</p>
+<ol type="1">
+<li>Select the entire group.</li>
+<li>Go to <strong>Path &gt; Object to Path</strong> (<strong>Shift +
+Ctrl + C</strong>) to bake the symmetry reflections into standard vector
+paths. Note that this removes the dynamic editing capability, so retain
+a backup copy of your dynamic setup if future edits are required.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

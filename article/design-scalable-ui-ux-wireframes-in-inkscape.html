@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Scalable UI/UX Wireframes in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape is a powerful, open-source vector graphics editor capable of producing professional, responsive, and resolution-independent UI/UX wireframes and mockups. This guide explains how to set up an optimal digital design workspace, leverage reusable sy">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/design-scalable-ui-ux-wireframes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Scalable UI/UX Wireframes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/design-scalable-ui-ux-wireframes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape is a powerful, open-source vector graphics editor capable of producing professional, responsive, and resolution-independent UI/UX wireframes and mockups. This guide explains how to set up an optimal digital design workspace, leverage reusable sy" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="design-scalable-uiux-wireframes-in-inkscape">Design Scalable
+UI/UX Wireframes in Inkscape</h1>
+<p>Inkscape is a powerful, open-source vector graphics editor capable of
+producing professional, responsive, and resolution-independent UI/UX
+wireframes and mockups. This guide explains how to set up an optimal
+digital design workspace, leverage reusable symbols and clones, maintain
+strict pixel alignment, and export scalable UI assets across multiple
+screen resolutions.</p>
+<h2 id="set-up-a-pixel-perfect-workspace">Set Up a Pixel-Perfect
+Workspace</h2>
+<p>To design scalable digital interfaces, your workspace must be
+configured for pixel accuracy rather than print dimensions.</p>
+<ol type="1">
+<li><strong>Document Properties</strong>: Open Document Properties
+(<code>Ctrl+Shift+D</code>) and set the <strong>Display units</strong>
+to <code>px</code>.</li>
+<li><strong>Page Sizing</strong>: Set your custom page size to standard
+viewport resolutions (e.g., <code>1920x1080</code> for desktop or
+<code>390x844</code> for mobile).</li>
+<li><strong>Grids and Snapping</strong>:
+<ul>
+<li>Add a rectangular grid with a spacing of <code>8px</code> or
+<code>4px</code> to adhere to standard UI design spacing systems.</li>
+<li>Enable snapping on the right toolbar, specifically <strong>Snap to
+grids</strong>, <strong>Snap to bounding boxes</strong>, and
+<strong>Snap to paths/nodes</strong>. This prevents subpixel rendering
+errors that cause blurry edges.</li>
+</ul></li>
+</ol>
+<h2 id="utilize-multi-page-documents-for-workflows">Utilize Multi-Page
+Documents for Workflows</h2>
+<p>Modern versions of Inkscape include the <strong>Create and Edit
+Pages</strong> tool (<code>Shift+P</code>).</p>
+<ul>
+<li>Use separate pages on the canvas to represent different application
+screens, modal states, or viewport breakpoints (Mobile, Tablet,
+Desktop).</li>
+<li>Rearrange and resize individual artboards directly on the canvas
+while keeping your entire user flow within a single <code>.svg</code>
+file.</li>
+</ul>
+<h2 id="build-reusable-ui-components-using-clones-and-symbols">Build
+Reusable UI Components Using Clones and Symbols</h2>
+<p>Scalability requires modularity. Inkscape provides robust tools to
+create component-based design systems.</p>
+<h3 id="1-the-symbols-dialog">1. The Symbols Dialog</h3>
+<p>Convert repeated UI elements—such as buttons, navigation bars,
+inputs, and icons—into reusable assets.</p>
+<ul>
+<li>Group your finished UI element (<code>Ctrl+G</code>).</li>
+<li>Open the <strong>Symbols</strong> dialog
+(<code>Ctrl+Shift+Y</code>).</li>
+<li>Select your group and click <strong>Add Symbol from current
+document</strong>.</li>
+<li>Drag and drop components from the Symbols panel onto any page in
+your document.</li>
+</ul>
+<h3 id="2-clones-for-instant-system-wide-updates">2. Clones for Instant
+System-Wide Updates</h3>
+<p>If you need dynamic component instances:</p>
+<ul>
+<li>Select an original element and press <code>Alt+D</code> to create a
+<strong>Clone</strong>.</li>
+<li>Any changes made to the master object's color, shape, or typography
+will instantly update all linked clones across your mockups.</li>
+<li>Unlink specific clones (<code>Shift+Alt+D</code>) when a component
+requires unique state overrides (e.g., an active or disabled button
+state).</li>
+</ul>
+<h2 id="structure-projects-with-layers-and-groups">Structure Projects
+with Layers and Groups</h2>
+<p>Maintain an organized visual hierarchy using the <strong>Layers and
+Objects</strong> dialog (<code>Ctrl+Shift+L</code>):</p>
+<ul>
+<li><strong>Annotations / Flow</strong>: User journeys, notes, and
+wireframe link lines.</li>
+<li><strong>Overlays / Modals</strong>: Popups, alert dialogs, and
+navigation drawers.</li>
+<li><strong>Content</strong>: Typography, cards, illustrations, and
+images.</li>
+<li><strong>Navigation / Structure</strong>: Headers, tab bars, and
+sidebars.</li>
+<li><strong>Background / Base</strong>: Canvas colors and structural
+layout grids.</li>
+</ul>
+<p>Lock background and layout layers while working on active interface
+components to avoid accidental shifts.</p>
+<h2 id="standardize-colors-and-typography">Standardize Colors and
+Typography</h2>
+<ul>
+<li><strong>Global Swatches</strong>: Create your color palette using
+the <strong>Palette</strong> menu. Add specific HEX codes to your
+document palette so you can apply primary, secondary, and neutral colors
+consistently.</li>
+<li><strong>Consistent Typography</strong>: Use the <strong>Text and
+Font</strong> panel (<code>Ctrl+Shift+T</code>) to define consistent
+text styles. Set strict hierarchy guidelines for headings (H1, H2, H3),
+body text, and caption sizes based on scalable <code>rem</code> or
+<code>px</code> multiples (e.g., 32px, 24px, 16px, 12px).</li>
+</ul>
+<h2 id="export-wireframes-and-assets">Export Wireframes and Assets</h2>
+<p>Because Inkscape natively uses the standard SVG format, your
+wireframes are naturally scalable for any display density.</p>
+<ol type="1">
+<li><strong>Exporting Full Mockups</strong>:
+<ul>
+<li>Open the <strong>Export</strong> dialog
+(<code>Ctrl+Shift+E</code>).</li>
+<li>Select <strong>Batch Export</strong> and choose the
+<strong>Pages</strong> tab to export all screens simultaneously as PNG,
+PDF, or SVG.</li>
+</ul></li>
+<li><strong>Exporting Production Assets (Icons and UI
+elements)</strong>:
+<ul>
+<li>Select the individual component.</li>
+<li>In the Export dialog, choose <strong>Selection</strong>.</li>
+<li>Export vector formats (<code>.svg</code>) for web and app
+development, or export raster formats (<code>.png</code>) at
+<code>1x</code>, <code>2x</code>, and <code>3x</code> scales by
+adjusting the DPI (96 DPI for 1x, 192 DPI for 2x, 288 DPI for 3x).</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Inkscape Difference Deletes Both Objects - inkscape</title>
+    <meta name="description" content="When using the Path Difference tool in Inkscape, users often encounter an issue where both selected objects disappear instead of cutting one shape out of the other. This usually happens due to incorrect object stacking order, attempting to use Boolean op">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/why-inkscape-difference-deletes-both-objects">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Inkscape Difference Deletes Both Objects - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/why-inkscape-difference-deletes-both-objects" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When using the Path Difference tool in Inkscape, users often encounter an issue where both selected objects disappear instead of cutting one shape out of the other. This usually happens due to incorrect object stacking order, attempting to use Boolean op" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="why-inkscape-difference-deletes-both-objects">Why Inkscape
+Difference Deletes Both Objects</h1>
+<p>When using the Path Difference tool in Inkscape, users often
+encounter an issue where both selected objects disappear instead of
+cutting one shape out of the other. This usually happens due to
+incorrect object stacking order, attempting to use Boolean operations on
+groups or raw geometric shapes instead of paths, or having the top
+object completely enclose the bottom object. Understanding how Inkscape
+processes Boolean operations resolves this issue quickly.</p>
+<h3 id="the-top-object-fully-covers-the-bottom-object">The Top Object
+Fully Covers the Bottom Object</h3>
+<p>Inkscape's Difference operation (<code>Path &gt; Difference</code> or
+<code>Ctrl + -</code>) uses the top object as a "cookie cutter" to
+subtract its shape from the bottom object. Once the operation is
+complete, the cutting object (top) is deleted automatically. If the top
+object is larger than and completely covers the bottom object, it
+subtracts the entire bottom shape. Since the bottom shape is reduced to
+nothing and the top shape is discarded by design, both objects disappear
+from the canvas. To fix this, ensure the cutting object only covers the
+portion of the bottom object you want to remove.</p>
+<h3 id="the-objects-are-groups-instead-of-single-paths">The Objects Are
+Groups Instead of Single Paths</h3>
+<p>Boolean operations in Inkscape only function on individual path
+elements. If one or both of the selected items is a group, the software
+cannot calculate the intersection correctly, often resulting in the
+entire selection vanishing.</p>
+<ul>
+<li>Select the objects and look at the Status Bar at the bottom of the
+screen.</li>
+<li>If it says "Group of X objects," ungroup them by pressing
+<code>Ctrl + Shift + G</code> (or
+<code>Object &gt; Ungroup</code>).</li>
+<li>If you need to cut multiple shapes at once, combine them first using
+<code>Path &gt; Combine</code> (<code>Ctrl + K</code>) before applying
+the Difference operation.</li>
+</ul>
+<h3 id="the-objects-have-not-been-converted-to-paths">The Objects Have
+Not Been Converted to Paths</h3>
+<p>Basic shapes created with the Rectangle, Circle, or Star tools, as
+well as live Text objects, are not raw vector paths by default.
+Attempting a Difference operation on primitive shapes or text can cause
+unpredictable behavior or total deletion.</p>
+<ul>
+<li>Select your shapes.</li>
+<li>Navigate to <code>Path &gt; Object to Path</code>
+(<code>Ctrl + Shift + C</code>).</li>
+<li>Perform the Difference operation again.</li>
+</ul>
+<h3 id="the-path-stacking-order-is-inverted">The Path Stacking Order Is
+Inverted</h3>
+<p>Because the top object always acts as the cutter, having the wrong
+shape on top can lead to accidental deletion of the geometry you
+intended to keep. You can adjust the Z-order using the keyboard:</p>
+<ul>
+<li>Select the object intended to be the cutter and press
+<code>Page Up</code> to raise it to the top.</li>
+<li>Alternatively, select the object you want to keep and press
+<code>Page Down</code> to move it to the bottom.</li>
+</ul>
+<h3 id="working-with-open-paths">Working with Open Paths</h3>
+<p>Difference operations require closed 2D areas. If you attempt to
+subtract using an open stroke (a line with unconnected endpoints),
+Inkscape may fail to create a valid closed path and discard the
+resulting geometry. Close any open paths using the Node tool
+(<code>F2</code>) before running the operation.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Voronoi Mosaic Textures in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to generate procedural mosaic and stained-glass textures in Inkscape using the built-in Voronoi Pattern extension. By generating randomized mathematical cells across a shape or canvas, you can quickly produce organic geometric bac">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-voronoi-mosaic-textures-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Voronoi Mosaic Textures in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-voronoi-mosaic-textures-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate procedural mosaic and stained-glass textures in Inkscape using the built-in Voronoi Pattern extension. By generating randomized mathematical cells across a shape or canvas, you can quickly produce organic geometric bac" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-voronoi-mosaic-textures-in-inkscape">Create Voronoi
+Mosaic Textures in Inkscape</h1>
+<p>This guide explains how to generate procedural mosaic and
+stained-glass textures in Inkscape using the built-in Voronoi Pattern
+extension. By generating randomized mathematical cells across a shape or
+canvas, you can quickly produce organic geometric backgrounds, low-poly
+aesthetics, and tiled patterns without manually drawing individual
+segments.</p>
+<h3 id="step-1-create-a-base-shape">Step 1: Create a Base Shape</h3>
+<ol type="1">
+<li>Open Inkscape and select the <strong>Rectangle tool</strong>
+(<code>R</code>) or <strong>Circles tool</strong> (<code>E</code>).</li>
+<li>Draw a shape on the canvas that matches the size of the area where
+you want the mosaic pattern to appear.</li>
+<li>Keep the shape selected.</li>
+</ol>
+<h3 id="step-2-open-the-voronoi-pattern-tool">Step 2: Open the Voronoi
+Pattern Tool</h3>
+<ol type="1">
+<li>Navigate to the top menu and select <strong>Extensions</strong> &gt;
+<strong>Generate from Path</strong> &gt; <strong>Voronoi
+Pattern...</strong> (or <strong>Voronoi Diagram...</strong> depending on
+your Inkscape version).</li>
+<li>A dialog window will appear with configurable parameters for
+generating the procedural cells.</li>
+</ol>
+<h3 id="step-3-configure-the-pattern-settings">Step 3: Configure the
+Pattern Settings</h3>
+<ul>
+<li><strong>Number of cells / points:</strong> Increase this value for a
+denser, smaller mosaic tile look, or decrease it for larger, low-poly
+fragments.</li>
+<li><strong>Pattern type:</strong> Choose between
+<strong>Voronoi</strong> (which creates polygonal cells) and
+<strong>Delaunay</strong> (which creates triangular meshes). For a
+classic mosaic, select <strong>Voronoi</strong>.</li>
+<li><strong>Cell spacing / Border:</strong> Adjust the line thickness
+setting if you want clear separation between tiles to emulate grout or
+stained-glass lead lines.</li>
+<li>Check the <strong>Live Preview</strong> box to see real-time updates
+as you adjust values.</li>
+<li>Click <strong>Apply</strong>, then <strong>Close</strong>.</li>
+</ul>
+<h3 id="step-4-colorize-and-style-the-mosaic">Step 4: Colorize and Style
+the Mosaic</h3>
+<ol type="1">
+<li>Select the generated Voronoi object and ungroup it by pressing
+<code>Ctrl + Shift + G</code> (or <code>Cmd + Shift + G</code> on
+macOS).</li>
+<li><strong>Manual Coloring:</strong> Select individual cells with the
+<strong>Select tool</strong> (<code>S</code>) and assign different fills
+using the color palette.</li>
+<li><strong>Randomized Shading:</strong> Select all cells, go to
+<strong>Extensions</strong> &gt; <strong>Color</strong> &gt;
+<strong>Randomize...</strong>, and adjust Hue, Saturation, or Lightness
+ranges to procedurally color the entire mosaic.</li>
+<li><strong>Grout/Borders:</strong> Select all cells, open the
+<strong>Fill and Stroke</strong> panel (<code>Ctrl + Shift + F</code>),
+set a solid <strong>Stroke paint</strong> (such as dark gray or white),
+and adjust the <strong>Stroke width</strong> to define the tile
+boundaries.</li>
+</ol>
+<h3 id="step-5-mask-or-clip-to-specific-shapes">Step 5: Mask or Clip to
+Specific Shapes</h3>
+<p>If you need the pattern confined inside a specific boundary:</p>
+<ol type="1">
+<li>Place your target shape directly above the grouped Voronoi
+pattern.</li>
+<li>Select both the Voronoi group and the target shape.</li>
+<li>Go to <strong>Object</strong> &gt; <strong>Clip</strong> &gt;
+<strong>Set Clip</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

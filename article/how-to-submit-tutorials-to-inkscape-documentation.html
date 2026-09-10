@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Submit Tutorials to Inkscape Documentation - inkscape</title>
+    <meta name="description" content="This guide provides a comprehensive walkthrough for artists seeking to contribute official vector tutorial files to the Inkscape documentation repository. It outlines everything from formatting the vector artwork to comply with Inkscape's technical and l">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-submit-tutorials-to-inkscape-documentation">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Submit Tutorials to Inkscape Documentation - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-submit-tutorials-to-inkscape-documentation" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a comprehensive walkthrough for artists seeking to contribute official vector tutorial files to the Inkscape documentation repository. It outlines everything from formatting the vector artwork to comply with Inkscape's technical and l" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-submit-tutorials-to-inkscape-documentation">How to Submit
+Tutorials to Inkscape Documentation</h1>
+<p>This guide provides a comprehensive walkthrough for artists seeking
+to contribute official vector tutorial files to the Inkscape
+documentation repository. It outlines everything from formatting the
+vector artwork to comply with Inkscape's technical and licensing
+standards, to using GitLab for repository management, creating a merge
+request, and collaborating with the documentation team.</p>
+<h3 id="1-review-licensing-and-technical-requirements">1. Review
+Licensing and Technical Requirements</h3>
+<p>Before creating or packaging your tutorial file, ensure your work
+adheres to Inkscape's community standards:</p>
+<ul>
+<li><strong>Licensing:</strong> Official documentation assets are
+typically distributed under free and open-source licenses, such as the
+Creative Commons Attribution-ShareAlike (CC-BY-SA) or the GNU General
+Public License (GPL). You must be willing to release your artwork under
+these terms.</li>
+<li><strong>Standard Fonts:</strong> Use only open-source,
+system-neutral fonts (such as DejaVu Sans, Liberation Sans, or
+Cantarell) to ensure the text renders consistently across Linux,
+Windows, and macOS without requiring proprietary installations.</li>
+<li><strong>Clean Code:</strong> Use pure Inkscape SVG without
+unsupported third-party metadata or proprietary extension tags.</li>
+</ul>
+<h3 id="2-prepare-the-vector-files">2. Prepare the Vector Files</h3>
+<p>The tutorial files distributed inside Inkscape (accessible via
+<strong>Help &gt; Tutorials</strong>) must follow strict structural
+rules:</p>
+<ul>
+<li><strong>Clean the Document:</strong> Open <strong>File &gt; Clean Up
+Document</strong> in Inkscape to purge unused definitions, gradients,
+patterns, and markers.</li>
+<li><strong>Optimize Document Properties:</strong> Set your canvas
+dimensions appropriately, ensure the display units are standard (usually
+pixels or millimeters), and remove unnecessary guides or grids unless
+they are essential for the tutorial.</li>
+<li><strong>Layer Organization:</strong> Clearly name layers (e.g.,
+"Instructions", "Artwork", "Templates") and lock layers containing
+static tutorial instructions so users can interact with exercise
+elements without accidentally moving background panels.</li>
+<li><strong>File Size:</strong> Keep file sizes minimal. Avoid embedded
+high-resolution raster images unless explicitly required.</li>
+</ul>
+<h3 id="3-create-an-account-and-fork-the-repository">3. Create an
+Account and Fork the Repository</h3>
+<p>The Inkscape documentation and tutorial source files are hosted on
+the Inkscape GitLab instance.</p>
+<ol type="1">
+<li>Create an account on <a href="https://gitlab.com">GitLab</a>.</li>
+<li>Navigate to the official Inkscape documentation repository
+(typically <code>inkscape/inkscape-docs</code> or the main
+<code>inkscape/inkscape</code> repository for built-in tutorials).</li>
+<li>Click the <strong>Fork</strong> button in the top right to duplicate
+the repository to your personal GitLab namespace.</li>
+</ol>
+<h3 id="4-clone-and-create-a-working-branch">4. Clone and Create a
+Working Branch</h3>
+<p>Work on a dedicated branch rather than the master or main branch:</p>
+<ol type="1">
+<li>Clone your fork locally using Git:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://gitlab.com/<span class="op">&lt;</span>your-username<span class="op">&gt;</span>/inkscape-docs.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> inkscape-docs</span></code></pre></div></li>
+<li>Create a new descriptive branch:
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">-b</span> add-vector-tutorial-name</span></code></pre></div></li>
+</ol>
+<h3 id="5-add-your-files-to-the-proper-directory">5. Add Your Files to
+the Proper Directory</h3>
+<p>Place your <code>.svg</code> tutorial file and any accompanying
+translation strings or documentation files into the designated tutorial
+directory:</p>
+<ul>
+<li>For built-in tutorials, locate the relevant subfolder (usually
+<code>share/tutorials/</code> within the source tree).</li>
+<li>If your tutorial requires internationalization, ensure the SVG text
+strings are cleanly isolated so that the documentation translation team
+can process them with standard <code>gettext</code> tools.</li>
+</ul>
+<h3 id="6-commit-and-push-your-changes">6. Commit and Push Your
+Changes</h3>
+<p>Commit your files using clear, descriptive commit messages adhering
+to project conventions:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add share/tutorials/your-tutorial.svg</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;Add beginner vector shading tutorial&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin add-vector-tutorial-name</span></code></pre></div>
+<h3 id="7-open-a-merge-request">7. Open a Merge Request</h3>
+<ol type="1">
+<li>Return to your forked repository on GitLab in your browser.</li>
+<li>Click <strong>Create Merge Request</strong> for the recently pushed
+branch.</li>
+<li>Choose the target branch in the upstream Inkscape repository
+(usually <code>master</code>).</li>
+<li>In the merge request description:
+<ul>
+<li>Explain the goal and target audience of the tutorial.</li>
+<li>State that you agree to release the asset under the project's
+documentation license.</li>
+<li>Note any dependencies or specific Inkscape version
+requirements.</li>
+</ul></li>
+<li>Submit the Merge Request.</li>
+</ol>
+<h3 id="8-address-feedback-and-finalize">8. Address Feedback and
+Finalize</h3>
+<p>Once submitted, members of the Inkscape Documentation and Vectors
+teams will review your submission for usability, visual consistency, and
+technical compliance. Monitor the merge request thread to address
+questions, adjust SVG settings, or push amendments directly to your
+branch until the request is approved and merged into the official
+release.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Inkscape Handles SVG Coordinate Precision Errors - inkscape</title>
+    <meta name="description" content="Inkscape manages numerical precision and floating-point rounding errors by decoupling its high-precision internal geometry engine from the text-based serialization used when saving SVG files. While vector calculations are executed in memory using standar">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-inkscape-handles-svg-coordinate-precision-errors">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Inkscape Handles SVG Coordinate Precision Errors - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-inkscape-handles-svg-coordinate-precision-errors" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape manages numerical precision and floating-point rounding errors by decoupling its high-precision internal geometry engine from the text-based serialization used when saving SVG files. While vector calculations are executed in memory using standar" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-inkscape-handles-svg-coordinate-precision-errors">How
+Inkscape Handles SVG Coordinate Precision Errors</h1>
+<p>Inkscape manages numerical precision and floating-point rounding
+errors by decoupling its high-precision internal geometry engine from
+the text-based serialization used when saving SVG files. While vector
+calculations are executed in memory using standard 64-bit IEEE 754
+floating-point arithmetic, the final coordinates written to raw SVG path
+data are rounded according to user-configurable export settings. This
+article covers how Inkscape balances in-memory numerical accuracy,
+serialized XML coordinate truncation, relative path drift prevention,
+and transform matrix operations.</p>
+<h3 id="internal-representation-vs-svg-serialization">Internal
+Representation vs. SVG Serialization</h3>
+<p>During an active editing session, Inkscape relies on its core
+geometric library, <code>lib2geom</code>. This library performs all
+geometric intersections, Bézier curve subdivisions, and node
+translations using standard C++ <code>double</code> types (64-bit
+double-precision floating-point numbers). This ensures approximately 15
+to 17 significant decimal digits of precision during calculations,
+keeping internal rounding errors far below human visual perception or
+hardware display limits.</p>
+<p>Rounding occurs primarily during serialization—the moment Inkscape
+translates internal in-memory structures into text-based SVG XML.
+Converting infinite or high-precision decimals into ASCII text can
+dramatically increase file size, so Inkscape truncates coordinates to a
+specified number of significant digits.</p>
+<h3 id="configurable-numerical-precision-settings">Configurable
+Numerical Precision Settings</h3>
+<p>Inkscape allows users to control floating-point truncation directly
+through its preferences:</p>
+<ol type="1">
+<li>Navigate to <strong>Edit &gt; Preferences &gt; Input/Output &gt; SVG
+output</strong>.</li>
+<li>Locate the <strong>Numerical precision</strong> setting.</li>
+</ol>
+<p>This setting dictates the maximum number of decimal places or
+significant digits exported to attributes like <code>d</code> (path
+data), <code>transform</code>, <code>x</code>, <code>y</code>,
+<code>width</code>, and <code>height</code>.</p>
+<p>By default, Inkscape sets this value to a level (typically 8 digits)
+that guarantees sub-pixel accuracy across virtually any canvas dimension
+while discarding negligible floating-point artifacts (such as
+<code>0.000000000000001</code> or <code>49.99999999999999</code>).
+Lowering this value minimizes SVG file sizes, whereas raising it
+preserves minute geometric details for CAD, plotter, or CNC
+workflows.</p>
+<h3 id="mitigating-cumulative-drift-in-relative-paths">Mitigating
+Cumulative Drift in Relative Paths</h3>
+<p>SVG paths support both absolute (<code>M</code>, <code>L</code>,
+<code>C</code>) and relative (<code>m</code>, <code>l</code>,
+<code>c</code>) commands. In a relative command chain, each point is
+defined as an offset from the preceding point. If truncated coordinates
+are continuously summed, small rounding discrepancies can compound,
+causing the terminal point of an open path or the closure of a closed
+path to drift noticeably from its intended position.</p>
+<p>To counter this, Inkscape tracks the true, unrounded target
+coordinate in memory before generating serialized path strings. When
+outputting relative commands, the exporter computes offsets not from the
+ideal mathematical coordinates of the previous node, but from the
+<em>already-rounded</em> text position of the preceding node. This
+self-correcting mechanism prevents cumulative rounding drift across long
+chains of relative coordinates.</p>
+<h3 id="transform-preservation-vs-baking">Transform Preservation vs.
+Baking</h3>
+<p>Coordinate precision is heavily influenced by how Inkscape handles
+transformations via the <strong>Store transformation</strong>
+preference, which offers two primary modes:</p>
+<ul>
+<li><strong>Preserved:</strong> Inkscape retains path data coordinates
+as originally drawn and appends a <code>transform="matrix(...)"</code>
+attribute to the SVG element. This isolates the base coordinates from
+repeated floating-point multiplication errors during successive moves,
+scales, or rotations.</li>
+<li><strong>Optimized (Baking):</strong> Inkscape recalculates every
+node’s absolute coordinate by applying the transformation matrix
+directly to the path data. While this produces cleaner SVG code without
+wrapper transform attributes, applying continuous transformations in
+this mode causes repetitive floating-point re-quantization, which can
+slightly degrade the precision of tight Bézier curves or coincident
+vertices over time.</li>
+</ul>
+<h3 id="automatic-cleanup-of-numeric-redundancies">Automatic Cleanup of
+Numeric Redundancies</h3>
+<p>Before writing raw coordinate data to the disk, Inkscape passes
+numerical strings through an internal SVG formatting pipeline. This
+formatter strips unnecessary trailing zeroes, converts negative zero
+representations (<code>-0</code>) to <code>0</code>, and eliminates
+redundant spaces and coordinate separators (such as collapsing
+<code>0.5 -0.5</code> into <code>0.5-0.5</code>). These
+micro-optimizations ensure that floating-point adjustments do not alter
+the semantic geometry of the SVG standard while keeping raw output clean
+and deterministic.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

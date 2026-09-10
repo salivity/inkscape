@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create IEEE Schematic Symbols in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to design standardized schematic electrical component symbols in Inkscape following IEEE Std 315 (ANSI Y32.2) conventions. You will learn how to configure a precision coordinate grid, construct fundamental graphic elements using c">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-ieee-schematic-symbols-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create IEEE Schematic Symbols in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-ieee-schematic-symbols-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to design standardized schematic electrical component symbols in Inkscape following IEEE Std 315 (ANSI Y32.2) conventions. You will learn how to configure a precision coordinate grid, construct fundamental graphic elements using c" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-ieee-schematic-symbols-in-inkscape">Create IEEE Schematic
+Symbols in Inkscape</h1>
+<p>This guide explains how to design standardized schematic electrical
+component symbols in Inkscape following IEEE Std 315 (ANSI Y32.2)
+conventions. You will learn how to configure a precision coordinate
+grid, construct fundamental graphic elements using consistent stroke
+weights, position connection terminals at standardized intervals, and
+package the finished components into reusable SVG symbol libraries.</p>
+<h3 id="1-configure-the-document-grid-and-units">1. Configure the
+Document Grid and Units</h3>
+<p>IEEE schematic standards rely on a uniform modular grid so symbols
+align seamlessly with interconnecting wires.</p>
+<ol type="1">
+<li>Open <strong>File &gt; Document Properties</strong>
+(<code>Ctrl+Shift+D</code>).</li>
+<li>Set <strong>Display units</strong> to inches (<code>in</code>) or
+millimeters (<code>mm</code>). An imperial grid of 0.1 inches (2.54 mm)
+or a metric equivalent (2.5 mm) is standard for electronic
+schematics.</li>
+<li>Go to the <strong>Grids</strong> tab, select <strong>Rectangular
+grid</strong>, and click <strong>New</strong>.</li>
+<li>Set <strong>Spacing X</strong> and <strong>Spacing Y</strong> to
+<code>0.1 in</code> (or <code>2.54 mm</code>). Set <strong>Minor grid
+line frequency</strong> to <code>5</code> or <code>10</code> for
+sub-grid placement.</li>
+<li>Enable snapping: Ensure <strong>Snap to Grid</strong> is activated
+on the Snap toolbar (<code>%</code> key), which guarantees that
+connection terminals align precisely with the grid nodes.</li>
+</ol>
+<h3 id="2-set-standard-stroke-weights-and-fills">2. Set Standard Stroke
+Weights and Fills</h3>
+<p>IEEE standards prescribe clear hierarchy in line thickness to
+distinguish component outlines from terminals and emphasis markers.</p>
+<ol type="1">
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl+Shift+F</code>).</li>
+<li>Set standard line weights:
+<ul>
+<li><strong>Component bodies and connection terminals:</strong> Use a
+medium stroke, typically 0.25 mm to 0.35 mm (around 1 pt).</li>
+<li><strong>Enclosures or shielding lines:</strong> Use a thinner
+stroke, roughly 0.18 mm (0.5 pt).</li>
+<li><strong>Heavy emphasis/buses:</strong> Use 0.5 mm to 0.7 mm.</li>
+</ul></li>
+<li>Set <strong>Fill</strong> to "No paint" for basic passive components
+(resistors, capacitors, inductors). Certain logic gates or diodes may
+require solid black fills for polarity or inversion bubbles, but
+standard bodies remain transparent or filled with white.</li>
+<li>Set <strong>Cap</strong> to "Square" or "Butt" and
+<strong>Join</strong> to "Miter" to ensure wire joints connect without
+overlapping artifacts.</li>
+</ol>
+<h3 id="3-draw-core-component-geometries">3. Draw Core Component
+Geometries</h3>
+<p>Use geometric primitives and the Pen tool to construct components
+following standard IEEE forms.</p>
+<ul>
+<li><strong>Resistors (IEEE Std 315):</strong> A standard resistor
+consists of three complete zig-zag cycles (six peaks total). Use the
+<strong>Draw Bezier curves</strong> tool (<code>B</code>), hold
+<code>Ctrl</code> to lock angles, and snap each peak to an alternate
+sub-grid unit.</li>
+<li><strong>Capacitors:</strong> Draw two parallel lines perpendicular
+to the lead lines. For a non-polarized capacitor, both lines are
+straight. For an electrolytic/polarized capacitor, the negative plate is
+drawn as a curved arc using the <strong>Arc tool</strong> or a 3-point
+curved path.</li>
+<li><strong>Logic Gates:</strong> Draw the flat input edge aligned with
+grid lines. Use circular arcs to form the distinctive curved shapes of
+AND, OR, and XOR gates. Keep input and output pins symmetrically
+balanced along the primary grid.</li>
+<li><strong>Diodes:</strong> Draw an equilateral triangle pointing
+toward the cathode line. The cathode line should be identical in width
+to the triangle's base.</li>
+</ul>
+<h3 id="4-position-connection-leads-terminals">4. Position Connection
+Leads (Terminals)</h3>
+<p>Connection points must adhere to the schematic pitch to enable
+functional wiring.</p>
+<ol type="1">
+<li>Extend terminal lines outward from the component body so the end of
+each lead lands precisely on a major grid line (e.g., 0.1 inch / 2.54 mm
+boundaries).</li>
+<li>Keep standard terminal lead lengths uniform across all symbols
+(typically 5.08 mm / 0.2 inches).</li>
+<li>Do not place connection points at arbitrary angles; leads must exit
+horizontally or vertically.</li>
+</ol>
+<h3 id="5-add-ieee-compliant-reference-labels">5. Add IEEE-Compliant
+Reference Labels</h3>
+<p>Reference designators (such as R1, C1, or U1) require consistent
+typography and placement.</p>
+<ol type="1">
+<li>Select the <strong>Text tool</strong> (<code>T</code>) and choose a
+standard, legible sans-serif font such as Arial, Helvetica, or
+Liberation Sans.</li>
+<li>Set text size proportionally, typically between 8 pt and 10 pt.</li>
+<li>Position reference designators above or to the left of the symbol,
+and component values below or to the right, maintaining a clearance of
+at least 1.27 mm (0.05 in) from the body.</li>
+</ol>
+<h3 id="6-group-and-save-as-a-symbol-library">6. Group and Save as a
+Symbol Library</h3>
+<p>Convert individual drawings into reusable assets.</p>
+<ol type="1">
+<li>Select all paths, strokes, and terminals belonging to a single
+component.</li>
+<li>Group them by pressing <code>Ctrl+G</code>.</li>
+<li>Open the <strong>Symbols</strong> panel (<strong>Object &gt;
+Symbols</strong> or <code>Ctrl+Shift+Y</code>).</li>
+<li>Select your grouped component, click <strong>Add Symbol from current
+document</strong> in the Symbols panel, and assign a standardized title
+(e.g., <code>IEEE_315_Resistor</code>).</li>
+<li>Save the file in your Inkscape user configuration directory under
+the <code>symbols</code> folder as an <code>.svg</code> file. The
+library will now be accessible directly from the Symbols dropdown menu
+in future projects.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

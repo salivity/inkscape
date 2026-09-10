@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape Vectors to Processing and p5.js - inkscape</title>
+    <meta name="description" content="This guide explains how to convert vector shapes designed in Inkscape into code that can be rendered inside Processing (Java) or p5.js sketches. You will learn how to prepare your Inkscape artwork, export it using standard formats, load the vectors dynam">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-processing-and-p5-js">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape Vectors to Processing and p5.js - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-processing-and-p5-js" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to convert vector shapes designed in Inkscape into code that can be rendered inside Processing (Java) or p5.js sketches. You will learn how to prepare your Inkscape artwork, export it using standard formats, load the vectors dynam" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-vectors-to-processing-and-p5js">Export Inkscape
+Vectors to Processing and p5.js</h1>
+<p>This guide explains how to convert vector shapes designed in Inkscape
+into code that can be rendered inside Processing (Java) or p5.js
+sketches. You will learn how to prepare your Inkscape artwork, export it
+using standard formats, load the vectors dynamically using built-in
+library functions, or convert path data directly into native
+shape-drawing commands.</p>
+<h2 id="preparing-your-shapes-in-inkscape">Preparing Your Shapes in
+Inkscape</h2>
+<p>Before exporting, you must format your artwork so that creative
+coding frameworks can interpret the geometry without rendering bugs.</p>
+<ol type="1">
+<li><strong>Convert Objects to Paths</strong>: Processing and p5.js
+handle generic SVG paths much better than native Inkscape primitives
+like stars, rectangles, or text. Select your objects and choose
+<strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>).</li>
+<li><strong>Convert Strokes to Paths (Optional)</strong>: If your
+drawing relies heavily on varying stroke widths, navigate to
+<strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>).</li>
+<li><strong>Ungroup Layers</strong>: Nested groups
+(<code>&lt;g&gt;</code>) often contain transformation matrices that
+create offset issues. Select everything and hit <strong>Object &gt;
+Ungroup</strong> (<code>Shift + Ctrl + G</code>) repeatedly until no
+groups remain.</li>
+<li><strong>Apply Transforms</strong>: Ensure transforms are baked into
+the coordinates. Go to <strong>Edit &gt; XML Editor</strong>, check that
+paths do not have a <code>transform</code> attribute, or move nodes
+slightly to force Inkscape to rewrite absolute coordinates.</li>
+<li><strong>Fit Canvas to Selection</strong>: Go to <strong>File &gt;
+Document Properties</strong> and click <strong>Resize page to
+content</strong> so your shape's coordinate origin <code>(0, 0)</code>
+matches the top-left corner of the shape.</li>
+<li><strong>Save as Plain SVG</strong>: Go to <strong>File &gt; Save
+As...</strong> and select <strong>Plain SVG (*.svg)</strong> instead of
+Inkscape SVG to strip out editor-specific metadata.</li>
+</ol>
+<hr />
+<h2 id="method-1-loading-svgs-directly-recommended">Method 1: Loading
+SVGs Directly (Recommended)</h2>
+<p>The most efficient way to use Inkscape shapes is to export a Plain
+SVG file and import it directly into your sketch using the built-in
+shape loaders.</p>
+<h3 id="in-processing-java">In Processing (Java)</h3>
+<p>Processing has built-in support for SVG files via the
+<code>PShape</code> class.</p>
+<ol type="1">
+<li>Save your file as <code>shape.svg</code> into your sketch’s
+<code>data</code> folder.</li>
+<li>Load and draw the shape using the following code:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>PShape vectorArt<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">setup</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">size</span><span class="op">(</span><span class="dv">800</span><span class="op">,</span> <span class="dv">600</span><span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Load the SVG file from the data folder</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  vectorArt <span class="op">=</span> <span class="fu">loadShape</span><span class="op">(</span><span class="st">&quot;shape.svg&quot;</span><span class="op">);</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">draw</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">background</span><span class="op">(</span><span class="dv">240</span><span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Draw the shape at coordinates (x, y, [width], [height])</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shape</span><span class="op">(</span>vectorArt<span class="op">,</span> <span class="dv">50</span><span class="op">,</span> <span class="dv">50</span><span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>To manipulate individual components of your SVG, use
+<code>vectorArt.getChild("path_id")</code> or iterate through vertices
+using <code>vectorArt.getVertexCount()</code>.</p>
+<h3 id="in-p5js">In p5.js</h3>
+<p>p5.js natively loads SVGs as rasterized images using
+<code>loadImage()</code>. For true vector manipulation, include the
+community <strong>p5.svg.js</strong> library in your
+<code>index.html</code>.</p>
+<p>If using standard <code>p5.js</code>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> vectorArt<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">preload</span>() {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  vectorArt <span class="op">=</span> <span class="fu">loadImage</span>(<span class="st">&#39;shape.svg&#39;</span>)<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">setup</span>() {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">createCanvas</span>(<span class="dv">800</span><span class="op">,</span> <span class="dv">600</span>)<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">draw</span>() {</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">background</span>(<span class="dv">240</span>)<span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">image</span>(vectorArt<span class="op">,</span> <span class="dv">50</span><span class="op">,</span> <span class="dv">50</span>)<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>If using <code>p5.svg.js</code> for native scalable rendering:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">setup</span>() {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">createCanvas</span>(<span class="dv">800</span><span class="op">,</span> <span class="dv">600</span><span class="op">,</span> SVG)<span class="op">;</span> <span class="co">// Requires p5.svg library</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">loadSVG</span>(<span class="st">&#39;shape.svg&#39;</span><span class="op">,</span> <span class="kw">function</span>(shape) {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> shape<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<hr />
+<h2 id="method-2-converting-path-data-to-native-sketch-code">Method 2:
+Converting Path Data to Native Sketch Code</h2>
+<p>If you prefer to have the shape defined directly inside your code
+without external asset dependencies, convert the vector path data into
+native <code>beginShape()</code>, <code>vertex()</code>, and
+<code>bezierVertex()</code> calls.</p>
+<h3 id="step-1-extract-the-path-data">Step 1: Extract the Path Data</h3>
+<ol type="1">
+<li>Open your Plain SVG file in a text editor.</li>
+<li>Locate the <code>&lt;path&gt;</code> tag and copy the string inside
+the <code>d="..."</code> attribute.</li>
+</ol>
+<h3 id="step-2-translate-coordinates-to-code">Step 2: Translate
+Coordinates to Code</h3>
+<p>For simple polygon shapes, convert the coordinates directly into
+native commands:</p>
+<h4 id="in-processing">In Processing:</h4>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">setup</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">size</span><span class="op">(</span><span class="dv">400</span><span class="op">,</span> <span class="dv">400</span><span class="op">);</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">draw</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">background</span><span class="op">(</span><span class="dv">255</span><span class="op">);</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span><span class="op">(</span><span class="dv">100</span><span class="op">,</span> <span class="dv">150</span><span class="op">,</span> <span class="dv">250</span><span class="op">);</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stroke</span><span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">beginShape</span><span class="op">();</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vertex</span><span class="op">(</span><span class="dv">20</span><span class="op">,</span> <span class="dv">20</span><span class="op">);</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bezierVertex</span><span class="op">(</span><span class="dv">80</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">80</span><span class="op">,</span> <span class="dv">75</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">75</span><span class="op">);</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bezierVertex</span><span class="op">(</span><span class="dv">50</span><span class="op">,</span> <span class="dv">80</span><span class="op">,</span> <span class="dv">60</span><span class="op">,</span> <span class="dv">25</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">20</span><span class="op">);</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">endShape</span><span class="op">(</span>CLOSE<span class="op">);</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<h4 id="in-p5js-1">In p5.js:</h4>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">setup</span>() {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">createCanvas</span>(<span class="dv">400</span><span class="op">,</span> <span class="dv">400</span>)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">draw</span>() {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">background</span>(<span class="dv">255</span>)<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fill</span>(<span class="dv">100</span><span class="op">,</span> <span class="dv">150</span><span class="op">,</span> <span class="dv">250</span>)<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stroke</span>(<span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">beginShape</span>()<span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vertex</span>(<span class="dv">20</span><span class="op">,</span> <span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bezierVertex</span>(<span class="dv">80</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">80</span><span class="op">,</span> <span class="dv">75</span><span class="op">,</span> <span class="dv">30</span><span class="op">,</span> <span class="dv">75</span>)<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bezierVertex</span>(<span class="dv">50</span><span class="op">,</span> <span class="dv">80</span><span class="op">,</span> <span class="dv">60</span><span class="op">,</span> <span class="dv">25</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">endShape</span>(CLOSE)<span class="op">;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<hr />
+<h2 id="method-3-using-the-inkscape-to-processing-extension">Method 3:
+Using the Inkscape to Processing Extension</h2>
+<p>Third-party extensions exist that directly generate Processing code
+from selected Inkscape paths:</p>
+<ol type="1">
+<li>Search for and download an <strong>Inkscape to Processing
+(P5)</strong> export extension.</li>
+<li>Place the <code>.inx</code> and <code>.py</code> files inside your
+Inkscape extensions folder:
+<ul>
+<li><strong>Windows</strong>:
+<code>%APPDATA%\inkscape\extensions</code></li>
+<li><strong>macOS/Linux</strong>:
+<code>~/.config/inkscape/extensions</code></li>
+</ul></li>
+<li>Restart Inkscape.</li>
+<li>Select the path you want to export.</li>
+<li>Navigate to <strong>Extensions &gt; Export &gt; Export to
+Processing</strong>.</li>
+<li>The extension outputs native <code>beginShape()</code> code
+containing all bezier curves and anchor points, ready to paste directly
+into your sketch's <code>draw()</code> function.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

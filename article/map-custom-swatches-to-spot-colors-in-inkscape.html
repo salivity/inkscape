@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Custom Swatches to Spot Colors in Inkscape - inkscape</title>
+    <meta name="description" content="Mapping custom color swatches to spot color plates in Inkscape allows you to prepare vector artwork for professional offset printing and screen printing. While Inkscape works natively in RGB and lacks a built-in PostScript RIP engine, you can define glob">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/map-custom-swatches-to-spot-colors-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Map Custom Swatches to Spot Colors in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/map-custom-swatches-to-spot-colors-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Mapping custom color swatches to spot color plates in Inkscape allows you to prepare vector artwork for professional offset printing and screen printing. While Inkscape works natively in RGB and lacks a built-in PostScript RIP engine, you can define glob" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="map-custom-swatches-to-spot-colors-in-inkscape">Map Custom
+Swatches to Spot Colors in Inkscape</h1>
+<p>Mapping custom color swatches to spot color plates in Inkscape allows
+you to prepare vector artwork for professional offset printing and
+screen printing. While Inkscape works natively in RGB and lacks a
+built-in PostScript RIP engine, you can define global swatches, assign
+standardized spot color names, and structure your document so that print
+plates are accurately separated during PDF export or prepress
+processing.</p>
+<h3 id="1-create-a-custom-swatch">1. Create a Custom Swatch</h3>
+<ol type="1">
+<li>Select the object you want to assign a spot color to.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel by pressing
+<code>Shift + Ctrl + F</code>.</li>
+<li>In either the <strong>Fill</strong> or <strong>Stroke paint</strong>
+tab, choose a flat color and adjust the sliders to the visual
+representation of your spot color.</li>
+<li>Click the <strong>Swatch</strong> button (the icon shaped like a tag
+or color swatch next to the paint servers) to convert this color into a
+persistent document swatch.</li>
+</ol>
+<h3 id="2-name-your-spot-swatch">2. Name Your Spot Swatch</h3>
+<p>To ensure prepress software or RIP (Raster Image Processor)
+recognizes the swatch as a specific spot plate:</p>
+<ol type="1">
+<li>Open the <strong>Swatches</strong> dialog by pressing
+<code>Shift + Ctrl + W</code>.</li>
+<li>Set the palette dropdown at the bottom or top of the panel to
+<strong>Document</strong> or <strong>Auto</strong>.</li>
+<li>Right-click your newly created swatch and select
+<strong>Edit</strong>.</li>
+<li>Rename the swatch to match the industry standard plate name (e.g.,
+<code>PANTONE 185 C</code> or <code>DieCut</code>).</li>
+</ol>
+<h3 id="3-assign-the-swatch-across-objects">3. Assign the Swatch Across
+Objects</h3>
+<p>To map the color across multiple items:</p>
+<ol type="1">
+<li>Select any element requiring that spot plate.</li>
+<li>Click your named swatch in the <strong>Swatches</strong> panel.</li>
+<li>Because the swatch is linked across the document, changing its
+definition will update all mapped elements automatically.</li>
+</ol>
+<h3 id="4-separate-objects-to-plates-for-production">4. Separate Objects
+to Plates for Production</h3>
+<p>Because native SVG standardizes on sRGB, commercial print workflows
+require one of two reliable separation methods from Inkscape:</p>
+<h4 id="method-a-layer-based-plate-separation">Method A: Layer-Based
+Plate Separation</h4>
+<ol type="1">
+<li>Create dedicated layers for each print plate (e.g.,
+<code>CMYK_Base</code>, <code>Spot_Pantone_185C</code>,
+<code>Spot_Gloss</code>).</li>
+<li>Move objects assigned to your custom spot swatches onto their
+corresponding spot layers.</li>
+<li>Hide all layers except the spot layer, convert visible elements to
+100% black (<code>K: 100%</code>), and export each layer individually as
+a PDF. The print shop can then run each PDF as a physical plate.</li>
+</ol>
+<h4 id="method-b-pass-through-via-scribus-for-native-separation">Method
+B: Pass-Through via Scribus for Native Separation</h4>
+<ol type="1">
+<li>Save your finished Inkscape design as a standard <strong>Inkscape
+SVG</strong>.</li>
+<li>Import the SVG into <strong>Scribus</strong> (an open-source desktop
+publishing tool that supports full spot color RIP separation).</li>
+<li>In Scribus, open <strong>Edit &gt; Colors and Fills</strong>. The
+swatches imported from your SVG will appear.</li>
+<li>Check the <strong>Spot Color</strong> box next to your imported
+custom swatch name.</li>
+<li>Export to <strong>PDF/X-1a</strong> or <strong>PDF/X-3</strong> with
+separations enabled. This produces a single PDF containing the native
+spot color channel mapped directly to its own separation plate.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

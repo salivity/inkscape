@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Convert OSM XML to Inkscape Using osm2svg - inkscape</title>
+    <meta name="description" content="This guide explains how to convert raw OpenStreetMap (OSM) XML data files into an SVG format using the osm2svg workflow so you can edit map elements natively in Inkscape. Because Inkscape does not natively parse the raw node, way, and relation data store">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-convert-osm-xml-to-inkscape-using-osm2svg">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Convert OSM XML to Inkscape Using osm2svg - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-convert-osm-xml-to-inkscape-using-osm2svg" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to convert raw OpenStreetMap (OSM) XML data files into an SVG format using the osm2svg workflow so you can edit map elements natively in Inkscape. Because Inkscape does not natively parse the raw node, way, and relation data store" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-convert-osm-xml-to-inkscape-using-osm2svg">How to Convert
+OSM XML to Inkscape Using osm2svg</h1>
+<p>This guide explains how to convert raw OpenStreetMap (OSM) XML data
+files into an SVG format using the <code>osm2svg</code> workflow so you
+can edit map elements natively in Inkscape. Because Inkscape does not
+natively parse the raw node, way, and relation data stored within
+<code>.osm</code> XML files, using an intermediary converter like
+<code>osm2svg</code> transforms geographic coordinates and topology into
+styled vector paths while retaining layer organization and
+scalability.</p>
+<h3 id="1-export-your-osm-xml-data">1. Export Your OSM XML Data</h3>
+<ol type="1">
+<li>Navigate to the OpenStreetMap website.</li>
+<li>Pan and zoom to the area of interest.</li>
+<li>Click the <strong>Export</strong> button in the top navigation
+bar.</li>
+<li>Click the blue <strong>Export</strong> button in the sidebar to
+download a file named <code>map.osm</code>. For larger areas, use an
+Overpass API query to extract the <code>.osm</code> XML file to avoid
+server timeouts.</li>
+</ol>
+<h3 id="2-set-up-the-osm2svg-utility">2. Set Up the osm2svg Utility</h3>
+<p>The <code>osm2svg</code> workflow utilizes a conversion script
+(commonly implemented in Python, Perl, or Java depending on your chosen
+toolchain) designed to parse OSM tags and project spherical coordinates
+into a flat, 2D Cartesian SVG canvas.</p>
+<ol type="1">
+<li>Ensure your environment has the required runtime installed
+(typically Python 3 or Perl).</li>
+<li>Download or clone the <code>osm2svg</code> repository to your local
+machine.</li>
+<li>If using a Python-based implementation, install any required
+dependencies (such as <code>lxml</code> or <code>pyproj</code>) via your
+terminal:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code></pre></div></li>
+</ol>
+<h3 id="3-run-the-conversion">3. Run the Conversion</h3>
+<p>Execute the conversion tool through the command line by providing
+your input <code>.osm</code> file and specifying the output
+<code>.svg</code> file.</p>
+<p>Run the command:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">osm2svg</span> <span class="at">-i</span> map.osm <span class="at">-o</span> map.svg</span></code></pre></div>
+<p>Depending on your specific <code>osm2svg</code> package, you can pass
+optional flags to define:</p>
+<ul>
+<li><strong>Projection:</strong> Set your desired map projection (e.g.,
+Mercator or local UTM zones).</li>
+<li><strong>Rule/Style sheets:</strong> Apply a predefined CSS or XML
+style sheet to automatically categorize highways, waterways, and
+buildings into separate visual classes.</li>
+<li><strong>Bounding Box:</strong> Restrict rendering strictly to a
+specified coordinate boundary.</li>
+</ul>
+<h3 id="4-import-and-edit-in-inkscape">4. Import and Edit in
+Inkscape</h3>
+<ol type="1">
+<li>Open Inkscape.</li>
+<li>Go to <strong>File &gt; Open</strong> and select your newly
+generated <code>map.svg</code> file.</li>
+<li>Choose <strong>Include SVG as editable object</strong> if
+prompted.</li>
+<li>Open the <strong>Layers and Objects</strong> panel (<strong>Layer
+&gt; Layers and Objects...</strong>) to view the converted
+structure.</li>
+<li>Ungroup elements (<code>Ctrl + Shift + G</code> or
+<code>Cmd + Shift + G</code>) as needed to select, modify, recolor, or
+delete specific paths such as roads, land boundaries, or points of
+interest.</li>
+<li>Adjust document boundaries via <strong>File &gt; Document Properties
+&gt; Resize to content</strong> to match your map's exact
+dimensions.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

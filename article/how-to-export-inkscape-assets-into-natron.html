@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Export Inkscape Assets into Natron - inkscape</title>
+    <meta name="description" content="Integrating 2D vector artwork into visual effects pipelines requires bridging vector design software with raster-based compositing tools. This guide explains how to properly prepare, format, and export vector graphics created in Inkscape for use inside N">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-export-inkscape-assets-into-natron">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Export Inkscape Assets into Natron - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-export-inkscape-assets-into-natron" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Integrating 2D vector artwork into visual effects pipelines requires bridging vector design software with raster-based compositing tools. This guide explains how to properly prepare, format, and export vector graphics created in Inkscape for use inside N" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-export-inkscape-assets-into-natron">How to Export
+Inkscape Assets into Natron</h1>
+<p>Integrating 2D vector artwork into visual effects pipelines requires
+bridging vector design software with raster-based compositing tools.
+This guide explains how to properly prepare, format, and export vector
+graphics created in Inkscape for use inside Natron, the open-source
+node-based compositor. By following these steps, you will preserve alpha
+transparency, maintain visual fidelity, and ensure your assets integrate
+seamlessly into Natron's node graph.</p>
+<h3 id="1-prepare-vector-elements-in-inkscape">1. Prepare Vector
+Elements in Inkscape</h3>
+<p>Natron handles assets on a layer-by-layer or element-by-element basis
+within its node tree. Before exporting, organize your artwork according
+to how it will be animated or composited.</p>
+<ul>
+<li><strong>Separate Animated Components:</strong> If different elements
+of your vector graphic need independent movement, rotoscoping, or color
+grading in Natron, place them on separate layers or group them
+individually.</li>
+<li><strong>Fit Canvas to Selection:</strong> Go to <strong>File &gt;
+Document Properties</strong> and under the <em>Page</em> tab, expand
+<em>Custom size</em> and click <strong>Resize to content</strong> if you
+want the exported asset cropped tightly. Alternatively, keep a
+standardized project frame (such as 1920x1080 or 3840x2160) to maintain
+relative spatial alignment.</li>
+<li><strong>Remove Backgrounds:</strong> Ensure your document background
+has zero opacity so that an alpha channel is generated.</li>
+</ul>
+<h3 id="2-export-assets-as-high-resolution-pngs">2. Export Assets as
+High-Resolution PNGs</h3>
+<p>Natron does not parse dynamic vector shapes like SVG files directly
+inside its node graph; it relies on raster image data. To prevent
+pixelation when scaling or transforming in 3D space, export your vectors
+at high resolutions.</p>
+<ol type="1">
+<li>Open the Export panel using <strong>File &gt; Export</strong> or by
+pressing <strong>Shift + Ctrl + E</strong>.</li>
+<li>Select your target scope:
+<ul>
+<li><strong>Document / Page:</strong> Exports the full layout relative
+to the frame.</li>
+<li><strong>Selection:</strong> Exports individual highlighted
+objects.</li>
+<li><strong>Batch Export:</strong> Use this tab if you have organized
+parts into separate layers or objects and wish to output multiple
+elements at once.</li>
+</ul></li>
+<li>Choose <strong>PNG</strong> as the output format. PNG fully supports
+8-bit per channel RGBA transparency.</li>
+<li>Set the <strong>DPI (Dots Per Inch)</strong> or pixel dimensions:
+<ul>
+<li>For standard 1:1 framing, match your Natron project resolution
+(e.g., 1920x1080 at 96 DPI).</li>
+<li>If the asset will be scaled up, camera-projected, or moved close to
+the camera in Natron, increase the DPI to 192 or 300 to generate a 2K or
+4K asset to preserve sharp edges.</li>
+</ul></li>
+<li>Click <strong>Export</strong> to render the files to your project
+directory.</li>
+</ol>
+<h3 id="3-import-assets-into-natron">3. Import Assets into Natron</h3>
+<p>Once your rasterized vector assets are rendered, load them into
+Natron's node graph:</p>
+<ol type="1">
+<li>Press <strong>R</strong> in the Node Graph viewer or right-click and
+select <strong>Image &gt; Read</strong>.</li>
+<li>Browse to the directory containing your exported PNG files and
+select the asset.</li>
+<li>Connect the <code>Read</code> node's output to the
+<code>Viewer</code> by pressing <strong>1</strong> to verify the image
+loads correctly.</li>
+</ol>
+<h3 id="4-configure-color-space-and-alpha-settings">4. Configure Color
+Space and Alpha Settings</h3>
+<p>Proper composite blending depends on Natron correctly interpreting
+the alpha channel and color profile exported from Inkscape.</p>
+<ul>
+<li><strong>Premultiplication:</strong> In the properties panel of the
+<code>Read</code> node, check the <strong>Premult</strong> settings.
+Inkscape exports unassociated (straight) alpha by default. Set the
+<code>Read</code> node's alpha handling to match the file, or add a
+<strong>Premult</strong> node immediately after the <code>Read</code>
+node to prepare the asset for standard blending operations.</li>
+<li><strong>Color Space:</strong> Natron operates internally in a 32-bit
+float linear color space. By default, Natron converts incoming PNG files
+from standard <strong>sRGB</strong> to <strong>Linear</strong>. Confirm
+that the <code>Color Space</code> drop-down in the <code>Read</code>
+node is set to <strong>sRGB</strong> to ensure colors match what was
+designed in Inkscape.</li>
+</ul>
+<h3 id="5-composite-and-transform">5. Composite and Transform</h3>
+<p>With the asset loaded and normalized:</p>
+<ul>
+<li>Attach a <strong>Transform</strong> node (<code>T</code>) to scale,
+rotate, or translate the vector asset without modifying the original
+graphic file.</li>
+<li>Use a <strong>Merge</strong> node (<code>M</code>) to combine the
+asset over your background footage or 3D renders using standard
+composite modes such as <code>over</code>, <code>multiply</code>, or
+<code>screen</code>.</li>
+<li>If you need to make design modifications, update the artwork in
+Inkscape and overwrite the exported PNG; Natron will automatically
+reload the updated asset on the next frame refresh.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

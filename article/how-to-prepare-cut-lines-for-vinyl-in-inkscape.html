@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Prepare Cut Lines for Vinyl in Inkscape - inkscape</title>
+    <meta name="description" content="Preparing artwork for a vinyl cutter in Inkscape requires converting all visual elements into vector paths, stripping away unnecessary fills, defining an exact hair-thin stroke width, and exporting the file in a cutter-compatible format. Most cutting plo">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-prepare-cut-lines-for-vinyl-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Prepare Cut Lines for Vinyl in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-prepare-cut-lines-for-vinyl-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Preparing artwork for a vinyl cutter in Inkscape requires converting all visual elements into vector paths, stripping away unnecessary fills, defining an exact hair-thin stroke width, and exporting the file in a cutter-compatible format. Most cutting plo" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-prepare-cut-lines-for-vinyl-in-inkscape">How to Prepare
+Cut Lines for Vinyl in Inkscape</h1>
+<p>Preparing artwork for a vinyl cutter in Inkscape requires converting
+all visual elements into vector paths, stripping away unnecessary fills,
+defining an exact hair-thin stroke width, and exporting the file in a
+cutter-compatible format. Most cutting plotters interpret lines with a
+thickness of 0.001 inches (or 0.025 mm) as vector cut commands rather
+than printable graphics. By following a structured process to clean
+nodes, union overlapping shapes, and configure stroke properties, you
+ensure clean, precise cuts without double-cutting or blade drift.</p>
+<h3 id="1-convert-text-and-objects-to-vector-paths">1. Convert Text and
+Objects to Vector Paths</h3>
+<p>Vinyl cutters read vector coordinates (nodes and paths), not live
+text or raster images.</p>
+<ol type="1">
+<li>Select your artwork using the <strong>Select Tool</strong>
+(<code>S</code>).</li>
+<li>If your design includes text, navigate to <strong>Path &gt; Object
+to Path</strong> (<code>Shift + Ctrl + C</code>).</li>
+<li>If your design uses thick strokes that you want cut as outlines, go
+to <strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>).</li>
+<li>Ungroup grouped elements by selecting them and pressing
+<strong>Object &gt; Ungroup</strong> (<code>Shift + Ctrl + G</code>)
+until no groups remain in the status bar.</li>
+</ol>
+<h3 id="2-weld-overlapping-shapes">2. Weld Overlapping Shapes</h3>
+<p>Overlapping cut paths cause the blade to slice through neighboring
+design elements.</p>
+<ol type="1">
+<li>Select overlapping shapes that should be cut as a single piece.</li>
+<li>Go to <strong>Path &gt; Union</strong> (<code>Ctrl + +</code>) to
+merge them into a single continuous outline.</li>
+<li>Check for internal cutouts (like the centers of letters like "O" or
+"A"). If necessary, use <strong>Path &gt; Difference</strong>
+(<code>Ctrl + -</code>) or <strong>Path &gt; Combine</strong>
+(<code>Ctrl + K</code>) to retain inner cut paths.</li>
+</ol>
+<h3 id="3-remove-fills-and-apply-stroke-color">3. Remove Fills and Apply
+Stroke Color</h3>
+<p>Cutting plotters only require path outlines, not color fills.</p>
+<ol type="1">
+<li>Select the entire design.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel by pressing
+<code>Shift + Ctrl + F</code>.</li>
+<li>Under the <strong>Fill</strong> tab, click the <strong>X</strong>
+(No paint) icon to remove all interior color.</li>
+<li>Under the <strong>Stroke paint</strong> tab, click the <strong>Flat
+color</strong> icon to enable an outline. Choose a distinct, solid color
+(such as pure RGB red <code>#FF0000</code> or black
+<code>#000000</code>, depending on your cutter software's preferred
+registration color).</li>
+</ol>
+<h3 id="4-set-the-hair-thin-stroke-width">4. Set the Hair-Thin Stroke
+Width</h3>
+<p>Vinyl cutting software reads hairline stroke dimensions to register
+cut paths.</p>
+<ol type="1">
+<li>In the <strong>Fill and Stroke</strong> panel, switch to the
+<strong>Stroke style</strong> tab.</li>
+<li>Change the measurement unit dropdown to <strong>in</strong> (inches)
+or <strong>mm</strong> (millimeters).</li>
+<li>Set the width value to:
+<ul>
+<li><strong>0.001 in</strong> (or <strong>0.025 mm</strong> /
+<strong>0.1 px</strong>)</li>
+</ul></li>
+<li>The design lines will appear very faint on your screen; zoom in
+using the <code>+</code> key to verify path placement without altering
+the physical stroke dimensions.</li>
+</ol>
+<h3 id="5-inspect-and-clean-up-path-nodes">5. Inspect and Clean Up Path
+Nodes</h3>
+<p>Stray nodes or fragmented lines can cause the cutter head to stutter
+or tear the vinyl.</p>
+<ol type="1">
+<li>Switch to the <strong>Node Tool</strong> (<code>N</code>).</li>
+<li>Click on paths to inspect node density.</li>
+<li>Delete redundant nodes by selecting them and pressing
+<code>Delete</code>.</li>
+<li>Close any open path segments by selecting the endpoints and clicking
+<strong>Join selected endnodes with a new segment</strong> in the top
+toolbar.</li>
+</ol>
+<h3 id="6-set-document-dimensions-and-export">6. Set Document Dimensions
+and Export</h3>
+<p>Align the artwork with the physical dimensions of your cutting mat or
+roll.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Document Properties</strong>
+(<code>Shift + Ctrl + D</code>).</li>
+<li>Under the <strong>Page</strong> tab, resize the page to fit your
+material width or click <strong>Resize to content</strong> to match the
+design bounds.</li>
+<li>Save the master design file as <strong>Inkscape SVG</strong> for
+future editing.</li>
+<li>Go to <strong>File &gt; Save As</strong> and select the format
+required by your vinyl cutter software:
+<ul>
+<li><strong>Plain SVG</strong> (for Cricut Design Space, Glowforge,
+Brother CanvasWorkspace)</li>
+<li><strong>DXF (AutoCAD DXF R14)</strong> (for Silhouette Studio Basic
+Edition)</li>
+<li><strong>EPS / PDF</strong> (for Roland CutStudio, Graphtec Cutting
+Master, or SignMaster)</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Red and Green Channels in Inkscape feDisplacementMap - inkscape</title>
+    <meta name="description" content="This guide explains how to map the horizontal (X) and vertical (Y) displacement axes to the red and green color channels using Inkscape's built-in Filter Editor and XML Editor. Configuring feDisplacementMap to use the red channel for horizontal shift and">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/map-red-and-green-channels-in-inkscape-fedisplacementmap">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Map Red and Green Channels in Inkscape feDisplacementMap - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/map-red-and-green-channels-in-inkscape-fedisplacementmap" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to map the horizontal (X) and vertical (Y) displacement axes to the red and green color channels using Inkscape's built-in Filter Editor and XML Editor. Configuring feDisplacementMap to use the red channel for horizontal shift and" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="map-red-and-green-channels-in-inkscape-fedisplacementmap">Map
+Red and Green Channels in Inkscape feDisplacementMap</h1>
+<p>This guide explains how to map the horizontal (X) and vertical (Y)
+displacement axes to the red and green color channels using Inkscape's
+built-in Filter Editor and XML Editor. Configuring
+<code>feDisplacementMap</code> to use the red channel for horizontal
+shift and the green channel for vertical shift is a standard technique
+for applying 2D distortion maps, normal maps, or custom vector field
+distortions to vector objects and raster graphics.</p>
+<h3 id="using-the-filter-editor-interface">Using the Filter Editor
+Interface</h3>
+<ol type="1">
+<li><strong>Open the Filter Editor:</strong> Go to the top menu and
+select <strong>Filters &gt; Filter Editor...</strong> to open the
+management panel.</li>
+<li><strong>Select or Create a Filter:</strong> Choose the filter you
+are currently editing from the list, or click <strong>New</strong> to
+create an empty filter and assign it to your selected canvas
+object.</li>
+<li><strong>Add the Displacement Primitive:</strong> In the "Add Effect"
+dropdown at the bottom of the primitive list, select
+<strong>Displacement Map</strong> and click <strong>Add
+Effect</strong>.</li>
+<li><strong>Connect Input Streams:</strong> Ensure the Displacement Map
+primitive receives two inputs in the node graph:
+<ul>
+<li>Connect the primary input (<code>in</code>) to the graphic you wish
+to distort (e.g., <em>Source Graphic</em>).</li>
+<li>Connect the secondary input (<code>in2</code>) to the graphic
+providing the color data for displacement (e.g., a gradient, a custom
+texture, or an imported image).</li>
+</ul></li>
+<li><strong>Set Channel Selectors:</strong> Click on the
+<strong>Displacement Map</strong> primitive in the list to expose its
+parameters below.
+<ul>
+<li>Locate the <strong>X Channel</strong> setting and change its
+dropdown value to <strong>Red</strong>.</li>
+<li>Locate the <strong>Y Channel</strong> setting and change its
+dropdown value to <strong>Green</strong>.</li>
+</ul></li>
+<li><strong>Adjust Scale:</strong> Adjust the <strong>Scale</strong>
+slider to set the intensity of the displacement. Positive values shift
+pixels according to the brightness of the selected channels, where a
+value of 0.5 (neutral gray) results in no movement, values greater than
+0.5 displace in one direction, and values less than 0.5 displace in the
+opposite direction.</li>
+</ol>
+<h3 id="using-the-xml-editor-for-direct-mapping">Using the XML Editor
+for Direct Mapping</h3>
+<p>If you prefer direct code modification or need exact SVG attribute
+definitions:</p>
+<ol type="1">
+<li>Open the XML Editor by pressing <strong>Ctrl + Shift + X</strong>
+(or <strong>Cmd + Shift + X</strong> on macOS).</li>
+<li>Expand the <code>&lt;svg:defs&gt;</code> tag and locate the relevant
+<code>&lt;svg:filter&gt;</code> element.</li>
+<li>Click on the child <code>&lt;svg:feDisplacementMap&gt;</code>
+element.</li>
+<li>In the attribute panel on the right:
+<ul>
+<li>Set the attribute <code>xChannelSelector</code> to
+<code>R</code>.</li>
+<li>Set the attribute <code>yChannelSelector</code> to
+<code>G</code>.</li>
+</ul></li>
+<li>Click <strong>Set</strong> for each attribute to apply the changes
+directly to the document's SVG code.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

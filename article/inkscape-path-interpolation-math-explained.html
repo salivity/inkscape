@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Path Interpolation Math Explained - inkscape</title>
+    <meta name="description" content="Inkscape blends vector shapes using its Interpolate extension, which algorithmically generates intermediate shapes between two open or closed paths. This process relies on matching the structural definitions of both paths and applying parametric linear i">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-path-interpolation-math-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Path Interpolation Math Explained - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-path-interpolation-math-explained" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape blends vector shapes using its Interpolate extension, which algorithmically generates intermediate shapes between two open or closed paths. This process relies on matching the structural definitions of both paths and applying parametric linear i" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-path-interpolation-math-explained">Inkscape Path
+Interpolation Math Explained</h1>
+<p>Inkscape blends vector shapes using its Interpolate extension, which
+algorithmically generates intermediate shapes between two open or closed
+paths. This process relies on matching the structural definitions of
+both paths and applying parametric linear interpolation to every
+corresponding on-curve node and off-curve Bézier control handle. By
+treating intermediate coordinates as functions of a continuous time or
+step parameter, Inkscape smoothly transitions geometric properties from
+a source path to a target path.</p>
+<h3 id="structural-alignment-and-node-pairing">Structural Alignment and
+Node Pairing</h3>
+<p>Before mathematical coordinate calculation begins, Inkscape pairs the
+components of the two input paths. For predictable results, both paths
+must contain the exact same number of nodes and subpath segments,
+oriented in the same direction.</p>
+<p>Each path is internally represented as a sequence of cubic Bézier
+segments. A cubic Bézier curve segment is defined by four 2D coordinate
+vectors:</p>
+<ul>
+<li><span class="math inline">\(P_0\)</span>: Starting anchor point</li>
+<li><span class="math inline">\(P_1\)</span>: First control handle</li>
+<li><span class="math inline">\(P_2\)</span>: Second control handle</li>
+<li><span class="math inline">\(P_3\)</span>: Ending anchor point</li>
+</ul>
+<p>If a segment is a straight line, Inkscape standardizes it into a
+degenerate cubic Bézier curve where the control handles are collinear
+with or coincident to the endpoints. Inkscape pairs each point <span
+class="math inline">\(k\)</span> from the source path <span
+class="math inline">\(A\)</span> with the equivalent point <span
+class="math inline">\(k\)</span> in the destination path <span
+class="math inline">\(B\)</span>, forming coordinate pairs <span
+class="math inline">\((A_k, B_k)\)</span>.</p>
+<h3 id="linear-interpolation-of-coordinates">Linear Interpolation of
+Coordinates</h3>
+<p>Once corresponding coordinates are mapped, Inkscape calculates
+intermediate steps using standard linear interpolation (<span
+class="math inline">\(LERP\)</span>). For a given intermediate state
+governed by a normalized progression factor <span
+class="math inline">\(t \in [0, 1]\)</span>, each coordinate vector
+<span class="math inline">\(V(t) = (x(t), y(t))\)</span> is calculated
+as:</p>
+<p><span class="math display">\[V(t) = (1 - t) \cdot A_k + t \cdot
+B_k\]</span></p>
+<p>Decomposed into Cartesian axes, the equations for the intermediate
+<span class="math inline">\(X\)</span> and <span
+class="math inline">\(Y\)</span> positions are:</p>
+<p><span class="math display">\[x(t) = x_{A} + t \cdot (x_{B} -
+x_{A})\]</span> <span class="math display">\[y(t) = y_{A} + t \cdot
+(y_{B} - y_{A})\]</span></p>
+<p>This calculation is applied uniformly to both anchor nodes and
+off-curve control points. Because the control handles are interpolated
+directly rather than recalculating curvature trajectories, the
+intermediate curves maintain affine consistency across all steps.</p>
+<h3 id="step-distribution-and-parametric-progression">Step Distribution
+and Parametric Progression</h3>
+<p>When generating a specified number of interpolation steps (<span
+class="math inline">\(N\)</span>), Inkscape derives the interpolation
+factor <span class="math inline">\(t\)</span> for each individual step
+<span class="math inline">\(i\)</span> (where <span
+class="math inline">\(i \in \{1, 2, \dots, N\}\)</span>):</p>
+<p><span class="math display">\[t_i = \frac{i}{N + 1}\]</span></p>
+<p>Under linear distribution (the default exponent setting of 0), steps
+are distributed evenly along the transform vector between the source and
+target.</p>
+<p>When an exponent value (<span class="math inline">\(e\)</span>) is
+supplied to produce easing or non-linear spacing:</p>
+<ul>
+<li>If <span class="math inline">\(e &gt; 0\)</span>, the progression
+factor is transformed exponentially: <span
+class="math inline">\(t&#39;_i = t_i^{(e + 1)}\)</span> (or via a
+normalized power curve depending on implementation), clustering
+intermediate steps toward the start path.</li>
+<li>If <span class="math inline">\(e &lt; 0\)</span>, the inverse power
+mapping clusters intermediate paths toward the end path.</li>
+</ul>
+<p>The modified factor <span class="math inline">\(t&#39;\)</span> is
+then substituted into the linear interpolation formula for each node
+coordinate.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

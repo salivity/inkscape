@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Seamless Patterns in Inkscape - inkscape</title>
+    <meta name="description" content="Creating seamless repeating pattern tiles in Inkscape is a straightforward process that relies on precise mathematical duplication and boundary clipping. This guide covers how to set up a base tile, position design elements, wrap border elements across o">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-seamless-patterns-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Seamless Patterns in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-seamless-patterns-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating seamless repeating pattern tiles in Inkscape is a straightforward process that relies on precise mathematical duplication and boundary clipping. This guide covers how to set up a base tile, position design elements, wrap border elements across o" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-seamless-patterns-in-inkscape">How to Create
+Seamless Patterns in Inkscape</h1>
+<p>Creating seamless repeating pattern tiles in Inkscape is a
+straightforward process that relies on precise mathematical duplication
+and boundary clipping. This guide covers how to set up a base tile,
+position design elements, wrap border elements across opposite edges
+using the Transform panel, and convert your finished artwork into a
+reusable SVG pattern or exportable tile.</p>
+<h3 id="step-1-set-up-the-base-canvas">Step 1: Set Up the Base
+Canvas</h3>
+<ol type="1">
+<li>Open Inkscape and press <strong>Ctrl + Shift + D</strong> to open
+the <strong>Document Properties</strong>.</li>
+<li>Set your <strong>Display units</strong> and <strong>Page size
+units</strong> to <strong>Pixels (px)</strong>.</li>
+<li>Define a standard square size for your pattern tile, such as
+<strong>500 px × 500 px</strong>.</li>
+<li>Enable the page grid via <strong>View &gt; Page Grid</strong> or
+press <strong>Shift + 3</strong> to help with element alignment.</li>
+</ol>
+<h3 id="step-2-create-a-background-and-reference-box">Step 2: Create a
+Background and Reference Box</h3>
+<ol type="1">
+<li>Select the <strong>Rectangle Tool (R)</strong> and draw a square
+that covers the entire canvas.</li>
+<li>In the top toolbar, set the exact dimensions to <strong>W:
+500</strong> and <strong>H: 500</strong>, with <strong>X: 0</strong> and
+<strong>Y: 0</strong>.</li>
+<li>Choose your desired background color.</li>
+<li>Duplicate this rectangle (<strong>Ctrl + D</strong>), remove the
+fill, add a thin stroke, and lock it to use as a visual boundary
+guide.</li>
+</ol>
+<h3 id="step-3-add-and-position-artwork-elements">Step 3: Add and
+Position Artwork Elements</h3>
+<ol type="1">
+<li>Place shapes, icons, or illustrations inside the square
+boundaries.</li>
+<li>Fill the center of your tile freely.</li>
+<li>Place elements that you want to wrap across the edges directly over
+the canvas borders.</li>
+</ol>
+<h3 id="step-4-wrap-the-edge-elements">Step 4: Wrap the Edge
+Elements</h3>
+<p>Any object that touches or crosses a border must be duplicated and
+shifted to the exact opposite side:</p>
+<ol type="1">
+<li>Select an object overlapping the <strong>left edge</strong>.</li>
+<li>Duplicate it by pressing <strong>Ctrl + D</strong>.</li>
+<li>Open the <strong>Transform</strong> panel (<strong>Ctrl + Shift +
+M</strong>) and switch to the <strong>Move</strong> tab.</li>
+<li>Set <strong>Horizontal</strong> to <strong>500 px</strong> (the full
+width of your canvas) and <strong>Vertical</strong> to <strong>0
+px</strong>.</li>
+<li>Click <strong>Apply</strong>. The duplicate will snap to the exact
+corresponding position on the right edge.</li>
+<li>For objects overlapping the <strong>top edge</strong>, duplicate
+them (<strong>Ctrl + D</strong>), set <strong>Horizontal</strong> to
+<strong>0 px</strong>, set <strong>Vertical</strong> to <strong>-500
+px</strong> (or <strong>500 px</strong> depending on Inkscape's
+coordinate direction), and click <strong>Apply</strong>.</li>
+<li>For objects overlapping corners, duplicate the object across both
+horizontal and vertical axes to appear in all four corners.</li>
+</ol>
+<h3 id="step-5-clip-the-tile">Step 5: Clip the Tile</h3>
+<ol type="1">
+<li>Select your background rectangle and duplicate it (<strong>Ctrl +
+D</strong>).</li>
+<li>Bring this new rectangle to the very top of the layer stack by
+pressing <strong>Home</strong>.</li>
+<li>Select all pattern elements along with the top rectangle
+(<strong>Ctrl + A</strong>).</li>
+<li>Go to <strong>Object &gt; Clip &gt; Set Clip</strong>. This trims
+off any artwork spilling outside the 500 × 500 px boundary without
+deleting the underlying vector data.</li>
+</ol>
+<h3 id="step-6-convert-to-an-inkscape-pattern-or-export">Step 6: Convert
+to an Inkscape Pattern or Export</h3>
+<ol type="1">
+<li><strong>To use as an internal pattern fill:</strong> Select the
+clipped tile and go to <strong>Object &gt; Pattern &gt; Objects to
+Pattern</strong> (or press <strong>Alt + I</strong>). You can now apply
+this pattern to any shape via the <strong>Fill and Stroke</strong> panel
+under the <strong>Pattern Fill</strong> tab.</li>
+<li><strong>To export as a standalone tile:</strong> Press <strong>Ctrl
++ Shift + E</strong> to open the <strong>Export</strong> panel, choose
+<strong>Page</strong> export, select your desired resolution (such as
+300 DPI for print or 96 DPI for web), and export your seamless SVG or
+PNG file.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

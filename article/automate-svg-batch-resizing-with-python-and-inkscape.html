@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automate SVG Batch Resizing with Python and Inkscape - inkscape</title>
+    <meta name="description" content="Batch resizing SVG files using Python and the Inkscape binary allows you to programmatically scale large collections of vector graphics to specific dimensions or export formats. By using Python's subprocess module to interface directly with Inkscape's co">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/automate-svg-batch-resizing-with-python-and-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Automate SVG Batch Resizing with Python and Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/automate-svg-batch-resizing-with-python-and-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Batch resizing SVG files using Python and the Inkscape binary allows you to programmatically scale large collections of vector graphics to specific dimensions or export formats. By using Python's subprocess module to interface directly with Inkscape's co" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="automate-svg-batch-resizing-with-python-and-inkscape">Automate
+SVG Batch Resizing with Python and Inkscape</h1>
+<p>Batch resizing SVG files using Python and the Inkscape binary allows
+you to programmatically scale large collections of vector graphics to
+specific dimensions or export formats. By using Python's
+<code>subprocess</code> module to interface directly with Inkscape's
+command-line interface (CLI), you can process entire directories of SVGs
+automatically without launching the graphical user interface.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before running the automation script, ensure you have the following
+installed and configured:</p>
+<ol type="1">
+<li><strong>Python 3.x</strong>: Installed on your system.</li>
+<li><strong>Inkscape</strong>: Installed on your system.</li>
+<li><strong>Environment Path</strong>: Ensure the Inkscape executable is
+added to your system's <code>PATH</code>. On Windows, the binary is
+typically located at
+<code>C:\Program Files\Inkscape\bin\inkscape.exe</code>. On macOS and
+Linux, it is accessible as <code>inkscape</code> from the terminal.</li>
+</ol>
+<h2 id="understanding-the-inkscape-cli-command">Understanding the
+Inkscape CLI Command</h2>
+<p>Modern versions of Inkscape (version 1.0 and later) use
+straightforward CLI flags for exporting files:</p>
+<ul>
+<li><code>--export-filename=&lt;path&gt;</code>: Specifies the output
+file path.</li>
+<li><code>--export-width=&lt;pixels&gt;</code> or
+<code>-w &lt;pixels&gt;</code>: Sets the target width.</li>
+<li><code>--export-height=&lt;pixels&gt;</code> or
+<code>-h &lt;pixels&gt;</code>: Sets the target height.</li>
+<li><code>--export-plain-svg</code>: Exports clean SVG code without
+Inkscape-specific metadata (optional).</li>
+</ul>
+<h2 id="python-batch-resizing-script">Python Batch Resizing Script</h2>
+<p>The following Python script scans an input directory for
+<code>.svg</code> files, runs the Inkscape CLI command on each file, and
+saves the resized versions to an output directory.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuration</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>INPUT_DIR <span class="op">=</span> Path(<span class="st">&quot;./input_svgs&quot;</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>OUTPUT_DIR <span class="op">=</span> Path(<span class="st">&quot;./resized_svgs&quot;</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>TARGET_WIDTH <span class="op">=</span> <span class="dv">512</span>   <span class="co"># Set target width in pixels (or None to infer from height)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>TARGET_HEIGHT <span class="op">=</span> <span class="dv">512</span>  <span class="co"># Set target height in pixels (or None to infer from width)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>INKSCAPE_PATH <span class="op">=</span> <span class="st">&quot;inkscape&quot;</span>  <span class="co"># Replace with full path if not in system PATH</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> resize_svg(input_path: Path, output_path: Path, width: <span class="bu">int</span> <span class="op">=</span> <span class="va">None</span>, height: <span class="bu">int</span> <span class="op">=</span> <span class="va">None</span>):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    command <span class="op">=</span> [INKSCAPE_PATH, <span class="bu">str</span>(input_path)]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> width:</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        command.extend([<span class="st">&quot;-w&quot;</span>, <span class="bu">str</span>(width)])</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> height:</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        command.extend([<span class="st">&quot;-h&quot;</span>, <span class="bu">str</span>(height)])</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    command.extend([<span class="st">&quot;--export-plain-svg&quot;</span>, <span class="st">&quot;--export-filename&quot;</span>, <span class="bu">str</span>(output_path)])</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> subprocess.run(command, check<span class="op">=</span><span class="va">True</span>, capture_output<span class="op">=</span><span class="va">True</span>, text<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;Resized: </span><span class="sc">{</span>input_path<span class="sc">.</span>name<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span>output_path<span class="sc">.</span>name<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> subprocess.CalledProcessError <span class="im">as</span> e:</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;Failed to resize </span><span class="sc">{</span>input_path<span class="sc">.</span>name<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">.</span>stderr<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> batch_resize():</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    OUTPUT_DIR.mkdir(parents<span class="op">=</span><span class="va">True</span>, exist_ok<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    svg_files <span class="op">=</span> <span class="bu">list</span>(INPUT_DIR.glob(<span class="st">&quot;*.svg&quot;</span>))</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> svg_files:</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">&quot;No SVG files found in the input directory.&quot;</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Found </span><span class="sc">{</span><span class="bu">len</span>(svg_files)<span class="sc">}</span><span class="ss"> SVG files. Starting processing...&quot;</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> file_path <span class="kw">in</span> svg_files:</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        output_file_path <span class="op">=</span> OUTPUT_DIR <span class="op">/</span> file_path.name</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        resize_svg(file_path, output_file_path, width<span class="op">=</span>TARGET_WIDTH, height<span class="op">=</span>TARGET_HEIGHT)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Batch resizing complete.&quot;</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    batch_resize()</span></code></pre></div>
+<h2 id="maintaining-aspect-ratios">Maintaining Aspect Ratios</h2>
+<p>To maintain the aspect ratio of the original vector image:</p>
+<ul>
+<li>Set <code>TARGET_WIDTH</code> and set
+<code>TARGET_HEIGHT = None</code>. Inkscape will calculate the height
+automatically based on the image's original viewBox.</li>
+<li>Set <code>TARGET_HEIGHT</code> and set
+<code>TARGET_WIDTH = None</code> to scale horizontally while fixing
+vertical bounds.</li>
+</ul>
+<h2 id="optimizing-speed-with-inkscape-shell-mode">Optimizing Speed with
+Inkscape Shell Mode</h2>
+<p>If you need to process thousands of SVGs, launching a new Inkscape
+process for every file creates overhead. Inkscape provides an
+interactive shell mode (<code>inkscape --shell</code>) that keeps a
+single instance running in memory. You can feed commands into the
+standard input stream (<code>stdin</code>) of the single running process
+to drastically reduce processing time.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

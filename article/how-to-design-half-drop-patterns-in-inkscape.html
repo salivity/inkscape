@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Design Half-Drop Patterns in Inkscape - inkscape</title>
+    <meta name="description" content="Designing a half-drop repeat pattern in Inkscape involves creating a seamless design where staggered motif placements eliminate visible grid lines on continuous fabric rolls. This guide covers canvas setup, motif arrangement, precise mathematical offsets">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-design-half-drop-patterns-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Design Half-Drop Patterns in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-design-half-drop-patterns-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing a half-drop repeat pattern in Inkscape involves creating a seamless design where staggered motif placements eliminate visible grid lines on continuous fabric rolls. This guide covers canvas setup, motif arrangement, precise mathematical offsets" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-design-half-drop-patterns-in-inkscape">How to Design
+Half-Drop Patterns in Inkscape</h1>
+<p>Designing a half-drop repeat pattern in Inkscape involves creating a
+seamless design where staggered motif placements eliminate visible grid
+lines on continuous fabric rolls. This guide covers canvas setup, motif
+arrangement, precise mathematical offsets using the Transform tool,
+bounding box clipping, and exporting high-resolution, production-ready
+files for textile printers.</p>
+<h3 id="1-set-up-the-document-canvas">1. Set Up the Document Canvas</h3>
+<p>Open Inkscape and access <strong>File &gt; Document
+Properties</strong> (<code>Shift + Ctrl + D</code>).</p>
+<ul>
+<li>Set the <strong>Display units</strong> and <strong>Page
+size</strong> units to either inches or pixels depending on your print
+vendor's guidelines (e.g., 12 x 12 inches or 3600 x 3600 pixels for a
+standard 300 DPI swatch).</li>
+<li>Ensure your background is transparent or set to your intended base
+fabric color.</li>
+<li>Enable snapping via the toolbar on the right. Turn on <strong>Snap
+bounding boxes</strong> and <strong>Snap to page border</strong> to
+ensure precision alignment during the offset steps.</li>
+</ul>
+<h3 id="2-arrange-the-center-motifs">2. Arrange the Center Motifs</h3>
+<p>Place your primary design elements in the center of the canvas. Keep
+all elements grouped or layered cleanly. Avoid touching the edges of the
+canvas for now; the initial step requires establishing a balanced
+composition in the interior space before managing overlapping seam
+lines.</p>
+<h3 id="3-apply-the-half-drop-mathematics">3. Apply the Half-Drop
+Mathematics</h3>
+<p>A vertical half-drop pattern requires any element crossing an edge to
+repeat on the opposite side shifted by half the canvas height.</p>
+<ol type="1">
+<li>Select the motif that crosses the <strong>left border</strong>.</li>
+<li>Duplicate it (<code>Ctrl + D</code>).</li>
+<li>Open the <strong>Transform</strong> panel via <strong>Object &gt;
+Transform</strong> (<code>Shift + Ctrl + M</code>) and select the
+<strong>Move</strong> tab.</li>
+<li>In the <strong>Horizontal</strong> field, enter the full width of
+your canvas (e.g., <code>+12.000 in</code> or
+<code>+3600 px</code>).</li>
+<li>In the <strong>Vertical</strong> field, enter half the height of
+your canvas (e.g., <code>+6.000 in</code> or
+<code>+1800 px</code>).</li>
+<li>Click <strong>Apply</strong>. The duplicated motif will land in the
+exact half-drop position on the right edge.</li>
+<li>If an element shifts beyond the top or bottom boundaries during this
+translation, duplicate that specific element and shift it vertically by
+the full canvas height (<code>±12.000 in</code> or
+<code>±3600 px</code>) with horizontal set to <code>0</code> to complete
+the wrap.</li>
+</ol>
+<h3 id="4-fill-empty-gaps">4. Fill Empty Gaps</h3>
+<p>After shifting the boundary elements, inspect the remaining negative
+space on your canvas. Add secondary motifs, accents, or filler elements
+directly within the canvas boundaries to balance the visual weight.
+Ensure none of these new filler elements cross the borders unless you
+repeat the mathematical duplication process for them.</p>
+<h3 id="5-create-the-bounding-box-and-clip">5. Create the Bounding Box
+and Clip</h3>
+<p>Textile printers require clean, exact dimensions without paths
+hanging outside the artboard.</p>
+<ol type="1">
+<li>Select the <strong>Rectangle tool</strong> (<code>R</code>) and draw
+a rectangle matching your exact canvas dimensions (e.g., 12 x 12
+inches).</li>
+<li>Use the <strong>Align and Distribute</strong> panel
+(<code>Shift + Ctrl + A</code>), set <strong>Relative to:</strong> to
+<strong>Page</strong>, and center the rectangle horizontally and
+vertically.</li>
+<li>Remove the stroke and fill from this rectangle, or set the fill to
+your intended background color.</li>
+<li>Lower this rectangle to the very bottom layer (<code>End</code>) if
+it serves as a colored background, or duplicate it: keep one as the
+background and one at the very top (<code>Home</code>) to serve as a
+clip mask.</li>
+<li>Select everything on the canvas (<code>Ctrl + A</code>),
+right-click, and select <strong>Group</strong>
+(<code>Ctrl + G</code>).</li>
+<li>Place your clipping rectangle directly over the group, select both
+the top rectangle and the group, then go to <strong>Object &gt; Clip
+&gt; Set Clip</strong>. This trims the preview cleanly to the swatch
+boundaries.</li>
+</ol>
+<h3 id="6-verify-the-repeat">6. Verify the Repeat</h3>
+<p>To ensure no seams or spacing errors occur across the fabric
+roll:</p>
+<ol type="1">
+<li>Select your clipped group and duplicate it
+(<code>Ctrl + D</code>).</li>
+<li>Open <strong>Object &gt; Transform &gt; Move</strong>.</li>
+<li>Move the clone horizontally by full width and vertically by half
+height to verify the half-drop alignment.</li>
+<li>Move another clone horizontally by <code>0</code> and vertically by
+full height to verify the vertical seam.</li>
+<li>Delete the test clones once the alignment is verified.</li>
+</ol>
+<h3 id="7-export-for-textile-printing">7. Export for Textile
+Printing</h3>
+<ol type="1">
+<li>Open the export dialog via <strong>File &gt; Export</strong>
+(<code>Shift + Ctrl + E</code>).</li>
+<li>Set the export area to <strong>Page</strong> to guarantee exact
+boundary dimensions.</li>
+<li>Set the resolution to <strong>300 DPI</strong>.</li>
+<li>Choose the required file format specified by your fabric
+printer—typically <strong>TIFF</strong> or <strong>PNG</strong>.</li>
+<li>Click <strong>Export</strong> to generate the final production
+swatch.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

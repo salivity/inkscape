@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import SketchUp Vector Details into Inkscape via PDF - inkscape</title>
+    <meta name="description" content="This guide explains how to accurately export architectural details as vector graphics from Trimble SketchUp using the 2D PDF export feature and seamlessly import them into Inkscape. By following this workflow, you can preserve precise drawing scales, cap">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/import-sketchup-vector-details-into-inkscape-via-pdf">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Import SketchUp Vector Details into Inkscape via PDF - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/import-sketchup-vector-details-into-inkscape-via-pdf" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to accurately export architectural details as vector graphics from Trimble SketchUp using the 2D PDF export feature and seamlessly import them into Inkscape. By following this workflow, you can preserve precise drawing scales, cap" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="import-sketchup-vector-details-into-inkscape-via-pdf">Import
+SketchUp Vector Details into Inkscape via PDF</h1>
+<p>This guide explains how to accurately export architectural details as
+vector graphics from Trimble SketchUp using the 2D PDF export feature
+and seamlessly import them into Inkscape. By following this workflow,
+you can preserve precise drawing scales, capture clean vector line work
+directly from your 3D models, and easily edit paths, colors, and line
+weights for presentation boards or technical documentation.</p>
+<h2 id="step-1-prepare-the-view-in-sketchup">Step 1: Prepare the View in
+SketchUp</h2>
+<p>To ensure your architectural details export as accurate, undistorted
+vector drawings, you must configure the camera properly:</p>
+<ol type="1">
+<li>Open your model in SketchUp and zoom into the specific detail you
+want to export.</li>
+<li>Go to the top menu and select <strong>Camera &gt; Parallel
+Projection</strong>. Do not use Perspective mode, as perspective views
+cannot be exported as true scaled vectors.</li>
+<li>Select a standard view under <strong>Camera &gt; Standard
+Views</strong> (such as Top, Front, or Right) to align the camera
+perpendicular to the detail.</li>
+<li>Set the visual style by navigating to <strong>Window &gt;
+Styles</strong>. Choose a simple style, such as <strong>Hidden
+Line</strong>, to eliminate textures and backgrounds that can generate
+unnecessary raster data.</li>
+</ol>
+<h2 id="step-2-export-a-vector-2d-pdf">Step 2: Export a Vector 2D
+PDF</h2>
+<p>SketchUp’s 2D export feature can generate resolution-independent
+vector lines when saved as a PDF:</p>
+<ol type="1">
+<li>Click <strong>File &gt; Export &gt; 2D Graphic</strong>.</li>
+<li>Set the file format dropdown to <strong>PDF File
+(*.pdf)</strong>.</li>
+<li>Click the <strong>Options</strong> button before saving to configure
+the export settings.</li>
+<li>Under the <strong>Drawing Size</strong> or <strong>Scale</strong>
+section, uncheck "Match View Size" if you require an exact architectural
+scale (such as 1:1, 1/4" = 1', or 1:20). Set your desired ratio.</li>
+<li>Ensure that options generating raster outputs (such as shadows or
+certain profile extensions) are disabled to produce pure vector
+paths.</li>
+<li>Click <strong>OK</strong>, choose your destination folder, and click
+<strong>Export</strong>.</li>
+</ol>
+<h2 id="step-3-import-the-pdf-into-inkscape">Step 3: Import the PDF into
+Inkscape</h2>
+<p>Once the PDF is generated, bring it into Inkscape using settings that
+preserve path data:</p>
+<ol type="1">
+<li>Launch Inkscape and go to <strong>File &gt; Open</strong> or
+<strong>File &gt; Import</strong>, then select your exported PDF.</li>
+<li>In the PDF Import Settings dialog, choose the <strong>Internal
+import</strong> engine.</li>
+<li>In the precision settings, ensure the resolution for rendering
+raster objects matches your intended output, though vector paths will
+remain mathematically defined regardless.</li>
+<li>If your drawing contains text labels, check the appropriate font
+handling settings (either keeping them as text if the fonts are
+installed, or converting them to paths).</li>
+<li>Click <strong>OK</strong> to place the drawing onto the Inkscape
+canvas.</li>
+</ol>
+<h2 id="step-4-clean-and-organize-vector-paths">Step 4: Clean and
+Organize Vector Paths</h2>
+<p>SketchUp wraps exported PDFs inside multiple nested groups and
+clipping masks that must be cleared for easy editing:</p>
+<ol type="1">
+<li>Select the imported drawing and right-click to select
+<strong>Ungroup</strong> (or press <strong>Ctrl + Shift + G</strong> /
+<strong>Cmd + Shift + G</strong>). Repeat this several times until the
+individual lines are selectable.</li>
+<li>If the lines are trapped inside a boundary, select the drawing, go
+to <strong>Object &gt; Clip</strong>, and select <strong>Release
+Clip</strong>. Delete the resulting bounding box rectangle.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel (<strong>Ctrl +
+Shift + F</strong> / <strong>Cmd + Shift + F</strong>).</li>
+<li>Select all lines and set uniform line joins, caps, and stroke
+widths. Because SketchUp exports lines in thin, default weights, you can
+now apply architectural graphic standards by categorizing heavy cut
+lines, medium object lines, and light hatch lines into dedicated
+Inkscape layers.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

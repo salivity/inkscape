@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix SVG ViewBox When Changing Page Size in Inkscape - inkscape</title>
+    <meta name="description" content="Modifying canvas dimensions in Inkscape often introduces coordinate mismatches between the root SVG dimensions and the internal viewBox attribute, causing artwork to shift, scale unexpectedly, or crop. This article explains how Inkscape manages the relat">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/fix-svg-viewbox-when-changing-page-size-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Fix SVG ViewBox When Changing Page Size in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/fix-svg-viewbox-when-changing-page-size-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Modifying canvas dimensions in Inkscape often introduces coordinate mismatches between the root SVG dimensions and the internal viewBox attribute, causing artwork to shift, scale unexpectedly, or crop. This article explains how Inkscape manages the relat" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="fix-svg-viewbox-when-changing-page-size-in-inkscape">Fix SVG
+ViewBox When Changing Page Size in Inkscape</h1>
+<p>Modifying canvas dimensions in Inkscape often introduces coordinate
+mismatches between the root SVG dimensions and the internal
+<code>viewBox</code> attribute, causing artwork to shift, scale
+unexpectedly, or crop. This article explains how Inkscape manages the
+relationship between physical page dimensions and the
+<code>viewBox</code>, detailing the direct adjustments in Document
+Properties, the XML Editor, and the interactive Page tool required to
+recalculate and normalize coordinate mapping accurately.</p>
+<h2 id="the-relationship-between-page-size-and-viewbox">The Relationship
+Between Page Size and viewBox</h2>
+<p>An SVG element contains two sets of sizing values: the viewport
+attributes (<code>width</code> and <code>height</code>) and the
+<code>viewBox</code> attribute (<code>min-x</code>, <code>min-y</code>,
+<code>width</code>, <code>height</code>).</p>
+<ul>
+<li><strong><code>width</code> and <code>height</code></strong> define
+the display size or physical footprint of the SVG file in CSS units
+(such as pixels, millimeters, or inches).</li>
+<li><strong><code>viewBox</code></strong> defines the internal
+coordinate system and aspect ratio mapped inside that viewport.</li>
+</ul>
+<p>When you alter the page size in Inkscape, the software automatically
+attempts to reconcile the new canvas boundary with the existing
+coordinate system. If the aspect ratio changes, or if the document scale
+is decoupled from the display units, the <code>viewBox</code> can retain
+old coordinate boundaries, leading to misplaced graphics or scaling
+artifacts when rendered in web browsers.</p>
+<h2 id="method-1-adjusting-scale-in-document-properties">Method 1:
+Adjusting Scale in Document Properties</h2>
+<p>The most common cause of <code>viewBox</code> distortion after
+resizing is a mismatched document scale factor. Inkscape manages
+internal <code>viewBox</code> recalculations via the Document Properties
+panel.</p>
+<ol type="1">
+<li>Press <strong>Shift + Ctrl + D</strong> (or go to <strong>File &gt;
+Document Properties</strong>).</li>
+<li>Under the <strong>Page</strong> tab, set your new dimensions using
+the <strong>Custom size</strong> fields.</li>
+<li>Switch to the internal scaling controls (labeled
+<strong>Scale</strong> in Inkscape 1.0 and newer, found under the Page
+display settings).</li>
+<li>Verify the <strong>Scale x</strong> and <strong>Scale y</strong>
+values. For standard 1:1 pixel rendering, set the display units to
+pixels (<code>px</code>) and ensure the scale factor is set to
+<code>1.00000</code>.</li>
+<li>When the scale is set to <code>1.0</code>, Inkscape automatically
+updates the <code>viewBox</code> width and height values to match your
+canvas <code>width</code> and <code>height</code> exactly.</li>
+</ol>
+<p>If you resize a page by clicking <strong>Resize page to
+content</strong>, Inkscape will recalculate the <code>min-x</code> and
+<code>min-y</code> coordinates of the <code>viewBox</code> to match the
+bounding box of your selected objects, setting the new origin point
+automatically.</p>
+<h2 id="method-2-manual-recalculation-via-the-xml-editor">Method 2:
+Manual Recalculation via the XML Editor</h2>
+<p>If an imported SVG has existing transforms or a locked coordinate
+system that Inkscape fails to update automatically, you can edit the
+attributes directly within the application.</p>
+<ol type="1">
+<li>Press <strong>Shift + Ctrl + X</strong> to open the built-in
+<strong>XML Editor</strong>.</li>
+<li>Select the top-level node:
+<code>&lt;svg:svg id="svg..."&gt;</code>.</li>
+<li>Locate the <code>viewBox</code> attribute in the right-hand panel.
+It consists of four space- or comma-separated numbers:
+<code>min-x min-y width height</code>.</li>
+<li>Locate the <code>width</code> and <code>height</code> attributes of
+the SVG root.</li>
+<li>If you want a standard origin without offsets, set the first two
+values to <code>0 0</code>.</li>
+<li>Update the third and fourth values to match your new document width
+and height (expressed in user units/pixels). For example, if your new
+page size is 1920×1080 px, change the <code>viewBox</code> to:
+<pre class="text"><code>0 0 1920 1080</code></pre></li>
+<li>Click <strong>Set</strong> (or press <strong>Ctrl + Enter</strong>)
+to apply the changes.</li>
+<li>Inspect your visual canvas. If the graphics appear displaced, select
+all elements (<strong>Ctrl + A</strong>) and move them into the new
+viewport coordinates manually, or use the Align and Distribute panel
+(<strong>Shift + Ctrl + A</strong>) to center them within the page.</li>
+</ol>
+<h2 id="method-3-using-the-interactive-page-tool">Method 3: Using the
+Interactive Page Tool</h2>
+<p>Inkscape 1.2 and later versions include a dedicated <strong>Page
+Tool</strong> that allows multiple pages and dynamic resizing directly
+on the canvas without breaking coordinate systems.</p>
+<ol type="1">
+<li>Press <strong>R</strong> or select the <strong>Create and edit
+pages</strong> tool from the left toolbar.</li>
+<li>Click on the page boundary you want to edit.</li>
+<li>Drag the boundary handles to resize the canvas interactively, or
+enter precise measurements into the top tool control bar.</li>
+<li>Using this tool forces Inkscape to update the underlying SVG
+<code>viewBox</code> coordinates dynamically while maintaining the
+origin and keeping layers aligned with their absolute coordinate
+positions.</li>
+</ol>
+<h2 id="preventing-coordinate-drift-on-export">Preventing Coordinate
+Drift on Export</h2>
+<p>To ensure the recalculated <code>viewBox</code> remains intact
+without Inkscape injecting proprietary wrapper code:</p>
+<ul>
+<li>Save your work using <strong>File &gt; Save As...</strong> and
+select <strong>Optimized SVG (*.svg)</strong> or <strong>Plain SVG
+(*.svg)</strong>.</li>
+<li>In the Optimized SVG export dialog, ensure that options altering the
+coordinate precision or removing the <code>viewBox</code> are unchecked,
+preserving your exact recalculations for deployment in web development
+and production pipelines.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

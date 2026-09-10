@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prepare Vectors for SVG Path Morphing in Inkscape - inkscape</title>
+    <meta name="description" content="Preparing vector drawings for smooth SVG path morphing requires strict structural consistency between your source and target shapes. For morphing animations to render correctly via CSS, SMIL, or JavaScript animation libraries, both shapes must generally">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/prepare-vectors-for-svg-path-morphing-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Prepare Vectors for SVG Path Morphing in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/prepare-vectors-for-svg-path-morphing-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Preparing vector drawings for smooth SVG path morphing requires strict structural consistency between your source and target shapes. For morphing animations to render correctly via CSS, SMIL, or JavaScript animation libraries, both shapes must generally" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="prepare-vectors-for-svg-path-morphing-in-inkscape">Prepare
+Vectors for SVG Path Morphing in Inkscape</h1>
+<p>Preparing vector drawings for smooth SVG path morphing requires
+strict structural consistency between your source and target shapes. For
+morphing animations to render correctly via CSS, SMIL, or JavaScript
+animation libraries, both shapes must generally share the same number of
+nodes and have matching path structures. This guide covers how to set
+up, standardize, equalize, and export your vector paths in Inkscape to
+ensure seamless SVG morphing.</p>
+<h3 id="1-convert-all-shapes-to-native-paths">1. Convert All Shapes to
+Native Paths</h3>
+<p>Morphing algorithms cannot interpolate between primitive geometric
+elements (like <code>&lt;circle&gt;</code>, <code>&lt;rect&gt;</code>,
+or <code>&lt;polygon&gt;</code>) and path elements
+(<code>&lt;path&gt;</code>). Everything must be converted to a raw SVG
+path:</p>
+<ol type="1">
+<li>Select your shapes using the <strong>Select Tool</strong>
+(<code>S</code>).</li>
+<li>Go to <strong>Path &gt; Object to Path</strong> (or press
+<code>Shift + Ctrl + C</code>).</li>
+<li>If your artwork uses outlines, convert them to fills by selecting
+the object and choosing <strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>), ensuring both shapes consist of filled
+paths rather than stroked lines.</li>
+<li>Ungroup all grouped elements by pressing
+<code>Ctrl + Shift + G</code> repeatedly until no groups remain.</li>
+</ol>
+<h3 id="2-simplify-into-single-continuous-paths">2. Simplify into
+Single, Continuous Paths</h3>
+<p>Most morphing engines work best when transitioning a single
+continuous path into another single continuous path.</p>
+<ul>
+<li>If your graphic consists of multiple overlapping shapes, select them
+and navigate to <strong>Path &gt; Union</strong> (<code>Ctrl + +</code>)
+to create a single compound shape.</li>
+<li>If a shape contains holes (like the letter "O"), use <strong>Path
+&gt; Difference</strong> (<code>Ctrl + -</code>) to ensure it exists as
+a single compound path rather than separate, layered objects.</li>
+</ul>
+<h3 id="3-match-node-counts-exactly">3. Match Node Counts Exactly</h3>
+<p>For basic SVG morphing—and for optimal rendering in advanced
+libraries like GSAP or Anime.js—Shape A and Shape B must contain the
+exact same number of nodes.</p>
+<ol type="1">
+<li>Select Shape A with the <strong>Node Tool</strong> (<code>N</code>).
+Look at the bottom status bar to see the current node count (e.g., "32
+nodes").</li>
+<li>Check the node count for Shape B.</li>
+<li>Add nodes to the simpler shape so it matches the count of the more
+complex shape:
+<ul>
+<li><strong>Automatic method:</strong> Select the simpler path, open
+<strong>Extensions &gt; Modify Path &gt; Add Nodes...</strong>, and
+configure the number of segments or maximum segment length until the
+counts align.</li>
+<li><strong>Manual method:</strong> Double-click directly on the path
+outline with the <strong>Node Tool</strong> to place new nodes along
+flat or curved sections without changing the shape's visual
+silhouette.</li>
+</ul></li>
+</ol>
+<h3 id="4-align-starting-points-and-path-direction">4. Align Starting
+Points and Path Direction</h3>
+<p>Morphing engines map the first node of the initial path to the first
+node of the final path. If the start nodes are on opposite sides, the
+shape will twist and distort awkwardly during the transition.</p>
+<ul>
+<li><strong>Check Direction:</strong> With the <strong>Node
+Tool</strong> active, enable <strong>Show path direction on
+outlines</strong> in the tool control bar (the small button with path
+arrows).</li>
+<li><strong>Reverse Direction:</strong> If the arrows on Shape A run
+clockwise and Shape B runs counter-clockwise, select the path that needs
+adjustment and go to <strong>Path &gt; Reverse</strong>
+(<code>Shift + R</code>).</li>
+<li><strong>Set the Start Node:</strong>
+<ol type="1">
+<li>Select the node you want as the origin point using the <strong>Node
+Tool</strong>.</li>
+<li>Click <strong>Break path at selected nodes</strong> on the top
+toolbar.</li>
+<li>Immediately select the overlapping nodes that were just separated
+and click <strong>Join selected endnodes with a new segment</strong> (or
+<strong>Join selected nodes</strong>). This resets the internal index of
+the path, making that point the first node in the exported code.</li>
+</ol></li>
+</ul>
+<h3 id="5-remove-transformations-and-export-clean-code">5. Remove
+Transformations and Export Clean Code</h3>
+<p>SVG transform matrices (<code>transform="matrix(...)"</code>)
+interfere with coordinate interpolation during morphing.</p>
+<ol type="1">
+<li>Align and center both shapes on top of each other on the
+canvas.</li>
+<li>Select all shapes and go to <strong>Object &gt; Transform</strong>
+(<code>Shift + Ctrl + M</code>), ensure relative transforms are applied,
+or cut and paste the shapes into a fresh layer to clear rotation and
+scale transforms.</li>
+<li>Navigate to <strong>File &gt; Save As...</strong> and select
+<strong>Optimized SVG (*.svg)</strong>.</li>
+<li>In the optimization dialog, ensure <strong>Convert coordinates to
+relative</strong> is unchecked (absolute coordinates are generally
+easier to debug) and enable <strong>Remove unused IDs</strong> and
+<strong>Collapse groups</strong>.</li>
+<li>Open the exported SVG file in a code editor to copy the
+<code>d="..."</code> path data directly into your animation script or
+stylesheet.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

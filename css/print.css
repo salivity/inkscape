@@ -1,0 +1,60 @@
+/**
+ * Optimize the layout when printing article from the website
+ */
+@page {
+    margin: 2cm;
+}
+
+body{
+    color:              #000 !important;
+    background-color:   #FFF !important;
+}
+
+main{
+    color:              #000 !important;
+    background-color:   #FFF !important;
+    print-color-adjust: exact;
+}
+
+article h1[id] + p:first-of-type::first-letter {
+    color:              #000 !important;
+    background-color:   #FFF !important;
+    border-color:       #000 !important;
+}
+
+article pre {
+    white-space:        pre-wrap !important;
+    overflow-wrap:      break-word !important;
+  
+    /* Create the hanging indent */
+    padding-left:       2em;
+    text-indent:        -2em;
+
+    border-color:      #CCC;
+}
+
+article a{
+  color:                inherit;
+}
+
+pre, code{
+    background-color: #FFF;
+}
+
+header{
+    justify-content:    center !important;
+    border-bottom:      none !important;
+}
+
+footer{
+    border-top:         none !important;
+}
+
+#comments-container{
+    display:            none !important;
+}
+
+/* Hide the navigational items for print */
+nav{
+    display:            none !important;
+}

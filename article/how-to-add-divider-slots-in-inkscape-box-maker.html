@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Add Divider Slots in Inkscape Box Maker - inkscape</title>
+    <meta name="description" content="This article explains how to design internal divider slots for laser-cut tabbed enclosure boxes using Inkscape and the Box Maker extension. While the standard Box Maker tool creates the outer notched panels of a box, adding internal dividers requires cre">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-add-divider-slots-in-inkscape-box-maker">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Add Divider Slots in Inkscape Box Maker - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-add-divider-slots-in-inkscape-box-maker" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how to design internal divider slots for laser-cut tabbed enclosure boxes using Inkscape and the Box Maker extension. While the standard Box Maker tool creates the outer notched panels of a box, adding internal dividers requires cre" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-add-divider-slots-in-inkscape-box-maker">How to Add
+Divider Slots in Inkscape Box Maker</h1>
+<p>This article explains how to design internal divider slots for
+laser-cut tabbed enclosure boxes using Inkscape and the Box Maker
+extension. While the standard Box Maker tool creates the outer notched
+panels of a box, adding internal dividers requires creating matching
+rectangular cutouts in the enclosure walls and designing interlocking
+partition pieces. Following this workflow allows you to accurately
+measure, align, and cut interlocking compartments for any custom
+enclosure.</p>
+<h3 id="step-1-generate-the-outer-box">Step 1: Generate the Outer
+Box</h3>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>Extensions &gt; Render &gt;
+Box Maker</strong> (or your preferred laser box extension).</li>
+<li>Enter your desired external dimensions: width, height, and
+depth.</li>
+<li>Set your exact <strong>Material Thickness</strong> and
+<strong>Kerf</strong>.</li>
+<li>Set the tab width to your preferred finger-joint size.</li>
+<li>Click <strong>Apply</strong> to generate the six sides of the
+enclosure on your canvas.</li>
+<li>Select the generated box parts, go to <strong>Object &gt;
+Ungroup</strong>, and identify the interior walls (such as the front,
+back, left, right, and bottom panels) where the dividers will
+attach.</li>
+</ol>
+<h3 id="step-2-calculate-divider-dimensions">Step 2: Calculate Divider
+Dimensions</h3>
+<p>The interior partitions must fit the inside clearances of the
+enclosure, not the exterior measurements.</p>
+<ul>
+<li><strong>Inside Dimension:</strong> Calculate the internal space by
+subtracting twice the material thickness from the total outer dimension
+(e.g., <span class="math inline">\(\text{Inside Width} = \text{Outer
+Width} - [2 \times \text{Material Thickness}]\)</span>).</li>
+<li><strong>Divider Height:</strong> The height of the divider should
+match the internal height of the box if the lid sits flat against
+it.</li>
+</ul>
+<h3 id="step-3-create-the-slots-on-the-box-walls">Step 3: Create the
+Slots on the Box Walls</h3>
+<ol type="1">
+<li>Select the <strong>Rectangle Tool</strong> (<span
+class="math inline">\(R\)</span>).</li>
+<li>Draw a rectangle that will serve as the slot.
+<ul>
+<li>Set the <strong>width</strong> to your material thickness.</li>
+<li>Set the <strong>height</strong> to the desired tab length (for
+example, 10 mm to 15 mm).</li>
+</ul></li>
+<li>Open the <strong>Align and Distribute</strong> panel (<strong>Shift
++ Ctrl + A</strong>).</li>
+<li>Place the slot rectangle over the box panel where you want the
+partition to sit.</li>
+<li>Use the alignment tools to center the slot horizontally or
+distribute multiple slots evenly across the face.</li>
+<li>Select both the wall panel and the slot rectangle.</li>
+<li>Go to <strong>Path &gt; Difference</strong> (<strong>Ctrl +
+-</strong>) to cut the slot directly out of the panel. Repeat this for
+the opposite wall panel and the bottom plate if you want bottom-anchored
+dividers.</li>
+</ol>
+<h3 id="step-4-design-the-divider-panels">Step 4: Design the Divider
+Panels</h3>
+<ol type="1">
+<li>Draw a rectangle matching the calculated internal width and height
+of the box.</li>
+<li>If your dividers insert directly into the slots you created in Step
+3, draw matching tabs on the edges of the divider with the same
+dimensions as the slots.</li>
+<li>Align the tabs to the outer edges of the divider plate using
+<strong>Align and Distribute</strong>.</li>
+<li>Select the divider body and the tabs, then merge them using
+<strong>Path &gt; Union</strong> (<strong>Ctrl + +</strong>).</li>
+</ol>
+<h3 id="step-5-create-intersecting-cross-dividers-egg-crate-joints">Step
+5: Create Intersecting Cross-Dividers (Egg-Crate Joints)</h3>
+<p>If your box requires a grid of crossing dividers:</p>
+<ol type="1">
+<li>Draw a vertical slot in the center of each divider panel where the
+perpendicular partition will cross.</li>
+<li>Set the slot <strong>width</strong> equal to the material thickness
+(adjusted slightly for kerf fit).</li>
+<li>Set the slot <strong>height</strong> to exactly half the total
+height of the divider panel.</li>
+<li>On one divider, cut the slot from the top edge downward
+(<strong>Path &gt; Difference</strong>).</li>
+<li>On the intersecting divider, cut the slot from the bottom edge
+upward.</li>
+<li>These two half-lap slots will slide into each other to form a rigid
+internal grid.</li>
+</ol>
+<h3 id="step-6-final-preparation-for-cutting">Step 6: Final Preparation
+for Cutting</h3>
+<ol type="1">
+<li>Set the stroke width for all cut lines to your laser cutter’s
+required hairline thickness (commonly 0.001 inches or 0.02 mm).</li>
+<li>Set the stroke color to your machine's designated cutting color
+(typically pure red, <code>#FF0000</code>).</li>
+<li>Ensure all fills are removed.</li>
+<li>Save the file as an SVG or export it to DXF/PDF format for laser
+cutting.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

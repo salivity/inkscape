@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parametric Parabolas and Hyperbolas in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape provides a built-in mathematical rendering engine that enables the generation of mathematically precise geometric curves without manual path tracing. By leveraging the Parametric Curves extension, you can plot exact conic sections such as parabo">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/parametric-parabolas-and-hyperbolas-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Parametric Parabolas and Hyperbolas in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/parametric-parabolas-and-hyperbolas-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape provides a built-in mathematical rendering engine that enables the generation of mathematically precise geometric curves without manual path tracing. By leveraging the Parametric Curves extension, you can plot exact conic sections such as parabo" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="parametric-parabolas-and-hyperbolas-in-inkscape">Parametric
+Parabolas and Hyperbolas in Inkscape</h1>
+<p>Inkscape provides a built-in mathematical rendering engine that
+enables the generation of mathematically precise geometric curves
+without manual path tracing. By leveraging the Parametric Curves
+extension, you can plot exact conic sections such as parabolas and
+hyperbolas defined by parametric equations. This guide details how to
+access the tool, configure the plotting parameters, and input the exact
+mathematical expressions required to construct both curves cleanly on
+your vector canvas.</p>
+<h3 id="accessing-the-parametric-plotter">Accessing the Parametric
+Plotter</h3>
+<p>To open the plotting interface, navigate to the top menu and select
+<strong>Extensions &gt; Render &gt; Parametric Curves...</strong>. This
+tool accepts functions of an independent parameter, <span
+class="math inline">\(t\)</span>, and outputs a path based on <span
+class="math inline">\(X(t)\)</span> and <span
+class="math inline">\(Y(t)\)</span> coordinates using Python's
+mathematical syntax.</p>
+<h3 id="constructing-a-parabola">Constructing a Parabola</h3>
+<p>A standard vertical parabola opening upward follows the Cartesian
+equation <span class="math inline">\(y = ax^2\)</span>. In parametric
+form, this is expressed using the parameter <span
+class="math inline">\(t\)</span> as:</p>
+<ul>
+<li><span class="math inline">\(x(t) = t\)</span></li>
+<li><span class="math inline">\(y(t) = a \cdot t^2\)</span></li>
+</ul>
+<p>Follow these steps in the Parametric Curves dialog:</p>
+<ol type="1">
+<li><strong>Set the Parameter Range:</strong> Define the start and end
+values for <span class="math inline">\(t\)</span>. For a symmetric
+parabola, set <strong>Start value of t</strong> to <code>-10</code> and
+<strong>End value of t</strong> to <code>10</code>.</li>
+<li><strong>Enter the Equations:</strong>
+<ul>
+<li>In the <strong>X-Function</strong> field, enter: <code>t</code></li>
+<li>In the <strong>Y-Function</strong> field, enter:
+<code>0.05 * t**2</code> (adjust the coefficient <code>0.05</code> to
+make the curve wider or narrower).</li>
+</ul></li>
+<li><strong>Configure Resolution:</strong> Set <strong>Number of
+samples</strong> to at least <code>50</code> to ensure smooth
+curvature.</li>
+<li><strong>Render:</strong> Click <strong>Apply</strong> to generate
+the parabola as a path object.</li>
+</ol>
+<h3 id="constructing-a-hyperbola">Constructing a Hyperbola</h3>
+<p>A standard horizontal hyperbola centered at the origin follows the
+Cartesian equation <span class="math inline">\((x/a)^2 - (y/b)^2 =
+1\)</span>. The cleanest parametric representation uses hyperbolic
+functions (<span class="math inline">\(\cosh\)</span> and <span
+class="math inline">\(\sinh\)</span>):</p>
+<ul>
+<li>Right branch: <span class="math inline">\(x(t) = a \cdot
+\cosh(t)\)</span>, <span class="math inline">\(y(t) = b \cdot
+\sinh(t)\)</span></li>
+<li>Left branch: <span class="math inline">\(x(t) = -a \cdot
+\cosh(t)\)</span>, <span class="math inline">\(y(t) = b \cdot
+\sinh(t)\)</span></li>
+</ul>
+<p>Because a hyperbola consists of two disconnected branches, each
+branch must be rendered separately:</p>
+<ol type="1">
+<li><strong>Plotting the Right Branch:</strong>
+<ul>
+<li><strong>Start value of t:</strong> <code>-3</code></li>
+<li><strong>End value of t:</strong> <code>3</code></li>
+<li><strong>X-Function:</strong> <code>50 * cosh(t)</code></li>
+<li><strong>Y-Function:</strong> <code>30 * sinh(t)</code></li>
+<li>Click <strong>Apply</strong>.</li>
+</ul></li>
+<li><strong>Plotting the Left Branch:</strong>
+<ul>
+<li>Keep the same <span class="math inline">\(t\)</span> range.</li>
+<li>Change the <strong>X-Function</strong> to:
+<code>-50 * cosh(t)</code></li>
+<li>Keep the <strong>Y-Function</strong> as:
+<code>30 * sinh(t)</code></li>
+<li>Click <strong>Apply</strong>.</li>
+</ul></li>
+</ol>
+<h3 id="adjusting-scale-and-origin">Adjusting Scale and Origin</h3>
+<ul>
+<li><strong>Visual Inversion:</strong> In Inkscape, the <span
+class="math inline">\(Y\)</span>-axis increases downward by default in
+computer graphics coordinates. If your parabola renders upside down,
+invert the sign in the Y-function (e.g.,
+<code>-0.05 * t**2</code>).</li>
+<li><strong>Placement:</strong> The generated paths are placed relative
+to the current selection or canvas origin. Once rendered, select the
+curves using the <strong>Select and Transform Objects</strong> tool
+(<span class="math inline">\(S\)</span>) to reposition, scale, or edit
+the stroke weight via the <strong>Fill and Stroke</strong> panel.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configure Inkscape Build Flags with GCC on Fedora - inkscape</title>
+    <meta name="description" content="Compiling Inkscape from source on Fedora using the GCC compiler often requires customizing compiler optimization levels, linker parameters, and specific dependency search paths. This guide provides a direct, step-by-step approach to setting up Fedora’s">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/configure-inkscape-build-flags-with-gcc-on-fedora">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Configure Inkscape Build Flags with GCC on Fedora - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/configure-inkscape-build-flags-with-gcc-on-fedora" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Compiling Inkscape from source on Fedora using the GCC compiler often requires customizing compiler optimization levels, linker parameters, and specific dependency search paths. This guide provides a direct, step-by-step approach to setting up Fedora’s" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="configure-inkscape-build-flags-with-gcc-on-fedora">Configure
+Inkscape Build Flags with GCC on Fedora</h1>
+<p>Compiling Inkscape from source on Fedora using the GCC compiler often
+requires customizing compiler optimization levels, linker parameters,
+and specific dependency search paths. This guide provides a direct,
+step-by-step approach to setting up Fedora’s build environment, setting
+GCC as the default toolchain, and passing custom build flags for
+dependencies using CMake and PkgConfig.</p>
+<h3 id="step-1-install-build-tools-and-inkscape-dependencies">Step 1:
+Install Build Tools and Inkscape Dependencies</h3>
+<p>Fedora provides a convenient tool to install all development packages
+and build dependencies for Inkscape in a single step. Open a terminal
+and run:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dnf install dnf-plugins-core</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dnf builddep inkscape</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dnf install git cmake ninja-build gcc-c++</span></code></pre></div>
+<h3 id="step-2-clone-the-inkscape-source-repository">Step 2: Clone the
+Inkscape Source Repository</h3>
+<p>Obtain the latest source code from the official GitLab repository,
+ensuring submodules are recursively pulled:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--recurse-submodules</span> https://gitlab.com/inkscape/inkscape.git</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> inkscape</span></code></pre></div>
+<h3 id="step-3-define-dependency-and-compiler-build-flags">Step 3:
+Define Dependency and Compiler Build Flags</h3>
+<p>Inkscape relies on CMake to detect libraries and configure the build
+tree. You can control how GCC interacts with dependencies using
+environment variables and CMake parameters:</p>
+<ul>
+<li><p><strong>Custom Dependency Locations (<code>PKG_CONFIG_PATH</code>
+and <code>CMAKE_PREFIX_PATH</code>):</strong> If you built libraries
+(such as Poppler, 2Geom, or GTKMM) in custom directories (e.g.,
+<code>/opt/custom_libs</code>), tell CMake and PkgConfig where to find
+their metadata and headers:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">PKG_CONFIG_PATH</span><span class="op">=</span><span class="st">&quot;/opt/custom_libs/lib64/pkgconfig:</span><span class="va">$PKG_CONFIG_PATH</span><span class="st">&quot;</span></span></code></pre></div></li>
+<li><p><strong>C/C++ Compiler Flags (<code>CMAKE_CXX_FLAGS</code> /
+<code>CMAKE_C_FLAGS</code>):</strong> Pass GCC-specific flags such as
+optimization levels (<code>-O3</code>), machine-specific instruction
+sets (<code>-march=native</code>), or custom include directories
+(<code>-I</code>):</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CXXFLAGS</span><span class="op">=</span><span class="st">&quot;-O3 -march=native -pipe&quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CFLAGS</span><span class="op">=</span><span class="st">&quot;-O3 -march=native -pipe&quot;</span></span></code></pre></div></li>
+<li><p><strong>Linker Flags (<code>CMAKE_EXE_LINKER_FLAGS</code> /
+<code>CMAKE_SHARED_LINKER_FLAGS</code>):</strong> Specify custom library
+search paths (<code>-L</code>) and run-time library paths
+(<code>-Wl,-rpath</code>):</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">LDFLAGS</span><span class="op">=</span><span class="st">&quot;-L/opt/custom_libs/lib64 -Wl,-rpath,/opt/custom_libs/lib64&quot;</span></span></code></pre></div></li>
+</ul>
+<h3 id="step-4-configure-the-build-with-cmake">Step 4: Configure the
+Build with CMake</h3>
+<p>Create a separate build directory and invoke CMake. Specify GCC
+(<code>gcc</code> and <code>g++</code>) explicitly, choose the Ninja
+generator for faster builds, and inject any dependency-specific
+overrides via <code>-D</code> flags:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-B</span> build <span class="at">-G</span> Ninja <span class="dt">\</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span>RelWithDebInfo <span class="dt">\</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-DCMAKE_C_COMPILER</span><span class="op">=</span>gcc <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-DCMAKE_CXX_COMPILER</span><span class="op">=</span>g++ <span class="dt">\</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-DCMAKE_PREFIX_PATH</span><span class="op">=</span><span class="st">&quot;/opt/custom_libs&quot;</span> <span class="dt">\</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">-DCMAKE_CXX_FLAGS</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$CXXFLAGS</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">-DCMAKE_EXE_LINKER_FLAGS</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$LDFLAGS</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">-DCMAKE_SHARED_LINKER_FLAGS</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$LDFLAGS</span><span class="st">&quot;</span></span></code></pre></div>
+<p>To configure flags for an individual dependency managed by CMake
+(such as Boost or GraphicsMagick), append the respective CMake variables
+directly. For example:</p>
+<ul>
+<li><code>-DBOOST_ROOT=/path/to/custom/boost</code></li>
+<li><code>-DPOPPLER_INCLUDE_DIR=/path/to/poppler/include</code></li>
+</ul>
+<h3 id="step-5-compile-and-verify">Step 5: Compile and Verify</h3>
+<p>Execute the build using Ninja:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ninja</span> <span class="at">-C</span> build</span></code></pre></div>
+<p>To verify that your custom dependency flags were correctly applied,
+inspect the compiled binary dependencies:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ldd</span> build/bin/inkscape</span></code></pre></div>
+<p>Finally, install the compiled binary or run it directly from the
+build directory:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./build/bin/inkscape</span></span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

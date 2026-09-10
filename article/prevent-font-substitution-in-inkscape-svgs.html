@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevent Font Substitution in Inkscape SVGs - inkscape</title>
+    <meta name="description" content="Font substitution occurs in Inkscape when an SVG file references typography that is not installed on your local operating system, causing the software to fall back to a default system font. This article covers why this happens and provides actionable met">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/prevent-font-substitution-in-inkscape-svgs">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Prevent Font Substitution in Inkscape SVGs - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/prevent-font-substitution-in-inkscape-svgs" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Font substitution occurs in Inkscape when an SVG file references typography that is not installed on your local operating system, causing the software to fall back to a default system font. This article covers why this happens and provides actionable met" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="prevent-font-substitution-in-inkscape-svgs">Prevent Font
+Substitution in Inkscape SVGs</h1>
+<p>Font substitution occurs in Inkscape when an SVG file references
+typography that is not installed on your local operating system, causing
+the software to fall back to a default system font. This article covers
+why this happens and provides actionable methods to prevent or resolve
+font mismatches, including converting text to paths, embedding web fonts
+directly into the SVG, installing the required typefaces, and utilizing
+Inkscape's built-in font mapping tools.</p>
+<h2 id="why-font-substitution-occurs">Why Font Substitution Occurs</h2>
+<p>Standard SVG files store text elements as live, editable strings
+paired with CSS font-family declarations rather than raw vector shapes.
+When Inkscape opens an SVG file created on another machine, it queries
+your operating system's font registry for the specified font family. If
+that font is absent, Inkscape substitutes it with a fallback font
+(typically a generic sans-serif or serif typeface), altering the
+document's kerning, line heights, and overall visual layout.</p>
+<hr />
+<h2 id="1-convert-text-to-paths-best-for-static-graphics">1. Convert
+Text to Paths (Best for Static Graphics)</h2>
+<p>If the text within the SVG does not need to be edited later, the most
+reliable way to guarantee identical rendering across all devices is to
+convert the text to vector outlines before exporting or sharing the
+file.</p>
+<ol type="1">
+<li>Select the text object(s) in Inkscape.</li>
+<li>Navigate to the top menu and select <strong>Path</strong> &gt;
+<strong>Object to Path</strong> (or press
+<code>Shift + Ctrl + C</code>).</li>
+<li>Save the file.</li>
+</ol>
+<p><em>Note: Once converted to paths, the text behaves as vector nodes
+and can no longer be edited using the Text tool. Always retain a backup
+copy with live text for future revisions.</em></p>
+<hr />
+<h2 id="2-install-the-required-fonts-locally">2. Install the Required
+Fonts Locally</h2>
+<p>When you need to keep text fully editable, installing the missing
+font family on your computer resolves substitution issues instantly.</p>
+<ol type="1">
+<li>Identify the missing font by selecting the substituted text and
+opening the <strong>Text and Font</strong> panel (<strong>Text</strong>
+&gt; <strong>Text and Font</strong> or <code>Shift + Ctrl + T</code>).
+Missing fonts typically display with a warning icon or
+strike-through.</li>
+<li>Obtain the appropriate font files (<code>.ttf</code> or
+<code>.otf</code>) from a legitimate font provider or the original file
+creator.</li>
+<li>Install the font on your operating system (right-click the font file
+and select <strong>Install</strong>).</li>
+<li>Restart Inkscape and reopen the SVG file.</li>
+</ol>
+<hr />
+<h2 id="3-embed-fonts-directly-into-the-svg-code">3. Embed Fonts
+Directly into the SVG Code</h2>
+<p>For web-based or portable workflows where text must remain selectable
+or screen-reader accessible without requiring local font installation,
+you can embed the font data directly inside the SVG using Base64
+encoding.</p>
+<ol type="1">
+<li>Convert your font file (<code>.woff</code> or <code>.ttf</code>)
+into a Base64 string using an online font converter.</li>
+<li>Open the SVG in Inkscape and launch the <strong>XML Editor</strong>
+(<strong>Edit</strong> &gt; <strong>XML Editor</strong> or
+<code>Shift + Ctrl + X</code>).</li>
+<li>Add a <code>&lt;style&gt;</code> element inside the
+<code>&lt;defs&gt;</code> section containing a <code>@font-face</code>
+rule:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">defs</span>&gt;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">style</span> <span class="ot">type=</span><span class="st">&quot;text/css&quot;</span>&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    @font-face {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      font-family: &#39;YourFontName&#39;;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      src: url(&#39;data:font/woff2;charset=utf-8;base64,BASE64_DATA_HERE&#39;) format(&#39;woff2&#39;);</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">style</span>&gt;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">defs</span>&gt;</span></code></pre></div>
+<ol start="4" type="1">
+<li>Ensure your text objects reference the same <code>font-family</code>
+name in their styling.</li>
+</ol>
+<hr />
+<h2 id="4-map-fallback-fonts-in-inkscape">4. Map Fallback Fonts in
+Inkscape</h2>
+<p>If you cannot install the original font or modify the source file,
+manually assign a suitable replacement that closely matches the metrics
+of the missing font.</p>
+<ol type="1">
+<li>Open the document in Inkscape.</li>
+<li>Open the <strong>Text and Font</strong> dialog
+(<code>Shift + Ctrl + T</code>).</li>
+<li>Select the text element displaying the substituted font.</li>
+<li>Choose a compatible, installed typeface from the font list and click
+<strong>Apply</strong>.</li>
+<li>Adjust the font size and letter spacing in the tool controls bar to
+preserve the original layout alignment.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

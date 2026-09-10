@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrap Text in Arbitrary Shapes in Inkscape - inkscape</title>
+    <meta name="description" content="Wrapping text inside non-rectangular paths is an essential design technique for vector illustrations, posters, and web graphics. This guide explains how to use Inkscape and modern SVG 2.0 text-wrapping features to constrain text within any custom vector">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/wrap-text-in-arbitrary-shapes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Wrap Text in Arbitrary Shapes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/wrap-text-in-arbitrary-shapes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Wrapping text inside non-rectangular paths is an essential design technique for vector illustrations, posters, and web graphics. This guide explains how to use Inkscape and modern SVG 2.0 text-wrapping features to constrain text within any custom vector" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="wrap-text-in-arbitrary-shapes-in-inkscape">Wrap Text in
+Arbitrary Shapes in Inkscape</h1>
+<p>Wrapping text inside non-rectangular paths is an essential design
+technique for vector illustrations, posters, and web graphics. This
+guide explains how to use Inkscape and modern SVG 2.0 text-wrapping
+features to constrain text within any custom vector shape, ensuring your
+designs remain editable and adhere to modern SVG standards.</p>
+<h3 id="understanding-svg-20-text-flowing">Understanding SVG 2.0 Text
+Flowing</h3>
+<p>Earlier versions of Inkscape relied on a draft SVG 1.2 specification
+(<code>&lt;flowRoot&gt;</code>) to flow text inside containers. This
+caused issues because modern web browsers dropped support for SVG 1.2,
+resulting in invisible text on the web. Inkscape now supports SVG 2.0
+text features, allowing text to automatically wrap within geometric
+boundaries using standard properties like <code>inline-size</code> and
+shape boundaries without breaking browser compatibility.</p>
+<h3 id="step-by-step-flowing-text-into-an-arbitrary-shape">Step-by-Step:
+Flowing Text into an Arbitrary Shape</h3>
+<ol type="1">
+<li><strong>Draw Your Boundary Shape:</strong> Use the <strong>Draw
+Freehand Lines tool (Pencil)</strong>, <strong>Bezier Curves tool
+(Pen)</strong>, or any shape tool to create the container path. Ensure
+the shape is a closed path.</li>
+<li><strong>Type Your Text:</strong> Select the <strong>Text tool
+(T)</strong>, click on the canvas, and type or paste the text you want
+to wrap. Keep it as regular, single-line or multi-line text (do not drag
+a text box).</li>
+<li><strong>Select Both Objects:</strong> Switch to the <strong>Select
+and Transform Objects tool (S)</strong>. Hold down the
+<code>Shift</code> key and click on both your text object and the
+boundary shape.</li>
+<li><strong>Apply the Flow:</strong> Go to the top menu and select
+<strong>Text &gt; Flow into Frame</strong> (or press
+<code>Alt + W</code>). The text will immediately reflow to fill the
+interior contours of your selected shape.</li>
+</ol>
+<h3 id="adjusting-and-fine-tuning-the-layout">Adjusting and Fine-Tuning
+the Layout</h3>
+<ul>
+<li><strong>Modifying the Container:</strong> You can select the
+container path with the <strong>Edit paths by nodes tool (N)</strong>
+and move the nodes around. The text will automatically re-render and
+adjust in real time to fit the modified geometry.</li>
+<li><strong>Editing Text Content:</strong> Double-click anywhere inside
+the text block with the <strong>Text tool (T)</strong> to edit the copy,
+change fonts, modify letter spacing, or adjust font sizes.</li>
+<li><strong>Hiding the Boundary:</strong> If you do not want the outline
+or fill of the container shape to be visible, select the shape with the
+Selector tool and set its <strong>Fill</strong> and
+<strong>Stroke</strong> to "None" in the <em>Fill and Stroke</em> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li><strong>Unlinking Text from Shape:</strong> If you ever need to
+restore the text to its original state, select the flowed text and go to
+<strong>Text &gt; Unflow</strong> (<code>Shift + Alt + W</code>).</li>
+</ul>
+<h3 id="ensuring-web-compatibility">Ensuring Web Compatibility</h3>
+<p>While SVG 2.0 text wrapping is increasingly supported, rendering
+across all legacy web renderers can still vary. To ensure complete
+cross-platform fidelity for static web assets, you can save a production
+copy by selecting the flowed text and choosing <strong>Path &gt; Object
+to Path</strong> (<code>Ctrl + Shift + C</code>). This converts the
+rendered glyphs into static vector paths while keeping the original SVG
+source file editable for future text revisions.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

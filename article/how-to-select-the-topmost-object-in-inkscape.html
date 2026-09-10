@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Select the Topmost Object in Inkscape - inkscape</title>
+    <meta name="description" content="Selecting the topmost object in a stack of overlapping vector paths in Inkscape is straightforward, but factors like transparency, grouping, and click-through settings can sometimes cause lower objects to be selected by mistake. This guide explains how t">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-select-the-topmost-object-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Select the Topmost Object in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-select-the-topmost-object-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Selecting the topmost object in a stack of overlapping vector paths in Inkscape is straightforward, but factors like transparency, grouping, and click-through settings can sometimes cause lower objects to be selected by mistake. This guide explains how t" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-select-the-topmost-object-in-inkscape">How to Select the
+Topmost Object in Inkscape</h1>
+<p>Selecting the topmost object in a stack of overlapping vector paths
+in Inkscape is straightforward, but factors like transparency, grouping,
+and click-through settings can sometimes cause lower objects to be
+selected by mistake. This guide explains how to directly target and
+isolate only the highest object in the z-order using the Selector tool,
+keyboard shortcuts, and the Layers and Objects panel.</p>
+<h3 id="1-direct-selection-with-the-selector-tool">1. Direct Selection
+with the Selector Tool</h3>
+<p>By default, Inkscape selects the topmost path at the cursor's
+location.</p>
+<ol type="1">
+<li>Switch to the <strong>Selector tool</strong> by pressing
+<code>S</code> or <code>F1</code>.</li>
+<li>Click directly on the fill or stroke of the uppermost path.</li>
+<li>Ensure you single-click rather than click-and-drag. A click-and-drag
+creates a selection marquee, which selects every overlapping object
+intersecting or contained within the box.</li>
+</ol>
+<h3 id="2-using-the-layers-and-objects-panel">2. Using the Layers and
+Objects Panel</h3>
+<p>The most precise way to isolate the topmost object without accidental
+clicks is through the hierarchy tree.</p>
+<ol type="1">
+<li>Open the panel via <strong>Object &gt; Layers and Objects</strong>
+(or press <code>Ctrl + Shift + L</code>).</li>
+<li>Locate the layer or group containing your overlapping paths.</li>
+<li>In Inkscape's hierarchy, objects positioned higher in the list sit
+higher in the z-order on the canvas.</li>
+<li>Click the path at the top of the list to select only that
+object.</li>
+</ol>
+<h3 id="3-selecting-objects-inside-groups">3. Selecting Objects Inside
+Groups</h3>
+<p>If the overlapping paths are grouped, a standard click will select
+the entire group rather than the individual top path.</p>
+<ul>
+<li>Hold <code>Ctrl</code> and single-click the topmost object. This
+performs an "in-group" selection, targeting only the specific path under
+your cursor at the top of the group's stack.</li>
+</ul>
+<h3 id="4-troubleshooting-transparent-or-stroke-only-paths">4.
+Troubleshooting Transparent or Stroke-Only Paths</h3>
+<p>If clicking selects an object underneath instead of the top path:</p>
+<ul>
+<li><strong>No Fill:</strong> If the top object has no fill (transparent
+center), clicking inside its boundaries selects whatever is underneath.
+Click directly on the visible stroke/outline of the top path
+instead.</li>
+<li><strong>Cycling Reset:</strong> If you previously used
+<code>Alt + Click</code> to cycle through the stack depth, click on an
+empty area of the canvas to deselect everything, then click the top path
+again to reset the selection to the top of the z-order.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

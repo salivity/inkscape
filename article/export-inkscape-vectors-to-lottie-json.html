@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape Vectors to Lottie JSON - inkscape</title>
+    <meta name="description" content="This guide explains how to convert vector illustrations and animations created in Inkscape into production-ready Lottie JSON files using third-party extensions. While Inkscape provides extensive vector creation tools, it lacks native Lottie support. By p">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-lottie-json">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape Vectors to Lottie JSON - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-lottie-json" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to convert vector illustrations and animations created in Inkscape into production-ready Lottie JSON files using third-party extensions. While Inkscape provides extensive vector creation tools, it lacks native Lottie support. By p" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-vectors-to-lottie-json">Export Inkscape Vectors
+to Lottie JSON</h1>
+<p>This guide explains how to convert vector illustrations and
+animations created in Inkscape into production-ready Lottie JSON files
+using third-party extensions. While Inkscape provides extensive vector
+creation tools, it lacks native Lottie support. By preparing your vector
+artwork correctly and utilizing open-source export plugins, you can
+bypass complex animation software and generate lightweight, scalable
+JSON animations directly for web and mobile use.</p>
+<h3 id="1-prepare-vector-artwork-for-lottie">1. Prepare Vector Artwork
+for Lottie</h3>
+<p>Lottie supports standard vector definitions such as paths, solid
+fills, simple gradients, and basic transforms, but complex
+Inkscape-specific features will fail to render.</p>
+<ul>
+<li><strong>Convert Objects and Text to Paths:</strong> Select all
+shapes, strokes, and text elements, then go to <strong>Path &gt; Object
+to Path</strong> and <strong>Path &gt; Stroke to Path</strong> where
+applicable.</li>
+<li><strong>Remove Unsupported Effects:</strong> Strip away native
+Inkscape filters (such as gaussian blurs or drop shadows), clipping
+masks, and complex mesh gradients. Stick to linear or radial
+gradients.</li>
+<li><strong>Organize Layer Structure:</strong> Group related elements
+together (<code>Ctrl + G</code>). Ensure layers and groups have clear,
+semantic names, as plugins use group structures to define hierarchy
+inside the JSON file.</li>
+</ul>
+<h3 id="2-install-an-inkscape-lottie-extension">2. Install an Inkscape
+Lottie Extension</h3>
+<p>Several open-source plugins (such as <code>inkscape-lottie</code> or
+community Bodymovin-compatible Python scripts) enable direct JSON
+compilation.</p>
+<ol type="1">
+<li>Download the extension repository files (typically containing an
+<code>.inx</code> file and an associated <code>.py</code> script).</li>
+<li>Open Inkscape and navigate to <strong>Edit &gt; Preferences &gt;
+System</strong>.</li>
+<li>Locate the <strong>User extensions</strong> directory path.</li>
+<li>Copy the downloaded <code>.inx</code> and <code>.py</code> files
+into this directory.</li>
+<li>Restart Inkscape to load the new extension into your workspace.</li>
+</ol>
+<h3 id="3-set-up-animation-keyframes-if-animating">3. Set Up Animation
+Keyframes (If Animating)</h3>
+<p>If you are exporting animated sequences rather than static vector
+assets:</p>
+<ul>
+<li>Most Inkscape Lottie plugins interpret distinct layers as sequential
+frames or track layer-level attribute transformations.</li>
+<li>Create a master layer for each frame or state, ordering them
+sequentially from bottom to top.</li>
+<li>Ensure document boundaries match the desired viewport using
+<strong>File &gt; Document Properties</strong> to define the exact
+width, height, and display units.</li>
+</ul>
+<h3 id="4-export-the-lottie-json-file">4. Export the Lottie JSON
+File</h3>
+<p>Depending on how the specific third-party extension integrates with
+Inkscape, the export is initiated through the menu bar or the
+file-saving interface.</p>
+<ul>
+<li><strong>Via Extensions Menu:</strong> Go to <strong>Extensions &gt;
+Export &gt; Export to Lottie</strong>. A dialog will appear asking for
+parameters such as frame rate (FPS), start/end frames, and loop count.
+Enter your target values and click <strong>Apply</strong>.</li>
+<li><strong>Via Save Dialog:</strong> Go to <strong>File &gt; Save
+As...</strong>, open the file type dropdown, select <strong>Lottie JSON
+(*.json)</strong>, choose your destination folder, and click
+<strong>Save</strong>.</li>
+</ul>
+<h3 id="5-validate-the-output-file">5. Validate the Output File</h3>
+<p>Once the JSON file is generated:</p>
+<ol type="1">
+<li>Open a browser and navigate to an online Lottie player, such as the
+LottieFiles Web Player or the official Airbnb Lottie preview tool.</li>
+<li>Drag and drop your exported <code>.json</code> file into the
+viewer.</li>
+<li>Inspect for missing paths, incorrect gradient orientations, or
+dropped frames to ensure complete compatibility across platforms.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

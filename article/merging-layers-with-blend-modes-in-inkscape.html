@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merging Layers with Blend Modes in Inkscape - inkscape</title>
+    <meta name="description" content="When merging layers in Inkscape, blend modes applied at the layer level are not preserved across the merged elements. Because Inkscape treats layers as SVG groups, merging them collapses the container holding the blend mode property, forcing all objects">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/merging-layers-with-blend-modes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Merging Layers with Blend Modes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/merging-layers-with-blend-modes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When merging layers in Inkscape, blend modes applied at the layer level are not preserved across the merged elements. Because Inkscape treats layers as SVG groups, merging them collapses the container holding the blend mode property, forcing all objects" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="merging-layers-with-blend-modes-in-inkscape">Merging Layers with
+Blend Modes in Inkscape</h1>
+<p>When merging layers in Inkscape, blend modes applied at the layer
+level are not preserved across the merged elements. Because Inkscape
+treats layers as SVG groups, merging them collapses the container
+holding the blend mode property, forcing all objects into the
+destination layer. This article explains how Inkscape processes blend
+modes during a layer merge, the visual consequences on your artwork, and
+methods to preserve your intended effects.</p>
+<h3 id="how-inkscape-handles-layer-blending">How Inkscape Handles Layer
+Blending</h3>
+<p>In Inkscape, a layer is essentially an SVG group
+(<code>&lt;g&gt;</code>) with a custom attribute defining it as a layer.
+When you apply a blend mode (such as Multiply, Screen, or Overlay)
+through the Layers panel, Inkscape applies that blend mode to the entire
+layer group container rather than to the individual paths, shapes, or
+text inside it.</p>
+<h3 id="what-happens-during-merge-down">What Happens During "Merge
+Down"</h3>
+<p>When you select an upper layer and choose <strong>Merge
+Down</strong>, Inkscape performs the following actions:</p>
+<ol type="1">
+<li><strong>Object Relocation:</strong> All individual objects inside
+the upper layer are transferred into the lower (destination) layer's
+group hierarchy.</li>
+<li><strong>Container Deletion:</strong> The upper layer's group
+container is deleted from the SVG code.</li>
+<li><strong>Loss of Blend Mode Settings:</strong> Because the blend mode
+was attached to the upper layer container, it is discarded along with
+that container.</li>
+<li><strong>Adoption of the Lower Layer's Properties:</strong> The
+transferred objects immediately inherit the lower layer's blend mode and
+opacity settings. If the destination layer is set to "Normal" blend mode
+with 100% opacity, the merged objects will display as normal, completely
+losing the visual blending interaction they previously had with the
+elements below them.</li>
+</ol>
+<h3 id="how-to-preserve-blend-modes-when-combining-elements">How to
+Preserve Blend Modes When Combining Elements</h3>
+<p>If you need to combine your artwork without losing specific blend
+mode interactions, use one of the following alternatives:</p>
+<ul>
+<li><strong>Apply Blend Modes to Objects Directly:</strong> Instead of
+setting the blend mode on the layer itself, select the objects and
+adjust their blend modes via the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>) or the <strong>Object
+Properties</strong> panel. Object-level blend modes remain attached to
+the individual paths even after layers are merged.</li>
+<li><strong>Group Before Merging:</strong> Group the elements on the top
+layer (<code>Ctrl + G</code>) and assign the blend mode directly to that
+group. When the layer is merged down, the group retains its specific
+blend mode attributes within the destination layer.</li>
+<li><strong>Create a Bitmap Copy:</strong> If the artwork is finished
+and does not need to remain in vector format, select the interacting
+layers and choose <strong>Edit &gt; Make a Bitmap Copy</strong>
+(<code>Alt + B</code>). This renders the blend mode result directly into
+a flattened raster image.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

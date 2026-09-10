@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use self.svg.selection in Inkscape Extensions - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to access, inspect, and manipulate selected SVG elements within the active document using the self.svg.selection API in modern Inkscape extensions (inkex). You will learn how to verify if elements are selected, iterate through">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-use-self-svg-selection-in-inkscape-extensions">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use self.svg.selection in Inkscape Extensions - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-use-self-svg-selection-in-inkscape-extensions" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to access, inspect, and manipulate selected SVG elements within the active document using the self.svg.selection API in modern Inkscape extensions (inkex). You will learn how to verify if elements are selected, iterate through" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-selfsvgselection-in-inkscape-extensions">How to Use
+self.svg.selection in Inkscape Extensions</h1>
+<p>This guide demonstrates how to access, inspect, and manipulate
+selected SVG elements within the active document using the
+<code>self.svg.selection</code> API in modern Inkscape extensions
+(<code>inkex</code>). You will learn how to verify if elements are
+selected, iterate through the selection list, access element attributes,
+and filter selected elements by their SVG tag type.</p>
+<h2 id="understanding-selfsvgselection">Understanding
+<code>self.svg.selection</code></h2>
+<p>When writing an extension inheriting from
+<code>inkex.EffectExtension</code>, the <code>self.svg.selection</code>
+object acts as an ordered mapping representing the elements currently
+selected by the user. Keys correspond to the XML <code>id</code>
+attributes of the elements, and values are the
+<code>inkex.elements</code> objects themselves.</p>
+<h2 id="checking-for-active-selections">Checking for Active
+Selections</h2>
+<p>To verify whether the user has selected any items before running
+processing logic, evaluate <code>self.svg.selection</code> as a
+boolean:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> <span class="va">self</span>.svg.selection:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    inkex.errormsg(<span class="st">&quot;Please select at least one element.&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span></code></pre></div>
+<h2 id="accessing-selected-elements">Accessing Selected Elements</h2>
+<h3 id="1-iterating-over-elements">1. Iterating Over Elements</h3>
+<p>You can iterate directly over the elements, their IDs, or key-value
+pairs:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate directly over element objects</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> element <span class="kw">in</span> <span class="va">self</span>.svg.selection:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    inkex.utils.debug(<span class="ss">f&quot;Element tag: </span><span class="sc">{</span>element<span class="sc">.</span>TAG<span class="sc">}</span><span class="ss">, ID: </span><span class="sc">{</span>element<span class="sc">.</span>get_id()<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate over IDs and elements simultaneously</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> elem_id, elem <span class="kw">in</span> <span class="va">self</span>.svg.selection.items():</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    inkex.utils.debug(<span class="ss">f&quot;ID: </span><span class="sc">{</span>elem_id<span class="sc">}</span><span class="ss"> corresponds to </span><span class="sc">{</span>elem<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<h3 id="2-getting-the-first-selected-element">2. Getting the First
+Selected Element</h3>
+<p>To quickly access a single element when only one selection is
+expected:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>first_element <span class="op">=</span> <span class="va">self</span>.svg.selection.first()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> first_element <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Perform operations on the element</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code></pre></div>
+<h3 id="3-filtering-by-element-type">3. Filtering by Element Type</h3>
+<p>The <code>filter()</code> method extracts only elements of a specific
+SVG type, such as paths, groups, or rectangles:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only path elements</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>paths <span class="op">=</span> <span class="va">self</span>.svg.selection.<span class="bu">filter</span>(inkex.PathElement)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only group elements</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>groups <span class="op">=</span> <span class="va">self</span>.svg.selection.<span class="bu">filter</span>(inkex.Group)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> path <span class="kw">in</span> paths:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Safely modify path attributes</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    path.style[<span class="st">&#39;stroke&#39;</span>] <span class="op">=</span> <span class="st">&#39;#ff0000&#39;</span></span></code></pre></div>
+<h2 id="complete-example">Complete Example</h2>
+<p>Below is a complete implementation inside an
+<code>inkex.EffectExtension</code>:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SelectionExample(inkex.EffectExtension):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="va">self</span>.svg.selection:</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            inkex.errormsg(<span class="st">&quot;No elements were selected.&quot;</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> elem_id, elem <span class="kw">in</span> <span class="va">self</span>.svg.selection.items():</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Read an attribute</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            current_fill <span class="op">=</span> elem.style.get(<span class="st">&#39;fill&#39;</span>, <span class="st">&#39;none&#39;</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Modify an attribute</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            elem.style[<span class="st">&#39;stroke&#39;</span>] <span class="op">=</span> <span class="st">&#39;#0000ff&#39;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>            elem.style[<span class="st">&#39;stroke-width&#39;</span>] <span class="op">=</span> <span class="st">&#39;2px&#39;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    SelectionExample().run()</span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

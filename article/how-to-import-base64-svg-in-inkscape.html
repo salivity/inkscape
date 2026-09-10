@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import Base64 SVG in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to import and work with Scalable Vector Graphics (SVG) containing embedded base64 raster data in Inkscape. While Inkscape handles embedded base64 images natively through standard import workflows, understanding how Inkscape parses">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-import-base64-svg-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import Base64 SVG in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-import-base64-svg-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to import and work with Scalable Vector Graphics (SVG) containing embedded base64 raster data in Inkscape. While Inkscape handles embedded base64 images natively through standard import workflows, understanding how Inkscape parses" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-base64-svg-in-inkscape">How to Import Base64 SVG
+in Inkscape</h1>
+<p>This guide explains how to import and work with Scalable Vector
+Graphics (SVG) containing embedded base64 raster data in Inkscape. While
+Inkscape handles embedded base64 images natively through standard import
+workflows, understanding how Inkscape parses this data—and how to
+inspect, extract, or convert it—ensures that your embedded graphics
+display properly without rendering errors or performance
+bottlenecks.</p>
+<h3 id="standard-import-method">Standard Import Method</h3>
+<p>Inkscape natively supports SVG files containing embedded base64
+raster images wrapped in standard <code>&lt;image&gt;</code> tags.</p>
+<ol type="1">
+<li>Launch Inkscape.</li>
+<li>Go to <strong>File &gt; Open</strong> (or press
+<code>Ctrl + O</code> on Windows/Linux, <code>Cmd + O</code> on
+macOS).</li>
+<li>Navigate to the SVG file containing the base64 data and select
+<strong>Open</strong>.</li>
+<li>Alternatively, to add the SVG into an existing document, navigate to
+<strong>File &gt; Import</strong> (<code>Ctrl + I</code> /
+<code>Cmd + I</code>). When prompted, select <strong>Include SVG image
+as an editable object in the current file</strong>.</li>
+</ol>
+<p>If the base64 string is correctly formatted within the SVG syntax,
+Inkscape automatically decodes and displays the raster image on the
+canvas.</p>
+<h3 id="importing-raw-svg-code-with-base64">Importing Raw SVG Code with
+Base64</h3>
+<p>If you have raw SVG code rather than an <code>.svg</code> file:</p>
+<ol type="1">
+<li>Open a plain text editor (such as Notepad, TextEdit, or VS
+Code).</li>
+<li>Paste the SVG code containing the
+<code>&lt;image xlink:href="data:image/png;base64,..." /&gt;</code>
+tag.</li>
+<li>Save the file with an <code>.svg</code> extension (ensure the file
+type is set to "All Files" to prevent it from saving as
+<code>.svg.txt</code>).</li>
+<li>Open the saved file in Inkscape using <strong>File &gt;
+Open</strong>.</li>
+</ol>
+<p>Alternatively, you can open the built-in XML editor in an active
+Inkscape document by pressing <code>Ctrl + Shift + X</code>. Create a
+new <code>&lt;svg:image&gt;</code> node and paste your base64 URI
+directly into the <code>xlink:href</code> or <code>href</code>
+attribute.</p>
+<h3 id="verifying-embedded-base64-data">Verifying Embedded Base64
+Data</h3>
+<p>To confirm that the raster image is properly embedded as base64 data
+rather than linked externally:</p>
+<ol type="1">
+<li>Select the image on the canvas.</li>
+<li>Open the XML Editor (<strong>Edit &gt; XML Editor</strong> or
+<code>Ctrl + Shift + X</code>).</li>
+<li>Locate the highlighted <code>&lt;svg:image&gt;</code> element in the
+XML tree.</li>
+<li>Check the attributes panel on the right. An embedded image will show
+an <code>xlink:href</code> or <code>href</code> attribute starting with
+<code>data:image/[format];base64,</code> followed by the encoded
+string.</li>
+</ol>
+<h3 id="managing-embedded-raster-data">Managing Embedded Raster
+Data</h3>
+<p>Once the file is open, Inkscape provides tools to manipulate the
+embedded raster content:</p>
+<ul>
+<li><strong>Extracting the Raster Image:</strong> To convert the base64
+image into an external file, select the image and navigate to
+<strong>Extensions &gt; Images &gt; Extract Image</strong>. Choose a
+directory and format. Inkscape will save the file locally and replace
+the base64 string with a standard file link.</li>
+<li><strong>Vectorizing the Image:</strong> If you need the base64
+raster data converted to scalable vector paths, select the image and go
+to <strong>Path &gt; Trace Bitmap</strong>
+(<code>Shift + Alt + B</code>). Adjust your detection thresholds and
+click <strong>Apply</strong> to generate vector paths directly over the
+embedded raster graphic.</li>
+</ul>
+<h3 id="troubleshooting-common-import-issues">Troubleshooting Common
+Import Issues</h3>
+<ul>
+<li><strong>Black Box or Missing Image:</strong> If the image does not
+render, ensure the SVG root tag contains the required namespace:
+<code>xmlns:xlink="http://www.w3.org/1999/xlink"</code>.</li>
+<li><strong>Corrupt Data Strings:</strong> Ensure the base64 prefix
+matches the image encoding (for example,
+<code>data:image/png;base64,</code> for PNGs or
+<code>data:image/jpeg;base64,</code> for JPEGs) and that no line breaks
+or whitespace interrupt the base64 character string.</li>
+<li><strong>Slow Canvas Performance:</strong> Extremely large base64
+strings can cause high memory usage. Extracting the image or lowering
+the resolution of the raster data before encoding helps maintain smooth
+performance.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

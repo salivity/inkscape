@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Transform LPE: Non-Destructive Position Shifts - inkscape</title>
+    <meta name="description" content="This guide explains how to use Inkscape's Transform Live Path Effect (LPE) to apply and chain precise, numerical position shifts to vector objects non-destructively. By stacking multiple Transform effects or nesting them within groups, you can establish">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-transform-lpe-non-destructive-position-shifts">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Transform LPE: Non-Destructive Position Shifts - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-transform-lpe-non-destructive-position-shifts" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to use Inkscape's Transform Live Path Effect (LPE) to apply and chain precise, numerical position shifts to vector objects non-destructively. By stacking multiple Transform effects or nesting them within groups, you can establish" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-transform-lpe-non-destructive-position-shifts">Inkscape
+Transform LPE: Non-Destructive Position Shifts</h1>
+<p>This guide explains how to use Inkscape's Transform Live Path Effect
+(LPE) to apply and chain precise, numerical position shifts to vector
+objects non-destructively. By stacking multiple Transform effects or
+nesting them within groups, you can establish complex offset sequences
+while preserving the underlying geometry for effortless future
+edits.</p>
+<h3 id="understanding-the-non-destructive-workflow">Understanding the
+Non-Destructive Workflow</h3>
+<p>Traditional moves or transformations in Inkscape directly alter node
+coordinates. In contrast, the Transform Live Path Effect applies offsets
+programmatically over the base path. The original node data remains
+unchanged, meaning you can re-order, re-calculate, disable, or fine-tune
+specific translation values at any point in your workflow.</p>
+<h3 id="step-1-open-the-path-effects-panel">Step 1: Open the Path
+Effects Panel</h3>
+<ol type="1">
+<li>Select the vector path you want to modify. If working with multiple
+shapes or text, convert them to paths
+(<code>Path &gt; Object to Path</code>) or combine them into a single
+path or group.</li>
+<li>Open the Path Effects dialog by navigating to <strong>Path &gt; Path
+Effects</strong> or pressing <code>Ctrl + &amp;</code> (or
+<code>Cmd + &amp;</code> on macOS).</li>
+</ol>
+<h3 id="step-2-add-the-first-transform-effect">Step 2: Add the First
+Transform Effect</h3>
+<ol type="1">
+<li>In the Path Effects panel, click the <strong>+</strong> (Add Path
+Effect) button.</li>
+<li>Search for <strong>Transform</strong> in the search box and select
+it from the list.</li>
+<li>In the Transform parameters, locate the translation controls:
+<ul>
+<li>Set the <strong>X</strong> value to specify the horizontal
+shift.</li>
+<li>Set the <strong>Y</strong> value to specify the vertical shift.</li>
+<li>Adjust the unit of measurement (px, mm, in) as required by your
+project.</li>
+</ul></li>
+<li>The object immediately moves on the canvas, while its edit nodes
+remain in their original positions when viewed with the Node Tool
+(<code>N</code>).</li>
+</ol>
+<h3 id="step-3-chaining-successive-numerical-shifts">Step 3: Chaining
+Successive Numerical Shifts</h3>
+<p>To create secondary or tertiary offsets based on the results of the
+initial shift, you can chain effects in one of two ways:</p>
+<h4 id="method-a-stacking-multiple-transform-lpes">Method A: Stacking
+Multiple Transform LPEs</h4>
+<ol type="1">
+<li>With the same object selected, click the <strong>+</strong> button
+in the Path Effects dialog again.</li>
+<li>Add another <strong>Transform</strong> effect.</li>
+<li>Inkscape arranges effects in a vertical stack evaluated from top to
+bottom.</li>
+<li>Input your secondary offset values in the new effect instance. The
+second transform will calculate its position relative to the result of
+the first transform.</li>
+<li>Repeat this process for each subsequent numerical shift
+required.</li>
+</ol>
+<h4 id="method-b-group-level-chaining-hierarchical-transforms">Method B:
+Group-Level Chaining (Hierarchical Transforms)</h4>
+<ol type="1">
+<li>Select the object containing the first Transform LPE.</li>
+<li>Group the object with itself by pressing <code>Ctrl + G</code>.</li>
+<li>With the group selected, open the Path Effects panel and add a new
+<strong>Transform</strong> LPE applied to the group container.</li>
+<li>Enter the new coordinate shifts. This isolates shifts across
+distinct structural levels of your document.</li>
+</ol>
+<h3 id="managing-and-adjusting-chained-shifts">Managing and Adjusting
+Chained Shifts</h3>
+<ul>
+<li><strong>Reordering:</strong> In the Path Effects list, click and
+drag effects up or down to change the order of operations. Inkscape will
+recalculate the final position immediately.</li>
+<li><strong>Toggling Shifts:</strong> Click the eye icon next to any
+Transform instance to temporarily disable that specific offset without
+losing its numerical values.</li>
+<li><strong>Editing Values:</strong> Double-click on any translation
+parameter within an individual effect block to adjust values
+interactively without impacting other stages of the chain.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

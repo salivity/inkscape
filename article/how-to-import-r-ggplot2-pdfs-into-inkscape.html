@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import R ggplot2 PDFs into Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to properly export vector charts from R using ggplot2 and import them into Inkscape for publication-quality editing. By following these steps, you can preserve the vector properties of your data visualizations, manipulate individu">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-import-r-ggplot2-pdfs-into-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import R ggplot2 PDFs into Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-import-r-ggplot2-pdfs-into-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to properly export vector charts from R using ggplot2 and import them into Inkscape for publication-quality editing. By following these steps, you can preserve the vector properties of your data visualizations, manipulate individu" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-r-ggplot2-pdfs-into-inkscape">How to Import R
+ggplot2 PDFs into Inkscape</h1>
+<p>This guide explains how to properly export vector charts from R using
+<code>ggplot2</code> and import them into Inkscape for
+publication-quality editing. By following these steps, you can preserve
+the vector properties of your data visualizations, manipulate individual
+elements like labels and data points without loss of resolution, and
+produce polished, journal-ready figures.</p>
+<h3 id="1-export-the-plot-as-a-vector-pdf-in-r">1. Export the Plot as a
+Vector PDF in R</h3>
+<p>To ensure text fonts and vector lines remain editable, export your
+<code>ggplot2</code> figure using <code>cairo_pdf</code> via the
+<code>ggsave()</code> function. Standard PDF devices can occasionally
+mismanage transparent layers or non-standard fonts, but Cairo reliably
+renders vectors.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a sample plot</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Save as a Cairo-based vector PDF</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;figure1.pdf&quot;</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> p,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">device =</span> cairo_pdf,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">7</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="dv">5</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">units =</span> <span class="st">&quot;in&quot;</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">dpi =</span> <span class="dv">300</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<h3 id="2-import-the-pdf-into-inkscape">2. Import the PDF into
+Inkscape</h3>
+<ol type="1">
+<li>Open Inkscape.</li>
+<li>Go to <strong>File &gt; Open</strong> (or <strong>File &gt;
+Import</strong>) and select your exported PDF.</li>
+<li>In the PDF Import Settings dialog:
+<ul>
+<li><strong>Internal import:</strong> Choose the internal importer.</li>
+<li><strong>Font handling:</strong> Choose <strong>Substitute missing
+fonts</strong> if you want text to remain editable, or <strong>Draw
+missing fonts</strong> to convert uncommon characters into paths.</li>
+<li><strong>Precision:</strong> Keep the precision of paths high to
+avoid rounding errors in your data coordinates.</li>
+</ul></li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="3-ungroup-and-release-clipping-masks">3. Ungroup and Release
+Clipping Masks</h3>
+<p><code>ggplot2</code> encapsulates plot elements into multiple nested
+groups and clipping masks. To edit individual components:</p>
+<ol type="1">
+<li>Select the imported graphic.</li>
+<li>Press <strong>Ctrl + Shift + G</strong> (Windows/Linux) or
+<strong>Cmd + Shift + G</strong> (macOS) repeatedly to ungroup the
+nested elements.</li>
+<li>If objects remain locked inside boundary boxes, select the object,
+right-click, and choose <strong>Release Clip</strong>.</li>
+<li>Delete the invisible bounding boxes and background rectangles that
+<code>ggplot2</code> creates around panels and legends.</li>
+</ol>
+<h3 id="4-edit-elements-for-publication">4. Edit Elements for
+Publication</h3>
+<p>Once ungrouped, you can modify any part of the graphic:</p>
+<ul>
+<li><strong>Text and Labels:</strong> Select the <strong>Text tool
+(T)</strong> to fix typos, change font sizes, or reformat axis labels
+according to target journal guidelines.</li>
+<li><strong>Line Weights and Markers:</strong> Use the <strong>Fill and
+Stroke</strong> panel (<strong>Ctrl + Shift + F</strong>) to adjust line
+widths, transparency, or marker colors.</li>
+<li><strong>Panels and Alignment:</strong> Combine multiple plots by
+arranging them on a single canvas, using the <strong>Align and
+Distribute</strong> panel (<strong>Ctrl + Shift + A</strong>) for
+precise positioning.</li>
+</ul>
+<h3 id="5-final-export">5. Final Export</h3>
+<ol type="1">
+<li>Select all elements of your edited figure.</li>
+<li>Go to <strong>File &gt; Document Properties</strong> and click
+<strong>Resize page to drawing or selection</strong> to remove excess
+whitespace.</li>
+<li>Go to <strong>File &gt; Save As</strong> to save an editable copy in
+native SVG format.</li>
+<li>Go to <strong>File &gt; Export</strong> to generate the final file
+required by your publisher, such as a high-resolution PDF, EPS, or 300+
+DPI TIFF.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

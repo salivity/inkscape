@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smooth Polygons in Inkscape with Interpolate Points - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to transform sharp, irregular polygons into smooth, flowing curves using Inkscape’s Interpolate Points Live Path Effect (LPE). By applying this non-destructive tool, you can automatically generate smooth curves that pass pre">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/smooth-polygons-in-inkscape-with-interpolate-points">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Smooth Polygons in Inkscape with Interpolate Points - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/smooth-polygons-in-inkscape-with-interpolate-points" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to transform sharp, irregular polygons into smooth, flowing curves using Inkscape’s Interpolate Points Live Path Effect (LPE). By applying this non-destructive tool, you can automatically generate smooth curves that pass pre" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="smooth-polygons-in-inkscape-with-interpolate-points">Smooth
+Polygons in Inkscape with Interpolate Points</h1>
+<p>This guide demonstrates how to transform sharp, irregular polygons
+into smooth, flowing curves using Inkscape’s Interpolate Points Live
+Path Effect (LPE). By applying this non-destructive tool, you can
+automatically generate smooth curves that pass precisely through
+existing polygon nodes, eliminating the need to manually adjust
+individual Bézier handles.</p>
+<h3 id="step-1-prepare-the-polygon">Step 1: Prepare the Polygon</h3>
+<ol type="1">
+<li>Select your irregular polygon using the <strong>Select tool</strong>
+(<code>S</code>).</li>
+<li>If your polygon was created using the <strong>Stars and Polygons
+tool</strong> (<code>E</code>), convert it into a standard vector path
+by navigating to <strong>Path</strong> &gt; <strong>Object to
+Path</strong> (or press <code>Ctrl</code> + <code>Shift</code> +
+<code>C</code>).</li>
+</ol>
+<h3 id="step-2-open-the-path-effects-panel">Step 2: Open the Path
+Effects Panel</h3>
+<ol type="1">
+<li>Keep the polygon selected.</li>
+<li>Open the Path Effects dialog by choosing <strong>Path</strong> &gt;
+<strong>Path Effects</strong> from the top menu.</li>
+<li>In the panel that opens (typically on the right-hand side), click
+the <strong>Add Path Effect</strong> button (represented by a
+<strong>+</strong> icon).</li>
+</ol>
+<h3 id="step-3-apply-interpolate-points">Step 3: Apply Interpolate
+Points</h3>
+<ol type="1">
+<li>In the Live Path Effects selector dialog, locate <strong>Interpolate
+Points</strong> by typing it into the search bar or finding it in the
+list.</li>
+<li>Click on <strong>Interpolate Points</strong> to apply it to your
+selected polygon. The sharp corners of the polygon will immediately
+smooth out into continuous curves passing directly through each original
+vertex.</li>
+</ol>
+<h3 id="step-4-configure-the-smoothing-options">Step 4: Configure the
+Smoothing Options</h3>
+<p>With the path selected, modify the parameters inside the Path Effects
+panel to refine the curvature:</p>
+<ul>
+<li><strong>Interpolation Method</strong>: Choose how the curve
+transitions between points. Common options include:
+<ul>
+<li><strong>Centripetal Catmull-Rom</strong>: Produces natural-looking
+curves that prevent loops or excessive bulging around tight
+corners.</li>
+<li><strong>Chordal Catmull-Rom</strong>: Good for shapes where point
+spacing varies widely.</li>
+<li><strong>Uniform Catmull-Rom</strong>: Standard smoothing across
+evenly spaced nodes.</li>
+<li><strong>Cubic Bézier</strong>: Generates a standard Bézier
+approximation through the nodes.</li>
+</ul></li>
+<li><strong>Tension / Smoothness</strong>: Adjust numeric sliders (if
+enabled for the chosen method) to increase or decrease the stiffness of
+the curves between vertices.</li>
+</ul>
+<h3 id="step-5-edit-and-finalize">Step 5: Edit and Finalize</h3>
+<ul>
+<li><strong>Live Node Editing</strong>: Switch to the <strong>Node
+tool</strong> (<code>N</code>). You can move any original polygon
+vertex; the smoothed curve will recalculate in real time while
+maintaining the effect.</li>
+<li><strong>Bake the Shape</strong>: If you want to make the smoothing
+permanent and edit the resulting Bézier handles directly, select the
+shape and go to <strong>Path</strong> &gt; <strong>Object to
+Path</strong>.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

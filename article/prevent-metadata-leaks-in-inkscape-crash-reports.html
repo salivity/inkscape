@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevent Metadata Leaks in Inkscape Crash Reports - inkscape</title>
+    <meta name="description" content="Inkscape crashes can inadvertently expose sensitive project data, internal file directory paths, and client metadata through system-level diagnostic logs and emergency recovery files. This guide details how to configure Inkscape's internal crash handlers">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/prevent-metadata-leaks-in-inkscape-crash-reports">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Prevent Metadata Leaks in Inkscape Crash Reports - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/prevent-metadata-leaks-in-inkscape-crash-reports" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape crashes can inadvertently expose sensitive project data, internal file directory paths, and client metadata through system-level diagnostic logs and emergency recovery files. This guide details how to configure Inkscape's internal crash handlers" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="prevent-metadata-leaks-in-inkscape-crash-reports">Prevent
+Metadata Leaks in Inkscape Crash Reports</h1>
+<p>Inkscape crashes can inadvertently expose sensitive project data,
+internal file directory paths, and client metadata through system-level
+diagnostic logs and emergency recovery files. This guide details how to
+configure Inkscape's internal crash handlers, restrict operating system
+crash reporters, and sanitize debugging backtraces so you can
+troubleshoot stability issues without leaking proprietary artwork
+details.</p>
+<h2 id="understanding-what-inkscape-crashes-reveal">Understanding What
+Inkscape Crashes Reveal</h2>
+<p>When Inkscape encounters a fatal error, data leaks generally happen
+across two vectors:</p>
+<ol type="1">
+<li><strong>Emergency Save Files:</strong> Inkscape attempts to write
+the active document to disk before terminating. While designed to
+prevent data loss, these files are saved unencrypted and may reside in
+shared temporary directories or trigger automated file-sync agents.</li>
+<li><strong>Crash Dumps and Stack Traces:</strong> Operating system
+handlers (such as Windows Error Reporting, macOS Crash Reporter, or
+Linux core dump utilities) capture memory states. These memory dumps
+often include string literals containing document layer names, embedded
+text objects, font identifiers, absolute file system paths, and linked
+resource URIs.</li>
+</ol>
+<hr />
+<h2 id="restrict-inkscapes-emergency-save-path">Restrict Inkscape’s
+Emergency Save Path</h2>
+<p>By default, Inkscape writes recovery documents to the system's
+temporary directory or user home folder. Restrict this to an encrypted,
+isolated volume to prevent automated cloud backups or background system
+monitors from indexing the unsaved artwork.</p>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>Edit &gt; Preferences</strong>
+(or <code>Ctrl + Shift + P</code> / <code>Cmd + ,</code>).</li>
+<li>Select <strong>Input/Output &gt; Autosave</strong> in the left
+sidebar.</li>
+<li>Locate the <strong>Autosave directory</strong> field.</li>
+<li>Set the path to an encrypted directory (such as a VeraCrypt volume,
+BitLocker drive, or a local directory excluded from backup tools).</li>
+<li>Ensure <strong>Enable autosave</strong> intervals are tuned to your
+security baseline; if complete privacy is required over crash recovery,
+disable autosave entirely.</li>
+</ol>
+<hr />
+<h2 id="disable-operating-system-automated-crash-uploads">Disable
+Operating System Automated Crash Uploads</h2>
+<p>Inkscape does not have an internal network-enabled telemetry agent;
+it relies on the host operating system or manual user submissions to
+collect crash logs. Preventing automatic transmission requires
+system-level configuration.</p>
+<h3 id="windows-disable-windows-error-reporting">Windows (Disable
+Windows Error Reporting)</h3>
+<p>Windows can automatically upload minidumps to Microsoft servers when
+an application crashes.</p>
+<ul>
+<li><strong>Via Group Policy:</strong>
+<ol type="1">
+<li>Press <code>Win + R</code>, type <code>gpedit.msc</code>, and press
+Enter.</li>
+<li>Navigate to <strong>Computer Configuration &gt; Administrative
+Templates &gt; Windows Components &gt; Windows Error
+Reporting</strong>.</li>
+<li>Set <strong>Disable Windows Error Reporting</strong> to
+<strong>Enabled</strong>.</li>
+</ol></li>
+<li><strong>Via Registry (Targeting Inkscape specifically):</strong>
+<ol type="1">
+<li>Open <code>regedit.exe</code>.</li>
+<li>Navigate to
+<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting\ExcludedApplications</code>.</li>
+<li>Create a new <code>DWORD (32-bit)</code> value named
+<code>inkscape.exe</code> and set its value to <code>1</code>.</li>
+</ol></li>
+</ul>
+<h3 id="linux-manage-core-dumps-and-apport">Linux (Manage Core Dumps and
+Apport)</h3>
+<p>Many Linux distributions use agents like <code>apport</code> (Ubuntu)
+or <code>systemd-coredump</code> to automatically capture and prompt
+crash uploads.</p>
+<ul>
+<li><p><strong>Disable Apport (Ubuntu/Debian):</strong> Edit
+<code>/etc/default/apport</code> with administrative privileges and
+set:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">enabled</span><span class="op">=</span>0</span></code></pre></div>
+<p>Stop the running service:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl stop apport</span></code></pre></div></li>
+<li><p><strong>Restrict Core Dumps (Systemd):</strong> To prevent raw
+memory states containing vector paths and text objects from being dumped
+to disk:</p>
+<ol type="1">
+<li>Edit <code>/etc/systemd/coredump.conf</code>.</li>
+<li>Set <code>Storage=none</code> and
+<code>ProcessSizeMax=0</code>.</li>
+<li>Run <code>sudo systemctl daemon-reload</code>.</li>
+</ol></li>
+</ul>
+<h3 id="macos-disable-crash-reporter-dialogs">macOS (Disable Crash
+Reporter Dialogs)</h3>
+<p>macOS prompts to send crash reports directly to Apple. To prevent
+accidental submission of memory traces:</p>
+<ol type="1">
+<li>Open Terminal.</li>
+<li>Disable the crash reporting prompt for all applications by setting
+the dialog type to <code>none</code>:
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">defaults</span> write com.apple.CrashReporter DialogType none</span></code></pre></div></li>
+<li>To revert this setting later, replace <code>none</code> with
+<code>prompt</code>.</li>
+</ol>
+<hr />
+<h2 id="sanitizing-debug-logs-for-manual-submission">Sanitizing Debug
+Logs for Manual Submission</h2>
+<p>If you choose to file a bug report with the Inkscape development team
+on GitLab, you must generate backtraces manually using a debugger like
+GDB without exposing document contents.</p>
+<h3 id="1-reproduce-with-a-scrubbed-document">1. Reproduce with a
+Scrubbed Document</h3>
+<p>Never submit a crash trace generated from production artwork.
+Reproduce the bug using a minimal test file:</p>
+<ul>
+<li>Strip proprietary layers, client logos, and vector assets.</li>
+<li>Replace sensitive text fields with generic placeholder text ("Lorem
+Ipsum").</li>
+<li>Remove embedded raster images and external file links.</li>
+</ul>
+<h3 id="2-inspect-stack-traces-for-absolute-paths">2. Inspect Stack
+Traces for Absolute Paths</h3>
+<p>When capturing a trace via GDB or LLDB:</p>
+<ul>
+<li>Check the output for absolute system paths (e.g.,
+<code>/home/username/ClientProjects/...</code>).</li>
+<li>Redact usernames, internal network share names, and custom font
+directory structures before posting the log.</li>
+<li>Ensure no string memory inspect commands (such as <code>x/s</code>
+in GDB) targeting document buffer registers are included in the public
+log output.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dual Line Road Styling on a Single Path in Inkscape - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to create a clean, parallel dual-line road styling in Inkscape while preserving the editability of a single vector path. Because Inkscape adheres strictly to the SVG standard—which allows only one stroke per path—creating">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/dual-line-road-styling-on-a-single-path-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dual Line Road Styling on a Single Path in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/dual-line-road-styling-on-a-single-path-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to create a clean, parallel dual-line road styling in Inkscape while preserving the editability of a single vector path. Because Inkscape adheres strictly to the SVG standard—which allows only one stroke per path—creating" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="dual-line-road-styling-on-a-single-path-in-inkscape">Dual Line
+Road Styling on a Single Path in Inkscape</h1>
+<p>This guide demonstrates how to create a clean, parallel dual-line
+road styling in Inkscape while preserving the editability of a single
+vector path. Because Inkscape adheres strictly to the SVG standard—which
+allows only one stroke per path—creating parallel road casings requires
+specific workflows. Below, you will find the most efficient techniques:
+the dynamic Linked Clone method, which lets you control both lines by
+editing one central centerline, and the Live Path Effect (LPE) method
+for containing the effect within a single object.</p>
+<hr />
+<h3
+id="method-1-the-linked-clone-workflow-best-for-dynamic-editing">Method
+1: The Linked Clone Workflow (Best for Dynamic Editing)</h3>
+<p>The Linked Clone method is the standard cartographic technique in
+Inkscape. It keeps your road network fully editable via a single master
+path while rendering an outer boundary and inner fill to produce a
+dual-line appearance.</p>
+<ol type="1">
+<li><p><strong>Draw the Master Path:</strong></p>
+<ul>
+<li>Select the <strong>Pen (Bezier) Tool</strong> (<code>B</code>) and
+draw the road centerline.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>Set the stroke paint to your casing color (for example, black).</li>
+<li>In the <strong>Stroke style</strong> tab, set the width to the total
+outer width of the road (e.g., <code>8 px</code>).</li>
+<li>Set <strong>Cap</strong> to <em>Round</em> or <em>Square</em> and
+<strong>Join</strong> to <em>Round Join</em> for smooth road bends.</li>
+</ul></li>
+<li><p><strong>Generate the Linked Clone:</strong></p>
+<ul>
+<li>With the path selected, create a linked clone by pressing
+<code>Alt + D</code> (or navigate to <strong>Edit &gt; Clone &gt; Create
+Clone</strong>).</li>
+<li>The clone will automatically sit directly on top of the original
+path.</li>
+</ul></li>
+<li><p><strong>Restyle the Clone:</strong></p>
+<ul>
+<li>Select the clone, open the <strong>Fill and Stroke</strong> panel,
+and change the stroke color to your road fill (e.g., white or light
+gray).</li>
+<li>In the <strong>Stroke style</strong> tab, reduce the stroke width
+(e.g., <code>5 px</code>).</li>
+<li>The thinner light stroke exposes the edges of the wider dark stroke
+beneath it, creating the appearance of two parallel lines.</li>
+</ul></li>
+<li><p><strong>Edit the Path:</strong></p>
+<ul>
+<li>Whenever you adjust the nodes of the original master path using the
+<strong>Node Tool</strong> (<code>N</code>), the clone automatically
+updates its geometry to follow the exact same curve.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="method-2-pattern-along-path-single-object-method">Method 2:
+Pattern Along Path (Single Object Method)</h3>
+<p>If your workflow requires the road to exist strictly as a single
+vector object rather than two stacked elements, you can use a Live Path
+Effect.</p>
+<ol type="1">
+<li><p><strong>Create the Parallel Profile:</strong></p>
+<ul>
+<li>Use the <strong>Pen Tool</strong> to draw two short, identical
+vertical parallel lines side by side.</li>
+<li>Group them together (<code>Ctrl + G</code>) and copy them to your
+clipboard (<code>Ctrl + C</code>).</li>
+</ul></li>
+<li><p><strong>Apply the Effect:</strong></p>
+<ul>
+<li>Draw your road path.</li>
+<li>Navigate to <strong>Path &gt; Path Effects</strong>.</li>
+<li>Click the <strong>+</strong> button in the Path Effects panel and
+select <strong>Pattern Along Path</strong>.</li>
+<li>Under the effect settings, click the <strong>Link to
+Clipboard</strong> button under the <em>Pattern source</em> field.</li>
+<li>Set the <strong>Pattern copies</strong> dropdown to
+<strong>Repeated, stretched</strong>.</li>
+</ul></li>
+<li><p><strong>Refine Alignment:</strong></p>
+<ul>
+<li>Adjust the <strong>Spacing</strong> and <strong>Tangential
+offset</strong> sliders to ensure the two lines remain parallel without
+distorting along sharp corners.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="method-3-stroke-to-path-static-geometry">Method 3: Stroke to
+Path (Static Geometry)</h3>
+<p>Use this method if you need permanent parallel vector lines and no
+longer require dynamic centerline editing.</p>
+<ol type="1">
+<li>Draw your road using the <strong>Pen Tool</strong>.</li>
+<li>Set the stroke width to the full desired width of the road in the
+<strong>Fill and Stroke</strong> panel.</li>
+<li>Go to <strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>). This converts your single stroke into a
+closed polygon shape outlining the road area.</li>
+<li>Remove the fill color from the shape and apply a stroke outline.
+Inkscape will now render only the parallel outer edges of the original
+road.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create GS1-128 Barcode Labels in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to generate GS1-128 compliant barcode labels using the open-source vector graphics editor Inkscape. You will learn the structural requirements of the GS1-128 standard, how to configure Inkscape's built-in barcode generator or impo">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-gs1-128-barcode-labels-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create GS1-128 Barcode Labels in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-gs1-128-barcode-labels-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate GS1-128 compliant barcode labels using the open-source vector graphics editor Inkscape. You will learn the structural requirements of the GS1-128 standard, how to configure Inkscape's built-in barcode generator or impo" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-gs1-128-barcode-labels-in-inkscape">How to Create
+GS1-128 Barcode Labels in Inkscape</h1>
+<p>This guide explains how to generate GS1-128 compliant barcode labels
+using the open-source vector graphics editor Inkscape. You will learn
+the structural requirements of the GS1-128 standard, how to configure
+Inkscape's built-in barcode generator or import compliant Code 128
+vectors, how to dimension the barcode correctly for retail scanning, and
+how to format the Human-Readable Interpretation (HRI) text properly.</p>
+<h3 id="understanding-gs1-128-requirements">Understanding GS1-128
+Requirements</h3>
+<p>GS1-128 (formerly UCC/EAN-128) is a specialized subset of the Code
+128 symbology. It encodes data using Application Identifiers (AIs)—two-
+to four-digit prefixes enclosed in parentheses in human-readable text
+that identify the type of data that follows, such as batch numbers (10),
+expiration dates (17), or Global Trade Item Numbers (01).</p>
+<p>To remain compliant with retail and logistics specifications:</p>
+<ul>
+<li><strong>Symbology:</strong> Code 128, starting with a Function 1
+(FNC1) character.</li>
+<li><strong>Quiet Zones:</strong> Clear margins on the left and right
+sides of the barcode, each measuring at least 10 times the width of the
+narrowest bar (X-dimension).</li>
+<li><strong>X-dimension:</strong> Typically between 0.495 mm and 1.016
+mm for outer case and distribution labels.</li>
+<li><strong>Bar Height:</strong> Standard specification requires a
+minimum bar height of 31.75 mm (1.25 inches) for logistics labels.</li>
+</ul>
+<h3 id="step-1-set-up-the-inkscape-document">Step 1: Set Up the Inkscape
+Document</h3>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>File &gt; Document
+Properties</strong> (<code>Ctrl+Shift+D</code>).</li>
+<li>Set the <strong>Display units</strong> to <code>mm</code> or
+<code>in</code> depending on your local standard.</li>
+<li>Under <strong>Page Size</strong>, enter the exact dimensions of your
+label (for example, standard 4 x 6 inch shipping labels or 100 x 150 mm
+labels).</li>
+<li>Set the <strong>Scale</strong> to <code>1.0</code> to ensure
+physical export dimensions match print requirements.</li>
+</ol>
+<h3 id="step-2-generate-the-barcode-graphic">Step 2: Generate the
+Barcode Graphic</h3>
+<p>While Inkscape includes a native Code 128 tool, GS1-128 requires an
+invisible <code>FNC1</code> character directly after the start character
+to signal GS1 compliance.</p>
+<ol type="1">
+<li>Go to <strong>Extensions &gt; Render &gt; Barcode &gt; Classic
+Barcode</strong>.</li>
+<li>Select <strong>Code 128</strong> from the <strong>Barcode
+Type</strong> dropdown.</li>
+<li>In the <strong>Barcode Data</strong> field, enter your encoded
+payload without parentheses. For example, if your GS1 data is
+<code>(01)00012345678905(10)BATCH123</code>, enter
+<code>010001234567890510BATCH123</code>.</li>
+<li>Set the bar height to the required GS1 minimum (e.g.,
+<code>32</code> for 32 mm).</li>
+<li>Click <strong>Apply</strong> to generate the vector barcode onto
+your canvas.</li>
+</ol>
+<p><em>Note on FNC1 support:</em> Inkscape's native extension does not
+always embed the GS1-specific FNC1 flag. If your retail partner scans
+for strict FNC1 encoding, generate the base vector via a dedicated GS1
+generator (such as Zint or BarcodeWriter) and import the resulting
+<code>.svg</code> directly into Inkscape via <strong>File &gt;
+Import</strong>.</p>
+<h3 id="step-3-size-and-align-the-barcode">Step 3: Size and Align the
+Barcode</h3>
+<ol type="1">
+<li>Select the generated barcode group on the canvas.</li>
+<li>Open the <strong>Transform</strong> panel (<strong>Object &gt;
+Transform</strong> or <code>Ctrl+Shift+M</code>).</li>
+<li>Ensure the aspect ratio is unlocked so you can scale width and
+height independently if needed.</li>
+<li>Scale the barcode width so the individual narrow bar (X-dimension)
+stays within the 0.495 mm to 1.016 mm range.</li>
+<li>Create a background rectangle behind the barcode with a pure white
+fill (<code>#FFFFFF</code>) that extends at least 10X the narrow bar
+width past both the left and right ends of the barcode to guarantee the
+required Quiet Zones.</li>
+</ol>
+<h3 id="step-4-add-human-readable-interpretation-hri">Step 4: Add
+Human-Readable Interpretation (HRI)</h3>
+<p>GS1 specifications require clear, legible text positioned directly
+below the barcode bars.</p>
+<ol type="1">
+<li>Select the <strong>Text tool</strong> (<code>T</code>) and click
+below the barcode.</li>
+<li>Use an approved OCR font such as <strong>OCR-B</strong>, or a
+standard clean sans-serif font like <strong>Arial</strong> or
+<strong>Helvetica</strong>.</li>
+<li>Format the data string showing the Application Identifiers inside
+parentheses:<br />
+<code>(01) 00012345678905 (10) BATCH123</code><br />
+<em>(The parentheses are printed in the HRI for readability but are
+never encoded into the barcode lines themselves).</em></li>
+<li>Center the text block beneath the barcode using the <strong>Align
+and Distribute</strong> panel (<strong>Object &gt; Align and
+Distribute</strong> or <code>Ctrl+Shift+A</code>).</li>
+</ol>
+<h3 id="step-5-finalize-and-export-for-printing">Step 5: Finalize and
+Export for Printing</h3>
+<ol type="1">
+<li>Select all barcode elements (the bars, the background quiet zone
+box, and the HRI text).</li>
+<li>Group them together by pressing <code>Ctrl+G</code>.</li>
+<li>Go to <strong>Path &gt; Object to Path</strong>
+(<code>Ctrl+Shift+C</code>) if sending the file to a print shop that
+might not have your barcode font installed.</li>
+<li>Save the master file in native format via <strong>File &gt; Save As
+&gt; Inkscape SVG</strong>.</li>
+<li>Export for production via <strong>File &gt; Save As</strong>,
+choosing <strong>Portable Document Format (*.pdf)</strong>. In the PDF
+export dialog, set the output resolution to at least <strong>300
+DPI</strong> to avoid antialiasing blur on thermal and laser barcode
+printers.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

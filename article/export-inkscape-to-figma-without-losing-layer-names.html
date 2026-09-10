@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape to Figma Without Losing Layer Names - inkscape</title>
+    <meta name="description" content="Transferring vector assets between Inkscape and Figma often results in generic layer names like "path123" or "Group." This article explains why layer names disappear during SVG transfers between both applications and provides clear, step-by-step methods">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-to-figma-without-losing-layer-names">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape to Figma Without Losing Layer Names - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-to-figma-without-losing-layer-names" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transferring vector assets between Inkscape and Figma often results in generic layer names like "path123" or "Group." This article explains why layer names disappear during SVG transfers between both applications and provides clear, step-by-step methods" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-to-figma-without-losing-layer-names">Export
+Inkscape to Figma Without Losing Layer Names</h1>
+<p>Transferring vector assets between Inkscape and Figma often results
+in generic layer names like "path123" or "Group." This article explains
+why layer names disappear during SVG transfers between both applications
+and provides clear, step-by-step methods to preserve your exact layer
+hierarchy and naming conventions in both directions.</p>
+<h3 id="why-layer-names-disappear">Why Layer Names Disappear</h3>
+<p>The primary reason layer naming fails between Figma and Inkscape is
+how each tool handles SVG metadata:</p>
+<ul>
+<li><strong>Inkscape</strong> stores the visible layer name inside a
+custom XML attribute called <code>inkscape:label</code>, while using the
+standard <code>id</code> attribute for internal references.</li>
+<li><strong>Figma</strong> ignores <code>inkscape:label</code> and
+strictly uses the standard SVG <code>id</code> attribute to name
+imported layers and frames.</li>
+</ul>
+<p>To maintain naming integrity, the SVG <code>id</code> attributes must
+directly match your desired layer labels.</p>
+<hr />
+<h3 id="exporting-from-inkscape-to-figma">Exporting from Inkscape to
+Figma</h3>
+<p>To make Figma recognize your layer names, you must align the element
+IDs with your layer labels before exporting.</p>
+<ol type="1">
+<li><strong>Set the Object ID in Inkscape:</strong>
+<ul>
+<li>Select your layer or object.</li>
+<li>Open the <strong>Object Properties</strong> panel (<strong>Shift +
+Ctrl + O</strong>).</li>
+<li>Copy the text from the <strong>Label</strong> field into the
+<strong>ID</strong> field.</li>
+<li>Click <strong>Set</strong>.</li>
+</ul></li>
+<li><strong>Alternative for Complex Files (XML Editor):</strong>
+<ul>
+<li>Open the XML Editor (<strong>Shift + Ctrl + X</strong>).</li>
+<li>Select the <code>&lt;svg:g&gt;</code> (group) or path tag
+corresponding to your layer.</li>
+<li>Edit the <code>id</code> attribute to match your desired layer
+name.</li>
+</ul></li>
+<li><strong>Save the File:</strong>
+<ul>
+<li>Go to <strong>File &gt; Save As</strong>.</li>
+<li>Choose <strong>Plain SVG</strong> or <strong>Optimized
+SVG</strong>.</li>
+<li>If using <strong>Optimized SVG</strong>, open the export settings
+dialog, navigate to the <strong>SVG Output</strong> tab, and ensure that
+<strong>Remove unused IDs</strong> and <strong>Shorten IDs</strong> are
+<strong>unchecked</strong>.</li>
+</ul></li>
+<li><strong>Import to Figma:</strong>
+<ul>
+<li>Drag and drop the exported SVG directly into your Figma canvas.
+Figma will parse the <code>id</code> attributes and apply them as layer
+names.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="exporting-from-figma-to-inkscape">Exporting from Figma to
+Inkscape</h3>
+<p>When moving designs from Figma to Inkscape, Figma must be configured
+to write layer names into the SVG code.</p>
+<ol type="1">
+<li><strong>Select Your Frame or Group:</strong>
+<ul>
+<li>Select the root frame or components you want to export in
+Figma.</li>
+</ul></li>
+<li><strong>Configure SVG Export Settings:</strong>
+<ul>
+<li>In the right-hand sidebar, scroll down to the
+<strong>Export</strong> section.</li>
+<li>Set the format dropdown to <strong>SVG</strong>.</li>
+<li>Click the <strong>Advanced settings</strong> icon (the three
+horizontal dots <code>...</code>).</li>
+<li>Check the box for <strong>Include "id" attribute</strong>. This
+forces Figma to write the layer name to the XML <code>id</code>
+tag.</li>
+<li>Uncheck <strong>Outline text</strong> if you want to keep editable
+text elements.</li>
+</ul></li>
+<li><strong>Export and Open in Inkscape:</strong>
+<ul>
+<li>Click <strong>Export [Layer Name]</strong>.</li>
+<li>Open the file in Inkscape (<strong>File &gt; Open</strong>).</li>
+<li>Open the <strong>Layers and Objects</strong> panel (<strong>Ctrl +
+Shift + L</strong>). The objects will reflect the names assigned in
+Figma.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

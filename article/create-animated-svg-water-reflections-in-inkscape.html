@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Animated SVG Water Reflections in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to generate a realistic, animated water reflection using Inkscape’s SVG filter tools and native SVG animation. You will learn how to duplicate and invert an object, build a custom displacement filter using turbulence and displac">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-animated-svg-water-reflections-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Animated SVG Water Reflections in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-animated-svg-water-reflections-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate a realistic, animated water reflection using Inkscape’s SVG filter tools and native SVG animation. You will learn how to duplicate and invert an object, build a custom displacement filter using turbulence and displac" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-animated-svg-water-reflections-in-inkscape">Create
+Animated SVG Water Reflections in Inkscape</h1>
+<p>This guide explains how to generate a realistic, animated water
+reflection using Inkscape’s SVG filter tools and native SVG animation.
+You will learn how to duplicate and invert an object, build a custom
+displacement filter using turbulence and displacement primitives, and
+embed standard SVG animation tags into the code to bring the water
+ripples to life without requiring external JavaScript or video
+files.</p>
+<h3 id="1-prepare-the-reflection-base">1. Prepare the Reflection
+Base</h3>
+<ol type="1">
+<li>Open your artwork in Inkscape and select the object or group you
+want to reflect.</li>
+<li>Duplicate the selection by pressing <strong>Ctrl + D</strong>.</li>
+<li>Flip the duplicate vertically using the <strong>Flip selected
+objects vertically</strong> button (or press <strong>V</strong>).</li>
+<li>Move the inverted copy directly below the original object.</li>
+<li>With the inverted copy selected, adjust its opacity to around 70–80%
+in the <strong>Fill and Stroke</strong> panel.</li>
+<li>Optional: Apply a vertical linear gradient fade to the duplicate so
+it gradually disappears toward the bottom, mimicking light falloff on
+water surfaces.</li>
+</ol>
+<h3 id="2-build-the-ripple-filter-with-the-filter-editor">2. Build the
+Ripple Filter with the Filter Editor</h3>
+<p>Inkscape creates water effects by combining a noise generator
+(<code>feTurbulence</code>) with a pixel-shifting filter
+(<code>feDisplacementMap</code>).</p>
+<ol type="1">
+<li>Navigate to <strong>Filters &gt; Filter Editor</strong> to open the
+panel.</li>
+<li>Click <strong>New</strong> to create a fresh filter and rename it to
+something recognizable, such as <code>WaterRipple</code>.</li>
+<li>In the <strong>Add primitive</strong> dropdown menu, select
+<strong>Turbulence</strong> and click <strong>Add
+primitive</strong>.</li>
+<li>With <code>feTurbulence</code> selected in the list, set the
+following parameters in the bottom panel:
+<ul>
+<li><strong>Type</strong>: Fractal Noise</li>
+<li><strong>Base Frequency</strong>: Set <strong>X</strong> to
+<code>0.01</code> and <strong>Y</strong> to <code>0.08</code> (ripples
+are typically stretched horizontally).</li>
+<li><strong>Num Octaves</strong>: <code>2</code> (higher values increase
+detail at the cost of rendering performance).</li>
+</ul></li>
+<li>In the dropdown, select <strong>Displacement Map</strong> and click
+<strong>Add primitive</strong>.</li>
+<li>Set the connections in the editor list:
+<ul>
+<li>Connect the top input of <code>feDisplacementMap</code> to
+<strong>Source Graphic</strong>.</li>
+<li>Connect the bottom input of <code>feDisplacementMap</code> to the
+<strong>Turbulence</strong> node.</li>
+</ul></li>
+<li>Select the <code>feDisplacementMap</code> node and set the
+<strong>Scale</strong> slider between <code>15</code> and
+<code>30</code>, depending on how aggressive you want the wave
+distortion to be. Set <strong>X Channel</strong> to <code>Red</code> and
+<strong>Y Channel</strong> to <code>Green</code>.</li>
+<li>Check the box next to your new filter (<code>WaterRipple</code>)
+while the inverted reflection graphic is selected on the canvas to apply
+it.</li>
+</ol>
+<h3 id="3-animate-the-displacement-filter">3. Animate the Displacement
+Filter</h3>
+<p>Inkscape does not have an internal timeline for playback, but it
+allows you to inject SMIL animation directly into the SVG’s XML
+structure.</p>
+<ol type="1">
+<li>Open the XML Editor by going to <strong>Edit &gt; XML
+Editor</strong> (or press <strong>Ctrl + Shift + X</strong>).</li>
+<li>Locate the <code>&lt;svg:filter&gt;</code> element in the XML tree
+that corresponds to your <code>WaterRipple</code> filter.</li>
+<li>Expand it to reveal the <code>&lt;svg:feTurbulence&gt;</code> child
+element and select it.</li>
+<li>Click the <strong>New element node</strong> button at the top of the
+XML Editor panel.</li>
+<li>Enter <code>animate</code> as the element name and click
+<strong>Create</strong>.</li>
+<li>Select the newly created <code>&lt;animate&gt;</code> node and add
+the following attributes using the attribute input fields on the right:
+<ul>
+<li><strong>attributeName</strong>: <code>baseFrequency</code></li>
+<li><strong>dur</strong>: <code>5s</code> (controls the speed of the
+wave motion)</li>
+<li><strong>from</strong>: <code>0.01 0.08</code></li>
+<li><strong>to</strong>: <code>0.01 0.04</code></li>
+<li><strong>repeatCount</strong>: <code>indefinite</code></li>
+<li><strong>direction</strong>: Add an attribute named
+<code>alternate</code> (set via <code>type</code> or create an
+auto-reversing loop by setting values:
+<code>values="0.01 0.08; 0.01 0.03; 0.01 0.08"</code>).</li>
+</ul></li>
+</ol>
+<p>Alternatively, you can animate the <code>seed</code> attribute to
+create a boiling water effect:</p>
+<ul>
+<li><strong>attributeName</strong>: <code>seed</code></li>
+<li><strong>from</strong>: <code>1</code></li>
+<li><strong>to</strong>: <code>50</code></li>
+<li><strong>dur</strong>: <code>3s</code></li>
+<li><strong>repeatCount</strong>: <code>indefinite</code></li>
+</ul>
+<h3 id="4-save-and-test">4. Save and Test</h3>
+<ol type="1">
+<li>Save the file as an <strong>Optimized SVG</strong> or standard
+<strong>Inkscape SVG</strong> (<strong>File &gt; Save As</strong>).</li>
+<li>Because Inkscape does not render SMIL animations on the live canvas,
+open the saved SVG file directly in any modern web browser (such as
+Chrome, Firefox, or Edge).</li>
+<li>Observe the wave displacement. If the motion is too abrupt or the
+waves are too intense, reopen Inkscape, lower the <strong>Scale</strong>
+in the <code>feDisplacementMap</code> node, or adjust the
+<code>baseFrequency</code> values in the XML animation node until the
+desired fluidity is reached.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

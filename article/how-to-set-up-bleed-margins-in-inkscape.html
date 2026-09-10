@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Up Bleed Margins in Inkscape - inkscape</title>
+    <meta name="description" content="Setting up document bleed margins in Inkscape ensures that background colors and images extend to the very edge of the paper, preventing unwanted white borders after the physical trimming process. Because Inkscape does not feature a single-click "bleed"">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-set-up-bleed-margins-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Set Up Bleed Margins in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-set-up-bleed-margins-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Setting up document bleed margins in Inkscape ensures that background colors and images extend to the very edge of the paper, preventing unwanted white borders after the physical trimming process. Because Inkscape does not feature a single-click "bleed"" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-set-up-bleed-margins-in-inkscape">How to Set Up Bleed
+Margins in Inkscape</h1>
+<p>Setting up document bleed margins in Inkscape ensures that background
+colors and images extend to the very edge of the paper, preventing
+unwanted white borders after the physical trimming process. Because
+Inkscape does not feature a single-click "bleed" setting like some
+desktop publishing software, you create a bleed by expanding your
+document canvas beyond the final trim size and using guides to mark the
+cut lines and safe zones.</p>
+<h3 id="1-calculate-your-dimensions">1. Calculate Your Dimensions</h3>
+<p>A standard professional print bleed is <strong>0.125 inches (3
+mm)</strong> on all four sides. To set up your document correctly, add
+double the bleed measurement to both the width and height of your target
+print size:</p>
+<ul>
+<li><strong>Final Trim Size:</strong> 8.5" x 11"</li>
+<li><strong>Total Bleed Added:</strong> +0.25" to width (0.125" left +
+0.125" right) and +0.25" to height (0.125" top + 0.125" bottom)</li>
+<li><strong>Canvas Size in Inkscape:</strong> 8.75" x 11.25"</li>
+</ul>
+<h3 id="2-set-the-page-dimensions-in-inkscape">2. Set the Page
+Dimensions in Inkscape</h3>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>File &gt; Document
+Properties</strong> (or press <code>Ctrl+Shift+D</code> /
+<code>Cmd+Shift+D</code>).</li>
+<li>Under the <strong>Page</strong> tab, set your display and document
+units to inches (<code>in</code>) or millimeters (<code>mm</code>),
+matching your print shop’s specifications.</li>
+<li>Under <strong>Custom Size</strong>, enter the expanded dimensions
+(e.g., 8.75 x 11.25 inches).</li>
+</ol>
+<h3 id="3-create-trim-and-safe-area-guides">3. Create Trim and Safe Area
+Guides</h3>
+<p>Guides act as visual boundaries for where the cutting machine will
+slice the paper (trim line) and where text/important elements must stay
+inside (safe zone).</p>
+<ol type="1">
+<li>In <strong>Document Properties</strong>, switch to the
+<strong>Guides</strong> tab.</li>
+<li>Click <strong>Create Guide Margins</strong> (or manually drag guides
+from the rulers).</li>
+<li>To mark the trim line manually:
+<ul>
+<li>Double-click a horizontal or vertical guide on the canvas to open
+the Guide settings.</li>
+<li>Set guides at <code>0.125 in</code> and
+<code>Width minus 0.125 in</code> on the X-axis.</li>
+<li>Set guides at <code>0.125 in</code> and
+<code>Height minus 0.125 in</code> on the Y-axis.</li>
+</ul></li>
+<li>Set an additional set of safe zone guides another
+<code>0.125 in</code> inside the trim lines to ensure critical text and
+logos do not sit too close to the blade.</li>
+</ol>
+<h3 id="4-design-with-the-bleed-in-mind">4. Design with the Bleed in
+Mind</h3>
+<ul>
+<li><strong>Backgrounds &amp; Edge Graphics:</strong> Stretch all
+full-bleed graphics, background colors, and photos completely to the
+outer canvas edges (past the trim guides).</li>
+<li><strong>Text &amp; Logos:</strong> Keep all essential text, logos,
+and critical design elements strictly inside your inner safe zone
+guides.</li>
+</ul>
+<h3 id="5-export-as-a-print-ready-pdf">5. Export as a Print-Ready
+PDF</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong> or <strong>File &gt;
+Export</strong>.</li>
+<li>Select <strong>Portable Document Format (*.pdf)</strong> from the
+file format dropdown.</li>
+<li>In the PDF export dialog:
+<ul>
+<li>Choose <strong>PDF version 1.5</strong> or higher (or PDF/X if
+supported by your extensions).</li>
+<li>Set the resolution to <strong>300 dpi</strong> or higher for raster
+graphics.</li>
+<li>Convert text to paths if your print provider does not have your
+embedded fonts.</li>
+</ul></li>
+<li>Click <strong>Save</strong> to generate the final file with the
+built-in bleed area ready for commercial trimming.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

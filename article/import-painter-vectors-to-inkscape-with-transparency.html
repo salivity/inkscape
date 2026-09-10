@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Painter Vectors to Inkscape with Transparency - inkscape</title>
+    <meta name="description" content="Moving vector artwork from Corel Painter to Inkscape while preserving alpha channels and opacity settings can be challenging because standard EPS exports inherently flatten translucent data. This guide explains how to bypass flattening limitations by iso">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/import-painter-vectors-to-inkscape-with-transparency">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Import Painter Vectors to Inkscape with Transparency - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/import-painter-vectors-to-inkscape-with-transparency" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Moving vector artwork from Corel Painter to Inkscape while preserving alpha channels and opacity settings can be challenging because standard EPS exports inherently flatten translucent data. This guide explains how to bypass flattening limitations by iso" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="import-painter-vectors-to-inkscape-with-transparency">Import
+Painter Vectors to Inkscape with Transparency</h1>
+<p>Moving vector artwork from Corel Painter to Inkscape while preserving
+alpha channels and opacity settings can be challenging because standard
+EPS exports inherently flatten translucent data. This guide explains how
+to bypass flattening limitations by isolating your shape layers,
+utilizing modern container formats, and importing your assets cleanly
+into Inkscape with active transparency intact.</p>
+<h3 id="1-separate-vectors-from-painter-dynamic-layers">1. Separate
+Vectors from Painter Dynamic Layers</h3>
+<p>Corel Painter treats vector objects as dedicated "Shape" layers. To
+avoid raster merging:</p>
+<ul>
+<li>Open the <strong>Layers</strong> panel in Painter.</li>
+<li>Ensure all vector shapes remain unconverted (do not select "Commit"
+or "Convert to Default Layer").</li>
+<li>Group your vector shapes separately from dynamic raster effects,
+watercolors, or impasto layers, as these raster elements force Painter
+to flatten overlaps during standard vector export.</li>
+</ul>
+<h3 id="2-export-via-pdf-to-maintain-alpha-transparency">2. Export via
+PDF to Maintain Alpha Transparency</h3>
+<p>The standard "Save As &gt; EPS" route in Painter relies on PostScript
+Level 2 or 3, which cannot process native vector alpha channels and
+forces flattening into opaque bounding boxes. Instead, use a PDF-based
+export workflow:</p>
+<ul>
+<li>Go to <strong>File &gt; Print</strong>.</li>
+<li>Select a modern virtual printer such as <strong>Microsoft Print to
+PDF</strong> or <strong>Adobe PDF</strong>.</li>
+<li>In the print properties, set the output to maintain document
+dimensions and ensure color management does not compress transparency
+layers into a single raster background.</li>
+<li>Print the document to generate a high-compatibility PDF file. PDF
+specifications (version 1.4 and above) natively support transparent
+vector fills and strokes without rasterizing paths.</li>
+</ul>
+<h3 id="3-alternative-method-exporting-via-layered-psd">3. Alternative
+Method: Exporting via Layered PSD</h3>
+<p>If your project contains a mix of vector shapes and transparent
+brushwork that you want to manipulate as separate elements:</p>
+<ul>
+<li>Go to <strong>File &gt; Save As</strong> and choose
+<strong>Photoshop (*.psd)</strong>.</li>
+<li>In the PSD export dialog, confirm that layers are preserved.</li>
+<li>Painter writes vector paths and transparent layer boundaries into
+the PSD structure. Inkscape natively reads PSD files, parsing individual
+layers and maintaining non-destructive opacity.</li>
+</ul>
+<h3 id="4-importing-into-inkscape">4. Importing into Inkscape</h3>
+<p>Once the file is generated:</p>
+<ol type="1">
+<li>Open Inkscape and select <strong>File &gt; Import</strong>.</li>
+<li>Select your exported PDF or PSD.</li>
+<li>If importing a PDF, choose the <strong>Poppler/Cairo import</strong>
+or the <strong>Internal import</strong> engine. Check the option to
+<strong>Import clip paths</strong> and ensure <strong>Embed
+images</strong> is selected only if you are also bringing along raster
+textures.</li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="5-inspect-and-restore-alpha-channels-in-inkscape">5. Inspect and
+Restore Alpha Channels in Inkscape</h3>
+<p>After importing, your artwork will arrive bundled in a group:</p>
+<ul>
+<li>Select the artwork and press <strong>Ctrl + Shift + G</strong> (or
+right-click and choose <strong>Ungroup</strong>) to access individual
+paths.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel (<strong>Ctrl +
+Shift + F</strong>).</li>
+<li>Click on individual shapes to confirm their <strong>Opacity</strong>
+slider or the <strong>RGBA</strong> alpha channel value. You can now
+adjust or reapply transparency directly in Inkscape without any
+background clipping artifacts.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run Inkscape from Command Line in Headless Mode - inkscape</title>
+    <meta name="description" content="Running Inkscape in headless mode allows you to automate vector graphic tasks such as format conversions, batch exports, and path manipulations without opening the graphical user interface. Modern versions of Inkscape automatically operate headlessly whe">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/run-inkscape-from-command-line-in-headless-mode">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Run Inkscape from Command Line in Headless Mode - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/run-inkscape-from-command-line-in-headless-mode" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Running Inkscape in headless mode allows you to automate vector graphic tasks such as format conversions, batch exports, and path manipulations without opening the graphical user interface. Modern versions of Inkscape automatically operate headlessly whe" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="run-inkscape-from-command-line-in-headless-mode">Run Inkscape
+from Command Line in Headless Mode</h1>
+<p>Running Inkscape in headless mode allows you to automate vector
+graphic tasks such as format conversions, batch exports, and path
+manipulations without opening the graphical user interface. Modern
+versions of Inkscape automatically operate headlessly when provided with
+export arguments, making it an efficient tool for server environments,
+automated build pipelines, and shell scripts.</p>
+<h3 id="basic-exporting-in-modern-inkscape-version-10">Basic Exporting
+in Modern Inkscape (Version 1.0+)</h3>
+<p>In Inkscape 1.0 and later, running commands without specifying an
+interactive GUI mode automatically runs in a headless state. Use the
+<code>-o</code> (or <code>--export-filename</code>) flag to define the
+output file. Inkscape determines the output format automatically based
+on the file extension.</p>
+<p>Export an SVG to a PNG:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">-o</span> output.png</span></code></pre></div>
+<p>Export an SVG to a PDF:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">-o</span> output.pdf</span></code></pre></div>
+<h3 id="controlling-dimensions-and-resolution">Controlling Dimensions
+and Resolution</h3>
+<p>You can explicitly set the output dimensions or pixel density using
+width (<code>-w</code>), height (<code>-h</code>), or DPI
+(<code>--export-dpi</code>) parameters:</p>
+<p>Set explicit width and height (in pixels):</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">-o</span> output.png <span class="at">-w</span> 1920 <span class="at">-h</span> 1080</span></code></pre></div>
+<p>Export with a specific resolution:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">-o</span> output.png <span class="at">--export-dpi</span><span class="op">=</span>300</span></code></pre></div>
+<p>Export only a specific object by its element ID:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">-o</span> output.png <span class="at">--export-id</span><span class="op">=</span>rect123 <span class="at">--export-id-only</span></span></code></pre></div>
+<h3 id="headless-actions-and-batch-processing">Headless Actions and
+Batch Processing</h3>
+<p>To perform document modifications or chained commands without the
+GUI, use the <code>--actions</code> argument combined with
+<code>--batch-process</code>. The <code>--batch-process</code> flag
+ensures that the application closes automatically once the specified
+actions finish executing.</p>
+<p>Chain actions together with semicolons:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--batch-process</span> <span class="at">--actions</span><span class="op">=</span><span class="st">&quot;select-all;object-to-path;export-filename:output.svg;export-do&quot;</span> input.svg</span></code></pre></div>
+<p>To list all available action commands supported by your installed
+version:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--action-list</span></span></code></pre></div>
+<h3 id="legacy-syntax-inkscape-092-and-older">Legacy Syntax (Inkscape
+0.92 and Older)</h3>
+<p>If you are using Inkscape version 0.92 or earlier, you must
+explicitly use the <code>-z</code> (or <code>--without-gui</code>) flag
+to prevent the interface from launching.</p>
+<p>Export to PNG in legacy versions:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">-z</span> input.svg <span class="at">-e</span> output.png</span></code></pre></div>
+<p>Export to PDF in legacy versions:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">-z</span> input.svg <span class="at">-A</span> output.pdf</span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recover Vector Geometry from Truncated SVG Files - inkscape</title>
+    <meta name="description" content="Truncated SVG files occur when an export is interrupted, an application crashes, or data transfer fails, leaving an incomplete XML document that standard viewers refuse to render. This guide explains how to repair the underlying markup using text recover">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/recover-vector-geometry-from-truncated-svg-files">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Recover Vector Geometry from Truncated SVG Files - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/recover-vector-geometry-from-truncated-svg-files" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Truncated SVG files occur when an export is interrupted, an application crashes, or data transfer fails, leaving an incomplete XML document that standard viewers refuse to render. This guide explains how to repair the underlying markup using text recover" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="recover-vector-geometry-from-truncated-svg-files">Recover Vector
+Geometry from Truncated SVG Files</h1>
+<p>Truncated SVG files occur when an export is interrupted, an
+application crashes, or data transfer fails, leaving an incomplete XML
+document that standard viewers refuse to render. This guide explains how
+to repair the underlying markup using text recovery techniques, import
+the salvageable path data into Inkscape, and rebuild missing vector
+geometries using Inkscape's internal XML and node-editing tools.</p>
+<h3 id="understanding-svg-truncation">Understanding SVG Truncation</h3>
+<p>SVG (Scalable Vector Graphics) is an XML-based format. When an SVG
+file is truncated, the file is cut off mid-stream, often inside an open
+coordinate list of a <code>&lt;path&gt;</code> tag or before the
+required closing tags (<code>&lt;/g&gt;</code>,
+<code>&lt;/svg&gt;</code>) are written. Because XML parsers are strict,
+Inkscape will fail to open the document or throw a fatal parsing error
+if the file ends abruptly.</p>
+<p>Recovery requires two phases: making the raw text syntactically valid
+so Inkscape can parse it, and using Inkscape's vector tools to repair
+broken nodes and contours.</p>
+<h3 id="step-1-restoring-xml-well-formedness-in-a-text-editor">Step 1:
+Restoring XML Well-Formedness in a Text Editor</h3>
+<p>Before Inkscape can load the vector data, the damaged text file must
+have valid syntax.</p>
+<ol type="1">
+<li>Open the damaged <code>.svg</code> file in a raw text editor (such
+as VS Code, Notepad++, or Vim).</li>
+<li>Scroll to the very bottom of the document to locate the point of
+failure.</li>
+<li>Identify the interrupted element:
+<ul>
+<li>If the file ends inside a path definition (e.g.,
+<code>d="M 10 20 L 30 40 C 50 60 ...</code>), delete the incomplete
+trailing coordinate pair and append a closing quotation mark
+(<code>"</code>).</li>
+<li>Close the element tag with <code>/&gt;</code>.</li>
+</ul></li>
+<li>Add any missing closing tags required by the parent hierarchy,
+ensuring the file finishes with:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">g</span>&gt;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">svg</span>&gt;</span></code></pre></div></li>
+<li>Save the file with a new name, ensuring the <code>.svg</code>
+extension is retained.</li>
+</ol>
+<h3 id="step-2-accessing-paths-via-inkscapes-xml-editor">Step 2:
+Accessing Paths via Inkscape’s XML Editor</h3>
+<p>Once the file is minimally well-formed, launch Inkscape and open the
+file.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Open</strong> and select the patched SVG
+file.</li>
+<li>If the canvas appears blank or objects are missing, open Inkscape's
+built-in text and structure recovery tool: the <strong>XML
+Editor</strong> (<strong>Edit &gt; XML Editor</strong> or press
+<code>Ctrl + Shift + X</code>).</li>
+<li>Browse the node tree in the left pane. Expand the
+<code>&lt;svg:svg&gt;</code> and <code>&lt;svg:g&gt;</code> elements to
+find <code>&lt;svg:path&gt;</code> nodes.</li>
+<li>Select individual <code>&lt;svg:path&gt;</code> entries. In the
+right pane, inspect the <code>d</code> attribute (which holds the vector
+path coordinates).</li>
+<li>If Inkscape fails to render a specific path due to corrupt commands
+(such as isolated negative signs, invalid command letters, or orphaned
+decimals), edit the <code>d</code> value directly inside the XML Editor,
+remove the corrupted command, and click <strong>Set</strong>.</li>
+</ol>
+<h3 id="step-3-reconstructing-broken-vector-geometries">Step 3:
+Reconstructing Broken Vector Geometries</h3>
+<p>After the remaining vector coordinates render on the canvas, the
+geometry itself must be cleaned up, as paths cut off mid-curve will be
+left open.</p>
+<ol type="1">
+<li>Switch to the <strong>Node Tool</strong> (<code>N</code>).</li>
+<li>Select the recovered vector shape. You will observe that the path
+terminates abruptly where the truncation occurred.</li>
+<li>Select the two open terminal end-nodes:
+<ul>
+<li>To bridge the missing boundary with a straight line, click
+<strong>Join selected endnodes with a new segment</strong> in the top
+Node Tool control bar.</li>
+<li>To weld them together at a single point, click <strong>Join selected
+nodes</strong>.</li>
+</ul></li>
+<li>If an entire segment of geometry was lost in the truncation, use the
+<strong>Pen Tool</strong> (<code>B</code>) to draw the missing portion,
+select both the old and new paths, and combine them using <strong>Path
+&gt; Combine</strong> (<code>Ctrl + K</code>), followed by joining their
+overlapping end-nodes.</li>
+</ol>
+<h3 id="step-4-normalizing-and-saving-the-clean-file">Step 4:
+Normalizing and Saving the Clean File</h3>
+<p>Truncated files often have incomplete <code>viewBox</code> or canvas
+boundary definitions.</p>
+<ol type="1">
+<li>Open <strong>File &gt; Document Properties</strong>
+(<code>Ctrl + Shift + D</code>).</li>
+<li>Under the <strong>Display</strong> tab, click <strong>Resize to
+content...</strong> to ensure the canvas bounds match the remaining
+vector geometry.</li>
+<li>Verify that all layers, groups, and stroke fills render
+correctly.</li>
+<li>Go to <strong>File &gt; Save As...</strong> and select <strong>Plain
+SVG</strong> or <strong>Optimized SVG</strong> to allow Inkscape to
+rewrite the XML tree cleanly, removing any residual corrupted text
+markers.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

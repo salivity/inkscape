@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape Vectors to 3ds Max Splines - inkscape</title>
+    <meta name="description" content="This guide outlines the complete workflow for transferring 2D vector artwork from Inkscape into Autodesk 3ds Max as fully editable spline objects. By properly preparing your vector paths, exporting them via an intermediate format such as AutoCAD DXF, and">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-3ds-max-splines">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape Vectors to 3ds Max Splines - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-vectors-to-3ds-max-splines" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide outlines the complete workflow for transferring 2D vector artwork from Inkscape into Autodesk 3ds Max as fully editable spline objects. By properly preparing your vector paths, exporting them via an intermediate format such as AutoCAD DXF, and" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-vectors-to-3ds-max-splines">Export Inkscape
+Vectors to 3ds Max Splines</h1>
+<p>This guide outlines the complete workflow for transferring 2D vector
+artwork from Inkscape into Autodesk 3ds Max as fully editable spline
+objects. By properly preparing your vector paths, exporting them via an
+intermediate format such as AutoCAD DXF, and configuring the 3ds Max
+import settings, you can reliably use your 2D designs for 3D extrusions,
+sweeps, and poly-modeling.</p>
+<h3 id="1-prepare-paths-in-inkscape">1. Prepare Paths in Inkscape</h3>
+<p>Before exporting, you must convert all objects into pure vector
+paths:</p>
+<ol type="1">
+<li>Select your entire artwork by pressing <strong>Ctrl +
+A</strong>.</li>
+<li>Ungroup all elements by pressing <strong>Ctrl + Shift + G</strong>
+repeatedly until no groups remain.</li>
+<li>Convert all shapes (rectangles, circles, stars, text) into paths by
+navigating to <strong>Path &gt; Object to Path</strong>.</li>
+<li>If you have overlapping strokes that should be solid, select them
+and click <strong>Path &gt; Stroke to Path</strong>, followed by
+<strong>Path &gt; Union</strong>.</li>
+<li>Ensure your document origin (0,0) is close to the artwork, as this
+sets the pivot point in 3ds Max.</li>
+</ol>
+<h3 id="2-export-as-autocad-dxf">2. Export as AutoCAD DXF</h3>
+<p>The most stable format for translating Inkscape paths into native 3ds
+Max splines is AutoCAD DXF.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>In the file format dropdown, select <strong>AutoCAD DXF R14
+(*.dxf)</strong> or <strong>Desktop Cutting Plotter (AutoCAD DXF R14)
+(*.dxf)</strong>.</li>
+<li>In the export dialog box:
+<ul>
+<li>Set <strong>Base unit</strong> to match your 3ds Max system units
+(typically Millimeters or Inches).</li>
+<li>Ensure <strong>Character Encoding</strong> is set to <strong>Latin
+1</strong> or <strong>UTF-8</strong>.</li>
+<li>Uncheck options like "Export all layers" if you only want the
+visible geometry.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to save the file.</li>
+</ol>
+<h3 id="3-import-into-autodesk-3ds-max">3. Import into Autodesk 3ds
+Max</h3>
+<ol type="1">
+<li>Launch Autodesk 3ds Max and open your project.</li>
+<li>Navigate to <strong>File &gt; Import &gt; Import...</strong> and
+select the <code>.dxf</code> file you exported from Inkscape.</li>
+<li>In the <strong>AutoCAD DWG/DXF Import Options</strong> dialog:
+<ul>
+<li>Under the <strong>Geometry</strong> tab, set <strong>Derive AutoCAD
+Primitives by</strong> to <strong>One Object</strong> or
+<strong>Entity</strong>. Choosing <em>Entity</em> keeps distinct paths
+as separate spline objects.</li>
+<li>Check <strong>Weld nearby vertices</strong> and set a low threshold
+(e.g., 0.1 mm) to close any open segments seamlessly.</li>
+<li>Check <strong>Auto-smooth adjacent faces</strong> if applicable,
+though for basic 2D splines, default settings suffice.</li>
+<li>Ensure the <strong>Incoming file units</strong> match the base unit
+you chose in Inkscape to prevent scaling discrepancies.</li>
+</ul></li>
+<li>Click <strong>OK</strong>.</li>
+</ol>
+<h3 id="4-verify-and-clean-up-splines">4. Verify and Clean Up
+Splines</h3>
+<p>Once imported, the vector data appears in the viewport as an
+<strong>Editable Spline</strong> object:</p>
+<ol type="1">
+<li>Select the imported object and open the <strong>Modify</strong>
+panel.</li>
+<li>In the modifier stack, verify that it is designated as an
+<strong>Editable Spline</strong>.</li>
+<li>Under the <strong>Selection</strong> rollout, choose the
+<strong>Vertex</strong> sub-object level.</li>
+<li>Select all vertices (<strong>Ctrl + A</strong>) and apply a
+<strong>Weld</strong> operation with a small threshold to ensure all
+continuous paths form closed loops.</li>
+<li>You can now apply standard 3ds Max modifiers, such as
+<strong>Extrude</strong>, <strong>Bevel</strong>, or
+<strong>Sweep</strong>, to build your 3D geometry.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

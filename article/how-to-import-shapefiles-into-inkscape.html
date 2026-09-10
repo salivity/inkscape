@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import Shapefiles into Inkscape - inkscape</title>
+    <meta name="description" content="Importing GIS vector shapefiles into Inkscape allows cartographers to transform raw geographic data into publication-quality maps using advanced vector design tools. Because Inkscape does not natively read the ESRI Shapefile format (.shp), the geometry m">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-import-shapefiles-into-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import Shapefiles into Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-import-shapefiles-into-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Importing GIS vector shapefiles into Inkscape allows cartographers to transform raw geographic data into publication-quality maps using advanced vector design tools. Because Inkscape does not natively read the ESRI Shapefile format (.shp), the geometry m" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-shapefiles-into-inkscape">How to Import Shapefiles
+into Inkscape</h1>
+<p>Importing GIS vector shapefiles into Inkscape allows cartographers to
+transform raw geographic data into publication-quality maps using
+advanced vector design tools. Because Inkscape does not natively read
+the ESRI Shapefile format (<code>.shp</code>), the geometry must first
+be converted into a compatible vector format—such as Scalable Vector
+Graphics (SVG) or Portable Document Format (PDF)—using open-source GIS
+software like QGIS or GDAL before opening and styling the layers in
+Inkscape.</p>
+<h2 id="method-1-exporting-from-qgis-to-svg-recommended">Method 1:
+Exporting from QGIS to SVG (Recommended)</h2>
+<p>Using QGIS provides total control over map projection, scale, and
+layer organization before editing in Inkscape.</p>
+<h3 id="1-load-and-project-the-shapefile">1. Load and Project the
+Shapefile</h3>
+<ol type="1">
+<li>Open QGIS and create a new project.</li>
+<li>Drag and drop your <code>.shp</code> file into the Map Canvas.</li>
+<li>Set your project's Coordinate Reference System (CRS) at the
+bottom-right of the window to an appropriate projected coordinate system
+(e.g., UTM or a local conformal projection) rather than an unprojected
+geographic system (WGS84) to avoid spatial distortion.</li>
+</ol>
+<h3 id="2-set-up-the-print-layout">2. Set Up the Print Layout</h3>
+<ol type="1">
+<li>Go to <strong>Project &gt; New Print Layout</strong> and give it a
+name.</li>
+<li>Set your page size by right-clicking the canvas and choosing
+<strong>Page Properties</strong>.</li>
+<li>Click <strong>Add Item &gt; Add Map</strong> and drag a rectangle
+over the canvas.</li>
+<li>In the <strong>Item Properties</strong> panel, set the exact scale
+and geographic extent you require.</li>
+</ol>
+<h3 id="3-export-to-svg">3. Export to SVG</h3>
+<ol type="1">
+<li>Click <strong>Layout &gt; Export as SVG</strong>.</li>
+<li>Choose a file destination and click <strong>Save</strong>.</li>
+<li>In the <strong>SVG Export Options</strong> dialog:
+<ul>
+<li>Check <strong>Export map layers as SVG groups</strong> (crucial for
+maintaining individual GIS layers in Inkscape).</li>
+<li>Uncheck <strong>Render map tiles as raster</strong> to keep all
+features purely vector.</li>
+<li>Enable <strong>Always export as vectors</strong> if prompted.</li>
+</ul></li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<hr />
+<h2 id="method-2-converting-via-gdalogr-command-line">Method 2:
+Converting via GDAL/OGR (Command Line)</h2>
+<p>For direct geometry conversion without opening a GIS graphical
+interface, use the <code>ogr2ogr</code> utility:</p>
+<ol type="1">
+<li>Open your terminal or OSGeo4W shell.</li>
+<li>Run the following command to reproject and convert the shapefile
+directly into an SVG:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ogr2ogr</span> <span class="at">-f</span> SVG output.svg input.shp <span class="at">-t_srs</span> EPSG:3857</span></code></pre></div>
+<p><em>Replace <code>EPSG:3857</code> with your desired target
+projection code.</em></p>
+<hr />
+<h2 id="opening-and-designing-in-inkscape">Opening and Designing in
+Inkscape</h2>
+<ol type="1">
+<li>Open Inkscape and select <strong>File &gt; Open</strong>, then
+choose your exported SVG file.</li>
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code> or <code>Cmd + Shift + L</code>).</li>
+<li>Expand the main group to access distinct geographic layers (e.g.,
+roads, boundaries, water bodies).</li>
+<li>Ungroup layers (<code>Ctrl + Shift + G</code>) as needed to isolate
+paths for individual styling.</li>
+<li>Apply custom fills, stroke weights, blend modes, patterns, and
+typography for cartographic presentation.</li>
+<li>Use the <strong>Path &gt; Simplify</strong> tool carefully if
+working with dense geometries, ensuring geographic accuracy is not
+compromised.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

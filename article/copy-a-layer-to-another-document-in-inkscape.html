@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy a Layer to Another Document in Inkscape - inkscape</title>
+    <meta name="description" content="Moving entire layers along with their vector contents between Inkscape documents is a common workflow need that helps streamline design projects. This guide explains how to duplicate an entire layer—including all paths, shapes, and layer attributes—f">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/copy-a-layer-to-another-document-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Copy a Layer to Another Document in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/copy-a-layer-to-another-document-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Moving entire layers along with their vector contents between Inkscape documents is a common workflow need that helps streamline design projects. This guide explains how to duplicate an entire layer—including all paths, shapes, and layer attributes—f" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="copy-a-layer-to-another-document-in-inkscape">Copy a Layer to
+Another Document in Inkscape</h1>
+<p>Moving entire layers along with their vector contents between
+Inkscape documents is a common workflow need that helps streamline
+design projects. This guide explains how to duplicate an entire
+layer—including all paths, shapes, and layer attributes—from one open
+Inkscape file to another using both the Layers panel copy method and the
+Paste in Place technique.</p>
+<h3
+id="method-1-copy-the-entire-layer-via-the-layers-and-objects-panel">Method
+1: Copy the Entire Layer via the Layers and Objects Panel</h3>
+<p>In modern versions of Inkscape, layers function as specialized
+groups. You can copy the entire layer structure, including its name and
+hierarchy, directly between files.</p>
+<ol type="1">
+<li><strong>Open both documents</strong> in Inkscape.</li>
+<li>In the source document, open the <strong>Layers and Objects</strong>
+panel by pressing <code>Ctrl + Shift + L</code> (or
+<code>Cmd + Shift + L</code> on macOS).</li>
+<li>Ensure the layer you want to copy is unlocked (the padlock icon is
+open) and visible (the eye icon is open).</li>
+<li>Click on the layer name directly in the <strong>Layers and
+Objects</strong> panel to select the layer group itself.</li>
+<li>Press <code>Ctrl + C</code> (or <code>Cmd + C</code>) to copy the
+layer and all of its nested vector objects to your clipboard.</li>
+<li>Switch to the target document window.</li>
+<li>Open the <strong>Layers and Objects</strong> panel in the target
+document.</li>
+<li>Click the document root level or the parent layer where you want the
+new layer to reside.</li>
+<li>Press <code>Ctrl + V</code> (or <code>Cmd + V</code>). The copied
+layer will appear with its original name and contents intact.</li>
+</ol>
+<hr />
+<h3 id="method-2-copy-layer-contents-using-paste-in-place">Method 2:
+Copy Layer Contents Using "Paste in Place"</h3>
+<p>If you already have a target layer created in the destination
+document and want to transfer all vector items while preserving their
+exact coordinates, use the "Paste in Place" feature.</p>
+<ol type="1">
+<li>In the source document, open the <strong>Layers and Objects</strong>
+panel (<code>Ctrl + Shift + L</code>).</li>
+<li>Lock all layers except the one containing the vector artwork you
+wish to copy. This prevents accidental selection of items on other
+layers.</li>
+<li>Select the contents of the layer by pressing <code>Ctrl + A</code>
+(or <code>Cmd + A</code>), or click and drag a selection box around the
+artwork.</li>
+<li>Copy the selected items using <code>Ctrl + C</code> (or
+<code>Cmd + C</code>).</li>
+<li>Switch to the destination document.</li>
+<li>In the <strong>Layers and Objects</strong> panel, select the target
+layer where the vectors should go.</li>
+<li>Press <code>Ctrl + Alt + V</code> (or
+<code>Cmd + Option + V</code>), or navigate to <strong>Edit &gt; Paste
+in Place</strong>.</li>
+</ol>
+<p>The vector contents will be placed into the selected layer at the
+exact canvas coordinates as the original file.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

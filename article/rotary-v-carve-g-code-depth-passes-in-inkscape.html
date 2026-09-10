@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotary V-Carve G-Code Depth Passes in Inkscape - inkscape</title>
+    <meta name="description" content="Generating multi-pass G-code for rotary V-carve engraving in Inkscape involves translating 2D vector paths into conical-tool toolpaths using the built-in Gcodetools extension. This process requires unwrapping your cylindrical workpiece dimensions onto a">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/rotary-v-carve-g-code-depth-passes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Rotary V-Carve G-Code Depth Passes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/rotary-v-carve-g-code-depth-passes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Generating multi-pass G-code for rotary V-carve engraving in Inkscape involves translating 2D vector paths into conical-tool toolpaths using the built-in Gcodetools extension. This process requires unwrapping your cylindrical workpiece dimensions onto a" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="rotary-v-carve-g-code-depth-passes-in-inkscape">Rotary V-Carve
+G-Code Depth Passes in Inkscape</h1>
+<p>Generating multi-pass G-code for rotary V-carve engraving in Inkscape
+involves translating 2D vector paths into conical-tool toolpaths using
+the built-in Gcodetools extension. This process requires unwrapping your
+cylindrical workpiece dimensions onto a flat canvas, defining a conical
+tool profile with specific depth steps, calculating multi-pass tool
+offsets based on the V-bit angle, and converting the planar coordinates
+into rotational commands for your machine.</p>
+<h3 id="step-1-calculate-the-rotary-canvas-dimensions">Step 1: Calculate
+the Rotary Canvas Dimensions</h3>
+<p>Before designing, set up your Inkscape document properties to match
+your cylinder's unrolled surface area.</p>
+<ol type="1">
+<li>Measure your cylinder's outer diameter (<span
+class="math inline">\(D\)</span>) and length (<span
+class="math inline">\(L\)</span>).</li>
+<li>Calculate the circumference using the formula: <span
+class="math inline">\(C = \pi \times D\)</span>.</li>
+<li>Open <strong>File &gt; Document Properties</strong>.</li>
+<li>Set the canvas width to your cylinder's length (<span
+class="math inline">\(L\)</span>) and the canvas height to the
+circumference (<span class="math inline">\(C\)</span>) (or vice versa,
+depending on whether your rotary axis replaces the X or Y axis).</li>
+</ol>
+<p>Ensure your artwork stays within these boundaries. The top and bottom
+(or left and right) edges represent the same seam on the physical
+cylinder.</p>
+<h3 id="step-2-prepare-the-vector-artwork">Step 2: Prepare the Vector
+Artwork</h3>
+<p>V-carve engraving requires clean, standardized vector paths.</p>
+<ol type="1">
+<li>Select your shapes or text.</li>
+<li>Navigate to <strong>Path &gt; Object to Path</strong> to convert all
+elements into vectors.</li>
+<li>If using text or overlapping shapes, go to <strong>Path &gt;
+Union</strong> to remove overlapping internal lines.</li>
+<li>Clean up any stray nodes with <strong>Path &gt; Simplify</strong> if
+necessary to prevent toolpath stuttering.</li>
+</ol>
+<h3 id="step-3-insert-orientation-points">Step 3: Insert Orientation
+Points</h3>
+<p>Orientation points establish the coordinate origin and depth scaling
+for the G-code output.</p>
+<ol type="1">
+<li>Go to <strong>Extensions &gt; Gcodetools &gt; Orientation
+points</strong>.</li>
+<li>Set the <strong>Orientation type</strong> to
+<code>in-out-reference point</code> or standard 2-point mode.</li>
+<li>Set <strong>Surface (Z)</strong> to <code>0.0</code> (representing
+the cylinder surface).</li>
+<li>Set <strong>Depth (Z)</strong> to your total desired maximum cut
+depth (e.g., <code>-2.0</code> mm).</li>
+<li>Click <strong>Apply</strong> and close the dialog. A set of green
+coordinate markers will appear at the bottom-left of your canvas.</li>
+</ol>
+<h3 id="step-4-configure-the-conical-v-carve-tool-profile">Step 4:
+Configure the Conical (V-Carve) Tool Profile</h3>
+<p>To generate depth passes, you must define a tool profile and its
+maximum cutting step.</p>
+<ol type="1">
+<li>Go to <strong>Extensions &gt; Gcodetools &gt; Tools
+library</strong>.</li>
+<li>Select <strong>cone</strong> as the tool type and click
+<strong>Apply</strong>.</li>
+<li>A green rectangular text box will appear on the canvas containing
+editable text fields.</li>
+<li>Select the <strong>Text Tool (F8)</strong> and modify the text
+values directly:
+<ul>
+<li><strong>diameter</strong>: The maximum diameter of your V-bit.</li>
+<li><strong>cone angle</strong>: The included angle of your V-bit (e.g.,
+<code>60</code> or <code>90</code>).</li>
+<li><strong>depth step</strong>: The maximum depth per pass (e.g.,
+<code>0.5</code> mm). The total depth set in your orientation points
+divided by this value determines the number of passes.</li>
+<li><strong>feed</strong>: XY linear cutting speed.</li>
+<li><strong>penetration feed</strong>: Z plunge speed.</li>
+</ul></li>
+</ol>
+<h3 id="step-5-generate-the-engraving-toolpaths-with-depth-passes">Step
+5: Generate the Engraving Toolpaths with Depth Passes</h3>
+<p>The Engraving function calculates the multi-pass tool offsets
+according to the conical shape of the bit.</p>
+<ol type="1">
+<li>Select the artwork you wish to engrave.</li>
+<li>Go to <strong>Extensions &gt; Gcodetools &gt;
+Engraving</strong>.</li>
+<li>Under the <strong>Engraving</strong> tab:
+<ul>
+<li>Enable multi-pass cutting by ensuring your <strong>depth
+step</strong> in the tool settings is smaller than your target
+depth.</li>
+<li>Set <strong>Maximum distance for clean paths</strong> to define
+fine-detail tolerance.</li>
+</ul></li>
+<li>Open the <strong>Preferences</strong> tab:
+<ul>
+<li>Specify the output file name and directory.</li>
+<li>Set <strong>Z safe height</strong> (clearance above the cylinder for
+rapids).</li>
+</ul></li>
+<li>Click <strong>Apply</strong>. Inkscape will calculate the offsets
+and generate multiple depth-pass paths, displaying the cutting paths on
+the screen and exporting the raw <code>.ngc</code> or
+<code>.gcode</code> file.</li>
+</ol>
+<h3 id="step-6-adapt-the-g-code-for-rotary-movement">Step 6: Adapt the
+G-code for Rotary Movement</h3>
+<p>Because Inkscape exports standard Cartesian coordinates (X, Y, Z),
+you must map one linear axis to your rotary axis (commonly the
+A-axis).</p>
+<ul>
+<li><strong>Hardware Mapping (Direct Substitution):</strong> If your
+rotary axis simply plugs into the machine's Y-axis motor driver,
+calibrate your controller's steps-per-millimeter so that one full
+rotation equals the circumference (<span
+class="math inline">\(C\)</span>). In this setup, the exported G-code
+runs without text modifications.</li>
+<li><strong>Coordinate Substitution (G-code Editing):</strong> If your
+controller expects degrees for an A-axis:
+<ol type="1">
+<li>Open the exported G-code in a text editor.</li>
+<li>Use a rotary conversion script, post-processor, or find-and-replace
+routine to convert linear Y coordinates to degrees using the ratio:
+<span class="math inline">\(A = (Y / C) \times 360\)</span>.</li>
+<li>Replace all <code>Y</code> movement commands with <code>A</code>
+commands.</li>
+</ol></li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

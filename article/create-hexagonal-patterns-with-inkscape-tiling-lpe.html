@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Hexagonal Patterns with Inkscape Tiling LPE - inkscape</title>
+    <meta name="description" content="This guide explains how to generate seamless, parametric hexagonal patterns in Inkscape using the Tiling Live Path Effect (LPE). By setting up a base geometric unit and applying mathematically calculated offsets within the Tiling effect, you can create f">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-hexagonal-patterns-with-inkscape-tiling-lpe">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Hexagonal Patterns with Inkscape Tiling LPE - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-hexagonal-patterns-with-inkscape-tiling-lpe" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate seamless, parametric hexagonal patterns in Inkscape using the Tiling Live Path Effect (LPE). By setting up a base geometric unit and applying mathematically calculated offsets within the Tiling effect, you can create f" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-hexagonal-patterns-with-inkscape-tiling-lpe">Create
+Hexagonal Patterns with Inkscape Tiling LPE</h1>
+<p>This guide explains how to generate seamless, parametric hexagonal
+patterns in Inkscape using the Tiling Live Path Effect (LPE). By setting
+up a base geometric unit and applying mathematically calculated offsets
+within the Tiling effect, you can create fully customizable,
+non-destructive honeycomb grids that update dynamically as you edit the
+source shape.</p>
+<h3 id="step-1-create-the-base-hexagon">Step 1: Create the Base
+Hexagon</h3>
+<ol type="1">
+<li>Select the <strong>Stars and Polygons</strong> tool from the toolbar
+(shortcut: <code>*</code>).</li>
+<li>On the top control bar, select the regular polygon icon and set
+<strong>Corners</strong> to <code>6</code>.</li>
+<li>Hold <code>Ctrl</code> while clicking and dragging on the canvas to
+draw a symmetrical hexagon. Keep it oriented with a flat top or a
+pointed top depending on your desired layout.</li>
+<li>Convert the object to a path by navigating to <strong>Path &gt;
+Object to Path</strong> (<code>Ctrl + Shift + C</code>).</li>
+</ol>
+<h3 id="step-2-add-the-tiling-live-path-effect">Step 2: Add the Tiling
+Live Path Effect</h3>
+<ol type="1">
+<li>Select your hexagon path.</li>
+<li>Open the Path Effects dialog by navigating to <strong>Path &gt; Path
+Effects</strong>.</li>
+<li>Click the <strong>Add Path Effect</strong> button
+(<code>+</code>).</li>
+<li>Search for or select <strong>Tiling</strong> from the list of
+available effects.</li>
+</ol>
+<h3 id="step-3-configure-the-grid-and-offsets">Step 3: Configure the
+Grid and Offsets</h3>
+<p>To make standard hexagons interlock seamlessly into a honeycomb
+structure, alternate rows or columns must be shifted and compressed to
+account for hexagonal geometry:</p>
+<ol type="1">
+<li><strong>Set Tile Quantities:</strong> In the Tiling LPE panel,
+define the number of <strong>Rows</strong> and <strong>Columns</strong>
+required for your pattern.</li>
+<li><strong>Apply Row/Column Offset:</strong>
+<ul>
+<li>Go to the <strong>Offset</strong> tab or offset controls within the
+Tiling panel.</li>
+<li>For a flat-topped hexagon layout, set the horizontal offset for
+alternate rows to <strong>50%</strong>.</li>
+</ul></li>
+<li><strong>Adjust Spacing for Interlocking:</strong>
+<ul>
+<li>Regular hexagons do not fit on a standard rectangular bounding box.
+To interlock them, adjust the vertical gap or spacing.</li>
+<li>For flat-topped hexagons, reduce the vertical spacing (set a
+negative Y-gap/offset of approximately <strong>-25%</strong> of the
+height, depending on stroke width) so that the upper peaks slide into
+the lower recesses of the row above.</li>
+<li>If using pointed-topped hexagons, apply the 50% shift vertically to
+alternate columns, and apply the negative gap horizontally.</li>
+</ul></li>
+</ol>
+<h3 id="step-4-utilize-parametric-controls">Step 4: Utilize Parametric
+Controls</h3>
+<p>Because the pattern is managed by a Live Path Effect, it remains
+fully parametric:</p>
+<ul>
+<li><strong>Edit the Source Geometry:</strong> Select the <strong>Node
+tool</strong> (<code>N</code>) and alter any node on the original
+hexagon. Every clone in the pattern updates in real time.</li>
+<li><strong>Add Inner Details:</strong> You can combine multiple shapes
+into a single compound path (<code>Ctrl + K</code>) before or after
+applying the LPE to tile complex motifs hexagonally.</li>
+<li><strong>Parametric Variations:</strong> Use the scale, rotation, and
+jitter settings within the Tiling LPE panel to introduce controlled
+randomness or gradients across the grid while retaining the underlying
+hexagonal distribution.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

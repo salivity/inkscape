@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appliqué Placement and Tack-Down in Ink/Stitch - inkscape</title>
+    <meta name="description" content="Designing appliqué in Ink/Stitch requires a precise three-step sequence: a placement stitch to show where the fabric goes, a tack-down stitch to secure the raw fabric in place, and a final covering stitch (typically satin or blanket stitch) to finish th">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/appliqué-placement-and-tack-down-in-ink-stitch">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Appliqué Placement and Tack-Down in Ink/Stitch - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/appliqué-placement-and-tack-down-in-ink-stitch" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing appliqué in Ink/Stitch requires a precise three-step sequence: a placement stitch to show where the fabric goes, a tack-down stitch to secure the raw fabric in place, and a final covering stitch (typically satin or blanket stitch) to finish th" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="appliqué-placement-and-tack-down-in-inkstitch">Appliqué
+Placement and Tack-Down in Ink/Stitch</h1>
+<p>Designing appliqué in Ink/Stitch requires a precise three-step
+sequence: a placement stitch to show where the fabric goes, a tack-down
+stitch to secure the raw fabric in place, and a final covering stitch
+(typically satin or blanket stitch) to finish the edges. By utilizing
+duplicate vector paths, assigning distinct thread colors to trigger
+machine stops, and configuring basic stroke parameters in Inkscape, you
+can build a reliable and clean appliqué design ready for machine
+embroidery.</p>
+<h3 id="1-draw-the-base-appliqué-shape">1. Draw the Base Appliqué
+Shape</h3>
+<ol type="1">
+<li>Open Inkscape and create the shape you want to use for your appliqué
+using the <strong>Draw Freehand Lines</strong> tool, the <strong>Bezier
+Curves</strong> tool, or standard geometric shapes.</li>
+<li>If using a standard shape (such as a circle or rectangle), convert
+it to a path by navigating to <strong>Path &gt; Object to
+Path</strong>.</li>
+<li>In the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>), set the <strong>Fill</strong> to "None"
+and set a <strong>Stroke paint</strong> color. Ensure the stroke style
+width is set to a standard thin line (e.g., 1 mm).</li>
+</ol>
+<h3 id="2-create-the-three-essential-layers">2. Create the Three
+Essential Layers</h3>
+<p>Appliqué relies on duplicate paths placed in the exact same location
+but executed at different stages of the stitch order.</p>
+<ol type="1">
+<li>Select your base path.</li>
+<li>Duplicate it twice using <code>Ctrl + D</code>. You will now have
+three identical paths directly on top of each other.</li>
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>) and rename the three objects from bottom
+to top:
+<ul>
+<li><strong>Placement Stitch</strong> (Bottom)</li>
+<li><strong>Tack-Down Stitch</strong> (Middle)</li>
+<li><strong>Finishing Stitch</strong> (Top)</li>
+</ul></li>
+</ol>
+<h3 id="3-configure-the-placement-stitch">3. Configure the Placement
+Stitch</h3>
+<p>The placement stitch is a simple running line sewn directly onto the
+stabilizer to show the user where to position the appliqué fabric.</p>
+<ol type="1">
+<li>Select the <strong>Placement Stitch</strong> path.</li>
+<li>Open <strong>Fill and Stroke</strong> and assign it a distinct color
+(e.g., Blue).</li>
+<li>With the path selected, open <strong>Extensions &gt; Ink/Stitch &gt;
+Params</strong>.</li>
+<li>Leave the settings configured as a standard running stitch, verify
+the stitch length (typically 2.0–2.5 mm), and click <strong>Apply and
+Quit</strong>.</li>
+</ol>
+<h3 id="4-configure-the-tack-down-stitch">4. Configure the Tack-Down
+Stitch</h3>
+<p>After placing the fabric over the placement line, the tack-down
+stitch sews the fabric securely to the stabilizer.</p>
+<ol type="1">
+<li>Select the <strong>Tack-Down Stitch</strong> path.</li>
+<li>Change the stroke color in <strong>Fill and Stroke</strong> to a
+different color than the placement stitch (e.g., Red). Machine
+embroidery files recognize color changes as instructions to pause the
+machine, allowing you to place and trim your fabric.</li>
+<li>Open <strong>Extensions &gt; Ink/Stitch &gt; Params</strong>.</li>
+<li>Choose your preferred tack-down method:
+<ul>
+<li><strong>Standard Running Stitch:</strong> A simple straight stitch,
+best used if you plan to trim the fabric edges closely after
+stitching.</li>
+<li><strong>Zig-Zag Stitch:</strong> Set a small zig-zag width to firmly
+bind edges that are prone to fraying.</li>
+</ul></li>
+<li>Click <strong>Apply and Quit</strong>.</li>
+</ol>
+<h3 id="5-configure-the-finishing-stitch">5. Configure the Finishing
+Stitch</h3>
+<p>The finishing stitch conceals the raw edges of the trimmed appliqué
+fabric.</p>
+<ol type="1">
+<li>Select the <strong>Finishing Stitch</strong> path.</li>
+<li>Change the stroke color to your desired final thread color (e.g.,
+Black).</li>
+<li>Depending on the desired finish:
+<ul>
+<li><strong>Satin Edge:</strong> Convert the path into a satin column by
+adding a second parallel contour or converting the stroke to a wide
+zig-zag via <strong>Extensions &gt; Ink/Stitch &gt; Tools: Satin &gt;
+Convert Line to Satin</strong>.</li>
+<li><strong>E-Stitch / Blanket Stitch:</strong> In <strong>Extensions
+&gt; Ink/Stitch &gt; Params</strong>, configure the stroke style to use
+an E-stitch sequence suitable for a casual or vintage appliqué
+look.</li>
+</ul></li>
+<li>Set the stitch density appropriately (typically 0.4 mm spacing for
+dense satin coverage) to prevent any raw fabric edges from showing
+through. Click <strong>Apply and Quit</strong>.</li>
+</ol>
+<h3 id="6-add-stop-commands-and-verify">6. Add Stop Commands and
+Verify</h3>
+<p>To ensure the embroidery machine halts at the proper moments:</p>
+<ol type="1">
+<li>Rely on color changes: Ensure all three steps (Placement, Tack-Down,
+and Finishing) have distinct thread colors assigned. Most embroidery
+machines automatically stop when encountering a color change.</li>
+<li>Optional Stop Command: Select the <strong>Placement Stitch</strong>
+path, go to <strong>Extensions &gt; Ink/Stitch &gt; Commands &gt; Attach
+Commands to Selected Objects</strong>, check <strong>Stop (pause
+machine)</strong>, and click <strong>Apply</strong>. Repeat for the
+<strong>Tack-Down Stitch</strong> path.</li>
+<li>Verify the sequence by opening <strong>Extensions &gt; Ink/Stitch
+&gt; Visualise and Export &gt; Simulator/Realistic Preview</strong>.
+Confirm that the machine sews the placement line first, pauses, sews the
+tack-down line second, pauses, and completes the design with the
+finishing border.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

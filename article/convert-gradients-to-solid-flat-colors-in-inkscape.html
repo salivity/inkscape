@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Gradients to Solid Flat Colors in Inkscape - inkscape</title>
+    <meta name="description" content="Converting gradient fills and strokes into solid flat colors across an entire Inkscape document can be done quickly without manually selecting each object one by one. By utilizing Inkscape’s Find/Replace feature to query gradient definitions in object">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/convert-gradients-to-solid-flat-colors-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Convert Gradients to Solid Flat Colors in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/convert-gradients-to-solid-flat-colors-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting gradient fills and strokes into solid flat colors across an entire Inkscape document can be done quickly without manually selecting each object one by one. By utilizing Inkscape’s Find/Replace feature to query gradient definitions in object" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="convert-gradients-to-solid-flat-colors-in-inkscape">Convert
+Gradients to Solid Flat Colors in Inkscape</h1>
+<p>Converting gradient fills and strokes into solid flat colors across
+an entire Inkscape document can be done quickly without manually
+selecting each object one by one. By utilizing Inkscape’s Find/Replace
+feature to query gradient definitions in object styles, you can select
+every gradient-filled element on your canvas at once and switch their
+fill or stroke properties to a flat color in the Fill and Stroke
+dialog.</p>
+<h3 id="step-1-unlock-all-layers-and-objects">Step 1: Unlock All Layers
+and Objects</h3>
+<p>To ensure Inkscape searches the entire document, make sure no objects
+or layers are hidden or locked.</p>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel by pressing
+<code>Ctrl + Shift + L</code>.</li>
+<li>Ensure all layer eye icons are open (visible) and lock icons are
+unlocked.</li>
+<li>Go to the top menu and click <strong>Edit &gt; Unlock All</strong>
+to ensure no grouped or individual paths are restricted.</li>
+</ol>
+<h3 id="step-2-select-all-gradient-objects-with-findreplace">Step 2:
+Select All Gradient Objects with Find/Replace</h3>
+<p>Inkscape stores gradients internally as URL references (such as
+<code>url(#linearGradient...)</code>). You can locate all elements using
+this style attribute.</p>
+<ol type="1">
+<li>Press <code>Ctrl + F</code> to open the
+<strong>Find/Replace</strong> dialog.</li>
+<li>Clear any text from the <strong>Find</strong> input field.</li>
+<li>Expand the search options by clicking the arrow next to
+<strong>Properties</strong>.</li>
+<li>In the <strong>Style</strong> field, type: <code>url(#</code></li>
+<li>Under the <strong>Search in</strong> section, check
+<strong>All</strong> (or check <strong>Selection</strong> if you only
+want to affect a specific group).</li>
+<li>Click <strong>Find</strong>. Inkscape will automatically select
+every object across your canvas that contains a gradient fill or
+stroke.</li>
+</ol>
+<h3 id="step-3-switch-fills-to-flat-color">Step 3: Switch Fills to Flat
+Color</h3>
+<p>With all gradient objects selected:</p>
+<ol type="1">
+<li>Open the <strong>Fill and Stroke</strong> panel by pressing
+<code>Shift + Ctrl + F</code>.</li>
+<li>Go to the <strong>Fill</strong> tab.</li>
+<li>Click the <strong>Flat color</strong> icon (the solid square next to
+the "No paint" <code>X</code> icon).</li>
+<li>Inkscape will convert the gradient fills into a uniform solid color.
+You can now use the color wheel, sliders, or the bottom palette to
+define the desired flat color.</li>
+</ol>
+<h3 id="step-4-switch-stroke-gradients-if-applicable">Step 4: Switch
+Stroke Gradients (If Applicable)</h3>
+<p>If your artwork also uses gradients along outlines or strokes:</p>
+<ol type="1">
+<li>Keep the objects selected (or repeat the Find/Replace step if
+deselected).</li>
+<li>In the <strong>Fill and Stroke</strong> panel, switch to the
+<strong>Stroke paint</strong> tab.</li>
+<li>If any strokes use gradients, click the <strong>Flat color</strong>
+icon to convert them to solid lines.</li>
+</ol>
+<h3 id="step-5-clean-up-unused-gradient-definitions">Step 5: Clean Up
+Unused Gradient Definitions</h3>
+<p>After converting the gradients to solid colors, the original gradient
+definitions remain stored in the document's XML code. To reduce file
+size and keep your SVG clean:</p>
+<ol type="1">
+<li>Go to <strong>File</strong> in the top menu.</li>
+<li>Select <strong>Clean Up Document</strong> (in older versions, this
+is labeled <strong>Vacuum Defs</strong>).</li>
+<li>Save your file (<code>Ctrl + S</code>).</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

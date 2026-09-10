@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query Path Stroke Width via Inkscape CLI - inkscape</title>
+    <meta name="description" content="This guide explains how to extract element dimensions using the Inkscape command-line interface (CLI) with the --query-all command, how to filter the output for a specific path ID, and how to accurately determine the stroke width of that path given the g">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/query-path-stroke-width-via-inkscape-cli">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Query Path Stroke Width via Inkscape CLI - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/query-path-stroke-width-via-inkscape-cli" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to extract element dimensions using the Inkscape command-line interface (CLI) with the --query-all command, how to filter the output for a specific path ID, and how to accurately determine the stroke width of that path given the g" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="query-path-stroke-width-via-inkscape-cli">Query Path Stroke
+Width via Inkscape CLI</h1>
+<p>This guide explains how to extract element dimensions using the
+Inkscape command-line interface (CLI) with the <code>--query-all</code>
+command, how to filter the output for a specific path ID, and how to
+accurately determine the stroke width of that path given the
+geometry-focused output of the command.</p>
+<h3 id="understanding-the---query-all-flag">Understanding the
+<code>--query-all</code> Flag</h3>
+<p>The Inkscape CLI includes the <code>--query-all</code> option to
+extract positional and dimensional data for every object in an SVG
+document. When executed, Inkscape outputs a comma-separated values (CSV)
+list with the following format:</p>
+<pre class="text"><code>id,x,y,width,height</code></pre>
+<p>Because <code>--query-all</code> only outputs the bounding box
+coordinates and dimensions (<code>x</code>, <code>y</code>,
+<code>width</code>, and <code>height</code>), it does not have a
+dedicated field for the CSS <code>stroke-width</code> attribute.
+However, you can retrieve the object's dimensional data and determine
+the stroke width using the methods below.</p>
+<hr />
+<h3 id="step-1-querying-a-specific-path-id">Step 1: Querying a Specific
+Path ID</h3>
+<p>To isolate a specific path by its ID from the
+<code>--query-all</code> output, pipe the command output to text
+processing utilities such as <code>grep</code> or <code>awk</code>.</p>
+<p>Using <code>grep</code>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--query-all</span> drawing.svg <span class="kw">|</span> <span class="fu">grep</span> <span class="st">&quot;^path123,&quot;</span></span></code></pre></div>
+<p>Using <code>awk</code>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--query-all</span> drawing.svg <span class="kw">|</span> <span class="fu">awk</span> <span class="at">-F,</span> <span class="st">&#39;$1==&quot;path123&quot; {print &quot;ID:&quot;, $1, &quot;Width:&quot;, $4, &quot;Height:&quot;, $5}&#39;</span></span></code></pre></div>
+<p>Replace <code>path123</code> with the target path ID and
+<code>drawing.svg</code> with your SVG filename.</p>
+<hr />
+<h3 id="step-2-determining-stroke-width-from-cli-geometry">Step 2:
+Determining Stroke Width from CLI Geometry</h3>
+<p>Inkscape calculates bounding boxes based on user preferences:
+<strong>Visual bounding box</strong> (includes stroke width) or
+<strong>Geometric bounding box</strong> (excludes stroke width).</p>
+<p>If you configure Inkscape to toggle these modes, the difference
+between the visual width and geometric width represents the stroke
+width.</p>
+<ol type="1">
+<li><strong>Query visual bounding box (default in standard UI):</strong>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--query-id</span><span class="op">=</span>path123 <span class="at">--query-width</span> drawing.svg</span></code></pre></div></li>
+<li><strong>Calculate the difference:</strong> For axis-aligned paths or
+simple rectangles, subtracting the geometric width from the visual width
+yields the total stroke width (as stroke is centered along the path
+outline).</li>
+</ol>
+<hr />
+<h3 id="step-3-direct-extraction-of-stroke-width-via-xml">Step 3: Direct
+Extraction of Stroke Width via XML</h3>
+<p>Because <code>--query-all</code> is strictly designed for geometric
+bounding boxes rather than styling attributes, pairing your CLI workflow
+with an XML parser like <code>xmllint</code> or <code>xmlstarlet</code>
+is the standard approach to retrieve the exact <code>stroke-width</code>
+value for that specific ID.</p>
+<p>Using <code>xmllint</code>:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmllint</span> <span class="at">--xpath</span> <span class="st">&quot;string(//*[@id=&#39;path123&#39;]/@style)&quot;</span> drawing.svg <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-o</span> <span class="st">&#39;stroke-width:[^;]*&#39;</span></span></code></pre></div>
+<p>Using <code>xmlstarlet</code> (handling direct attributes):</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmlstarlet</span> sel <span class="at">-t</span> <span class="at">-v</span> <span class="st">&quot;//*[@id=&#39;path123&#39;]/@stroke-width&quot;</span> drawing.svg</span></code></pre></div>
+<p>If the stroke width is defined inside a style string, extract the
+specific value with <code>sed</code>:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xmlstarlet</span> sel <span class="at">-t</span> <span class="at">-v</span> <span class="st">&quot;//*[@id=&#39;path123&#39;]/@style&quot;</span> drawing.svg <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-n</span> <span class="st">&#39;s/.*stroke-width:\([^;]*\).*/\1/p&#39;</span></span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

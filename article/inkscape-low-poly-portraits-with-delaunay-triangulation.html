@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Low-Poly Portraits With Delaunay Triangulation - inkscape</title>
+    <meta name="description" content="This guide provides a step-by-step method for creating low-poly vector portrait illustrations in Inkscape using the Delaunay Triangulation extension. You will learn how to map facial features with coordinate points, automatically generate a geometric mes">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-low-poly-portraits-with-delaunay-triangulation">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Low-Poly Portraits With Delaunay Triangulation - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-low-poly-portraits-with-delaunay-triangulation" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a step-by-step method for creating low-poly vector portrait illustrations in Inkscape using the Delaunay Triangulation extension. You will learn how to map facial features with coordinate points, automatically generate a geometric mes" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1
+id="inkscape-low-poly-portraits-with-delaunay-triangulation">Inkscape
+Low-Poly Portraits With Delaunay Triangulation</h1>
+<p>This guide provides a step-by-step method for creating low-poly
+vector portrait illustrations in Inkscape using the Delaunay
+Triangulation extension. You will learn how to map facial features with
+coordinate points, automatically generate a geometric mesh, sample
+colors from a reference image, and refine the final artwork into a
+clean, modern vector illustration.</p>
+<h3 id="1-set-up-your-canvas-and-reference-image">1. Set Up Your Canvas
+and Reference Image</h3>
+<ol type="1">
+<li>Open Inkscape and set up your document properties
+(<code>Ctrl + Shift + D</code>).</li>
+<li>Import your portrait reference image
+(<code>File &gt; Import</code>). Choose a high-contrast, well-lit photo
+for the best results.</li>
+<li>Center the image on your canvas, rename this layer to "Reference,"
+and lock it in the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li>Create a new layer on top and name it "Points."</li>
+</ol>
+<h3 id="2-plot-nodes-along-key-facial-features">2. Plot Nodes Along Key
+Facial Features</h3>
+<ol type="1">
+<li>Select the <strong>Draw Freehand Lines</strong> or <strong>Draw
+Bezier Curves</strong> tool (<code>B</code>).</li>
+<li>Begin placing individual dots (single-node paths) across the
+subject’s face on the "Points" layer.</li>
+<li>Place nodes densely around detailed areas such as the eyes, nose,
+lips, and sharp shadow lines.</li>
+<li>Use a sparser distribution of nodes across flat areas with minimal
+tonal variation, such as the forehead, cheeks, and background.</li>
+<li>Ensure you place boundary nodes along the outer edges of the face,
+hair, and shoulders to maintain a defined silhouette.</li>
+</ol>
+<h3 id="3-generate-the-delaunay-triangulation">3. Generate the Delaunay
+Triangulation</h3>
+<ol type="1">
+<li>Select all the plotted points using the <strong>Select and Transform
+Objects</strong> tool (<code>S</code> or <code>Ctrl + A</code> while on
+the "Points" layer).</li>
+<li>Combine all points into a single path by navigating to <strong>Path
+&gt; Combine</strong> (<code>Ctrl + K</code>).</li>
+<li>Go to the menu and select <strong>Extensions &gt; Generate from Path
+&gt; Voronoi Diagram...</strong></li>
+<li>In the dialog box, set the <strong>Diagram type</strong> to
+<strong>Delaunay Triangulation</strong>.</li>
+<li>Check <strong>Live preview</strong> to inspect the mesh. If the
+triangles align well with the facial geometry, click
+<strong>Apply</strong> and close the window.</li>
+</ol>
+<h3 id="4-prepare-the-mesh-for-coloring">4. Prepare the Mesh for
+Coloring</h3>
+<ol type="1">
+<li>Unlock the newly generated triangulation object and ungroup it
+(<code>Ctrl + Shift + G</code>) to separate individual triangles.</li>
+<li>Select all triangles and open the <strong>Fill and Stroke</strong>
+panel (<code>Ctrl + Shift + F</code>).</li>
+<li>Set the <strong>Stroke paint</strong> to <em>No paint</em> (or keep
+a very thin stroke of 0.1 px in matching colors to prevent sub-pixel
+gaps).</li>
+<li>Create a new layer named "Mesh" and move the triangles there,
+positioned directly above the "Reference" layer.</li>
+</ol>
+<h3 id="5-sample-colors-and-fill-polygons">5. Sample Colors and Fill
+Polygons</h3>
+<ol type="1">
+<li>Select a triangle in your mesh.</li>
+<li>Activate the <strong>Dropper tool</strong> (<code>D</code>).</li>
+<li>Click inside the area of the reference image directly beneath the
+selected triangle to sample the average local color.</li>
+<li>Press <code>Tab</code> or <code>Alt + Click</code> to cycle to the
+next adjacent triangle, and use the Dropper tool to sample its
+color.</li>
+<li>Repeat this process systematically across the entire portrait until
+all triangles are filled with their corresponding tones.</li>
+</ol>
+<h3 id="6-refine-and-polish">6. Refine and Polish</h3>
+<ol type="1">
+<li>Zoom in (<code>+</code>) and check for misaligned vertices or empty
+seams between triangles. Use the <strong>Edit paths by nodes</strong>
+tool (<code>N</code>) to snap adjacent nodes together.</li>
+<li>If any triangle looks too flat or covers a sharp edge, split the
+triangle manually and sample the contrasting colors to add depth.</li>
+<li>Hide or delete the "Reference" layer.</li>
+<li>Group the final artwork (<code>Ctrl + G</code>) and export your
+portrait as an SVG or high-resolution PNG
+(<code>Ctrl + Shift + E</code>).</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

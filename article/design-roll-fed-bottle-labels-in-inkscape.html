@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Roll-Fed Bottle Labels in Inkscape - inkscape</title>
+    <meta name="description" content="Designing roll-fed bottle labels requires precise dimensioning to ensure graphics align properly and the label adheres securely around the container. This guide covers how to set up your document in Inkscape, calculate circumference and overlap glue marg">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/design-roll-fed-bottle-labels-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Roll-Fed Bottle Labels in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/design-roll-fed-bottle-labels-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing roll-fed bottle labels requires precise dimensioning to ensure graphics align properly and the label adheres securely around the container. This guide covers how to set up your document in Inkscape, calculate circumference and overlap glue marg" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="design-roll-fed-bottle-labels-in-inkscape">Design Roll-Fed
+Bottle Labels in Inkscape</h1>
+<p>Designing roll-fed bottle labels requires precise dimensioning to
+ensure graphics align properly and the label adheres securely around the
+container. This guide covers how to set up your document in Inkscape,
+calculate circumference and overlap glue margins, create layout guides,
+define glue-free or varnish-free zones, and export press-ready files for
+commercial roll-fed label printing.</p>
+<h2 id="1-calculate-your-label-dimensions">1. Calculate Your Label
+Dimensions</h2>
+<p>Before opening Inkscape, determine your three primary horizontal
+measurements:</p>
+<ul>
+<li><strong>Body Width (Circumference):</strong> The exact outer
+circumference of the bottle where the label rests.</li>
+<li><strong>Overlap Margin:</strong> The additional width (typically
+between 9 mm and 19 mm, depending on your packaging line specifications)
+where the trailing edge overlaps the leading edge to adhere the
+label.</li>
+<li><strong>Full Cut Length:</strong> Body Width + Overlap Margin.</li>
+<li><strong>Label Height:</strong> The vertical dimension of the
+label.</li>
+<li><strong>Bleed:</strong> Typically 1.5 mm to 3 mm added to all
+external edges.</li>
+</ul>
+<h2 id="2-configure-document-properties-in-inkscape">2. Configure
+Document Properties in Inkscape</h2>
+<ol type="1">
+<li>Open Inkscape and create a new document.</li>
+<li>Go to <strong>File &gt; Document Properties</strong> (or press
+<code>Shift + Ctrl + D</code>).</li>
+<li>Under the <strong>Page</strong> tab:
+<ul>
+<li>Set <strong>Display units</strong> to <code>mm</code> or
+<code>in</code> based on your technical drawing.</li>
+<li>Under <strong>Custom size</strong>, set the <strong>Width</strong>
+to your Full Cut Length and the <strong>Height</strong> to your Label
+Height.</li>
+<li>If your print provider requires bleed included in the page boundary,
+add twice your bleed value to both the width and height.</li>
+</ul></li>
+</ol>
+<h2 id="3-set-up-guides-for-glue-margins-and-safe-zones">3. Set Up
+Guides for Glue Margins and Safe Zones</h2>
+<p>Roll-fed labels use adhesive applied at the leading edge (pick-up
+glue) and the trailing edge (overlap/tail glue). Accurate guides prevent
+essential text or graphics from being buried in the seam.</p>
+<ol type="1">
+<li>Double-click the horizontal and vertical rulers to create precision
+guides, or drag guides onto the canvas and double-click each guide to
+input exact coordinates:
+<ul>
+<li><strong>Leading Edge (Pickup Area):</strong> Place a vertical guide
+at <code>0 mm</code> and another at the width of the pickup zone (often
+3 mm to 6 mm from the left edge).</li>
+<li><strong>Visible Body Boundary:</strong> Place a vertical guide where
+the standard container circumference ends, indicating the start of the
+overlap margin.</li>
+<li><strong>Trailing Overlap Margin:</strong> If your total width is 200
+mm with a 15 mm overlap, set a guide at <code>185 mm</code>. The area
+between <code>185 mm</code> and <code>200 mm</code> is the overlap panel
+that sits on top of or underneath the lead edge.</li>
+<li><strong>Safe Margins:</strong> Add guides at least 2 mm to 3 mm
+inside all cut lines to ensure critical logos and regulatory text do not
+sit near the trim lines.</li>
+</ul></li>
+</ol>
+<h2 id="4-structure-the-design-layers">4. Structure the Design
+Layers</h2>
+<p>Using structured layers prevents production errors and allows you to
+toggle technical markers on and off.</p>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Shift + Ctrl + L</code>).</li>
+<li>Create the following layer hierarchy:
+<ul>
+<li><strong>Guides &amp; Technical:</strong> For glue indicators, eye
+marks, and dimension notes (set to non-printing or hide prior to final
+raster output).</li>
+<li><strong>Artwork / Text:</strong> For typography, regulatory symbols,
+barcodes, and logos.</li>
+<li><strong>Background / Bleed:</strong> For solid colors, patterns, and
+background imagery.</li>
+</ul></li>
+</ol>
+<h2 id="5-account-for-inks-and-overlap-adhesion">5. Account for Inks and
+Overlap Adhesion</h2>
+<p>Roll-fed labeling machines commonly apply hot-melt glue to join the
+film. Ink and surface varnishes can weaken adhesive bonding.</p>
+<ul>
+<li><strong>Extend Backgrounds:</strong> Extend background colors fully
+across the overlap margin to prevent an unprinted white line if the cut
+or wrap shifts slightly on the machine.</li>
+<li><strong>Varnish-Free Windows:</strong> If your printer requires a
+raw substrate surface for hot-melt adhesive, create a dedicated shape
+matching the glue area in your <strong>Guides &amp; Technical</strong>
+layer, label it clearly (e.g., <code>Glue Area - No Varnish</code>), and
+assign it a distinct spot color stroke.</li>
+<li><strong>Clear Film Considerations:</strong> If designing on clear
+BOPP film, place a solid white backing vector (White Underprint) beneath
+graphics on a separate layer, leaving the glue overlap area free of
+white ink if required by the converter.</li>
+</ul>
+<h2 id="6-place-tracking-marks-eye-marks">6. Place Tracking Marks (Eye
+Marks)</h2>
+<p>Most roll-fed labeling machinery uses optical sensors to register
+where to cut each label from the roll.</p>
+<ol type="1">
+<li>Check your printer’s die line specification sheet for eye mark
+dimensions and placement (usually a high-contrast black rectangle
+situated along the bottom edge or within the glue margin).</li>
+<li>Draw the rectangle using the <strong>Rectangle Tool</strong>
+(<code>R</code>).</li>
+<li>Position it at the exact X and Y coordinates requested by your
+printer.</li>
+</ol>
+<h2 id="7-prepare-and-export-the-file">7. Prepare and Export the
+File</h2>
+<ol type="1">
+<li>Select all text elements and convert them to outlines by navigating
+to <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>). This prevents font-substitution errors
+at the print shop.</li>
+<li>Ensure all raster graphics (photos, textures) are linked or embedded
+at a minimum of 300 DPI at full scale.</li>
+<li>Save your working source file as an <strong>Inkscape
+SVG</strong>.</li>
+<li>Go to <strong>File &gt; Save As...</strong> and select
+<strong>Portable Document Format (*.pdf)</strong>.</li>
+<li>In the PDF export dialog:
+<ul>
+<li>Set <strong>PDF version</strong> to <code>1.4</code> or
+<code>1.5</code> (or PDF/X if supported by your extensions).</li>
+<li>Ensure <strong>Rasterize filter effects</strong> is set to
+<code>300 dpi</code> or higher.</li>
+<li>Check <strong>Export area is page</strong> to ensure the canvas trim
+matches your specified dimensions.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

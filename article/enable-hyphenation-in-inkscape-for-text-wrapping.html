@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enable Hyphenation in Inkscape for Text Wrapping - inkscape</title>
+    <meta name="description" content="Automating paragraph text wrapping with hyphenation in Inkscape produces balanced, publication-ready typography without manual line breaks. This guide explains how to activate the automated hyphenation setting, configure the required language dictionary,">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/enable-hyphenation-in-inkscape-for-text-wrapping">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Enable Hyphenation in Inkscape for Text Wrapping - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/enable-hyphenation-in-inkscape-for-text-wrapping" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Automating paragraph text wrapping with hyphenation in Inkscape produces balanced, publication-ready typography without manual line breaks. This guide explains how to activate the automated hyphenation setting, configure the required language dictionary," />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="enable-hyphenation-in-inkscape-for-text-wrapping">Enable
+Hyphenation in Inkscape for Text Wrapping</h1>
+<p>Automating paragraph text wrapping with hyphenation in Inkscape
+produces balanced, publication-ready typography without manual line
+breaks. This guide explains how to activate the automated hyphenation
+setting, configure the required language dictionary, and ensure your
+text frames wrap hyphenated words correctly.</p>
+<h2 id="the-hyphenation-setting-in-inkscape">The Hyphenation Setting in
+Inkscape</h2>
+<p>The setting that enables automated hyphenation is the
+<strong>Hyphenate</strong> toggle located in the Text Tool controls bar
+and the Text and Font dialog. However, the hyphenation engine cannot
+function without assigning an appropriate <strong>Language</strong> code
+to the text element, which tells Inkscape which dictionary to load.</p>
+<h3 id="step-1-create-flowed-text">Step 1: Create Flowed Text</h3>
+<p>Hyphenation only works on flowed or framed text, not on regular
+single-line text objects.</p>
+<ol type="1">
+<li>Select the <strong>Text tool</strong> (shortcut
+<code>T</code>).</li>
+<li>Click and drag on the canvas to create a rectangular text
+frame.</li>
+<li>Type or paste your paragraph content inside the frame.</li>
+</ol>
+<h3 id="step-2-enable-the-hyphenate-option">Step 2: Enable the Hyphenate
+Option</h3>
+<ol type="1">
+<li>Keep the text selected with the <strong>Text tool</strong>.</li>
+<li>Look at the Tool Controls bar at the top of the workspace.</li>
+<li>Locate and click the <strong>Hyphenate</strong> button (an icon
+showing text split with a hyphen).</li>
+<li>Alternatively, open the <strong>Text and Font</strong> panel
+(<code>Shift</code> + <code>Ctrl</code> + <code>T</code>), navigate to
+the text formatting options, and check the box for
+<strong>Hyphenation</strong>.</li>
+</ol>
+<h3 id="step-3-specify-the-language-dictionary">Step 3: Specify the
+Language Dictionary</h3>
+<p>For Inkscape to apply correct hyphenation patterns, it must know
+which language rules to use:</p>
+<ol type="1">
+<li>Open the <strong>Text and Font</strong> dialog (<code>Shift</code> +
+<code>Ctrl</code> + <code>T</code>).</li>
+<li>Go to the text properties and locate the <strong>Language</strong>
+field.</li>
+<li>Enter the standard two-letter or four-letter language code
+corresponding to your text (such as <code>en-US</code> for American
+English, <code>en-GB</code> for British English, or <code>de</code> for
+German).</li>
+<li>Click <strong>Apply</strong>.</li>
+</ol>
+<h2 id="dictionary-requirements">Dictionary Requirements</h2>
+<p>Inkscape relies on standard system hyphenation dictionaries
+(typically Hunspell or libhyphen dictionaries). If you enable the
+hyphenation toggle and set the language code but words still do not
+hyphenate:</p>
+<ul>
+<li><strong>Linux:</strong> Ensure hyphenation packages for your
+language (e.g., <code>hyphen-en</code>, <code>hyphen-de</code>) are
+installed via your package manager.</li>
+<li><strong>Windows &amp; macOS:</strong> Inkscape bundles standard
+dictionaries, but you must ensure the language code entered in the text
+properties precisely matches an installed dictionary code.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

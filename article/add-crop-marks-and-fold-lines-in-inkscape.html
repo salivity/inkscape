@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Crop Marks and Fold Lines in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to generate standard crop marks and fold lines in Inkscape using the native Printing Marks extension. You will learn how to configure your document boundaries, generate precise trim indicators, create dashed fold lines for scoring">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/add-crop-marks-and-fold-lines-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Add Crop Marks and Fold Lines in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/add-crop-marks-and-fold-lines-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate standard crop marks and fold lines in Inkscape using the native Printing Marks extension. You will learn how to configure your document boundaries, generate precise trim indicators, create dashed fold lines for scoring" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="add-crop-marks-and-fold-lines-in-inkscape">Add Crop Marks and
+Fold Lines in Inkscape</h1>
+<p>This guide explains how to generate standard crop marks and fold
+lines in Inkscape using the native Printing Marks extension. You will
+learn how to configure your document boundaries, generate precise trim
+indicators, create dashed fold lines for scoring, and export the final
+layout as a print-ready PDF suitable for commercial printing.</p>
+<h3 id="step-1-set-up-the-document-dimensions">Step 1: Set Up the
+Document Dimensions</h3>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>File &gt; Document
+Properties</strong> (or press <code>Ctrl+Shift+D</code> /
+<code>Cmd+Shift+D</code>).</li>
+<li>Under the <strong>Page</strong> tab, set your document to the final
+trim size of your printed piece (for example, standard Letter or
+A4).</li>
+<li>If your print shop requires an external bleed margin (typically 3 mm
+or 0.125 inches), ensure your artwork extends beyond the canvas edge by
+this amount.</li>
+</ol>
+<h3 id="step-2-generate-crop-marks">Step 2: Generate Crop Marks</h3>
+<p>Inkscape includes a built-in layout tool that automatically draws
+trim marks around your page or selected objects.</p>
+<ol type="1">
+<li>Navigate to <strong>Extensions &gt; Render &gt; Layout &gt; Printing
+Marks...</strong></li>
+<li>In the configuration window, locate the <strong>Marks</strong> tab:
+<ul>
+<li>Check <strong>Crop Marks</strong> to draw lines indicating where the
+paper should be trimmed.</li>
+<li>Check <strong>Bleed Marks</strong> if you want secondary indicators
+showing the bleed limit.</li>
+<li>Optionally enable <strong>Registration Marks</strong> and
+<strong>Color Bars</strong> if your commercial printer requests
+them.</li>
+</ul></li>
+<li>Switch to the <strong>Positioning</strong> tab:
+<ul>
+<li>Set the <strong>Bleed</strong> measurement to match your external
+bleed (e.g., <code>3.00 mm</code> or <code>0.125 in</code>).</li>
+<li>Adjust the <strong>Offset</strong> to create a gap between the page
+edge and the start of the crop marks, preventing marks from printing
+inside the trimmed design.</li>
+</ul></li>
+<li>Set <strong>Selection/Page</strong> to <strong>Page</strong> (unless
+you want marks calculated around a specific selected object).</li>
+<li>Click <strong>Apply</strong> and then <strong>Close</strong>.
+Inkscape will create a new locked layer containing the generated vector
+marks.</li>
+</ol>
+<h3 id="step-3-create-standard-fold-lines">Step 3: Create Standard Fold
+Lines</h3>
+<p>While the Printing Marks extension natively renders perimeter cuts
+and bleeds, standard fold lines require a dashed visual indicator to
+distinguish scoring from cutting.</p>
+<ol type="1">
+<li>Create a new layer named <strong>Folds</strong> by going to
+<strong>Layer &gt; Add Layer...</strong></li>
+<li>Select the <strong>Pen (Bezier) Tool</strong> (<code>B</code>).</li>
+<li>Hold <code>Ctrl</code> to draw perfectly straight lines outside the
+page trim area at your fold locations (such as the two fold boundaries
+on a tri-fold brochure).</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl+Shift+F</code>).</li>
+<li>In the <strong>Stroke paint</strong> tab, choose standard
+Registration Black (<code>C:100 M:100 Y:100 K:100</code>) or standard
+Black.</li>
+<li>In the <strong>Stroke style</strong> tab:
+<ul>
+<li>Set the line width to match your crop marks (typically
+<code>0.25 pt</code> to <code>0.5 pt</code>).</li>
+<li>In the <strong>Dashes</strong> drop-down menu, select a standard
+dashed pattern. Dashed strokes represent folds to pre-press technicians,
+whereas solid strokes represent cut lines.</li>
+</ul></li>
+<li>Align the fold marks precisely with your fold coordinates using the
+<strong>Align and Distribute</strong> panel
+(<code>Ctrl+Shift+A</code>).</li>
+</ol>
+<h3 id="step-4-export-to-print-ready-pdf">Step 4: Export to Print-Ready
+PDF</h3>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong> or <strong>File &gt;
+Export...</strong></li>
+<li>Select <strong>Portable Document Format (*.pdf)</strong> from the
+file type options.</li>
+<li>In the PDF export dialogue:
+<ul>
+<li>Ensure the <strong>Bleed/margin</strong> is set to cover the full
+area of your printing marks (do not clip to page size, or the marks
+outside the trim will be cropped out).</li>
+<li>Set <strong>Output resolution</strong> to <code>300 dpi</code> or
+higher.</li>
+<li>If required by your printer, convert text to paths or ensure fonts
+are embedded.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to generate the final PDF.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

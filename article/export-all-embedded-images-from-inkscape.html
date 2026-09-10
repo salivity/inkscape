@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export All Embedded Images from Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape allows users to easily extract embedded raster graphics—such as PNG and JPEG files—and save them directly to your hard drive. Instead of manually taking screenshots or re-exporting slices, you can use Inkscape's built-in extension tools or c">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-all-embedded-images-from-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export All Embedded Images from Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-all-embedded-images-from-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape allows users to easily extract embedded raster graphics—such as PNG and JPEG files—and save them directly to your hard drive. Instead of manually taking screenshots or re-exporting slices, you can use Inkscape's built-in extension tools or c" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-all-embedded-images-from-inkscape">Export All Embedded
+Images from Inkscape</h1>
+<p>Inkscape allows users to easily extract embedded raster graphics—such
+as PNG and JPEG files—and save them directly to your hard drive. Instead
+of manually taking screenshots or re-exporting slices, you can use
+Inkscape's built-in extension tools or context menu options to
+automatically unpack and link embedded images to a dedicated folder.</p>
+<h3 id="method-1-batch-extract-using-the-extensions-menu">Method 1:
+Batch Extract Using the Extensions Menu</h3>
+<p>This method is the fastest way to extract all embedded raster images
+from an entire document at once.</p>
+<ol type="1">
+<li>Open your SVG file in Inkscape.</li>
+<li>Deselect all objects by pressing <code>Esc</code> or clicking an
+empty area on the canvas (ensures the tool checks the whole
+document).</li>
+<li>Navigate to the top menu and select <strong>Extensions &gt; Images
+&gt; Extract Image...</strong></li>
+<li>In the dialog window that appears, configure the extraction
+settings:
+<ul>
+<li><strong>Directory:</strong> Enter the full file path to the folder
+where you want to save the extracted images.</li>
+<li><strong>Extract only selected images:</strong> Ensure this box is
+unchecked if you want to export every embedded image in the
+document.</li>
+<li><strong>Link extracted images:</strong> Check this if you want
+Inkscape to replace the embedded data with links to the newly created
+external image files.</li>
+</ul></li>
+<li>Click <strong>Apply</strong>.</li>
+</ol>
+<p>Inkscape will process the file and write all embedded raster images
+into your specified directory.</p>
+<hr />
+<h3 id="method-2-extract-individual-images-via-context-menu">Method 2:
+Extract Individual Images via Context Menu</h3>
+<p>If you only need to extract specific images rather than the entire
+collection, you can extract them individually:</p>
+<ol type="1">
+<li>Click on the embedded image using the <strong>Select and Transform
+objects</strong> tool (<code>S</code> or <code>F1</code>).</li>
+<li>Right-click the image on the canvas.</li>
+<li>Select <strong>Extract Image...</strong> from the context menu.</li>
+<li>Choose a destination folder and file name in the file browser.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<hr />
+<h3 id="key-tips-for-successful-extraction">Key Tips for Successful
+Extraction</h3>
+<ul>
+<li><strong>File Paths:</strong> On Windows, ensure the directory path
+uses forward slashes <code>/</code> or double backslashes
+<code>\\</code> if you type the path manually into the extension
+field.</li>
+<li><strong>Preserving Original Files:</strong> Make a backup copy of
+your original SVG before running extraction tools if you check the "Link
+extracted images" option, as this alters the file's internal structure
+from self-contained base64 data to relative file paths.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Calculate Stitch Count in Inkscape - inkscape</title>
+    <meta name="description" content="Calculating the total stitch count of an embroidery design in Inkscape is an essential step before exporting, ensuring your design fits machine limits, assists in estimating production time, and calculates thread consumption accurately. Through the open-">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-calculate-stitch-count-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Calculate Stitch Count in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-calculate-stitch-count-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Calculating the total stitch count of an embroidery design in Inkscape is an essential step before exporting, ensuring your design fits machine limits, assists in estimating production time, and calculates thread consumption accurately. Through the open-" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-calculate-stitch-count-in-inkscape">How to Calculate
+Stitch Count in Inkscape</h1>
+<p>Calculating the total stitch count of an embroidery design in
+Inkscape is an essential step before exporting, ensuring your design
+fits machine limits, assists in estimating production time, and
+calculates thread consumption accurately. Through the open-source
+Ink/Stitch extension, Inkscape allows you to calculate and view both the
+total stitch count and individual color block counts using the built-in
+simulation and print preview tools. This guide outlines the exact steps
+to find your total stitch count directly within the software.</p>
+<h2 id="method-1-use-the-simulator--realistic-preview">Method 1: Use the
+Simulator / Realistic Preview</h2>
+<p>The quickest way to check your total stitch count is through the
+Ink/Stitch simulation window.</p>
+<ol type="1">
+<li>Open your digitized embroidery design in Inkscape.</li>
+<li>Select your design elements, or press <code>Ctrl + A</code> to
+select all objects you want to calculate.</li>
+<li>Navigate to the top menu and select <strong>Extensions</strong> &gt;
+<strong>Ink/Stitch</strong> &gt; <strong>Visualize and Export</strong>
+&gt; <strong>Simulator / Realistic Preview</strong>.</li>
+<li>Allow the extension to process the vectors into embroidery
+commands.</li>
+<li>Once the simulation window opens, locate the progress bar at the
+bottom.</li>
+<li>The total stitch count is displayed on the bottom right corner of
+the window (formatted as current stitch / total stitches, such as
+<code>0 / 8,420</code>).</li>
+</ol>
+<h2 id="method-2-generate-an-embroidery-print--pdf-preview">Method 2:
+Generate an Embroidery Print / PDF Preview</h2>
+<p>If you need a comprehensive overview—including stitch counts per
+thread color along with the total count—use the Print feature.</p>
+<ol type="1">
+<li>With your design open, go to <strong>Extensions</strong> &gt;
+<strong>Ink/Stitch</strong> &gt; <strong>Visualize and Export</strong>
+&gt; <strong>Print / PDF Export...</strong></li>
+<li>In the dialog box that appears, ensure that the stitch count options
+are selected (these are typically enabled by default).</li>
+<li>Click <strong>Apply</strong> to generate the preview.</li>
+<li>A new window will display a professional worksheet. At the top under
+the design details, you will see the <strong>Total Stitches</strong>
+metric, as well as an itemized breakdown of stitches per thread
+color.</li>
+</ol>
+<h2 id="method-3-check-specific-layers-or-elements">Method 3: Check
+Specific Layers or Elements</h2>
+<p>To check the stitch count of a specific section rather than the
+entire canvas:</p>
+<ol type="1">
+<li>Select only the paths, objects, or layers you want to inspect.</li>
+<li>Open <strong>Extensions</strong> &gt; <strong>Ink/Stitch</strong>
+&gt; <strong>Params</strong>.</li>
+<li>The parameter dialog computes the embroidery commands in real-time.
+The bottom section of the preview window will display the stitch count
+specific to the selected object or group.</li>
+<li>Close the dialog without changing values, or click <strong>Apply and
+Quit</strong> if you made adjustments.</li>
+</ol>
+<h2 id="ensuring-stitch-count-accuracy">Ensuring Stitch Count
+Accuracy</h2>
+<ul>
+<li><strong>Apply Parameters First:</strong> Ensure all fill and stroke
+parameters (such as density, underlay, and pull compensation) are
+defined before calculating. Default shapes without Ink/Stitch properties
+may not calculate until digitized parameters are applied.</li>
+<li><strong>Ungroup Properly:</strong> Hidden or improperly grouped
+objects can either inflate or omit stitch numbers. Use Inkscape's
+<strong>Objects</strong> panel to ensure only intended embroidery paths
+are present.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

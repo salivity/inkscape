@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape Paths to Coordinate Arrays - inkscape</title>
+    <meta name="description" content="Exporting vector path data from Inkscape into custom coordinate arrays allows developers to translate visual curves into discrete mathematical waypoints for 2D trajectory physics, character patrols, or projectile modeling. This workflow involves preparin">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-paths-to-coordinate-arrays">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape Paths to Coordinate Arrays - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-paths-to-coordinate-arrays" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting vector path data from Inkscape into custom coordinate arrays allows developers to translate visual curves into discrete mathematical waypoints for 2D trajectory physics, character patrols, or projectile modeling. This workflow involves preparin" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-paths-to-coordinate-arrays">Export Inkscape
+Paths to Coordinate Arrays</h1>
+<p>Exporting vector path data from Inkscape into custom coordinate
+arrays allows developers to translate visual curves into discrete
+mathematical waypoints for 2D trajectory physics, character patrols, or
+projectile modeling. This workflow involves preparing vector paths
+inside Inkscape, discretizing continuous Bézier curves into discrete
+points, accounting for coordinate system differences, and extracting the
+raw values into formats like JSON, C-style arrays, or CSV.</p>
+<h3 id="1-prepare-and-normalize-the-path-in-inkscape">1. Prepare and
+Normalize the Path in Inkscape</h3>
+<p>Physics engines typically evaluate simple sequences of <span
+class="math inline">\((X, Y)\)</span> vectors rather than complex cubic
+Bézier curves. Before extracting coordinates, the visual path must be
+normalized.</p>
+<ol type="1">
+<li><strong>Convert to Path</strong>: Select your trajectory shape and
+go to <strong>Path &gt; Object to Path</strong>
+(<code>Shift + Ctrl + C</code>).</li>
+<li><strong>Apply Transformations</strong>: Inkscape frequently stores
+translation and scale properties inside matrix transform attributes
+rather than updating node locations directly. Select the object, cut it
+(<code>Ctrl + X</code>), and paste it in place
+(<code>Ctrl + Alt + V</code>), or use an extension like <strong>Apply
+Transform</strong> to ensure raw coordinates reflect actual canvas
+positions.</li>
+<li><strong>Discretize Curves into Nodes</strong>:
+<ul>
+<li>Select your path using the <strong>Node Tool</strong>
+(<code>N</code>).</li>
+<li>Navigate to <strong>Extensions &gt; Modify Path &gt; Add
+Nodes...</strong></li>
+<li>Choose a maximum segment length or number of divisions. Shorter
+segments yield higher spatial precision for high-speed trajectory
+simulations.</li>
+<li>Click <strong>Apply</strong>. This interpolates the curve into a
+polyline composed of many straight-line segments.</li>
+</ul></li>
+</ol>
+<h3 id="2-extract-raw-node-data">2. Extract Raw Node Data</h3>
+<p>Once the path is discretized, you can extract the coordinate data
+directly from the document's structure.</p>
+<h4 id="method-a-using-inkscapes-xml-editor">Method A: Using Inkscape's
+XML Editor</h4>
+<ol type="1">
+<li>Open the internal editor via <strong>Edit &gt; XML Editor</strong>
+(<code>Ctrl + Shift + X</code>).</li>
+<li>Select the path on the canvas; the corresponding
+<code>&lt;svg:path&gt;</code> element will highlight in the XML
+tree.</li>
+<li>Locate the <code>d</code> attribute in the right-hand panel. It will
+contain a string of coordinates in SVG path syntax (e.g.,
+<code>M 12.5,45.2 L 18.2,50.1 ...</code>).</li>
+<li>Copy the raw string for formatting.</li>
+</ol>
+<h4 id="method-b-exporting-as-plain-svg">Method B: Exporting as Plain
+SVG</h4>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong></li>
+<li>Choose <strong>Plain SVG (*.svg)</strong> from the file type
+dropdown to remove Inkscape-specific metadata.</li>
+<li>Open the resulting <code>.svg</code> file in a text editor to locate
+the <code>&lt;path d="..." /&gt;</code> tag.</li>
+</ol>
+<h3 id="3-handle-coordinate-inversion-y-axis-calibration">3. Handle
+Coordinate Inversion (Y-Axis Calibration)</h3>
+<p>Inkscape uses the standard computer graphics coordinate convention
+where <span class="math inline">\((0, 0)\)</span> is located at the
+<strong>top-left</strong> corner, and the Y-axis increases downward.</p>
+<p>Most 2D physics engines (such as Box2D, Unity, or custom Cartesian
+engines) treat <span class="math inline">\((0, 0)\)</span> as the
+<strong>bottom-left</strong> corner or center, with the Y-axis
+increasing upward.</p>
+<p>To convert Inkscape Y-coordinates to physics coordinates: <span
+class="math display">\[\text{Physics } Y = \text{Document Height} -
+\text{Inkscape } Y\]</span></p>
+<p>If you need the trajectory relative to the path's origin rather than
+the document origin, subtract the initial waypoint coordinates <span
+class="math inline">\((X_0, Y_0)\)</span> from every subsequent point:
+<span class="math display">\[\Delta X_n = X_n - X_0\]</span> <span
+class="math display">\[\Delta Y_n = -(Y_n - Y_0)\]</span></p>
+<h3 id="4-convert-svg-path-strings-to-target-code-arrays">4. Convert SVG
+Path Strings to Target Code Arrays</h3>
+<p>Using a small Python script, you can parse the extracted SVG path
+string and output formatted 2D arrays (such as JSON or C++
+structures).</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>svg_path_data <span class="op">=</span> <span class="st">&quot;M 10,100 L 25,85 L 45,60 L 70,30 L 100,5&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>document_height <span class="op">=</span> <span class="dv">1080</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract numerical pairs following command letters (M, L, etc.)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>raw_points <span class="op">=</span> re.findall(<span class="vs">r&quot;</span><span class="pp">[-+]</span><span class="op">?</span><span class="dv">\d</span><span class="op">*</span><span class="ch">\.</span><span class="dv">\d</span><span class="op">+</span><span class="cf">|</span><span class="pp">[-+]</span><span class="op">?</span><span class="dv">\d</span><span class="op">+</span><span class="vs">&quot;</span>, svg_path_data)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>points <span class="op">=</span> [<span class="bu">float</span>(val) <span class="cf">for</span> val <span class="kw">in</span> raw_points]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>coordinate_array <span class="op">=</span> []</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="bu">len</span>(points), <span class="dv">2</span>):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> points[i]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> document_height <span class="op">-</span> points[i <span class="op">+</span> <span class="dv">1</span>]  <span class="co"># Invert Y for Cartesian physics</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    coordinate_array.append({<span class="st">&quot;x&quot;</span>: <span class="bu">round</span>(x, <span class="dv">3</span>), <span class="st">&quot;y&quot;</span>: <span class="bu">round</span>(y, <span class="dv">3</span>)})</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Output custom format (e.g., JSON or C++ style)</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;JSON Output:&quot;</span>, coordinate_array)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;C++ Array:&quot;</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;{&quot;</span> <span class="op">+</span> <span class="st">&quot;, &quot;</span>.join([<span class="ss">f&quot;</span><span class="ch">{{</span><span class="sc">{</span>p[<span class="st">&#39;x&#39;</span>]<span class="sc">}</span><span class="ss">f, </span><span class="sc">{</span>p[<span class="st">&#39;y&#39;</span>]<span class="sc">}</span><span class="ss">f</span><span class="ch">}}</span><span class="ss">&quot;</span> <span class="cf">for</span> p <span class="kw">in</span> coordinate_array]) <span class="op">+</span> <span class="st">&quot;};&quot;</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<h3 id="5-automated-sampling-via-headless-processing">5. Automated
+Sampling via Headless Processing</h3>
+<p>If you frequently update trajectory paths, you can avoid manual node
+discretization by sampling parametric Bézier curves directly using
+Python and <code>svgpathtools</code>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> svgpathtools <span class="im">import</span> svg2paths</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>paths, _ <span class="op">=</span> svg2paths(<span class="st">&quot;trajectory.svg&quot;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>trajectory_path <span class="op">=</span> paths[<span class="dv">0</span>]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample 100 evenly spaced points along the curve</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>coordinates <span class="op">=</span> []</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, samples):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    point <span class="op">=</span> trajectory_path.point(t)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    coordinates.append((point.real, point.imag))</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># coordinates now contains ordered (x, y) tuples for physics simulation</span></span></code></pre></div>
+<p>This approach maintains smooth mathematical accuracy while giving you
+control over the exact array size required by your physics loop's
+delta-time steps.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

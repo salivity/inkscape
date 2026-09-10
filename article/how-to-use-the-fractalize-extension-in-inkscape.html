@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use the Fractalize Extension in Inkscape - inkscape</title>
+    <meta name="description" content="The Fractalize extension in Inkscape is a powerful tool designed to transform smooth, sterile vector paths into rough, organic shapes. By repeatedly subdividing path segments and introducing randomized displacements to the new nodes, this extension allow">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-use-the-fractalize-extension-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use the Fractalize Extension in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-use-the-fractalize-extension-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Fractalize extension in Inkscape is a powerful tool designed to transform smooth, sterile vector paths into rough, organic shapes. By repeatedly subdividing path segments and introducing randomized displacements to the new nodes, this extension allow" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-the-fractalize-extension-in-inkscape">How to Use the
+Fractalize Extension in Inkscape</h1>
+<p>The Fractalize extension in Inkscape is a powerful tool designed to
+transform smooth, sterile vector paths into rough, organic shapes. By
+repeatedly subdividing path segments and introducing randomized
+displacements to the new nodes, this extension allows you to simulate
+natural textures such as coastlines, lightning bolts, cracked surfaces,
+rough edges, and organic terrain. This guide outlines how to prepare
+your vector artwork, apply the Fractalize effect, and adjust its
+parameters for optimal organic results.</p>
+<h3 id="step-1-create-and-prepare-your-path">Step 1: Create and Prepare
+Your Path</h3>
+<ol type="1">
+<li>Open your Inkscape document and select the <strong>Draw Freehand
+Lines tool (Pencil)</strong> or the <strong>Draw Bezier Curves tool
+(Pen)</strong>.</li>
+<li>Draw a line, stroke, or closed shape where you want to add organic
+texture.</li>
+<li>If your element is a primitive shape (such as a rectangle, star, or
+circle) or text, convert it to a path by navigating to <strong>Path &gt;
+Object to Path</strong> (<code>Shift + Ctrl + C</code>).</li>
+<li>Keep the path selected with the <strong>Select and Transform Objects
+tool</strong> (<code>S</code>).</li>
+</ol>
+<h3 id="step-2-open-the-fractalize-extension">Step 2: Open the
+Fractalize Extension</h3>
+<ol type="1">
+<li>With your path selected, go to the top menu and select
+<strong>Extensions</strong>.</li>
+<li>Hover over <strong>Modify Path</strong>.</li>
+<li>Click on <strong>Fractalize...</strong> to open the tool's settings
+dialog.</li>
+</ol>
+<h3 id="step-3-configure-the-extension-settings">Step 3: Configure the
+Extension Settings</h3>
+<p>The Fractalize dialog presents two primary parameters that control
+the intensity and detail of the chaos added to your lines:</p>
+<ul>
+<li><strong>Subdivisions:</strong> Determines how many times each
+segment between two nodes is split. A value of <code>1</code> or
+<code>2</code> creates mild, angular roughness, while values of
+<code>4</code> to <code>6</code> create dense, highly detailed jitter.
+Be cautious with values above <code>6</code>, as very high subdivision
+counts can create thousands of nodes and slow down Inkscape's
+rendering.</li>
+<li><strong>Smoothness:</strong> Controls the degree of displacement
+relative to the segment length. Lower values result in sharper, more
+dramatic and erratic spikes (ideal for lightning or cracked stone),
+while higher values produce gentler, wave-like organic deviations (ideal
+for coastlines or foliage borders).</li>
+</ul>
+<h3 id="step-4-apply-and-refine-the-effect">Step 4: Apply and Refine the
+Effect</h3>
+<ol type="1">
+<li>Check the <strong>Live Preview</strong> box in the dialog to see how
+the parameters alter your path in real time.</li>
+<li>Adjust <strong>Subdivisions</strong> and <strong>Smoothness</strong>
+until the line achieves the desired organic texture.</li>
+<li>Click <strong>Apply</strong> to commit the changes, then click
+<strong>Close</strong>.</li>
+</ol>
+<h3 id="step-5-post-processing-and-fine-tuning">Step 5: Post-Processing
+and Fine-Tuning</h3>
+<ul>
+<li><strong>Reduce Node Count:</strong> If the fractalized line is too
+dense, select the path and go to <strong>Path &gt; Simplify</strong>
+(<code>Ctrl + L</code>) to remove redundant nodes while retaining the
+overall irregular shape.</li>
+<li><strong>Adjust Stroke Profile:</strong> Use the <strong>Fill and
+Stroke</strong> panel (<code>Shift + Ctrl + F</code>) to round the line
+caps and joins, which softens extreme sharp spikes into a more natural,
+fluid contour.</li>
+<li><strong>Layering:</strong> Re-apply the extension with fewer
+subdivisions to specific segments using the <strong>Edit Paths by Nodes
+tool</strong> (<code>N</code>) to create varied levels of detail across
+different sections of your illustration.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

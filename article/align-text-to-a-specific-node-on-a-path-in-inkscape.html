@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Align Text to a Specific Node on a Path in Inkscape - inkscape</title>
+    <meta name="description" content="Placing text along a closed path in Inkscape often results in the text starting at an unintended location, as the software automatically aligns text to the path’s original starting node. To control precisely where the text begins, you must designate yo">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/align-text-to-a-specific-node-on-a-path-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Align Text to a Specific Node on a Path in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/align-text-to-a-specific-node-on-a-path-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Placing text along a closed path in Inkscape often results in the text starting at an unintended location, as the software automatically aligns text to the path’s original starting node. To control precisely where the text begins, you must designate yo" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="align-text-to-a-specific-node-on-a-path-in-inkscape">Align Text
+to a Specific Node on a Path in Inkscape</h1>
+<p>Placing text along a closed path in Inkscape often results in the
+text starting at an unintended location, as the software automatically
+aligns text to the path’s original starting node. To control precisely
+where the text begins, you must designate your desired anchor point as
+the path's new start node. This guide covers the exact steps to select a
+specific node, set it as the starting anchor, and attach your text
+accurately.</p>
+<h3 id="step-1-convert-the-shape-to-a-path">Step 1: Convert the Shape to
+a Path</h3>
+<p>If your closed shape is a native Inkscape primitive (such as an
+ellipse, rectangle, or star), it must first be converted into a standard
+path:</p>
+<ol type="1">
+<li>Select the shape with the <strong>Select Tool</strong>
+(<code>S</code>).</li>
+<li>Navigate to the top menu and click <strong>Path &gt; Object to
+Path</strong> (or press <code>Shift + Ctrl + C</code>).</li>
+</ol>
+<h3 id="step-2-select-the-anchor-node">Step 2: Select the Anchor
+Node</h3>
+<ol type="1">
+<li>Switch to the <strong>Node Tool</strong> (<code>N</code>) from the
+left toolbar.</li>
+<li>Click on the path to reveal its nodes.</li>
+<li>Identify where you want the text to begin. If a node does not
+already exist at that exact spot, double-click on the path line to
+insert a new node.</li>
+<li>Click directly on the target node to select it (it will change color
+to show it is active).</li>
+</ol>
+<h3 id="step-3-set-the-node-as-the-starting-point">Step 3: Set the Node
+as the Starting Point</h3>
+<p>Inkscape defines the starting position of text along an open path at
+the first terminal node. For a closed path, you can set the start point
+by splitting the path at the chosen node:</p>
+<ol type="1">
+<li>With the node selected, look at the tool controls bar at the top of
+the canvas.</li>
+<li>Click the <strong>Break path at selected nodes</strong> button.</li>
+<li>This action splits the single node into two overlapping endpoint
+nodes, resetting this location as the official start and end of the path
+without altering its visual shape.</li>
+</ol>
+<h3 id="step-4-put-the-text-on-the-path">Step 4: Put the Text on the
+Path</h3>
+<ol type="1">
+<li>Select both the text object and the modified path simultaneously by
+holding <code>Shift</code> and clicking each item.</li>
+<li>Go to the menu and select <strong>Text &gt; Put on
+Path</strong>.</li>
+<li>The text will automatically anchor its beginning to the node you
+broke in Step 3.</li>
+</ol>
+<h3 id="step-5-adjust-direction-and-alignment">Step 5: Adjust Direction
+and Alignment</h3>
+<ul>
+<li><strong>Inverted or Backward Text:</strong> If the text appears
+upside down or runs counter-clockwise along the path, select only the
+path using the Node Tool and click <strong>Path &gt;
+Reverse</strong>.</li>
+<li><strong>Centering or Right-Aligning:</strong> By default, text is
+left-aligned, starting directly at the anchor node. You can change this
+by selecting the text, opening the <strong>Text and Font</strong> dialog
+(<code>Shift + Ctrl + T</code>), and choosing <strong>Center</strong> or
+<strong>Right</strong> alignment relative to that anchor.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

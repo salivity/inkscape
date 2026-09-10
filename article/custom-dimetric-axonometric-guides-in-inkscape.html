@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Dimetric Axonometric Guides in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to configure custom dimetric axonometric guides in Inkscape using the application’s native document grid settings. By adjusting specific X and Z axis angles in the Document Properties menu, you can generate mathematically precis">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/custom-dimetric-axonometric-guides-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Custom Dimetric Axonometric Guides in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/custom-dimetric-axonometric-guides-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to configure custom dimetric axonometric guides in Inkscape using the application’s native document grid settings. By adjusting specific X and Z axis angles in the Document Properties menu, you can generate mathematically precis" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="custom-dimetric-axonometric-guides-in-inkscape">Custom Dimetric
+Axonometric Guides in Inkscape</h1>
+<p>This guide explains how to configure custom dimetric axonometric
+guides in Inkscape using the application’s native document grid
+settings. By adjusting specific X and Z axis angles in the Document
+Properties menu, you can generate mathematically precise dimetric
+drawing guides suited for technical illustrations, game assets, and
+technical diagrams without relying on third-party extensions.</p>
+<h3 id="understanding-dimetric-angles-in-inkscape">Understanding
+Dimetric Angles in Inkscape</h3>
+<p>In an axonometric projection, a dimetric view requires two axes to
+have equal foreshortening and angles relative to the horizontal plane,
+while the third axis remains vertical. Inkscape generates axonometric
+grids by calculating angles from the horizontal baseline:</p>
+<ul>
+<li><strong>Angle X</strong>: Controls the angle of the right-facing
+axis relative to the horizontal axis.</li>
+<li><strong>Angle Z</strong>: Controls the angle of the left-facing axis
+relative to the horizontal axis.</li>
+</ul>
+<p>Standard isometric setups use 30° for both Angle X and Angle Z. For a
+standard dimetric projection, you can set matching custom angles (such
+as 15° and 15°, or 26.565° for a standard 2:1 pixel ratio), or
+asymmetrical angles that satisfy your specific projection
+requirements.</p>
+<h3 id="step-by-step-configuration">Step-by-Step Configuration</h3>
+<ol type="1">
+<li><p><strong>Open Document Properties</strong><br />
+Launch Inkscape and open your project. Open the Document Properties
+dialog by pressing <code>Ctrl + Shift + D</code> (Windows/Linux) or
+<code>Cmd + Shift + D</code> (macOS), or by navigating to <strong>File
+&gt; Document Properties</strong>.</p></li>
+<li><p><strong>Add an Axonometric Grid</strong><br />
+In the Document Properties window, select the <strong>Grids</strong>
+tab. In the <strong>Creation</strong> dropdown menu, select
+<strong>Axonometric grid</strong> and click the <strong>New</strong>
+button.</p></li>
+<li><p><strong>Define Custom Dimetric Angles</strong><br />
+Locate the grid parameters in the panel:</p>
+<ul>
+<li>Set <strong>Grid units</strong> to your preferred measurement (e.g.,
+<code>px</code> or <code>mm</code>).</li>
+<li>Set <strong>Spacing Y</strong> to define the vertical spacing
+between grid intersections.</li>
+<li>Modify <strong>Angle X</strong> to your desired dimetric incline
+(for example, <code>15.0</code>).</li>
+<li>Modify <strong>Angle Z</strong> to match or complement your
+projection angle (for example, <code>15.0</code>).</li>
+</ul></li>
+<li><p><strong>Adjust Grid Appearance and Snapping</strong></p>
+<ul>
+<li>Adjust <strong>Major grid line frequency</strong> to emphasize
+primary intervals across your canvas.</li>
+<li>Customize the line colors to ensure high contrast against your
+canvas background.</li>
+<li>Ensure that grid visibility is enabled by checking
+<strong>Enabled</strong> and <strong>Visible</strong>.</li>
+</ul></li>
+<li><p><strong>Enable Snapping to Guides</strong><br />
+Toggle the global snapping control on the main toolbar (<code>%</code>).
+Expand the snapping options and enable <strong>Snap to grids</strong>.
+Your drawing tools—such as the Pen (Bezier) and Rectangle tools—will now
+automatically lock to your custom dimetric axes, maintaining exact
+geometric alignment across your illustration.</p></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Interlocking Puzzle Joints in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to design custom interlocking puzzle joints using Inkscape's vector path operations. By combining basic shapes, node editing, and Boolean tools like Union and Difference, you can create unique male and female tabs that fit togethe">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/make-interlocking-puzzle-joints-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Make Interlocking Puzzle Joints in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/make-interlocking-puzzle-joints-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to design custom interlocking puzzle joints using Inkscape's vector path operations. By combining basic shapes, node editing, and Boolean tools like Union and Difference, you can create unique male and female tabs that fit togethe" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="make-interlocking-puzzle-joints-in-inkscape">Make Interlocking
+Puzzle Joints in Inkscape</h1>
+<p>This guide explains how to design custom interlocking puzzle joints
+using Inkscape's vector path operations. By combining basic shapes, node
+editing, and Boolean tools like Union and Difference, you can create
+unique male and female tabs that fit together seamlessly for laser
+cutting, woodworking, or digital art projects.</p>
+<h3 id="step-1-create-the-base-pieces">Step 1: Create the Base
+Pieces</h3>
+<ol type="1">
+<li>Select the <strong>Rectangle tool</strong> (<code>R</code>) and draw
+two adjacent squares or rectangles on the canvas.</li>
+<li>Open the <strong>Align and Distribute</strong> panel
+(<code>Shift + Ctrl + A</code>) and align the two shapes so their edges
+touch edge-to-edge without overlapping. Enable <strong>Snapping</strong>
+(<code>%</code>) with "Snap to paths" and "Snap to cusp nodes" checked
+to ensure exact alignment along the seam.</li>
+</ol>
+<h3 id="step-2-draw-the-custom-key-shape">Step 2: Draw the Custom Key
+Shape</h3>
+<ol type="1">
+<li>Use the <strong>Draw Bezier curves and straight lines tool</strong>
+(<code>B</code>) or standard geometric shape tools to design your custom
+key (the interlocking tab). This can be a traditional bulb, a heart, a
+polygon, or any asymmetrical design.</li>
+<li>If using standard shapes, convert them by selecting <strong>Path
+&gt; Object to Path</strong> (<code>Shift + Ctrl + C</code>).</li>
+<li>Use the <strong>Edit paths by nodes tool</strong> (<code>N</code>)
+to refine the shape, ensuring the base (neck) of the key is narrower
+than the head so that the pieces physically lock together.</li>
+</ol>
+<h3 id="step-3-position-and-duplicate-the-key">Step 3: Position and
+Duplicate the Key</h3>
+<ol type="1">
+<li>Drag the custom key over the seam between your two base pieces. The
+head of the key should extend into one piece, while the base sits on the
+other.</li>
+<li>Align the key to the center of the edge using the <strong>Align and
+Distribute</strong> panel.</li>
+<li>Select the key and press <code>Ctrl + D</code> to create an exact
+duplicate directly on top of the original.</li>
+</ol>
+<h3 id="step-4-create-the-male-joint">Step 4: Create the Male Joint</h3>
+<ol type="1">
+<li>Select the original key and the base piece where you want the tab to
+protrude.</li>
+<li>Go to the top menu and select <strong>Path &gt; Union</strong>
+(<code>Ctrl + +</code>). This merges the key with the first base piece,
+forming the male interlocking side.</li>
+</ol>
+<h3 id="step-5-create-the-female-joint">Step 5: Create the Female
+Joint</h3>
+<ol type="1">
+<li>Select the duplicate key that remains in place.</li>
+<li>Hold <code>Shift</code> and select the second, opposing base
+piece.</li>
+<li>Select <strong>Path &gt; Difference</strong>
+(<code>Ctrl + -</code>). This cuts the exact profile of the custom key
+out of the second piece, forming the female slot.</li>
+</ol>
+<h3 id="step-6-adjust-for-kerf-or-clearance-optional">Step 6: Adjust for
+Kerf or Clearance (Optional)</h3>
+<p>If cutting the pieces on a CNC machine or laser cutter, account for
+material removal (kerf):</p>
+<ol type="1">
+<li>Select the female piece.</li>
+<li>Go to <strong>Path &gt; Outset</strong> (<code>Ctrl + )</code>) or
+use the <strong>Offset</strong> tool to enlarge the cut-out slightly,
+ensuring the physical pieces fit together smoothly.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

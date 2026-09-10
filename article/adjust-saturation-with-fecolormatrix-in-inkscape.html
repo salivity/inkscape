@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjust Saturation with feColorMatrix in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to control color saturation in Inkscape using custom matrix math inside the feColorMatrix SVG filter primitive. While Inkscape provides a basic saturation slider, utilizing raw matrix mathematics allows for precise, non-destructiv">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/adjust-saturation-with-fecolormatrix-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Adjust Saturation with feColorMatrix in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/adjust-saturation-with-fecolormatrix-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to control color saturation in Inkscape using custom matrix math inside the feColorMatrix SVG filter primitive. While Inkscape provides a basic saturation slider, utilizing raw matrix mathematics allows for precise, non-destructiv" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="adjust-saturation-with-fecolormatrix-in-inkscape">Adjust
+Saturation with feColorMatrix in Inkscape</h1>
+<p>This guide explains how to control color saturation in Inkscape using
+custom matrix math inside the <code>feColorMatrix</code> SVG filter
+primitive. While Inkscape provides a basic saturation slider, utilizing
+raw matrix mathematics allows for precise, non-destructive control over
+channel weights and luminance balancing. The following sections break
+down the underlying mathematical formula and detail the exact steps
+needed to implement a custom saturation matrix using Inkscape's Filter
+Editor.</p>
+<h3 id="the-mathematics-of-the-saturation-matrix">The Mathematics of the
+Saturation Matrix</h3>
+<p>The standard SVG specification defines saturation through a 5x4
+transformation matrix based on standard relative luminance coefficients:
+Red (<span class="math inline">\(0.2126\)</span>), Green (<span
+class="math inline">\(0.7152\)</span>), and Blue (<span
+class="math inline">\(0.0722\)</span>).</p>
+<p>When adjusting saturation by a factor of <span
+class="math inline">\(s\)</span> (where <span class="math inline">\(s =
+1\)</span> is normal saturation, <span class="math inline">\(s =
+0\)</span> is complete grayscale, and <span class="math inline">\(s &gt;
+1\)</span> increases saturation), the matrix operations scale each color
+channel relative to luminance:</p>
+<ul>
+<li><strong>Red output row:</strong>
+<ul>
+<li><span class="math inline">\(R = 0.2126 + 0.7874s\)</span></li>
+<li><span class="math inline">\(G = 0.7152 - 0.7152s\)</span></li>
+<li><span class="math inline">\(B = 0.0722 - 0.0722s\)</span></li>
+</ul></li>
+<li><strong>Green output row:</strong>
+<ul>
+<li><span class="math inline">\(R = 0.2126 - 0.2126s\)</span></li>
+<li><span class="math inline">\(G = 0.7152 + 0.2848s\)</span></li>
+<li><span class="math inline">\(B = 0.0722 - 0.0722s\)</span></li>
+</ul></li>
+<li><strong>Blue output row:</strong>
+<ul>
+<li><span class="math inline">\(R = 0.2126 - 0.2126s\)</span></li>
+<li><span class="math inline">\(G = 0.7152 - 0.7152s\)</span></li>
+<li><span class="math inline">\(B = 0.0722 + 0.9278s\)</span></li>
+</ul></li>
+</ul>
+<p>The fourth column represents the Alpha channel (which remains
+unmodified: <span class="math inline">\(0, 0, 0, 1, 0\)</span>), and the
+fifth column represents an additive color offset (<span
+class="math inline">\(0\)</span> across all rows).</p>
+<h3 id="calculating-matrix-values">Calculating Matrix Values</h3>
+<p>To increase saturation by 50% (<span class="math inline">\(s =
+1.5\)</span>):</p>
+<ol type="1">
+<li><strong>Row 1 (Red Output):</strong>
+<ul>
+<li><span class="math inline">\(R = 0.2126 + (0.7874 \times 1.5) =
+1.3937\)</span></li>
+<li><span class="math inline">\(G = 0.7152 - (0.7152 \times 1.5) =
+-0.3576\)</span></li>
+<li><span class="math inline">\(B = 0.0722 - (0.0722 \times 1.5) =
+-0.0361\)</span></li>
+</ul></li>
+<li><strong>Row 2 (Green Output):</strong>
+<ul>
+<li><span class="math inline">\(R = 0.2126 - (0.2126 \times 1.5) =
+-0.1063\)</span></li>
+<li><span class="math inline">\(G = 0.7152 + (0.2848 \times 1.5) =
+1.1424\)</span></li>
+<li><span class="math inline">\(B = 0.0722 - (0.0722 \times 1.5) =
+-0.0361\)</span></li>
+</ul></li>
+<li><strong>Row 3 (Blue Output):</strong>
+<ul>
+<li><span class="math inline">\(R = 0.2126 - (0.2126 \times 1.5) =
+-0.1063\)</span></li>
+<li><span class="math inline">\(G = 0.7152 - (0.7152 \times 1.5) =
+-0.3576\)</span></li>
+<li><span class="math inline">\(B = 0.0722 + (0.9278 \times 1.5) =
+1.4639\)</span></li>
+</ul></li>
+</ol>
+<h3 id="applying-the-matrix-in-inkscape">Applying the Matrix in
+Inkscape</h3>
+<ol type="1">
+<li>Select the object or image on your canvas you want to modify.</li>
+<li>Open the Filter Editor by navigating to <strong>Filters &gt; Filter
+Editor</strong>.</li>
+<li>Click <strong>New</strong> in the Filter Editor panel to generate an
+empty filter, and check the box next to it to assign it to your selected
+object.</li>
+<li>In the "Add Effect" dropdown at the bottom of the panel, select
+<strong>Color Matrix</strong> and click <strong>Add
+Effect</strong>.</li>
+<li>Ensure the input node of the <code>feColorMatrix</code> primitive is
+connected to <strong>Source Graphic</strong>.</li>
+<li>Select the <strong>Color Matrix</strong> primitive in the list.
+Under the <strong>Effect parameters</strong> tab below, change the
+<strong>Type</strong> dropdown from <em>Matrix</em> to ensure the full
+5x4 grid is visible (if it defaults to another mode, choose
+<strong>Matrix</strong>).</li>
+<li>Enter your calculated values into the respective cells of the grid:
+<ul>
+<li><strong>Row 1:</strong> <code>1.3937</code> | <code>-0.3576</code> |
+<code>-0.0361</code> | <code>0</code> | <code>0</code></li>
+<li><strong>Row 2:</strong> <code>-0.1063</code> | <code>1.1424</code> |
+<code>-0.0361</code> | <code>0</code> | <code>0</code></li>
+<li><strong>Row 3:</strong> <code>-0.1063</code> | <code>-0.3576</code>
+| <code>1.4639</code> | <code>0</code> | <code>0</code></li>
+<li><strong>Row 4:</strong> <code>0</code> | <code>0</code> |
+<code>0</code> | <code>1</code> | <code>0</code></li>
+</ul></li>
+</ol>
+<p>The object on your canvas will immediately update, rendering the
+custom saturation level via SVG matrix math. You can alter the values at
+any time to fine-tune channel intensity or achieve custom tinting
+effects within the same operation.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

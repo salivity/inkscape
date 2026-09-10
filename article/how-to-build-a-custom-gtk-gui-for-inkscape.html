@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Build a Custom GTK GUI for Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to build and integrate a custom GTK-based graphical user interface (GUI) into an Inkscape extension using Python and PyGObject. While Inkscape natively generates basic dialogs from .inx XML files, creating a custom GTK interface a">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-build-a-custom-gtk-gui-for-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Build a Custom GTK GUI for Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-build-a-custom-gtk-gui-for-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to build and integrate a custom GTK-based graphical user interface (GUI) into an Inkscape extension using Python and PyGObject. While Inkscape natively generates basic dialogs from .inx XML files, creating a custom GTK interface a" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-build-a-custom-gtk-gui-for-inkscape">How to Build a
+Custom GTK GUI for Inkscape</h1>
+<p>This guide explains how to build and integrate a custom GTK-based
+graphical user interface (GUI) into an Inkscape extension using Python
+and PyGObject. While Inkscape natively generates basic dialogs from
+<code>.inx</code> XML files, creating a custom GTK interface allows
+developers to design complex, interactive controls, dynamic forms, and
+custom workflows. Below are the steps, configuration files, and Python
+code required to implement a functional GTK3 GUI for your custom
+extension.</p>
+<hr />
+<h3 id="1-prerequisites-and-requirements">1. Prerequisites and
+Requirements</h3>
+<p>To run GTK within an Inkscape extension, your environment must
+have:</p>
+<ul>
+<li><strong>Inkscape 1.0+</strong></li>
+<li><strong>Python 3</strong> with the <code>inkex</code> extension
+library.</li>
+<li><strong>PyGObject (<code>gi</code> repository)</strong> configured
+with GTK 3 support (<code>gir1.2-gtk-3.0</code> on Linux, or the bundled
+Python environment on Windows and macOS).</li>
+</ul>
+<hr />
+<h3 id="2-define-the-extension-metadata-inx-file">2. Define the
+Extension Metadata (<code>.inx</code> file)</h3>
+<p>Inkscape requires an <code>.inx</code> file to register the extension
+in its menus. When using a custom GTK window, you do not define UI
+controls inside the <code>.inx</code> file; you only define the menu
+hook and the entry point script.</p>
+<p>Create a file named <code>gtk_custom_extension.inx</code>:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span> <span class="ot">version=</span><span class="st">&quot;1.0&quot;</span> <span class="ot">encoding=</span><span class="st">&quot;UTF-8&quot;</span><span class="fu">?&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">inkscape-extension</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.inkscape.org/namespaces/inkscape/extension&quot;</span>&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">name</span>&gt;Custom GTK Interface&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">id</span>&gt;org.example.custom_gtk_extension&lt;/<span class="kw">id</span>&gt;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">effect</span>&gt;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">object-type</span>&gt;all&lt;/<span class="kw">object-type</span>&gt;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">submenu</span> <span class="ot">name=</span><span class="st">&quot;Custom Tools&quot;</span>/&gt;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">effect</span>&gt;</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">script</span>&gt;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">command</span> <span class="ot">location=</span><span class="st">&quot;inx&quot;</span> <span class="ot">interpreter=</span><span class="st">&quot;python&quot;</span>&gt;gtk_custom_extension.py&lt;/<span class="kw">command</span>&gt;</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">script</span>&gt;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">inkscape-extension</span>&gt;</span></code></pre></div>
+<hr />
+<h3 id="3-build-the-gtk-window-and-extension-script">3. Build the GTK
+Window and Extension Script</h3>
+<p>Create <code>gtk_custom_extension.py</code>. This script subclasses
+<code>inkex.EffectExtension</code>, initializes PyGObject, builds the
+GTK window, and modifies the SVG document based on user input.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gi</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>gi.require_version(<span class="st">&quot;Gtk&quot;</span>, <span class="st">&quot;3.0&quot;</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gi.repository <span class="im">import</span> Gtk</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex <span class="im">import</span> Circle</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CustomGTKWindow(Gtk.Window):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, extension_instance):</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(title<span class="op">=</span><span class="st">&quot;Custom Extension Controls&quot;</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.extension <span class="op">=</span> extension_instance</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.set_default_size(<span class="dv">300</span>, <span class="dv">150</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.set_position(Gtk.WindowPosition.CENTER)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.set_border_width(<span class="dv">12</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Layout container</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        vbox <span class="op">=</span> Gtk.Box(orientation<span class="op">=</span>Gtk.Orientation.VERTICAL, spacing<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.add(vbox)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Label</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.label <span class="op">=</span> Gtk.Label(label<span class="op">=</span><span class="st">&quot;Set Radius for New Circle:&quot;</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        vbox.pack_start(<span class="va">self</span>.label, <span class="va">False</span>, <span class="va">False</span>, <span class="dv">0</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Input field (SpinButton)</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        adjustment <span class="op">=</span> Gtk.Adjustment(value<span class="op">=</span><span class="dv">20</span>, lower<span class="op">=</span><span class="dv">1</span>, upper<span class="op">=</span><span class="dv">500</span>, step_increment<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.spin_button <span class="op">=</span> Gtk.SpinButton(adjustment<span class="op">=</span>adjustment, numeric<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        vbox.pack_start(<span class="va">self</span>.spin_button, <span class="va">False</span>, <span class="va">False</span>, <span class="dv">0</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Button Layout</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        hbox <span class="op">=</span> Gtk.Box(orientation<span class="op">=</span>Gtk.Orientation.HORIZONTAL, spacing<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        vbox.pack_start(hbox, <span class="va">True</span>, <span class="va">True</span>, <span class="dv">0</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Apply Button</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        btn_apply <span class="op">=</span> Gtk.Button(label<span class="op">=</span><span class="st">&quot;Apply&quot;</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        btn_apply.<span class="ex">connect</span>(<span class="st">&quot;clicked&quot;</span>, <span class="va">self</span>.on_apply_clicked)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        hbox.pack_start(btn_apply, <span class="va">True</span>, <span class="va">True</span>, <span class="dv">0</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Close Button</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        btn_close <span class="op">=</span> Gtk.Button(label<span class="op">=</span><span class="st">&quot;Close&quot;</span>)</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        btn_close.<span class="ex">connect</span>(<span class="st">&quot;clicked&quot;</span>, <span class="va">self</span>.on_close_clicked)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        hbox.pack_start(btn_close, <span class="va">True</span>, <span class="va">True</span>, <span class="dv">0</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.<span class="ex">connect</span>(<span class="st">&quot;destroy&quot;</span>, Gtk.main_quit)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> on_apply_clicked(<span class="va">self</span>, widget):</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        radius <span class="op">=</span> <span class="va">self</span>.spin_button.get_value()</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.extension.add_circle(radius)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> on_close_clicked(<span class="va">self</span>, widget):</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.destroy()</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>        Gtk.main_quit()</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CustomGTKExtension(inkex.EffectExtension):</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Open GTK interface</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        app_window <span class="op">=</span> CustomGTKWindow(<span class="va">self</span>)</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        app_window.show_all()</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>        Gtk.main()</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add_circle(<span class="va">self</span>, radius):</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Access the current SVG root</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>        svg <span class="op">=</span> <span class="va">self</span>.document.getroot()</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create a circle element</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        circle <span class="op">=</span> Circle()</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>        circle.<span class="bu">set</span>(<span class="st">&quot;cx&quot;</span>, <span class="st">&quot;100&quot;</span>)</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>        circle.<span class="bu">set</span>(<span class="st">&quot;cy&quot;</span>, <span class="st">&quot;100&quot;</span>)</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>        circle.<span class="bu">set</span>(<span class="st">&quot;r&quot;</span>, <span class="bu">str</span>(radius))</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>        circle.<span class="bu">set</span>(<span class="st">&quot;style&quot;</span>, <span class="st">&quot;fill:#3498db;stroke:#2980b9;stroke-width:2&quot;</span>)</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Append to SVG</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>        svg.add(circle)</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    CustomGTKExtension().run()</span></code></pre></div>
+<hr />
+<h3 id="4-how-the-execution-flow-works">4. How the Execution Flow
+Works</h3>
+<ol type="1">
+<li><strong>Invocation:</strong> When selected under <strong>Extensions
+&gt; Custom Tools &gt; Custom GTK Interface</strong>, Inkscape executes
+the Python script and passes the SVG data via standard input.</li>
+<li><strong>UI Execution:</strong> The <code>effect()</code> method
+initializes the GTK application loop using <code>Gtk.main()</code>,
+pausing further script execution while displaying the standalone
+window.</li>
+<li><strong>SVG Manipulation:</strong> Clicking <strong>Apply</strong>
+calls <code>add_circle()</code>, modifying the in-memory XML tree
+representation provided by <code>inkex</code>.</li>
+<li><strong>Exit and Document Save:</strong> Once the window is closed,
+<code>Gtk.main_quit()</code> stops the loop. The <code>inkex</code> base
+class writes the modified SVG tree to standard output, updating the
+active Inkscape canvas.</li>
+</ol>
+<hr />
+<h3 id="5-installation-and-testing">5. Installation and Testing</h3>
+<ol type="1">
+<li>Locate your Inkscape User Extensions directory:
+<ul>
+<li><strong>Linux:</strong>
+<code>~/.config/inkscape/extensions/</code></li>
+<li><strong>Windows:</strong>
+<code>%APPDATA%\inkscape\extensions\</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/extensions/</code></li>
+</ul></li>
+<li>Place both <code>gtk_custom_extension.inx</code> and
+<code>gtk_custom_extension.py</code> into the extensions directory.</li>
+<li>Make the Python file executable (Linux/macOS):
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x gtk_custom_extension.py</span></code></pre></div></li>
+<li>Restart Inkscape to load the extension.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

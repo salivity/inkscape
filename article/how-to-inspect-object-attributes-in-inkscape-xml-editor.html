@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Inspect Object Attributes in Inkscape XML Editor - inkscape</title>
+    <meta name="description" content="Inkscape includes a built-in XML Editor that exposes the underlying Scalable Vector Graphics (SVG) code of your document. This guide provides a straightforward walkthrough on how to open the XML Editor, select objects on your canvas, and inspect or evalu">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-inspect-object-attributes-in-inkscape-xml-editor">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Inspect Object Attributes in Inkscape XML Editor - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-inspect-object-attributes-in-inkscape-xml-editor" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape includes a built-in XML Editor that exposes the underlying Scalable Vector Graphics (SVG) code of your document. This guide provides a straightforward walkthrough on how to open the XML Editor, select objects on your canvas, and inspect or evalu" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-inspect-object-attributes-in-inkscape-xml-editor">How to
+Inspect Object Attributes in Inkscape XML Editor</h1>
+<p>Inkscape includes a built-in XML Editor that exposes the underlying
+Scalable Vector Graphics (SVG) code of your document. This guide
+provides a straightforward walkthrough on how to open the XML Editor,
+select objects on your canvas, and inspect or evaluate their raw
+attributes, styles, and values directly within the interface.</p>
+<h3 id="opening-the-xml-editor">Opening the XML Editor</h3>
+<p>To access the XML Editor in Inkscape:</p>
+<ol type="1">
+<li>Navigate to the top menu bar and click <strong>Edit</strong>.</li>
+<li>Select <strong>XML Editor</strong> from the dropdown list.</li>
+<li>Alternatively, use the keyboard shortcut:
+<ul>
+<li><strong>Windows/Linux:</strong> <code>Ctrl + Shift + X</code></li>
+<li><strong>macOS:</strong> <code>Cmd + Shift + X</code></li>
+</ul></li>
+</ol>
+<p>A docked panel or floating window will appear, displaying the
+hierarchical XML tree of your current SVG file.</p>
+<h3 id="selecting-and-locating-objects">Selecting and Locating
+Objects</h3>
+<p>The XML Editor and the canvas feature bidirectional selection:</p>
+<ul>
+<li><strong>From the Canvas:</strong> Select any object using the
+<strong>Select Tool</strong> (<code>S</code> or <code>F1</code>). The
+XML Editor will automatically highlight the corresponding node (such as
+<code>&lt;svg:path&gt;</code>, <code>&lt;svg:rect&gt;</code>, or
+<code>&lt;svg:g&gt;</code>) in the element tree on the left side of the
+panel.</li>
+<li><strong>From the XML Tree:</strong> Click on any node in the tree
+list to highlight and select that specific element directly on the
+canvas. Expand group tags (<code>&lt;svg:g&gt;</code>) or layers to
+reveal nested child objects.</li>
+</ul>
+<h3 id="reading-object-attributes">Reading Object Attributes</h3>
+<p>Once a node is selected, the right side of the XML Editor panel
+displays all the attributes linked to that element:</p>
+<ul>
+<li><strong>Attribute Column:</strong> Lists standard SVG properties
+assigned to the object, including <code>id</code>, <code>style</code>,
+<code>d</code> (path data), <code>transform</code>, <code>width</code>,
+<code>height</code>, and custom XML namespaces.</li>
+<li><strong>Value Column:</strong> Displays the assigned parameter for
+each attribute.</li>
+<li><strong>Value Preview Field:</strong> Selecting an attribute from
+the list displays its full string in the text box located at the
+bottom-right of the panel. This is useful for inspecting long
+properties, such as CSS style declarations
+(<code>fill:#ff0000;stroke-width:1px</code>) or path coordinate
+strings.</li>
+</ul>
+<h3 id="inspecting-common-properties">Inspecting Common Properties</h3>
+<ul>
+<li><strong>Geometry and Paths:</strong> For basic shapes, inspect
+attributes like <code>x</code>, <code>y</code>, <code>rx</code>,
+<code>ry</code>, <code>width</code>, and <code>height</code>. For
+complex paths, select the <code>d</code> attribute to view raw SVG path
+commands (<code>M</code>, <code>C</code>, <code>Z</code>, etc.).</li>
+<li><strong>Styles and Appearance:</strong> Look at the
+<code>style</code> attribute to inspect combined CSS declarations for
+fill, stroke, opacity, and blend modes. If attributes are written as
+presentation attributes, they may appear individually (e.g.,
+<code>fill="..."</code> rather than inside
+<code>style="..."</code>).</li>
+<li><strong>Transforms:</strong> If an object has been scaled,
+translated, or rotated non-destructively, check the
+<code>transform</code> attribute to view the exact matrix or
+transformation commands applied to that element.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

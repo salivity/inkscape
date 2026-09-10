@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Export SVG Tiny 1.2 in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to prepare, configure, and export vector graphics to the SVG Tiny 1.2 profile using Inkscape for deployment on resource-constrained mobile and embedded platforms. Because embedded hardware often lacks support for the complete SVG">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-export-svg-tiny-1-2-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Export SVG Tiny 1.2 in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-export-svg-tiny-1-2-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to prepare, configure, and export vector graphics to the SVG Tiny 1.2 profile using Inkscape for deployment on resource-constrained mobile and embedded platforms. Because embedded hardware often lacks support for the complete SVG" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-export-svg-tiny-12-in-inkscape">How to Export SVG Tiny
+1.2 in Inkscape</h1>
+<p>This guide explains how to prepare, configure, and export vector
+graphics to the SVG Tiny 1.2 profile using Inkscape for deployment on
+resource-constrained mobile and embedded platforms. Because embedded
+hardware often lacks support for the complete SVG specification,
+following these specific preparation steps, optimization settings, and
+XML profile declarations ensures broad compatibility, minimal memory
+overhead, and fast rendering on low-power devices.</p>
+<h2 id="1-prepare-artwork-for-svg-tiny-12-specifications">1. Prepare
+Artwork for SVG Tiny 1.2 Specifications</h2>
+<p>The SVG Tiny 1.2 profile excludes many advanced features found in the
+full SVG specification to ensure lightweight processing on
+microcontrollers, mobile screens, and embedded operating systems. Before
+exporting, prepare your document to adhere to these constraints:</p>
+<ul>
+<li><strong>Convert Text to Outlines:</strong> Embedded SVG engines
+often lack local font libraries. Select your text objects and click
+<strong>Path &gt; Object to Path</strong> (Shift + Ctrl + C).</li>
+<li><strong>Remove Unsupported Filter Effects:</strong> SVG Tiny 1.2
+does not support gaussian blurs, blend modes, drop shadows, or lighting
+filters. Open <strong>Filters &gt; Remove Filters</strong> on selected
+objects to clear any applied raster effects.</li>
+<li><strong>Simplify Gradients:</strong> Restrict fills to solid colors
+or standard linear and radial gradients. Remove complex multi-stop mesh
+gradients.</li>
+<li><strong>Flatten Clipping and Masking:</strong> Remove masks and
+complex clips where possible. Use boolean path operations (<strong>Path
+&gt; Intersection</strong>, <strong>Path &gt; Difference</strong>) to
+crop shapes permanently into raw geometry.</li>
+<li><strong>Clean the Document:</strong> Open <strong>File &gt; Clean Up
+Document</strong> to remove unused swatches, defs, and unused layers
+from memory.</li>
+</ul>
+<h2 id="2-declare-svg-tiny-12-attributes-in-the-xml-editor">2. Declare
+SVG Tiny 1.2 Attributes in the XML Editor</h2>
+<p>Inkscape saves documents as SVG Full by default. To identify the file
+correctly to embedded parsers, set the required header attributes using
+the built-in XML Editor:</p>
+<ol type="1">
+<li>Open the XML Editor by pressing <strong>Ctrl + Shift + X</strong>
+(or <strong>Edit &gt; XML Editor</strong>).</li>
+<li>Select the top-level <code>&lt;svg:svg&gt;</code> node in the
+tree.</li>
+<li>In the attributes panel on the right, create or update the following
+string attributes:
+<ul>
+<li><strong>Attribute name:</strong> <code>version</code> |
+<strong>Attribute value:</strong> <code>1.2</code></li>
+<li><strong>Attribute name:</strong> <code>baseProfile</code> |
+<strong>Attribute value:</strong> <code>tiny</code></li>
+</ul></li>
+<li>Click <strong>Set</strong> after entering each attribute to apply
+the changes to the root element.</li>
+</ol>
+<h2 id="3-export-as-optimized-svg">3. Export as Optimized SVG</h2>
+<p>To strip proprietary Inkscape metadata, editor namespaces, and
+non-conforming styling rules, export using Inkscape’s optimization
+pipeline:</p>
+<ol type="1">
+<li>Click <strong>File &gt; Save As...</strong> (or <strong>Ctrl + Shift
++ S</strong>).</li>
+<li>In the file format dropdown menu, select <strong>Optimized SVG
+(*.svg)</strong>.</li>
+<li>Name your file and click <strong>Save</strong> to bring up the Scour
+optimization configuration dialog.</li>
+<li>In the <strong>Options</strong> tab:
+<ul>
+<li>Enable <strong>Convert styles to XML attributes</strong> (crucial
+for embedded engines that do not parse CSS blocks).</li>
+<li>Enable <strong>Collapse groups</strong>.</li>
+<li>Enable <strong>Remove unused defs</strong>.</li>
+</ul></li>
+<li>In the <strong>SVG Output</strong> tab:
+<ul>
+<li>Enable <strong>Remove metadata</strong>.</li>
+<li>Enable <strong>Remove Inkscape and Sodipodi namespace
+attributes</strong>.</li>
+<li>Set <strong>Coordinate precision</strong> to <code>2</code> or
+<code>3</code> to reduce file size without distorting visual
+geometry.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to generate the final file.</li>
+</ol>
+<h2 id="4-verify-the-output-for-embedded-systems">4. Verify the Output
+for Embedded Systems</h2>
+<p>Open the generated file in a plain text editor to verify that it
+adheres to embedded standards:</p>
+<ul>
+<li>Ensure the root element starts cleanly with
+<code>&lt;svg version="1.2" baseProfile="tiny" ...&gt;</code>.</li>
+<li>Confirm there are no <code>&lt;style&gt;</code> tags; attributes
+such as <code>fill</code>, <code>stroke</code>, and
+<code>stroke-width</code> should exist as inline XML attributes directly
+on shape tags like <code>&lt;path&gt;</code>, <code>&lt;rect&gt;</code>,
+or <code>&lt;circle&gt;</code>.</li>
+<li>Test the output on your target runtime engine (such as Qt Quick,
+NanoSVG, or LVGL) to verify rendering speed and correct scaling across
+different display resolutions.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

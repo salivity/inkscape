@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Accurate Door Swings and Walls in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to construct architectural door-swing arcs and clean wall cutouts with precise vector accuracy using Inkscape. By configuring precision snapping, utilizing Boolean path operations, and defining exact geometric arc parameters, you">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/draw-accurate-door-swings-and-walls-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Draw Accurate Door Swings and Walls in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/draw-accurate-door-swings-and-walls-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to construct architectural door-swing arcs and clean wall cutouts with precise vector accuracy using Inkscape. By configuring precision snapping, utilizing Boolean path operations, and defining exact geometric arc parameters, you" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="draw-accurate-door-swings-and-walls-in-inkscape">Draw Accurate
+Door Swings and Walls in Inkscape</h1>
+<p>This guide explains how to construct architectural door-swing arcs
+and clean wall cutouts with precise vector accuracy using Inkscape. By
+configuring precision snapping, utilizing Boolean path operations, and
+defining exact geometric arc parameters, you can draft clean,
+professional floor plan components to scale without relying on dedicated
+CAD software.</p>
+<h3 id="1-configure-snapping-and-document-scale">1. Configure Snapping
+and Document Scale</h3>
+<p>Accurate architectural drafting requires precise alignment to points,
+grids, and edges.</p>
+<ol type="1">
+<li>Open <strong>File &gt; Document Properties</strong>
+(<code>Ctrl + Shift + D</code>).</li>
+<li>Set your <strong>Display units</strong> to millimeters
+(<code>mm</code>), centimeters (<code>cm</code>), or inches
+(<code>in</code>).</li>
+<li>Open the <strong>Snap Controls</strong> bar on the right edge of the
+canvas.</li>
+<li>Enable snapping globally, then turn on:
+<ul>
+<li><strong>Snap to paths</strong></li>
+<li><strong>Snap to cusp nodes</strong></li>
+<li><strong>Snap to bounding box corners and midpoints</strong></li>
+</ul></li>
+</ol>
+<h3 id="2-create-the-wall-cutout">2. Create the Wall Cutout</h3>
+<p>Walls are best managed as closed polygon paths or stroked lines. To
+create an opening for a door:</p>
+<ol type="1">
+<li>Draw your wall using the <strong>Rectangle tool</strong>
+(<code>R</code>) or <strong>Draw Bezier curves tool</strong>
+(<code>B</code>), giving it the required wall thickness.</li>
+<li>If using stroked paths for walls, convert them to filled geometry
+via <strong>Path &gt; Stroke to Path</strong>
+(<code>Ctrl + Alt + C</code>).</li>
+<li>Draw a cutting rectangle with the <strong>Rectangle tool</strong>
+representing the door frame width and depth (must be at least as thick
+as the wall).</li>
+<li>Snap the cutting rectangle to the exact location of the door opening
+on the wall.</li>
+<li>Select both the wall and the cutting rectangle.</li>
+<li>Navigate to <strong>Path &gt; Difference</strong>
+(<code>Ctrl + -</code>). This punches out the door opening, creating
+clean vector terminals on both sides of the wall.</li>
+</ol>
+<h3 id="3-draw-the-door-leaf">3. Draw the Door Leaf</h3>
+<p>The door leaf represents the physical door panel in an open
+position.</p>
+<ol type="1">
+<li>Select the <strong>Rectangle tool</strong> (<code>R</code>).</li>
+<li>Click and drag to create the door panel. Set its exact width (e.g.,
+36 inches or 900 mm) and door thickness (e.g., 1.75 inches or 45 mm)
+using the <strong>W</strong> and <strong>H</strong> fields in the top
+toolbar.</li>
+<li>Use the <strong>Select tool</strong> (<code>S</code>) to drag the
+door leaf to the opening.</li>
+<li>Snap the hinge corner of the door leaf directly to the interior
+corner of the wall cutout.</li>
+<li>To show the door fully open at 90 degrees, click the object a second
+time to activate rotation handles, hold <code>Ctrl</code>, and rotate
+the panel against the wall line.</li>
+</ol>
+<h3 id="4-construct-the-vector-accurate-swing-arc">4. Construct the
+Vector-Accurate Swing Arc</h3>
+<p>Architectural conventions show the swing of a door as a
+quarter-circle arc.</p>
+<ol type="1">
+<li>Select the <strong>Circles and Ellipses tool</strong>
+(<code>E</code> or <code>F5</code>).</li>
+<li>Move the cursor over the hinge point until the snap indicator
+confirms alignment with the hinge node.</li>
+<li>Hold <code>Ctrl + Shift</code> and drag outward to draw an ellipse
+constrained to a 1:1 circle centered on the hinge point.</li>
+<li>Drag until the radius snaps directly to the outer edge of the open
+door leaf.</li>
+<li>In the top tool control bar for the Ellipse tool:
+<ul>
+<li>Switch the shape mode to <strong>Arc</strong> (the icon showing an
+open cut stroke, not a slice/pie).</li>
+<li>Set the <strong>Start</strong> and <strong>End</strong> angle fields
+to define the 90-degree quadrant (e.g., Start: <code>0.0</code>, End:
+<code>90.0</code>, adjusting based on the door’s orientation).</li>
+</ul></li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>):
+<ul>
+<li>Remove the <strong>Fill</strong> completely.</li>
+<li>Under <strong>Stroke paint</strong>, set a solid color.</li>
+<li>Under <strong>Stroke style</strong>, reduce the width to a lighter
+line-weight than the wall geometry (e.g., 0.18 mm or 0.25 mm) and select
+a dashed line pattern from the <strong>Dashes</strong> dropdown.</li>
+</ul></li>
+</ol>
+<h3 id="5-group-the-assembly">5. Group the Assembly</h3>
+<ol type="1">
+<li>Select both the door leaf and the swing arc.</li>
+<li>Press <code>Ctrl + G</code> to group the components into a single
+reusable object.</li>
+<li>You can now duplicate (<code>Ctrl + D</code>), flip horizontally
+(<code>H</code>), or flip vertically (<code>V</code>) to place identical
+doors throughout your floor plan while preserving vector precision.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

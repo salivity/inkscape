@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import Specific PDF Pages in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape allows you to import and edit vector content from multi-page PDF documents with precision. While Inkscape handles vector elements natively, opening a PDF requires selecting your target page and configuring import settings to preserve fonts, laye">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-import-specific-pdf-pages-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import Specific PDF Pages in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-import-specific-pdf-pages-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape allows you to import and edit vector content from multi-page PDF documents with precision. While Inkscape handles vector elements natively, opening a PDF requires selecting your target page and configuring import settings to preserve fonts, laye" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-specific-pdf-pages-in-inkscape">How to Import
+Specific PDF Pages in Inkscape</h1>
+<p>Inkscape allows you to import and edit vector content from multi-page
+PDF documents with precision. While Inkscape handles vector elements
+natively, opening a PDF requires selecting your target page and
+configuring import settings to preserve fonts, layers, and layout
+accurately. This guide explains how to select specific pages during
+import, how to handle multiple pages within a single project, and how to
+choose the right rendering settings for your workflow.</p>
+<hr />
+<h3 id="step-by-step-importing-a-specific-pdf-page">Step-by-Step:
+Importing a Specific PDF Page</h3>
+<ol type="1">
+<li><p><strong>Open the File Menu</strong></p>
+<ul>
+<li>Launch Inkscape.</li>
+<li>Go to <strong>File &gt; Open</strong> (to open the PDF as a new
+document) or <strong>File &gt; Import</strong> (to insert the page into
+an existing document).</li>
+<li>Navigate to your multi-page PDF file, select it, and click
+<strong>Open</strong>.</li>
+</ul></li>
+<li><p><strong>Select the Page Number</strong></p>
+<ul>
+<li>The <strong>PDF Import Settings</strong> dialog window will
+appear.</li>
+<li>At the top of the dialog, locate the preview area and the
+<strong>Page</strong> selection field.</li>
+<li>Enter the specific page number you wish to import, or use the arrow
+buttons to navigate through the pages.</li>
+</ul></li>
+<li><p><strong>Configure Text and Rendering Settings</strong></p>
+<ul>
+<li><strong>Internal Import vs. Poppler/Cairo:</strong>
+<ul>
+<li><strong>Internal import:</strong> Converts text to editable Inkscape
+text objects and retains vector paths, though complex fonts may
+shift.</li>
+<li><strong>Poppler/Cairo:</strong> Renders text closer to the original
+appearance (often converting text to paths), ideal for preserving exact
+layouts and unsupported fonts.</li>
+</ul></li>
+<li><strong>Font Handling:</strong> Check "Substitute missing fonts" if
+you want Inkscape to replace unavailable fonts automatically.</li>
+</ul></li>
+<li><p><strong>Complete the Import</strong></p>
+<ul>
+<li>Set your precision settings (clip to Page, Media Box, Crop Box,
+etc.) as needed.</li>
+<li>Click <strong>OK</strong>. The chosen page will load directly onto
+the canvas.</li>
+</ul></li>
+</ol>
+<hr />
+<h3 id="how-to-work-with-multiple-pages-from-the-same-pdf">How to Work
+with Multiple Pages from the Same PDF</h3>
+<p>Inkscape supports multi-page documents (version 1.2 and later). To
+assemble multiple distinct pages from a PDF into one Inkscape file:</p>
+<ol type="1">
+<li>Import your first page using <strong>File &gt; Open</strong>.</li>
+<li>Select the <strong>Create and Edit Document Pages</strong> tool from
+the left toolbar (or press <code>Shift + X</code>).</li>
+<li>Click <strong>Create a new page</strong> in the top toolbar to add a
+blank page to your canvas.</li>
+<li>Go to <strong>File &gt; Import</strong>, select the same PDF file,
+and choose the next page number from the import dialog.</li>
+<li>Position the newly imported vector graphics onto the corresponding
+page on your canvas.</li>
+<li>Repeat the process for any additional pages you need to
+include.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

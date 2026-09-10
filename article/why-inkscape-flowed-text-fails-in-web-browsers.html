@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Inkscape Flowed Text Fails in Web Browsers - inkscape</title>
+    <meta name="description" content="Flowed text created in Inkscape often fails to render in web browsers because it relies on an abandoned SVG 1.2 draft specification that modern browser rendering engines do not support. When users click and drag a text box in Inkscape, the software histo">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/why-inkscape-flowed-text-fails-in-web-browsers">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Inkscape Flowed Text Fails in Web Browsers - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/why-inkscape-flowed-text-fails-in-web-browsers" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Flowed text created in Inkscape often fails to render in web browsers because it relies on an abandoned SVG 1.2 draft specification that modern browser rendering engines do not support. When users click and drag a text box in Inkscape, the software histo" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="why-inkscape-flowed-text-fails-in-web-browsers">Why Inkscape
+Flowed Text Fails in Web Browsers</h1>
+<p>Flowed text created in Inkscape often fails to render in web browsers
+because it relies on an abandoned SVG 1.2 draft specification that
+modern browser rendering engines do not support. When users click and
+drag a text box in Inkscape, the software historically generated
+proprietary <code>&lt;flowRoot&gt;</code> elements rather than standard
+SVG text elements. This article explains the technical reasons behind
+this rendering failure and provides direct solutions to make your SVG
+text visible across all standard web browsers.</p>
+<h2 id="the-cause-the-abandoned-svg-12-draft">The Cause: The Abandoned
+SVG 1.2 Draft</h2>
+<p>The issue originates from an inconsistency between SVG standards and
+browser adoption:</p>
+<ol type="1">
+<li><strong>The Introduction of <code>&lt;flowRoot&gt;</code>:</strong>
+In older versions of Inkscape (and certain legacy templates), dragging a
+bounding box to create text generates an experimental SVG 1.2 structure
+using <code>&lt;flowRoot&gt;</code>, <code>&lt;flowRegion&gt;</code>,
+and <code>&lt;flowPara&gt;</code> elements.</li>
+<li><strong>Standard Abandonment:</strong> The World Wide Web Consortium
+(W3C) never finalized the SVG 1.2 Full specification. As a result, major
+browser engines (Blink, Gecko, and WebKit) never implemented native
+support for the <code>&lt;flowRoot&gt;</code> tag.</li>
+<li><strong>Browser Fallback:</strong> Because browsers strictly
+implement SVG 1.1 and finalized parts of SVG 2, any element they do not
+recognize is ignored. Browsers parse the file, encounter
+<code>&lt;flowRoot&gt;</code>, fail to recognize how to position or
+render it, and simply display a blank area where the text should
+be.</li>
+</ol>
+<h2 id="how-flowed-text-is-accidentally-created">How Flowed Text Is
+Accidentally Created</h2>
+<p>In Inkscape, text is inserted in one of two ways:</p>
+<ul>
+<li><strong>Regular Text:</strong> Selecting the Text tool and
+<strong>clicking once</strong> on the canvas. This creates a standard,
+fully supported SVG <code>&lt;text&gt;</code> element.</li>
+<li><strong>Flowed Text:</strong> Selecting the Text tool and
+<strong>clicking and dragging</strong> to define a boundary box. This
+creates the unsupported <code>&lt;flowRoot&gt;</code> structure.</li>
+</ul>
+<h2 id="how-to-fix-flowed-text-for-web-compatibility">How to Fix Flowed
+Text for Web Compatibility</h2>
+<p>To ensure text renders properly across all browsers, you must convert
+flowed text into a standard format before exporting.</p>
+<h3 id="method-1-convert-to-regular-text-recommended">Method 1: Convert
+to Regular Text (Recommended)</h3>
+<p>This method preserves the text as live, selectable, and searchable
+text while removing the unsupported bounding box elements.</p>
+<ol type="1">
+<li>Select the affected text object on the canvas.</li>
+<li>Go to the top menu and select <strong>Text</strong>.</li>
+<li>Click <strong>Convert to Text</strong>.</li>
+</ol>
+<p>Inkscape will convert the <code>&lt;flowRoot&gt;</code> into standard
+SVG <code>&lt;text&gt;</code> elements containing
+<code>&lt;tspan&gt;</code> tags. Note that automatic line wrapping will
+be lost, so manual line breaks may be required.</p>
+<h3 id="method-2-convert-text-to-paths">Method 2: Convert Text to
+Paths</h3>
+<p>If preserving the visual layout and exact line breaks is more
+critical than maintaining selectable text, convert the text into vector
+outlines.</p>
+<ol type="1">
+<li>Select the text object.</li>
+<li>Go to the top menu and select <strong>Path</strong>.</li>
+<li>Click <strong>Object to Path</strong> (or press
+<code>Ctrl + Shift + C</code> / <code>Cmd + Shift + C</code>).</li>
+</ol>
+<p>This replaces the font elements with standard vector shapes
+(<code>&lt;path&gt;</code>). The visual appearance will remain identical
+in every browser, though the text will no longer be editable or
+selectable.</p>
+<h3 id="method-3-use-svg-2-text-auto-wrapping-in-recent-versions">Method
+3: Use SVG 2 Text Auto-Wrapping in Recent Versions</h3>
+<p>Recent releases of Inkscape (version 1.0 and newer) support standard
+SVG 2 text auto-wrapping using CSS <code>inline-size</code>. If you are
+using an updated version of Inkscape:</p>
+<ol type="1">
+<li>Ensure your file is saved as <strong>Plain SVG</strong> or
+<strong>Optimized SVG</strong> rather than Inkscape SVG.</li>
+<li>Verify that older <code>&lt;flowRoot&gt;</code> elements are
+migrated by selecting <strong>Text &gt; Convert to Text</strong> and
+re-applying wrapping using the updated text tool settings compatible
+with SVG 2.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Vector Crest Ribbons in Inkscape - inkscape</title>
+    <meta name="description" content="Creating vector crest and badge ribbons in Inkscape involves designing the primary geometric components—the main banner, fold triangles, and ribbon tails—and manipulating them using Inkscape’s path curvature tools. This guide covers the complete st">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-vector-crest-ribbons-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Vector Crest Ribbons in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-vector-crest-ribbons-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating vector crest and badge ribbons in Inkscape involves designing the primary geometric components—the main banner, fold triangles, and ribbon tails—and manipulating them using Inkscape’s path curvature tools. This guide covers the complete st" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-vector-crest-ribbons-in-inkscape">Create Vector Crest
+Ribbons in Inkscape</h1>
+<p>Creating vector crest and badge ribbons in Inkscape involves
+designing the primary geometric components—the main banner, fold
+triangles, and ribbon tails—and manipulating them using Inkscape’s path
+curvature tools. This guide covers the complete step-by-step workflow,
+from drawing the initial flat layout and applying shading for depth, to
+bending the entire structure using Path Effects and curving text to fit
+the final banner.</p>
+<h3 id="step-1-draw-the-base-geometry">Step 1: Draw the Base
+Geometry</h3>
+<ol type="1">
+<li><strong>Central Banner:</strong> Select the <strong>Rectangle
+tool</strong> (<code>R</code>) and draw a wide horizontal rectangle.
+This forms the front-facing section of your ribbon.</li>
+<li><strong>Ribbon Tails:</strong> Draw a second rectangle, slightly
+shorter in height than the main banner, and place it behind the main
+rectangle. Use the <strong>Draw Bezier Curves tool</strong>
+(<code>B</code>) or the <strong>Node tool</strong> (<code>N</code>) to
+cut a triangle out of the outer edge to create a standard "swallowtail"
+ribbon end. Duplicate this shape for the opposite side.</li>
+<li><strong>Fold Triangles:</strong> Create small right-angled or skewed
+triangles connecting the bottom edge of the front banner to the top edge
+of the back tails. These triangles represent the reverse side of the
+folded ribbon.</li>
+</ol>
+<h3 id="step-2-organize-layers-and-apply-shading">Step 2: Organize
+Layers and Apply Shading</h3>
+<ol type="1">
+<li><strong>Layer Stacking:</strong> Arrange the objects from front to
+back using the <strong>Page Up</strong> and <strong>Page Down</strong>
+keys:
+<ul>
+<li>Front: Main Banner</li>
+<li>Middle: Fold Triangles</li>
+<li>Back: Left and Right Tails</li>
+</ul></li>
+<li><strong>Coloring:</strong> Assign your base color to the front
+banner and tails. Fill the fold triangles with a significantly darker
+shade of the base color to simulate realistic shadow and depth.</li>
+<li><strong>Group the Artwork:</strong> Select all ribbon components and
+press <code>Ctrl + G</code> to group them together.</li>
+</ol>
+<h3 id="step-3-curve-the-ribbon-using-path-effects">Step 3: Curve the
+Ribbon Using Path Effects</h3>
+<p>The most efficient way to curve a multi-part ribbon uniformly is with
+Inkscape's <strong>Live Path Effects (LPE)</strong>.</p>
+<ol type="1">
+<li><strong>Convert to Path:</strong> If your group contains standard
+shapes (rectangles), select the group and go to <strong>Path &gt; Object
+to Path</strong> (<code>Shift + Ctrl + C</code>).</li>
+<li><strong>Open Path Effects:</strong> Open the Path Effects panel by
+going to <strong>Path &gt; Path Effects</strong>.</li>
+<li><strong>Apply the Bend Effect:</strong> Click the <strong>Add Path
+Effect (+)</strong> button and search for <strong>Bend</strong>.</li>
+<li><strong>Edit the Bend Path:</strong> In the Path Effects panel,
+click the <strong>Edit on-canvas</strong> icon next to the "Current bend
+path" option. A red horizontal guide line will appear through the center
+of your ribbon.</li>
+<li><strong>Add Curvature:</strong> Select the <strong>Node
+tool</strong> (<code>N</code>), click on the red guide line, and drag it
+upward or downward to curve the entire ribbon structure symmetrically.
+Use node handles to adjust the steepness and shape of the curve (such as
+an arch or an S-curve).</li>
+</ol>
+<h3 id="step-4-alternative-method-envelope-deformation">Step 4:
+Alternative Method: Envelope Deformation</h3>
+<p>If you want the ribbon to taper or deform along non-parallel
+axes:</p>
+<ol type="1">
+<li>In the <strong>Path Effects</strong> panel, add the <strong>Envelope
+Deformation</strong> effect instead of Bend.</li>
+<li>Use the on-canvas node controls to independently drag the top,
+bottom, left, and right path limits into your desired crest shape.</li>
+</ol>
+<h3 id="step-5-add-text-along-the-ribbon-curve">Step 5: Add Text Along
+the Ribbon Curve</h3>
+<ol type="1">
+<li>Type your desired label using the <strong>Text tool</strong>
+(<code>T</code>).</li>
+<li>Draw a single curved line that matches the contour of your front
+banner using the <strong>Bezier tool</strong> (<code>B</code>).</li>
+<li>Select both the text object and the curved line simultaneously.</li>
+<li>Go to <strong>Text &gt; Put on Path</strong>.</li>
+<li>Adjust the horizontal placement of the text using the spacebar or
+letter spacing controls in the Text toolbar, and position it over the
+central banner.</li>
+</ol>
+<h3 id="step-6-final-vector-clean-up">Step 6: Final Vector Clean-up</h3>
+<ol type="1">
+<li>Once satisfied with the curve, select the ribbon and go to
+<strong>Path &gt; Object to Path</strong> to permanently bake the
+curvature into the shapes.</li>
+<li>Add highlight strokes or subtle gradients to the front banner to
+enhance the three-dimensional crest appearance.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipe SVG to PNG Using Inkscape CLI - inkscape</title>
+    <meta name="description" content="Converting SVG data to a PNG image directly through command-line streams avoids creating unnecessary temporary files on disk. Modern versions of Inkscape (version 1.0 and later) support piping input directly from standard input (stdin) and streaming the">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/pipe-svg-to-png-using-inkscape-cli">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Pipe SVG to PNG Using Inkscape CLI - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/pipe-svg-to-png-using-inkscape-cli" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Converting SVG data to a PNG image directly through command-line streams avoids creating unnecessary temporary files on disk. Modern versions of Inkscape (version 1.0 and later) support piping input directly from standard input (stdin) and streaming the" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="pipe-svg-to-png-using-inkscape-cli">Pipe SVG to PNG Using
+Inkscape CLI</h1>
+<p>Converting SVG data to a PNG image directly through command-line
+streams avoids creating unnecessary temporary files on disk. Modern
+versions of Inkscape (version 1.0 and later) support piping input
+directly from standard input (stdin) and streaming the exported raster
+image to standard output (stdout). This approach is particularly
+effective for backend automation, cloud functions, and shell
+scripts.</p>
+<h3 id="the-command-syntax">The Command Syntax</h3>
+<p>To feed an SVG string into Inkscape and receive a PNG via standard
+output, use the <code>--pipe</code> argument combined with
+<code>--export-type=png</code> and <code>--export-filename=-</code>.</p>
+<p>Here is the standard Bash command:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&#39;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;&lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;40&quot; fill=&quot;red&quot;/&gt;&lt;/svg&gt;&#39;</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--pipe</span> <span class="at">--export-type</span><span class="op">=</span>png <span class="at">--export-filename</span><span class="op">=</span>- <span class="op">&gt;</span> output.png</span></code></pre></div>
+<h3 id="how-the-parameters-work">How the Parameters Work</h3>
+<ul>
+<li><strong><code>--pipe</code></strong>: Instructs Inkscape to read the
+incoming SVG file directly from standard input rather than looking for a
+file path on the filesystem.</li>
+<li><strong><code>--export-type=png</code></strong>: Specifies that the
+rendering engine should output a PNG raster file.</li>
+<li><strong><code>--export-filename=-</code></strong>: Using the hyphen
+(<code>-</code>) as the export target directs the resulting binary
+stream to standard output rather than saving it to a local file.</li>
+</ul>
+<h3 id="controlling-dimensions-and-quality">Controlling Dimensions and
+Quality</h3>
+<p>By default, Inkscape renders the image using the dimensions and DPI
+specified within the SVG document. You can override these dimensions
+directly in the pipe command:</p>
+<ul>
+<li><strong>Export DPI</strong>: Add <code>--export-dpi=300</code> to
+increase resolution for print quality.</li>
+<li><strong>Explicit Width and Height</strong>: Add
+<code>--export-width=800</code> or <code>--export-height=600</code> to
+scale the image proportionally or to strict dimensions.</li>
+<li><strong>Transparent Background</strong>: Add
+<code>--export-background-opacity=0</code> to ensure transparent areas
+remain clear.</li>
+</ul>
+<p>Example with resolution options:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> graphic.svg <span class="kw">|</span> <span class="ex">inkscape</span> <span class="at">--pipe</span> <span class="at">--export-type</span><span class="op">=</span>png <span class="at">--export-dpi</span><span class="op">=</span>300 <span class="at">--export-filename</span><span class="op">=</span>- <span class="op">&gt;</span> high_res.png</span></code></pre></div>
+<h3 id="integration-in-applications">Integration in Applications</h3>
+<p>When invoking this command within languages like Python or Node.js,
+execute the process with standard I/O configured to pipes:</p>
+<ul>
+<li>Set <code>stdin</code> to <code>PIPE</code> and write your raw SVG
+UTF-8 string into the stream.</li>
+<li>Close <code>stdin</code> to signal EOF (End of File) so Inkscape
+knows the input is complete.</li>
+<li>Read the binary buffer directly from <code>stdout</code> to process
+or serve the resulting PNG image in memory.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

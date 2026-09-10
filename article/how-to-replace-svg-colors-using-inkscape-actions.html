@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Replace SVG Colors Using Inkscape Actions - inkscape</title>
+    <meta name="description" content="This article explains how to automate color replacement in SVG files by leveraging Inkscape’s command-line action system combined with custom scripting. You will learn the specific command-line syntax for chaining Inkscape actions to select and modify">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-replace-svg-colors-using-inkscape-actions">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Replace SVG Colors Using Inkscape Actions - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-replace-svg-colors-using-inkscape-actions" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how to automate color replacement in SVG files by leveraging Inkscape’s command-line action system combined with custom scripting. You will learn the specific command-line syntax for chaining Inkscape actions to select and modify" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-replace-svg-colors-using-inkscape-actions">How to Replace
+SVG Colors Using Inkscape Actions</h1>
+<p>This article explains how to automate color replacement in SVG files
+by leveraging Inkscape’s command-line action system combined with custom
+scripting. You will learn the specific command-line syntax for chaining
+Inkscape actions to select and modify color attributes, as well as how
+to integrate these commands into an automated script to process files
+without opening the graphical interface.</p>
+<h2 id="understanding-inkscape-command-line-actions">Understanding
+Inkscape Command-Line Actions</h2>
+<p>Inkscape provides a robust command-line interface (CLI) powered by
+the <code>--actions</code> argument. This feature allows you to chain
+multiple internal operations—such as selecting objects, modifying XML
+attributes, and exporting files—sequentially by separating commands with
+semicolons.</p>
+<p>To inspect all supported actions in your installed version of
+Inkscape, open your terminal and run:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="at">--action-list</span></span></code></pre></div>
+<h2 id="constructing-the-color-replacement-action-chain">Constructing
+the Color Replacement Action Chain</h2>
+<p>Color replacement in an SVG via actions relies on selecting the
+target elements by their current color and applying the new color
+attribute before saving the file.</p>
+<p>The core action sequence consists of:</p>
+<ol type="1">
+<li>Clearing existing selections: <code>select-clear</code></li>
+<li>Selecting elements containing the old color:
+<code>select-by-fill:#OLD_HEX</code> or
+<code>select-by-stroke:#OLD_HEX</code></li>
+<li>Setting the new color attribute:
+<code>set-attribute:style,fill:#NEW_HEX</code> (or using
+<code>object-set-property:fill,#NEW_HEX</code>)</li>
+<li>Writing the changes to a destination file:
+<code>export-filename:output.svg;export-do</code></li>
+</ol>
+<p>A complete one-line command looks like this:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">--actions</span><span class="op">=</span><span class="st">&quot;select-clear;select-by-fill:#ff0000;set-attribute:fill,#00ff00;export-filename:output.svg;export-do&quot;</span></span></code></pre></div>
+<h2 id="creating-an-automated-color-replacement-script">Creating an
+Automated Color Replacement Script</h2>
+<p>To handle dynamic inputs and batch operations, wrap the Inkscape
+actions inside a shell or Python script. Below are practical
+implementations for both environments.</p>
+<h3 id="bash-automation-script">Bash Automation Script</h3>
+<p>Save the following code as <code>replace_svg_color.sh</code>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">INPUT_FILE</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">OLD_COLOR</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$2</span><span class="st">&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="va">NEW_COLOR</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$3</span><span class="st">&quot;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="va">OUTPUT_FILE</span><span class="op">=</span><span class="st">&quot;</span><span class="va">$4</span><span class="st">&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="st">&quot;</span><span class="va">$#</span><span class="st">&quot;</span> <span class="ot">-ne</span> 4 <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">&quot;Usage: </span><span class="va">$0</span><span class="st"> &lt;input.svg&gt; &lt;old_hex&gt; &lt;new_hex&gt; &lt;output.svg&gt;&quot;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="va">ACTION_STRING</span><span class="op">=</span><span class="st">&quot;select-clear;select-by-fill:</span><span class="va">${OLD_COLOR}</span><span class="st">;set-attribute:fill,</span><span class="va">${NEW_COLOR}</span><span class="st">;export-filename:</span><span class="va">${OUTPUT_FILE}</span><span class="st">;export-do&quot;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> <span class="st">&quot;</span><span class="va">${INPUT_FILE}</span><span class="st">&quot;</span> <span class="at">--actions</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${ACTION_STRING}</span><span class="st">&quot;</span></span></code></pre></div>
+<p>Make the script executable and run it:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x replace_svg_color.sh</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./replace_svg_color.sh</span> icon.svg <span class="st">&quot;#3498db&quot;</span> <span class="st">&quot;#e74c3c&quot;</span> icon_modified.svg</span></code></pre></div>
+<h3 id="python-automation-script">Python Automation Script</h3>
+<p>For cross-platform environments or integration into larger pipelines,
+Python’s <code>subprocess</code> module provides robust handling:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> replace_svg_color(input_svg, old_hex, new_hex, output_svg):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    actions <span class="op">=</span> (</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f&quot;select-clear;&quot;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f&quot;select-by-fill:</span><span class="sc">{</span>old_hex<span class="sc">}</span><span class="ss">;&quot;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f&quot;set-attribute:fill,</span><span class="sc">{</span>new_hex<span class="sc">}</span><span class="ss">;&quot;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f&quot;export-filename:</span><span class="sc">{</span>output_svg<span class="sc">}</span><span class="ss">;&quot;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f&quot;export-do&quot;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    command <span class="op">=</span> [</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;inkscape&quot;</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        input_svg,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        <span class="ss">f&quot;--actions=</span><span class="sc">{</span>actions<span class="sc">}</span><span class="ss">&quot;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> subprocess.run(command, capture_output<span class="op">=</span><span class="va">True</span>, text<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> result.returncode <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;Successfully generated </span><span class="sc">{</span>output_svg<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;Error processing SVG: </span><span class="sc">{</span>result<span class="sc">.</span>stderr<span class="sc">}</span><span class="ss">&quot;</span>, <span class="bu">file</span><span class="op">=</span>sys.stderr)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    replace_svg_color(<span class="st">&quot;source.svg&quot;</span>, <span class="st">&quot;#000000&quot;</span>, <span class="st">&quot;#ffffff&quot;</span>, <span class="st">&quot;result.svg&quot;</span>)</span></code></pre></div>
+<h2 id="key-considerations">Key Considerations</h2>
+<ul>
+<li><strong>Inline Styles vs. Presentation Attributes:</strong> Some
+SVGs define colors using CSS styles (<code>style="fill:#000000"</code>),
+while others use direct attributes (<code>fill="#000000"</code>). Using
+<code>set-attribute:style,fill:#NEW_HEX</code> overwrites style
+declaration properties directly.</li>
+<li><strong>Handling Strokes:</strong> If the target SVG uses strokes
+instead of or in addition to fills, append
+<code>select-by-stroke:#OLD_HEX;set-attribute:stroke,#NEW_HEX</code> to
+your action chain.</li>
+<li><strong>Case Sensitivity:</strong> Ensure hex color codes match the
+casing format inside the SVG source data (typically lowercase), as
+matching can fail if formats differ.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

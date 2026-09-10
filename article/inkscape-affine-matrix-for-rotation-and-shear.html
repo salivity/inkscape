@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Affine Matrix for Rotation and Shear - inkscape</title>
+    <meta name="description" content="This article explains how Inkscape computes the 2D affine transformation matrix when combining rotation and shear operations on vector objects. It covers the underlying mathematical representation using SVG-compliant transformation matrices, the role of">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-affine-matrix-for-rotation-and-shear">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Affine Matrix for Rotation and Shear - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-affine-matrix-for-rotation-and-shear" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how Inkscape computes the 2D affine transformation matrix when combining rotation and shear operations on vector objects. It covers the underlying mathematical representation using SVG-compliant transformation matrices, the role of" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-affine-matrix-for-rotation-and-shear">Inkscape Affine
+Matrix for Rotation and Shear</h1>
+<p>This article explains how Inkscape computes the 2D affine
+transformation matrix when combining rotation and shear operations on
+vector objects. It covers the underlying mathematical representation
+using SVG-compliant transformation matrices, the role of Inkscape's
+2Geom geometry engine, the derivation of individual rotation and shear
+components, and how matrix multiplication order determines the final
+composite matrix.</p>
+<h3 id="the-2d-affine-representation-in-inkscape">The 2D Affine
+Representation in Inkscape</h3>
+<p>Inkscape represents all two-dimensional linear transformations as
+affine matrices matching the SVG standard. In homogeneous coordinates, a
+point <span class="math inline">\((x, y)\)</span> is transformed to
+<span class="math inline">\((x&#39;, y&#39;)\)</span> using a <span
+class="math inline">\(3 \times 3\)</span> matrix:</p>
+<p><span class="math display">\[\begin{bmatrix} x&#39; \\ y&#39; \\ 1
+\end{bmatrix} = \begin{bmatrix} a &amp; c &amp; e \\ b &amp; d &amp; f
+\\ 0 &amp; 0 &amp; 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1
+\end{bmatrix}\]</span></p>
+<p>In SVG syntax and Inkscape's internal codebase, this is stored as six
+scalar values: <code>matrix(a, b, c, d, e, f)</code>. The parameters
+<span class="math inline">\(a, b, c,\)</span> and <span
+class="math inline">\(d\)</span> govern linear transformations (scaling,
+rotation, and shearing), while <span class="math inline">\(e\)</span>
+and <span class="math inline">\(f\)</span> handle translation along the
+horizontal and vertical axes.</p>
+<p>Under the hood, Inkscape utilizes the <code>Geom::Affine</code> class
+provided by its computational geometry library, <code>lib2geom</code>.
+This class encapsulates matrix operations and guarantees numerical
+stability during complex transformations.</p>
+<h3 id="individual-matrix-components">Individual Matrix Components</h3>
+<p>To combine rotation and shear, Inkscape first defines each operation
+as a discrete affine matrix.</p>
+<h4 id="1-pure-rotation-matrix">1. Pure Rotation Matrix</h4>
+<p>A pure rotation by an angle <span
+class="math inline">\(\theta\)</span> around the coordinate origin <span
+class="math inline">\((0, 0)\)</span> is defined as:</p>
+<p><span class="math display">\[R(\theta) = \begin{bmatrix} \cos\theta
+&amp; -\sin\theta &amp; 0 \\ \sin\theta &amp; \cos\theta &amp; 0 \\ 0
+&amp; 0 &amp; 1 \end{bmatrix}\]</span></p>
+<p>When rotating around an arbitrary center point <span
+class="math inline">\((x_0, y_0)\)</span>, Inkscape translates the
+origin to that point, applies the rotation, and translates back:</p>
+<p><span class="math display">\[R_{(x_0, y_0)}(\theta) = T(x_0, y_0)
+\times R(\theta) \times T(-x_0, -y_0)\]</span></p>
+<p>Where <span class="math inline">\(T(t_x, t_y)\)</span> represents the
+translation matrix:</p>
+<p><span class="math display">\[T(t_x, t_y) = \begin{bmatrix} 1 &amp; 0
+&amp; t_x \\ 0 &amp; 1 &amp; t_y \\ 0 &amp; 0 &amp; 1
+\end{bmatrix}\]</span></p>
+<h4 id="2-pure-shear-matrix">2. Pure Shear Matrix</h4>
+<p>Shear (skewing) distorts an object along one axis relative to the
+other.</p>
+<p>A horizontal shear by an angle <span
+class="math inline">\(\alpha\)</span> (or factor <span
+class="math inline">\(k_x = \tan\alpha\)</span>) shifts coordinates
+along the X-axis:</p>
+<p><span class="math display">\[S_x(\alpha) = \begin{bmatrix} 1 &amp;
+\tan\alpha &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1
+\end{bmatrix}\]</span></p>
+<p>A vertical shear by an angle <span
+class="math inline">\(\beta\)</span> (or factor <span
+class="math inline">\(k_y = \tan\beta\)</span>) shifts coordinates along
+the Y-axis:</p>
+<p><span class="math display">\[S_y(\beta) = \begin{bmatrix} 1 &amp; 0
+&amp; 0 \\ \tan\beta &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1
+\end{bmatrix}\]</span></p>
+<p>A general shear combining both angles is computed by multiplying
+individual shear matrices:</p>
+<p><span class="math display">\[S(\alpha, \beta) = \begin{bmatrix} 1
+&amp; \tan\alpha &amp; 0 \\ \tan\beta &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp;
+1 \end{bmatrix}\]</span></p>
+<p>As with rotation, if the shearing is performed around an active
+transformation center <span class="math inline">\((x_0, y_0)\)</span>,
+translation matrices are wrapped around the shear matrix: <span
+class="math inline">\(T(x_0, y_0) \times S \times T(-x_0,
+-y_0)\)</span>.</p>
+<h3 id="computing-the-combined-transformation">Computing the Combined
+Transformation</h3>
+<p>Matrix multiplication is non-commutative (<span
+class="math inline">\(A \times B \neq B \times A\)</span>). Therefore,
+the order in which rotation and shear are applied directly dictates the
+resulting matrix values.</p>
+<p>When a transformation is applied incrementally via the UI, Inkscape
+post-multiplies the new transformation matrix by the object's existing
+matrix. If an object is first sheared and then rotated, the composite
+transformation matrix <span class="math inline">\(M_{total}\)</span>
+is:</p>
+<p><span class="math display">\[M_{total} = R(\theta) \times S(\alpha,
+\beta)\]</span></p>
+<p>Expanding this product produces:</p>
+<p><span class="math display">\[M_{total} = \begin{bmatrix} \cos\theta
+&amp; -\sin\theta &amp; 0 \\ \sin\theta &amp; \cos\theta &amp; 0 \\ 0
+&amp; 0 &amp; 1 \end{bmatrix} \begin{bmatrix} 1 &amp; \tan\alpha &amp; 0
+\\ \tan\beta &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1
+\end{bmatrix}\]</span></p>
+<p>Carrying out the matrix multiplication gives the combined matrix
+components:</p>
+<ul>
+<li><span class="math inline">\(a = \cos\theta - \tan\beta
+\sin\theta\)</span></li>
+<li><span class="math inline">\(b = \sin\theta + \tan\beta
+\cos\theta\)</span></li>
+<li><span class="math inline">\(c = \tan\alpha \cos\theta -
+\sin\theta\)</span></li>
+<li><span class="math inline">\(d = \tan\alpha \sin\theta +
+\cos\theta\)</span></li>
+</ul>
+<p>If translation offsets exist due to an off-center transformation
+pivot <span class="math inline">\((x_0, y_0)\)</span>, the full chain
+expands to:</p>
+<p><span class="math display">\[M_{total} = T(x_0, y_0) \times R(\theta)
+\times S(\alpha, \beta) \times T(-x_0, -y_0)\]</span></p>
+<p>The translation terms <span class="math inline">\(e\)</span> and
+<span class="math inline">\(f\)</span> accumulate the resulting
+positional offsets:</p>
+<ul>
+<li><span class="math inline">\(e = x_0 - a \cdot x_0 - c \cdot
+y_0\)</span></li>
+<li><span class="math inline">\(f = y_0 - b \cdot x_0 - d \cdot
+y_0\)</span></li>
+</ul>
+<h3 id="storage-and-application-in-the-document">Storage and Application
+in the Document</h3>
+<p>Once the combined values <span class="math inline">\([a, b, c, d, e,
+f]\)</span> are computed via <code>lib2geom</code>, Inkscape decides how
+to store them based on user preferences:</p>
+<ol type="1">
+<li><strong>Optimized Mode:</strong> Inkscape decomposes the matrix and
+directly modifies the coordinate definitions of the path nodes whenever
+mathematically possible without distorting primitive attributes.</li>
+<li><strong>Preserved Mode:</strong> Inkscape preserves the original
+object geometry and writes the computed composite values directly into
+the element's XML attribute as
+<code>transform="matrix(a, b, c, d, e, f)"</code>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

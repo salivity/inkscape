@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Optimized Progressive JPEG in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to convert vector graphics into optimized, progressive JPEG files using Inkscape. You will learn how to prepare your canvas, configure the export settings for maximum visual fidelity and smaller file sizes, and ensure your final J">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-optimized-progressive-jpeg-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Optimized Progressive JPEG in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-optimized-progressive-jpeg-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to convert vector graphics into optimized, progressive JPEG files using Inkscape. You will learn how to prepare your canvas, configure the export settings for maximum visual fidelity and smaller file sizes, and ensure your final J" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-optimized-progressive-jpeg-in-inkscape">Export Optimized
+Progressive JPEG in Inkscape</h1>
+<p>This guide explains how to convert vector graphics into optimized,
+progressive JPEG files using Inkscape. You will learn how to prepare
+your canvas, configure the export settings for maximum visual fidelity
+and smaller file sizes, and ensure your final JPEG uses progressive
+scanlines for fast web delivery.</p>
+<h3 id="step-1-prepare-your-artwork">Step 1: Prepare Your Artwork</h3>
+<ol type="1">
+<li>Open your vector artwork in Inkscape.</li>
+<li>Ensure everything you want to export is contained within the
+document page borders, or select the specific objects you want to
+render.</li>
+<li>If your artwork uses transparency, add a solid background layer
+(e.g., white), as the JPEG format does not support alpha transparency
+and will render transparent areas with a default solid color.</li>
+</ol>
+<h3 id="step-2-open-the-export-dialog">Step 2: Open the Export
+Dialog</h3>
+<ol type="1">
+<li>Navigate to the top menu and select <strong>File &gt;
+Export</strong> (or press <code>Ctrl + Shift + E</code> on
+Windows/Linux, <code>Cmd + Shift + E</code> on macOS).</li>
+<li>The Export dock will open on the right side of the interface.</li>
+<li>In the export area options at the top of the panel, select
+<strong>Document</strong>, <strong>Page</strong>, or
+<strong>Selection</strong> depending on what portion of your art you
+want to output.</li>
+</ol>
+<h3 id="step-3-configure-resolution-and-format">Step 3: Configure
+Resolution and Format</h3>
+<ol type="1">
+<li>Set the <strong>DPI</strong> or pixel dimensions according to your
+project's requirements (96 DPI is standard for web, while 300 DPI is
+standard for print).</li>
+<li>In the file format dropdown menu at the bottom of the Export dialog,
+change the format from <code>PNG</code> to
+<strong><code>JPEG (*.jpg)</code></strong> (or
+<strong><code>Optimized JPEG</code></strong> if available via
+extensions).</li>
+<li>Set the destination file path and name.</li>
+</ol>
+<h3 id="step-4-adjust-quality-and-progressive-settings">Step 4: Adjust
+Quality and Progressive Settings</h3>
+<ol type="1">
+<li>Click the <strong>Export</strong> button. A format settings dialog
+will appear.</li>
+<li>Set the <strong>Quality</strong> slider between <strong>80% and
+85%</strong>. This range provides the ideal balance between visual
+clarity and low file size.</li>
+<li>Check the option for <strong>Progressive</strong> (or
+<strong>Interlaced</strong>) encoding if prompted in the dialog
+settings. Progressive encoding allows the image to load in multiple
+passes, displaying a low-resolution preview that sharpens as data
+downloads.</li>
+</ol>
+<h3 id="step-5-post-optimization-optional-for-maximum-compression">Step
+5: Post-Optimization (Optional for Maximum Compression)</h3>
+<p>If your version of Inkscape utilizes a standard Cairo backend that
+lacks advanced progressive JPEG encoding flags:</p>
+<ol type="1">
+<li>Export the artwork as a high-quality JPEG or lossless PNG from
+Inkscape.</li>
+<li>Run the image through an optimization utility such as
+<strong>MozJPEG</strong>, <strong>cjpeg</strong>, or
+<strong>ImageMagick</strong> with progressive flags enabled:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">jpegtran</span> <span class="at">-copy</span> none <span class="at">-progressive</span> <span class="at">-optimize</span> input.jpg output.jpg</span></code></pre></div></li>
+</ol>
+<p>This step strips unnecessary metadata and applies progressive
+compression tables to minimize load times on the web.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

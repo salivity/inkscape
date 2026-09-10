@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Game Maps with Hex Grid Snapping in Inkscape - inkscape</title>
+    <meta name="description" content="Designing game maps with precise hexagonal grids is an essential skill for tabletop role-playing games, strategy board games, and video game prototyping. This guide provides a direct, step-by-step walkthrough for configuring Inkscape's built-in axonometr">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-game-maps-with-hex-grid-snapping-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Game Maps with Hex Grid Snapping in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-game-maps-with-hex-grid-snapping-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing game maps with precise hexagonal grids is an essential skill for tabletop role-playing games, strategy board games, and video game prototyping. This guide provides a direct, step-by-step walkthrough for configuring Inkscape's built-in axonometr" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-game-maps-with-hex-grid-snapping-in-inkscape">Create Game
+Maps with Hex Grid Snapping in Inkscape</h1>
+<p>Designing game maps with precise hexagonal grids is an essential
+skill for tabletop role-playing games, strategy board games, and video
+game prototyping. This guide provides a direct, step-by-step walkthrough
+for configuring Inkscape's built-in axonometric grid system, enabling
+accurate node and grid snapping, generating standardized hexagon tiles,
+and assembling modular terrain layouts ready for digital or print
+use.</p>
+<h3 id="step-1-set-up-the-hexagonal-grid">Step 1: Set Up the Hexagonal
+Grid</h3>
+<ol type="1">
+<li>Open a new document in Inkscape.</li>
+<li>Open the Document Properties window by pressing
+<code>Shift + Ctrl + D</code> (or navigate to <strong>File &gt; Document
+Properties</strong>).</li>
+<li>Go to the <strong>Grids</strong> tab.</li>
+<li>Select <strong>Axonometric grid</strong> from the dropdown menu and
+click <strong>New</strong>.</li>
+<li>Adjust the grid settings to create regular hexagons:
+<ul>
+<li><strong>Grid units:</strong> Set to <code>px</code>,
+<code>mm</code>, or <code>in</code> based on your map scale.</li>
+<li><strong>Spacing Y:</strong> Set your desired vertical spacing (e.g.,
+<code>50 px</code>).</li>
+<li><strong>Angle X:</strong> Set to <code>30.0</code>.</li>
+<li><strong>Angle Z:</strong> Set to <code>30.0</code>.</li>
+<li>Ensure the <strong>Enabled</strong> and <strong>Visible</strong>
+checkboxes are checked.</li>
+</ul></li>
+</ol>
+<h3 id="step-2-configure-snapping-controls">Step 2: Configure Snapping
+Controls</h3>
+<p>Precise alignment requires enabling specific snapping rules to ensure
+tiles and terrain features lock directly onto the grid
+intersections.</p>
+<ol type="1">
+<li>Toggle the global snapping icon on the top right of the interface to
+<strong>Enable Snapping</strong> (or press <code>%</code>).</li>
+<li>Click the snapping dropdown arrow to expand detailed snap
+controls.</li>
+<li>Enable <strong>Snap to Grids</strong>.</li>
+<li>Enable <strong>Snap to Paths and Nodes</strong>, specifically
+activating:
+<ul>
+<li><strong>Snap to Cusp Nodes</strong></li>
+<li><strong>Snap to Smooth Nodes</strong></li>
+<li><strong>Snap to Midpoints of Lines</strong></li>
+</ul></li>
+<li>Disable bounding box snapping to prevent the outer rectangular
+boundaries of your hex shapes from interfering with node placement.</li>
+</ol>
+<h3 id="step-3-create-the-base-hexagon-tile">Step 3: Create the Base
+Hexagon Tile</h3>
+<ol type="1">
+<li>Select the <strong>Stars and Polygons</strong> tool (<code>*</code>
+or <code>F8</code>) from the left toolbar.</li>
+<li>In the top tool control bar, set the shape mode to <strong>Regular
+Polygon</strong> and set <strong>Corners</strong> to
+<code>6</code>.</li>
+<li>Click and drag on the canvas while holding <code>Ctrl</code> to
+constrain the angle.</li>
+<li>Drag a corner vertex directly to a grid intersection point until it
+snaps into place.</li>
+<li>Set your preferred fill color for terrain (such as grass, water, or
+stone) and set the stroke to a defined border line width (e.g.,
+<code>1 px</code> or <code>2 px</code>).</li>
+</ol>
+<h3 id="step-4-build-and-assemble-the-map">Step 4: Build and Assemble
+the Map</h3>
+<ol type="1">
+<li><strong>Duplicate Tiles:</strong> Select the base hexagon and press
+<code>Ctrl + D</code> to duplicate it. Click and drag the duplicate tile
+toward an adjacent grid cell; the snapping engine will automatically
+pull the vertices into precise alignment with neighboring edges.</li>
+<li><strong>Organize Layers:</strong> Open the <strong>Layers and
+Objects</strong> panel (<code>Shift + Ctrl + L</code>). Create separate
+layers for:
+<ul>
+<li><code>Background Grid / Base Terrain</code></li>
+<li><code>Roads, Rivers, and Paths</code></li>
+<li><code>Icons and Structures</code></li>
+<li><code>Labels and Text</code></li>
+</ul></li>
+<li><strong>Add Rivers and Roads:</strong> Use the <strong>Draw Freehand
+Lines</strong> or <strong>Draw Bézier Curves</strong> tool
+(<code>B</code>) with node snapping enabled. Paths drawn across the map
+will cleanly snap from the center or corners of one hex to another.</li>
+<li><strong>Use Clones for Modular Assets:</strong> For recurring
+terrain features (like forests, mountains, or towns), select an asset
+and press <code>Alt + D</code> to create a linked clone. Modifying the
+original master tile later will automatically update every instance
+placed across your map.</li>
+</ol>
+<h3 id="step-5-export-the-map">Step 5: Export the Map</h3>
+<ol type="1">
+<li>Open the Export panel with <code>Shift + Ctrl + E</code>.</li>
+<li>Choose <strong>Page</strong> (to export the entire canvas) or
+<strong>Selection</strong> (to export only the drawn map area).</li>
+<li>Select your output format:
+<ul>
+<li><strong>PNG:</strong> Ideal for Virtual Tabletop (VTT) platforms
+like Roll20 or Foundry VTT. Set the resolution to at least
+<code>150 DPI</code> or <code>300 DPI</code>.</li>
+<li><strong>PDF / SVG:</strong> Ideal for high-resolution vector
+printing.</li>
+</ul></li>
+<li>Click <strong>Export</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

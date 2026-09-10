@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Color Cartoons with Inkscape Paint Bucket - inkscape</title>
+    <meta name="description" content="Coloring cartoon character illustrations in Inkscape using the Paint Bucket tool and lower layers is an efficient vector workflow that preserves your clean line art while producing solid flat colors and shading. By placing your line art on a locked upper">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-color-cartoons-with-inkscape-paint-bucket">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Color Cartoons with Inkscape Paint Bucket - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-color-cartoons-with-inkscape-paint-bucket" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Coloring cartoon character illustrations in Inkscape using the Paint Bucket tool and lower layers is an efficient vector workflow that preserves your clean line art while producing solid flat colors and shading. By placing your line art on a locked upper" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-color-cartoons-with-inkscape-paint-bucket">How to Color
+Cartoons with Inkscape Paint Bucket</h1>
+<p>Coloring cartoon character illustrations in Inkscape using the Paint
+Bucket tool and lower layers is an efficient vector workflow that
+preserves your clean line art while producing solid flat colors and
+shading. By placing your line art on a locked upper layer and generating
+fills on layers beneath it, you can rapidly color enclosed areas without
+altering your original strokes. This guide explains how to set up your
+layer hierarchy, configure the Paint Bucket's grow and threshold
+settings to prevent unwanted white fringes, and apply clean colors to
+your character art.</p>
+<h3 id="step-1-organize-your-layers">Step 1: Organize Your Layers</h3>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>).</li>
+<li>Rename the layer containing your finished vector line art to
+<strong>Line Art</strong>.</li>
+<li>Create a new layer beneath the line art layer and name it
+<strong>Colors</strong>.</li>
+<li>Lock the <strong>Line Art</strong> layer by clicking the padlock
+icon next to its name. This prevents accidental selection or
+modification of your outlines while still allowing the Paint Bucket tool
+to detect the visible boundaries.</li>
+<li>Select the <strong>Colors</strong> layer so all new color shapes are
+created directly on it.</li>
+</ol>
+<h3 id="step-2-configure-the-paint-bucket-tool">Step 2: Configure the
+Paint Bucket Tool</h3>
+<ol type="1">
+<li>Select the <strong>Fill Bounded Areas</strong> (Paint Bucket) tool
+from the toolbar or press <code>Shift + F7</code> (or <code>U</code>
+depending on your version).</li>
+<li>Look at the tool controls bar at the top of the screen:
+<ul>
+<li>Set <strong>Fill by</strong> to <strong>Visible Colors</strong>.
+This ensures the tool calculates boundaries based on everything
+currently visible on your canvas, including the locked line art layer
+above.</li>
+<li>Adjust the <strong>Threshold</strong> slider (typically between 10
+and 30) to control how sensitive the tool is to color edges.</li>
+<li>Set <strong>Grow/shrink by</strong> to a small positive value, such
+as <code>0.5 px</code> to <code>1.5 px</code> (or higher depending on
+your stroke width). This slightly expands the color fill so it tucks
+neatly underneath the center of your stroke lines, eliminating any
+unsightly white gaps or halos.</li>
+<li>If your line art has small breaks, set <strong>Close gaps</strong>
+to <strong>Small</strong> or <strong>Medium</strong> to prevent color
+from leaking across open paths.</li>
+</ul></li>
+</ol>
+<h3 id="step-3-apply-flat-colors">Step 3: Apply Flat Colors</h3>
+<ol type="1">
+<li>Choose a fill color from the color palette at the bottom of the
+workspace or using the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>Click inside the closed sections of your cartoon character (such as
+the skin, hair, or clothing).</li>
+<li>The tool will generate a new vector path representing the filled
+shape on your active <strong>Colors</strong> layer, placed safely below
+the line art.</li>
+<li>Repeat this process for each distinct section of the character,
+switching colors as needed.</li>
+</ol>
+<h3 id="step-4-refine-paths-and-add-shading">Step 4: Refine Paths and
+Add Shading</h3>
+<ol type="1">
+<li>Use the <strong>Edit Paths by Nodes</strong> tool (<code>N</code>)
+on the <strong>Colors</strong> layer to manually adjust nodes or clean
+up any corners where the fill did not reach completely.</li>
+<li>For shadows and highlights, you can create another layer between
+<strong>Colors</strong> and <strong>Line Art</strong> named
+<strong>Shading</strong>.</li>
+<li>Draw shadow shapes across the flat colors using the <strong>Pen
+(Bezier)</strong> tool (<code>B</code>), or duplicate existing color
+shapes and subtract intersecting paths to create accurate
+cell-shading.</li>
+<li>Adjust the opacity or blend modes (such as Multiply for shadows) in
+the <strong>Layers and Objects</strong> panel to blend your shading
+seamlessly with the base colors.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

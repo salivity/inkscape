@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate EAN-13 Barcodes in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape includes a built-in barcode rendering tool that allows you to create precise, scalable vector EAN-13 retail barcodes directly inside your document. This guide covers how to access the native barcode extension, enter your numeric sequence, config">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/generate-ean-13-barcodes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Generate EAN-13 Barcodes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/generate-ean-13-barcodes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape includes a built-in barcode rendering tool that allows you to create precise, scalable vector EAN-13 retail barcodes directly inside your document. This guide covers how to access the native barcode extension, enter your numeric sequence, config" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="generate-ean-13-barcodes-in-inkscape">Generate EAN-13 Barcodes
+in Inkscape</h1>
+<p>Inkscape includes a built-in barcode rendering tool that allows you
+to create precise, scalable vector EAN-13 retail barcodes directly
+inside your document. This guide covers how to access the native barcode
+extension, enter your numeric sequence, configure layout settings, and
+ensure the human-readable text displays the full 13 digits—including the
+calculated check digit—for retail compliance.</p>
+<h3 id="1-open-the-barcode-generator">1. Open the Barcode Generator</h3>
+<ol type="1">
+<li>Open your document in Inkscape.</li>
+<li>Navigate to the top menu and select
+<strong>Extensions</strong>.</li>
+<li>Hover over <strong>Render</strong>, then
+<strong>Barcode</strong>.</li>
+<li>Select <strong>Classic Barcode</strong> (or <strong>Barcode</strong>
+depending on your Inkscape version).</li>
+</ol>
+<h3 id="2-configure-ean-13-parameters">2. Configure EAN-13
+Parameters</h3>
+<p>In the barcode generator window:</p>
+<ol type="1">
+<li><strong>Barcode Type:</strong> Select <strong>EAN-13</strong> from
+the dropdown menu.</li>
+<li><strong>Barcode Data:</strong> Enter the 12-digit base code of your
+product.
+<ul>
+<li><em>Note on Check Digits:</em> EAN-13 consists of 12 data digits
+plus a 13th modulo-10 check digit. Inkscape automatically computes and
+appends the correct check digit even if you only supply the first 12
+digits. If you enter all 13 digits, ensure the 13th digit is correct, or
+Inkscape will return an error or overwrite it with the valid check
+digit.</li>
+</ul></li>
+</ol>
+<h3 id="3-ensure-human-readable-text-is-visible">3. Ensure
+Human-Readable Text Is Visible</h3>
+<p>Standard retail barcodes require the numbers to appear beneath the
+bars for manual entry if the scanner fails:</p>
+<ol type="1">
+<li>Locate the <strong>Text</strong> or <strong>Human-Readable
+Text</strong> option within the tool interface.</li>
+<li>Ensure the option to include text is enabled.</li>
+<li>In Inkscape's standard EAN-13 renderer, human-readable numbers are
+formatted automatically according to the GS1 specification:
+<ul>
+<li>1 leading digit placed outside to the far left.</li>
+<li>6 digits beneath the left bar guard.</li>
+<li>6 digits (including the final check digit) beneath the right bar
+guard.</li>
+</ul></li>
+</ol>
+<h3 id="4-adjust-dimensions-and-sizing">4. Adjust Dimensions and
+Sizing</h3>
+<p>Before rendering, configure the visual scale according to standard
+retail sizing requirements:</p>
+<ul>
+<li><strong>Bar Height:</strong> Set the bar height (the standard
+nominal height is 22.85 mm).</li>
+<li><strong>Bar Width / Module Width:</strong> Set the scale factor. The
+nominal X-dimension (width of the narrowest bar) for EAN-13 is 0.33
+mm.</li>
+<li><strong>Quiet Zone:</strong> Ensure there is enough margin on both
+sides to allow barcode scanners to distinguish the start and end
+patterns.</li>
+</ul>
+<h3 id="5-render-and-position-the-barcode">5. Render and Position the
+Barcode</h3>
+<ol type="1">
+<li>Click <strong>Apply</strong> to generate the barcode vector object
+on the canvas.</li>
+<li>Click <strong>Close</strong> to exit the extension panel.</li>
+<li>The generated barcode is rendered as a grouped vector element. If
+you need to scale the barcode on your canvas, hold <strong>Ctrl</strong>
+to maintain aspect ratio, ensuring the bar widths do not distort
+relative to one another.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

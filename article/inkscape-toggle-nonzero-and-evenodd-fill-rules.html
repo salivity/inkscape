@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape: Toggle Nonzero and Evenodd Fill Rules - inkscape</title>
+    <meta name="description" content="In Inkscape, the fill rule determines how overlapping paths within a single complex vector shape are filled or left hollow. This guide covers how to locate and toggle between the Nonzero (winding) and Evenodd (alternating) fill rules using the Fill and S">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-toggle-nonzero-and-evenodd-fill-rules">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape: Toggle Nonzero and Evenodd Fill Rules - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-toggle-nonzero-and-evenodd-fill-rules" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In Inkscape, the fill rule determines how overlapping paths within a single complex vector shape are filled or left hollow. This guide covers how to locate and toggle between the Nonzero (winding) and Evenodd (alternating) fill rules using the Fill and S" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-toggle-nonzero-and-evenodd-fill-rules">Inkscape: Toggle
+Nonzero and Evenodd Fill Rules</h1>
+<p>In Inkscape, the fill rule determines how overlapping paths within a
+single complex vector shape are filled or left hollow. This guide covers
+how to locate and toggle between the Nonzero (winding) and Evenodd
+(alternating) fill rules using the Fill and Stroke dialog, along with a
+brief explanation of how each rule affects the appearance of your vector
+paths.</p>
+<h2 id="steps-to-toggle-the-fill-rule">Steps to Toggle the Fill
+Rule</h2>
+<ol type="1">
+<li><strong>Select the Path</strong>: Use the <strong>Select
+tool</strong> (<code>S</code>) or <strong>Node tool</strong>
+(<code>N</code>) to click on the vector path or combined object you wish
+to modify.</li>
+<li><strong>Open the Fill and Stroke Dialog</strong>:
+<ul>
+<li>Press <code>Shift + Ctrl + F</code> on Windows/Linux or
+<code>Shift + Cmd + F</code> on macOS.</li>
+<li>Alternatively, go to the top menu and select <strong>Object &gt;
+Fill and Stroke</strong>.</li>
+</ul></li>
+<li><strong>Go to the Fill Tab</strong>: At the top of the dialog,
+ensure you are on the <strong>Fill</strong> tab.</li>
+<li><strong>Locate the Fill Rule Icons</strong>: Look at the
+bottom-right corner of the Fill tab. You will see two small square icons
+side-by-side:
+<ul>
+<li><strong>Nonzero Rule (Winding)</strong>: Depicted as an icon with
+two overlapping shapes completely filled with color.</li>
+<li><strong>Evenodd Rule (Alternating)</strong>: Depicted as an icon
+with an overlapping area that remains transparent or hollow.</li>
+</ul></li>
+<li><strong>Click to Switch</strong>: Click either icon to apply that
+specific calculation method to your selected path immediately.</li>
+</ol>
+<h2 id="understanding-the-difference">Understanding the Difference</h2>
+<ul>
+<li><strong>Nonzero (Winding) Rule</strong>: Calculates fills based on
+the directional winding of subpaths. If two overlapping paths travel in
+the same direction, overlapping regions remain filled. If they travel in
+opposite directions, the intersection may create a cutout.</li>
+<li><strong>Evenodd Rule</strong>: Determines fill purely based on
+geometric intersections. A ray drawn from any point to infinity counts
+how many path segments it crosses: an odd number of crossings results in
+a fill, while an even number leaves the area transparent. This is ideal
+for quickly creating cutouts and holes without worrying about the
+direction of your nodes.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

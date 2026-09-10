@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Align Bezier Handles at 90 Degrees in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to accurately align two adjacent Bezier handles to form a precise 90-degree right angle in Inkscape. By converting the target node to a corner node and utilizing Inkscape’s built-in angle constraints or guide snapping, you can a">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/align-bezier-handles-at-90-degrees-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Align Bezier Handles at 90 Degrees in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/align-bezier-handles-at-90-degrees-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to accurately align two adjacent Bezier handles to form a precise 90-degree right angle in Inkscape. By converting the target node to a corner node and utilizing Inkscape’s built-in angle constraints or guide snapping, you can a" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="align-bezier-handles-at-90-degrees-in-inkscape">Align Bezier
+Handles at 90 Degrees in Inkscape</h1>
+<p>This guide explains how to accurately align two adjacent Bezier
+handles to form a precise 90-degree right angle in Inkscape. By
+converting the target node to a corner node and utilizing Inkscape’s
+built-in angle constraints or guide snapping, you can achieve
+mathematical precision without relying on visual estimation.</p>
+<h3 id="method-1-using-the-ctrl-key-angle-constraint">Method 1: Using
+the Ctrl Key Angle Constraint</h3>
+<p>Inkscape includes a built-in angular constraint feature that locks
+handle movement to specific degree increments (15 degrees by default).
+Since 90 is a multiple of 15, this is the fastest way to create a right
+angle.</p>
+<ol type="1">
+<li><strong>Select the Node Tool:</strong> Press <code>N</code> or
+select the <strong>Edit paths by nodes</strong> tool from the left
+toolbar.</li>
+<li><strong>Convert to a Corner Node:</strong> Click on the node shared
+by the two handles. On the top toolbar, click the <strong>Make selected
+nodes corner</strong> icon (or press <code>Shift + C</code>). This
+uncouples the handles so they can move independently.</li>
+<li><strong>Adjust the First Handle:</strong> Click and drag the first
+Bezier handle while holding down <code>Ctrl</code>. Release the mouse
+when the handle is aligned to your desired baseline angle (such as 0°,
+45°, or 90°).</li>
+<li><strong>Adjust the Second Handle:</strong> Hold <code>Ctrl</code>
+and drag the adjacent Bezier handle. Rotate it until it snaps precisely
+six increments (90 degrees) away from the first handle.</li>
+</ol>
+<h3 id="method-2-snapping-to-guides-for-arbitrary-rotations">Method 2:
+Snapping to Guides for Arbitrary Rotations</h3>
+<p>If your path is oriented at an irregular angle that does not align
+with 15-degree increments, use snapping guides.</p>
+<ol type="1">
+<li><strong>Enable Snapping:</strong> Ensure global snapping is active
+(toggle in the top-right corner).</li>
+<li><strong>Enable Handle and Guide Snapping:</strong> Open the Snap
+Controls popover, ensure <strong>Snap to guides</strong> is enabled, and
+under the Advanced/Nodes section, ensure <strong>Snap to Bezier
+handles</strong> is turned on.</li>
+<li><strong>Create a 90-Degree Guide Intersection:</strong> Drag two
+guides from the rulers onto your canvas. Double-click the second guide
+to manually set its angle to 90 degrees relative to the first guide, or
+place it perpendicular to the base angle.</li>
+<li><strong>Snap the Node and Handles:</strong> Move your node to the
+intersection point of the guides. Hold <code>Shift</code> while dragging
+each handle along its respective guide axis until it snaps directly to
+the guide line.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

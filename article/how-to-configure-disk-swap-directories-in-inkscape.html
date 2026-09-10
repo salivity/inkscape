@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Configure Disk Swap Directories in Inkscape - inkscape</title>
+    <meta name="description" content="Handling multi-gigabyte vector files in Inkscape demands substantial system memory, often pushing past available physical RAM and requiring aggressive disk-based caching. Because massive SVG files with millions of paths or high-resolution embedded raster">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-configure-disk-swap-directories-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Configure Disk Swap Directories in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-configure-disk-swap-directories-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Handling multi-gigabyte vector files in Inkscape demands substantial system memory, often pushing past available physical RAM and requiring aggressive disk-based caching. Because massive SVG files with millions of paths or high-resolution embedded raster" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-configure-disk-swap-directories-in-inkscape">How to
+Configure Disk Swap Directories in Inkscape</h1>
+<p>Handling multi-gigabyte vector files in Inkscape demands substantial
+system memory, often pushing past available physical RAM and requiring
+aggressive disk-based caching. Because massive SVG files with millions
+of paths or high-resolution embedded rasters cause memory allocation
+errors, redirecting temporary disk writes and virtual memory swap space
+to high-speed solid-state drives (NVMe SSDs) is necessary to ensure
+stability. This guide explains how to reconfigure Inkscape's temporary
+storage paths, redirect underlying environment variables, and manage
+system swap space to handle massive vector assets without crashing.</p>
+<h3 id="configure-inkscapes-internal-temporary-directory">Configure
+Inkscape's Internal Temporary Directory</h3>
+<p>Inkscape writes autosaves, imported assets, and temporary operational
+caches to predefined user directories. When working with gigabyte-sized
+files, these writes will quickly fill standard OS partitions.</p>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>Edit &gt; Preferences</strong>
+(or press <code>Ctrl + Shift + P</code> /
+<code>Cmd + Shift + P</code>).</li>
+<li>In the left-hand navigation tree, click on
+<strong>System</strong>.</li>
+<li>Locate the <strong>Temporary files</strong> or <strong>User
+cache</strong> path fields.</li>
+<li>Click the folder icon or paste a custom path pointing directly to a
+high-speed SSD partition with ample free space (for example,
+<code>D:\Inkscape_Scratch\</code> on Windows or
+<code>/mnt/fast_nvme/inkscape_tmp/</code> on Linux).</li>
+<li>Navigate to <strong>Input/Output &gt; Autosave</strong> within the
+same Preferences window.</li>
+<li>Verify that the <strong>Autosave directory</strong> is also mapped
+to a drive with high read/write speeds, or increase the interval between
+saves to prevent system lockups during massive read/write cycles.</li>
+<li>Restart Inkscape for the path modifications to take effect.</li>
+</ol>
+<h3
+id="redirect-operating-system-temporary-cache-via-environment-variables">Redirect
+Operating System Temporary Cache via Environment Variables</h3>
+<p>Certain internal rendering engines and dependencies within Inkscape
+(such as Cairo, Pango, and Poppler) bypass application settings and
+write scratch data directly to the host operating system's standard
+temporary directories (<code>TEMP</code>, <code>TMP</code>, or
+<code>TMPDIR</code>).</p>
+<h4 id="on-windows">On Windows:</h4>
+<ol type="1">
+<li>Press <code>Win + R</code>, type <code>sysdm.cpl</code>, and hit
+<strong>Enter</strong>.</li>
+<li>Go to the <strong>Advanced</strong> tab and click
+<strong>Environment Variables</strong>.</li>
+<li>Under <strong>User variables</strong>, select <code>TEMP</code> and
+click <strong>Edit</strong>. Change the value to a dedicated scratch
+folder on an NVMe drive (e.g., <code>X:\Temp</code>). Repeat this step
+for the <code>TMP</code> variable.</li>
+<li>Click <strong>OK</strong> and apply the changes.</li>
+</ol>
+<h4 id="on-linux-and-macos">On Linux and macOS:</h4>
+<p>You can launch Inkscape with dedicated temporary paths mapped to a
+fast scratch drive directly from the terminal or via a custom launcher
+script:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">TMPDIR</span><span class="op">=</span><span class="st">&quot;/mnt/nvme_scratch/tmp&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span></span></code></pre></div>
+<p>This ensures that all temporary disk I/O spawned by rendering
+libraries defaults to your designated high-capacity drive rather than a
+restricted root or home partition.</p>
+<h3 id="provisioning-os-level-virtual-memory-pagefileswap">Provisioning
+OS-Level Virtual Memory (Pagefile/Swap)</h3>
+<p>Because Inkscape maintains working path geometry and node
+calculations directly inside virtual address space, the operating
+system's virtual memory acts as the primary "scratch disk" when handling
+gigabyte-sized vector files.</p>
+<h4 id="windows-pagefile-configuration">Windows Pagefile
+Configuration</h4>
+<ol type="1">
+<li>Open <code>sysdm.cpl</code>, select the <strong>Advanced</strong>
+tab, and click <strong>Settings</strong> under the
+<strong>Performance</strong> section.</li>
+<li>Select the <strong>Advanced</strong> tab within Performance Options,
+then click <strong>Change</strong> under <strong>Virtual
+memory</strong>.</li>
+<li>Uncheck <strong>Automatically manage paging file size for all
+drives</strong>.</li>
+<li>Select your fastest NVMe storage drive, choose <strong>Custom
+size</strong>, and allocate an initial and maximum size capable of
+buffering your workload (e.g., 32768 MB to 65536 MB for extremely heavy
+files).</li>
+<li>Click <strong>Set</strong>, then <strong>OK</strong>, and restart
+your computer.</li>
+</ol>
+<h4 id="linux-swap-configuration">Linux Swap Configuration</h4>
+<p>For handling gigabyte-sized files on Linux, create a dedicated swap
+file on a fast mount point:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> fallocate <span class="at">-l</span> 64G /mnt/fast_nvme/swapfile</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chmod 600 /mnt/fast_nvme/swapfile</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mkswap /mnt/fast_nvme/swapfile</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> swapon /mnt/fast_nvme/swapfile</span></code></pre></div>
+<p>To optimize how aggressively Linux uses this swap space for Inkscape,
+temporarily adjust the system swappiness:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> sysctl vm.swappiness=20</span></code></pre></div>
+<h3 id="additional-inkscape-memory-optimization">Additional Inkscape
+Memory Optimization</h3>
+<p>To reduce the physical write load on your swap directories during
+heavy editing:</p>
+<ul>
+<li><strong>Reduce Undo Levels:</strong> Navigate to <strong>Preferences
+&gt; Behavior &gt; Steps</strong> and lower the <strong>Undo history
+size</strong> to a smaller number (e.g., 10–20). Large documents capture
+full-state snapshots for certain operations, consuming gigabytes of
+cache per edit.</li>
+<li><strong>Adjust Display Quality:</strong> Go to <strong>View &gt;
+Display mode</strong> and select <strong>Outline</strong> or
+<strong>Fast</strong> when moving or transforming large collections of
+complex objects to minimize rasterization buffers written to cache.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

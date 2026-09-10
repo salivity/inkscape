@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Find a Triangle Circumcenter in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to locate the circumcenter of any triangle in Inkscape by constructing perpendicular bisectors on its sides. By leveraging Inkscape’s precision snapping system and rotation tools, you can easily determine the exact midpoints of">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-find-a-triangle-circumcenter-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Find a Triangle Circumcenter in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-find-a-triangle-circumcenter-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to locate the circumcenter of any triangle in Inkscape by constructing perpendicular bisectors on its sides. By leveraging Inkscape’s precision snapping system and rotation tools, you can easily determine the exact midpoints of" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-find-a-triangle-circumcenter-in-inkscape">How to Find a
+Triangle Circumcenter in Inkscape</h1>
+<p>This guide explains how to locate the circumcenter of any triangle in
+Inkscape by constructing perpendicular bisectors on its sides. By
+leveraging Inkscape’s precision snapping system and rotation tools, you
+can easily determine the exact midpoints of the triangle's segments,
+project perpendicular lines, and find their mutual point of intersection
+to establish the circumcircle's center.</p>
+<h3 id="step-1-draw-your-triangle">Step 1: Draw Your Triangle</h3>
+<ol type="1">
+<li>Select the <strong>Draw Bezier curves and straight lines</strong>
+tool (shortcut: <code>B</code>).</li>
+<li>Click three times on the canvas to define your three vertices, then
+click the starting node to close the path and form a complete
+triangle.</li>
+</ol>
+<h3 id="step-2-enable-necessary-snapping-controls">Step 2: Enable
+Necessary Snapping Controls</h3>
+<p>Precision is required to find midpoints and intersections
+accurately:</p>
+<ol type="1">
+<li>Enable <strong>Snapping</strong> in the top-right corner of the
+interface (shortcut: <code>%</code>).</li>
+<li>Open the Snapping menu and ensure the following options are active:
+<ul>
+<li><strong>Snap to paths</strong></li>
+<li><strong>Snap to midpoints of line segments</strong></li>
+<li><strong>Snap to path intersections</strong></li>
+<li><strong>Snap to cusp nodes</strong></li>
+</ul></li>
+</ol>
+<h3 id="step-3-create-the-first-perpendicular-bisector">Step 3: Create
+the First Perpendicular Bisector</h3>
+<ol type="1">
+<li>Select the <strong>Draw Bezier curves</strong> tool
+(<code>B</code>).</li>
+<li>Click on vertex A, then double-click on vertex B to create a
+straight line segment covering the first edge of your triangle.</li>
+<li>Select this new line segment using the <strong>Select and transform
+objects</strong> tool (<code>S</code>).</li>
+<li>Open the Transform panel via <strong>Object &gt; Transform</strong>
+(shortcut: <code>Shift + Ctrl + M</code>) and select the
+<strong>Rotate</strong> tab.</li>
+<li>Set the angle to <code>90.0</code> degrees and click
+<strong>Apply</strong>.</li>
+<li>Drag this rotated line toward the original edge until its center
+snaps directly to the <strong>Midpoint</strong> of the triangle’s edge.
+Extend the line if necessary by holding <code>Shift</code> while
+dragging a handle to preserve its orientation.</li>
+</ol>
+<h3 id="step-4-create-the-second-perpendicular-bisector">Step 4: Create
+the Second Perpendicular Bisector</h3>
+<ol type="1">
+<li>Repeat the process for a second side of the triangle (between vertex
+B and vertex C):
+<ul>
+<li>Use the Bezier tool to trace a line along this second edge.</li>
+<li>Rotate the new segment by <code>90.0</code> degrees using the
+<strong>Transform</strong> panel.</li>
+<li>Move the rotated segment until it snaps onto the
+<strong>Midpoint</strong> of the second edge.</li>
+</ul></li>
+<li>Extend both perpendicular lines until they visibly cross each
+other.</li>
+</ol>
+<h3 id="step-5-locate-the-circumcenter">Step 5: Locate the
+Circumcenter</h3>
+<p>The point where the two perpendicular bisector lines cross is the
+circumcenter.</p>
+<ol type="1">
+<li>Select the <strong>Circles and ellipses</strong> tool
+(<code>E</code>).</li>
+<li>Hover over the crossing lines until the indicator displays
+<strong>Path intersection</strong>.</li>
+<li>Hold <code>Shift + Ctrl</code> while clicking and dragging from this
+intersection out to any of the triangle's three vertices.</li>
+<li>The resulting circle will perfectly intersect all three vertices,
+verifying that the intersection point is the true circumcenter.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

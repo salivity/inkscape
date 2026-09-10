@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Designing Modular Map Tiles in Inkscape - inkscape</title>
+    <meta name="description" content="Designing modular road and river tiles for strategy board games requires establishing precise grids, standardized edge connections, and reusable vector assets in Inkscape. By aligning path endpoints strictly to tile borders and maintaining consistent ent">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/designing-modular-map-tiles-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Designing Modular Map Tiles in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/designing-modular-map-tiles-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing modular road and river tiles for strategy board games requires establishing precise grids, standardized edge connections, and reusable vector assets in Inkscape. By aligning path endpoints strictly to tile borders and maintaining consistent ent" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="designing-modular-map-tiles-in-inkscape">Designing Modular Map
+Tiles in Inkscape</h1>
+<p>Designing modular road and river tiles for strategy board games
+requires establishing precise grids, standardized edge connections, and
+reusable vector assets in Inkscape. By aligning path endpoints strictly
+to tile borders and maintaining consistent entry and exit angles, you
+can produce interchangeable square or hexagonal tiles that seamlessly
+link together during gameplay. This guide outlines the exact workflow
+for configuring your canvas, setting up anchor points, drawing paths,
+and exporting your modular tile system.</p>
+<h3 id="1-configure-the-document-grid-and-units">1. Configure the
+Document Grid and Units</h3>
+<p>Open Inkscape and access <strong>Document Properties</strong>
+(<code>Ctrl+Shift+D</code>). Set the display units to either millimeters
+or inches depending on your physical manufacturing specs. For a standard
+square tile game, set a custom page size of 50x50 mm (or 2x2
+inches).</p>
+<p>Navigate to the <strong>Grids</strong> tab and create a
+<strong>Rectangular grid</strong>. Set the grid spacing to a sub-unit
+that divides evenly into your tile dimensions (e.g., 2.5 mm or 5
+mm).</p>
+<p>Enable <strong>Snapping</strong> (<code>%</code>) on the right-hand
+toolbar. Ensure the following snap targets are active:</p>
+<ul>
+<li>Snap to grids</li>
+<li>Snap to nodes, paths, and handles</li>
+<li>Snap to cusp nodes</li>
+<li>Snap to midpoint of line segments</li>
+</ul>
+<h3 id="2-establish-standardized-connection-points">2. Establish
+Standardized Connection Points</h3>
+<p>For modular tiles to fit interchangeably, features must enter and
+exit at identical coordinates across every tile edge.</p>
+<ol type="1">
+<li>Select the <strong>Rectangle tool</strong> (<code>R</code>) and draw
+a square matching your tile canvas size (e.g., 50x50 mm). Lock this
+layer as your reference border.</li>
+<li>Define the crossing points. For standard centered paths, roads and
+rivers should cross the exact midpoint of an edge.</li>
+<li>For multi-lane or offset configurations, place guides at measured
+distances (e.g., 15 mm from the corners). Pull guides from the rulers
+and double-click them to set precise coordinates.</li>
+</ol>
+<h3 id="3-draw-path-connections">3. Draw Path Connections</h3>
+<p>Use the <strong>Draw Bezier Curves tool</strong> (<code>B</code>) in
+regular path mode to create your waterways and roadways.</p>
+<h4 id="roads">Roads</h4>
+<ol type="1">
+<li>Click on the border snap point on one side of the tile, click in the
+interior to define the curve, and end the path snapped to the target
+border point.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl+Shift+Y</code>). Remove fill and give the stroke a fixed
+thickness (e.g., 4 mm).</li>
+<li>To ensure that two connected tiles do not form a sharp, unnatural
+kink at the border, select the <strong>Edit paths by nodes tool</strong>
+(<code>N</code>). Select the endpoint on the border and its adjacent
+node handle. Hold <code>Ctrl</code> while adjusting the handle so it
+remains strictly perpendicular (90 degrees) to the border edge.</li>
+</ol>
+<h4 id="rivers">Rivers</h4>
+<ol type="1">
+<li>Rivers typically feature variable widths and natural curves. Draw
+the path centerline using the Bezier tool just like a road.</li>
+<li>In <strong>Fill and Stroke</strong>, assign a wider stroke width
+(e.g., 8 mm to 12 mm).</li>
+<li>If designing organic banks, convert the path to an outline via
+<strong>Path &gt; Stroke to Path</strong> (<code>Ctrl+Alt+C</code>). You
+can then manipulate individual bank nodes using the node tool without
+moving the edge intersection points.</li>
+</ol>
+<h3 id="4-create-intersections-and-layering">4. Create Intersections and
+Layering</h3>
+<ol type="1">
+<li>When roads cross rivers, duplicate the road segment
+(<code>Ctrl+D</code>), color it to match a bridge asset, and ensure it
+sits above the river in the <strong>Layers and Objects</strong>
+panel.</li>
+<li>For T-junctions or four-way intersections, draw overlapping paths
+and select <strong>Path &gt; Union</strong> (<code>Ctrl++</code>) to
+merge the outlines into a single continuous shape, preventing visible
+overlap artifacts.</li>
+</ol>
+<h3 id="5-clip-assets-to-the-tile-boundary">5. Clip Assets to the Tile
+Boundary</h3>
+<p>To keep artwork strictly within tile borders:</p>
+<ol type="1">
+<li>Duplicate your base tile rectangle (<code>Ctrl+D</code>) and bring
+it to the top of your layer stack.</li>
+<li>Group all map features (roads, rivers, background terrain) using
+<code>Ctrl+G</code>.</li>
+<li>Select both the top boundary rectangle and the art group.</li>
+<li>Right-click and choose <strong>Set Clip</strong>. This truncates all
+overflowing strokes cleanly at the tile edge without destroying the
+vector data.</li>
+</ol>
+<h3 id="6-build-the-core-tile-set-and-export">6. Build the Core Tile Set
+and Export</h3>
+<p>Construct the primary connection archetypes needed for a functional
+modular system:</p>
+<ul>
+<li><strong>Straight:</strong> Paths entering on one side and exiting
+directly opposite.</li>
+<li><strong>Turn/Curve:</strong> Paths entering on one side and exiting
+on an adjacent side (90 degrees).</li>
+<li><strong>T-Junction:</strong> Three connection points merged in the
+center.</li>
+<li><strong>Dead End:</strong> A path entering one edge and terminating
+at an internal point of interest.</li>
+</ul>
+<p>Once your master components are designed, navigate to <strong>File
+&gt; Export</strong> (<code>Ctrl+Shift+E</code>). Choose
+<strong>Page</strong> export to render each tile at its exact boundary,
+select <strong>PNG</strong> or <strong>PDF</strong> at 300 DPI for print
+readiness, and save your modular library.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

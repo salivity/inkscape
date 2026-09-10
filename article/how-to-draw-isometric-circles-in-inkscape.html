@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Draw Isometric Circles in Inkscape - inkscape</title>
+    <meta name="description" content="Drawing isometric circles in Inkscape requires transforming a standard circle to match an isometric grid using the Scale, Shear, and Rotate (SSR) method. By creating a flat circle with the Ellipse tool and applying precise mathematical transformations in">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-draw-isometric-circles-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Draw Isometric Circles in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-draw-isometric-circles-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Drawing isometric circles in Inkscape requires transforming a standard circle to match an isometric grid using the Scale, Shear, and Rotate (SSR) method. By creating a flat circle with the Ellipse tool and applying precise mathematical transformations in" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-draw-isometric-circles-in-inkscape">How to Draw Isometric
+Circles in Inkscape</h1>
+<p>Drawing isometric circles in Inkscape requires transforming a
+standard circle to match an isometric grid using the Scale, Shear, and
+Rotate (SSR) method. By creating a flat circle with the Ellipse tool and
+applying precise mathematical transformations in the Transform dialog,
+you can accurately project circles onto the top, left, and right
+isometric planes without relying on manual eyeballing.</p>
+<h3 id="1-open-the-transform-panel">1. Open the Transform Panel</h3>
+<p>Open the Transform dialog by navigating to <strong>Object &gt;
+Transform</strong> in the top menu or pressing <strong>Shift + Ctrl +
+M</strong>. Ensure that the <strong>Apply to each object
+separately</strong> checkbox is unchecked.</p>
+<h3 id="2-draw-the-base-circle">2. Draw the Base Circle</h3>
+<ol type="1">
+<li>Select the <strong>Circles and Ellipses</strong> tool
+(<code>E</code>).</li>
+<li>Hold down <strong>Ctrl</strong> while clicking and dragging to draw
+a circle with equal width and height.</li>
+</ol>
+<h3 id="3-transform-for-the-desired-isometric-plane">3. Transform for
+the Desired Isometric Plane</h3>
+<p>For all isometric projections, the height must first be scaled to
+match the true axonometric foreshortening of <span
+class="math inline">\(30^\circ\)</span> projection (<span
+class="math inline">\(\cos(30^\circ) \approx 86.603\%\)</span>).</p>
+<h4 id="initial-scale-all-planes">Initial Scale (All Planes)</h4>
+<ol type="1">
+<li>Go to the <strong>Scale</strong> tab in the Transform panel.</li>
+<li>Uncheck <strong>Scale proportionally</strong>.</li>
+<li>Set the measurement unit to <strong>%</strong>.</li>
+<li>Set <strong>Width</strong> to <code>100%</code> and
+<strong>Height</strong> to <code>86.603%</code>.</li>
+<li>Click <strong>Apply</strong>.</li>
+</ol>
+<h4 id="top-plane-horizontal">Top Plane (Horizontal)</h4>
+<ol type="1">
+<li>Switch to the <strong>Skew</strong> tab.</li>
+<li>Set the unit to degrees (<strong>deg</strong>), enter
+<strong>Horizontal (X)</strong> as <code>-30°</code>, and click
+<strong>Apply</strong>.</li>
+<li>Switch to the <strong>Rotate</strong> tab.</li>
+<li>Set the angle to <code>30°</code> clockwise (or <code>-30°</code>
+counter-clockwise depending on grid orientation) and click
+<strong>Apply</strong>.</li>
+</ol>
+<h4 id="left-plane-vertical-left">Left Plane (Vertical Left)</h4>
+<ol type="1">
+<li>Switch to the <strong>Skew</strong> tab.</li>
+<li>Set <strong>Horizontal (X)</strong> to <code>-30°</code> and click
+<strong>Apply</strong>.</li>
+<li>Switch to the <strong>Rotate</strong> tab.</li>
+<li>Set the angle to <code>-30°</code> (counter-clockwise) and click
+<strong>Apply</strong>.</li>
+</ol>
+<h4 id="right-plane-vertical-right">Right Plane (Vertical Right)</h4>
+<ol type="1">
+<li>Switch to the <strong>Skew</strong> tab.</li>
+<li>Set <strong>Horizontal (X)</strong> to <code>30°</code> and click
+<strong>Apply</strong>.</li>
+<li>Switch to the <strong>Rotate</strong> tab.</li>
+<li>Set the angle to <code>30°</code> (clockwise) and click
+<strong>Apply</strong>.</li>
+</ol>
+<h3 id="summary-of-parameters">Summary of Parameters</h3>
+<ul>
+<li><strong>Top Face:</strong> Scale Height to <code>86.603%</code>
+<span class="math inline">\(\rightarrow\)</span> Skew X by
+<code>-30°</code> <span class="math inline">\(\rightarrow\)</span>
+Rotate by <code>30°</code></li>
+<li><strong>Left Face:</strong> Scale Height to <code>86.603%</code>
+<span class="math inline">\(\rightarrow\)</span> Skew X by
+<code>-30°</code> <span class="math inline">\(\rightarrow\)</span>
+Rotate by <code>-30°</code></li>
+<li><strong>Right Face:</strong> Scale Height to <code>86.603%</code>
+<span class="math inline">\(\rightarrow\)</span> Skew X by
+<code>30°</code> <span class="math inline">\(\rightarrow\)</span> Rotate
+by <code>30°</code></li>
+</ul>
+<p>The resulting ellipses will align with isometric cubes, cylinders,
+and coordinate grids set to the standard <span
+class="math inline">\(30^\circ\)</span> isometric angles.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

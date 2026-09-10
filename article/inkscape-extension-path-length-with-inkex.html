@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Extension Path Length with inkex - inkscape</title>
+    <meta name="description" content="Creating an Inkscape extension to calculate curve dimensions allows designers to automate measurements, scale vector components, and verify geometric tolerances directly within the canvas. This guide demonstrates how to build an Inkscape 1.x+ Python exte">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-extension-path-length-with-inkex">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Extension Path Length with inkex - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-extension-path-length-with-inkex" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating an Inkscape extension to calculate curve dimensions allows designers to automate measurements, scale vector components, and verify geometric tolerances directly within the canvas. This guide demonstrates how to build an Inkscape 1.x+ Python exte" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-extension-path-length-with-inkex">Inkscape Extension
+Path Length with inkex</h1>
+<p>Creating an Inkscape extension to calculate curve dimensions allows
+designers to automate measurements, scale vector components, and verify
+geometric tolerances directly within the canvas. This guide demonstrates
+how to build an Inkscape 1.x+ Python extension utilizing the
+<code>inkex</code> library. By setting up the necessary configuration
+files and Python logic, you will learn how to access selected path
+elements, parse them into <code>inkex.Path</code> objects, and invoke
+the built-in <code>.length()</code> method to compute precise path
+lengths.</p>
+<h3 id="extension-architecture">Extension Architecture</h3>
+<p>An Inkscape extension requires two files placed in the user's
+extensions folder:</p>
+<ol type="1">
+<li>An <strong>INX file</strong> (<code>measure_length.inx</code>): An
+XML descriptor that registers the extension in Inkscape's menu
+system.</li>
+<li>A <strong>Python script</strong> (<code>measure_length.py</code>):
+The functional code that reads selected paths and outputs their
+calculated lengths.</li>
+</ol>
+<h3 id="1-the-descriptor-file-measure_lengthinx">1. The Descriptor File
+(<code>measure_length.inx</code>)</h3>
+<p>Create a file named <code>measure_length.inx</code> to integrate the
+script into the Inkscape user interface.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span> <span class="ot">version=</span><span class="st">&quot;1.0&quot;</span> <span class="ot">encoding=</span><span class="st">&quot;UTF-8&quot;</span><span class="fu">?&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">inkscape-extension</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.inkscape.org/namespace/inkscape/extension&quot;</span>&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">name</span>&gt;Measure Path Length&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">id</span>&gt;org.example.measure.path.length&lt;/<span class="kw">id</span>&gt;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">effect</span>&gt;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">object-type</span>&gt;path&lt;/<span class="kw">object-type</span>&gt;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">submenu</span> <span class="ot">name=</span><span class="st">&quot;Analyze Paths&quot;</span>/&gt;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">effect</span>&gt;</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">script</span>&gt;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">command</span> <span class="ot">location=</span><span class="st">&quot;inx&quot;</span> <span class="ot">interpreter=</span><span class="st">&quot;python&quot;</span>&gt;measure_length.py&lt;/<span class="kw">command</span>&gt;</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">script</span>&gt;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">inkscape-extension</span>&gt;</span></code></pre></div>
+<h3 id="2-the-python-implementation-measure_lengthpy">2. The Python
+Implementation (<code>measure_length.py</code>)</h3>
+<p>In modern versions of <code>inkex</code> (v1.0 and later), any
+<code>inkex.PathElement</code> exposes its SVG path data through the
+<code>path</code> attribute. This attribute returns an
+<code>inkex.Path</code> instance containing the native
+<code>.length()</code> method.</p>
+<p>Save the following logic as <code>measure_length.py</code>:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MeasurePathLength(inkex.EffectExtension):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Filter the selection to only process path elements</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        paths <span class="op">=</span> <span class="va">self</span>.svg.selection.<span class="bu">filter</span>(inkex.PathElement)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> paths:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            inkex.errormsg(<span class="st">&quot;Please select at least one path element.&quot;</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        results <span class="op">=</span> []</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> elem <span class="kw">in</span> paths:</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Access the inkex.Path object directly from the element</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            path_data <span class="op">=</span> elem.path</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Calculate path length in user units (SVG coordinate units)</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            length_uu <span class="op">=</span> path_data.length()</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Convert user units to the document&#39;s display units (e.g., mm, in, px)</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            doc_unit <span class="op">=</span> <span class="va">self</span>.svg.unit</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            converted_length <span class="op">=</span> <span class="va">self</span>.svg.viewport_to_unit(<span class="ss">f&quot;</span><span class="sc">{</span>length_uu<span class="sc">}</span><span class="ss">px&quot;</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>            elem_id <span class="op">=</span> elem.get_id()</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            results.append(<span class="ss">f&quot;Path &#39;</span><span class="sc">{</span>elem_id<span class="sc">}</span><span class="ss">&#39;: </span><span class="sc">{</span>converted_length<span class="sc">:.3f}</span><span class="ss"> </span><span class="sc">{</span>doc_unit<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Display the result to the user via an alert dialog</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        inkex.errormsg(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>.join(results))</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    MeasurePathLength().run()</span></code></pre></div>
+<h3 id="3-how-inkexpathlength-works">3. How
+<code>inkex.Path.length()</code> Works</h3>
+<ul>
+<li><strong>Parsing</strong>: Calling <code>elem.path</code>
+automatically parses the <code>d</code> attribute of the SVG
+<code>&lt;path&gt;</code> into an <code>inkex.Path</code> object
+composed of discrete command segments (lines, cubic beziers, arcs,
+etc.).</li>
+<li><strong>Computation</strong>: The <code>length()</code> method
+numerically calculates the length of each segment and sums them up. For
+curves, it uses approximation algorithms to ensure high precision
+without requiring heavy computation.</li>
+<li><strong>Coordinate Space</strong>: The returned length is in
+internal SVG user units. The helper function
+<code>self.svg.viewport_to_unit()</code> translates this raw number into
+the actual display unit defined in the document settings (such as
+millimeters, centimeters, or inches).</li>
+</ul>
+<h3 id="4-installation-and-execution">4. Installation and Execution</h3>
+<ol type="1">
+<li>Locate your Inkscape user extensions directory:
+<ul>
+<li><strong>Linux</strong>:
+<code>~/.config/inkscape/extensions/</code></li>
+<li><strong>macOS</strong>:
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/extensions/</code></li>
+<li><strong>Windows</strong>:
+<code>%APPDATA%\inkscape\extensions\</code></li>
+</ul></li>
+<li>Place both <code>measure_length.inx</code> and
+<code>measure_length.py</code> into this folder.</li>
+<li>Restart Inkscape to load the extension.</li>
+<li>Draw or select a path, then navigate to <strong>Extensions &gt;
+Analyze Paths &gt; Measure Path Length</strong> to view the computed
+length.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

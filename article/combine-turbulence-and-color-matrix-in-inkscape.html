@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combine Turbulence and Color Matrix in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to combine SVG filter primitives in Inkscape using the Filter Editor dialog. By chaining the Turbulence primitive into a Color Matrix primitive, you can generate dynamic procedural textures, noise, and customized color effects dir">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/combine-turbulence-and-color-matrix-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Combine Turbulence and Color Matrix in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/combine-turbulence-and-color-matrix-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to combine SVG filter primitives in Inkscape using the Filter Editor dialog. By chaining the Turbulence primitive into a Color Matrix primitive, you can generate dynamic procedural textures, noise, and customized color effects dir" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="combine-turbulence-and-color-matrix-in-inkscape">Combine
+Turbulence and Color Matrix in Inkscape</h1>
+<p>This guide explains how to combine SVG filter primitives in Inkscape
+using the Filter Editor dialog. By chaining the
+<strong>Turbulence</strong> primitive into a <strong>Color
+Matrix</strong> primitive, you can generate dynamic procedural textures,
+noise, and customized color effects directly inside your vector
+graphics.</p>
+<h3 id="1-open-the-filter-editor">1. Open the Filter Editor</h3>
+<ol type="1">
+<li>Select the vector object you want to apply the texture to.</li>
+<li>Go to the top menu and select <strong>Filters &gt; Filter
+Editor</strong>.</li>
+<li>In the Filter Editor panel, click the <strong>New</strong> button at
+the bottom left to create a new filter.</li>
+<li>Check the box next to your new filter name to assign it to your
+selected object.</li>
+</ol>
+<h3 id="2-add-the-turbulence-primitive">2. Add the Turbulence
+Primitive</h3>
+<ol type="1">
+<li>In the <strong>Add primitive</strong> drop-down menu at the bottom
+of the panel, select <strong>Turbulence</strong>.</li>
+<li>Click <strong>Add</strong>.</li>
+<li>Select the <code>Turbulence</code> entry in the primitive list and
+use the <strong>Effect parameters</strong> tab below to configure it:
+<ul>
+<li><strong>Type:</strong> Choose between <em>Fractal Noise</em>
+(smoother) or <em>Turbulence</em> (cloudier/harder edges).</li>
+<li><strong>Base Frequency:</strong> Adjust the X and Y frequencies to
+scale the noise pattern.</li>
+<li><strong>Octaves:</strong> Increase the value (e.g., 3 to 5) for
+greater visual detail.</li>
+</ul></li>
+</ol>
+<h3 id="3-add-the-color-matrix-primitive">3. Add the Color Matrix
+Primitive</h3>
+<ol type="1">
+<li>From the <strong>Add primitive</strong> drop-down menu, select
+<strong>Color Matrix</strong>.</li>
+<li>Click <strong>Add</strong>.</li>
+<li>In the primitive list, ensure the <code>Color Matrix</code> is
+listed below <code>Turbulence</code>.</li>
+</ol>
+<h3 id="4-connect-the-primitives">4. Connect the Primitives</h3>
+<p>Inkscape allows you to route the output of one primitive into another
+using connection lines in the Filter Editor:</p>
+<ol type="1">
+<li>Locate the connection arrows on the right side of the primitive
+list.</li>
+<li>Connect the <strong>Input</strong> triangle of the
+<code>Color Matrix</code> primitive to the output of the
+<code>Turbulence</code> primitive.</li>
+<li>Leave the <code>Turbulence</code> input connected to the
+<code>Source Graphic</code> or leave it empty (Turbulence generates its
+own data).</li>
+</ol>
+<h3 id="5-adjust-the-color-matrix-values">5. Adjust the Color Matrix
+Values</h3>
+<ol type="1">
+<li>Click on the <code>Color Matrix</code> primitive in the list.</li>
+<li>Go to the <strong>Effect parameters</strong> tab.</li>
+<li>Select a <strong>Type</strong>:
+<ul>
+<li><strong>Matrix:</strong> Edit the 4x5 RGBA matrix to remap specific
+color and alpha channels generated by the noise.</li>
+<li><strong>Saturate / Hue Rotate:</strong> Easily change the color
+vibrancy or shift the color spectrum.</li>
+<li><strong>Luminance to Alpha:</strong> Convert the noise brightness
+directly into transparency values.</li>
+</ul></li>
+</ol>
+<h3 id="6-blend-with-the-source-object-optional">6. Blend with the
+Source Object (Optional)</h3>
+<p>To overlay the colored noise onto your original graphic:</p>
+<ol type="1">
+<li>Add a <strong>Composite</strong> or <strong>Blend</strong>
+primitive.</li>
+<li>Route the output of <code>Color Matrix</code> into <strong>Input
+1</strong>.</li>
+<li>Route <code>Source Graphic</code> into <strong>Input
+2</strong>.</li>
+<li>Set the blend mode to <em>Multiply</em>, <em>Screen</em>, or
+<em>Normal</em> depending on the desired visual finish.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

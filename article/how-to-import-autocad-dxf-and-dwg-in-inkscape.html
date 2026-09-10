@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Import AutoCAD DXF and DWG in Inkscape - inkscape</title>
+    <meta name="description" content="Importing CAD drawings into Inkscape allows you to edit, style, and prepare technical vector plans for presentations and graphic design workflows. While Inkscape natively supports AutoCAD DXF files, importing proprietary DWG files requires a quick conver">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-import-autocad-dxf-and-dwg-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Import AutoCAD DXF and DWG in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-import-autocad-dxf-and-dwg-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Importing CAD drawings into Inkscape allows you to edit, style, and prepare technical vector plans for presentations and graphic design workflows. While Inkscape natively supports AutoCAD DXF files, importing proprietary DWG files requires a quick conver" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-import-autocad-dxf-and-dwg-in-inkscape">How to Import
+AutoCAD DXF and DWG in Inkscape</h1>
+<p>Importing CAD drawings into Inkscape allows you to edit, style, and
+prepare technical vector plans for presentations and graphic design
+workflows. While Inkscape natively supports AutoCAD DXF files, importing
+proprietary DWG files requires a quick conversion step. This guide
+outlines the exact procedures for importing both DXF and DWG formats
+into Inkscape, along with essential settings to maintain accurate
+scaling and line work.</p>
+<h3 id="importing-autocad-dxf-files-directly">Importing AutoCAD DXF
+Files Directly</h3>
+<p>Inkscape includes a built-in DXF import engine that supports AutoCAD
+R13 DXF files and newer. Follow these steps to open or import your DXF
+drawing:</p>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>File &gt; Open</strong> (to
+create a new document from the file) or <strong>File &gt;
+Import</strong> (to insert the drawing into an existing document).</li>
+<li>Set the file format dropdown in the file browser to <strong>AutoCAD
+DXF R14 (*.dxf)</strong> or <strong>All Files</strong>.</li>
+<li>Select your DXF file and click <strong>Open</strong>.</li>
+<li>In the DXF import dialog box, configure the following settings:
+<ul>
+<li><strong>Input Unit:</strong> Select the unit of measurement used in
+the original CAD model (e.g., millimeters, inches, meters). Choosing the
+wrong unit will distort the scale.</li>
+<li><strong>Manual Scale:</strong> Enter a scaling factor if you want to
+scale the drawing immediately, or leave it at <code>1.0</code> to
+preserve the original geometry dimensions.</li>
+<li><strong>Text Encoding:</strong> Set to <code>UTF-8</code> or
+<code>Latin 1</code> depending on your drawing's text requirements.</li>
+<li><strong>Combine Paths:</strong> Check this option if you want
+connected segments merged into single paths automatically.</li>
+</ul></li>
+<li>Click <strong>OK</strong> to render the vector drawing on the
+canvas.</li>
+</ol>
+<h3 id="importing-autocad-dwg-files">Importing AutoCAD DWG Files</h3>
+<p>Inkscape cannot open native DWG files directly because the DWG format
+is a proprietary binary specification. To import a DWG file, convert it
+to a supported vector format first:</p>
+<h4 id="method-1-export-to-dxf-or-pdf-from-autocad">Method 1: Export to
+DXF or PDF from AutoCAD</h4>
+<p>If you have access to AutoCAD or a compatible CAD program (such as
+BricsCAD, LibreCAD, or DraftSight):</p>
+<ol type="1">
+<li>Open the DWG file in your CAD software.</li>
+<li>Use <strong>Save As</strong> or <strong>Export</strong> and choose
+<strong>AutoCAD 2013/2018 DXF</strong> or <strong>PDF</strong>.</li>
+<li>If saving as PDF, ensure vector output is selected rather than a
+raster print.</li>
+<li>Import the resulting DXF or PDF into Inkscape using <strong>File
+&gt; Open</strong>.</li>
+</ol>
+<h4 id="method-2-use-the-oda-file-converter">Method 2: Use the ODA File
+Converter</h4>
+<p>If you do not have CAD software installed:</p>
+<ol type="1">
+<li>Download and install the free <strong>ODA File Converter</strong>
+provided by the Open Design Alliance.</li>
+<li>Set the input folder containing your DWG file and designate an
+output folder.</li>
+<li>Select an output version such as <strong>ASCII DXF (2018 or
+earlier)</strong>.</li>
+<li>Run the conversion, then import the converted DXF file directly into
+Inkscape.</li>
+</ol>
+<h3 id="post-import-optimization-in-inkscape">Post-Import Optimization
+in Inkscape</h3>
+<p>CAD exports often import as thousands of disjointed lines or nested
+groups. Clean up the imported vectors with these steps:</p>
+<ul>
+<li><strong>Ungroup Elements:</strong> Select the drawing and press
+<code>Ctrl + Shift + G</code> (or <code>Cmd + Shift + G</code> on macOS)
+multiple times to unpack nested layers and groups.</li>
+<li><strong>Join Line Segments:</strong> Switch to the <strong>Node
+Tool</strong> (<code>N</code>), select the disconnected path nodes, and
+click <strong>Join selected endnodes</strong> in the top toolbar to turn
+individual segments into continuous polylines.</li>
+<li><strong>Set Stroke Widths:</strong> Open the <strong>Fill and
+Stroke</strong> panel (<code>Ctrl + Shift + F</code>) to assign uniform
+stroke weights, colors, and line styles across the imported
+geometry.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

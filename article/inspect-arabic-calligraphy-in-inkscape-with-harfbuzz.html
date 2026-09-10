@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspect Arabic Calligraphy in Inkscape with HarfBuzz - inkscape</title>
+    <meta name="description" content="Inkscape uses the HarfBuzz text shaping engine alongside Pango to process complex scripts, making it a capable environment for rendering, inspecting, and manipulating Arabic calligraphy. This guide details how to leverage Inkscape’s typography tools an">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inspect-arabic-calligraphy-in-inkscape-with-harfbuzz">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inspect Arabic Calligraphy in Inkscape with HarfBuzz - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inspect-arabic-calligraphy-in-inkscape-with-harfbuzz" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape uses the HarfBuzz text shaping engine alongside Pango to process complex scripts, making it a capable environment for rendering, inspecting, and manipulating Arabic calligraphy. This guide details how to leverage Inkscape’s typography tools an" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inspect-arabic-calligraphy-in-inkscape-with-harfbuzz">Inspect
+Arabic Calligraphy in Inkscape with HarfBuzz</h1>
+<p>Inkscape uses the HarfBuzz text shaping engine alongside Pango to
+process complex scripts, making it a capable environment for rendering,
+inspecting, and manipulating Arabic calligraphy. This guide details how
+to leverage Inkscape’s typography tools and path conversion features to
+inspect HarfBuzz-shaped Arabic glyphs, verify OpenType features, and
+analyze cursive attachments.</p>
+<h3 id="1-configure-the-document-for-arabic-typography">1. Configure the
+Document for Arabic Typography</h3>
+<p>Open Inkscape and select the <strong>Text tool (T)</strong>. Set the
+writing direction to Right-to-Left (RTL) on the top toolbar to allow
+HarfBuzz to sequence bidirectional text correctly. Choose an OpenType
+Arabic font with rich shaping tables, such as Amiri, Scheherazade New,
+or an Arabic script font like Nastaliq or Diwani.</p>
+<h3 id="2-access-the-opentype-features-tab">2. Access the OpenType
+Features Tab</h3>
+<p>HarfBuzz executes font features automatically, but fine-grained
+inspection requires accessing the font layout engine settings:</p>
+<ol type="1">
+<li>Open the <strong>Text and Font</strong> dialog (<strong>Shift + Ctrl
++ T</strong>).</li>
+<li>Switch to the <strong>Features</strong> tab.</li>
+<li>Review the available OpenType feature categories:
+<ul>
+<li><strong>Common Ligatures (<code>liga</code>) and Contextual
+Alternates (<code>calt</code>):</strong> Crucial for standard Arabic
+cursive flow.</li>
+<li><strong>Required Ligatures (<code>rlig</code>):</strong> Ensures
+foundational characters (like Lam-Alef) shape correctly.</li>
+<li><strong>Discretionary Ligatures (<code>dlig</code>):</strong>
+Enables calligraphic flourishes and complex extended ligatures.</li>
+<li><strong>Stylistic Sets
+(<code>ss01</code>–<code>ss20</code>):</strong> Alters the visual style
+of specific character sequences depending on the font design.</li>
+</ul></li>
+</ol>
+<p>Toggle these options to observe in real time how HarfBuzz changes
+glyph forms and reshapes adjacent characters.</p>
+<h3 id="3-inspect-diacritic-and-mark-positioning">3. Inspect Diacritic
+and Mark Positioning</h3>
+<p>HarfBuzz manages Mark-to-Base (<code>mark</code>) and Mark-to-Mark
+(<code>mkmk</code>) positioning tables. To verify that diacritics
+(<em>Tashkeel</em>) are placed properly without overlapping base
+letters:</p>
+<ol type="1">
+<li>Type a sequence featuring stacked diacritics (e.g., a letter with
+both a Shaddah and a Fatha).</li>
+<li>Zoom in using the <strong>Zoom tool (Z)</strong>.</li>
+<li>Test font sizes to ensure HarfBuzz scales mark offsets
+proportionally without vertical clipping or misalignments.</li>
+</ol>
+<h3 id="4-convert-to-paths-for-vector-level-inspection">4. Convert to
+Paths for Vector-Level Inspection</h3>
+<p>To inspect the precise outlines generated by HarfBuzz:</p>
+<ol type="1">
+<li>Select the rendered Arabic text object.</li>
+<li>Go to <strong>Path &gt; Object to Path</strong> (<strong>Ctrl +
+Shift + C</strong>).</li>
+<li>HarfBuzz transforms the shaped text into standard SVG paths.</li>
+<li>Press <strong>Ctrl + Shift + G</strong> to ungroup the characters
+into distinct shapes.</li>
+<li>Select the <strong>Node tool (N)</strong> to examine how HarfBuzz
+resolved cursive overlap, ligature fusion, and anchor placement between
+connecting strokes.</li>
+</ol>
+<h3 id="5-validate-styling-via-the-xml-editor">5. Validate Styling via
+the XML Editor</h3>
+<p>To check the raw CSS rules passed to HarfBuzz:</p>
+<ol type="1">
+<li>Open the <strong>XML Editor</strong> (<strong>Shift + Ctrl +
+X</strong>).</li>
+<li>Select the Arabic text element.</li>
+<li>Check the <code>style</code> attribute for
+<code>font-feature-settings</code> declarations to ensure specific
+typographic features are formatted correctly for the rendering
+pipeline.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

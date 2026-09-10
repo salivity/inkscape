@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Madeira and Sulky Thread Codes in Inkscape - inkscape</title>
+    <meta name="description" content="Assigning manufacturer thread codes such as Madeira or Sulky to vector artwork in Inkscape is primarily achieved through embroidery color palettes provided by the Ink/Stitch extension. This guide walks through activating manufacturer color palettes, assi">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/assign-madeira-and-sulky-thread-codes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Assign Madeira and Sulky Thread Codes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/assign-madeira-and-sulky-thread-codes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Assigning manufacturer thread codes such as Madeira or Sulky to vector artwork in Inkscape is primarily achieved through embroidery color palettes provided by the Ink/Stitch extension. This guide walks through activating manufacturer color palettes, assi" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="assign-madeira-and-sulky-thread-codes-in-inkscape">Assign
+Madeira and Sulky Thread Codes in Inkscape</h1>
+<p>Assigning manufacturer thread codes such as Madeira or Sulky to
+vector artwork in Inkscape is primarily achieved through embroidery
+color palettes provided by the Ink/Stitch extension. This guide walks
+through activating manufacturer color palettes, assigning precise thread
+codes to vector fills and strokes, and managing color metadata for
+production-ready embroidery files.</p>
+<h3 id="step-1-install-and-enable-manufacturer-palettes">Step 1: Install
+and Enable Manufacturer Palettes</h3>
+<p>Inkscape uses GIMP Palette (<code>.gpl</code>) files to display color
+swatches. The open-source embroidery extension
+<strong>Ink/Stitch</strong> includes built-in palettes for Madeira
+Rayon, Madeira Polyneon, Sulky Rayon, and other major thread lines.</p>
+<ol type="1">
+<li>If not already installed, install the <strong>Ink/Stitch</strong>
+extension. During installation, it automatically installs thread
+manufacturer palettes into Inkscape's <code>palettes</code>
+directory.</li>
+<li>If you do not use Ink/Stitch, download the <code>.gpl</code> palette
+files for Madeira or Sulky and manually place them into your Inkscape
+user palette folder:
+<ul>
+<li><strong>Windows:</strong>
+<code>%APPDATA%\inkscape\palettes</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/palettes</code></li>
+<li><strong>Linux:</strong>
+<code>~/.config/inkscape/palettes</code></li>
+</ul></li>
+<li>Restart Inkscape to load the new palettes.</li>
+</ol>
+<h3 id="step-2-select-the-manufacturer-palette">Step 2: Select the
+Manufacturer Palette</h3>
+<ol type="1">
+<li>Locate the color palette bar along the bottom of the Inkscape
+workspace.</li>
+<li>Click the small arrow (<code>&gt;</code>) icon located at the far
+right edge of the bottom color bar.</li>
+<li>Scroll through the list and select your desired manufacturer line
+(for example, <strong>Ink/Stitch: Madeira Polyneon</strong> or
+<strong>Ink/Stitch: Sulky Rayon</strong>).</li>
+<li>Alternatively, open the dedicated Swatches dialog by navigating to
+<strong>View</strong> &gt; <strong>Swatches</strong> (or press
+<code>Shift + Ctrl + W</code>) and select the thread palette from the
+dropdown menu.</li>
+</ol>
+<h3 id="step-3-assign-the-thread-code-to-vector-objects">Step 3: Assign
+the Thread Code to Vector Objects</h3>
+<p>Once the palette is active, each swatch represents a specific
+manufacturer thread number and color name.</p>
+<ol type="1">
+<li>Select the vector path or shape you want to color using the
+<strong>Select and Transform objects</strong> tool (<code>S</code> or
+<code>F1</code>).</li>
+<li>Hover your mouse over the swatches in the palette bar. A tooltip
+will appear displaying the exact manufacturer code and color name (e.g.,
+<em>Madeira Polyneon 1801 - White</em> or <em>Sulky 1005 -
+Black</em>).</li>
+<li>To assign the code as a fill color, left-click on the swatch.</li>
+<li>To assign the code as a stroke color, hold <code>Shift</code> and
+left-click on the swatch.</li>
+</ol>
+<p>Inkscape sets the object's RGB values to the exact specification of
+that thread swatch, while embedding the color name and thread code into
+the SVG's XML attributes.</p>
+<h3 id="step-4-verify-thread-assignments-with-inkstitch">Step 4: Verify
+Thread Assignments with Ink/Stitch</h3>
+<p>To confirm that the thread codes are properly recognized by
+embroidery formats (such as PES, DST, or EXP):</p>
+<ol type="1">
+<li>Select your colored vector object.</li>
+<li>Navigate to <strong>Extensions</strong> &gt;
+<strong>Ink/Stitch</strong> &gt; <strong>Params</strong>.</li>
+<li>The preview window will render the path with the assigned thread
+code displayed in the color description.</li>
+<li>If you need a comprehensive list of all assigned threads in your
+document, go to <strong>Extensions</strong> &gt;
+<strong>Ink/Stitch</strong> &gt; <strong>Visualize and Export</strong>
+&gt; <strong>Print/PDF Export</strong>. The generated production sheet
+will list each Madeira or Sulky code, its color preview, and the total
+stitch count associated with that thread.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

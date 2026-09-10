@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Transfer Paths from Inkscape to FontLab - inkscape</title>
+    <meta name="description" content="Transferring vector artwork from Inkscape into FontLab allows type designers to leverage Inkscape’s flexible drawing environment while utilizing FontLab’s robust font engineering tools. This guide covers how to prepare vector paths in Inkscape, impor">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-transfer-paths-from-inkscape-to-fontlab">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Transfer Paths from Inkscape to FontLab - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-transfer-paths-from-inkscape-to-fontlab" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transferring vector artwork from Inkscape into FontLab allows type designers to leverage Inkscape’s flexible drawing environment while utilizing FontLab’s robust font engineering tools. This guide covers how to prepare vector paths in Inkscape, impor" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-transfer-paths-from-inkscape-to-fontlab">How to Transfer
+Paths from Inkscape to FontLab</h1>
+<p>Transferring vector artwork from Inkscape into FontLab allows type
+designers to leverage Inkscape’s flexible drawing environment while
+utilizing FontLab’s robust font engineering tools. This guide covers how
+to prepare vector paths in Inkscape, import them into FontLab via the
+system clipboard or SVG files, and perform essential post-processing
+steps like metric alignment, path cleanup, and node optimization to
+ensure high-quality digital type production.</p>
+<h2 id="step-1-prepare-paths-in-inkscape">Step 1: Prepare Paths in
+Inkscape</h2>
+<p>Before transferring any artwork, your paths must be converted into
+clean, closed outlines compatible with font technology.</p>
+<ol type="1">
+<li><strong>Convert Strokes to Outlines:</strong> Select all elements
+and go to <strong>Path &gt; Stroke to Path</strong>. Fonts cannot use
+open strokes with stroke widths; every line must be a closed shape.</li>
+<li><strong>Combine Shapes:</strong> If a character consists of
+overlapping shapes, select them and apply <strong>Path &gt;
+Union</strong> to merge them into a single compound path. For counters
+(like the inside of an "O"), use <strong>Path &gt;
+Difference</strong>.</li>
+<li><strong>Minimize Nodes:</strong> Excess nodes lead to file bloat and
+rendering issues. Clean up nodes manually or use <strong>Path &gt;
+Simplify</strong> sparingly. Ensure smooth nodes have collinear
+handles.</li>
+<li><strong>Set Up Dimensions:</strong> To minimize scaling issues
+later, match your Inkscape document units to FontLab’s Units Per Em
+(typically 1000 UPM). You can set your document size to 1000 × 1000 px
+in <strong>File &gt; Document Properties</strong>.</li>
+</ol>
+<h2 id="step-2-transfer-the-vectors">Step 2: Transfer the Vectors</h2>
+<p>There are two primary methods to move vector data from Inkscape to
+FontLab: direct copy-paste or SVG file import.</p>
+<h3 id="method-a-direct-copy-and-paste-fastest-for-single-glyphs">Method
+A: Direct Copy and Paste (Fastest for Single Glyphs)</h3>
+<ol type="1">
+<li>In Inkscape, select the finished path and copy it
+(<strong>Ctrl+C</strong> or <strong>Cmd+C</strong>).</li>
+<li>Open your font project in FontLab.</li>
+<li>Double-click the target glyph cell in the <strong>Font
+Window</strong> to open the <strong>Glyph Window</strong>.</li>
+<li>Paste the path directly into the canvas (<strong>Ctrl+V</strong> or
+<strong>Cmd+V</strong>).</li>
+</ol>
+<h3
+id="method-b-exporting-and-importing-svg-best-for-accuracy-and-batch-work">Method
+B: Exporting and Importing SVG (Best for Accuracy and Batch Work)</h3>
+<ol type="1">
+<li>In Inkscape, select your artwork and navigate to <strong>File &gt;
+Save As</strong>.</li>
+<li>Select <strong>Plain SVG</strong> from the file type dropdown to
+remove Inkscape-specific metadata.</li>
+<li>In FontLab, open the desired glyph slot.</li>
+<li>Go to <strong>File &gt; Import &gt; Artwork</strong> (or drag and
+drop the SVG file directly into the Glyph Window).</li>
+</ol>
+<h2 id="step-3-clean-and-scale-in-fontlab">Step 3: Clean and Scale in
+FontLab</h2>
+<p>Once the outlines are in FontLab, they require font-specific
+corrections to meet professional type standards.</p>
+<ol type="1">
+<li><strong>Scale and Position:</strong> Use the <strong>Free
+Transform</strong> tool to align the baseline, x-height, and cap height
+to your font’s metric lines. Adjust the left and right
+sidebearings.</li>
+<li><strong>Round Coordinates to Integers:</strong> Digital fonts
+require integer coordinates. Select your contours and run
+<strong>Contour &gt; Round Coordinates</strong> to eliminate fractional
+pixels.</li>
+<li><strong>Correct Path Direction:</strong> Font formats require
+specific contour winding rules (TrueType uses clockwise outer contours;
+PostScript/OpenType uses counter-clockwise). Go to <strong>Contour &gt;
+Detect Direction</strong> or use <strong>FontAudit</strong> to
+automatically correct path orientation.</li>
+<li><strong>Run FontAudit:</strong> Click the <strong>FontAudit</strong>
+button in the status bar or choose <strong>Contour &gt; FontAudit &gt;
+Fix All</strong> to automatically resolve stray points, missing extrema,
+and unintended flat curves.</li>
+<li><strong>Add Extremum Nodes:</strong> Curves in digital type should
+have nodes at their extreme horizontal and vertical positions. Go to
+<strong>Contour &gt; Add Extremes</strong> to insert these required
+nodes.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Sort Swatches in an Inkscape Palette - inkscape</title>
+    <meta name="description" content="Organizing color swatches in Inkscape streamlines your design workflow and keeps your artwork consistent. While Inkscape automatically tracks colors by usage frequency via the Document Palette, sorting swatches by visual properties such as hue or value r">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-sort-swatches-in-an-inkscape-palette">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Sort Swatches in an Inkscape Palette - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-sort-swatches-in-an-inkscape-palette" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Organizing color swatches in Inkscape streamlines your design workflow and keeps your artwork consistent. While Inkscape automatically tracks colors by usage frequency via the Document Palette, sorting swatches by visual properties such as hue or value r" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-sort-swatches-in-an-inkscape-palette">How to Sort
+Swatches in an Inkscape Palette</h1>
+<p>Organizing color swatches in Inkscape streamlines your design
+workflow and keeps your artwork consistent. While Inkscape automatically
+tracks colors by usage frequency via the Document Palette, sorting
+swatches by visual properties such as hue or value requires configuring
+palette display settings, generating structured palettes from canvas
+elements, or sorting the underlying palette file. This guide explains
+how to organize your swatches using these practical methods.</p>
+<hr />
+<h2 id="sorting-by-usage-frequency">Sorting by Usage Frequency</h2>
+<p>Inkscape tracks the colors actively used in your project through the
+dynamic Document Palette.</p>
+<ol type="1">
+<li>Locate the Palette bar at the very bottom of the Inkscape
+window.</li>
+<li>Click the small arrow or hamburger menu icon on the far right of the
+palette bar.</li>
+<li>Select <strong>Auto</strong> or <strong>Document Palette</strong>
+from the list.</li>
+<li>As you apply new fills and strokes to shapes on your canvas,
+Inkscape places the most recently used colors into this palette.</li>
+<li>To remove unused colors and condense the list, open the
+<strong>Swatches</strong> dialog (<strong>View</strong> &gt;
+<strong>Swatches</strong> or press <code>Ctrl</code> +
+<code>Shift</code> + <code>W</code>), click the menu icon, and choose to
+remove unused swatches.</li>
+</ol>
+<hr />
+<h2 id="sorting-by-hue-or-value">Sorting by Hue or Value</h2>
+<p>Inkscape does not have a single-click native button in the basic
+palette menu to reorder existing third-party palettes by hue or
+brightness. However, you can achieve a sorted palette using one of the
+following approaches:</p>
+<h3 id="method-1-generate-a-sorted-palette-from-canvas-objects">Method
+1: Generate a Sorted Palette from Canvas Objects</h3>
+<p>If you have a set of colors you want to arrange visually:</p>
+<ol type="1">
+<li>Draw a row of squares or circles on the canvas, each colored with
+one swatch from your selection.</li>
+<li>Manually arrange these shapes in order of lightness (value) or color
+spectrum order (hue).</li>
+<li>Select all the colored objects.</li>
+<li>Go to <strong>Extensions</strong> &gt; <strong>Color</strong> (or
+use an installed palette export extension) or create a custom swatch
+set:
+<ul>
+<li>Open the <strong>Swatches</strong> panel (<code>Ctrl</code> +
+<code>Shift</code> + <code>W</code>).</li>
+<li>Select the objects and convert their colors to persistent swatches
+by clicking the <strong>Add</strong> / <strong>New swatch</strong>
+icon.</li>
+<li>Because they were added sequentially from your arranged canvas
+shapes, the palette retains your custom hue or value order.</li>
+</ul></li>
+</ol>
+<h3 id="method-2-sort-the-gimp-palette-gpl-file">Method 2: Sort the GIMP
+Palette (.gpl) File</h3>
+<p>Inkscape stores custom palettes as <code>.gpl</code> (GIMP Palette)
+plain-text files. You can sort these files using an external script or
+text editor:</p>
+<ol type="1">
+<li>Open your Inkscape user directory:
+<ul>
+<li><strong>Windows:</strong>
+<code>%APPDATA%\inkscape\palettes</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/org.inkscape.Inkscape/config/inkscape/palettes</code></li>
+<li><strong>Linux:</strong>
+<code>~/.config/inkscape/palettes</code></li>
+</ul></li>
+<li>Locate the <code>.gpl</code> file for your palette and open it in a
+text editor (such as VS Code, Notepad++, or TextEdit).</li>
+<li>The file lists colors by standard RGB values:
+<pre class="text"><code>GIMP Palette
+Name: My Palette
+Columns: 4
+#
+255   0   0   Red
+  0 255   0   Green
+  0   0 255   Blue</code></pre></li>
+<li>Reorder the lines based on RGB brightness:
+<ul>
+<li><strong>By Value (Brightness):</strong> Calculate relative
+brightness using <span class="math inline">\((0.299 \times R + 0.587
+\times G + 0.114 \times B)\)</span> and sort lines from lowest to
+highest.</li>
+<li><strong>By Hue:</strong> Group the lines by primary color families
+(Reds, Yellows, Greens, Cyans, Blues, Magentas).</li>
+</ul></li>
+<li>Save the file and restart Inkscape. Your palette will now appear in
+your defined order.</li>
+</ol>
+<h3 id="method-3-use-gimps-native-palette-sorter">Method 3: Use GIMP's
+Native Palette Sorter</h3>
+<p>Because Inkscape natively reads <code>.gpl</code> palettes, you can
+leverage GIMP to sort the palette automatically:</p>
+<ol type="1">
+<li>Place your <code>.gpl</code> file into GIMP's <code>palettes</code>
+folder.</li>
+<li>Open GIMP and open the <strong>Palettes</strong> dialog
+(<strong>Windows</strong> &gt; <strong>Dockable Dialogs</strong> &gt;
+<strong>Palettes</strong>).</li>
+<li>Right-click your palette and choose <strong>Edit
+Palette</strong>.</li>
+<li>In the Palette Editor, right-click and select <strong>Sort
+Palette...</strong>.</li>
+<li>Choose your sorting criterion: <strong>Hue</strong>,
+<strong>Saturation</strong>, or <strong>Value</strong>, as well as the
+sort direction (Ascending or Descending).</li>
+<li>Save the palette. It will immediately reflect the sorted order when
+selected in Inkscape.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

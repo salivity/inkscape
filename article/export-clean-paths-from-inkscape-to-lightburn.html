@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Clean Paths from Inkscape to LightBurn - inkscape</title>
+    <meta name="description" content="Exporting clean, continuous contours from Inkscape to LightBurn is essential for preventing stuttered laser movements, reducing burn times, and eliminating double cuts. This guide provides a direct, step-by-step workflow to convert raw artwork, combine o">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-clean-paths-from-inkscape-to-lightburn">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Clean Paths from Inkscape to LightBurn - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-clean-paths-from-inkscape-to-lightburn" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting clean, continuous contours from Inkscape to LightBurn is essential for preventing stuttered laser movements, reducing burn times, and eliminating double cuts. This guide provides a direct, step-by-step workflow to convert raw artwork, combine o" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-clean-paths-from-inkscape-to-lightburn">Export Clean
+Paths from Inkscape to LightBurn</h1>
+<p>Exporting clean, continuous contours from Inkscape to LightBurn is
+essential for preventing stuttered laser movements, reducing burn times,
+and eliminating double cuts. This guide provides a direct, step-by-step
+workflow to convert raw artwork, combine open nodes, remove overlapping
+segments, and save the file in an optimal vector format that LightBurn
+can process without geometry errors.</p>
+<h2 id="1-convert-objects-and-text-to-pure-paths">1. Convert Objects and
+Text to Pure Paths</h2>
+<p>LightBurn requires vector coordinate paths rather than live
+software-specific objects, text elements, or strokes.</p>
+<ol type="1">
+<li>Select all elements in your design using <strong>Ctrl +
+A</strong>.</li>
+<li>Go to <strong>Path &gt; Object to Path</strong> (<strong>Shift +
+Ctrl + C</strong>) to convert shapes (rectangles, circles) and text into
+editable paths.</li>
+<li>If your design relies on stroke thickness rather than outlines,
+select the stroked paths and go to <strong>Path &gt; Stroke to
+Path</strong> (<strong>Ctrl + Alt + C</strong>) to convert outlines into
+solid, cuttable boundaries.</li>
+</ol>
+<h2 id="2-join-nodes-to-form-continuous-paths">2. Join Nodes to Form
+Continuous Paths</h2>
+<p>Fragmented line segments cause the laser head to constantly lift and
+reposition. Joining these segments creates a single, uninterrupted burn
+path.</p>
+<ol type="1">
+<li>Switch to the <strong>Edit paths by nodes</strong> tool
+(<strong>N</strong>).</li>
+<li>Select the entire design (<strong>Ctrl + A</strong>) while this tool
+is active to reveal all individual nodes.</li>
+<li>Box-select the nodes that share endpoints or overlap.</li>
+<li>Click the <strong>Join selected nodes</strong> button on the top
+toolbar (or <strong>Join selected endnodes with a new segment</strong>
+if a gap exists).</li>
+<li>Ensure closed loops are fully sealed by clicking <strong>Close
+selected paths</strong>.</li>
+</ol>
+<h2 id="3-merge-and-clean-up-overlapping-vectors">3. Merge and Clean Up
+Overlapping Vectors</h2>
+<p>Overlapping lines cause the laser to cut the same area twice, which
+can burn through material or warp delicate cuts.</p>
+<ol type="1">
+<li>If you have overlapping intersecting shapes that should be a single
+outline, select them and click <strong>Path &gt; Union</strong>
+(<strong>Ctrl + +</strong>).</li>
+<li>To remove redundant duplicate lines lying directly on top of each
+other, select the objects and use <strong>Path &gt; Combine</strong>
+(<strong>Ctrl + K</strong>).</li>
+<li>If necessary, simplify excessively dense node clusters by running
+<strong>Path &gt; Simplify</strong> (<strong>Ctrl + L</strong>), though
+use this sparingly to prevent unintended shape distortion.</li>
+</ol>
+<h2 id="4-ungroup-and-flatten-transforms">4. Ungroup and Flatten
+Transforms</h2>
+<p>Nested groups and hidden coordinate transformations within Inkscape
+can cause geometry to shift or scale incorrectly when imported into
+LightBurn.</p>
+<ol type="1">
+<li>Select everything (<strong>Ctrl + A</strong>).</li>
+<li>Continuously ungroup by pressing <strong>Ctrl + Shift + G</strong>
+until the status bar at the bottom indicates that no groups remain.</li>
+<li>Ensure objects are placed within the primary page boundaries to
+avoid coordinate offset errors upon import.</li>
+</ol>
+<h2 id="5-save-as-plain-svg">5. Save as Plain SVG</h2>
+<p>While LightBurn supports various formats, a sanitized SVG is the most
+reliable choice for retaining scale, bezier curves, and layer
+metadata.</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong> (or <strong>Shift + Ctrl
++ S</strong>).</li>
+<li>In the file type dropdown menu, select <strong>Plain SVG
+(*.svg)</strong> instead of the default "Inkscape SVG". This strips out
+Inkscape-specific XML metadata, leaving clean, raw vector data.</li>
+<li>Alternatively, export as <strong>Optimized SVG</strong> with options
+set to convert CSS attributes to XML attributes and collapse redundant
+groups.</li>
+</ol>
+<h2 id="6-verification-and-final-optimization-in-lightburn">6.
+Verification and Final Optimization in LightBurn</h2>
+<p>Once imported into LightBurn, run a quick check to verify path
+continuity.</p>
+<ol type="1">
+<li>Drag and drop your newly saved Plain SVG directly into the LightBurn
+workspace.</li>
+<li>Select your imported vectors, right-click, and select
+<strong>Auto-Join Selected Shapes</strong> (<strong>Alt + J</strong>) to
+ensure any microscopic gaps left behind are closed.</li>
+<li>Open the <strong>Preview</strong> window (<strong>Alt + P</strong>)
+and drag the time slider to confirm the laser path flows continuously
+along shapes rather than jumping erratically between disjointed
+segments.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

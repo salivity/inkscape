@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Measure Floorplan Surface Area in Inkscape - inkscape</title>
+    <meta name="description" content="Calculating the total surface area of complex, closed floorplan boundaries in Inkscape is a straightforward process using the software's built-in path tools and measurement extensions. By setting up the correct real-world scale, combining independent bou">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/measure-floorplan-surface-area-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Measure Floorplan Surface Area in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/measure-floorplan-surface-area-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Calculating the total surface area of complex, closed floorplan boundaries in Inkscape is a straightforward process using the software's built-in path tools and measurement extensions. By setting up the correct real-world scale, combining independent bou" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="measure-floorplan-surface-area-in-inkscape">Measure Floorplan
+Surface Area in Inkscape</h1>
+<p>Calculating the total surface area of complex, closed floorplan
+boundaries in Inkscape is a straightforward process using the software's
+built-in path tools and measurement extensions. By setting up the
+correct real-world scale, combining independent boundaries into unified
+paths, and utilizing the "Measure Path" extension, you can quickly
+extract precise square footage or metric area measurements directly from
+your vector drawings.</p>
+<h3 id="step-1-set-the-drawing-scale">Step 1: Set the Drawing Scale</h3>
+<p>Before measuring, ensure your document reflects real-world
+dimensions:</p>
+<ol type="1">
+<li>Go to <strong>File</strong> &gt; <strong>Document
+Properties</strong> (or press <code>Ctrl+Shift+D</code>).</li>
+<li>Set your <strong>Display units</strong> to your preferred unit of
+measure (e.g., millimeters, meters, feet, or inches).</li>
+<li>Under the <strong>Scale</strong> section, ensure the scale matches
+your floorplan's real-world ratio (for example, 1:1 if already drawn to
+scale, or adjust the scale factor to match imported architectural
+blueprints).</li>
+</ol>
+<h3 id="step-2-create-a-closed-boundary">Step 2: Create a Closed
+Boundary</h3>
+<p>The measurement tool requires a closed vector path to calculate
+surface area:</p>
+<ol type="1">
+<li>Select all individual wall segments or boundary lines enclosing the
+area.</li>
+<li>If lines are not joined, switch to the <strong>Node Tool</strong>
+(<code>N</code>), select the overlapping end nodes, and click
+<strong>Join selected nodes</strong> in the top toolbar.</li>
+<li>If combining overlapping rooms or shapes, select them and navigate
+to <strong>Path</strong> &gt; <strong>Union</strong>
+(<code>Ctrl++</code>) to merge them into a single continuous shape.</li>
+<li>For floorplans with interior courtyards or excluded voids, place the
+void shape over the main boundary, select both, and choose
+<strong>Path</strong> &gt; <strong>Difference</strong>
+(<code>Ctrl+-</code>) to subtract the internal space.</li>
+</ol>
+<h3 id="step-3-measure-the-surface-area">Step 3: Measure the Surface
+Area</h3>
+<p>Once you have a single closed path representing the floorplan
+boundary:</p>
+<ol type="1">
+<li>Select the path using the <strong>Select and Transform Tool</strong>
+(<code>S</code>).</li>
+<li>Go to the top menu and select <strong>Extensions</strong> &gt;
+<strong>Visualize Path</strong> &gt; <strong>Measure
+Path...</strong>.</li>
+<li>In the pop-up dialog, set the <strong>Measurement Type</strong>
+dropdown to <strong>Area</strong>.</li>
+<li>Set the <strong>Units</strong> field to your desired unit (such as
+<code>m^2</code>, <code>ft^2</code>, or <code>cm^2</code>).</li>
+<li>Adjust the text options (font size and position) if you want the
+measurement value printed directly onto the canvas, or simply review the
+live preview.</li>
+<li>Click <strong>Apply</strong> to generate the final surface area
+calculation.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Tablet Pressure for Inkscape Calligraphy - inkscape</title>
+    <meta name="description" content="This guide provides a straightforward walkthrough for enabling and configuring graphics tablet pressure sensitivity for the Calligraphy tool in Inkscape. By properly configuring your hardware in Inkscape's input preferences and toggling the appropriate t">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/setup-tablet-pressure-for-inkscape-calligraphy">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Setup Tablet Pressure for Inkscape Calligraphy - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/setup-tablet-pressure-for-inkscape-calligraphy" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a straightforward walkthrough for enabling and configuring graphics tablet pressure sensitivity for the Calligraphy tool in Inkscape. By properly configuring your hardware in Inkscape's input preferences and toggling the appropriate t" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="setup-tablet-pressure-for-inkscape-calligraphy">Setup Tablet
+Pressure for Inkscape Calligraphy</h1>
+<p>This guide provides a straightforward walkthrough for enabling and
+configuring graphics tablet pressure sensitivity for the Calligraphy
+tool in Inkscape. By properly configuring your hardware in Inkscape's
+input preferences and toggling the appropriate tool settings, you can
+achieve dynamic, variable-width strokes that respond naturally to your
+pen's pressure.</p>
+<h2 id="step-1-configure-your-tablet-in-input-devices">Step 1: Configure
+Your Tablet in Input Devices</h2>
+<p>Before Inkscape can read pressure data from your stylus, your
+graphics tablet must be recognized as an extended input device rather
+than a standard mouse.</p>
+<ol type="1">
+<li>Connect your graphics tablet to your computer and ensure your tablet
+drivers are running.</li>
+<li>Open Inkscape and navigate to <strong>Edit &gt; Input
+Devices...</strong>.</li>
+<li>In the device list on the left, locate your tablet stylus (commonly
+listed as <em>stylus</em>, <em>pen</em>, or the brand name such as
+<em>Wacom</em>, <em>Huion</em>, or <em>XP-Pen</em>).</li>
+<li>Change the <strong>Mode</strong> dropdown menu from
+<strong>Disabled</strong> to <strong>Screen</strong>.</li>
+<li>Ensure the hardware axes (X, Y, and Pressure) are correctly assigned
+to their default values.</li>
+<li>Click <strong>Save</strong> and close the dialog.</li>
+</ol>
+<h2 id="step-2-select-the-calligraphy-tool">Step 2: Select the
+Calligraphy Tool</h2>
+<ol type="1">
+<li>Choose the <strong>Calligraphy or Brush Stroke tool</strong> from
+the left toolbox, or press <strong>C</strong> (or <strong>Ctrl +
+F6</strong>) on your keyboard.</li>
+<li>The top toolbar will now display the Calligraphy Tool Controls.</li>
+</ol>
+<h2 id="step-3-enable-pen-pressure">Step 3: Enable Pen Pressure</h2>
+<ol type="1">
+<li>Look at the Tool Controls bar at the top of the screen.</li>
+<li>Locate the <strong>Pressure</strong> icon (represented by a pen tip
+with radiating force marks).</li>
+<li>Click the icon to activate it. When active, the button will appear
+highlighted or depressed.</li>
+</ol>
+<h2 id="step-4-adjust-stroke-dynamics">Step 4: Adjust Stroke
+Dynamics</h2>
+<p>To make the pressure sensitivity clearly visible, adjust the
+following parameters in the Calligraphy Tool Controls:</p>
+<ul>
+<li><strong>Width:</strong> Sets the base stroke size. Set this to a
+moderate size (e.g., 30 to 50).</li>
+<li><strong>Thinning:</strong> Controls how much the stroke narrows with
+varying speed and pressure. A positive value (such as 10 to 40) creates
+a pronounced difference between light and heavy pressure.</li>
+<li><strong>Mass:</strong> Adds weight and smoothing to the stroke. Set
+this low (between 0 and 10) for instant response, or higher for
+stabilized lines.</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li><strong>No Pressure Detected:</strong> If lines remain a uniform
+width, open your tablet's manufacturer software and verify that
+<strong>Windows Ink</strong> (on Windows) is enabled, as Inkscape relies
+on standard API protocols to read pressure values.</li>
+<li><strong>Stroke Offset:</strong> If the stroke appears away from your
+cursor tip, return to <strong>Edit &gt; Input Devices...</strong> and
+switch the Mode from <strong>Screen</strong> to
+<strong>Window</strong>.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Inkscape SVG to Cinema 4D for Extrusion - inkscape</title>
+    <meta name="description" content="Transferring vector artwork from Inkscape into Cinema 4D allows you to transform flat 2D designs into dynamic 3D geometry using procedural generators. This workflow requires properly preparing and converting your vectors into raw paths in Inkscape, savin">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/export-inkscape-svg-to-cinema-4d-for-extrusion">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Export Inkscape SVG to Cinema 4D for Extrusion - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/export-inkscape-svg-to-cinema-4d-for-extrusion" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transferring vector artwork from Inkscape into Cinema 4D allows you to transform flat 2D designs into dynamic 3D geometry using procedural generators. This workflow requires properly preparing and converting your vectors into raw paths in Inkscape, savin" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="export-inkscape-svg-to-cinema-4d-for-extrusion">Export Inkscape
+SVG to Cinema 4D for Extrusion</h1>
+<p>Transferring vector artwork from Inkscape into Cinema 4D allows you
+to transform flat 2D designs into dynamic 3D geometry using procedural
+generators. This workflow requires properly preparing and converting
+your vectors into raw paths in Inkscape, saving them in a compatible
+format, importing them into Cinema 4D, and pairing the resulting splines
+with an Extrude generator for non-destructive 3D modeling.</p>
+<h3 id="1-prepare-your-vectors-in-inkscape">1. Prepare Your Vectors in
+Inkscape</h3>
+<p>Before exporting, you must convert all text, shapes, and strokes into
+standard vector paths so Cinema 4D can interpret them as splines:</p>
+<ol type="1">
+<li><strong>Convert Objects to Paths:</strong> Select all elements in
+your document and go to <strong>Path &gt; Object to Path</strong> (Shift
++ Ctrl + C). This converts primitive shapes (rectangles, circles) and
+text into editable nodes.</li>
+<li><strong>Convert Strokes (If Applicable):</strong> If your artwork
+relies on visible stroke outlines rather than fills, go to <strong>Path
+&gt; Stroke to Path</strong> (Ctrl + Alt + C).</li>
+<li><strong>Combine Shapes:</strong> If your design features compound
+shapes (such as letters with holes like "O" or "A"), select the
+overlapping paths and choose <strong>Path &gt; Combine</strong> (Ctrl +
+K) to ensure Cinema 4D cuts out the negative space correctly.</li>
+<li><strong>Ungroup Elements:</strong> Select everything and press
+<strong>Ctrl + Shift + G</strong> repeatedly until no groups remain in
+the status bar.</li>
+<li><strong>Save the File:</strong> Go to <strong>File &gt; Save
+As...</strong> and choose <strong>Plain SVG (*.svg)</strong> from the
+format dropdown. This removes Inkscape-specific metadata and leaves
+clean XML data.</li>
+</ol>
+<h3 id="2-import-the-svg-into-cinema-4d">2. Import the SVG into Cinema
+4D</h3>
+<p>Modern versions of Cinema 4D support direct SVG imports through the
+Vector Import engine or standard spline conversion:</p>
+<ol type="1">
+<li>Open Cinema 4D.</li>
+<li>Go to <strong>File &gt; Merge Project...</strong> (Ctrl + Shift + O)
+and select your saved <code>.svg</code> file, or simply drag and drop
+the SVG directly into the viewport.</li>
+<li>In the import settings dialog, leave the scale at 1 unless your
+document requires a specific unit conversion, then click
+<strong>OK</strong>.</li>
+<li>Your vector will appear in the Object Manager either as a hierarchy
+of spline objects or inside a <strong>Vector Import</strong> node. If it
+is imported as a Vector Import node, you can right-click it and choose
+<strong>Current State to Object</strong> if you need raw, direct access
+to the underlying splines.</li>
+</ol>
+<h3 id="3-set-up-procedural-extrusion">3. Set Up Procedural
+Extrusion</h3>
+<p>Once your curves are inside Cinema 4D as splines, you can extrude
+them non-destructively:</p>
+<ol type="1">
+<li><strong>Add an Extrude Generator:</strong> Click the Generator icon
+on the top palette and select <strong>Extrude</strong>.</li>
+<li><strong>Parent the Spline:</strong> In the Object Manager, drag your
+spline object (or spline group) so it becomes a child of the
+<strong>Extrude</strong> generator.</li>
+<li><strong>Enable Hierarchy (For Multiple Splines):</strong> If your
+imported artwork contains multiple spline layers grouped under a Null
+object, select the <strong>Extrude</strong> generator, navigate to the
+<strong>Object</strong> tab in the Attributes panel, and check the
+<strong>Hierarchical</strong> box. Alternatively, select all individual
+splines, right-click, and select <strong>Connect Objects +
+Delete</strong> to merge them into a single spline before
+parenting.</li>
+<li><strong>Adjust Depth and Direction:</strong> In the
+<strong>Object</strong> tab of the Extrude generator, modify the
+<strong>Offset</strong> values along the X, Y, or Z axis to set the
+extrusion thickness.</li>
+<li><strong>Add Caps and Bevels:</strong> Switch to the
+<strong>Caps</strong> tab to configure bevel size, shape, and curvature
+to refine the edges of your 3D mesh.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

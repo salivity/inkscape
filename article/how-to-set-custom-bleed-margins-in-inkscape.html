@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Custom Bleed Margins in Inkscape - inkscape</title>
+    <meta name="description" content="While standard print setups often rely on uniform bleed margins, projects such as book covers, spiral-bound documents, and packaging frequently demand varying bleed widths across different page edges. Inkscape’s built-in export bleed settings only appl">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-set-custom-bleed-margins-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Set Custom Bleed Margins in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-set-custom-bleed-margins-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="While standard print setups often rely on uniform bleed margins, projects such as book covers, spiral-bound documents, and packaging frequently demand varying bleed widths across different page edges. Inkscape’s built-in export bleed settings only appl" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-set-custom-bleed-margins-in-inkscape">How to Set Custom
+Bleed Margins in Inkscape</h1>
+<p>While standard print setups often rely on uniform bleed margins,
+projects such as book covers, spiral-bound documents, and packaging
+frequently demand varying bleed widths across different page edges.
+Inkscape’s built-in export bleed settings only apply symmetrical margins
+to all sides, meaning asymmetric bleeds must be configured manually.
+This guide explains how to establish custom, edge-specific bleed
+boundaries using document resizing, precise guideline placement, and
+manual crop mark generation.</p>
+<h2 id="step-1-calculate-your-total-canvas-dimensions">Step 1: Calculate
+Your Total Canvas Dimensions</h2>
+<p>Because Inkscape applies document export settings equally, the most
+reliable method for creating uneven bleeds is to set the canvas page
+size to the total outer bleed boundaries, rather than the final trim
+size.</p>
+<ol type="1">
+<li>Determine the finished trim dimensions of your project (e.g., 210 mm
+× 297 mm for A4).</li>
+<li>Note the required bleed for each individual edge:
+<ul>
+<li><strong>Top:</strong> e.g., 3 mm</li>
+<li><strong>Bottom:</strong> e.g., 3 mm</li>
+<li><strong>Left (Inside/Spine):</strong> e.g., 0 mm</li>
+<li><strong>Right (Outside):</strong> e.g., 5 mm</li>
+</ul></li>
+<li>Add the individual margins to your base dimensions:
+<ul>
+<li><strong>Total Width:</strong> Trim Width + Left Bleed + Right Bleed
+(210 + 0 + 5 = 215 mm)</li>
+<li><strong>Total Height:</strong> Trim Height + Top Bleed + Bottom
+Bleed (297 + 3 + 3 = 303 mm)</li>
+</ul></li>
+</ol>
+<h2 id="step-2-set-the-expanded-page-size">Step 2: Set the Expanded Page
+Size</h2>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>File &gt; Document
+Properties</strong> (or press <code>Shift + Ctrl + D</code>).</li>
+<li>Under the <strong>Page</strong> tab, set the <strong>Display
+units</strong> and <strong>Page size units</strong> to millimeters
+(<code>mm</code>) or inches (<code>in</code>).</li>
+<li>Enter your calculated total dimensions into the <strong>Custom
+size</strong> fields (<strong>Width</strong> and
+<strong>Height</strong>).</li>
+<li>Close the Document Properties dialog. Your canvas now represents the
+outer limits of your custom bleed.</li>
+</ol>
+<h2 id="step-3-establish-accurate-trim-and-safe-zones-using-guides">Step
+3: Establish Accurate Trim and Safe Zones Using Guides</h2>
+<p>Guides allow you to visualize where the physical cut (trim) occurs
+within your expanded canvas.</p>
+<ol type="1">
+<li>Double-click the horizontal ruler at the top of the canvas to create
+a horizontal guide.</li>
+<li>In the guide settings window:
+<ul>
+<li>Set the <strong>X</strong> origin to <code>0</code>.</li>
+<li>For the <strong>Top Trim Line</strong>, set the <strong>Y</strong>
+position to the total document height minus your top bleed width (e.g.,
+<code>303 mm - 3 mm = 300 mm</code>).</li>
+<li>Click <strong>OK</strong>.</li>
+</ul></li>
+<li>Create a second horizontal guide for the <strong>Bottom Trim
+Line</strong>:
+<ul>
+<li>Set the <strong>Y</strong> position to match your bottom bleed value
+(e.g., <code>3 mm</code>).</li>
+</ul></li>
+<li>Double-click the vertical ruler to create vertical guides:
+<ul>
+<li>For the <strong>Left Trim Line</strong>, set the <strong>X</strong>
+position equal to the left bleed (e.g., <code>0 mm</code> if no bleed is
+needed on the spine).</li>
+<li>For the <strong>Right Trim Line</strong>, set the <strong>X</strong>
+position to the left bleed plus the trim width (e.g.,
+<code>0 mm + 210 mm = 210 mm</code>).</li>
+</ul></li>
+<li>(Optional) Repeat this process inward by an additional 3 mm to 5 mm
+from each trim line to map your interior <strong>Safe Margin</strong>
+for critical text and artwork.</li>
+</ol>
+<h2 id="step-4-lock-guidelines-and-align-artwork">Step 4: Lock
+Guidelines and Align Artwork</h2>
+<ol type="1">
+<li>Go to <strong>File &gt; Document Properties &gt; Guides</strong> and
+check <strong>Lock all guides</strong> to avoid accidental displacement
+during design work.</li>
+<li>Extend all background colors, photos, and structural design elements
+out to the true canvas edge (the bleed limit).</li>
+<li>Keep all essential typography, logos, and critical art constrained
+strictly inside your inner safe margin guides.</li>
+</ol>
+<h2 id="step-5-generate-crop-marks">Step 5: Generate Crop Marks</h2>
+<p>When sending a document with asymmetric bleeds to a commercial
+printer, provide visual crop lines that explicitly mark the trim
+line.</p>
+<ol type="1">
+<li>Draw a temporary, unbordered rectangle snapped directly to your four
+trim guidelines.</li>
+<li>With the rectangle selected, navigate to <strong>Extensions &gt;
+Render &gt; Layout &gt; Printing Marks</strong>.</li>
+<li>Under the <strong>Marks</strong> tab, check <strong>Crop
+Marks</strong>.</li>
+<li>Uncheck <strong>Bleed Marks</strong> to avoid conflicts with your
+custom asymmetric boundaries.</li>
+<li>Set the mark offset and length according to your printer's
+specifications.</li>
+<li>Click <strong>Apply</strong>, then delete the temporary rectangle.
+Inkscape will generate accurate vector crop marks aligned with your
+uneven trim lines.</li>
+</ol>
+<h2 id="step-6-export-the-print-ready-file">Step 6: Export the
+Print-Ready File</h2>
+<ol type="1">
+<li>Navigate to <strong>File &gt; Save As...</strong> or <strong>File
+&gt; Export</strong>.</li>
+<li>Select <strong>Portable Document Format (*.pdf)</strong>.</li>
+<li>In the PDF export dialog:
+<ul>
+<li>Ensure <strong>Bleed/margin</strong> is set to <code>0</code> (since
+your bleed is already built directly into the page area).</li>
+<li>Choose your printer’s preferred PDF compatibility version (typically
+PDF/X-1a, PDF/X-4, or PDF 1.5+).</li>
+</ul></li>
+<li>Click <strong>Apply</strong> or <strong>Save</strong> to export the
+document.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

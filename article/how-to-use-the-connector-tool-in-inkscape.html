@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use the Connector Tool in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape's Connector tool allows you to create dynamic flowcharts, network diagrams, and system architectures with lines that automatically stay attached to objects even when you move them. This guide explains how to set up your diagram elements, draw an">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-use-the-connector-tool-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use the Connector Tool in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-use-the-connector-tool-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape's Connector tool allows you to create dynamic flowcharts, network diagrams, and system architectures with lines that automatically stay attached to objects even when you move them. This guide explains how to set up your diagram elements, draw an" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-the-connector-tool-in-inkscape">How to Use the
+Connector Tool in Inkscape</h1>
+<p>Inkscape's Connector tool allows you to create dynamic flowcharts,
+network diagrams, and system architectures with lines that automatically
+stay attached to objects even when you move them. This guide explains
+how to set up your diagram elements, draw and route connecting lines,
+configure automatic object avoidance, and style connectors for clean,
+professional diagrams.</p>
+<h2 id="1-create-your-diagram-shapes">1. Create Your Diagram Shapes</h2>
+<p>Before drawing connectors, place the nodes for your diagram:</p>
+<ol type="1">
+<li>Use the <strong>Rectangle Tool</strong> (<code>R</code>) or
+<strong>Ellipse Tool</strong> (<code>E</code>) to create the base shapes
+representing network devices, process steps, or decisions.</li>
+<li>Use the <strong>Text Tool</strong> (<code>T</code>) to label each
+shape.</li>
+<li>Group each shape with its text label by selecting both and pressing
+<code>Ctrl + G</code> so they move as a single unit.</li>
+</ol>
+<h2 id="2-activate-the-connector-tool">2. Activate the Connector
+Tool</h2>
+<p>Select the <strong>Create Diagram Connectors</strong> tool from the
+left-hand toolbar, or press the shortcut key <code>O</code> (or
+<code>Ctrl + F11</code> depending on your version).</p>
+<p>When the tool is active, hovering over any shape reveals a connection
+handle in the center or along the boundaries of the object.</p>
+<h2 id="3-connect-shapes-together">3. Connect Shapes Together</h2>
+<ol type="1">
+<li>Click and hold on the connection handle of the source object.</li>
+<li>Drag the cursor to the target object until its connection handle
+highlights.</li>
+<li>Release the mouse button.</li>
+</ol>
+<p>The two shapes are now linked. If you switch back to the
+<strong>Select Tool</strong> (<code>S</code>) and move either shape, the
+connecting line automatically stretches, compresses, and repositions
+itself to maintain the link.</p>
+<h2 id="4-adjust-connector-routing-modes">4. Adjust Connector Routing
+Modes</h2>
+<p>With the Connector tool active, use the top Tool Controls bar to
+modify how lines navigate between shapes:</p>
+<ul>
+<li><strong>Avoid Overlapping Objects:</strong> Toggle the <strong>Make
+connectors avoid selected objects</strong> button to force lines to
+route around shapes rather than passing through them.</li>
+<li><strong>Orthogonal vs. Polyline:</strong> Choose between right-angle
+connectors (ideal for standard flowcharts and circuit-style diagrams)
+and direct diagonal lines.</li>
+<li><strong>Set Connector Spacing:</strong> Adjust the curvature or
+length properties to define how much clearance the connector maintains
+from nearby objects.</li>
+</ul>
+<h2 id="5-style-lines-and-add-arrowheads">5. Style Lines and Add
+Arrowheads</h2>
+<p>To turn plain paths into standard flowchart arrows:</p>
+<ol type="1">
+<li>Select the connector using either the Connector Tool or the Select
+Tool.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code>).</li>
+<li>Go to the <strong>Stroke style</strong> tab.</li>
+<li>Adjust the <strong>Width</strong> to set the line thickness.</li>
+<li>Use the <strong>Markers</strong> drop-down menus to assign
+arrowheads to the start or end of the path.</li>
+<li>In the <strong>Stroke paint</strong> tab, change the line color to
+match your color scheme.</li>
+</ol>
+<h2 id="6-rearrange-and-optimize-the-layout">6. Rearrange and Optimize
+the Layout</h2>
+<p>Inkscape includes automatic graph arrangement features within the
+Connector Tool Controls:</p>
+<ul>
+<li><strong>Arrange Network:</strong> Click the <strong>Arrange</strong>
+button in the top controls bar to automatically distribute connected
+objects cleanly across the canvas.</li>
+<li><strong>Detaching Connectors:</strong> To remove a connection, click
+the connector line and press <code>Delete</code>, or drag one end away
+from an object's connection handle to disconnect that specific end.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

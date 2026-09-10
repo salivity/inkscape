@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use the Slice Path Effect in Inkscape - inkscape</title>
+    <meta name="description" content="Inkscape provides a non-destructive way to divide vector artwork using the Slice Live Path Effect (LPE). Unlike traditional Boolean operations that permanently alter geometry, this tool allows you to dynamically cut an object along an open line or path w">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-use-the-slice-path-effect-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Use the Slice Path Effect in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-use-the-slice-path-effect-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape provides a non-destructive way to divide vector artwork using the Slice Live Path Effect (LPE). Unlike traditional Boolean operations that permanently alter geometry, this tool allows you to dynamically cut an object along an open line or path w" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-use-the-slice-path-effect-in-inkscape">How to Use the
+Slice Path Effect in Inkscape</h1>
+<p>Inkscape provides a non-destructive way to divide vector artwork
+using the Slice Live Path Effect (LPE). Unlike traditional Boolean
+operations that permanently alter geometry, this tool allows you to
+dynamically cut an object along an open line or path while keeping the
+original shapes fully editable.</p>
+<h2 id="the-slice-live-path-effect">The Slice Live Path Effect</h2>
+<p>The specific path effect designed for this task is called
+<strong>Slice</strong>. Introduced in modern versions of Inkscape, the
+Slice LPE uses an auxiliary path—such as an open Bézier curve—as a
+cutting line across a target shape. Because it is a Live Path Effect,
+the underlying object and the cutting line remain completely intact and
+adjustable at any time.</p>
+<h2 id="how-it-differs-from-destructive-boolean-operations">How It
+Differs from Destructive Boolean Operations</h2>
+<p>Standard commands like <strong>Path &gt; Division</strong> or
+<strong>Path &gt; Cut Path</strong> permanently break vector shapes into
+separate components, discarding original curves and overlapping
+geometry. The Slice LPE, by contrast, acts as a dynamic procedural
+filter. If you move, curve, or rescale the cutting path, Inkscape
+recalculates the slice in real time without destroying the source
+shape.</p>
+<h2 id="how-to-apply-the-slice-effect">How to Apply the Slice
+Effect</h2>
+<ol type="1">
+<li><strong>Prepare Your Paths:</strong> Draw the main vector object you
+want to cut, along with an open path or line that intersects it where
+you want the cut to occur.</li>
+<li><strong>Copy the Cut Line:</strong> Select your cutting line and
+copy it to your clipboard (<code>Ctrl + C</code> or
+<code>Cmd + C</code>).</li>
+<li><strong>Open Path Effects:</strong> Select the base object and open
+the Path Effects panel via <strong>Path &gt; Path Effects</strong>.</li>
+<li><strong>Add Slice:</strong> Click the <strong>+</strong> (Add Path
+Effect) icon and choose <strong>Slice</strong> from the menu.</li>
+<li><strong>Assign the Cutting Path:</strong> In the Slice parameters,
+locate the <strong>Cut line</strong> property and click the <strong>Link
+to path on clipboard</strong> icon (or use the node editor to link the
+path directly).</li>
+</ol>
+<h2 id="key-parameters-and-modes">Key Parameters and Modes</h2>
+<p>Once connected, the Slice effect provides several options to control
+the result:</p>
+<ul>
+<li><strong>Slice Mode:</strong> Choose whether to keep the cut object
+as a single dynamically cleaved item, display only one of the sliced
+halves, or hide specific portions of the shape.</li>
+<li><strong>Live Node Editing:</strong> Activate the Node tool
+(<code>N</code>) on the sliced object to see interactive handles,
+allowing you to manipulate the angle, curvature, and position of the cut
+line directly on the canvas.</li>
+<li><strong>Non-Destructive Reversibility:</strong> Removing or
+disabling the Slice effect in the Path Effects panel instantly restores
+the original, uncut object.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

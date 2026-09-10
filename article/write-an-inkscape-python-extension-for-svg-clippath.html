@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write an Inkscape Python Extension for SVG clipPath - inkscape</title>
+    <meta name="description" content="This article outlines how to create a custom Inkscape extension using Python and the inkex library to directly locate and modify SVG <clipPath> definitions. By creating a standard two-file extension setup consisting of an INX XML descriptor and a Python">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/write-an-inkscape-python-extension-for-svg-clippath">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Write an Inkscape Python Extension for SVG clipPath - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/write-an-inkscape-python-extension-for-svg-clippath" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article outlines how to create a custom Inkscape extension using Python and the inkex library to directly locate and modify SVG <clipPath> definitions. By creating a standard two-file extension setup consisting of an INX XML descriptor and a Python" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="write-an-inkscape-python-extension-for-svg-clippath">Write an
+Inkscape Python Extension for SVG clipPath</h1>
+<p>This article outlines how to create a custom Inkscape extension using
+Python and the <code>inkex</code> library to directly locate and modify
+SVG <code>&lt;clipPath&gt;</code> definitions. By creating a standard
+two-file extension setup consisting of an INX XML descriptor and a
+Python script, you can query SVG elements, extract referenced clipping
+paths from the document definitions, and programmatically alter their
+geometric data or styling attributes.</p>
+<h3 id="extension-architecture">Extension Architecture</h3>
+<p>An Inkscape extension requires two files placed in the user
+extensions directory (<code>~/.config/inkscape/extensions/</code> on
+Linux/macOS or <code>%APPDATA%\inkscape\extensions\</code> on
+Windows):</p>
+<ol type="1">
+<li><strong>An INX file (<code>.inx</code>):</strong> Defines the menu
+entry, parameters, and metadata for the Inkscape GUI.</li>
+<li><strong>A Python script (<code>.py</code>):</strong> Contains the
+execution logic utilizing the <code>inkex</code> framework.</li>
+</ol>
+<h3 id="1-define-the-inx-descriptor">1. Define the INX Descriptor</h3>
+<p>Create a file named <code>modify_clippath.inx</code>. This file
+instructs Inkscape how to display the tool in its menu hierarchy and
+which script to execute.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span> <span class="ot">version=</span><span class="st">&quot;1.0&quot;</span> <span class="ot">encoding=</span><span class="st">&quot;UTF-8&quot;</span><span class="fu">?&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">inkscape-extension</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.inkscape.org/namespace/inkscape/extension&quot;</span>&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">name</span>&gt;Modify ClipPath&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">id</span>&gt;org.example.modify_clippath&lt;/<span class="kw">id</span>&gt;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">param</span> <span class="ot">name=</span><span class="st">&quot;scale_factor&quot;</span> <span class="ot">type=</span><span class="st">&quot;float&quot;</span> <span class="ot">min=</span><span class="st">&quot;0.1&quot;</span> <span class="ot">max=</span><span class="st">&quot;10.0&quot;</span> <span class="ot">gui-text=</span><span class="st">&quot;Scale Clip Shape:&quot;</span>&gt;1.2&lt;/<span class="kw">param</span>&gt;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">effect</span>&gt;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">object-type</span>&gt;all&lt;/<span class="kw">object-type</span>&gt;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">submenu</span> <span class="ot">name=</span><span class="st">&quot;Modify&quot;</span>/&gt;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">effect</span>&gt;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">script</span>&gt;</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">command</span> <span class="ot">location=</span><span class="st">&quot;inx&quot;</span> <span class="ot">interpreter=</span><span class="st">&quot;python&quot;</span>&gt;modify_clippath.py&lt;/<span class="kw">command</span>&gt;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">script</span>&gt;</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">inkscape-extension</span>&gt;</span></code></pre></div>
+<h3 id="2-create-the-python-script">2. Create the Python Script</h3>
+<p>Create <code>modify_clippath.py</code> in the same directory. The
+script subclasses <code>inkex.EffectExtension</code>, parses arguments
+defined in the <code>.inx</code> file, and manipulates the DOM elements
+representing <code>&lt;clipPath&gt;</code>.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex <span class="im">import</span> Transform</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ModifyClipPath(inkex.EffectExtension):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> add_arguments(<span class="va">self</span>, pars):</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        pars.add_argument(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&quot;--scale_factor&quot;</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            default<span class="op">=</span><span class="fl">1.2</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            <span class="bu">help</span><span class="op">=</span><span class="st">&quot;Scale factor for the clipPath geometry&quot;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        scale <span class="op">=</span> <span class="va">self</span>.options.scale_factor</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Iterate over all selected elements, or all elements if none selected</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        elements <span class="op">=</span> <span class="va">self</span>.svg.selection.values() <span class="kw">or</span> <span class="va">self</span>.svg.xpath(<span class="st">&#39;//*[@clip-path]&#39;</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> elem <span class="kw">in</span> elements:</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Extract the clip-path attribute (format: &#39;url(#clipPathId)&#39;)</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            clip_url <span class="op">=</span> elem.get(<span class="st">&#39;clip-path&#39;</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> clip_url:</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Parse the ID from the URL reference</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>            clip_id <span class="op">=</span> clip_url.strip().replace(<span class="st">&#39;url(#&#39;</span>, <span class="st">&#39;&#39;</span>).rstrip(<span class="st">&#39;)&#39;</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            clip_path <span class="op">=</span> <span class="va">self</span>.svg.getElementById(clip_id)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> clip_path <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> clip_path.TAG <span class="op">!=</span> <span class="st">&#39;clipPath&#39;</span>:</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>                <span class="cf">continue</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Modify child elements inside the &lt;clipPath&gt;</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> child <span class="kw">in</span> clip_path:</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Apply a transformation matrix directly to child elements</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>                t <span class="op">=</span> Transform(<span class="ss">f&quot;scale(</span><span class="sc">{</span>scale<span class="sc">}</span><span class="ss">)&quot;</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>                child.transform <span class="op">=</span> child.transform <span class="op">@</span> t</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    ModifyClipPath().run()</span></code></pre></div>
+<h3 id="key-technical-operations">Key Technical Operations</h3>
+<ul>
+<li><strong>Locating Clip Paths:</strong> Inkscape stores clipping
+objects inside the document's <code>&lt;defs&gt;</code> container as
+<code>&lt;clipPath id="..."&gt;</code> elements. Elements reference them
+using the <code>clip-path="url(#id)"</code> attribute.</li>
+<li><strong>Resolving Elements:</strong> Use
+<code>self.svg.getElementById(clip_id)</code> to resolve the ID string
+extracted from the attribute string into an <code>inkex.ClipPath</code>
+instance.</li>
+<li><strong>Modifying Direct Geometries:</strong> You can modify
+attributes of shapes inside the <code>&lt;clipPath&gt;</code> element
+directly (such as <code>d</code> on <code>&lt;path&gt;</code>,
+<code>r</code> on <code>&lt;circle&gt;</code>, or <code>transform</code>
+on any child shape).</li>
+<li><strong>Updating Document State:</strong> The
+<code>inkex.EffectExtension</code> class automatically handles document
+parsing, synchronization, and output generation; changes made to the XML
+tree during <code>effect()</code> are saved automatically back to the
+current Inkscape canvas.</li>
+</ul>
+<h3 id="running-the-extension">Running the Extension</h3>
+<ol type="1">
+<li>Save <code>modify_clippath.inx</code> and
+<code>modify_clippath.py</code> in your Inkscape extensions folder.</li>
+<li>Restart Inkscape or run <strong>Edit &gt; Check for
+Extensions</strong>.</li>
+<li>Select an object with an assigned clip path.</li>
+<li>Run the extension via <strong>Extensions &gt; Modify &gt; Modify
+ClipPath</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

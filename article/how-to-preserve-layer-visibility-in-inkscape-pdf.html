@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Preserve Layer Visibility in Inkscape PDF - inkscape</title>
+    <meta name="description" content="This guide explains how to ensure your layer visibility settings remain intact when exporting multi-layer documents to PDF in Inkscape. By properly configuring the Layers and Objects panel and selecting the correct PDF output settings, you can reliably i">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-preserve-layer-visibility-in-inkscape-pdf">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Preserve Layer Visibility in Inkscape PDF - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-preserve-layer-visibility-in-inkscape-pdf" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to ensure your layer visibility settings remain intact when exporting multi-layer documents to PDF in Inkscape. By properly configuring the Layers and Objects panel and selecting the correct PDF output settings, you can reliably i" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-preserve-layer-visibility-in-inkscape-pdf">How to
+Preserve Layer Visibility in Inkscape PDF</h1>
+<p>This guide explains how to ensure your layer visibility settings
+remain intact when exporting multi-layer documents to PDF in Inkscape.
+By properly configuring the Layers and Objects panel and selecting the
+correct PDF output settings, you can reliably include only your active
+design elements while completely omitting hidden drafting notes,
+reference images, or alternate layer versions.</p>
+<h3 id="1-configure-layer-visibility-before-exporting">1. Configure
+Layer Visibility Before Exporting</h3>
+<p>Inkscape determines what to render in a PDF based on the current
+canvas state and CSS visibility properties.</p>
+<ol type="1">
+<li>Open the <strong>Layers and Objects</strong> panel by pressing
+<code>Ctrl + Shift + L</code> (Windows/Linux) or
+<code>Cmd + Shift + L</code> (macOS).</li>
+<li>Review the list of layers. Click the <strong>Eye icon</strong> next
+to each layer to set its state:
+<ul>
+<li><strong>Open Eye:</strong> The layer is visible and will be rendered
+in the PDF.</li>
+<li><strong>Closed Eye / Slashed Eye:</strong> The layer is hidden
+(<code>display:none</code>) and will be excluded from the PDF.</li>
+</ul></li>
+<li>Check for sub-layers or nested objects. A visible object inside a
+hidden parent layer will not export, but a hidden object inside an
+otherwise visible layer might cause rendering artifacts if not hidden
+using the layer eye toggle.</li>
+<li>Ensure you have not substituted layer hiding with <strong>0%
+opacity</strong>. An object with 0% opacity is still processed and may
+cause unwanted blank bounding boxes, large file sizes, or rasterization
+issues in the PDF.</li>
+</ol>
+<h3 id="2-export-the-file-to-pdf">2. Export the File to PDF</h3>
+<p>Once your layer visibility is established, export the document using
+Inkscape’s native PDF engine:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong> or press
+<code>Ctrl + Shift + S</code> (<code>Cmd + Shift + S</code>).</li>
+<li>In the file type dropdown menu, select <strong>Portable Document
+Format (*.pdf)</strong>.</li>
+<li>Choose your destination folder, enter a file name, and click
+<strong>Save</strong>.</li>
+</ol>
+<h3 id="3-set-the-pdf-output-options">3. Set the PDF Output Options</h3>
+<p>After clicking Save, the <strong>Portable Document Format</strong>
+dialog will appear. Configure the following options to prevent
+unexpected rendering:</p>
+<ul>
+<li><strong>PDF version:</strong> Select <strong>PDF 1.5</strong> or
+higher. This standard properly supports transparency and modern vector
+path rendering.</li>
+<li><strong>Text output options:</strong> Choose <em>Embed fonts</em> to
+keep text editable, or <em>Convert text to paths</em> if you want to
+ensure the visual layout does not shift on devices lacking your
+fonts.</li>
+<li><strong>Rasterize filter effects:</strong> Check this option only if
+your visible layers use blurs, drop shadows, or blend modes that pure
+vector PDF cannot represent.</li>
+<li><strong>Resolution for rasterization (dpi):</strong> Set this to
+<strong>300 dpi</strong> for print, or <strong>96–150 dpi</strong> for
+screen distribution.</li>
+<li><strong>Output page size:</strong> Choose <em>Use document's page
+size</em> to ensure the boundaries match your artwork bounds rather than
+expanding to hidden off-canvas elements.</li>
+</ul>
+<p>Click <strong>OK</strong> to generate the PDF.</p>
+<h3 id="4-alternative-exporting-via-the-export-dialog-inkscape-12">4.
+Alternative: Exporting via the Export Dialog (Inkscape 1.2+)</h3>
+<p>In newer versions of Inkscape, you can also use the integrated export
+panel:</p>
+<ol type="1">
+<li>Open the panel via <strong>File &gt; Export...</strong>
+(<code>Ctrl + Shift + E</code> / <code>Cmd + Shift + E</code>).</li>
+<li>Select the <strong>Document</strong> or <strong>Page</strong> tab
+depending on whether you want the full canvas or a specific page.</li>
+<li>Set the format dropdown to <strong>PDF</strong>.</li>
+<li>Click the <strong>Export</strong> button at the bottom. Inkscape
+will automatically respect your current layer visibility settings.</li>
+</ol>
+<h3 id="troubleshooting-visibility-issues">Troubleshooting Visibility
+Issues</h3>
+<ul>
+<li><strong>Hidden layers still appearing:</strong> If an element still
+shows up in the PDF, it may be assigned to the Root canvas level instead
+of a dedicated layer. Move it into an explicit layer by right-clicking
+the object and choosing <strong>Move to Layer...</strong>.</li>
+<li><strong>Clones and symbols:</strong> If a visible layer contains a
+clone (<code>Alt + D</code>) of an object located in a hidden layer, the
+visual representation will still export. To fix this, unlink the clone
+via <strong>Edit &gt; Clone &gt; Unlink Clone</strong> before hiding the
+original source layer.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

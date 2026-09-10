@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Realistic Chrome Spheres in Inkscape - inkscape</title>
+    <meta name="description" content="Creating realistic metallic reflections on vector chrome spheres in Inkscape relies on high-contrast gradients that mimic an environment’s horizon, ambient bounce light, and intense specular highlights. This tutorial explains how to set up your base ge">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-realistic-chrome-spheres-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Realistic Chrome Spheres in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-realistic-chrome-spheres-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating realistic metallic reflections on vector chrome spheres in Inkscape relies on high-contrast gradients that mimic an environment’s horizon, ambient bounce light, and intense specular highlights. This tutorial explains how to set up your base ge" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-realistic-chrome-spheres-in-inkscape">How to
+Create Realistic Chrome Spheres in Inkscape</h1>
+<p>Creating realistic metallic reflections on vector chrome spheres in
+Inkscape relies on high-contrast gradients that mimic an environment’s
+horizon, ambient bounce light, and intense specular highlights. This
+tutorial explains how to set up your base geometry, build a multi-stop
+metallic gradient, curve the horizon reflection, and add the necessary
+light sources to achieve a polished, photorealistic chrome effect
+entirely with vector tools.</p>
+<h2 id="1-set-up-the-base-sphere">1. Set Up the Base Sphere</h2>
+<ol type="1">
+<li>Select the <strong>Circles and Ellipses tool</strong>
+(<code>E</code>). Hold <code>Ctrl</code> and drag on the canvas to
+create a perfect circle.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>).</li>
+<li>Set the base fill to a <strong>Radial Gradient</strong>. Chrome
+objects are heavily influenced by the vignette effect of their own
+curvature, meaning edges are generally darker than the center.</li>
+<li>Position the center of the radial gradient slightly off-center
+toward the direction of your intended primary light source (e.g.,
+top-left).</li>
+<li>Set the gradient stops:
+<ul>
+<li><strong>Center stop:</strong> Light silver-gray
+(<code>#D0D5DD</code>).</li>
+<li><strong>Mid stop:</strong> Neutral metallic gray
+(<code>#8A92A0</code>).</li>
+<li><strong>Outer edge stop:</strong> Dark charcoal
+(<code>#2A2E35</code>).</li>
+</ul></li>
+</ol>
+<h2 id="2-create-the-curved-horizon-reflection">2. Create the Curved
+Horizon Reflection</h2>
+<p>The defining characteristic of chrome is a sharp reflection of the
+ground and sky, curved around the sphere's surface.</p>
+<ol type="1">
+<li>Select the circle and press <code>Ctrl + D</code> to duplicate it in
+place.</li>
+<li>Select the <strong>Path &gt; Inset</strong> command (or press
+<code>Ctrl + (</code>) once or twice to create a very subtle rim gap, or
+keep it the exact size of the base.</li>
+<li>Switch the fill of this duplicate to a <strong>Linear
+Gradient</strong> using the <strong>Gradient tool</strong>
+(<code>G</code>).</li>
+<li>Drag the gradient handle vertically from top to bottom. Metallic
+reflections require high-contrast, multi-stop transitions:
+<ul>
+<li><strong>Top stop (Zenith):</strong> Medium steel blue
+(<code>#5C6B80</code>).</li>
+<li><strong>Upper-middle stop (Sky):</strong> Very pale, near-white blue
+(<code>#EAF0F8</code>).</li>
+<li><strong>Center-upper stop (Horizon line):</strong> Pure white
+(<code>#FFFFFF</code>) to represent the brightest part of the
+horizon.</li>
+<li><strong>Center-lower stop (Ground line):</strong> Deep charcoal or
+dark earth tone (<code>#1E2229</code>) placed immediately next to the
+white horizon stop to create a razor-sharp division.</li>
+<li><strong>Bottom stop (Foreground/Ground):</strong> Mid-tone neutral
+gray (<code>#6B7280</code>).</li>
+</ul></li>
+<li>Double-click along the gradient line in the canvas to add stops as
+needed. Keep the white horizon stop and the dark ground stop extremely
+close together to produce a sharp horizon line.</li>
+</ol>
+<h2 id="3-warp-the-horizon-to-simulate-spherical-distortion">3. Warp the
+Horizon to Simulate Spherical Distortion</h2>
+<p>A flat linear gradient looks artificial on a sphere. To bend the
+reflection:</p>
+<ol type="1">
+<li>Draw an ellipse overlapping the bottom half of the sphere, bowing
+upward into a crescent or dome shape to match the curvature of a
+ball.</li>
+<li>Apply the ground colors to this curved shape rather than relying
+purely on a flat linear line.</li>
+<li>Alternatively, convert the linear gradient into a <strong>Mesh
+Gradient</strong> or use the <strong>Bend Path Effect</strong>
+(<code>Path &gt; Path Effects &gt; Bend</code>) on the reflection layer
+to bow the horizon line across the sphere's contour.</li>
+</ol>
+<h2 id="4-add-the-primary-specular-highlight">4. Add the Primary
+Specular Highlight</h2>
+<p>A chrome surface reflects the light source with almost mirror-like
+clarity.</p>
+<ol type="1">
+<li>Select the <strong>Circles and Ellipses tool</strong> and draw a
+small, slightly squashed ellipse near the upper-left quadrant of the
+sphere (matching your main light angle).</li>
+<li>Rotate the ellipse slightly so its curve follows the curvature of
+the outer edge of the sphere.</li>
+<li>Apply a <strong>Radial Gradient</strong> to this highlight:
+<ul>
+<li><strong>Center stop:</strong> Pure white (<code>#FFFFFF</code>) at
+100% opacity.</li>
+<li><strong>Outer stop:</strong> Pure white (<code>#FFFFFF</code>) at 0%
+opacity.</li>
+</ul></li>
+<li>In the Fill and Stroke panel, set a slight <strong>Blur</strong>
+(between 0.5% and 1.5%) to soften the extreme edge while keeping the
+core bright and sharp.</li>
+</ol>
+<h2 id="5-add-secondary-rim-and-bounce-highlights">5. Add Secondary Rim
+and Bounce Highlights</h2>
+<ol type="1">
+<li>Duplicate the original base sphere (<code>Ctrl + D</code>) and bring
+it to the front (<code>Home</code> key).</li>
+<li>Set the fill to <code>None</code> and give it a thin
+<strong>Stroke</strong> of 1px to 2px.</li>
+<li>Set the stroke color to a <strong>Linear Gradient</strong> running
+diagonally opposite the main light source (from bottom-right to
+top-left).</li>
+<li>Set the bottom-right stop to a pale sky-blue or ground-bounce color
+at 60% opacity, and fade the top-left stop to 0% opacity. This simulates
+the light bouncing off the floor back onto the bottom edge of the
+metal.</li>
+<li>Select all reflection layers and adjust their layer blend modes in
+the Fill and Stroke panel to <strong>Overlay</strong> or <strong>Hard
+Light</strong> if you want the underlying spherical volume gradient to
+blend seamlessly with the environment reflections.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

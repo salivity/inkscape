@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Koch Anti-Snowflakes in Inkscape with LPE - inkscape</title>
+    <meta name="description" content="This guide explains how to generate a Koch anti-snowflake in Inkscape by utilizing the VonKoch Live Path Effect (LPE). Unlike the standard Koch snowflake, which expands outward, the anti-snowflake folds equilateral triangular bends inward toward the cent">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-koch-anti-snowflakes-in-inkscape-with-lpe">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Koch Anti-Snowflakes in Inkscape with LPE - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-koch-anti-snowflakes-in-inkscape-with-lpe" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to generate a Koch anti-snowflake in Inkscape by utilizing the VonKoch Live Path Effect (LPE). Unlike the standard Koch snowflake, which expands outward, the anti-snowflake folds equilateral triangular bends inward toward the cent" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-koch-anti-snowflakes-in-inkscape-with-lpe">Create Koch
+Anti-Snowflakes in Inkscape with LPE</h1>
+<p>This guide explains how to generate a Koch anti-snowflake in Inkscape
+by utilizing the VonKoch Live Path Effect (LPE). Unlike the standard
+Koch snowflake, which expands outward, the anti-snowflake folds
+equilateral triangular bends inward toward the center of the base
+geometry. By configuring a base polygon, applying the fractal effect,
+and adjusting the sub-path orientation, you can produce precise inward
+fractal patterns in a few simple steps.</p>
+<h3 id="step-1-create-the-base-geometry">Step 1: Create the Base
+Geometry</h3>
+<ol type="1">
+<li>Select the <strong>Stars and Polygons</strong> tool (<code>*</code>
+or <code>F8</code>) from the left toolbar.</li>
+<li>In the top controls bar, choose the regular polygon icon (not the
+star) and set <strong>Corners</strong> to <code>3</code>.</li>
+<li>Click and drag on the canvas while holding <code>Ctrl</code> to draw
+an equilateral triangle with a flat horizontal base.</li>
+<li>With the triangle selected, convert it from a parametric shape into
+a standard vector path by navigating to <strong>Path &gt; Object to
+Path</strong> (<code>Shift + Ctrl + C</code>).</li>
+</ol>
+<h3 id="step-2-apply-the-vonkoch-live-path-effect">Step 2: Apply the
+VonKoch Live Path Effect</h3>
+<ol type="1">
+<li>Open the Live Path Effects dialog by navigating to <strong>Path &gt;
+Path Effects...</strong>.</li>
+<li>Select the triangle and click the <strong>Add Path Effect</strong>
+button (the <code>+</code> icon) in the Path Effects panel.</li>
+<li>Search for <strong>VonKoch</strong> in the effect list and select it
+to apply it to your shape.</li>
+</ol>
+<h3 id="step-3-configure-inward-triangular-bends">Step 3: Configure
+Inward Triangular Bends</h3>
+<p>By default, the VonKoch LPE projects segments outward to create a
+standard snowflake. To invert these into inward triangular bends:</p>
+<ol type="1">
+<li><strong>Reverse Path Direction:</strong> The simplest method to
+invert the fractal is flipping the path winding. With the object
+selected, go to <strong>Path &gt; Reverse</strong>. This swaps the
+orientation of each vector segment, instantly forcing the generated
+triangular notches to point inward.</li>
+<li><strong>Alternative (Manual Generator Editing):</strong> In the
+VonKoch LPE settings, locate the <strong>Generating path</strong> option
+and click the <strong>Edit on-canvas</strong> icon (node tool). Drag the
+middle peak node of the generation guide toward the inside of the
+polygon. Ensure the inward indentation forms an angle of 60 degrees to
+maintain exact Koch fractal geometry.</li>
+</ol>
+<h3 id="step-4-increase-fractal-iterations">Step 4: Increase Fractal
+Iterations</h3>
+<ol type="1">
+<li>In the VonKoch settings panel, find the <strong>Order</strong> (or
+<strong>Max generations</strong>) parameter.</li>
+<li>Increase the value from <code>1</code> to <code>3</code> or
+<code>4</code>. Each increase subdivides the inward segments
+recursively.</li>
+<li>Avoid setting the order higher than <code>5</code> or
+<code>6</code>, as exponential node growth can cause Inkscape to freeze
+or crash.</li>
+</ol>
+<h3 id="step-5-finalize-and-bake-the-path-optional">Step 5: Finalize and
+Bake the Path (Optional)</h3>
+<p>If you need to export, laser-cut, or edit the individual nodes of the
+anti-snowflake:</p>
+<ol type="1">
+<li>Select the object.</li>
+<li>Go to <strong>Path &gt; Object to Path</strong>. This applies the
+LPE permanently and turns the fractal into a standard editable vector
+path.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

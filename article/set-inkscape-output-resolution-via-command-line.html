@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Inkscape Output Resolution via Command Line - inkscape</title>
+    <meta name="description" content="Inkscape provides a robust command-line interface that allows you to automate the rasterization of vector files with specific output resolutions. When exporting SVG files to raster formats like PNG, you can precisely control the output dimensions and pix">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/set-inkscape-output-resolution-via-command-line">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Set Inkscape Output Resolution via Command Line - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/set-inkscape-output-resolution-via-command-line" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape provides a robust command-line interface that allows you to automate the rasterization of vector files with specific output resolutions. When exporting SVG files to raster formats like PNG, you can precisely control the output dimensions and pix" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="set-inkscape-output-resolution-via-command-line">Set Inkscape
+Output Resolution via Command Line</h1>
+<p>Inkscape provides a robust command-line interface that allows you to
+automate the rasterization of vector files with specific output
+resolutions. When exporting SVG files to raster formats like PNG, you
+can precisely control the output dimensions and pixel density using
+dedicated resolution flags.</p>
+<h3 id="1-dpi-parameter--d---export-dpi">1. DPI Parameter
+(<code>-d</code>, <code>--export-dpi</code>)</h3>
+<p>The primary parameter to set the output resolution by pixel density
+is <code>--export-dpi</code> (or the shorthand <code>-d</code>).</p>
+<p>By default, Inkscape renders graphics at 96 DPI. Supplying a custom
+value scales the output bitmap proportionally. For instance, setting the
+DPI to 300 generates a high-resolution image suitable for print.</p>
+<p><strong>Syntax:</strong></p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">-o</span> output.png <span class="at">--export-dpi</span><span class="op">=</span>300</span></code></pre></div>
+<p>Or using the shorthand:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">-o</span> output.png <span class="at">-d</span> 300</span></code></pre></div>
+<h3 id="2-dimension-parameters--w--h---export-width---export-height">2.
+Dimension Parameters (<code>-w</code>, <code>-h</code>,
+<code>--export-width</code>, <code>--export-height</code>)</h3>
+<p>If you require a specific pixel dimension rather than calculating
+DPI, you can specify the target width and height directly using
+<code>--export-width</code> (<code>-w</code>) and
+<code>--export-height</code> (<code>-h</code>).</p>
+<ul>
+<li><strong><code>--export-width=&lt;VALUE&gt;</code> or
+<code>-w &lt;VALUE&gt;</code></strong>: Sets the generated image width
+in pixels.</li>
+<li><strong><code>--export-height=&lt;VALUE&gt;</code> or
+<code>-h &lt;VALUE&gt;</code></strong>: Sets the generated image height
+in pixels.</li>
+</ul>
+<p>If you specify only one dimension, Inkscape automatically calculates
+the other to preserve the original aspect ratio.</p>
+<p><strong>Syntax (Width only):</strong></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">-o</span> output.png <span class="at">-w</span> 1920</span></code></pre></div>
+<p><strong>Syntax (Both Width and Height):</strong></p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">-o</span> output.png <span class="at">--export-width</span><span class="op">=</span>1920 <span class="at">--export-height</span><span class="op">=</span>1080</span></code></pre></div>
+<h3 id="3-combining-resolution-with-area-selection">3. Combining
+Resolution with Area Selection</h3>
+<p>To ensure the resolution applies only to a specific part of your SVG,
+combine the resolution flags with the area parameter:</p>
+<ul>
+<li><code>--export-area-page</code> (<code>-C</code>): Exports only the
+defined document page area at the specified resolution.</li>
+<li><code>--export-area-drawing</code> (<code>-D</code>): Crops the
+canvas to the bounding box of all drawn objects before applying the
+resolution.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">inkscape</span> input.svg <span class="at">-o</span> output.png <span class="at">-C</span> <span class="at">--export-dpi</span><span class="op">=</span>300</span></code></pre></div></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

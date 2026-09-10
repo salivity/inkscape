@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjust Text Baseline Offset for Math in Inkscape - inkscape</title>
+    <meta name="description" content="Adjusting text baseline offsets in Inkscape allows you to properly align mathematical formulas, subscripts, superscripts, and inline symbols with standard text. This guide covers how to adjust the vertical baseline shift for editable text strings using I">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/adjust-text-baseline-offset-for-math-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Adjust Text Baseline Offset for Math in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/adjust-text-baseline-offset-for-math-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Adjusting text baseline offsets in Inkscape allows you to properly align mathematical formulas, subscripts, superscripts, and inline symbols with standard text. This guide covers how to adjust the vertical baseline shift for editable text strings using I" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="adjust-text-baseline-offset-for-math-in-inkscape">Adjust Text
+Baseline Offset for Math in Inkscape</h1>
+<p>Adjusting text baseline offsets in Inkscape allows you to properly
+align mathematical formulas, subscripts, superscripts, and inline
+symbols with standard text. This guide covers how to adjust the vertical
+baseline shift for editable text strings using Inkscape's typography
+controls, how to use keyboard shortcuts for rapid micro-adjustments, and
+how to vertically align LaTeX-rendered vector formulas with surrounding
+text.</p>
+<h3 id="method-1-using-the-text-tool-toolbar-editable-text">Method 1:
+Using the Text Tool Toolbar (Editable Text)</h3>
+<p>If your formula consists of standard Unicode characters or native
+text elements:</p>
+<ol type="1">
+<li>Select the <strong>Text tool</strong> from the left toolbar or press
+<code>T</code>.</li>
+<li>Click inside your text object and highlight the specific character,
+variable, or symbol you need to offset (such as an exponent, index, or
+limit).</li>
+<li>Look at the Tool Controls bar at the top of the canvas. Locate the
+<strong>Vertical shift</strong> input box (represented by an icon
+showing characters shifted vertically, or labeled as vertical
+kerning/shift).</li>
+<li>Enter a numerical value (measured in pixels, points, or your
+document's default unit):
+<ul>
+<li>A <strong>negative value</strong> moves the selected character
+upward (ideal for superscripts or numerators).</li>
+<li>A <strong>positive value</strong> moves the selected character
+downward (ideal for subscripts or denominators).</li>
+</ul></li>
+<li>Press <code>Enter</code> to apply the shift.</li>
+</ol>
+<h3 id="method-2-keyboard-shortcuts-for-real-time-fine-tuning">Method 2:
+Keyboard Shortcuts for Real-Time Fine-Tuning</h3>
+<p>For manual adjustments where visual alignment is preferred over exact
+numerical input:</p>
+<ol type="1">
+<li>Select the <strong>Text tool</strong> (<code>T</code>) and highlight
+the characters to be adjusted.</li>
+<li>Hold <code>Alt</code> and press the <code>Up Arrow</code> to raise
+the character above the baseline.</li>
+<li>Hold <code>Alt</code> and press the <code>Down Arrow</code> to lower
+the character below the baseline.</li>
+<li>To apply larger increments, hold <code>Shift + Alt</code> while
+pressing the <code>Up</code> or <code>Down</code> arrow keys.</li>
+</ol>
+<h3 id="method-3-adjusting-latex-formula-objects-vector-paths">Method 3:
+Adjusting LaTeX Formula Objects (Vector Paths)</h3>
+<p>When formulas are generated via <strong>Extensions &gt; Render &gt;
+Mathematics &gt; LaTeX (pdflatex)</strong>, Inkscape creates grouped
+vector paths rather than native text. Because these paths lack font
+baseline metadata, adjust them using coordinates or alignment tools:</p>
+<ol type="1">
+<li>Select the formula object with the <strong>Select and Transform
+tool</strong> (<code>S</code> or <code>F1</code>).</li>
+<li>Open the <strong>Align and Distribute</strong> panel by pressing
+<code>Ctrl + Shift + A</code>.</li>
+<li>Set the <strong>Relative to</strong> dropdown to <strong>First
+selected</strong> or <strong>Biggest object</strong>.</li>
+<li>Select both the standard text block and the formula object, then use
+the alignment options (such as <strong>Center on horizontal
+axis</strong>) to approximate placement.</li>
+<li>For fine-tuning, select only the formula object and use the
+<code>Y</code> coordinate field in the top toolbar to adjust its
+vertical placement, or tap <code>Alt + Up/Down Arrow</code> to nudge the
+object in sub-pixel increments until it sits naturally on the adjacent
+text's baseline.</li>
+</ol>
+<h3 id="method-4-modifying-the-svg-xml-directly">Method 4: Modifying the
+SVG XML Directly</h3>
+<p>For SVG-compliant formulas requiring absolute programmatic
+precision:</p>
+<ol type="1">
+<li>Select the text element and press <code>Ctrl + Shift + X</code> to
+open the <strong>XML Editor</strong>.</li>
+<li>Locate the specific <code>&lt;tspan&gt;</code> node containing the
+formula component.</li>
+<li>In the right pane, locate or create the <code>dy</code>
+attribute.</li>
+<li>Assign a relative offset value (such as <code>-0.4em</code> for
+superscripts or <code>0.3em</code> for subscripts).</li>
+<li>Click <strong>Set</strong> to apply the attribute change directly to
+the SVG structure.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

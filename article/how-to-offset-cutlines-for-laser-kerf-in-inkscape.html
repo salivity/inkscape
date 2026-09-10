@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Offset Cutlines for Laser Kerf in Inkscape - inkscape</title>
+    <meta name="description" content="When laser cutting interlocking parts, the laser beam vaporizes a small width of material known as the kerf, resulting in loose-fitting joints if uncompensated. To achieve tight, press-fit assemblies, cutlines must be shifted outward for exterior parts a">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-offset-cutlines-for-laser-kerf-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Offset Cutlines for Laser Kerf in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-offset-cutlines-for-laser-kerf-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When laser cutting interlocking parts, the laser beam vaporizes a small width of material known as the kerf, resulting in loose-fitting joints if uncompensated. To achieve tight, press-fit assemblies, cutlines must be shifted outward for exterior parts a" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-offset-cutlines-for-laser-kerf-in-inkscape">How to Offset
+Cutlines for Laser Kerf in Inkscape</h1>
+<p>When laser cutting interlocking parts, the laser beam vaporizes a
+small width of material known as the kerf, resulting in loose-fitting
+joints if uncompensated. To achieve tight, press-fit assemblies,
+cutlines must be shifted outward for exterior parts and inward for
+interior cutouts by half the total kerf width. This article explains how
+to determine your required offset distance and apply precise cutline
+adjustments in Inkscape using the Live Path Effect tool and numerical
+Inset/Outset commands.</p>
+<h3 id="1-calculate-your-offset-distance">1. Calculate Your Offset
+Distance</h3>
+<p>The laser kerf typically ranges between 0.08 mm and 0.25 mm depending
+on your lens, laser wattage, material type, and thickness.</p>
+<p>To compensate correctly:</p>
+<ul>
+<li><strong>Measure your total kerf:</strong> Cut a rectangle with known
+dimensions (e.g., 50 mm wide), measure the resulting piece with digital
+calipers, and subtract the cut width from the original vector
+width.</li>
+<li><strong>Determine the offset:</strong> Divide the total kerf width
+by two (<code>Offset = Kerf / 2</code>). For example, a 0.16 mm kerf
+requires a 0.08 mm offset.</li>
+<li><strong>Apply direction:</strong> Outer edges must be expanded
+outward (+0.08 mm), while internal cutouts, such as slots and holes,
+must be shrunk inward (-0.08 mm).</li>
+</ul>
+<hr />
+<h3 id="2-method-1-using-the-offset-live-path-effect-most-precise">2.
+Method 1: Using the Offset Live Path Effect (Most Precise)</h3>
+<p>The Live Path Effect (LPE) method allows you to enter exact decimal
+values for your offset.</p>
+<ol type="1">
+<li><strong>Select the Object:</strong> Click on the path you want to
+modify using the <strong>Selector tool</strong> (<code>S</code>). If the
+object is a shape (rectangle, circle), convert it by going to
+<strong>Path &gt; Object to Path</strong>.</li>
+<li><strong>Separate Inner and Outer Paths:</strong> If your object
+contains both outer perimeters and inner holes combined into one path,
+go to <strong>Path &gt; Break Apart</strong>. This ensures you can
+offset interior and exterior cutlines in opposite directions.</li>
+<li><strong>Open Path Effects:</strong> Go to <strong>Path &gt; Path
+Effects</strong> to open the panel on the right.</li>
+<li><strong>Add the Offset Effect:</strong> Click the <strong>+</strong>
+(Add Path Effect) icon and search for <strong>Offset</strong>.</li>
+<li><strong>Set the Parameters:</strong>
+<ul>
+<li>In the <strong>Offset</strong> input field, set the units to
+millimeters (<code>mm</code>) or inches (<code>in</code>).</li>
+<li>Enter your half-kerf value (e.g., <code>0.08</code> for external
+expansion, or <code>-0.08</code> for internal reduction).</li>
+<li>Set the <strong>Join</strong> style to <strong>Miter</strong> or
+<strong>Round</strong>, matching your design's corner styles.</li>
+</ul></li>
+<li><strong>Bake the Path:</strong> Once the offset is applied, select
+the object and choose <strong>Path &gt; Object to Path</strong> to
+convert the effect into permanent cutting geometry.</li>
+</ol>
+<hr />
+<h3 id="3-method-2-using-insetoutset-with-step-preferences">3. Method 2:
+Using Inset/Outset with Step Preferences</h3>
+<p>If you frequently cut materials using the same kerf, you can
+configure Inkscape’s default Inset/Outset shortcuts.</p>
+<ol type="1">
+<li><strong>Configure Step Size:</strong> Go to <strong>Edit &gt;
+Preferences &gt; Behavior &gt; Steps</strong>.</li>
+<li><strong>Set Inset/Outset by:</strong> Enter your half-kerf value
+directly in the input box (e.g., <code>0.08 mm</code>). Close the
+preferences window.</li>
+<li><strong>Separate Paths:</strong> If working with a composite design,
+use <strong>Path &gt; Break Apart</strong> so interior holes and
+exterior contours can be modified independently.</li>
+<li><strong>Apply the Adjustment:</strong>
+<ul>
+<li>Select an <strong>outer path</strong> and press
+<code>Ctrl + )</code> (<strong>Path &gt; Outset</strong>) to expand it
+by your preset value.</li>
+<li>Select an <strong>inner path</strong> (such as a slot or hole) and
+press <code>Ctrl + (</code> (<strong>Path &gt; Inset</strong>) to
+contract it by your preset value.</li>
+</ul></li>
+<li><strong>Recombine Paths:</strong> Select both the interior cutouts
+and exterior path, then choose <strong>Path &gt; Combine</strong>
+(<code>Ctrl + K</code>).</li>
+</ol>
+<hr />
+<h3 id="4-finalizing-the-file-for-laser-software">4. Finalizing the File
+for Laser Software</h3>
+<ol type="1">
+<li><strong>Check Stroke Width:</strong> Ensure your stroke style is set
+to a hairline thickness required by your laser software (commonly
+<code>0.001 in</code> or <code>0.05 mm</code>) via <strong>Object &gt;
+Fill and Stroke</strong>.</li>
+<li><strong>Verify Node Geometry:</strong> Switch to the <strong>Node
+Tool</strong> (<code>N</code>) and inspect corners to ensure sharp
+vertices did not deform or overlap during the offset process.</li>
+<li><strong>Save File:</strong> Save the finalized vector as an SVG,
+DXF, or PDF depending on the format required by your laser control
+software.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

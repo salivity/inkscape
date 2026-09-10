@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add aria-labelledby to SVG Icons in Inkscape - inkscape</title>
+    <meta name="description" content="Attaching custom accessibility attributes like aria-labelledby to Scalable Vector Graphics (SVG) ensures screen readers and assistive devices accurately identify and announce your vector icons. While Inkscape is primarily a visual design tool, its built-">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/add-aria-labelledby-to-svg-icons-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Add aria-labelledby to SVG Icons in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/add-aria-labelledby-to-svg-icons-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Attaching custom accessibility attributes like aria-labelledby to Scalable Vector Graphics (SVG) ensures screen readers and assistive devices accurately identify and announce your vector icons. While Inkscape is primarily a visual design tool, its built-" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="add-aria-labelledby-to-svg-icons-in-inkscape">Add
+aria-labelledby to SVG Icons in Inkscape</h1>
+<p>Attaching custom accessibility attributes like
+<code>aria-labelledby</code> to Scalable Vector Graphics (SVG) ensures
+screen readers and assistive devices accurately identify and announce
+your vector icons. While Inkscape is primarily a visual design tool, its
+built-in XML Editor allows you to directly manipulate the underlying
+markup. By creating an accessible <code>&lt;title&gt;</code> element
+with a unique ID and linking it via <code>aria-labelledby</code> to the
+root graphic or group, you can produce fully accessible vector icons
+ready for production web environments.</p>
+<h3 id="step-1-add-a-title-element-to-the-icon">Step 1: Add a Title
+Element to the Icon</h3>
+<p>Screen readers rely on text descriptors to identify non-text content.
+Inkscape allows you to define this metadata via the document
+properties:</p>
+<ol type="1">
+<li>Open your SVG icon in Inkscape.</li>
+<li>Go to <strong>File</strong> &gt; <strong>Document
+Properties</strong> (or press <code>Ctrl + Shift + D</code>).</li>
+<li>Select the <strong>Metadata</strong> tab.</li>
+<li>Enter a descriptive, concise name in the <strong>Title</strong>
+field (for example, "Search Icon").</li>
+<li>Close the dialog. Inkscape will automatically generate a
+<code>&lt;title&gt;</code> tag inside the SVG code.</li>
+</ol>
+<h3 id="step-2-open-the-xml-editor">Step 2: Open the XML Editor</h3>
+<p>To inspect the generated tag and add the required ARIA attributes,
+access the code view:</p>
+<ol type="1">
+<li>Go to <strong>Edit</strong> &gt; <strong>XML Editor</strong> (or
+press <code>Ctrl + Shift + X</code>).</li>
+<li>The left panel shows the tree structure of your SVG document,
+starting with the root <code>&lt;svg:svg&gt;</code> node.</li>
+</ol>
+<h3 id="step-3-assign-an-id-to-the-title">Step 3: Assign an ID to the
+Title</h3>
+<p>The <code>aria-labelledby</code> attribute works by pointing to the
+unique ID of the label element:</p>
+<ol type="1">
+<li>In the XML tree, locate and click the <code>&lt;svg:title&gt;</code>
+node (usually found directly under the root <code>&lt;svg:svg&gt;</code>
+element).</li>
+<li>Look at the right panel to see the attributes of the
+<code>&lt;svg:title&gt;</code> tag.</li>
+<li>If an <code>id</code> attribute does not exist, type <code>id</code>
+into the <strong>Attribute name</strong> input field at the bottom
+right.</li>
+<li>In the <strong>Attribute value</strong> field, enter a unique
+identifier (such as <code>search-icon-title</code>).</li>
+<li>Click <strong>Set</strong> (or press
+<code>Ctrl + Enter</code>).</li>
+</ol>
+<h3 id="step-4-attach-the-aria-labelledby-attribute">Step 4: Attach the
+aria-labelledby Attribute</h3>
+<p>Once the title has an ID, link it to the icon:</p>
+<ol type="1">
+<li>In the XML tree, select the root <code>&lt;svg:svg&gt;</code>
+element (or the specific <code>&lt;svg:g&gt;</code> group representing
+your icon).</li>
+<li>In the right panel, enter <code>aria-labelledby</code> in the
+<strong>Attribute name</strong> field.</li>
+<li>In the <strong>Attribute value</strong> field, enter the exact ID
+assigned in Step 3 (e.g., <code>search-icon-title</code>).</li>
+<li>Click <strong>Set</strong>.</li>
+</ol>
+<h3 id="step-5-add-roleimg-for-broad-compatibility">Step 5: Add
+role="img" for Broad Compatibility</h3>
+<p>Many web browsers and screen readers require a semantic role on SVG
+elements to treat them as accessible objects:</p>
+<ol type="1">
+<li>Keep the root <code>&lt;svg:svg&gt;</code> element selected in the
+XML Editor.</li>
+<li>In the <strong>Attribute name</strong> field, type
+<code>role</code>.</li>
+<li>In the <strong>Attribute value</strong> field, type
+<code>img</code>.</li>
+<li>Click <strong>Set</strong>.</li>
+</ol>
+<h3 id="step-6-save-as-plain-svg">Step 6: Save as Plain SVG</h3>
+<p>To preserve your custom attributes while stripping out unnecessary
+editor-specific markup:</p>
+<ol type="1">
+<li>Go to <strong>File</strong> &gt; <strong>Save As...</strong>.</li>
+<li>Set the file type dropdown to <strong>Plain SVG (*.svg)</strong>
+rather than Inkscape SVG.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<p>The output file will now contain clean, accessible markup featuring
+the <code>role="img"</code> and <code>aria-labelledby</code> attributes
+pointing cleanly to the accessible title inside the file.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

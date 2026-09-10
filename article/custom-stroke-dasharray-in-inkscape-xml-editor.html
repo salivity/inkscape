@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Stroke Dasharray in Inkscape XML Editor - inkscape</title>
+    <meta name="description" content="Inkscape provides basic dash presets in the Fill and Stroke dialog, but creating intricate, syncopated stroke rhythms requires accessing the underlying SVG code. By utilizing Inkscape's built-in XML Editor, you can manually inject custom values into the">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/custom-stroke-dasharray-in-inkscape-xml-editor">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Custom Stroke Dasharray in Inkscape XML Editor - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/custom-stroke-dasharray-in-inkscape-xml-editor" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Inkscape provides basic dash presets in the Fill and Stroke dialog, but creating intricate, syncopated stroke rhythms requires accessing the underlying SVG code. By utilizing Inkscape's built-in XML Editor, you can manually inject custom values into the" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="custom-stroke-dasharray-in-inkscape-xml-editor">Custom Stroke
+Dasharray in Inkscape XML Editor</h1>
+<p>Inkscape provides basic dash presets in the Fill and Stroke dialog,
+but creating intricate, syncopated stroke rhythms requires accessing the
+underlying SVG code. By utilizing Inkscape's built-in XML Editor, you
+can manually inject custom values into the <code>stroke-dasharray</code>
+attribute. This article explains how the SVG dash array syntax
+functions, provides practical numerical patterns for complex rhythms,
+and details the exact steps to apply raw values directly to any vector
+path.</p>
+<h3 id="understanding-svg-stroke-dasharray-syntax">Understanding SVG
+stroke-dasharray Syntax</h3>
+<p>The <code>stroke-dasharray</code> property controls the pattern of
+dashes and gaps used to stroke paths. Its value is a list of comma- or
+space-separated numbers that alternate between the length of a dash and
+the length of a gap:</p>
+<p><code>stroke-dasharray: [dash_1] [gap_1] [dash_2] [gap_2] ...</code></p>
+<ul>
+<li><strong>Even number of values:</strong> The sequence repeats
+indefinitely in the specified order (e.g., <code>10, 5, 2, 5</code>
+creates a long dash, a gap, a short dash, and a gap).</li>
+<li><strong>Odd number of values:</strong> If an odd number of entries
+is provided, the browser or renderer automatically duplicates the
+sequence to achieve an even count (e.g., <code>5, 3, 2</code> becomes
+<code>5, 3, 2, 5, 3, 2</code>).</li>
+<li><strong>Units:</strong> Values inherit the stroke width unit or
+pixels by default.</li>
+</ul>
+<h3 id="step-by-step-adding-raw-values-in-the-xml-editor">Step-by-Step:
+Adding Raw Values in the XML Editor</h3>
+<ol type="1">
+<li><strong>Select the Object:</strong> Use the <strong>Select tool
+(S)</strong> to click the path you want to modify. Ensure the path has a
+stroke applied.</li>
+<li><strong>Open the XML Editor:</strong> Navigate to <strong>Edit &gt;
+XML Editor</strong> from the main menu, or press <strong>Ctrl + Shift +
+X</strong> (macOS: <strong>Cmd + Shift + X</strong>).</li>
+<li><strong>Locate the Node:</strong> The XML Editor tree will
+automatically highlight the XML node representing your selected object
+(typically a <code>&lt;svg:path&gt;</code> or
+<code>&lt;svg:rect&gt;</code>).</li>
+<li><strong>Locate the Style Attribute:</strong> In the right-hand panel
+of the XML Editor, locate the <code>style</code> attribute under the
+attribute list. Click on it to display its value in the bottom text
+box.</li>
+<li><strong>Modify or Insert <code>stroke-dasharray</code>:</strong>
+<ul>
+<li>Look for an existing <code>stroke-dasharray</code> declaration
+inside the <code>style</code> string (e.g.,
+<code>stroke-dasharray:none;</code> or
+<code>stroke-dasharray:4, 4;</code>).</li>
+<li>Replace it with your custom rhythm:
+<pre class="text"><code>stroke-dasharray:16, 4, 4, 4, 1, 4;</code></pre></li>
+<li>If no <code>stroke-dasharray</code> property exists in the style
+string, add it to the end, ensuring it is separated from the preceding
+property by a semicolon:
+<pre class="text"><code>;stroke-dasharray:20, 6, 2, 6;</code></pre></li>
+</ul></li>
+<li><strong>Apply the Changes:</strong> Press <strong>Ctrl +
+Enter</strong> or click the <strong>Set</strong> button beside the
+attribute input box. The canvas immediately updates to reflect the new
+rhythm.</li>
+</ol>
+<h3 id="formula-examples-for-stroke-rhythms">Formula Examples for Stroke
+Rhythms</h3>
+<ul>
+<li><strong>Morse Code Rhythm (Dash-Dot-Dot):</strong>
+<code>stroke-dasharray: 12, 4, 3, 4, 3, 4;</code></li>
+<li><strong>Syncopated Triple-Pulse:</strong>
+<code>stroke-dasharray: 18, 4, 8, 4, 2, 8;</code></li>
+<li><strong>Graduated Wave Pattern:</strong>
+<code>stroke-dasharray: 2, 3, 4, 3, 8, 3, 16, 3;</code></li>
+</ul>
+<h3 id="fine-tuning-line-caps-and-offsets">Fine-Tuning Line Caps and
+Offsets</h3>
+<ul>
+<li><strong>Round Caps Interaction:</strong> When using
+<code>stroke-linecap: round;</code>, the ends of each dash are extended
+by half the stroke width. To create true dots, set the dash length to
+<code>0</code> or <code>0.01</code> and compensate for the rounded
+radius by increasing the gap length (e.g., <code>0.01, 8</code>).</li>
+<li><strong>Adjusting Starting Position:</strong> To change where the
+pattern begins along the path, locate or add the
+<code>stroke-dashoffset</code> property in the same <code>style</code>
+string (e.g., <code>stroke-dashoffset: 10;</code>).</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

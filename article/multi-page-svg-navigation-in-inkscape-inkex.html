@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Page SVG Navigation in Inkscape Inkex - inkscape</title>
+    <meta name="description" content="This article provides a practical guide on handling multi-page SVG navigation and manipulation within Inkscape's Python extension system, inkex. Since Inkscape 1.2 introduced native multi-page support, the inkex API has provided specialized classes and m">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/multi-page-svg-navigation-in-inkscape-inkex">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Multi-Page SVG Navigation in Inkscape Inkex - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/multi-page-svg-navigation-in-inkscape-inkex" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a practical guide on handling multi-page SVG navigation and manipulation within Inkscape's Python extension system, inkex. Since Inkscape 1.2 introduced native multi-page support, the inkex API has provided specialized classes and m" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="multi-page-svg-navigation-in-inkscape-inkex">Multi-Page SVG
+Navigation in Inkscape Inkex</h1>
+<p>This article provides a practical guide on handling multi-page SVG
+navigation and manipulation within Inkscape's Python extension system,
+<code>inkex</code>. Since Inkscape 1.2 introduced native multi-page
+support, the <code>inkex</code> API has provided specialized classes and
+methods to query, traverse, and manage these pages. Below, you will
+learn how multi-page architecture works under the hood, how to access
+and iterate through pages using <code>inkex</code>, and how to determine
+which graphical elements belong to a specific page.</p>
+<hr />
+<h3
+id="understanding-the-multi-page-structure-in-inkscape">Understanding
+the Multi-Page Structure in Inkscape</h3>
+<p>In Inkscape, multi-page documents do not group SVG drawing elements
+inside dedicated page container tags. Instead:</p>
+<ol type="1">
+<li><strong>Page Definitions:</strong> Pages are defined as
+<code>&lt;inkscape:page&gt;</code> elements inside the document's
+<code>&lt;sodipodi:namedview&gt;</code> element.</li>
+<li><strong>Spatial Layout:</strong> Elements on the canvas remain in
+standard SVG groups or root layers. An element "belongs" to a page based
+on its geometric coordinates falling within that page's boundary box
+(<code>x</code>, <code>y</code>, <code>width</code>,
+<code>height</code>).</li>
+</ol>
+<hr />
+<h3 id="accessing-document-pages-with-inkex">Accessing Document Pages
+with <code>inkex</code></h3>
+<p>In modern <code>inkex</code> versions (Inkscape 1.2+), the
+<code>NamedView</code> object provides direct access to page definitions
+via the <code>get_pages()</code> method.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MultiPageNavigator(inkex.EffectExtension):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Access the sodipodi:namedview element</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        namedview <span class="op">=</span> <span class="va">self</span>.svg.namedview</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Retrieve all inkscape:page elements</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        pages <span class="op">=</span> namedview.get_pages()</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> pages:</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            inkex.utils.debug(<span class="st">&quot;This document contains only a single default canvas (no extra pages).&quot;</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> index, page <span class="kw">in</span> <span class="bu">enumerate</span>(pages):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Read page attributes</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            label <span class="op">=</span> page.get(<span class="st">&quot;inkscape:label&quot;</span>, <span class="ss">f&quot;Page </span><span class="sc">{</span>index <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            x <span class="op">=</span> <span class="bu">float</span>(page.get(<span class="st">&quot;x&quot;</span>, <span class="dv">0</span>))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            y <span class="op">=</span> <span class="bu">float</span>(page.get(<span class="st">&quot;y&quot;</span>, <span class="dv">0</span>))</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            width <span class="op">=</span> <span class="bu">float</span>(page.get(<span class="st">&quot;width&quot;</span>, <span class="dv">0</span>))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            height <span class="op">=</span> <span class="bu">float</span>(page.get(<span class="st">&quot;height&quot;</span>, <span class="dv">0</span>))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            inkex.utils.debug(<span class="ss">f&quot;</span><span class="sc">{</span>label<span class="sc">}</span><span class="ss">: bounds=(</span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>width<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>height<span class="sc">}</span><span class="ss">)&quot;</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    MultiPageNavigator().run()</span></code></pre></div>
+<hr />
+<h3 id="associating-canvas-elements-with-specific-pages">Associating
+Canvas Elements with Specific Pages</h3>
+<p>Because graphical elements (<code>&lt;path&gt;</code>,
+<code>&lt;rect&gt;</code>, <code>&lt;g&gt;</code>, etc.) are not
+children of <code>&lt;inkscape:page&gt;</code>, you must perform
+bounding box collision tests to identify which objects reside on which
+page.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PageElementMapper(inkex.EffectExtension):</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        namedview <span class="op">=</span> <span class="va">self</span>.svg.namedview</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        pages <span class="op">=</span> namedview.get_pages()</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> index, page <span class="kw">in</span> <span class="bu">enumerate</span>(pages):</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Create a bounding box for the page</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            page_box <span class="op">=</span> inkex.BoundingBox(</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                (<span class="bu">float</span>(page.get(<span class="st">&quot;x&quot;</span>)), <span class="bu">float</span>(page.get(<span class="st">&quot;x&quot;</span>)) <span class="op">+</span> <span class="bu">float</span>(page.get(<span class="st">&quot;width&quot;</span>))),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                (<span class="bu">float</span>(page.get(<span class="st">&quot;y&quot;</span>)), <span class="bu">float</span>(page.get(<span class="st">&quot;y&quot;</span>)) <span class="op">+</span> <span class="bu">float</span>(page.get(<span class="st">&quot;height&quot;</span>)))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Find elements contained within or intersecting the page boundary</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            page_elements <span class="op">=</span> []</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> elem <span class="kw">in</span> <span class="va">self</span>.svg.descendants():</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="bu">isinstance</span>(elem, inkex.ShapeElement):</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>                    bbox <span class="op">=</span> elem.bounding_box()</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> bbox <span class="kw">and</span> page_box.contains(bbox):</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                        page_elements.append(elem)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>            inkex.utils.debug(<span class="ss">f&quot;Page </span><span class="sc">{</span>index <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss"> contains </span><span class="sc">{</span><span class="bu">len</span>(page_elements)<span class="sc">}</span><span class="ss"> shape elements.&quot;</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&quot;__main__&quot;</span>:</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    PageElementMapper().run()</span></code></pre></div>
+<hr />
+<h3
+id="programmatically-creating-and-navigating-to-new-pages">Programmatically
+Creating and Navigating to New Pages</h3>
+<p>To create or programmatically define new pages within an extension,
+instantiate an <code>inkex.Page</code> element and append it to
+<code>self.svg.namedview</code>:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> inkex</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> inkex <span class="im">import</span> Page</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AddPageExtension(inkex.EffectExtension):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> effect(<span class="va">self</span>):</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        namedview <span class="op">=</span> <span class="va">self</span>.svg.namedview</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        pages <span class="op">=</span> namedview.get_pages()</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Determine the position of the new page (e.g., placed to the right of existing pages)</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        last_page <span class="op">=</span> pages[<span class="op">-</span><span class="dv">1</span>] <span class="cf">if</span> pages <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        offset_x <span class="op">=</span> <span class="bu">float</span>(last_page.get(<span class="st">&quot;x&quot;</span>, <span class="dv">0</span>)) <span class="op">+</span> <span class="bu">float</span>(last_page.get(<span class="st">&quot;width&quot;</span>, <span class="dv">100</span>)) <span class="op">+</span> <span class="dv">20</span> <span class="cf">if</span> last_page <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Create a new page</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        new_page <span class="op">=</span> Page()</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        new_page.<span class="bu">set</span>(<span class="st">&quot;x&quot;</span>, <span class="bu">str</span>(offset_x))</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        new_page.<span class="bu">set</span>(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;0&quot;</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        new_page.<span class="bu">set</span>(<span class="st">&quot;width&quot;</span>, <span class="st">&quot;210mm&quot;</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        new_page.<span class="bu">set</span>(<span class="st">&quot;height&quot;</span>, <span class="st">&quot;297mm&quot;</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        new_page.<span class="bu">set</span>(<span class="st">&quot;inkscape:label&quot;</span>, <span class="ss">f&quot;Page </span><span class="sc">{</span><span class="bu">len</span>(pages) <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Append to namedview</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        namedview.append(new_page)</span></code></pre></div>
+<hr />
+<h3 id="best-practices">Best Practices</h3>
+<ul>
+<li><strong>Check for Empty Page Lists:</strong> Documents with only the
+default view may return an empty list when calling
+<code>namedview.get_pages()</code>. Always handle the fallback case
+where the document boundaries are defined by
+<code>self.svg.viewbox</code> rather than explicit page elements.</li>
+<li><strong>Unit Conversions:</strong> Page coordinates are stored in
+user units (SVG pixels). Ensure any comparison with custom geometry uses
+<code>self.svg.to_dimension()</code> or standard
+<code>inkex.units</code> parsing when converting between millimeters,
+inches, and pixels.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

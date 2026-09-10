@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create Vector Linocut Prints in Inkscape - inkscape</title>
+    <meta name="description" content="Creating vector linocut prints in Inkscape simulates traditional relief printmaking by using high-contrast black-and-white path carving. This guide details the complete process, from establishing a solid black base shape to carving negative space using w">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-vector-linocut-prints-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create Vector Linocut Prints in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-vector-linocut-prints-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Creating vector linocut prints in Inkscape simulates traditional relief printmaking by using high-contrast black-and-white path carving. This guide details the complete process, from establishing a solid black base shape to carving negative space using w" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-vector-linocut-prints-in-inkscape">How to Create
+Vector Linocut Prints in Inkscape</h1>
+<p>Creating vector linocut prints in Inkscape simulates traditional
+relief printmaking by using high-contrast black-and-white path carving.
+This guide details the complete process, from establishing a solid black
+base shape to carving negative space using white cutting strokes and
+dynamic Boolean path operations to achieve authentic, chiseled vector
+artwork.</p>
+<h3 id="1-set-up-the-black-block-base">1. Set Up the Black "Block"
+Base</h3>
+<p>Traditional linocut relies on carving into a solid block of material.
+To recreate this in Inkscape:</p>
+<ol type="1">
+<li>Open a new document and set your display units to pixels or
+millimeters according to your target output.</li>
+<li>Select the <strong>Rectangle Tool</strong> (press <code>R</code>) or
+<strong>Bezier Pen</strong> (press <code>B</code>) and draw the primary
+shape of your subject.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Shift + Ctrl + F</code>), set the <strong>Fill</strong> to solid
+black (<code>#000000</code>), and remove any stroke. This black shape
+acts as your uncut linoleum block.</li>
+</ol>
+<h3 id="2-configure-the-carving-tool">2. Configure the Carving Tool</h3>
+<p>To carve dynamic, varied lines that mimic gouges (V-tools and
+U-gouges), use the <strong>Calligraphy Tool</strong>:</p>
+<ol type="1">
+<li>Select the <strong>Calligraphy Tool</strong> from the toolbar (press
+<code>C</code> or <code>Ctrl + B</code>).</li>
+<li>On the top tool control bar, choose the <strong>Dip Pen</strong> or
+<strong>Marker</strong> preset.</li>
+<li>Adjust the parameters:
+<ul>
+<li><strong>Width:</strong> Set between <code>15</code> and
+<code>30</code> depending on canvas size.</li>
+<li><strong>Thinning:</strong> Set to <code>0.40</code> to
+<code>0.70</code> to taper strokes based on speed.</li>
+<li><strong>Angle:</strong> Set between <code>30°</code> and
+<code>45°</code> to mimic the fixed wrist angle of a handheld carving
+tool.</li>
+<li><strong>Fixation:</strong> Set to <code>0.90</code> for sharp,
+chisel-like corners.</li>
+</ul></li>
+<li>Set your active color to pure white (<code>#FFFFFF</code>) with no
+stroke.</li>
+</ol>
+<h3 id="3-carve-negative-space">3. Carve Negative Space</h3>
+<p>In relief printing, everything you cut away becomes white (paper),
+while uncarved areas take the ink.</p>
+<ol type="1">
+<li>Draw your strokes across the black base shape using your tablet or
+mouse. Fast, deliberate strokes create sharp, tapered V-gouge effects;
+slower strokes create broader U-gouge clears.</li>
+<li>Build mid-tones through hatching and cross-hatching, varying the
+spacing between strokes rather than adjusting opacity.</li>
+<li>Add deliberate imperfections, such as stray marks or "chatter"
+(residual ridges left in cleared background areas), to enhance print
+authenticity.</li>
+</ol>
+<h3 id="4-convert-strokes-into-true-carved-paths">4. Convert Strokes
+into True Carved Paths</h3>
+<p>To convert the visual white strokes into actual geometric
+cutouts:</p>
+<ol type="1">
+<li>Select all the white carving strokes you created.</li>
+<li>Go to <strong>Path &gt; Union</strong> (<code>Ctrl + +</code>). This
+merges all separate white paths into a single compound path.</li>
+<li>Select both the merged white path and the underlying black base
+shape.</li>
+<li>Go to <strong>Path &gt; Difference</strong>
+(<code>Ctrl + -</code>).</li>
+</ol>
+<p>Inkscape will subtract the white paths from the black silhouette,
+leaving behind a single, unified vector path that contains all your
+carved lines as transparent negative space.</p>
+<h3 id="5-clean-and-optimize-the-vector-cut">5. Clean and Optimize the
+Vector Cut</h3>
+<p>Carved vector paths often contain redundant nodes:</p>
+<ol type="1">
+<li>Select the final carved path using the <strong>Node Tool</strong>
+(press <code>N</code>).</li>
+<li>Go to <strong>Path &gt; Simplify</strong> (<code>Ctrl + L</code>)
+once or twice to reduce node count without softening sharp corners.</li>
+<li>Use the Node Tool manually to sharpen key interior vertices,
+ensuring that line terminations remain pointed and angular, resembling
+physical gouge marks.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

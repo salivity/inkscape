@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add JavaScript Onclick Events to SVG in Inkscape - inkscape</title>
+    <meta name="description" content="Adding interactive JavaScript onclick events to SVG graphics inside Inkscape allows you to create responsive web elements, buttons, and animations directly from your vector editor. Inkscape natively supports SVG interactivity through its built-in Object">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/add-javascript-onclick-events-to-svg-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Add JavaScript Onclick Events to SVG in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/add-javascript-onclick-events-to-svg-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Adding interactive JavaScript onclick events to SVG graphics inside Inkscape allows you to create responsive web elements, buttons, and animations directly from your vector editor. Inkscape natively supports SVG interactivity through its built-in Object" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="add-javascript-onclick-events-to-svg-in-inkscape">Add JavaScript
+Onclick Events to SVG in Inkscape</h1>
+<p>Adding interactive JavaScript <code>onclick</code> events to SVG
+graphics inside Inkscape allows you to create responsive web elements,
+buttons, and animations directly from your vector editor. Inkscape
+natively supports SVG interactivity through its built-in Object
+Attributes panel and the XML Editor. This tutorial outlines the exact
+steps to assign <code>onclick</code> triggers to specific SVG objects,
+embed custom JavaScript functions, and properly save the file for web
+browsers.</p>
+<h3 id="method-1-using-the-object-attributes-panel">Method 1: Using the
+Object Attributes Panel</h3>
+<p>The most straightforward way to add click events in Inkscape is
+through the Interactivity section of the Object Attributes dialog.</p>
+<ol type="1">
+<li><strong>Select the Object:</strong> Click on the vector path, shape,
+text, or group that you want to make clickable.</li>
+<li><strong>Open Object Attributes:</strong> Right-click the element and
+select <strong>Object Attributes</strong>, or navigate to <strong>Object
+&gt; Object Properties</strong> / <strong>Object Attributes</strong>
+from the top menu.</li>
+<li><strong>Locate Interactivity:</strong> In the properties panel,
+expand the <strong>Interactivity</strong> dropdown menu.</li>
+<li><strong>Enter the Onclick Code:</strong> Find the
+<code>onclick</code> field and type your JavaScript command. For a
+simple test, enter:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">alert</span>(<span class="st">&#39;Element clicked!&#39;</span>)<span class="op">;</span></span></code></pre></div>
+You can also call custom functions or manipulate the element directly by
+passing <code>this</code>:
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">this</span><span class="op">.</span><span class="at">style</span><span class="op">.</span><span class="at">fill</span> <span class="op">=</span> <span class="st">&#39;red&#39;</span><span class="op">;</span></span></code></pre></div></li>
+</ol>
+<hr />
+<h3 id="method-2-embedding-custom-scripts-via-the-xml-editor">Method 2:
+Embedding Custom Scripts via the XML Editor</h3>
+<p>If you need more complex logic, you can define complete JavaScript
+functions directly inside the SVG document.</p>
+<ol type="1">
+<li><strong>Open the XML Editor:</strong> Go to <strong>Edit &gt; XML
+Editor</strong> (or press <code>Ctrl + Shift + X</code> on
+Windows/Linux, <code>Cmd + Shift + X</code> on macOS).</li>
+<li><strong>Select the Root Node:</strong> In the XML hierarchy tree on
+the left, select the top-level <code>&lt;svg:svg&gt;</code>
+element.</li>
+<li><strong>Add a Script Node:</strong> Click the <strong>New element
+node</strong> icon at the top of the XML panel. Enter
+<code>svg:script</code> as the element name and click
+<strong>Create</strong>.</li>
+<li><strong>Set Script Attributes:</strong>
+<ul>
+<li>With the <code>&lt;svg:script&gt;</code> node selected, type
+<code>type</code> into the attribute name field on the right, set the
+value to <code>text/javascript</code> (or <code>text/ecmascript</code>),
+and click <strong>Set</strong>.</li>
+</ul></li>
+<li><strong>Add Function Content:</strong>
+<ul>
+<li>Select the text node beneath <code>&lt;svg:script&gt;</code> (or
+create a text child node) and add your custom JavaScript:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">handleItemClick</span>(evt) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> target <span class="op">=</span> evt<span class="op">.</span><span class="at">currentTarget</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    target<span class="op">.</span><span class="fu">setAttribute</span>(<span class="st">&#39;opacity&#39;</span><span class="op">,</span> <span class="st">&#39;0.5&#39;</span>)<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&#39;Clicked element ID:&#39;</span><span class="op">,</span> target<span class="op">.</span><span class="at">id</span>)<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div></li>
+<li><strong>Link Function to Element:</strong> Select your visual SVG
+object in the XML Editor, add an <code>onclick</code> attribute to it,
+and set the value to <code>handleItemClick(evt)</code>.</li>
+</ol>
+<hr />
+<h3 id="saving-and-testing-the-interactive-svg">Saving and Testing the
+Interactive SVG</h3>
+<p>To verify that your interactive script functions correctly:</p>
+<ol type="1">
+<li>Go to <strong>File &gt; Save As...</strong>.</li>
+<li>Select <strong>Plain SVG (*.svg)</strong> from the file type
+dropdown to strip proprietary editor metadata and produce cleaner code
+for web use.</li>
+<li>Open the saved <code>.svg</code> file directly in any modern web
+browser (Google Chrome, Firefox, Edge, or Safari).</li>
+<li>Click on the configured vector element to execute your JavaScript
+action.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

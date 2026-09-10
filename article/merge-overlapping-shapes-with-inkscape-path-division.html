@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Overlapping Shapes with Inkscape Path Division - inkscape</title>
+    <meta name="description" content="Combining overlapping vector shapes in Inkscape often forces them into a single color when using the standard Union tool. By using the Path Division operation instead, you can cut overlapping vectors along their intersection lines, allowing you to mainta">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/merge-overlapping-shapes-with-inkscape-path-division">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Merge Overlapping Shapes with Inkscape Path Division - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/merge-overlapping-shapes-with-inkscape-path-division" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Combining overlapping vector shapes in Inkscape often forces them into a single color when using the standard Union tool. By using the Path Division operation instead, you can cut overlapping vectors along their intersection lines, allowing you to mainta" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="merge-overlapping-shapes-with-inkscape-path-division">Merge
+Overlapping Shapes with Inkscape Path Division</h1>
+<p>Combining overlapping vector shapes in Inkscape often forces them
+into a single color when using the standard Union tool. By using the
+Path Division operation instead, you can cut overlapping vectors along
+their intersection lines, allowing you to maintain distinct color
+boundaries or eliminate hidden overlapping geometry. This guide explains
+how to properly prepare your paths, execute the division, and manage the
+resulting segments for clean, edge-to-edge color fills.</p>
+<h3 id="1-position-and-convert-your-objects">1. Position and Convert
+Your Objects</h3>
+<p>Ensure both objects are true vector paths. If you are using standard
+shape primitives (such as rectangles or circles), select them and go to
+<strong>Path &gt; Object to Path</strong> (or press
+<code>Shift + Ctrl + C</code>). Arrange the two shapes so that they
+overlap on the canvas and set each to your preferred fill color.</p>
+<h3 id="2-duplicate-the-cutting-path">2. Duplicate the Cutting Path</h3>
+<p>The Division command uses the top object to slice the bottom object,
+consuming the top object in the process. To preserve the original top
+shape:</p>
+<ol type="1">
+<li>Select the top shape.</li>
+<li>Duplicate it by pressing <code>Ctrl + D</code> (or right-click and
+choose <strong>Duplicate</strong>).</li>
+<li>The duplicate will appear directly above the original shape in the
+exact same position.</li>
+</ol>
+<h3 id="3-apply-path-division">3. Apply Path Division</h3>
+<ol type="1">
+<li>Hold <code>Shift</code> and select the duplicate top shape and the
+bottom shape beneath it.</li>
+<li>Navigate to the top menu and select <strong>Path &gt;
+Division</strong> (or press <code>Ctrl + /</code>).</li>
+<li>The bottom shape will be split into two separate paths: the region
+outside the overlap and the region directly beneath the top shape.</li>
+</ol>
+<h3 id="4-remove-hidden-overlaps-edge-to-edge-seam">4. Remove Hidden
+Overlaps (Edge-to-Edge Seam)</h3>
+<p>If your goal is to merge the visual footprint into an abutting seam
+without overlapping layers:</p>
+<ol type="1">
+<li>Temporarily hide or move the original top shape, or use the
+<strong>Objects</strong> panel (<code>Ctrl + Shift + O</code>) to locate
+the divided segments.</li>
+<li>Select the cut piece that sits directly underneath the top
+shape.</li>
+<li>Press <code>Delete</code>.</li>
+<li>The remaining bottom shape now perfectly aligns with the contours of
+the top shape with zero overlap, eliminating color bleed when printing
+or exporting.</li>
+</ol>
+<h3 id="5-color-three-distinct-zones-optional">5. Color Three Distinct
+Zones (Optional)</h3>
+<p>If your goal is to create a multi-colored composite where the
+intersection itself has a unique color boundary:</p>
+<ol type="1">
+<li>Do not delete the divided segment.</li>
+<li>Select the divided segment that represents the overlapping
+area.</li>
+<li>Pick a new color from the palette at the bottom of the
+workspace.</li>
+<li>If you want the two original shapes to form a single continuous
+outline with the intersection intact, select the non-overlapping
+segments and use <strong>Object &gt; Group</strong>
+(<code>Ctrl + G</code>) to keep the components organized as a single
+graphic asset.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

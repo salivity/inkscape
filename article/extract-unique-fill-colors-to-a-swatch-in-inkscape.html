@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extract Unique Fill Colors to a Swatch in Inkscape - inkscape</title>
+    <meta name="description" content="Managing a cohesive color scheme in complex vector projects often requires isolating the exact colors you have already applied across various paths. This guide provides a straightforward method for extracting all unique fill colors from an active Inkscap">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/extract-unique-fill-colors-to-a-swatch-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Extract Unique Fill Colors to a Swatch in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/extract-unique-fill-colors-to-a-swatch-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Managing a cohesive color scheme in complex vector projects often requires isolating the exact colors you have already applied across various paths. This guide provides a straightforward method for extracting all unique fill colors from an active Inkscap" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="extract-unique-fill-colors-to-a-swatch-in-inkscape">Extract
+Unique Fill Colors to a Swatch in Inkscape</h1>
+<p>Managing a cohesive color scheme in complex vector projects often
+requires isolating the exact colors you have already applied across
+various paths. This guide provides a straightforward method for
+extracting all unique fill colors from an active Inkscape document,
+displaying them automatically through the built-in palette system, and
+arranging them into a dedicated visual swatch strip directly on your
+canvas for future sampling.</p>
+<h3 id="step-1-open-the-swatches-panel-and-view-document-colors">Step 1:
+Open the Swatches Panel and View Document Colors</h3>
+<p>Modern versions of Inkscape automatically track every unique color
+used across your document. You can access these without manually
+checking individual objects.</p>
+<ol type="1">
+<li>Navigate to the top menu and select <strong>View &gt;
+Swatches</strong> (or press <strong>Shift + Ctrl + W</strong>) to open
+the Swatches dockable panel.</li>
+<li>Click the small menu icon (a downward arrow or gear icon) located on
+the right side of the Palette bar at the bottom of the screen or inside
+the Swatches panel.</li>
+<li>Select <strong>Document</strong> (or <strong>Auto</strong>) from the
+list of available palette profiles.</li>
+<li>The palette will instantly refresh to display only the unique fill
+and stroke colors currently present in your active document.</li>
+</ol>
+<h3 id="step-2-convert-unique-fills-to-permanent-swatches">Step 2:
+Convert Unique Fills to Permanent Swatches</h3>
+<p>To ensure your extracted fills act as globally linked swatches (which
+update across all objects if altered):</p>
+<ol type="1">
+<li>Select an object containing a fill color you want to formalize.</li>
+<li>Open the <strong>Fill and Stroke</strong> panel by pressing
+<strong>Shift + Ctrl + F</strong>.</li>
+<li>Under the <strong>Fill</strong> tab, click the
+<strong>Swatch</strong> icon (the icon resembling a small color
+chart/ribbon, located next to the solid color and gradient icons).</li>
+<li>Inkscape assigns this color to the document's permanent paint
+servers, making it reusable across any element. Repeat this for any
+specific colors you need permanently tagged.</li>
+</ol>
+<h3 id="step-3-build-an-on-canvas-visual-swatch-strip">Step 3: Build an
+On-Canvas Visual Swatch Strip</h3>
+<p>If you require a visual swatch strip directly on the workspace for
+quick eye-dropper sampling or export:</p>
+<ol type="1">
+<li>Press <strong>R</strong> to select the <strong>Rectangle
+Tool</strong> and draw a small square (e.g., 50px by 50px).</li>
+<li>With the square selected, duplicate it by pressing <strong>Ctrl +
+D</strong>. Drag the duplicate to the side. Repeat this duplication step
+until you have enough squares for each unique color shown in your
+Document Palette.</li>
+<li>Click on the first square, then left-click the first unique color
+block in the Document Palette at the bottom of your window.</li>
+<li>Select each subsequent square and assign the corresponding colors
+sequentially from your palette.</li>
+<li>Select all the squares together by dragging a selection marquee
+around them.</li>
+<li>Open the <strong>Align and Distribute</strong> panel (<strong>Shift
++ Ctrl + A</strong>).</li>
+<li>Under the <strong>Align</strong> section, click <strong>Center on
+horizontal axis</strong> (or vertical), and under the
+<strong>Distribute</strong> section, click <strong>Distribute horizontal
+space evenly</strong>.</li>
+<li>Press <strong>Ctrl + G</strong> to group the squares into a single,
+movable swatch strip.</li>
+</ol>
+<h3 id="step-4-export-the-palette-for-future-projects-optional">Step 4:
+Export the Palette for Future Projects (Optional)</h3>
+<p>To carry these extracted colors into separate Inkscape files:</p>
+<ol type="1">
+<li>In the <strong>Swatches</strong> panel, open the palette
+configuration menu.</li>
+<li>Choose <strong>Export Palette</strong> or select <strong>Save
+current palette</strong>.</li>
+<li>Save the palette file with a custom name. It will now appear
+permanently in your palette selector across all new documents.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

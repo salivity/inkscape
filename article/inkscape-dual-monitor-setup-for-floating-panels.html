@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Dual Monitor Setup for Floating Panels - inkscape</title>
+    <meta name="description" content="Configuring Inkscape for a dual-monitor workflow allows you to dedicate one entire screen to your active canvas while organizing tool palettes, layers, and formatting dialogs on the secondary display. By adjusting specific window preferences, undocking d">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-dual-monitor-setup-for-floating-panels">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Dual Monitor Setup for Floating Panels - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-dual-monitor-setup-for-floating-panels" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Configuring Inkscape for a dual-monitor workflow allows you to dedicate one entire screen to your active canvas while organizing tool palettes, layers, and formatting dialogs on the secondary display. By adjusting specific window preferences, undocking d" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-dual-monitor-setup-for-floating-panels">Inkscape Dual
+Monitor Setup for Floating Panels</h1>
+<p>Configuring Inkscape for a dual-monitor workflow allows you to
+dedicate one entire screen to your active canvas while organizing tool
+palettes, layers, and formatting dialogs on the secondary display. By
+adjusting specific window preferences, undocking default panels, and
+saving your workspace geometry, you can prevent panels from snapping
+back to the canvas and ensure Inkscape remembers your multi-screen
+configuration across work sessions.</p>
+<h3 id="step-1-adjust-window-geometry-preferences">Step 1: Adjust Window
+Geometry Preferences</h3>
+<p>To stop Inkscape from automatically re-docking your panels upon
+relaunch, you must configure how the program manages window states.</p>
+<ol type="1">
+<li>Open Inkscape and navigate to <strong>Edit &gt; Preferences</strong>
+(or press <strong>Ctrl + Shift + P</strong>; on macOS, use
+<strong>Inkscape &gt; Preferences</strong> or <strong>Cmd +
+,</strong>).</li>
+<li>In the left-hand sidebar, select <strong>Interface &gt;
+Windows</strong>.</li>
+<li>Under <strong>Window state</strong>, choose <strong>Remember and use
+last window's geometry</strong> to ensure both main and secondary
+windows maintain their size and screen positions.</li>
+<li>Under <strong>Dialog behavior</strong>, verify your preference:
+<ul>
+<li>Select <strong>Floating</strong> if you want newly opened dialogs to
+generate as independent windows automatically.</li>
+<li>If you prefer grouping panels together on your second monitor, keep
+it on <strong>Dockable</strong>, which allows you to dock panels into a
+unified floating frame separate from the main canvas window.</li>
+</ul></li>
+<li>Close the Preferences window to apply the changes.</li>
+</ol>
+<h3 id="step-2-undock-and-move-panels-to-the-second-monitor">Step 2:
+Undock and Move Panels to the Second Monitor</h3>
+<p>Inkscape docks dialogs like <em>Fill and Stroke</em>, <em>Align and
+Distribute</em>, and <em>Layers</em> to the right edge of the main
+document window by default.</p>
+<ol type="1">
+<li>Open the panels you regularly use (e.g., press <strong>Ctrl + Shift
++ F</strong> for <em>Fill and Stroke</em> or <strong>Ctrl + Shift +
+L</strong> for <em>Layers and Objects</em>).</li>
+<li>Click and hold the header tab of the open panel, then drag it away
+from the main canvas window toward your second monitor.</li>
+<li>Release the mouse cursor. The panel will now sit as a floating
+window on the second display.</li>
+<li>To combine multiple panels on your secondary display without
+cluttering the screen, drag subsequent panels directly into the header
+or side edges of the first floating panel until a blue drop target
+appears. This creates a dedicated multi-panel dock window on your second
+monitor.</li>
+</ol>
+<h3 id="step-3-expand-the-document-window">Step 3: Expand the Document
+Window</h3>
+<p>Once the panels are moved to the secondary screen:</p>
+<ol type="1">
+<li>Maximize or expand the primary Inkscape document window to fill the
+entire first display.</li>
+<li>The main canvas will now utilize your monitor's full aspect ratio
+without panel sidebars reducing horizontal workspace.</li>
+<li>You can press <strong>F12</strong> at any time to toggle the
+visibility of all floating dialogs simultaneously without losing their
+monitor positioning.</li>
+</ol>
+<h3 id="step-4-save-the-layout">Step 4: Save the Layout</h3>
+<p>To ensure your layout persists reliably:</p>
+<ol type="1">
+<li>Close Inkscape using the standard <strong>File &gt; Close</strong>
+or the window's close button while the panels remain open on your second
+monitor. Inkscape commits window coordinates on a clean exit.</li>
+<li>If you want specific dialogs to automatically open alongside new
+files in this layout, arrange your setup in an empty document, go to
+<strong>File &gt; Save Template...</strong>, name your template, and
+check <strong>Set as default template</strong>.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

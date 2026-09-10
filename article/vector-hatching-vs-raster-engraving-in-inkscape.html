@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector Hatching vs Raster Engraving in Inkscape - inkscape</title>
+    <meta name="description" content="This guide explains how to configure artwork in Inkscape for vector surface hatching versus traditional raster engraving on a laser cutter. Raster engraving processes solid shapes line by line across an entire area, while vector hatching generates intern">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/vector-hatching-vs-raster-engraving-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vector Hatching vs Raster Engraving in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/vector-hatching-vs-raster-engraving-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide explains how to configure artwork in Inkscape for vector surface hatching versus traditional raster engraving on a laser cutter. Raster engraving processes solid shapes line by line across an entire area, while vector hatching generates intern" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="vector-hatching-vs-raster-engraving-in-inkscape">Vector Hatching
+vs Raster Engraving in Inkscape</h1>
+<p>This guide explains how to configure artwork in Inkscape for vector
+surface hatching versus traditional raster engraving on a laser cutter.
+Raster engraving processes solid shapes line by line across an entire
+area, while vector hatching generates internal geometric stroke paths
+that the laser traces continuously. Converting solid fills into vector
+hatch patterns can significantly reduce job runtimes and create distinct
+surface textures on your materials.</p>
+<h3 id="the-core-difference-fills-vs-strokes">The Core Difference: Fills
+vs. Strokes</h3>
+<p>Laser software determines operation types primarily based on whether
+an element is a filled shape or a stroked path:</p>
+<ul>
+<li><strong>Raster Engraving:</strong> The laser head moves back and
+forth horizontally like an inkjet printer, pulsing over areas defined by
+solid <strong>fills</strong>.</li>
+<li><strong>Vector Hatching:</strong> The laser head follows discrete
+vector lines using standard <strong>strokes</strong> (scoring/marking).
+Because it traces connected vectors rather than scanning the entire
+bounding box, it is often substantially faster for low- to
+medium-density patterns.</li>
+</ul>
+<hr />
+<h3 id="setting-up-shapes-for-raster-engraving">Setting Up Shapes for
+Raster Engraving</h3>
+<p>To configure an object for standard raster engraving, you only need
+to define its solid fill:</p>
+<ol type="1">
+<li>Select your object using the <strong>Select Tool</strong>
+(<code>S</code>).</li>
+<li>Open the <strong>Fill and Stroke</strong> panel
+(<code>Ctrl + Shift + F</code> or <code>Cmd + Shift + F</code>).</li>
+<li>In the <strong>Fill</strong> tab, click <strong>Flat color</strong>
+and choose a solid color (typically solid black
+<code>#000000</code>).</li>
+<li>In the <strong>Stroke paint</strong> tab, click <strong>No
+paint</strong> (<code>X</code>) to remove the outer outline.</li>
+<li>Your laser control software (such as LightBurn, LaserGRBL, or K40
+Whisperer) will interpret this solid fill as an area to be
+rastered.</li>
+</ol>
+<hr />
+<h3 id="setting-up-shapes-for-vector-hatch-engraving">Setting Up Shapes
+for Vector Hatch Engraving</h3>
+<p>To perform vector hatching, you must replace the solid fill with
+tightly spaced vector lines enclosed inside the original shape
+boundary.</p>
+<h4 id="step-1-convert-objects-to-native-paths">Step 1: Convert Objects
+to Native Paths</h4>
+<ol type="1">
+<li>Select your object.</li>
+<li>Navigate to <strong>Path &gt; Object to Path</strong>
+(<code>Ctrl + Shift + C</code>). Text and primitive shapes (rectangles,
+circles) must be native paths for hatching tools to work.</li>
+</ol>
+<h4 id="step-2-generate-vector-hatches">Step 2: Generate Vector
+Hatches</h4>
+<p>Inkscape provides two main methods to generate vector hatches:</p>
+<p><strong>Method A: Using the Hatch Fill Extension</strong></p>
+<ol type="1">
+<li>Select the path.</li>
+<li>Navigate to <strong>Extensions &gt; Generate from Path &gt; Hatch
+Fill</strong>.</li>
+<li>Set the <strong>Hatch Spacing</strong> (the distance between lines
+in pixels or millimeters, depending on your document units). A smaller
+spacing yields a denser fill.</li>
+<li>Set the <strong>Hatch Angle</strong> (e.g., <code>45</code> degrees
+for diagonal lines, <code>0</code> for horizontal).</li>
+<li>Enable <strong>Crosshatch</strong> if you want two intersecting sets
+of lines for complete surface coverage.</li>
+<li>Click <strong>Apply</strong> and close the dialog.</li>
+</ol>
+<p><strong>Method B: Using Live Path Effects (LPE)</strong></p>
+<ol type="1">
+<li>Select the path.</li>
+<li>Navigate to <strong>Path &gt; Path Effects</strong>.</li>
+<li>Click the <strong>Add Path Effect</strong> (<code>+</code>) button
+and select <strong>Hatches (rough)</strong>.</li>
+<li>Adjust the spacing, angle, and line count in the effect
+options.</li>
+<li>Once satisfied, finalize the vectors by selecting <strong>Path &gt;
+Object to Path</strong>.</li>
+</ol>
+<h4 id="step-3-configure-fill-and-stroke-settings">Step 3: Configure
+Fill and Stroke Settings</h4>
+<ol type="1">
+<li>Select the generated hatch lines.</li>
+<li>In the <strong>Fill and Stroke</strong> panel:
+<ul>
+<li>Set <strong>Fill</strong> to <strong>No paint</strong>.</li>
+<li>Set <strong>Stroke paint</strong> to a specific color dedicated to
+scoring (e.g., blue <code>#0000FF</code> or red
+<code>#FF0000</code>).</li>
+<li>Set <strong>Stroke style</strong> width to a hairline value (such as
+<code>0.1 mm</code> or <code>0.001 in</code>).</li>
+</ul></li>
+<li><em>(Optional)</em> If you want a clean border around the hatched
+area, keep the original boundary shape as a separate stroked outline on
+the same or an adjacent layer.</li>
+</ol>
+<hr />
+<h3 id="laser-software-preparation">Laser Software Preparation</h3>
+<p>Once your SVG file is imported into your laser control software:</p>
+<ol type="1">
+<li><strong>Assign Layers:</strong> Set your hatch layer to
+<strong>Vector / Score / Cut</strong> mode rather than "Fill" or
+"Raster".</li>
+<li><strong>Tune Settings:</strong> Vector hatching requires high
+movement speeds and low-to-medium power to avoid cutting through the
+material while still leaving an etched line.</li>
+<li><strong>Check Defocusing:</strong> For a wider hatch mark that
+blends lines together smoothly, slightly defocus your laser (raise or
+lower the Z-bed by 1–3 mm) to thicken the focal beam diameter.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkscape Neon Glow Filter Using feMerge - inkscape</title>
+    <meta name="description" content="This guide demonstrates how to build a vibrant neon glow effect in Inkscape using the built-in Filter Editor. By cascading multiple feGaussianBlur primitives with varying blur radii and compositing them over one another using an feMerge node, you can pro">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/inkscape-neon-glow-filter-using-femerge">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inkscape Neon Glow Filter Using feMerge - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/inkscape-neon-glow-filter-using-femerge" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide demonstrates how to build a vibrant neon glow effect in Inkscape using the built-in Filter Editor. By cascading multiple feGaussianBlur primitives with varying blur radii and compositing them over one another using an feMerge node, you can pro" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="inkscape-neon-glow-filter-using-femerge">Inkscape Neon Glow
+Filter Using feMerge</h1>
+<p>This guide demonstrates how to build a vibrant neon glow effect in
+Inkscape using the built-in Filter Editor. By cascading multiple
+<code>feGaussianBlur</code> primitives with varying blur radii and
+compositing them over one another using an <code>feMerge</code> node,
+you can produce a realistic light-bleed effect featuring an intense
+core, a bright mid-range halo, and a diffuse ambient glow.</p>
+<h3 id="understanding-the-glow-architecture">Understanding the Glow
+Architecture</h3>
+<p>A convincing neon effect relies on light falloff. A single blur looks
+flat or muddy. By stacking three distinct layers of blur plus the
+original sharp stroke, you replicate optical light dispersion:</p>
+<ol type="1">
+<li><strong>Source Graphic:</strong> The white-hot, sharp core of the
+neon tube.</li>
+<li><strong>Inner Glow:</strong> A narrow, high-opacity blur for intense
+brightness near the source.</li>
+<li><strong>Mid Glow:</strong> A moderate blur creating the primary
+saturated color emission.</li>
+<li><strong>Outer Glow:</strong> A wide, soft blur simulating ambient
+atmospheric light.</li>
+</ol>
+<p>The <code>feMerge</code> primitive acts as a compositor, accepting
+multiple filter outputs as <code>feMergeNode</code> inputs and
+flattening them in a bottom-to-top rendering order.</p>
+<hr />
+<h3 id="step-by-step-filter-construction-in-inkscape">Step-by-Step
+Filter Construction in Inkscape</h3>
+<h4 id="1-open-the-filter-editor">1. Open the Filter Editor</h4>
+<ol type="1">
+<li>Select the vector path or text you wish to stylize. For authentic
+neon, give it a bright stroke (e.g., <code>#00FFFF</code> or
+<code>#FF0055</code>) and set the stroke width between 2px and 6px.</li>
+<li>Navigate to <strong>Filters &gt; Filter Editor</strong> in the top
+menu to open the filter management panel.</li>
+</ol>
+<h4 id="2-create-the-filter-container">2. Create the Filter
+Container</h4>
+<ol type="1">
+<li>In the Filter Editor panel, click <strong>New</strong> at the bottom
+left.</li>
+<li>Double-click the default name (e.g., <code>filter1</code>) and
+rename it to <code>NeonGlow</code>.</li>
+<li>Check the box next to <code>NeonGlow</code> while your vector object
+is selected to apply the blank filter to it.</li>
+</ol>
+<h4 id="3-add-the-blur-primitives">3. Add the Blur Primitives</h4>
+<p>Add three Gaussian Blur primitives to create the three glow
+tiers:</p>
+<ol type="1">
+<li>Select <strong>Gaussian Blur</strong> from the primitive dropdown
+menu and click <strong>Add Primitive</strong>.</li>
+<li>Repeat this process two more times so you have three
+<code>Gaussian Blur</code> items listed under <code>Effect</code>.</li>
+<li>Connect the input of each Gaussian Blur to the <strong>Source
+Graphic</strong> by dragging the input connection triangle of each blur
+layer to the <code>Source Graphic</code> row.</li>
+</ol>
+<h4 id="4-configure-blur-radii">4. Configure Blur Radii</h4>
+<p>Select each blur primitive individually and adjust the
+<strong>Standard Deviation</strong> slider in the lower pane:</p>
+<ul>
+<li><strong>Blur 1 (Inner core):</strong> Set standard deviation to
+approximately <code>1.5</code> (X and Y).</li>
+<li><strong>Blur 2 (Mid halo):</strong> Set standard deviation to
+approximately <code>5.0</code>.</li>
+<li><strong>Blur 3 (Outer aura):</strong> Set standard deviation to
+approximately <code>15.0</code> to <code>20.0</code>.</li>
+</ul>
+<h4 id="5-assemble-the-layers-with-femerge">5. Assemble the Layers with
+feMerge</h4>
+<ol type="1">
+<li>Select <strong>Merge</strong> from the primitive dropdown and click
+<strong>Add Primitive</strong>.</li>
+<li>Expand the <code>Merge</code> item if necessary. It requires four
+inputs to assemble the full effect.</li>
+<li>In Inkscape's interface, drag a connection from each individual
+input connector of the Merge node to your layers in the following
+sequence:
+<ul>
+<li><strong>Input 1:</strong> Connect to <strong>Blur 3</strong> (the
+widest, softest blur at the bottom).</li>
+<li><strong>Input 2:</strong> Connect to <strong>Blur 2</strong> (the
+mid-range halo).</li>
+<li><strong>Input 3:</strong> Connect to <strong>Blur 1</strong> (the
+tight inner glow).</li>
+<li><strong>Input 4:</strong> Connect to <strong>Source Graphic</strong>
+(the crisp original vector on top).</li>
+</ul></li>
+</ol>
+<p>If the Merge primitive does not display enough connection points by
+default, adding another sub-node inside the merge stack creates an
+additional input handle.</p>
+<hr />
+<h3 id="underlying-svg-definition">Underlying SVG Definition</h3>
+<p>For users inspecting the XML Editor (<code>Shift + Ctrl + X</code>),
+the resulting filter definition inside the <code>&lt;defs&gt;</code>
+element translates to the following structure:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">filter</span> <span class="ot">id=</span><span class="st">&quot;NeonGlow&quot;</span> <span class="ot">x=</span><span class="st">&quot;-50%&quot;</span> <span class="ot">y=</span><span class="st">&quot;-50%&quot;</span> <span class="ot">width=</span><span class="st">&quot;200%&quot;</span> <span class="ot">height=</span><span class="st">&quot;200%&quot;</span>&gt;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">feGaussianBlur</span> <span class="ot">in=</span><span class="st">&quot;SourceGraphic&quot;</span> <span class="ot">stdDeviation=</span><span class="st">&quot;1.5&quot;</span> <span class="ot">result=</span><span class="st">&quot;blur_tight&quot;</span>/&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">feGaussianBlur</span> <span class="ot">in=</span><span class="st">&quot;SourceGraphic&quot;</span> <span class="ot">stdDeviation=</span><span class="st">&quot;5.0&quot;</span> <span class="ot">result=</span><span class="st">&quot;blur_mid&quot;</span>/&gt;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">feGaussianBlur</span> <span class="ot">in=</span><span class="st">&quot;SourceGraphic&quot;</span> <span class="ot">stdDeviation=</span><span class="st">&quot;18.0&quot;</span> <span class="ot">result=</span><span class="st">&quot;blur_wide&quot;</span>/&gt;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">feMerge</span>&gt;</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">feMergeNode</span> <span class="ot">in=</span><span class="st">&quot;blur_wide&quot;</span>/&gt;</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">feMergeNode</span> <span class="ot">in=</span><span class="st">&quot;blur_mid&quot;</span>/&gt;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">feMergeNode</span> <span class="ot">in=</span><span class="st">&quot;blur_tight&quot;</span>/&gt;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">feMergeNode</span> <span class="ot">in=</span><span class="st">&quot;SourceGraphic&quot;</span>/&gt;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">feMerge</span>&gt;</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">filter</span>&gt;</span></code></pre></div>
+<h3 id="tuning-and-bounding-box-adjustments">Tuning and Bounding Box
+Adjustments</h3>
+<ul>
+<li><strong>Preventing Clipped Edges:</strong> Large blurs often exceed
+Inkscape's default filter region, causing boxy edges. Select the filter
+in the Filter Editor, open the <strong>Filter General Settings</strong>
+tab, and increase the <strong>Coordinates</strong> dimensions (e.g., set
+<code>X</code>, <code>Y</code> to <code>-50%</code> and
+<code>Width</code>, <code>Height</code> to <code>200%</code>).</li>
+<li><strong>White-Hot Center Core:</strong> To mimic intense gas
+discharge, make your object's fill or stroke pure white
+(<code>#FFFFFF</code>). The wide and mid-range blurs will capture the
+underlying color tone if color matrix primitives are added, or you can
+use a duplicate colored path directly underneath the white source
+stroke.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

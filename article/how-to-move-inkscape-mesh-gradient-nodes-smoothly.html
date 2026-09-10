@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Move Inkscape Mesh Gradient Nodes Smoothly - inkscape</title>
+    <meta name="description" content="Mesh gradients in Inkscape allow artists to create photorealistic color blends and complex 2D shadings using a grid of interconnected patches. Manipulating these meshes requires fine control over corner nodes and their associated Bézier handles. This gu">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-move-inkscape-mesh-gradient-nodes-smoothly">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Move Inkscape Mesh Gradient Nodes Smoothly - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-move-inkscape-mesh-gradient-nodes-smoothly" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Mesh gradients in Inkscape allow artists to create photorealistic color blends and complex 2D shadings using a grid of interconnected patches. Manipulating these meshes requires fine control over corner nodes and their associated Bézier handles. This gu" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-move-inkscape-mesh-gradient-nodes-smoothly">How to Move
+Inkscape Mesh Gradient Nodes Smoothly</h1>
+<p>Mesh gradients in Inkscape allow artists to create photorealistic
+color blends and complex 2D shadings using a grid of interconnected
+patches. Manipulating these meshes requires fine control over corner
+nodes and their associated Bézier handles. This guide explains the exact
+keyboard shortcuts and techniques needed to move mesh gradient nodes
+while preserving smooth curvature and handle alignment across your color
+transitions.</p>
+<hr />
+<h3 id="the-shortcut-holding-shift-while-manipulating-handles">The
+Shortcut: Holding Shift While Manipulating Handles</h3>
+<p>In Inkscape’s <strong>Create and edit meshes</strong> tool (shortcut:
+<strong>F10</strong> or clicking the Mesh icon in the toolbar),
+individual mesh nodes govern the grid structure, while the four
+surrounding Bézier handles dictate the curvature of the mesh lines.</p>
+<p>To maintain a smooth, collinear curve across a mesh node:</p>
+<ul>
+<li><strong>Hold <code>Shift</code> while dragging a control
+handle:</strong> When you hold the <strong>Shift</strong> key and drag a
+curvature handle extending from a mesh node, the opposite handle rotates
+synchronously to remain 180 degrees opposite (collinear). This preserves
+a continuous, smooth curve across the node rather than creating a sharp
+corner (cusp).</li>
+<li><strong>Hold <code>Ctrl</code> while dragging:</strong> Holding the
+<strong>Ctrl</strong> key constrains the angle of movement to standard
+15-degree increments, allowing you to reposition handles or nodes along
+strict linear axes without introducing accidental curvature skew.</li>
+</ul>
+<hr />
+<h3 id="moving-mesh-nodes-without-distorting-curvature">Moving Mesh
+Nodes Without Distorting Curvature</h3>
+<p>When repositioning the mesh node itself rather than an individual
+handle:</p>
+<ol type="1">
+<li><strong>Direct Translation:</strong> Clicking and dragging a mesh
+corner node automatically translates the node and its adjoining Bézier
+handles together. Their relative positions and angles to the node are
+preserved by default, maintaining the established local curve
+profile.</li>
+<li><strong>Keyboard Nudge:</strong> To move a mesh node with
+pixel-perfect precision while keeping the surrounding curvature geometry
+intact, select the node and use the <strong>Arrow keys</strong>.
+Pressing <strong>Shift + Arrow keys</strong> moves the node in 10-pixel
+increments, while <strong>Alt + Arrow keys</strong> moves the node by 1
+screen pixel.</li>
+<li><strong>Multi-Node Selection:</strong> To reshape a region of the
+mesh without flattening neighboring curves, hold <strong>Shift</strong>
+to select multiple adjacent mesh nodes (or click and drag a bounding box
+around them) before moving. Translating multiple nodes at once preserves
+the relative curvature of the interior grid lines connecting them.</li>
+</ol>
+<hr />
+<h3 id="adjusting-mesh-curvature-directly-on-the-path">Adjusting Mesh
+Curvature Directly on the Path</h3>
+<p>Inkscape also allows you to adjust curvature without directly
+clicking tiny handle nodes:</p>
+<ul>
+<li>Hover your cursor directly over a mesh grid line between two nodes
+until the cursor changes to a curve adjustment icon.</li>
+<li>Click and drag the line to bend the mesh surface dynamically.
+Inkscape will automatically update the underlying Bézier handles to form
+a smooth transition between both boundary nodes.</li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

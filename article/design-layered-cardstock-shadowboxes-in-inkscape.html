@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Layered Cardstock Shadowboxes in Inkscape - inkscape</title>
+    <meta name="description" content="Designing multi-layered cardstock shadowboxes with staggered internal cutouts in Inkscape involves establishing a standardized frame dimension, organizing visual depth across separate layers, and using vector path operations to attach design elements to">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/design-layered-cardstock-shadowboxes-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Design Layered Cardstock Shadowboxes in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/design-layered-cardstock-shadowboxes-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing multi-layered cardstock shadowboxes with staggered internal cutouts in Inkscape involves establishing a standardized frame dimension, organizing visual depth across separate layers, and using vector path operations to attach design elements to" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="design-layered-cardstock-shadowboxes-in-inkscape">Design Layered
+Cardstock Shadowboxes in Inkscape</h1>
+<p>Designing multi-layered cardstock shadowboxes with staggered internal
+cutouts in Inkscape involves establishing a standardized frame
+dimension, organizing visual depth across separate layers, and using
+vector path operations to attach design elements to structural borders.
+By systematically expanding or contracting the focal openings across
+multiple stacked sheets and uniting silhouettes with outer frames, you
+create a physical sense of depth and parallax once cut and
+assembled.</p>
+<h3 id="1-set-up-the-project-canvas-and-document-properties">1. Set Up
+the Project Canvas and Document Properties</h3>
+<p>Open Inkscape and access <strong>File &gt; Document
+Properties</strong>. Set your display units and document dimensions to
+match your shadowbox frame (for example, 8x8 inches or 200x200 mm).
+Under the <strong>Grids</strong> tab, enable a rectangular grid with
+snapping enabled for bounding boxes and nodes. This ensures that every
+layer shares an identical outer boundary, which is essential for proper
+alignment during final assembly.</p>
+<h3 id="2-create-the-master-frame-template">2. Create the Master Frame
+Template</h3>
+<p>Every cut layer requires an identical outer border to hold the
+internal art and fit into the shadowbox spacer system:</p>
+<ol type="1">
+<li>Select the <strong>Rectangle Tool</strong> (<code>R</code>) and draw
+a square matching your canvas dimensions.</li>
+<li>Duplicate the rectangle (<code>Ctrl + D</code>) and scale it down
+proportionally (for instance, 0.5 inches smaller on all sides) to create
+the inner viewing window border.</li>
+<li>Select both rectangles, navigate to <strong>Path &gt;
+Difference</strong> (<code>Ctrl + -</code>). This creates a hollow
+frame.</li>
+<li>Keep a master copy of this hollow frame on an inactive guide layer
+to duplicate for each subsequent layer.</li>
+</ol>
+<h3 id="3-organize-depth-and-plan-layer-hierarchy">3. Organize Depth and
+Plan Layer Hierarchy</h3>
+<p>Open the <strong>Layers and Objects</strong> panel
+(<code>Ctrl + Shift + L</code>). Create dedicated layers numbered
+sequentially from front to back (e.g., <em>Layer 1 - Foreground</em>,
+<em>Layer 2 - Midground 1</em>, <em>Layer 3 - Midground 2</em>,
+<em>Layer 4 - Background</em>).</p>
+<p>To achieve the staggered cutout effect:</p>
+<ul>
+<li><strong>Foreground (Layer 1):</strong> Features the smallest
+internal aperture or the most prominent framing elements (such as tree
+branches, curtains, or cave entrances) along the perimeter.</li>
+<li><strong>Midgrounds (Layers 2–3):</strong> Feature intermediate
+subjects (characters, rolling hills, buildings) that progressively
+recede.</li>
+<li><strong>Background (Layer 4):</strong> Contains distant elements
+(mountains, stars, or a solid backing sheet to diffuse
+backlighting).</li>
+</ul>
+<h3 id="4-construct-staggered-internal-cutouts">4. Construct Staggered
+Internal Cutouts</h3>
+<p>To give the shadowbox natural depth, the central viewing aperture
+should expand or shift across layers:</p>
+<ol type="1">
+<li>Copy the master frame onto each active layer.</li>
+<li>Import or draw your vector silhouettes using the <strong>Draw Bezier
+Curves</strong> tool (<code>B</code>) or basic shapes.</li>
+<li>Overlap the silhouette elements onto the frame edges. Cardstock
+elements cannot float freely; every internal element must physically
+connect to the frame border or to another anchored shape.</li>
+<li>If using a repeating framing shape (like concentric organic cave
+openings), draw the initial shape, duplicate it to the next layer, and
+use <strong>Path &gt; Outset</strong> (<code>Ctrl + )</code>) or
+<strong>Path &gt; Dynamic Offset</strong> to enlarge the cutout
+progressively on deeper layers.</li>
+</ol>
+<h3 id="5-merge-elements-using-boolean-operations">5. Merge Elements
+Using Boolean Operations</h3>
+<p>For the cutting machine to read the design as a single cut line
+rather than overlapping cuts, each layer must be flattened into one
+continuous path:</p>
+<ol type="1">
+<li>Select the internal design elements on a layer along with the outer
+border frame.</li>
+<li>Ensure all strokes are converted to paths via <strong>Path &gt;
+Stroke to Path</strong> (<code>Ctrl + Alt + C</code>).</li>
+<li>Combine overlapping shapes by selecting them and executing
+<strong>Path &gt; Union</strong> (<code>Ctrl + +</code>).</li>
+<li>Inspect the result using the <strong>Edit Paths by Nodes</strong>
+tool (<code>N</code>). The internal artwork and the outer border should
+now share a seamless, unbroken perimeter.</li>
+</ol>
+<h3 id="6-add-alignment-and-registration-marks">6. Add Alignment and
+Registration Marks</h3>
+<p>To prevent misaligned stacking:</p>
+<ol type="1">
+<li>Place small 2–3 mm circular cuts in the scrap margin or corners of
+the outer frame that will be hidden by the physical shadowbox lip.</li>
+<li>Duplicate these exact circles across every layer using the
+<strong>Paste in Place</strong> command
+(<code>Ctrl + Alt + V</code>).</li>
+<li>When assembling the physical paper, insertion pins or dowels can be
+placed through these holes to guarantee uniform spacing.</li>
+</ol>
+<h3 id="7-export-for-cutting">7. Export for Cutting</h3>
+<p>Clean up each layer before export:</p>
+<ol type="1">
+<li>Select each layer individually and run <strong>Path &gt; Clean Up
+Document</strong> to remove unused definitions.</li>
+<li>Turn on the visibility of only one layer at a time, or arrange the
+completed frames side-by-side on an expanded canvas.</li>
+<li>Save the file as a <strong>Plain SVG</strong> via <strong>File &gt;
+Save As...</strong> to ensure clean path interpretation in cutting
+machine software such as Cricut Design Space or Silhouette Studio.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

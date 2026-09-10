@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Custom Embroidery Fonts in Ink/Stitch - inkscape</title>
+    <meta name="description" content="This guide provides a comprehensive, step-by-step walkthrough on how to design, digitize, and configure custom embroidery glyphs for the Ink/Stitch lettering tool in Inkscape. By following these instructions, you will learn how to set up character baseli">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-custom-embroidery-fonts-in-ink-stitch">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Custom Embroidery Fonts in Ink/Stitch - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-custom-embroidery-fonts-in-ink-stitch" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This guide provides a comprehensive, step-by-step walkthrough on how to design, digitize, and configure custom embroidery glyphs for the Ink/Stitch lettering tool in Inkscape. By following these instructions, you will learn how to set up character baseli" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-custom-embroidery-fonts-in-inkstitch">Create Custom
+Embroidery Fonts in Ink/Stitch</h1>
+<p>This guide provides a comprehensive, step-by-step walkthrough on how
+to design, digitize, and configure custom embroidery glyphs for the
+Ink/Stitch lettering tool in Inkscape. By following these instructions,
+you will learn how to set up character baselines, digitize stitches for
+each letter, configure the necessary font metadata, and save your custom
+typography so it can be typed directly onto the canvas using your
+keyboard.</p>
+<h2 id="1-prepare-the-document-setup">1. Prepare the Document Setup</h2>
+<p>Ink/Stitch requires specific guides and structure to calculate
+character heights, line spacing, and kerning.</p>
+<ol type="1">
+<li>Open Inkscape and create a new document.</li>
+<li>Open <strong>File &gt; Document Properties</strong> and set your
+display units to millimeters (<code>mm</code>).</li>
+<li>Set up horizontal guidelines to define vertical font metrics:
+<ul>
+<li><strong>Baseline:</strong> The bottom line where characters
+sit.</li>
+<li><strong>Ascender:</strong> The top limit for tall letters (like
+<code>b</code>, <code>d</code>, <code>h</code>).</li>
+<li><strong>Descender:</strong> The bottom limit for descending letters
+(like <code>p</code>, <code>g</code>, <code>y</code>).</li>
+<li><strong>Cap Height:</strong> The top limit for uppercase
+letters.</li>
+<li><strong>X-Height:</strong> The top limit for flat lowercase letters
+(like <code>a</code>, <code>c</code>, <code>x</code>).</li>
+</ul></li>
+</ol>
+<h2 id="2-digitize-the-glyphs">2. Digitize the Glyphs</h2>
+<p>Each glyph must consist of valid Ink/Stitch embroidery
+elements—typically satin columns or running stitches.</p>
+<ol type="1">
+<li>Draw your character using the Bézier tool (<code>B</code>).</li>
+<li>Convert your shapes into stitch paths:
+<ul>
+<li><strong>Satin Columns:</strong> Use two parallel subpaths connected
+by rungs, or a single stroke styled with standard satin line
+properties.</li>
+<li><strong>Running Stitches:</strong> Use simple open paths for
+underlay or single-line fonts.</li>
+<li><strong>Fills:</strong> Use standard closed paths if creating large
+filled-letter embroidery.</li>
+</ul></li>
+<li>Apply embroidery parameters via <strong>Extensions &gt; Ink/Stitch
+&gt; Params</strong> to confirm that the stitches generate without
+errors.</li>
+<li>Keep the start and stop points of each character optimized for
+minimal jump stitches, usually starting on the lower left and exiting on
+the lower right.</li>
+</ol>
+<h2 id="3-organize-characters-into-layers-and-groups">3. Organize
+Characters into Layers and Groups</h2>
+<p>Ink/Stitch identifies glyphs based on Inkscape’s layer and object
+labeling structure.</p>
+<ol type="1">
+<li>Create a dedicated top-level layer for your font.</li>
+<li>Group all elements for a single character together
+(<code>Ctrl + G</code>).</li>
+<li>Open the <strong>Object &gt; Objects...</strong> panel.</li>
+<li>Rename the group or sublayer to match the exact keystroke of the
+character. For example:
+<ul>
+<li>Label the uppercase A group as <code>A</code>.</li>
+<li>Label the lowercase a group as <code>a</code>.</li>
+<li>Label punctuation directly, such as <code>?</code>, <code>!</code>,
+or <code>.</code>.</li>
+</ul></li>
+<li>For special characters or spaces:
+<ul>
+<li>Create an empty path or invisible boundary object named
+<code>space</code> to define word spacing.</li>
+</ul></li>
+</ol>
+<h2 id="4-define-character-width-and-spacing">4. Define Character Width
+and Spacing</h2>
+<p>Each character group must have a defined width so Ink/Stitch knows
+where the next character begins.</p>
+<ol type="1">
+<li>Inside each character group, add a horizontal line on the baseline
+path representing the width of the letter, or position your characters
+with consistent margins.</li>
+<li>Alternatively, use a transparent rectangle (stroke: none, fill:
+none) bounding the character to represent its advance width.</li>
+</ol>
+<h2 id="5-generate-and-package-the-font">5. Generate and Package the
+Font</h2>
+<p>Ink/Stitch uses a specific JSON and SVG structure to load fonts into
+the Lettering interface.</p>
+<ol type="1">
+<li>Navigate to <strong>Extensions &gt; Ink/Stitch &gt; Font Management
+&gt; Generate JSON</strong>.</li>
+<li>Fill out the required metadata fields:
+<ul>
+<li><strong>Font Name:</strong> The name that will appear in the
+Lettering dropdown.</li>
+<li><strong>Description:</strong> Details on recommended size ranges and
+design style.</li>
+<li><strong>Default Size:</strong> The native height (in mm) at which
+the font was digitized.</li>
+</ul></li>
+<li>Save the resulting <code>.svg</code> file containing the glyphs and
+the accompanying <code>.json</code> file containing the font
+settings.</li>
+</ol>
+<h2 id="6-install-the-font-into-inkstitch">6. Install the Font into
+Ink/Stitch</h2>
+<p>To make the font available in the Lettering tool:</p>
+<ol type="1">
+<li>Locate your Ink/Stitch custom font directory:
+<ul>
+<li><strong>Windows:</strong>
+<code>%APPDATA%\inkstitch\fonts</code></li>
+<li><strong>macOS:</strong>
+<code>~/Library/Application Support/inkstitch/fonts</code></li>
+<li><strong>Linux:</strong> <code>~/.config/inkstitch/fonts</code></li>
+</ul></li>
+<li>Create a new folder inside the <code>fonts</code> directory named
+after your custom font.</li>
+<li>Copy both the <code>.svg</code> and <code>.json</code> files into
+this directory.</li>
+</ol>
+<h2 id="7-test-the-custom-font">7. Test the Custom Font</h2>
+<ol type="1">
+<li>Restart Inkscape to ensure newly added files are indexed.</li>
+<li>Navigate to <strong>Extensions &gt; Ink/Stitch &gt;
+Lettering</strong>.</li>
+<li>Select your custom font from the <strong>Font</strong> dropdown
+menu.</li>
+<li>Type test phrases into the text box to verify:
+<ul>
+<li>Vertical alignment along the baseline.</li>
+<li>Proportional spacing between different letter combinations.</li>
+<li>Correct rendering of satin angles and density settings.</li>
+</ul></li>
+<li>Click <strong>Apply and Quit</strong> to place your customized
+embroidery lettering onto the canvas.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

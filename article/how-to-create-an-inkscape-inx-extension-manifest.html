@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Create an Inkscape INX Extension Manifest - inkscape</title>
+    <meta name="description" content="An Inkscape Extension (.inx) file is an XML manifest that defines how a custom script integrates into Inkscape. It dictates the metadata, the user interface dialog, menu placement, and execution commands needed to run the accompanying script (typically P">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-create-an-inkscape-inx-extension-manifest">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Create an Inkscape INX Extension Manifest - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-create-an-inkscape-inx-extension-manifest" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="An Inkscape Extension (.inx) file is an XML manifest that defines how a custom script integrates into Inkscape. It dictates the metadata, the user interface dialog, menu placement, and execution commands needed to run the accompanying script (typically P" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-create-an-inkscape-inx-extension-manifest">How to Create
+an Inkscape INX Extension Manifest</h1>
+<p>An Inkscape Extension (<code>.inx</code>) file is an XML manifest
+that defines how a custom script integrates into Inkscape. It dictates
+the metadata, the user interface dialog, menu placement, and execution
+commands needed to run the accompanying script (typically Python).
+Creating a functional <code>.inx</code> file requires establishing a
+root <code>&lt;inkscape-extension&gt;</code> element containing child
+elements for identification, input parameters, script bindings, and menu
+hierarchy.</p>
+<h2 id="basic-structure-of-an-inx-file">Basic Structure of an
+<code>.inx</code> File</h2>
+<p>An <code>.inx</code> file must be saved in Inkscape's extensions
+directory alongside your backend script. The overall structure consists
+of several primary sections wrapped inside an XML declaration and a root
+<code>&lt;inkscape-extension&gt;</code> tag.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode xml"><code class="sourceCode xml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">&lt;?xml</span> <span class="ot">version=</span><span class="st">&quot;1.0&quot;</span> <span class="ot">encoding=</span><span class="st">&quot;UTF-8&quot;</span><span class="fu">?&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">inkscape-extension</span> <span class="ot">xmlns=</span><span class="st">&quot;http://www.inkscape.org/namespace/inkscape/extension&quot;</span>&gt;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">name</span>&gt;My Custom Tool&lt;/<span class="kw">name</span>&gt;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">id</span>&gt;org.example.inkscape.my_custom_tool&lt;/<span class="kw">id</span>&gt;</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- UI Parameters --&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">param</span> <span class="ot">name=</span><span class="st">&quot;tab&quot;</span> <span class="ot">type=</span><span class="st">&quot;notebook&quot;</span>&gt;</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">page</span> <span class="ot">name=</span><span class="st">&quot;options&quot;</span> <span class="ot">gui-text=</span><span class="st">&quot;Options&quot;</span>&gt;</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">param</span> <span class="ot">name=</span><span class="st">&quot;user_text&quot;</span> <span class="ot">type=</span><span class="st">&quot;string&quot;</span> <span class="ot">gui-text=</span><span class="st">&quot;Enter text:&quot;</span>&gt;Default Text&lt;/<span class="kw">param</span>&gt;</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">param</span> <span class="ot">name=</span><span class="st">&quot;amount&quot;</span> <span class="ot">type=</span><span class="st">&quot;int&quot;</span> <span class="ot">min=</span><span class="st">&quot;1&quot;</span> <span class="ot">max=</span><span class="st">&quot;100&quot;</span> <span class="ot">gui-text=</span><span class="st">&quot;Copies:&quot;</span>&gt;1&lt;/<span class="kw">param</span>&gt;</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">param</span> <span class="ot">name=</span><span class="st">&quot;enable_feature&quot;</span> <span class="ot">type=</span><span class="st">&quot;bool&quot;</span> <span class="ot">gui-text=</span><span class="st">&quot;Apply feature&quot;</span>&gt;true&lt;/<span class="kw">param</span>&gt;</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">page</span>&gt;</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">param</span>&gt;</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Effect Configuration and Menu Placement --&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">effect</span>&gt;</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">object-type</span>&gt;all&lt;/<span class="kw">object-type</span>&gt;</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            &lt;<span class="kw">submenu</span> <span class="ot">gui-text=</span><span class="st">&quot;Modify&quot;</span>/&gt;</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        &lt;/<span class="kw">effects-menu</span>&gt;</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">effect</span>&gt;</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co">&lt;!-- Script Execution --&gt;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">script</span>&gt;</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        &lt;<span class="kw">command</span> <span class="ot">location=</span><span class="st">&quot;inx&quot;</span> <span class="ot">interpreter=</span><span class="st">&quot;python&quot;</span>&gt;my_script.py&lt;/<span class="kw">command</span>&gt;</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">script</span>&gt;</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">inkscape-extension</span>&gt;</span></code></pre></div>
+<h2 id="core-xml-elements">Core XML Elements</h2>
+<h3 id="1-metadata-and-identification">1. Metadata and
+Identification</h3>
+<p>Every extension requires a human-readable display name and a unique
+identifier:</p>
+<ul>
+<li><code>&lt;name&gt;</code>: Defines the label visible to users inside
+Inkscape’s menu.</li>
+<li><code>&lt;id&gt;</code>: A unique string identifier, typically
+structured using reverse domain notation (for example,
+<code>org.inkscape.effect.mytool</code>), to prevent conflicts with
+other extensions.</li>
+</ul>
+<h3 id="2-user-interface-parameters-param">2. User Interface Parameters
+(<code>&lt;param&gt;</code>)</h3>
+<p>The <code>&lt;param&gt;</code> tag defines input fields that appear
+in the extension dialog window. Each parameter maps directly to
+command-line flags passed to the execution script.</p>
+<ul>
+<li><code>name</code>: The command-line argument name (e.g.,
+<code>name="amount"</code> maps to <code>--amount</code> in the
+script).</li>
+<li><code>type</code>: The data type, such as <code>string</code>,
+<code>int</code>, <code>float</code>, <code>bool</code>,
+<code>color</code>, <code>optiongroup</code>, or
+<code>notebook</code>.</li>
+<li><code>gui-text</code>: The text label displayed next to the control
+in the UI.</li>
+<li>The text content inside the tag defines the default value.</li>
+</ul>
+<p>For complex interfaces, use <code>type="notebook"</code> with
+<code>&lt;page&gt;</code> tags to create multi-tab layouts.</p>
+<h3 id="3-menu-placement-effect">3. Menu Placement
+(<code>&lt;effect&gt;</code>)</h3>
+<p>The <code>&lt;effect&gt;</code> section controls where the extension
+appears in the Inkscape interface and what document objects it interacts
+with:</p>
+<ul>
+<li><code>&lt;object-type&gt;</code>: Specifies the target elements
+(typically <code>all</code>).</li>
+<li><code>&lt;effects-menu&gt;</code>: Determines the path inside the
+<strong>Extensions</strong> menu.
+<ul>
+<li><code>&lt;submenu gui-text="Custom Group"/&gt;</code>: Nests the
+extension inside a specific category (such as Render, Modify Path, or a
+custom submenu). Omitting this places the extension directly in the root
+of the Extensions menu.</li>
+</ul></li>
+</ul>
+<h3 id="4-backend-execution-script">4. Backend Execution
+(<code>&lt;script&gt;</code>)</h3>
+<p>The <code>&lt;script&gt;</code> tag tells Inkscape how to execute the
+code when the user clicks <strong>Apply</strong>:</p>
+<ul>
+<li><code>&lt;command&gt;</code>: Specifies the execution instructions.
+<ul>
+<li><code>interpreter</code>: Set to <code>python</code> to invoke
+Inkscape's internal Python environment.</li>
+<li><code>location</code>: Set to <code>inx</code> to indicate that the
+script resides in the same directory as the <code>.inx</code> file.</li>
+<li>Tag value: The filename of the target script (e.g.,
+<code>my_script.py</code>).</li>
+</ul></li>
+</ul></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Export Inkscape Sprites for Unity UI - inkscape</title>
+    <meta name="description" content="Exporting vector game sprites from Inkscape to Unity for user interface (UI) elements involves optimizing your vector artwork, choosing the right file format, and configuring the assets correctly within Unity's Canvas system. This guide covers the prepar">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/how-to-export-inkscape-sprites-for-unity-ui">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Export Inkscape Sprites for Unity UI - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/how-to-export-inkscape-sprites-for-unity-ui" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Exporting vector game sprites from Inkscape to Unity for user interface (UI) elements involves optimizing your vector artwork, choosing the right file format, and configuring the assets correctly within Unity's Canvas system. This guide covers the prepar" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-export-inkscape-sprites-for-unity-ui">How to Export
+Inkscape Sprites for Unity UI</h1>
+<p>Exporting vector game sprites from Inkscape to Unity for user
+interface (UI) elements involves optimizing your vector artwork,
+choosing the right file format, and configuring the assets correctly
+within Unity's Canvas system. This guide covers the preparation of your
+artwork in Inkscape, exporting as either high-resolution PNGs or native
+SVGs, and configuring the Unity import settings to ensure crisp
+rendering on any screen resolution.</p>
+<h3 id="1-prepare-vector-artwork-in-inkscape">1. Prepare Vector Artwork
+in Inkscape</h3>
+<p>Before exporting, organize your artwork to ensure clean geometry and
+proper alignment:</p>
+<ol type="1">
+<li><strong>Align to Pixel Grid:</strong> Turn on snapping
+(<code>%</code> key) and snap paths to the pixel grid to prevent blurry
+anti-aliasing edges.</li>
+<li><strong>Combine Elements:</strong> Group individual UI components
+(<code>Ctrl + G</code>) or combine related paths
+(<code>Path &gt; Union</code> or <code>Ctrl + +</code>) so each sprite
+functions as a single object.</li>
+<li><strong>Fit Canvas to Selection:</strong> Select your finished UI
+element, go to <code>File &gt; Document Properties</code>
+(<code>Shift + Ctrl + D</code>), expand <strong>Resize to
+content</strong>, and click <strong>Resize page to drawing or
+selection</strong>. This eliminates empty margins around your
+sprite.</li>
+</ol>
+<hr />
+<h3 id="2-exporting-the-sprites">2. Exporting the Sprites</h3>
+<p>You can export your vectors in two ways: as scalable vector files
+(SVG) using Unity's Vector Graphics package, or as pre-rasterized
+high-density PNG files.</p>
+<h4 id="option-a-export-as-plain-svg-resolution-independent">Option A:
+Export as Plain SVG (Resolution-Independent)</h4>
+<p>To use native vectors directly inside Unity UI:</p>
+<ol type="1">
+<li>Go to <code>File &gt; Save As...</code>.</li>
+<li>Choose <strong>Plain SVG (*.svg)</strong> from the file type
+dropdown (avoid "Inkscape SVG" to remove editor-specific metadata).</li>
+<li>Save the file directly into your Unity project's <code>Assets</code>
+directory.</li>
+</ol>
+<h4
+id="option-b-export-as-high-resolution-png-standard-raster-sprites">Option
+B: Export as High-Resolution PNG (Standard Raster Sprites)</h4>
+<p>If you prefer traditional raster sprites without runtime tessellation
+overhead:</p>
+<ol type="1">
+<li>Open the Export panel via <code>File &gt; Export</code>
+(<code>Shift + Ctrl + E</code>).</li>
+<li>Set the export area to <strong>Selection</strong> or
+<strong>Page</strong>.</li>
+<li>Under <strong>Advanced</strong>, ensure the DPI is set appropriately
+for your target screen densities (for example, 192 DPI or 300 DPI for
+high-DPI/Retina screens).</li>
+<li>Select <strong>PNG</strong> as the format and click <strong>Export
+As</strong> to save the file into your Unity project's
+<code>Assets</code> folder.</li>
+</ol>
+<hr />
+<h3 id="3-setting-up-unity-for-vector-sprites">3. Setting Up Unity for
+Vector Sprites</h3>
+<p>If you exported as an SVG, Unity requires the official vector package
+to parse the format:</p>
+<ol type="1">
+<li>In Unity, open <code>Window &gt; Package Manager</code>.</li>
+<li>Select <strong>Packages: Unity Registry</strong>.</li>
+<li>Search for <strong>Vector Graphics</strong> and click
+<strong>Install</strong>.</li>
+</ol>
+<hr />
+<h3 id="4-configure-import-settings-in-unity">4. Configure Import
+Settings in Unity</h3>
+<p>Once the assets appear in the Unity Project window, configure their
+import parameters so they can be assigned to UI elements:</p>
+<ol type="1">
+<li>Select the imported SVG or PNG file in the <strong>Project</strong>
+window.</li>
+<li>In the <strong>Inspector</strong>, set <strong>Texture Type</strong>
+to <strong>Sprite (2D and UI)</strong>.</li>
+<li>If using an SVG via the Vector Graphics package:
+<ul>
+<li>Set <strong>Generated Asset Type</strong> to <strong>Vector
+Sprite</strong>.</li>
+<li>Adjust the <strong>Resolution</strong> (pixels per unit) to scale
+the vector properly relative to your Canvas.</li>
+</ul></li>
+<li>If using a PNG:
+<ul>
+<li>Set <strong>Sprite Mode</strong> to <strong>Single</strong> (or
+<strong>Multiple</strong> if you exported a sprite sheet).</li>
+<li>Uncheck <strong>Generate Mip Maps</strong> to preserve sharp edges
+for 2D UI.</li>
+<li>Set <strong>Filter Mode</strong> to <strong>Bilinear</strong> (or
+<strong>Point (no filter)</strong> for pixel art).</li>
+</ul></li>
+<li>Click <strong>Apply</strong>.</li>
+</ol>
+<hr />
+<h3 id="5-assign-to-unity-ui-elements">5. Assign to Unity UI
+Elements</h3>
+<ol type="1">
+<li>In the Hierarchy, create a UI Image by right-clicking and selecting
+<code>UI &gt; Image</code>.</li>
+<li>Select the newly created Image object.</li>
+<li>Drag your imported sprite from the Project window into the
+<strong>Source Image</strong> slot in the Inspector.</li>
+<li>Click <strong>Set Native Size</strong> on the Image component to
+match the original proportions established in Inkscape.</li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

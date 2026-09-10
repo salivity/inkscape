@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Multi-Resolution Favicons in Inkscape - inkscape</title>
+    <meta name="description" content="Designing scalable vector favicons requires balancing infinite scalability with pixel-level clarity across tiny display sizes. This guide outlines how to build a flexible master graphic in Inkscape, set up real-time multi-resolution preview viewports usi">
+    <link rel="canonical" href="https://salivity.github.io/inkscape/article/create-multi-resolution-favicons-in-inkscape">
+    <link rel="search" type="application/opensearchdescription+xml" title="inkscape" href="/inkscape/opensearch.xml">
+    <link rel="icon" href="/inkscape/favicon.ico">
+    <link rel="stylesheet" href="/inkscape/css/style.css">
+    <link media="print" rel="stylesheet" href="/inkscape/css/print.css">
+    <script src="/inkscape/js/fuse.min.js"></script>
+    <script src="/inkscape/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Create Multi-Resolution Favicons in Inkscape - inkscape" />
+    <meta property="og:url" content="https://salivity.github.io/inkscape/article/create-multi-resolution-favicons-in-inkscape" />
+    <meta property="og:image:url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/inkscape/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Designing scalable vector favicons requires balancing infinite scalability with pixel-level clarity across tiny display sizes. This guide outlines how to build a flexible master graphic in Inkscape, set up real-time multi-resolution preview viewports usi" />
+    <link rel="manifest" href="/inkscape/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/inkscape/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>inkscape</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/inkscape/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="create-multi-resolution-favicons-in-inkscape">Create
+Multi-Resolution Favicons in Inkscape</h1>
+<p>Designing scalable vector favicons requires balancing infinite
+scalability with pixel-level clarity across tiny display sizes. This
+guide outlines how to build a flexible master graphic in Inkscape, set
+up real-time multi-resolution preview viewports using linked clones,
+optimize paths for fractional pixel grids, and export assets ready for
+modern web use.</p>
+<h3 id="1-set-up-the-master-document">1. Set Up the Master Document</h3>
+<p>Open Inkscape and access the Document Properties panel
+(<strong>Ctrl+Shift+D</strong> or <strong>File &gt; Document
+Properties</strong>).</p>
+<ol type="1">
+<li>Set the <strong>Display units</strong> to <code>px</code>.</li>
+<li>Under <strong>Page Size</strong>, set both width and height to
+<code>512 px</code>. This acts as your high-resolution master
+canvas.</li>
+<li>Switch to the <strong>Grids</strong> tab, select <strong>Rectangular
+grid</strong>, and click <strong>New</strong>.</li>
+<li>Set <strong>Spacing X</strong> and <strong>Spacing Y</strong> to
+<code>1 px</code> to ensure alignment with standard screen pixels.</li>
+</ol>
+<h3 id="2-build-the-multi-resolution-preview-setup">2. Build the
+Multi-Resolution Preview Setup</h3>
+<p>Modern favicons appear at various standard sizes: 16×16 (browser
+tabs), 32×32 (taskbars), 48×48 (desktop shortcuts), and 180×180 (touch
+icons). Inkscape allows you to build live previews using
+<strong>Clones</strong>, which automatically mirror your master
+artwork.</p>
+<ol type="1">
+<li>Move away from your main 512×512 canvas to create a scratchboard
+area on the side.</li>
+<li>Draw four reference squares using the Rectangle tool
+(<strong>R</strong>):
+<ul>
+<li>16×16 px</li>
+<li>32×32 px</li>
+<li>48×48 px</li>
+<li>180×180 px</li>
+</ul></li>
+<li>Select your primary artwork on the 512×512 master canvas.</li>
+<li>Group the master graphic (<strong>Ctrl+G</strong>).</li>
+<li>Create a linked clone by pressing <strong>Alt+D</strong> (or
+<strong>Edit &gt; Clone &gt; Create Clone</strong>).</li>
+<li>Open the <strong>Transform</strong> panel
+(<strong>Ctrl+Shift+M</strong>), go to the <strong>Scale</strong> tab,
+and scale the cloned object down to fit the respective reference squares
+(e.g., scale one clone down to 16×16, another to 32×32, etc.).</li>
+<li>Arrange the cloned shapes next to each other.</li>
+</ol>
+<p>Any stroke, color, or path adjustment made to the 512×512 master
+object will instantly render across all preview clones
+simultaneously.</p>
+<h3 id="3-design-for-small-scale-legibility">3. Design for Small-Scale
+Legibility</h3>
+<p>Tiny favicons fail when overwhelmed with detail. Monitor your clones
+while adjusting the master object according to these principles:</p>
+<ul>
+<li><strong>Silhouette Over Detail:</strong> Focus on recognizable
+exterior shapes rather than internal linework. Drop complex shadows,
+subtle gradients, and fine text.</li>
+<li><strong>Pixel Snapping:</strong> Turn on snapping
+(<strong>%</strong>) and enable <strong>Snap to grids</strong> and
+<strong>Snap bounding boxes</strong>. Even a fractional offset of 0.5px
+causes blurred antialiasing on 16×16 displays.</li>
+<li><strong>Dynamic Stroke Scaling:</strong> If using strokes, select
+whether strokes should scale proportionally in Inkscape preferences. For
+extreme scale downs (512px to 16px), convert critical lines to filled
+paths (<strong>Path &gt; Stroke to Path</strong>) so edges align
+squarely with whole-number coordinates.</li>
+</ul>
+<h3 id="4-inspect-at-11-native-resolution">4. Inspect at 1:1 Native
+Resolution</h3>
+<p>Inkscape's canvas zoom can distort your perception of how an icon
+truly feels on a monitor.</p>
+<ol type="1">
+<li>Press <strong>1</strong> on the keyboard to set the canvas zoom to
+100% (1:1 actual pixel scale).</li>
+<li>Look at the 16×16 and 32×32 clones without zooming in. If the design
+becomes an unrecognizable blur, return to the 512×512 master, simplify
+shapes, increase negative space, or thicken fine lines until the 1:1
+previews are sharp and legible.</li>
+</ol>
+<h3 id="5-export-web-ready-formats">5. Export Web-Ready Formats</h3>
+<p>Modern browsers support raw SVG favicons alongside standard PNG and
+ICO fallbacks.</p>
+<h4 id="modern-svg">Modern SVG</h4>
+<ol type="1">
+<li>Select the master 512×512 artwork.</li>
+<li>Go to <strong>File &gt; Save As...</strong> and choose
+<strong>Optimized SVG (*.svg)</strong>.</li>
+<li>Ensure "Enable viewboxing" is checked to let modern browsers
+dynamically scale the vector asset cleanly.</li>
+</ol>
+<h4 id="multi-resolution-fallbacks-png-and-ico">Multi-Resolution
+Fallbacks (PNG and ICO)</h4>
+<ol type="1">
+<li>Select the individual preview clones (or place distinct export boxes
+around them).</li>
+<li>Open the <strong>Export</strong> dialog
+(<strong>Ctrl+Shift+E</strong>).</li>
+<li>Select <strong>Selection</strong> or configure individual
+<strong>Batch Export</strong> slices.</li>
+<li>Export each preview as a PNG: <code>favicon-16x16.png</code>,
+<code>favicon-32x32.png</code>, and <code>apple-touch-icon.png</code>
+(180×180).</li>
+<li>Combine the 16×16 and 32×32 PNG files into a multi-layer
+<code>favicon.ico</code> using a conversion utility or command-line tool
+like ImageMagick:
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">magick</span> convert favicon-16x16.png favicon-32x32.png favicon.ico</span></code></pre></div></li>
+</ol></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/inkscape'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/inkscape/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/inkscape/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>
